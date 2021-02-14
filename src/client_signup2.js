@@ -11,6 +11,7 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faEye} from "@fortawesome/free-solid-svg-icons";
 const eye = <FontAwesomeIcon icon={faEye} />;
 
+
 const schema = Yup.object().shape({
     email: Yup.string()
         .email("Email must be a valid email.")
@@ -18,15 +19,16 @@ const schema = Yup.object().shape({
     username: Yup.string()
         .min(3, "Username is too short - should be 3 chars minimum.")
         .max(30, "Username is too long - should be 30 chars maximum.")
-        .matches('\s', "Username should not contain space.")
+        .matches(/^[a-zA-Z0-9]*$/, "Username should not contain space or special characters.")
         .required("No username provided."),
     password: Yup.string()
         .required("No password provided.")
         .min(8, "Password is too short - should be 8 chars minimum.")
         .matches(/(?=.*[0-9])/, "Password must contain a number.")
-        .matches('\s', "Password should not contain space."),
+        .matches(/^[a-zA-Z0-9!@#\$%\^\&*\)\(+=._-]+$/, "Password should not contain space."),
     retypePassword: Yup.string()
         .oneOf([Yup.ref("password")], "Passwords don't match.")
+        .required("Required")
 });
 
 const SignUp = () => {
@@ -83,6 +85,24 @@ return (
     )}
     <p/>
 
+
+    {/* <Form.Label htmlFor="phoneNumber">Phone Number</Form.Label>
+    <Form.Control
+        id="phoneNumber"
+        name="phoneNumber"
+        type="text"
+        placeholder="Insert your phone number."
+        value={formik.values.phoneNumber}
+        onChange={formik.handleChange}
+        onBlur={formik.handleBlur}
+        className={formik.errors.phoneNumber && formik.touched.phoneNumber && "error"}
+    />
+    {formik.errors.phoneNumber && formik.touched.phoneNumber && (
+    <div style={{color: "red"}} className="input-feedback">{formik.errors.phoneNumber}</div>
+    )}
+    <p/>    
+    */}
+
     <Form.Label htmlFor="password">Password</Form.Label> 
     <Form.Control
         id="password"
@@ -118,8 +138,8 @@ return (
     <Button type="submit" disabled={formik.isSubmitting}>
         Register
     </Button>
-        
 </Form>
 );
 };
-  export default SignUp;
+
+export default SignUp;
