@@ -1,8 +1,18 @@
-import React from 'react';
-
+import React, {useState} from 'react';
+import './Tags.css';
 class Tags extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            tags: props.tags
+        }
+    }
     render() {
-        const tags = this.props.tags;
+        return this.buildMarkup();
+    }
+
+    buildMarkup() {
+        const tags = this.state.tags;
         for(var i = 0; i < tags.length; ++i) {
             console.log(tags[i]);
         }

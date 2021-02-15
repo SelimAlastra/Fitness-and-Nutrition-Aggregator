@@ -10,7 +10,7 @@ ReactDOM.render(
     name="Joshua Harris" 
     location="London, UK" 
     description="I am looking for a personal trainer to help acheive my goals"
-    tags={["#yoga", "#pilates", "#Healthyeating"]}
+    tags={["#yoga", "#pilates", "#HealthyEating"]}
     profileImage="https://images.unsplash.com/photo-1582556362337-6a785ee99c63?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=2000&q=80"
     />
   </React.StrictMode>,
