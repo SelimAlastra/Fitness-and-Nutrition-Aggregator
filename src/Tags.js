@@ -15,7 +15,7 @@ class Tags extends React.Component {
                 tagString += " | ";
             }
         }
-        return (<div className="title">{tagString}</div>);
+        return (<div className="text">{tagString}</div>);
     }
 }
 
