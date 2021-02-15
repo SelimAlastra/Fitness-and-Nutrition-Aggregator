@@ -5,27 +5,31 @@ import { Link } from "react-router-dom";
 import { Form, Container, Button } from "react-bootstrap";
 import * as Yup from "yup";
 
-
+//This is the style of the login box
 const loginStyle = {
     margin: "33px auto 36px",
     maxWidth: "550px",
     padding: "35px",
 };
 
+//This the the main page it has the main container and the login box.
 const AdminLogin = () => (
     <Container className="border border-secondary" style={loginStyle}>
     <Login />
     </Container>
 );
 
+//A schema to make sure that all entered details' requirements are met
 const adminSchema = Yup.object().shape({
     username: Yup.string()
-        .required("Required"),
+        .required(),
     
     password: Yup.string()
-        .required("Required")
+        .required()
 });
 
+// The login form. It controls how the data is managed, and it returns the form
+// that will be displayed.
 const Login = () => {
 
     const Formik = useFormik({
@@ -35,7 +39,7 @@ const Login = () => {
         },
         validationSchema: adminSchema,
         onSubmit(values) {
-            console.log("Logging in details: ", values)
+            console.log("Log in details: ", values)
         }
     });
 
