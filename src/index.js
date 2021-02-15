@@ -3,17 +3,10 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { BrowserRouter, Route, Switch } from "react-router-dom";
-import client_signup from "./client_signup";
-import client_signup2 from "./client_signup2";
+
 
 ReactDOM.render(
-    <BrowserRouter>
-    <Switch>
-     <Route exact path="/" component={client_signup} />
-     <Route path="/register_form" component={client_signup2} />
-   </Switch>
-   </BrowserRouter>,
+  <App/>,
   document.getElementById('root')
 );
 
