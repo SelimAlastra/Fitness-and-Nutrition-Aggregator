@@ -1,0 +1,60 @@
+.parent1, .parent2 {
+    position: relative;
+    display: flex;
+}
+
+.child1, .child2 {
+    position: absolute;
+    top: 20%;
+    right: 3%;
+}
+
+.modal {
+    top: 15%;
+}
+
+.modal-header {
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+    background-color: #c7decb;
+    border-bottom-color: black;
+}
+
+.modal-title {
+    margin-left: 20%;
+    font-family: 'Playfair Display', serif !important;
+    font-weight: bold;
+}
+
+.modal-content {
+    border-radius: 25px;
+    border-color: black;
+    font-family: 'Playfair Display', serif !important;
+    font-size: large;
+}
+
+Form {
+    margin-left: 10%;
+    margin-right: 10%;
+   
+}
+
+.form-control {
+    border-color: #789380;
+}
+
+.form-control:focus {
+    border-color: #789380;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(184, 216, 178, 1.0);
+}
+
+.registerButton {
+    background-color: #c7decb !important;
+    color: black !important;
+    border-color: #789380 !important;
+    box-shadow: none !important;
+    font-size: large;
+}
+
+
+

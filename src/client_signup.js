@@ -9,6 +9,7 @@ import Modal from 'react-bootstrap/Modal';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faEye} from "@fortawesome/free-solid-svg-icons";
+import "./client_signup.css";
 const eye = <FontAwesomeIcon icon={faEye} />;
 
 function PopUpSignUp(){
@@ -17,13 +18,13 @@ function PopUpSignUp(){
   const handleShow = () => setShow(true);
   return(
     <>
-    <Button variant="primary" onClick={handleShow}>
+    <Button className="registerButton" onClick={handleShow}>
       Register
     </Button>
 
     <Modal show={show} onHide={handleClose}>
       <Modal.Header closeButton>
-        <Modal.Title>Register</Modal.Title>
+        <Modal.Title >REGISTRATION FORM</Modal.Title>
       </Modal.Header>
       <Modal.Body> <SignUp/> </Modal.Body>
     </Modal>
@@ -37,7 +38,7 @@ function PopUpSignUp(){
 const schema = Yup.object().shape({
     email: Yup.string()
         .email("Email must be a valid email.")
-        .required("Required"),
+        .required("No email provided."),
     username: Yup.string()
         .min(3, "Username is too short - should be 3 chars minimum.")
         .max(30, "Username is too long - should be 30 chars maximum.")
@@ -50,8 +51,9 @@ const schema = Yup.object().shape({
         .matches(/^[a-zA-Z0-9!@#\$%\^\&*\)\(+=._-]+$/, "Password should not contain space."),
     retypePassword: Yup.string()
         .oneOf([Yup.ref("password")], "Passwords don't match.")
-        .required("Required")
+        .required("Required.")
 });
+
 
 const SignUp = () => {
 
@@ -60,7 +62,7 @@ const SignUp = () => {
   const togglePasswordVisiblity = () => {
     setPasswordShown(passwordShown ? false : true);
   };
-  
+
   const formik = useFormik({
   initialValues:{ email: "", username: "", password: "", retypePassword: "" },
   validationSchema: schema,
@@ -126,6 +128,7 @@ return (
     */}
 
     <Form.Label htmlFor="password">Password</Form.Label> 
+    <div className="parent1">
     <Form.Control
         id="password"
         name="password"
@@ -135,13 +138,16 @@ return (
         onChange={formik.handleChange}
         onBlur={formik.handleBlur}
         className={formik.errors.password && formik.touched.password && "error"}
-    /> <i style={{position: 'absolute', top:'50%', right:'5%'}} onClick={togglePasswordVisiblity}>{eye}</i>
+    /> 
+    <i className="child1" onClick={togglePasswordVisiblity}>{eye}</i>
+    </div>
     {formik.errors.password && formik.touched.password && (
     <div style={{color: "red"}} className="input-feedback">{formik.errors.password}</div>
     )}
     <p/>
   
     <Form.Label htmlFor="retypePassword">Re-type Password</Form.Label> 
+    <div className="parent2">
     <Form.Control
         id="retypePassword"
         name="retypePassword"
@@ -151,13 +157,15 @@ return (
         onChange={formik.handleChange}
         onBlur={formik.handleBlur}
         className={formik.errors.retypePassword && formik.touched.retypePassword && "error"}
-    /> <i style={{position: 'absolute', top:'50%', right:'5%'}} onClick={togglePasswordVisiblity}>{eye}</i>
+    />
+     <i className="child2" onClick={togglePasswordVisiblity}>{eye}</i>
+     </div>
     {formik.errors.retypePassword && formik.touched.retypePassword && (
     <div style={{color: "red"}} className="input-feedback">{formik.errors.retypePassword}</div>
     )}
     <p/>
   
-    <Button type="submit" disabled={formik.isSubmitting}>
+    <Button className="registerButton" type="submit" disabled={formik.isSubmitting}>
         Register
     </Button>
 </Form>
