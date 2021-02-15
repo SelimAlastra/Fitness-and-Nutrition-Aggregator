@@ -8,6 +8,7 @@ import Modal from 'react-bootstrap/Modal';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faEye} from "@fortawesome/free-solid-svg-icons";
+import './user-login.css'
 const eye = <FontAwesomeIcon icon={faEye} />;
 
 
@@ -17,13 +18,13 @@ function PopUpLogin(){
   const handleShow = () => setShow(true);
   return(
     <>
-    <Button variant="primary" onClick={handleShow}>
+    <Button className="loginButton" variant="primary" onClick={handleShow}>
       Login
     </Button>
 
     <Modal show={show} onHide={handleClose}>
       <Modal.Header closeButton>
-        <Modal.Title>Login</Modal.Title>
+        <Modal.Title>LOGIN FORM</Modal.Title>
       </Modal.Header>
       <Modal.Body> <Login/> </Modal.Body>
     </Modal>
@@ -35,7 +36,7 @@ function PopUpLogin(){
 const schema = Yup.object().shape({
     email: Yup.string()
         .email("Email must be a valid email.")
-        .required("Required"),
+        .required("No email provided."),
     
     password: Yup.string()
         .required("No password provided.")
@@ -83,7 +84,8 @@ return (
     <p/>
 
     <Form.Label htmlFor="password">Password</Form.Label> 
-    <Form.Control
+    <div className="parent">
+    <Form.Control 
         id="password"
         name="password"
         type={passwordShown ? "text" : "password"}
@@ -92,18 +94,18 @@ return (
         onChange={formik.handleChange}
         onBlur={formik.handleBlur}
         className={formik.errors.password && formik.touched.password && "error"}
-    /> <i style={{position: 'absolute', top:'50%', right:'5%'}} onClick={togglePasswordVisiblity}>{eye}</i>
+    /> <i className="child" onClick={togglePasswordVisiblity}>{eye}</i>
+    </div>
     {formik.errors.password && formik.touched.password && (
     <div style={{color: "red"}} className="input-feedback">{formik.errors.password}</div>
     )}
+    <a href = "">Forgot Password?</a>
     <p/>
-  
-    <Button type="submit" disabled={formik.isSubmitting}>
+    <Button className="loginButton" type="submit" disabled={formik.isSubmitting}>
         Login
     </Button>
         
     <p/>
-    <a href = "">Forgot Password?</a>
   
 </Form>
 );
