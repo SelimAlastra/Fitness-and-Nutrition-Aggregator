@@ -47,3 +47,13 @@
     height: 80%;
  }
 
+.cardHolder {
+  padding-top: 5%;
+}
+
+.socialIcon {
+  padding: 2%;
+  width: 200%;
+  height: 200%;
+  cursor: pointer;
+}

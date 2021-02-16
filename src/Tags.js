@@ -13,9 +13,6 @@ class Tags extends React.Component {
 
     buildMarkup() {
         const tags = this.state.tags;
-        for(var i = 0; i < tags.length; ++i) {
-            console.log(tags[i]);
-        }
         let size = 3;
         if (tags.length < 3) size = tags.length;
         let tagString = "";
