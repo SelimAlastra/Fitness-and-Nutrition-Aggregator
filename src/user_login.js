@@ -42,7 +42,7 @@ const schema = Yup.object().shape({
         .required("No password provided.")
         .min(8, "Password is too short - should be 8 chars minimum.")
         .matches(/(?=.*[0-9])/, "Password must contain a number.")
-        .matches(/^\s+$/, "Password should not contain space.")
+        .matches(/^[a-zA-Z0-9!@#\$%\^\&*\)\(+=._-]+$/, "Password should not contain space.")
 });
 
 const Login = () => {
