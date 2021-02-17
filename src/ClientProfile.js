@@ -1,10 +1,9 @@
-import React, {useState}from 'react';
-import ReactDOM from 'react-dom';
-import Tags from './Tags';
-import './ClientProfile.css';
+import React, { useState } from "react";
+import Tags from "./Tags";
+import "./ClientProfile.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faInstagram, faLinkedinIn, faYoutube } from "@fortawesome/free-brands-svg-icons"
-import Modal from 'react-modal';
+import Modal from "react-modal";
 
 /* Properties Accepted:
     - name: String
@@ -12,11 +11,11 @@ import Modal from 'react-modal';
     - instagramLink: String
     - youtubeLink: String
     - tags: Array[String]
-    -goals: Array[String]
+    - goals: Array[String]
 */
-export default function ClientProfile(props) {
+function ClientProfile(props) {
+    Modal.setAppElement('body');
     const [isOpen, setIsOpen] = useState(false);
-
     // Opens and closes the popup
     function toggleModalOpen() {
         setIsOpen(!isOpen);
@@ -44,6 +43,7 @@ export default function ClientProfile(props) {
                 >
                     <h2>My Goals</h2>
                     <hr/>
+                    { generateGoals(props.goals) }
                     <button onClick={toggleModalOpen}>Close</button>
                 </Modal>
             </div>
@@ -51,28 +51,40 @@ export default function ClientProfile(props) {
     );
 }
 
+export default ClientProfile;
+
 // Creates the Instagram icon with the associated
 // instagram account page linked
 function generateInstagramLink(link) {
-    if (link !== undefined || link !== "") {
+    if (link !== undefined || link === "") {
         return <FontAwesomeIcon 
         className="socialIcon" 
         size="lg" 
         icon={faInstagram}
         onClick={() => {window.open(link);}}
         />;
-    }
+    } 
 }
 
 // Creates the YouTube icon with the associated
 // YouTube account page linked
 function generateYoutubeLink(link) {
-    if (link !== undefined || link !== "") {
+    if (link !== undefined || link === "") {
         return <FontAwesomeIcon 
         className="socialIcon" 
         size="lg" 
         icon={faYoutube} 
         onClick={() => {window.open(link);}}
         />
+    }
+}
+
+// Creates a dynamic list of goals
+function generateGoals(goals) {
+    if (goals === undefined || goals.length === 0) {
+        return (<div><h3>Sorry, you currently have no goals!</h3></div>)
+    } else {
+        let elements = goals.map((element) => (<li>{element}</li>));
+        return (<ul className="goalsList">{elements}</ul>);
     }
 }

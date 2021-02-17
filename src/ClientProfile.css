@@ -60,7 +60,7 @@
 
 .modal {
   position: fixed;
-  width:30%;
+  width:40%;
   top: 50%;
   left: 50%;
   background: #fff;
@@ -70,4 +70,9 @@
   outline: none;
   padding: 20px;
   transform: translate(-50%, -50%);
+}
+
+.goalsList {
+  padding: 5%;
+  color: grey;
 }

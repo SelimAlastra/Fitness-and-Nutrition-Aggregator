@@ -1,5 +1,5 @@
-import React, {useState} from 'react';
-import './Tags.css';
+import React, {useState} from "react";
+import "./Tags.css";
 class Tags extends React.Component {
     constructor(props) {
         super(props);
@@ -13,6 +13,7 @@ class Tags extends React.Component {
 
     buildMarkup() {
         const tags = this.state.tags;
+        if(tags === undefined) return (<div></div>);
         let size = 3;
         if (tags.length < 3) size = tags.length;
         let tagString = "";

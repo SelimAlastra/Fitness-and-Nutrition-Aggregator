@@ -1,12 +1,12 @@
-import React from 'react';
-import {Switch, Route} from 'react-router';
-import ClientProfile from './ClientProfile';
+import React from "react";
+import {Switch, Route} from "react-router";
+import ClientProfile from "./ClientProfile";
 
 const Main = () => {
     return (
         <div>
             <Switch>
-                <Route exact path='/'>
+                <Route exact path='/myprofile'>
                     <ClientProfile 
                     name="Joshua Harris" 
                     location="London, UK" 
@@ -15,6 +15,13 @@ const Main = () => {
                     profileImage="https://images.unsplash.com/photo-1582556362337-6a785ee99c63?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=2000&q=80"
                     instagramLink="https://instagram.com"
                     youtubeLink="https://youtube.co.uk"
+                    goals={["loose 2kg in 2 weeks", "learn how to cook nutritious meals"]}
+                    />
+
+                    <ClientProfile 
+                    name="Jimmy Morgan" 
+                    location="Cambridge, UK" 
+                    description=""
                     />
                 </Route>
             </Switch>
