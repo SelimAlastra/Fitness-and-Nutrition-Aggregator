@@ -74,7 +74,7 @@ function generateYoutubeLink(link) {
         className="socialIcon" 
         size="lg" 
         icon={faYoutube} 
-        onClick={() => {window.open(link);}}
+        onClick={() => { window.open(link); }}
         />
     }
 }

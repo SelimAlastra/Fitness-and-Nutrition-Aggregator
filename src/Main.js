@@ -17,12 +17,6 @@ const Main = () => {
                     youtubeLink="https://youtube.co.uk"
                     goals={["loose 2kg in 2 weeks", "learn how to cook nutritious meals"]}
                     />
-
-                    <ClientProfile 
-                    name="Jimmy Morgan" 
-                    location="Cambridge, UK" 
-                    description=""
-                    />
                 </Route>
             </Switch>
         </div>
