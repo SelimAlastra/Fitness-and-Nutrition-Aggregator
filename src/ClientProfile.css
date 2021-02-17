@@ -57,3 +57,17 @@
   height: 200%;
   cursor: pointer;
 }
+
+.modal {
+  position: fixed;
+  width:30%;
+  top: 50%;
+  left: 50%;
+  background: #fff;
+  overflow: auto;
+  border-radius: 4px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  outline: none;
+  padding: 20px;
+  transform: translate(-50%, -50%);
+}
