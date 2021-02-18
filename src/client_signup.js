@@ -10,6 +10,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faEye} from "@fortawesome/free-solid-svg-icons";
 import "./client_signup.css";
+
 const eye = <FontAwesomeIcon icon={faEye} />;
 
 function PopUpSignUp(){
@@ -23,10 +24,12 @@ function PopUpSignUp(){
     </Button>
 
     <Modal show={show} onHide={handleClose}>
+      
       <Modal.Header closeButton>
         <Modal.Title >REGISTRATION FORM</Modal.Title>
       </Modal.Header>
       <Modal.Body> <SignUp/> </Modal.Body>
+      
     </Modal>
   </>
   );
@@ -44,6 +47,9 @@ const schema = Yup.object().shape({
         .max(30, "Username is too long - should be 30 chars maximum.")
         .matches(/^[a-zA-Z0-9]*$/, "Username should not contain space or special characters.")
         .required("No username provided."),
+    phoneNumber: Yup.string()
+        .required("No phone number provided.")
+        .matches(/^\+(?:[0-9]●?){6,14}[0-9]$/, "Phone number must be valid."),
     password: Yup.string()
         .required("No password provided.")
         .min(8, "Password is too short - should be 8 chars minimum.")
@@ -64,7 +70,7 @@ const SignUp = () => {
   };
 
   const formik = useFormik({
-  initialValues:{ email: "", username: "", password: "", retypePassword: "" },
+  initialValues:{ email: "", username: "", password: "", retypePassword: "", phoneNumber: "" },
   validationSchema: schema,
   onSubmit: (values, { setSubmitting }) => {
     setTimeout(() => {
@@ -75,9 +81,8 @@ const SignUp = () => {
 });
 
 return (
-<Form onSubmit={formik.handleSubmit}>
+<Form autoComplete="off" onSubmit={formik.handleSubmit}>
 
-    <Form.Label htmlFor="email">Email</Form.Label>
     <Form.Control
         id="email"
         name="email"
@@ -93,7 +98,7 @@ return (
     )}
     <p/>
 
-    <Form.Label htmlFor="username">Username</Form.Label>
+
     <Form.Control
         id="username"
         name="username"
@@ -110,12 +115,12 @@ return (
     <p/>
 
 
-    {/* <Form.Label htmlFor="phoneNumber">Phone Number</Form.Label>
+ 
     <Form.Control
         id="phoneNumber"
         name="phoneNumber"
         type="text"
-        placeholder="Insert your phone number."
+        placeholder="Insert your phone number"
         value={formik.values.phoneNumber}
         onChange={formik.handleChange}
         onBlur={formik.handleBlur}
@@ -125,9 +130,9 @@ return (
     <div style={{color: "red"}} className="input-feedback">{formik.errors.phoneNumber}</div>
     )}
     <p/>    
-    */}
+    
 
-    <Form.Label htmlFor="password">Password</Form.Label> 
+
     <div className="parent1">
     <Form.Control
         id="password"
@@ -146,7 +151,6 @@ return (
     )}
     <p/>
   
-    <Form.Label htmlFor="retypePassword">Re-type Password</Form.Label> 
     <div className="parent2">
     <Form.Control
         id="retypePassword"
