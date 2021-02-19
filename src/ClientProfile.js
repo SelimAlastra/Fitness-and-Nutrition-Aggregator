@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Tags from "./Tags";
 import "./ClientProfile.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faInstagram, faLinkedinIn, faYoutube } from "@fortawesome/free-brands-svg-icons"
+import { faInstagram, faYoutube } from "@fortawesome/free-brands-svg-icons"
 import Modal from "react-modal";
 
 /* Properties Accepted:
@@ -23,28 +23,30 @@ function ClientProfile(props) {
 
     return (
         <div className="cardHolder">
-            <div className="card">
+            <div data-testid="profileCard" className="card">
                 <div className="profileImage">
-                    <img src={props.profileImage} />
+                    <img data-testid="profileImage" src={props.profileImage} />
                 </div>
-                <h1>{props.name}</h1>
-                <p className="text">{props.location}</p>
-                <p>{props.description}</p>
-                <div><Tags tags={props.tags}/></div>
-                <div className="socialTagBar">
+                <h1 data-testid="name" >{props.name}</h1>
+                <p data-testid="location" className="text">{props.location}</p>
+                <p data-testid="description">{props.description}</p>
+                <Tags tags={props.tags}/>
+                <div data-testid="socialBar" className="socialTagBar">
                     { generateInstagramLink(props.instagramLink) }
                     { generateYoutubeLink(props.youtubeLink) }
                 </div>
-                <p><button onClick={toggleModalOpen}>My Goals</button></p>
+                <p><button data-testid="goalsButton" onClick={toggleModalOpen}>My Goals</button></p>
                 <Modal
                 className="modal"
                 isOpen={isOpen}
                 onRequestClose={toggleModalOpen}
                 >
-                    <h2>My Goals</h2>
-                    <hr/>
-                    { generateGoals(props.goals) }
-                    <button onClick={toggleModalOpen}>Close</button>
+                    <div data-testid="goalsPopup">
+                        <h2>My Goals</h2>
+                        <hr/>
+                        { generateGoals(props.goals) }
+                        <button data-testid="closeButton" onClick={toggleModalOpen}>Close</button>
+                    </div>
                 </Modal>
             </div>
         </div>
@@ -82,9 +84,9 @@ function generateYoutubeLink(link) {
 // Creates a dynamic list of goals
 function generateGoals(goals) {
     if (goals === undefined || goals.length === 0) {
-        return (<div><h3>Sorry, you currently have no goals!</h3></div>)
+        return (<div><h3 data-testid="noGoalsMessage">Sorry, you currently have no goals!</h3></div>)
     } else {
-        let elements = goals.map((element) => (<li>{element}</li>));
-        return (<ul className="goalsList">{elements}</ul>);
+        let elements = goals.map((element) => (<li data-testid="list-item" key={element} >{element}</li>));
+        return (<ul data-testid="goalsList" className="goalsList">{elements}</ul>);
     }
 }

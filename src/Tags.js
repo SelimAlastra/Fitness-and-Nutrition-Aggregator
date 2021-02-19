@@ -23,7 +23,7 @@ class Tags extends React.Component {
                 tagString += " | ";
             }
         }
-        return (<div className="text">{tagString}</div>);
+        return (<div data-testid="tags" className="text">{tagString}</div>);
     }
 }
 
