@@ -238,4 +238,280 @@ it('opens modal when button is clicked', () => {
       
     });
 
+
+    it('validates the email cannot be blank', async () => {
+      const {getByText, getByRole } = render(<RegisterForm />);
+      const button = getByRole("button", {name: /Register/i})
+  
+      fireEvent.click(button);
+      
+      let error;
+      await waitFor(() => {
+        error = getByText('No email provided.');
+      });
+      
+      expect(error).not.toBeNull();
+      });
+
+      it('validates the profession cannot be blank', async () => {
+        const {getByText, getByRole } = render(<RegisterForm />);
+        const button = getByRole("button", {name: /Register/i})
+    
+        fireEvent.click(button);
+        
+        let error;
+        await waitFor(() => {
+          error = getByText('No profession provided.');
+        });
+        
+        expect(error).not.toBeNull();
+        });
+  
+      it('validates the password cannot be blank', async () => {
+        const {getByText, getByRole } = render(<RegisterForm />);
+        const button = getByRole("button", {name: /Register/i})
+    
+        fireEvent.click(button);
+        
+        let error;
+        await waitFor(() => {
+          error = getByText('No password provided.');
+        });
+        
+        expect(error).not.toBeNull();
+        });
+  
+  
+        it('validates the username cannot be blank', async () => {
+          const {getByText, getByRole } = render(<RegisterForm />);
+          const button = getByRole("button", {name: /Register/i})
+      
+          fireEvent.click(button);
+          
+          let error;
+          await waitFor(() => {
+            error = getByText('No username provided.');
+          });
+          
+          expect(error).not.toBeNull();
+        });
+  
+      it('validates the phone number cannot be blank', async () => {
+        const {getByText, getByRole } = render(<RegisterForm />);
+        const button = getByRole("button", {name: /Register/i})
+  
+        fireEvent.click(button);
+        
+        let error;
+        await waitFor(() => {
+          error = getByText('No phone number provided.');
+        });
+        
+        expect(error).not.toBeNull();
+        });
+  
+        it('validates the confirm password cannot be blank', async () => {
+          const {getByText, getByRole } = render(<RegisterForm />);
+          const button = getByRole("button", {name: /Register/i})
+      
+          fireEvent.click(button);
+          
+          let error;
+          await waitFor(() => {
+            error = getByText('Required.');
+          });
+          
+          expect(error).not.toBeNull();
+          });
+  
+      it('validates the email should be valid', async () => {
+          const { getByLabelText, getByText} = render(<RegisterForm />);
+          const email = getByLabelText(/email/i)
+  
+          fireEvent.change(email, {
+            target: {
+              value: 'mock',
+            },
+          });
+          
+          fireEvent.blur(email);
+          
+          let error;
+          await waitFor(() => {
+            error = getByText('Email must be a valid email.');
+          });
+          
+          expect(error).not.toBeNull();
+      });
+  
+      it('validates the password is too short', async () => {
+        const { queryByLabelText, getByText} = render(<RegisterForm />);
+        const password = queryByLabelText("Password")
+  
+        fireEvent.change(password, {
+          target: {
+            value: 'mock',
+          },
+        });
+        
+        fireEvent.blur(password);
+        
+        let error;
+        await waitFor(() => {
+          error = getByText('Password is too short - should be 8 chars minimum.');
+        });
+        
+        expect(error).not.toBeNull();
+    });
+  
+    it('validates the password must contain a number', async () => {
+      const { queryByLabelText, getByText} = render(<RegisterForm />);
+      const password = queryByLabelText("Password")
+  
+      fireEvent.change(password, {
+        target: {
+          value: 'mockpassword',
+        },
+      });
+      
+      fireEvent.blur(password);
+      
+      let error;
+      await waitFor(() => {
+        error = getByText('Password must contain a number.');
+      });
+      
+      expect(error).not.toBeNull();
+    });
+  
+    it('validates the password should not contain spaces', async () => {
+      const { queryByLabelText, getByText} = render(<RegisterForm />);
+      const password = queryByLabelText('Password')
+  
+      fireEvent.change(password, {
+        target: {
+          value: 'mock password123',
+        },
+      });
+      
+      fireEvent.blur(password);
+      
+      let error;
+      await waitFor(() => {
+        error = getByText('Password should not contain space.');
+      });
+      
+      expect(error).not.toBeNull();
+    });
+  
+  
+    it('validates the username should not contain spaces or special characters', async () => {
+      const { getByLabelText, getByText} = render(<RegisterForm />);
+      const username = getByLabelText(/username/i)
+  
+      fireEvent.change(username, {
+        target: {
+          value: 'mock username@',
+        },
+      });
+      
+      fireEvent.blur(username);
+      
+      let error;
+      await waitFor(() => {
+        error = getByText('Username should not contain space or special characters.');
+      });
+      
+      expect(error).not.toBeNull();
+    });
+  
+  
+    it('validates the username should not be shorter than 8 characters', async () => {
+      const { getByLabelText, getByText} = render(<RegisterForm />);
+      const username = getByLabelText(/username/i)
+  
+      fireEvent.change(username, {
+        target: {
+          value: 'mo',
+        },
+      });
+      
+      fireEvent.blur(username);
+      
+      let error;
+      await waitFor(() => {
+        error = getByText('Username is too short - should be 3 chars minimum.');
+      });
+      
+      expect(error).not.toBeNull();
+    });
+  
+    it('validates the username should not be longer than 30 characters', async () => {
+      const { getByLabelText, getByText} = render(<RegisterForm />);
+      const username = getByLabelText(/username/i)
+  
+      fireEvent.change(username, {
+        target: {
+          value: 'abcdefghijklmnopqrstuvxyz1234567890',
+        },
+      });
+      
+      fireEvent.blur(username);
+      
+      let error;
+      await waitFor(() => {
+        error = getByText('Username is too long - should be 30 chars maximum.');
+      });
+      
+      expect(error).not.toBeNull();
+    });
+  
+    it('validates the phone number should be valid', async () => {
+      const { getByLabelText, getByText} = render(<RegisterForm />);
+      const phoneNo = getByLabelText(/phone number/i)
+  
+      fireEvent.change(phoneNo, {
+        target: {
+          value: '12345678',
+        },
+      });
+      
+      fireEvent.blur(phoneNo);
+      
+      let error;
+      await waitFor(() => {
+        error = getByText('Phone number must be valid.');
+      });
+      
+      expect(error).not.toBeNull();
+    });
+  
+  
+    it('validates the confirm password should be like password', async () => {
+      const { getByLabelText, getByText} = render(<RegisterForm />);
+      const password = getByLabelText('Password')
+      const password2 = getByLabelText(/Re-type Password/i)
+  
+      fireEvent.change(password, {
+        target: {
+          value: 'mockpassword1234',
+        },
+      });
+  
+      fireEvent.change(password2, {
+        target: {
+          value: 'mockpassword12345',
+        },
+      });
+      
+      fireEvent.blur(password2);
+      
+      let error;
+      await waitFor(() => {
+        error = getByText("Passwords don't match.");
+      });
+      
+      expect(error).not.toBeNull();
+    });
+  
 });
