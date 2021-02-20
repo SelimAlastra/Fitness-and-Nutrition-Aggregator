@@ -24,3 +24,22 @@
     height: 200%;
     cursor: pointer;
   }
+
+.clientName {
+    color: #9DA993;
+}
+
+.textContainer {
+    background-color: #9DA993;
+    border-radius: 10px;
+    padding: 1%;
+    color: #E3E8E9;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+
+.outerContainer {
+    justify-content: center;
+    text-align: center;
+    display:inline;
+}
