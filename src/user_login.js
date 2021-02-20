@@ -1,5 +1,5 @@
 import React, { Component, useState} from 'react';
-import { useFormik } from "formik";
+import { ErrorMessage, useFormik } from "formik";
 import * as EmailValidator from "email-validator";
 import * as Yup from "yup";
 import Button from 'react-bootstrap/Button';
@@ -12,6 +12,15 @@ import './user-login.css'
 const eye = <FontAwesomeIcon icon={faEye} />;
 
 
+const isCorrectLogin = (login) => {
+  if(!login) return "no input";
+  if(login !=='^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$')
+    return "This is not an email"
+  else
+    return "This is an email."
+
+};
+
 function PopUpLogin(){
     const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
@@ -21,20 +30,27 @@ function PopUpLogin(){
     <Button className="loginButton" variant="primary" onClick={handleShow}>
       Login
     </Button>
-
+    <div className = "modal-dialog">
     <Modal show={show} onHide={handleClose}>
       <Modal.Header closeButton>
         <Modal.Title>LOGIN FORM</Modal.Title>
       </Modal.Header>
       <Modal.Body> <Login/> </Modal.Body>
     </Modal>
+    </div>
   </>
   );
 
 };
 
+// Yup.addMethod(Yup.string(), 'checkEmailOrUsername', function(message = "login"){
+//     return this.test("checkEmailOrUsername", message, function (val) {
+//       return /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/gi.test(val);
+//     })
+// });
+
 const schema = Yup.object().shape({
-    email: Yup.string()
+    login: Yup.string()
         .email("Email must be a valid email.")
         .required("No email provided."),
     
@@ -65,25 +81,24 @@ const Login = () => {
 });
 
 return (
-<Form onSubmit={formik.handleSubmit}>
-
-    <Form.Label htmlFor="email">Email</Form.Label>
+<div className="Form">
+<Form onSubmit={formik.handleSubmit} autoComplete="Off">
+  <Form.Label hidden = {true} htmlFor="login">Email</Form.Label>
     <Form.Control
-        id="email"
-        name="email"
+        id="login"
+        name="login"
         type="text"
         placeholder="Enter your email"
-        value={formik.values.email}
+        value={formik.values.login}
         onChange={formik.handleChange}
         onBlur={formik.handleBlur}
-        className={formik.errors.email && formik.touched.email && "error"}
+        className={formik.errors.login && formik.touched.login && "error"}
     />
-    {formik.errors.email && formik.touched.email && (
-    <div style={{color: "red"}} className="input-feedback">{formik.errors.email}</div>
+    {formik.errors.login && formik.touched.login && (
+    <div className="input-feedback">{formik.errors.login}</div>
     )}
     <p/>
-
-    <Form.Label htmlFor="password">Password</Form.Label> 
+    <Form.Label hidden={true} htmlFor="password">Password</Form.Label>
     <div className="parent">
     <Form.Control 
         id="password"
@@ -97,17 +112,17 @@ return (
     /> <i className="child" onClick={togglePasswordVisiblity}>{eye}</i>
     </div>
     {formik.errors.password && formik.touched.password && (
-    <div style={{color: "red"}} className="input-feedback">{formik.errors.password}</div>
+    <div className="input-feedback">{formik.errors.password}</div>
     )}
     <a href = "">Forgot Password?</a>
     <p/>
-    <Button className="loginButton" type="submit" disabled={formik.isSubmitting}>
-        Login
+    <Button className="loginButton" type="submit" name="loginBtn" disabled={formik.isSubmitting}>
+        Log In
     </Button>
-        
     <p/>
   
 </Form>
+</div>
 );
 };
   export default PopUpLogin;
