@@ -29,7 +29,6 @@ function PopUpSignUp(){
         <Modal.Title >REGISTRATION FORM</Modal.Title>
       </Modal.Header>
       <Modal.Body> <SignUp/> </Modal.Body>
-      
     </Modal>
   </>
   );
@@ -82,7 +81,7 @@ const SignUp = () => {
 
 return (
 <Form autoComplete="off" onSubmit={formik.handleSubmit}>
-
+  <Form.Label hidden = {true} htmlFor="email">Email</Form.Label>
     <Form.Control
         id="email"
         name="email"
@@ -98,7 +97,7 @@ return (
     )}
     <p/>
 
-
+  <Form.Label hidden = {true} htmlFor="username">Username</Form.Label>
     <Form.Control
         id="username"
         name="username"
@@ -114,8 +113,7 @@ return (
     )}
     <p/>
 
-
- 
+  <Form.Label hidden = {true} htmlFor="phoneNumber">Phone Number</Form.Label>
     <Form.Control
         id="phoneNumber"
         name="phoneNumber"
@@ -130,9 +128,8 @@ return (
     <div style={{color: "red"}} className="input-feedback">{formik.errors.phoneNumber}</div>
     )}
     <p/>    
-    
 
-
+  <Form.Label hidden = {true} htmlFor="password">Password</Form.Label> 
     <div className="parent1">
     <Form.Control
         id="password"
@@ -151,6 +148,7 @@ return (
     )}
     <p/>
   
+  <Form.Label hidden = {true} htmlFor="retypePassword">Re-type Password</Form.Label>
     <div className="parent2">
     <Form.Control
         id="retypePassword"
