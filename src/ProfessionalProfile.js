@@ -16,11 +16,12 @@ function ProfessionalProfile(props) {
                 description={props.description}
                 instagramLink={props.instagramLink}
                 youtubeLink={props.youtubeLink}
+                tags={props.tags}
                 />
             </div>
             <div className="section">
                 <h2 className="pageText">Services</h2>
-                <Services />
+                <Services services={props.services}/>
             </div>
             <div className="section"></div>
             <div className="section"></div>

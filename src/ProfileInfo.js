@@ -2,12 +2,13 @@ import React , {useState} from 'react';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faInstagram, faYoutube } from "@fortawesome/free-brands-svg-icons"
 import './ProfileInfo.css';
-
+import Tags from './Tags';
 /*
     ProfileInfo component takes
         - name: String
         - location: String
         - profileImage: String
+        - tags: Array[String]
 */
 function ProfileInfo(props) {
     return (
@@ -16,10 +17,10 @@ function ProfileInfo(props) {
                 <img src={props.profileImage}/>
             </div>
             <div className="profileInfo">
-                <h3 className="clientName">{props.name}</h3>
-                <p className="subtext">{props.location}</p>
-                <p className="subtext">{props.description}</p>
-                <hr className="breakBar"/>
+                <h2 className="clientName">{props.name}</h2>
+                <div className="outerContainer"><p className="textContainer">{props.location}</p></div>
+                <p className="textContainer">{props.description}</p>  
+                <Tags tags={props.tags}/>   
                 <div data-testid="socialBar" className="socialTagBar">
                     { generateInstagramLink(props.instagramLink) }
                     { generateYoutubeLink(props.youtubeLink) }
