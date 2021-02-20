@@ -20,7 +20,7 @@ function PopUpSignUp(){
   return(
     <>
     <Button className="registerButton" onClick={handleShow}>
-      Register
+      Create an account
     </Button>
 
     <Modal show={show} onHide={handleClose}>
