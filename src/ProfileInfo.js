@@ -19,6 +19,7 @@ function ProfileInfo(props) {
                 <h3 className="clientName">{props.name}</h3>
                 <p className="subtext">{props.location}</p>
                 <p className="subtext">{props.description}</p>
+                <hr className="breakBar"/>
                 <div data-testid="socialBar" className="socialTagBar">
                     { generateInstagramLink(props.instagramLink) }
                     { generateYoutubeLink(props.youtubeLink) }
