@@ -57,15 +57,15 @@ it('opens modal when button is clicked', () => {
 
     test('should update email field on change', async () => {
       const {queryByLabelText} = render(<LoginForm/>)
-      const email = queryByLabelText('Email');
+      const login = queryByLabelText('Email');
       await waitFor(() => { 
-      fireEvent.change(email, {
+      fireEvent.change(login, {
                 target: {
                   value: "mock@email.com"
                 }
               })
       });
-      expect(email.value).toBe("mock@email.com");
+      expect(login.value).toBe("mock@email.com");
     });
 
     test('should update password field on change', async () => {
@@ -123,47 +123,114 @@ it('opens modal when button is clicked', () => {
       
     });
 
-    // it('validates the email cannot be invalid', async () => {
-    //   const { getByLabelText, getByText } = render(<LoginForm />);
-    //   const email = getByLabelText(/Email/i);
+    it('validates the email cannot be blank', async () => {
+      const {getByText, getByRole } = render(<LoginForm />);
+      const button = getByRole("button", {name: /Log In/i})
+
+      fireEvent.click(button);
       
-    //   fireEvent.focus(email);
+      let error;
+      await waitFor(() => {
+        error = getByText('No email provided.');
+      });
       
-    //   let error;
-    //   await waitFor(() => {
-    //     error = getByText('No email provided');
-    //   });
-      
-    //   expect(error).toBeNull();
+      expect(error).not.toBeNull();
+      });
 
 
+      it('validates the password cannot be blank', async () => {
+        const {getByText, getByRole } = render(<LoginForm />);
+        const button = getByRole("button", {name: /Log In/i})
+  
+        fireEvent.click(button);
+        
+        let error;
+        await waitFor(() => {
+          error = getByText('No password provided.');
+        });
+        
+        expect(error).not.toBeNull();
+        });
 
+      it('validates the email should be valid', async () => {
+          const { getByLabelText, getByText} = render(<LoginForm />);
+          const email = getByLabelText(/email/i)
+    
+          fireEvent.change(email, {
+            target: {
+              value: 'mock',
+            },
+          });
+          
+          fireEvent.blur(email);
+          
+          let error;
+          await waitFor(() => {
+            error = getByText('Email must be a valid email.');
+          });
+          
+          expect(error).not.toBeNull();
+      });
+
+      it('validates the password is too short', async () => {
+        const { getByLabelText, getByText} = render(<LoginForm />);
+        const password = getByLabelText(/password/i)
+  
+        fireEvent.change(password, {
+          target: {
+            value: 'mock',
+          },
+        });
+        
+        fireEvent.blur(password);
+        
+        let error;
+        await waitFor(() => {
+          error = getByText('Password is too short - should be 8 chars minimum.');
+        });
+        
+        expect(error).not.toBeNull();
+    });
+
+    it('validates the password must contain a number', async () => {
+      const { getByLabelText, getByText} = render(<LoginForm />);
+      const password = getByLabelText(/password/i)
+
+      fireEvent.change(password, {
+        target: {
+          value: 'mockpassword',
+        },
+      });
       
-    // await waitFor(() => { 
-    //   expect(email.value).toBe("mock");
-    // });
+      fireEvent.blur(password);
+      
+      let error;
+      await waitFor(() => {
+        error = getByText('Password must contain a number.');
+      });
+      
+      expect(error).not.toBeNull();
   });
 
-  // it('displays an error message when a required field is touched', async () => {
-  //     const validate = () => ({ test: 'Required' });
-  
-  //     const { container, getByText, getByLabelText } = render(
-  //       <Formik validate={validate}>
-  //         <form>
-  //           <label htmlFor="test">Test</label>
-  //           <Field id="test" name="test"/>,
-  //         </form>
-  //       </Formik>
-  //     );
-  
-  //     // blur past input
-  //     const input = getByLabelText('Test');
-  //     fireEvent.blur(input);
-  
-  //     // Ensure error message shows
-  //   await  waitFor(() => { 
-  //     expect(getByText('Required')).not.toBeNull();
-  //     expect(container.querySelector('feedback-input')).not.toBeNull();
-  //   });
 
-  //   });
+it('validates the password should not contain spaces', async () => {
+    const { getByLabelText, getByText} = render(<LoginForm />);
+    const password = getByLabelText(/password/i)
+
+    fireEvent.change(password, {
+      target: {
+        value: 'mock password123',
+      },
+    });
+    
+    fireEvent.blur(password);
+    
+    let error;
+    await waitFor(() => {
+      error = getByText('Password should not contain space.');
+    });
+    
+    expect(error).not.toBeNull();
+});
+
+});

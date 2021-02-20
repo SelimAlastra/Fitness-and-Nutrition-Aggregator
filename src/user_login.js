@@ -12,14 +12,14 @@ import './user-login.css'
 const eye = <FontAwesomeIcon icon={faEye} />;
 
 
-const isCorrectLogin = (login) => {
-  if(!login) return "no input";
-  if(login !=='^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$')
-    return "This is not an email"
-  else
-    return "This is an email."
+// const isCorrectLogin = (login) => {
+//   if(!login) return "no input";
+//   if(login !=='^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$')
+//     return "This is not an email"
+//   else
+//     return "This is an email."
 
-};
+// };
 
 function PopUpLogin(){
     const [show, setShow] = useState(false);
@@ -50,7 +50,7 @@ function PopUpLogin(){
 // });
 
 const schema = Yup.object().shape({
-    login: Yup.string()
+    email: Yup.string()
         .email("Email must be a valid email.")
         .required("No email provided."),
     
@@ -83,19 +83,19 @@ const Login = () => {
 return (
 <div className="Form">
 <Form onSubmit={formik.handleSubmit} autoComplete="Off">
-  <Form.Label hidden = {true} htmlFor="login">Email</Form.Label>
+  <Form.Label hidden = {true} htmlFor="email">Email</Form.Label>
     <Form.Control
-        id="login"
-        name="login"
+        id="email"
+        name="email"
         type="text"
         placeholder="Enter your email"
-        value={formik.values.login}
+        value={formik.values.email}
         onChange={formik.handleChange}
         onBlur={formik.handleBlur}
-        className={formik.errors.login && formik.touched.login && "error"}
+        className={formik.errors.email && formik.touched.email && "error"}
     />
-    {formik.errors.login && formik.touched.login && (
-    <div className="input-feedback">{formik.errors.login}</div>
+    {formik.errors.email && formik.touched.email && (
+    <div className="input-feedback">{formik.errors.email}</div>
     )}
     <p/>
     <Form.Label hidden={true} htmlFor="password">Password</Form.Label>
