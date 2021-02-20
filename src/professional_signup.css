@@ -1,0 +1,75 @@
+.parent1, .parent2 {
+    position: relative;
+    display: flex;
+}
+
+.child1, .child2 {
+    position: absolute;
+    top: 20%;
+    right: 3%;
+}
+
+.modal-dialog{
+    align-items: center;
+    justify-content: center;
+    width: 600px;
+    padding: 10px 10px;
+    margin-top: 80px;
+    margin-bottom: 200px;
+}
+
+.modal-header {
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+    border-bottom: none;
+    height: 100px;
+}
+
+.modal-title {
+    align-self: center;
+    margin-left: 90px;
+    font-family: 'Roboto', serif !important;
+    font-weight: bold;
+}
+
+.modal-content {
+    border-radius: 10px;
+    border-color: black;
+    font-size: large;
+    font-family: 'Roboto', serif !important;
+    min-height: 500px;
+}
+
+Form {
+    margin-left: 15%;
+    margin-right: 15%;
+   
+}
+
+.form-control {
+    border-color: grey;
+    height: 45px !important;
+    font-size: medium;
+    font-family: 'Roboto', serif !important;
+    border-radius: 15px;
+}
+
+.registerButton {
+    color: white !important;
+    box-shadow: none !important;
+    font-size: large;
+    font-family: 'Roboto', serif;
+    border-radius: 25px;
+    width: 200px !important;
+    text-align: center;
+    margin-left: 55px;
+}
+
+.input-feedback {
+    font-size: 16px;
+    color: red;
+}
+
+.error{
+    border-color: red !important;
+}
