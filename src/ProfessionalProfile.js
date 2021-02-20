@@ -3,11 +3,12 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faInstagram, faYoutube } from "@fortawesome/free-brands-svg-icons"
 import './ProfessionalProfile.css';
 import ProfileInfo from './ProfileInfo';
+import Services from './Services';
 
 function ProfessionalProfile(props) {
     return(
         <div className="sectionContainer">
-            <div className="section" style={{backgroundColor: "lightgray"}}>
+            <div className="section">
                 <ProfileInfo 
                 name={props.name}
                 location={props.location}
@@ -17,7 +18,10 @@ function ProfessionalProfile(props) {
                 youtubeLink={props.youtubeLink}
                 />
             </div>
-            <div className="section"></div>
+            <div className="section">
+                <h2 className="pageText">Services</h2>
+                <Services />
+            </div>
             <div className="section"></div>
             <div className="section"></div>
         </div>
