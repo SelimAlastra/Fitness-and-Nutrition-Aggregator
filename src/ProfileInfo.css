@@ -1,0 +1,26 @@
+.profileImage {
+    display: flex;
+    justify-content: center;
+}
+.profileImage img {
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    padding: 1%;
+}
+
+.profileInfo {
+    text-align: center;
+    margin: none;
+}
+
+.subtext {
+    color: grey;
+}
+
+.socialIcon {
+    padding: 2%;
+    width: 200%;
+    height: 200%;
+    cursor: pointer;
+  }
