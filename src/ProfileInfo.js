@@ -9,6 +9,8 @@ import Tags from './Tags';
         - location: String
         - profileImage: String
         - tags: Array[String]
+        - instagramLink: String
+        - youtubeLink: String
 */
 function ProfileInfo(props) {
     return (
@@ -18,8 +20,8 @@ function ProfileInfo(props) {
             </div>
             <div className="profileInfo">
                 <h2 className="clientName">{props.name}</h2>
-                <div className="outerContainer"><p className="textContainer">{props.location}</p></div>
-                <p className="textContainer">{props.description}</p>  
+                { generateLocationContainer(props.location) }
+                { generateDescriptionContainer(props.description) }
                 <Tags tags={props.tags}/>   
                 <div data-testid="socialBar" className="socialTagBar">
                     { generateInstagramLink(props.instagramLink) }
@@ -32,6 +34,20 @@ function ProfileInfo(props) {
 
 export default ProfileInfo;
 
+// Creates the html markup for the location section
+function generateLocationContainer(location) {
+    if (location !== undefined && location.length > 0) {
+        return (<div className="outerContainer"><p className="textContainer">{location}</p></div>);
+    }
+}
+
+// Creates the html markup for the description section
+function generateDescriptionContainer(description) {
+    if (description !== undefined && description.length > 0) {
+        return (<p className="textContainer">{description}</p>);  
+    }
+}
+
 // Creates the Instagram icon with the associated
 // instagram account page linked
 function generateInstagramLink(link) {
@@ -40,7 +56,7 @@ function generateInstagramLink(link) {
         className="socialIcon" 
         size="lg" 
         icon={faInstagram}
-        onClick={() => {window.open(link);}}
+        onClick={() => { window.open(link); }}
         />;
     } 
 }

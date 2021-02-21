@@ -15,7 +15,7 @@
 }
 
 .subtext {
-    color: grey;
+    color: #EFEAE4;
 }
 
 .socialIcon {
@@ -26,14 +26,14 @@
   }
 
 .clientName {
-    color: #9DA993;
+    color:#BBA78C;
 }
 
 .textContainer {
-    background-color: #9DA993;
+    background-color: #BBA78C;
     border-radius: 10px;
     padding: 1%;
-    color: #E3E8E9;
+    color: #EFEAE4;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 }
 

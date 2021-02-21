@@ -1,9 +1,10 @@
 .sectionContainer {
     padding: 1%;
-    background-color: #BCA88E;
+    background-color: #BBA78C;
 }
 
 .section {
+    border-radius: 10px;
     padding: 1%;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     max-width: 800px;
@@ -11,12 +12,45 @@
     text-align: center;
     font-family: arial;
     justify-content: center;
-    background-color: #E3E8E9;
+    background-color:#EFEAE4;
     margin-bottom: 1%;
 }
 
 .pageText {
-    color: #9DA993;
+    color: #BBA78C;
+}
+
+.editLink {
+    text-align: right;
+    padding-right: 10px;
+    text-decoration: underline;
+    cursor: pointer;
+    color: #BBA78C;
+    font-size: small;
+}
+
+.modalTitle {
+    text-align: center;
+    color: #EFEAE4;
+}
+
+.modal {
+    background-color: #BBA78C;
+    max-width: 300px;
+    position: fixed;
+    width:40%;
+    top: 50%;
+    left: 50%;
+    overflow: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    outline: none;
+    padding: 20px;
+    transform: translate(-50%, -50%);
+    justify-content: center;
+    text-align: center;
+    min-width: 200px;
+
 }
 
 
