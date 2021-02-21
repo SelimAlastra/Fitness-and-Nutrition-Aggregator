@@ -10,6 +10,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faEye} from "@fortawesome/free-solid-svg-icons";
 import "./client_signup.css";
+import Facebook from './facebook_login.js';
 
 const eye = <FontAwesomeIcon icon={faEye} />;
 
@@ -53,7 +54,7 @@ const schema = Yup.object().shape({
         .required("No password provided.")
         .min(8, "Password is too short - should be 8 chars minimum.")
         .matches(/(?=.*[0-9])/, "Password must contain a number.")
-        .matches(/^[a-zA-Z0-9!@#\$%\^\&*\)\(+=._-]+$/, "Password should not contain space."),
+        .matches(/^[a-zA-Z0-9!@#\$%\^\&*\)\(+=._-]+$/, "Password should not contain blank space."),
     retypePassword: Yup.string()
         .oneOf([Yup.ref("password")], "Passwords don't match.")
         .required("Required.")
@@ -170,6 +171,12 @@ return (
     <Button className="registerButton" type="submit" disabled={formik.isSubmitting}>
         Register
     </Button>
+    <div style={{marginLeft: "140px",marginTop: '15px',  marginBottom: '-20px', fontFamily:"'Helvetica', serif", fontWeight: "bold"}}>OR</div>  
+
+      <Facebook/>
+      
+
+
 </Form>
 );
 };
