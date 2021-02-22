@@ -1,7 +1,7 @@
 import { React } from "react";
 import { Switch, Route } from "react-router-dom";
-import AdminLogin from "./adminLogin";
-import AdminPage from "./adminPage";
+import AdminLogin from "./AdminLogin";
+import AdminPage from "./AdminPage";
 
 
 const Main = () => {
