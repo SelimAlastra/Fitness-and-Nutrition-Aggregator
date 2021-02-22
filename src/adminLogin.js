@@ -1,7 +1,7 @@
 import { withFormik, useFormik } from "formik";
 import { React } from "react";
 import reactDom from "react-dom";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { Form, Container, Button } from "react-bootstrap";
 import * as Yup from "yup";
 
@@ -32,6 +32,7 @@ const adminSchema = Yup.object().shape({
 // that will be displayed.
 const Login = () => {
 
+
     const Formik = useFormik({
         initialValues: {
             username: "",
@@ -39,12 +40,12 @@ const Login = () => {
         },
         validationSchema: adminSchema,
         onSubmit(values) {
-            console.log("Log in details: ", values)
+            console.log("Log in details: ", values);
         }
     });
 
     return(
-        <Form onSubmit={Formik.handleSubmit}>
+        <Form onSubmit={Formik.handleSubmit} >
             <Form.Group>
             <Form.Label>Admin Username</Form.Label>
             <Form.Control

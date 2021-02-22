@@ -7,7 +7,8 @@ import AdminPage from "./AdminPage";
 const Main = () => {
     return (
         <Switch>
-            <Route exact path='/' component={AdminPage}></Route>
+            <Route exact path='/' component={AdminLogin}></Route>
+            <Route exact path='/adminPage' component={AdminPage}></Route>
         </Switch>
     )
 }
