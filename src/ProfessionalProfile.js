@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faInstagram, faYoutube } from "@fortawesome/free-brands-svg-icons"
-import {faTrashAlt} from "@fortawesome/free-regular-svg-icons" 
+import {faTrashAlt, faPlusSquare} from "@fortawesome/free-regular-svg-icons" 
 import './ProfessionalProfile.css';
 import ProfileInfo from './ProfileInfo';
 import Services from './Services';
@@ -38,7 +38,6 @@ class ProfessionalProfile extends React.Component  {
             editServicesIsOpen: false
         };
         this.handleDetailsChange = this.handleDetailsChange.bind(this);
-        this.handleServicesChange = this.handleServicesChange.bind(this);
         this.handleServicesFormSubmit = this.handleServicesFormSubmit.bind(this);
         this.handleServicesFormSubmit = this.handleServicesFormSubmit.bind(this);
         this.toggleEditDetails = this.toggleEditDetails.bind(this);
@@ -63,13 +62,6 @@ class ProfessionalProfile extends React.Component  {
     handleDetailsFormSubmit(submitEvent) {
         this.toggleEditDetails();
         window.alert("Updated!");
-    }
-
-    /*
-        Handles changes to data in the popup form
-    */
-    handleServicesChange(changeEvent) {
-        // TODO
     }
 
     /*
@@ -103,6 +95,9 @@ class ProfessionalProfile extends React.Component  {
         });
     }
 
+    /*
+        Adds all of the services to a table
+    */
     createServices() {
         var services = this.state.services;
         if (services !== undefined && services.length > 0) {
@@ -118,15 +113,16 @@ class ProfessionalProfile extends React.Component  {
                             }}>{service}</p>
                     </td>
                     <td>
-                    <button onClick={() => {
+                    <div onClick={() => {
                         var newServices = this.state.services;
                         let index = newServices.indexOf(service);
                         if (index !== -1) {
                             newServices.splice(index,1);
                             this.setState({...this.state,services: newServices});
+                            // TODO: submit changes to database
                         }
                     }} 
-                    name="jis" value={service}>
+                    value={service}>
                     <FontAwesomeIcon 
                         icon={faTrashAlt}
                         style={{
@@ -135,7 +131,7 @@ class ProfessionalProfile extends React.Component  {
                             }}
                         value={service}
                         />
-                    </button>
+                    </div>
                     
                     </td>     
                 </tr>
@@ -146,7 +142,6 @@ class ProfessionalProfile extends React.Component  {
             return (<div><p>Sorry, no services can be found!</p></div>);
         }
     }
-
 
     /*
         Adds the 'Edit my details' link to the component
@@ -255,20 +250,50 @@ class ProfessionalProfile extends React.Component  {
                 onRequestClose={this.toggleEditServices}
                 >
                     <div data-testid="detailsPopup">
+                    <h2 className="modalTitle">Add Service</h2>
+                    <hr />
+                    <div className="addService">
+                            <input
+                            id="newServiceInput"
+                            name="newService" 
+                            placeholder="Service"
+                            className="textInput" 
+                            />  
+                        </div>
+                        <div className="buttonsContainer">
+                            <input
+                            className="submitButton" 
+                            type="submit" 
+                            value="Submit" 
+                            onClick={() => {
+                                let newService = document.getElementById("newServiceInput").value;
+                                if (newService !== undefined && newService !== "") {
+                                    let oldServices = this.state.services;
+                                    oldServices.push(newService);
+                                    this.setState({
+                                        ...this.state,
+                                        services: oldServices
+                                    });
+                                    document.getElementById("newServiceInput").value = "";
+                                    // TODO: write new state to database
+                                }
+                            }} 
+                            />
+                        </div>
+                        <br />
                         <h2 className="modalTitle">Edit Services</h2>
                         <hr/><br/>
                         <div className="services">
                             {this.createServices(this.state.services)}
                         </div>
                         <div className="buttonsContainer">
-                        <input
-                        className="submitButton" 
-                        type="submit" 
-                        value="Submit" 
-                        onClick={this.handleServicesFormSubmit} 
-                        />
-                    </div>
-
+                            <input
+                            className="submitButton" 
+                            type="submit" 
+                            value="Close" 
+                            onClick={this.toggleEditServices} 
+                            />
+                        </div>
                     </div>
                 </Modal>
             </div>
