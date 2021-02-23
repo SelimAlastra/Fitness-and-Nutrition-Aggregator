@@ -15,7 +15,7 @@ import Select from "@material-ui/core/Select";
 
 
 
-import {deletePost, likePost} from '../../../actions/posts';
+import {deletePost, likePost, toggleFavAction } from '../../../actions/posts';
 const Post = ({ post , setCurrentId }) => {
     const classes = useStyles();
     const dispatch =useDispatch();
@@ -37,7 +37,6 @@ const Post = ({ post , setCurrentId }) => {
       const handleOpen = () => {
         setOpen(true);
       };
-
 
     return (
         <Card className={classes.card}> 
@@ -78,7 +77,7 @@ const Post = ({ post , setCurrentId }) => {
                             <MenuItem value="">
                             <em>None</em>
                             </MenuItem>
-                            <MenuItem>Meditation</MenuItem>
+                            <MenuItem> <Button  onClick={() =>dispatch(toggleFavAction(post._id))} >Meditation</Button></MenuItem>
                             <MenuItem>Abs</MenuItem>
                             <MenuItem>Nutirition</MenuItem>
                         </Select>
