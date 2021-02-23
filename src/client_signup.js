@@ -1,4 +1,4 @@
-import React, { Component, useState} from 'react';
+import React, { Component, useState, useEffect} from 'react';
 import { Link } from 'react-router-dom';
 import { useFormik } from "formik";
 import * as EmailValidator from "email-validator";
@@ -11,6 +11,8 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faEye} from "@fortawesome/free-solid-svg-icons";
 import "./client_signup.css";
 import Facebook from './facebook_login.js';
+import Google from './google_login.js';
+import axios from 'axios';
 
 const eye = <FontAwesomeIcon icon={faEye} />;
 
@@ -35,8 +37,6 @@ function PopUpSignUp(){
   );
 
 };
-
-
 
 const schema = Yup.object().shape({
     email: Yup.string()
@@ -75,6 +75,14 @@ const SignUp = () => {
   onSubmit: (values, { setSubmitting }) => {
     setTimeout(() => {
       console.log("Signing Up", values);
+      const newData = {
+        email: values.email,
+        username: values.username,
+        password: values.password,
+        retypePassword: values.retypePassword,
+        phoneNumber: values.phoneNumber
+      }
+      axios.post('http://localhost:3001', newData)
       setSubmitting(false);
     }, 500);
   },
@@ -174,7 +182,8 @@ return (
     <div style={{marginLeft: "140px",marginTop: '15px',  marginBottom: '-20px', fontFamily:"'Helvetica', serif", fontWeight: "bold"}}>OR</div>  
 
       <Facebook/>
-      
+      <p/>
+      <Google/>
 
 
 </Form>

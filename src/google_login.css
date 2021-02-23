@@ -1,0 +1,16 @@
+.GoogleLogin{
+    font-weight: bold !important;
+    box-shadow: none !important;
+    font-size: medium !important;
+    font-family:'Helvetica', serif !important;
+    border-radius: 25px !important;
+    height: 42.5px !important;
+    width: 250px !important;
+    text-align: center !important;
+    border-collapse: unset!important;
+    margin-left: 32px !important;
+    box-sizing: border-box !important;
+    background-color: lightgray !important;
+    color: black !important;
+    font-weight: bold !important;
+}
