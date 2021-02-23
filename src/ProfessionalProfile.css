@@ -119,3 +119,21 @@ width: 100%;
 .buttonsContainer {
     display: flex;
 }
+
+.serviceCard {
+    background-color: white;
+}
+
+.services {
+    border-radius: 10px;
+    padding: 1%;
+    margin: auto;
+    text-align: center;
+    font-family: arial;
+    justify-content: center;
+    margin-bottom: 1%;
+}
+
+table {
+    width: 100%;
+}

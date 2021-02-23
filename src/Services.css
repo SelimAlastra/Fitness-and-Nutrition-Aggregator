@@ -1,5 +1,19 @@
 .container {
     justify-content: center;
     text-align: center;
-  
+    min-width: 100px;
+    display: flex;
+}
+
+.editLink {
+    text-align: right;
+    padding-right: 10px;
+    text-decoration: underline;
+    cursor: pointer;
+    color: #BBA78C;
+    font-size: small;
+}
+
+.pageText {
+    padding: none;
 }

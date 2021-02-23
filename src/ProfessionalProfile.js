@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faInstagram, faYoutube } from "@fortawesome/free-brands-svg-icons"
+import {faTrashAlt} from "@fortawesome/free-regular-svg-icons" 
 import './ProfessionalProfile.css';
 import ProfileInfo from './ProfileInfo';
 import Services from './Services';
@@ -33,19 +34,22 @@ class ProfessionalProfile extends React.Component  {
             services: props.services,
             videoUrls: props.videoUrls,
             isProfessional: props.isProfessional,
-            isOpen: false
+            editDetailsIsOpen: false,
+            editServicesIsOpen: false
         };
-        this.handleChange = this.handleChange.bind(this);
-        this.handleFormSubmit = this.handleFormSubmit.bind(this);
-        this.toggleModalOpen = this.toggleModalOpen.bind(this);
-        this.generateEditLink = this.generateEditLink.bind(this);
+        this.handleDetailsChange = this.handleDetailsChange.bind(this);
+        this.handleServicesChange = this.handleServicesChange.bind(this);
+        this.handleServicesFormSubmit = this.handleServicesFormSubmit.bind(this);
+        this.handleServicesFormSubmit = this.handleServicesFormSubmit.bind(this);
+        this.toggleEditDetails = this.toggleEditDetails.bind(this);
+        this.toggleEditServices = this.toggleEditServices.bind(this);
         Modal.setAppElement('body');
     }
 
     /*
         Handles changes to data in the popup form
     */
-    handleChange(changeEvent) {
+    handleDetailsChange(changeEvent) {
         console.log(changeEvent.target.name);
         this.setState({
             ...this.state,
@@ -56,28 +60,101 @@ class ProfessionalProfile extends React.Component  {
     /*
         Handles the submitting of the form
     */
-    handleFormSubmit(submitEvent) {
-        this.toggleModalOpen();
+    handleDetailsFormSubmit(submitEvent) {
+        this.toggleEditDetails();
         window.alert("Updated!");
     }
 
     /*
-        Toggles the isOpen boolean value which will dictate 
+        Handles changes to data in the popup form
+    */
+    handleServicesChange(changeEvent) {
+        // TODO
+    }
+
+    /*
+        Handles the submitting of the form
+    */
+    handleServicesFormSubmit(submitEvent) {
+        this.toggleEditServices();
+        window.alert("Updated!");
+    }
+
+
+    /*
+        Toggles the editDetailsIsOpen boolean value which will dictate 
         when the modal is opened or closed
     */
-    toggleModalOpen() {
+    toggleEditDetails() {
         this.setState({
             ...this.state,
-            isOpen: !this.state.isOpen
+            editDetailsIsOpen: !this.state.editDetailsIsOpen
         });
     }
+
+     /*
+        Toggles the editServicesIsOpen boolean value which will dictate 
+        when the modal is opened or closed
+    */
+   toggleEditServices() {
+        this.setState({
+            ...this.state,
+            editServicesIsOpen: !this.state.editServicesIsOpen
+        });
+    }
+
+    createServices() {
+        var services = this.state.services;
+        if (services !== undefined && services.length > 0) {
+            let items = services.map((service, index) => {
+                return (
+                <tr
+                className="serviceCard"
+                value={service}>
+                    <td>
+                        <p style={{
+                            textAlign:"left",
+                            padding: "1%"
+                            }}>{service}</p>
+                    </td>
+                    <td>
+                    <button onClick={() => {
+                        var newServices = this.state.services;
+                        let index = newServices.indexOf(service);
+                        if (index !== -1) {
+                            newServices.splice(index,1);
+                            this.setState({...this.state,services: newServices});
+                        }
+                    }} 
+                    name="jis" value={service}>
+                    <FontAwesomeIcon 
+                        icon={faTrashAlt}
+                        style={{
+                            textAlign:"right",
+                            cursor:"pointer"
+                            }}
+                        value={service}
+                        />
+                    </button>
+                    
+                    </td>     
+                </tr>
+                );
+            });
+            return (<table>{items}</table>);
+        } else {
+            return (<div><p>Sorry, no services can be found!</p></div>);
+        }
+    }
+
+
     /*
         Adds the 'Edit my details' link to the component
         if the current user is a service provider
     */
     generateEditLink(isProfessional) {
         if(isProfessional) {
-            return (<h5 className="editLink" onClick={this.toggleModalOpen}>Edit my details</h5>);
+            return (<h5 className="editLink" onClick={this.toggleEditDetails}>Edit my details</h5>);
         }
     }
 
@@ -99,8 +176,11 @@ class ProfessionalProfile extends React.Component  {
                     />
                 </div>
                 <div className="section">
-                    <h2 className="pageText">Services</h2>
-                    <Services services={this.state.services}/>
+                    <Services 
+                    services={this.state.services} 
+                    isProfessional={this.state.isProfessional}
+                    toggleLink={this.toggleEditServices}
+                    />
                 </div>
                 <div className="section">
                     <h2 className="pageText">Most Viewed Videos</h2>
@@ -108,13 +188,13 @@ class ProfessionalProfile extends React.Component  {
                 </div>
                 <Modal
                 className="modal"
-                isOpen={this.state.isOpen}
-                onRequestClose={this.toggleModalOpen}
+                isOpen={this.state.editDetailsIsOpen}
+                onRequestClose={this.toggleEditDetails}
                 >
                     <div data-testid="detailsPopup">
                         <h2 className="modalTitle">Edit Details</h2>
                         <hr/><br/>
-                        <form onSubmit={this.handleFormSubmit}>
+                        <form onSubmit={this.handleDetailsFormSubmit}>
                             <div className="formContainer">
                                 <label className="inputLabel">Name</label>
                                 <input
@@ -122,7 +202,7 @@ class ProfessionalProfile extends React.Component  {
                                 className="textInput" 
                                 value={this.state.name} 
                                 placeholder="Name" 
-                                onChange={this.handleChange}>
+                                onChange={this.handleDetailsChange}>
                                 </input>
                                 <label className="inputLabel">Location</label>
                                 <input
@@ -130,7 +210,7 @@ class ProfessionalProfile extends React.Component  {
                                 className="textInput" 
                                 value={this.state.location} 
                                 placeholder="Location" 
-                                onChange={this.handleChange}>
+                                onChange={this.handleDetailsChange}>
                                 </input>
                                 <label className="inputLabel">Description</label>
                                 <textarea
@@ -138,7 +218,7 @@ class ProfessionalProfile extends React.Component  {
                                 className="textField" 
                                 value={this.state.description} 
                                 placeholder="Description" 
-                                onChange={this.handleChange}>
+                                onChange={this.handleDetailsChange}>
                                 </textarea>
                                 <label className="inputLabel">Instagram Username</label>
                                 <input
@@ -146,7 +226,7 @@ class ProfessionalProfile extends React.Component  {
                                 className="textInput" 
                                 value={this.state.instagramLink} 
                                 placeholder="Instagram Username" 
-                                onChange={this.handleChange}>
+                                onChange={this.handleDetailsChange}>
                                 </input>
                                 <label className="inputLabel">YouTube Username</label>
                                 <input
@@ -154,7 +234,7 @@ class ProfessionalProfile extends React.Component  {
                                 className="textInput" 
                                 value={this.state.youtubeLink} 
                                 placeholder="YouTube Username" 
-                                onChange={this.handleChange}>
+                                onChange={this.handleDetailsChange}>
                                 </input>
                                 <hr />
                                 <div className="buttonsContainer">
@@ -162,11 +242,33 @@ class ProfessionalProfile extends React.Component  {
                                     className="submitButton" 
                                     type="submit" 
                                     value="Submit" 
-                                    onClick={this.handleFormSubmit} 
+                                    onClick={this.handleDetailsFormSubmit} 
                                     />
                                 </div>
                             </div>
                         </form>
+                    </div>
+                </Modal>
+                <Modal
+                className="modal"
+                isOpen={this.state.editServicesIsOpen}
+                onRequestClose={this.toggleEditServices}
+                >
+                    <div data-testid="detailsPopup">
+                        <h2 className="modalTitle">Edit Services</h2>
+                        <hr/><br/>
+                        <div className="services">
+                            {this.createServices(this.state.services)}
+                        </div>
+                        <div className="buttonsContainer">
+                        <input
+                        className="submitButton" 
+                        type="submit" 
+                        value="Submit" 
+                        onClick={this.handleServicesFormSubmit} 
+                        />
+                    </div>
+
                     </div>
                 </Modal>
             </div>
