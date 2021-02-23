@@ -1,9 +1,10 @@
 import { withFormik, useFormik } from "formik";
 import { React } from "react";
 import reactDom from "react-dom";
-import { Link, Redirect } from "react-router-dom";
+import { Link, Redirect, useHistory } from "react-router-dom";
 import { Form, Container, Button } from "react-bootstrap";
 import * as Yup from "yup";
+
 
 //This is the style of the login box
 const loginStyle = {
@@ -33,6 +34,13 @@ const adminSchema = Yup.object().shape({
 const Login = () => {
 
 
+    const history = useHistory();
+
+    const reroute = () => {
+        let newPage = 'AdminPage';
+        history.push(newPage);
+    }
+
     const Formik = useFormik({
         initialValues: {
             username: "",
@@ -41,6 +49,7 @@ const Login = () => {
         validationSchema: adminSchema,
         onSubmit(values) {
             console.log("Log in details: ", values);
+            reroute();
         }
     });
 
