@@ -71,17 +71,6 @@ return (
         <Toolbar />
         <div className={classes.drawerContainer}>
           <List>
-            {["", "", "", ""].map((text, index) => (
-              <ListItem button key={text}>
-                <ListItemIcon>
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                </ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItem>
-            ))}
-          </List>
-          <Divider />
-          <List>
             {["", "", ""].map((text, index) => (
               <ListItem button key={text}>
                 <ListItemIcon>

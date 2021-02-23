@@ -1,5 +1,6 @@
 import mongoose from 'mongoose';
 import PostMessage from '../models/postMessage.js';
+import Bucket from '../models/bucket.js';
 
 export const getPosts = async (req, res) => { 
     try {
@@ -57,3 +58,18 @@ export const likePost = async (req, res) => {
     
     res.json(updatedPost);
 }
+
+export const toggleFavAction = async  (req, res) =>{
+    const { id } = req.params;
+    if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send(`No post with id: ${id}`);
+    const id1= id.toString();
+    const newBucketItem = new Bucket({postsId :id1});
+
+    try {
+
+        await newBucketItem.save();
+        res.status(201).json({ message :newBucketItem});
+    } catch (error) {
+        res.status(409).json({ message: error.message });
+    }
+  }
