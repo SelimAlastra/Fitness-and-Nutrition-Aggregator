@@ -52,11 +52,12 @@ function generateDescriptionContainer(description) {
 // instagram account page linked
 function generateInstagramLink(link) {
     if (link !== undefined || link === "") {
+        const url = "http://instagram.com/" + link;
         return <FontAwesomeIcon 
         className="socialIcon" 
         size="lg" 
         icon={faInstagram}
-        onClick={() => { window.open(link); }}
+        onClick={() => { window.open(url); }}
         />;
     } 
 }
@@ -65,11 +66,12 @@ function generateInstagramLink(link) {
 // YouTube account page linked
 function generateYoutubeLink(link) {
     if (link !== undefined || link === "") {
+        const url = "http://www.youtube.com/" + link;
         return <FontAwesomeIcon 
         className="socialIcon" 
         size="lg" 
         icon={faYoutube} 
-        onClick={() => { window.open(link); }}
+        onClick={() => { window.open(url); }}
         />
     }
 }
