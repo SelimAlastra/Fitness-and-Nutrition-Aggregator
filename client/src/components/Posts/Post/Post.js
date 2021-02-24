@@ -7,6 +7,8 @@ import moment from 'moment';
 import {useDispatch} from 'react-redux';
 import useStyles from './styles';
 
+
+
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import InputLabel from "@material-ui/core/InputLabel";
@@ -15,7 +17,7 @@ import Select from "@material-ui/core/Select";
 
 
 
-import {deletePost, likePost, toggleFavAction } from '../../../actions/posts';
+import { deletePost, likePost, toggleFavAction } from '../../../actions/posts';
 const Post = ({ post , setCurrentId }) => {
     const classes = useStyles();
     const dispatch =useDispatch();
@@ -77,9 +79,11 @@ const Post = ({ post , setCurrentId }) => {
                             <MenuItem value="">
                             <em>None</em>
                             </MenuItem>
-                            <MenuItem> <Button  onClick={() =>dispatch(toggleFavAction(post._id))} >Meditation</Button></MenuItem>
-                            <MenuItem>Abs</MenuItem>
-                            <MenuItem>Nutirition</MenuItem>
+        
+                          {/*  {buckets.map((bucket) => (
+                                <MenuItem> <Button onClick={() =>dispatch(toggleFavAction(post._id))}>{bucket.title}</Button></MenuItem>
+                            ))} */}
+
                         </Select>
                         </FormControl>
                     </div>

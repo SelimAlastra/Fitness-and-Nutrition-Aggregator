@@ -1,6 +1,7 @@
 import mongoose from 'mongoose';
 
 const bucketSchema = mongoose.Schema({
+    title: String,
     postsId:[String],
 });
   
