@@ -15,41 +15,29 @@ import MailIcon from "@material-ui/icons/Mail";
 
 import { useDispatch } from 'react-redux';
 
-/*function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}*/
-
 import { getPosts, updatePost } from './actions/posts';
 import Posts from './components/Posts/Posts';
 import Form from './components/Form/Form';
+import Buckets from './components/Buckets/Buckets';
 import memories from './images/memories.png';
 import useStyles from './styles';
 
 const App = () => {
     const [currentId, setCurrentId] = useState(null);
+    const [currentBucketId, setCurrentBucketId] = useState(null);
+    
     const classes = useStyles();
     const dispatch = useDispatch();
 
     useEffect(() => {
       dispatch(getPosts());
     }, [currentId,dispatch]);
+
+    /*useEffect(() => {
+      dispatch(getBuckets());
+    }, [currentBucketId,dispatch]); */
+
+
 
 return (
   <Container maxWidth="lg">
@@ -96,6 +84,11 @@ return (
             </Grid>
           </Grid>
         </Container>
+        
+        <Container> 
+          <Buckets setCurrentBucketId={setCurrentBucketId}/>
+        </Container>
+
       </Grow>
       
   </Container>
