@@ -1,5 +1,6 @@
 import GoogleLogin from 'react-google-login';
 import './google_login.css';
+import React from 'react';
 
 const LoginButton = () => (
 <GoogleLogin

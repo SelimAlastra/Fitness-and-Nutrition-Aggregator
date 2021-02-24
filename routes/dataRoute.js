@@ -20,9 +20,9 @@ router.route("").post((req, res) => {
     newData.save();
 })
 
-    router.route("/api").get((req, res) => {
-        Data.find()
-        .then(foundData => res.json(foundData))
-    })
+router.route("").get((req, res) => {
+    Data.find()
+    .then(foundData => res.json(foundData))
+})
 
 module.exports = router;

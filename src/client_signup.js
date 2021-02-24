@@ -14,6 +14,7 @@ import Facebook from './facebook_login.js';
 import Google from './google_login.js';
 import axios from 'axios';
 
+
 const eye = <FontAwesomeIcon icon={faEye} />;
 
 function PopUpSignUp(){
@@ -35,13 +36,46 @@ function PopUpSignUp(){
     </Modal>
   </>
   );
-
 };
 
-const schema = Yup.object().shape({
+
+const SignUp = () => {
+
+  const [passwordShown, setPasswordShown] = useState(false);
+
+  const togglePasswordVisiblity = () => {
+    setPasswordShown(passwordShown ? false : true);
+  };
+
+  
+  const state = {
+    listOfUsers: []
+  };
+  
+  const componentDidMount = () => {
+    this.getUsersInfo();
+  };
+
+
+  const getUsersInfo = () => {
+    axios.get('http://localhost:3001')
+      .then((response) => {
+        const data = response.data;
+        this.setState({ listOfUsers: data });
+        console.log('Data has been received!!');
+      })
+      .catch(() => {
+        alert('Error retrieving data!!!');
+      });
+  }
+
+  console.log(state.listOfUsers)
+
+  const schema = Yup.object().shape({
     email: Yup.string()
         .email("Email must be a valid email.")
-        .required("No email provided."),
+        .required("No email provided.")
+        .notOneOf(state.listOfUsers, "is there"),
     username: Yup.string()
         .min(3, "Username is too short - should be 3 chars minimum.")
         .max(30, "Username is too long - should be 30 chars maximum.")
@@ -60,15 +94,6 @@ const schema = Yup.object().shape({
         .required("Required.")
 });
 
-
-const SignUp = () => {
-
-  const [passwordShown, setPasswordShown] = useState(false);
-
-  const togglePasswordVisiblity = () => {
-    setPasswordShown(passwordShown ? false : true);
-  };
-
   const formik = useFormik({
   initialValues:{ email: "", username: "", password: "", retypePassword: "", phoneNumber: "" },
   validationSchema: schema,
@@ -86,7 +111,9 @@ const SignUp = () => {
       setSubmitting(false);
     }, 500);
   },
+  componentDidMount,
 });
+
 
 return (
 <Form autoComplete="off" onSubmit={formik.handleSubmit}>
