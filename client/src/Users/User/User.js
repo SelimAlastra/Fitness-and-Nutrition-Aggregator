@@ -1,19 +1,31 @@
 import React from "react";
 import { Button,Container } from "react-bootstrap";
+import { updateUser } from "../../actions/users";
+import { useDispatch } from 'react-redux';
 
-const User = ({ user }) => (
-    <>
-        <td>{user._id}</td>
-        <td>{user.username}</td>
-        <td>{user.isBanned}</td>
-        <td>
-            <Container fluid>
-            <Button variant="primary" onClick={ () => {}}>Delete</Button>
-            <Button variant="primary" onClick={ () => {}}>Ban</Button>
-            <Button variant="primary" onClick={ () => {}}>Details</Button>
-            </Container>
-        </td>
-    </>
-);
+const User = ({ user }) => {
+
+    const dispatch = useDispatch();
+
+    const handleBan = () => {
+        user.isBanned = !user.isBanned;
+        dispatch(updateUser(user._id, user));
+    }
+
+    return (
+        <>
+            <td>{user._id}</td>
+            <td>{user.username}</td>
+            <td>{"" + user.isBanned}</td>
+            <td>
+                <Container>
+                    <Button variant="primary" onClick={ () => {}}>Delete</Button> &nbsp;
+                    <Button variant="primary" onClick={ () => {handleBan()}}>Ban</Button> &nbsp;
+                    <Button variant="primary" onClick={ () => {}}>Details</Button>
+                </Container>
+            </td>
+        </>
+    )
+}
 
 export default User;

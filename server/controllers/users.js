@@ -1,8 +1,9 @@
-import UserMessage from '../models/users.js'
+import User from '../models/users.js'
+import mongoose from "mongoose";
 
 export const getUsers = async (req, res) => {
     try {
-        const users = await UserMessage.find();
+        const users = await User.find();
 
         console.log(users);
 
@@ -15,7 +16,7 @@ export const getUsers = async (req, res) => {
 export const createUser = async (req, res) => {
     const user = req.body;
 
-    const newUser = new UserMessage(user);
+    const newUser = new User(user);
 
     try {
         await newUser.save();
@@ -26,4 +27,15 @@ export const createUser = async (req, res) => {
     }
 
     res.send('User Creation');
+};
+
+export const updateUser = async (req, res) => {
+    const { id: _id } = req.params;
+    const user = req.body;
+
+    if(!mongoose.Types.ObjectId.isValid(_id)) return (res.status(404).send('No user with that id'));
+
+    const updatedUser = await User.findByIdAndUpdate(_id, user, { new: true });
+
+    res.json(updatedUser);
 };
