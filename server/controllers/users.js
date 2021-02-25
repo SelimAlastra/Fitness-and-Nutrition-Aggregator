@@ -13,7 +13,7 @@ export const getUsers = async (req, res) => {
 };
 
 export const createUser = async (req, res) => {
-    const user = res.body;
+    const user = req.body;
 
     const newUser = new UserMessage(user);
 
