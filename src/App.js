@@ -5,7 +5,10 @@ import UserLogin from './user_login.js';
 import React from 'react';
 
 function App() {
-  return < ClientSignup />;
+  return (<div>
+    < UserLogin />
+    < ClientSignup />
+    </div>);
 
 
 // function App() {

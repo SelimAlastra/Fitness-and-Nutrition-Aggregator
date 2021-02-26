@@ -27,7 +27,7 @@ function PopUpSignUp(){
       Create an account
     </Button>
 
-    <Modal show={show} onHide={handleClose}>
+    <Modal className="signUp" show={show} onHide={handleClose}>
       
       <Modal.Header closeButton>
         <Modal.Title >REGISTRATION FORM</Modal.Title>

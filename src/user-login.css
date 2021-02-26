@@ -25,14 +25,14 @@
     height: 100px;
 }
 
-.modal-title {
+.logIn .modal-title {
     align-self: center;
     margin-left: 140px;
     font-family: 'Roboto', serif !important;
     font-weight: bold;
 }
 
-.modal-content {
+.logIn .modal-content {
     border-radius: 10px;
     border-color: black;
     font-size: large;

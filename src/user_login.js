@@ -1,4 +1,4 @@
-import React, { Component, useState} from 'react';
+import React, { Component, useState, useEffect} from 'react';
 import { ErrorMessage, useFormik } from "formik";
 import * as EmailValidator from "email-validator";
 import * as Yup from "yup";
@@ -31,7 +31,7 @@ function PopUpLogin(){
       Login
     </Button>
     <div className = "modal-dialog">
-    <Modal show={show} onHide={handleClose}>
+    <Modal className="logIn" show={show} onHide={handleClose}>
       <Modal.Header closeButton>
         <Modal.Title>LOGIN FORM</Modal.Title>
       </Modal.Header>
@@ -48,20 +48,59 @@ function PopUpLogin(){
 //       return /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/gi.test(val);
 //     })
 // });
+const Login = () => {
+
+function UserArray(){
+    const [users, setUsers] = useState([])
+    
+    useEffect(() => {
+      async function fetchData() { 
+        const result = await fetch("http://localhost:3001");
+        result
+        .json()
+        .then(result => setUsers(result)) 
+      };
+  
+      fetchData();
+    }, []);
+  
+    return (
+        [].concat.apply([], users.map(u => ([u.username, u.email])))
+    )
+}
+
+function PassArray(){
+  const [users, setUsers] = useState([])
+  const emailInput = document.getElementById("input");
+  
+  useEffect(() => {
+    async function fetchData() { 
+      const result = await fetch("http://localhost:3001");
+      result
+      .json()
+      .then(result => setUsers(result)) 
+    };
+
+    fetchData();
+  }, []);
+
+  return (
+    users.map(u => u.password)
+  )
+}
+
+let userArray = UserArray()
+let passArray =PassArray()
 
 const schema = Yup.object().shape({
     email: Yup.string()
-        .email("Email must be a valid email.")
-        .required("No email provided."),
+        .oneOf(userArray, "Incorrect username or email.")
+        .required("No email or username provided."),
     
     password: Yup.string()
+        .oneOf(passArray, "Incorrect password")
         .required("No password provided.")
-        .min(8, "Password is too short - should be 8 chars minimum.")
-        .matches(/(?=.*[0-9])/, "Password must contain a number.")
-        .matches(/^[a-zA-Z0-9!@#\$%\^\&*\)\(+=._-]+$/, "Password should not contain space.")
 });
-
-const Login = () => {
 
   const [passwordShown, setPasswordShown] = useState(false);
 
@@ -84,7 +123,7 @@ return (
 <div className="Form">
 <Form onSubmit={formik.handleSubmit} autoComplete="Off">
   <Form.Label hidden = {true} htmlFor="email">Email</Form.Label>
-    <Form.Control
+    <Form.Control id="loginInput"
         id="email"
         name="email"
         type="text"

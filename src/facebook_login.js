@@ -3,6 +3,7 @@ import FacebookLoginWithButton from 'react-facebook-login';
 import './facebook_login.css';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faFacebookF} from "@fortawesome/free-brands-svg-icons";
+import axios from 'axios';
 
 
 const icon = <FontAwesomeIcon icon={faFacebookF}/>
@@ -29,7 +30,9 @@ const UserScreen = ({user}) => (
 
 class Facebook extends React.Component {
   state = {user:false}
-  facebookResponse = (response) => { console.log( response ); this.setState( {...this.state, user: response } ) }
+  facebookResponse = (response) => { console.log( response ); this.setState( {...this.state, user: response } ) 
+  axios.post('http://localhost:3001', response)
+}
 
   render() {
     return (

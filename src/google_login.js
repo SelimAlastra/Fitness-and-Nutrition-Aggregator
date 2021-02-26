@@ -1,6 +1,7 @@
 import GoogleLogin from 'react-google-login';
 import './google_login.css';
 import React from 'react';
+import axios from 'axios';
 
 const LoginButton = () => (
 <GoogleLogin
@@ -14,17 +15,14 @@ const LoginButton = () => (
 )
 
 const handleLogin = async googleData => {
-    const res = await fetch("/api/v1/auth/google", {
-        method: "POST",
-        body: JSON.stringify({
-        token: googleData.tokenId
-      }),
-      headers: {
-        "Content-Type": "application/json"
-      }
+    axios.post('http://localhost:3001', async (req, res) => {
+      const{token} = req.body
+      const ticket = await client.verifyIdToken({
+        idToken: token,
+        audience: process.env.CLIENT_ID
+      });
+      const { name, email, picture } = ticket.getPayload();    
     })
-    const data = await res.json()
-    // store returned user somehow
 }
 
 const { OAuth2Client } = require('google-auth-library')

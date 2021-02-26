@@ -26,19 +26,19 @@
     
 }
 
-.modal-title {
+.signUp .modal-title {
     align-self: center;
     margin-left: 90px;
     font-family: 'Helvetica', serif !important;
     font-weight: bold;
 }
 
-.modal-content {
+.signUp .modal-content {
     border-radius: 10px;
     border-color: black;
     font-size: large;
     font-family: 'Helvetica', serif !important;
-    min-height: 500px;
+    min-height: 600px;
 }
 
 Form {
