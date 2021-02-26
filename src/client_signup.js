@@ -47,40 +47,59 @@ const SignUp = () => {
     setPasswordShown(passwordShown ? false : true);
   };
 
+  function EmailArray(){
+  const [users, setUsers] = useState([])
   
-  const state = {
-    listOfUsers: []
-  };
-  
-  const componentDidMount = () => {
-    this.getUsersInfo();
-  };
+  useEffect(() => {
+    async function fetchData() { 
+      const result = await fetch("http://localhost:3001");
+      result
+      .json()
+      .then(result => setUsers(result)) 
+    };
 
+    fetchData();
+  }, []);
 
-  const getUsersInfo = () => {
-    axios.get('http://localhost:3001')
-      .then((response) => {
-        const data = response.data;
-        this.setState({ listOfUsers: data });
-        console.log('Data has been received!!');
-      })
-      .catch(() => {
-        alert('Error retrieving data!!!');
-      });
+  return (
+      users.map(u => u.email)
+  )
   }
 
-  console.log(state.listOfUsers)
+  let emailArray = EmailArray();
+
+  function UsernameArray(){
+    const [users, setUsers] = useState([])
+    
+    useEffect(() => {
+      async function fetchData() { 
+        const result = await fetch("http://localhost:3001");
+        result
+        .json()
+        .then(result => setUsers(result)) 
+      };
+  
+      fetchData();
+    }, []);
+  
+    return (
+        users.map(u => u.username)
+    )
+    }
+  
+    let usernameArray = UsernameArray();
 
   const schema = Yup.object().shape({
     email: Yup.string()
         .email("Email must be a valid email.")
         .required("No email provided.")
-        .notOneOf(state.listOfUsers, "is there"),
+        .notOneOf(emailArray, "There already exists an account with this email."),
     username: Yup.string()
         .min(3, "Username is too short - should be 3 chars minimum.")
         .max(30, "Username is too long - should be 30 chars maximum.")
         .matches(/^[a-zA-Z0-9]*$/, "Username should not contain space or special characters.")
-        .required("No username provided."),
+        .required("No username provided.")
+        .notOneOf(usernameArray, "This username is taken."),
     phoneNumber: Yup.string()
         .required("No phone number provided.")
         .matches(/^\+(?:[0-9]●?){6,14}[0-9]$/, "Phone number must be valid."),
@@ -109,9 +128,10 @@ const SignUp = () => {
       }
       axios.post('http://localhost:3001', newData)
       setSubmitting(false);
+      
     }, 500);
   },
-  componentDidMount,
+  
 });
 
 

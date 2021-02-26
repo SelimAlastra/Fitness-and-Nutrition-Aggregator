@@ -356,7 +356,7 @@ it('opens modal when button is clicked', () => {
     
     let error;
     await waitFor(() => {
-      error = getByText('Password should not contain space.');
+      error = getByText('Password should not contain blank space.');
     });
     
     expect(error).not.toBeNull();
