@@ -1,5 +1,5 @@
 import React, { useEffect ,useState } from 'react';
-import { Container, Grid } from '@material-ui/core';
+import { Container, Grid, Grow } from '@material-ui/core';
 import Buckets from './components/Buckets/Buckets'; 
 import FormBucket from './components/Form/FormBucket';
 import { useDispatch } from 'react-redux';
@@ -17,12 +17,18 @@ const BucketList = () => {
 
     return ( 
          <Container maxWidth="lg">
+        <Grow in>
+        <Container>
          <Grid item xs={12} sm={4}>
               <FormBucket currentBucketId={currentBucketId} setCurrentBucketId={setCurrentBucketId} />
          </Grid>
          <Grid item xs={12} sm={4}>
+         <Buckets currentBucketId={currentBucketId} setCurrentBucketId={setCurrentBucketId} />
          </Grid>
-        </Container>);
+         </Container>
+         </Grow>
+        </Container>
+        );
 }
 
 export default BucketList;

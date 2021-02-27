@@ -26,10 +26,8 @@ const Bucket = ({ bucket , setCurrentBucketId }) => {
       };
     
     return (
-        <Card className={classes.card}> 
-            <div className={classes.overlay}>
+        <Card  className={classes.card}> 
                 <Typography variant="h6">{bucket.title}</Typography>
-            </div>
             {/*<div className={classes.overlay2}> 
                 <Button
                     aria-controls="simple-menu"
