@@ -6,9 +6,8 @@ import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 import moment from 'moment';
 import {useDispatch} from 'react-redux';
 import useStyles from './styles';
-
-
-
+import Bucket from '../../Buckets/Bucket/Bucket';
+import Buckets from '../../Buckets/Buckets';
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import InputLabel from "@material-ui/core/InputLabel";
@@ -23,7 +22,6 @@ const Post = ({ post , setCurrentId }) => {
     const dispatch =useDispatch();
     const [anchorEl, setAnchorEl] = React.useState(null);
     const [open, setOpen] = React.useState(false);
-
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
       };
@@ -37,6 +35,7 @@ const Post = ({ post , setCurrentId }) => {
       };
     
       const handleOpen = () => {
+        /*const arrBuckets[]=openBuckets();*/
         setOpen(true);
       };
 
@@ -79,11 +78,12 @@ const Post = ({ post , setCurrentId }) => {
                             <MenuItem value="">
                             <em>None</em>
                             </MenuItem>
-        
+                            <MenuItem>
+                            Buckets.map((Bucket) `#${Bucket.title} `)
                           {/*  {buckets.map((bucket) => (
                                 <MenuItem> <Button onClick={() =>dispatch(toggleFavAction(post._id))}>{bucket.title}</Button></MenuItem>
                             ))} */}
-
+                          </MenuItem>
                         </Select>
                         </FormControl>
                     </div>

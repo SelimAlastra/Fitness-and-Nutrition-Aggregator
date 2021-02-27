@@ -1,5 +1,5 @@
 import { FETCH_ALL, CREATE, UPDATE, DELETE , ADD_FAV} from '../constants/actionTypes';
-import * as api from '../api';
+import * as api from '../api/index';
 
 
 // Action Creators

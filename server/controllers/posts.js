@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 import PostMessage from '../models/postMessage.js';
-import Bucket from '../models/bucket.js';
+import Bucket from '../models/buckets.js';
 
 export const getPosts = async (req, res) => { 
     try {
