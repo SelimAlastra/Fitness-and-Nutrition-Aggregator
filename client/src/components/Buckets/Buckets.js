@@ -8,12 +8,12 @@ import useStyles from './styles';
 
 const Buckets = ({setCurrentBucketId}) => {
     const buckets = useSelector((state) => state.buckets);
-
+    const classes = useStyles();
     console.log(buckets);
 
     return (
         !buckets.length ? <CircularProgress /> : (
-            <Grid spacing={3}> 
+            <Grid className={classes.container} alignItems="stretch" spacing={3}> 
                 {buckets.map((bucket) => (
                        <Grid key={bucket._id} item xs={12} sm={6}>
                             <Bucket bucket={bucket} setCurrentBucketId={setCurrentBucketId} />
