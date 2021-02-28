@@ -13,7 +13,7 @@ import MenuItem from "@material-ui/core/MenuItem";
 import InputLabel from "@material-ui/core/InputLabel";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
-
+import Videos from '../Videos/Videos';
 
 
 import { deletePost, likePost, toggleFavAction } from '../../../actions/posts';
@@ -96,6 +96,9 @@ const Post = ({ post , setCurrentId }) => {
             <Typography className={classes.title} variant="h5" gutterBottom>{post.title}</Typography>
             <CardContent> 
                 <Typography  variant="body2" color="textSecondary" component="p" >{post.message}</Typography>
+            </CardContent>
+            <CardContent> 
+                    <Videos setUrl = {post.url} />
             </CardContent>
             <CardActions className={classes.cardActions}> 
                 <Button size="small" color="primary" onClick={() => dispatch(likePost(post._id))}>

@@ -10,11 +10,6 @@ router.patch('/:id', updatePost);
 router.delete('/:id', deletePost);
 router.patch('/:id/likePost', likePost);
 router.patch('/:id/toggleFavAction', toggleFavAction);
-/*
-router.get('/:id', getPost);
-router.patch('/:id', updatePost);
-router.delete('/:id', deletePost);
-router.patch('/:id/likePost', likePost);*/
 
 
 export default router;
