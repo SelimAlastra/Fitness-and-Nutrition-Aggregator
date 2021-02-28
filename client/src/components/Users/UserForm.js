@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import { Form, Container, Button } from "react-bootstrap";
 import { useDispatch } from 'react-redux';
-import {  createUser } from "../actions/users";
+import {  createUser } from "../../actions/users";
 
 const UserForm = () => {
 

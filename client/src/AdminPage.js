@@ -3,7 +3,7 @@ import reactDom from "react-dom";
 import { Link, Switch, Route } from "react-router-dom";
 import { Form, Container, Button, Navbar, Nav, FormControl } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
-import Users from './Users/Users'
+import Users from './components/Users/Users'
 
 // This is the navigation bar that will be used for the admin's page
 const NavigationBar = () => (
@@ -13,7 +13,9 @@ const NavigationBar = () => (
         <Nav>
             <Nav.Link>Statistics</Nav.Link>
             <Nav.Link>Reports</Nav.Link>
+            <LinkContainer to="/Issues">
             <Nav.Link>Issues</Nav.Link>
+            </LinkContainer>
             <LinkContainer to="/Users">
                 <Nav.Link>Users</Nav.Link>
             </LinkContainer>
