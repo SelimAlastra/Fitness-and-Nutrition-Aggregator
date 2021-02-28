@@ -1,8 +1,13 @@
 import axios from 'axios';
 
-const url = 'http://localhost:5000/users';
+const userUrl = 'http://localhost:5000/users';
+const issueUrl = 'http://localhost:5000/issues';
 
-export const fetchUsers = () => axios.get(url);
-export const createUser = (newUser) => axios.post(url, newUser);
-export const updateUser = (id, updatedUser) => axios.patch(url+'/'+id, updatedUser);
-export const deleteUser = (id) => axios.delete(url+'/'+id);
+export const fetchUsers = () => axios.get(userUrl);
+export const createUser = (newUser) => axios.post(userUrl, newUser);
+export const updateUser = (id, updatedUser) => axios.patch(userUrl+'/'+id, updatedUser);
+export const deleteUser = (id) => axios.delete(userUrl+'/'+id);
+
+export const fetchIssues = () => axios.get(issueUrl);
+export const createIssue = (newIssue) => axios.post(issueUrl, newIssue);
+export const deleteIssue = (id) => axios.delete(issueUrl+'/'+id);

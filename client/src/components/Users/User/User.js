@@ -1,6 +1,6 @@
 import React from "react";
 import { Button,Container } from "react-bootstrap";
-import { updateUser, deleteUser } from "../../actions/users";
+import { updateUser, deleteUser } from "../../../actions/users";
 import { useDispatch } from 'react-redux';
 
 const User = ({ user }) => {

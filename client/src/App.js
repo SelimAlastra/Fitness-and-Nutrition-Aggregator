@@ -6,7 +6,7 @@ import { useDispatch } from 'react-redux';
 
 import { useEffect } from 'react';
 
-import Users from './Users/Users';
+import Users from './components/Users/Users';
 import AdminPage from './AdminPage';
 
 const loginStyle = {
@@ -16,12 +16,6 @@ const loginStyle = {
 };
 
 const App = () => {
-
-  const dispatch = useDispatch();
-
-    useEffect(() => {
-      dispatch(getUsers());
-    }, [dispatch]);
 
   return (
     <div className="App">
