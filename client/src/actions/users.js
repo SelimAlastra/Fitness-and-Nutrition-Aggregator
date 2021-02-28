@@ -30,7 +30,17 @@ export const updateUser = (id, user) => async (dispatch) => {
 
         dispatch({ type: 'UPDATE', payload: data });
 
-        console.log(user);
+    } catch (error) {
+        console.log(error.message);
+    }
+}
+
+export const deleteUser = (id) => async (dispatch) => {
+
+    try {
+        await api.deleteUser(id);
+
+        dispatch({ type: 'DELETE', payload: id });
 
     } catch (error) {
         console.log(error.message);

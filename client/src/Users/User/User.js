@@ -1,6 +1,6 @@
 import React from "react";
 import { Button,Container } from "react-bootstrap";
-import { updateUser } from "../../actions/users";
+import { updateUser, deleteUser } from "../../actions/users";
 import { useDispatch } from 'react-redux';
 
 const User = ({ user }) => {
@@ -19,8 +19,8 @@ const User = ({ user }) => {
             <td>{"" + user.isBanned}</td>
             <td>
                 <Container>
-                    <Button variant="primary" onClick={ () => {}}>Delete</Button> &nbsp;
-                    <Button variant="primary" onClick={ () => {handleBan()}}>Ban</Button> &nbsp;
+                    <Button variant="primary" onClick={ () => { dispatch(deleteUser(user._id)) }}>Delete</Button> &nbsp;
+                    <Button variant="primary" onClick={ () => { handleBan() }}>Ban</Button> &nbsp;
                     <Button variant="primary" onClick={ () => {}}>Details</Button>
                 </Container>
             </td>

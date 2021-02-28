@@ -35,7 +35,17 @@ export const updateUser = async (req, res) => {
 
     if(!mongoose.Types.ObjectId.isValid(_id)) return (res.status(404).send('No user with that id'));
 
-    const updatedUser = await User.findByIdAndUpdate(_id, user, { new: true });
+    const updatedUser = await User.findByIdAndUpdate(_id, { ...user, _id }, { new: true });
 
     res.json(updatedUser);
+};
+
+export const deleteUser = async (req, res) => {
+    const { id: _id } = req.params;
+
+    if(!mongoose.Types.ObjectId.isValid(_id)) return (res.status(404).send('No user with that id'));
+
+    await User.findByIdAndRemove(_id);
+
+    res.json({ message: 'User deleted successfully' });
 };
