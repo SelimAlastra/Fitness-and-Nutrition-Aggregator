@@ -1,7 +1,10 @@
 import mongoose from 'mongoose';
 
 const issueSchema = mongoose.Schema({
-    username: String,
+    username: {
+        type: String,
+        default: ''
+    },
     description: String,
 });
 

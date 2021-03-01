@@ -19,7 +19,7 @@ const IssueForm = () => {
         <Form.Group>
         <Form.Label>Description</Form.Label>
         <Form.Control
-            id="Discription"
+            id="Description"
             name="Description"
             type="text"
             value={IssueData.description}

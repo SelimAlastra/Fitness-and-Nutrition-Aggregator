@@ -24,7 +24,7 @@ const Issues = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {issues.map((issue) => (
+                {issues.map((issue) => (
                         <tr key={issue._id} >
                             <Issue issue={issue} />
                         </tr>
