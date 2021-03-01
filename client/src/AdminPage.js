@@ -3,7 +3,6 @@ import reactDom from "react-dom";
 import { Link, Switch, Route } from "react-router-dom";
 import { Form, Container, Button, Navbar, Nav, FormControl } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
-import Users from './components/Users/Users'
 
 // This is the navigation bar that will be used for the admin's page
 const NavigationBar = () => (

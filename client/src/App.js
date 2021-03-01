@@ -8,6 +8,7 @@ import { useEffect } from 'react';
 
 import Users from './components/Users/Users';
 import AdminPage from './AdminPage';
+import { getIssues } from './actions/issues';
 
 const loginStyle = {
   margin: "33px auto 36px",
@@ -16,6 +17,12 @@ const loginStyle = {
 };
 
 const App = () => {
+
+  const dispatch = useDispatch();
+
+    useEffect(() => {
+      dispatch(getUsers());
+    }, [dispatch]);
 
   return (
     <div className="App">

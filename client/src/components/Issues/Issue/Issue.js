@@ -3,17 +3,17 @@ import { Button,Container } from "react-bootstrap";
 import { deleteIssue } from "../../../actions/issues";
 import { useDispatch } from 'react-redux';
 
-const Issue = ({ Issue }) => {
+const Issue = ({ issue }) => {
 
     const dispatch = useDispatch();
 
     return (
         <>
-            <td>{Issue._id}</td>
-            <td>{Issue.Description}</td>
+            <td>{issue._id}</td>
+            <td>{issue.Description}</td>
             <td>
                 <Container>
-                    <Button variant="primary" onClick={ () => { dispatch(deleteIssue(Issue._id)) }}>Delete</Button> &nbsp;
+                    <Button variant="primary" onClick={ () => { dispatch(deleteIssue(issue._id)) }}>Delete</Button> &nbsp;
                     <Button variant="primary" onClick={ () => {}}>Reply</Button> &nbsp;
                     <Button variant="primary" onClick={ () => {}}>Details</Button>
                 </Container>
