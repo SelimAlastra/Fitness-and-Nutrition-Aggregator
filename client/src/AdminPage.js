@@ -41,7 +41,6 @@ const AdminPage = () => (
         <Switch>
             <Route path='/users' component={Users}/>
             <Route path='/issues' component={Issues}/>
-            <Route />
         </Switch>
     </div>
 );
