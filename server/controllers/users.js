@@ -5,8 +5,6 @@ export const getUsers = async (req, res) => {
     try {
         const users = await User.find();
 
-        console.log(users);
-
         res.status(200).json(users);
     } catch (error) {
         res.status(404).json({ message: error.message });
@@ -25,8 +23,6 @@ export const createUser = async (req, res) => {
     } catch(error) {
         res.status(409).json( {message: error.message });
     }
-
-    res.send('User Creation');
 };
 
 export const updateUser = async (req, res) => {

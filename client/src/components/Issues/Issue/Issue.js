@@ -9,8 +9,9 @@ const Issue = ({ issue }) => {
 
     return (
         <>
-            <td>{issue._id}</td>
-            <td>{issue.Description}</td>
+            <td>{issue.username}</td>
+            <td>{issue.description}</td>
+            <td></td>
             <td>
                 <Container>
                     <Button variant="primary" onClick={ () => { dispatch(deleteIssue(issue._id)) }}>Delete</Button> &nbsp;
