@@ -1,16 +1,21 @@
-import { React } from "react";
+import { React, useEffect } from "react";
 import reactDom from "react-dom";
 import { Link } from "react-router-dom";
 import { Table } from "react-bootstrap";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { getUsers } from "../../actions/users";
 import User from "./User/User";
 import UserForm from './UserForm'
 
 const Users = () => {
 
-    const users = useSelector((state) => state.users);
+    const dispatch = useDispatch();
 
-    console.log(users);
+    useEffect(() => {
+      dispatch(getUsers());
+    }, [dispatch]);
+
+    const users = useSelector((state) => state.users);
 
     return (
         <>

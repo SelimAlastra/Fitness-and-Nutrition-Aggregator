@@ -7,13 +7,16 @@ import Users from "./components/Users/Users";
 
 
 const Main = () => {
-    return (
-        <Switch>
-            <Route exact path='/' component={AdminLogin}></Route>
-            <Route exact path='/adminPage' component={AdminPage}></Route>
-            <Route exact path='/Users' component={Users}></Route>
-            <Route exact path='/Issues' component={Issues}></Route>
-        </Switch>
+    let logged = true;
+    if (!logged )
+        return (
+            <Switch>
+                <Route exact path='/' component={AdminLogin}></Route>
+                <Route exact path='/adminPage' component={AdminPage}></Route>
+            </Switch>
+        )
+    else return (
+        <AdminPage />
     )
 }
 
