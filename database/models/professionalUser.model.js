@@ -21,7 +21,7 @@ const professionalUserSchema = new Schema({
 
   dob: {type: Date, required:true},
 
-  adress: {type: String, required:true},
+  address: {type: String, required:true},
 
   isBanned: {type: Boolean, required: false},
 
@@ -29,6 +29,10 @@ const professionalUserSchema = new Schema({
   //I used an array here cause an user may have multiple tags
 
   bio :{type: String,  required: false},
+
+  instagramLink: {type: String, required: false},
+
+  youtubeLink: {type: String, required: false},
 
 }, {
   timestamps: true,
