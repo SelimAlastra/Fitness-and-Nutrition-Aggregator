@@ -14,12 +14,12 @@ router.route('/add').post((req, res) => {
   const password = req.body.password;
   const gender = req.body.gender;
   const dob = Date.parse(req.body.dob);
-  const adress = req.body.adress;
+  const address = req.body.address;
   const isBanned = Boolean(req.body.isBanned);
-  const tags = [req.body.tags];
+  const tags = req.body.tags;
   const bio = req.body.bio;
 
-  const newProfessionalUser = new ProfessionalUser({username,name,email,password,gender,dob,adress,isBanned,tags,bio});
+  const newProfessionalUser = new ProfessionalUser({username,name,email,password,gender,dob,address,isBanned,tags,bio});
 
   newProfessionalUser.save()
     .then(() => res.json('ProfessionalUser added!'))
@@ -48,12 +48,12 @@ router.route('/update/:id').post((req, res) => {
       professionalUser.password = req.body.password;
       professionalUser.gender = req.body.gender;
       professionalUser.dob = Date.parse(req.body.dob);
-      professionalUser.adress = req.body.adress;
+      professionalUser.address = req.body.address;
       professionalUser.isBanned = Boolean(req.body.isBanned);
       professionalUser.bodyType = req.body.bodyType;
       professionalUser.weight = req.body.weight;
-      professionalUser.goals = [req.body.goals];
-      professionalUser.tags = [req.body.tags];
+      professionalUser.goals = req.body.goals;
+      professionalUser.tags = req.body.tags;
       professionalUser.bio = req.body.bio;
 
       professionalUser.save()

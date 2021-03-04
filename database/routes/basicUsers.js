@@ -14,15 +14,15 @@ router.route('/add').post((req, res) => {
   const password = req.body.password;
   const gender = req.body.gender;
   const dob = Date.parse(req.body.dob);
-  const adress = req.body.adress;
+  const address = req.body.address;
   const isBanned = Boolean(req.body.isBanned);
   const bodyType = req.body.bodyType;
   const weight = req.body.weight;
-  const goals = [req.body.goals];
-  const tags = [req.body.tags];
+  const goals = req.body.goals;
+  const tags = req.body.tags;
   const bio = req.body.bio;
 
-  const newBasicUser = new BasicUser({username,name,email,password,gender,dob,adress,isBanned,bodyType,weight,goals,tags,bio});
+  const newBasicUser = new BasicUser({username,name,email,password,gender,dob,address,isBanned,bodyType,weight,goals,tags,bio});
 
   newBasicUser.save()
     .then(() => res.json('BasicUser added!'))
@@ -51,12 +51,12 @@ router.route('/update/:id').post((req, res) => {
       basicUser.password = req.body.password;
       basicUser.gender = req.body.gender;
       basicUser.dob = Date.parse(req.body.dob);
-      basicUser.adress = req.body.adress;
+      basicUser.address = req.body.address;
       basicUser.isBanned = Boolean(req.body.isBanned);
       basicUser.bodyType = req.body.bodyType;
       basicUser.weight = req.body.weight;
-      basicUser.goals = [req.body.goals];
-      basicUser.tags = [req.body.tags];
+      basicUser.goals = req.body.goals;
+      basicUser.tags = req.body.tags;
       basicUser.bio = req.body.bio;
 
       basicUser.save()
