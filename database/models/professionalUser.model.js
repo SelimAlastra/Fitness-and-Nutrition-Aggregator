@@ -21,7 +21,7 @@ const professionalUserSchema = new Schema({
 
   dob: {type: Date, required:true},
 
-  adress: {type: String, required:true},
+  address: {type: String, required:true},
 
   isBanned: {type: Boolean, required: false},
 
