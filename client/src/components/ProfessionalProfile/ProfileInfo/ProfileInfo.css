@@ -18,6 +18,12 @@
     color: #EFEAE4;
 }
 
+.usernameText {
+    color: white;
+    font-size: medium;
+    padding: none;
+}
+
 .socialIcon {
     padding: 2%;
     width: 200%;

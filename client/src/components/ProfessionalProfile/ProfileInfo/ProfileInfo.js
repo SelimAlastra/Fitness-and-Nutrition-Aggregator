@@ -1,31 +1,23 @@
-import React , {useState} from 'react';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faInstagram, faYoutube } from "@fortawesome/free-brands-svg-icons"
 import './ProfileInfo.css';
 import Tags from '../Tags/Tags';
-/*
-    ProfileInfo component takes
-        - name: String
-        - location: String
-        - profileImage: String
-        - tags: Array[String]
-        - instagramLink: String
-        - youtubeLink: String
-*/
-function ProfileInfo(props) {
+
+function ProfileInfo({profile}) {
     return (
         <div>
             <div className="profileImage">
-                <img src={props.profileImage}/>
+                <img src={"https://images.unsplash.com/photo-1588420343618-6141b3784bce?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80"}/>
             </div>
             <div className="profileInfo">
-                <h2 className="clientName">{props.name}</h2>
-                { generateLocationContainer(props.location) }
-                { generateDescriptionContainer(props.description) }
-                <Tags tags={props.tags}/>   
+                <h2 className="clientName">{profile.name}</h2>
+                <p className="textContainer">{profile.username}</p>
+                { generateLocationContainer(profile.address) }
+                { generateDescriptionContainer(profile.bio) }
+                <Tags tags={profile.tags}/>   
                 <div data-testid="socialBar" className="socialTagBar">
-                    { generateInstagramLink(props.instagramLink) }
-                    { generateYoutubeLink(props.youtubeLink) }
+                    { generateInstagramLink(profile.instagramLink) }
+                    { generateYoutubeLink(profile.youtubeLink) }
                 </div>
             </div>
         </div>
