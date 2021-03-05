@@ -26,12 +26,19 @@ const UserDetails = () => {
     
     return(
         <>
-            <Link className='btn gray' to='/Users'>Back</Link>
+            <LinkContainer to='/Users'>
+                <Button variant="primary">Back</Button>
+            </LinkContainer>
+            <br />
+            <br />
             <ListGroup>
                 <ListGroupItem>ID: {user._id}</ListGroupItem>
                 <ListGroupItem>Username: {user.username}</ListGroupItem>
+                <ListGroupItem>Email: {user.email}</ListGroupItem>
+                <ListGroupItem>Name: {user.name}</ListGroupItem>
                 <ListGroupItem>isBanned: {""+user.isBanned}</ListGroupItem>
-                <ListGroupItem>Other: </ListGroupItem>
+                <ListGroupItem>Gender: {user.gender}</ListGroupItem>
+                <ListGroupItem>DOB: {user.dob}</ListGroupItem>
             </ListGroup>
             <br />
             <LinkContainer to={{pathname:"/Users/edit/" + user._id, state: {user: user}}}>

@@ -11,7 +11,7 @@ const User = ({ user }) => {
         <>
             <td>{user._id}</td>
             <td>{user.username}</td>
-            <td></td>
+            <td>{user.email}</td>
             <td>
                 <Container>
                     <LinkContainer to={{pathname:"/Users/" + user._id}}>
