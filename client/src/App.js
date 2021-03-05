@@ -11,14 +11,12 @@ const loginStyle = {
   padding: "35px",
 };
 
-const App = () => {
-
+function App() {
   return (
     <div className="App">
       <Main />
     </div>
   );
 }
-
 
 export default App;
