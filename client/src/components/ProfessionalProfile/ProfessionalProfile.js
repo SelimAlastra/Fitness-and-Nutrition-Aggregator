@@ -1,7 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faInstagram, faYoutube } from "@fortawesome/free-brands-svg-icons"
-import {faTrashAlt, faPlusSquare} from "@fortawesome/free-regular-svg-icons" 
 import './ProfessionalProfile.css';
 import ProfileInfo from './ProfileInfo/ProfileInfo';
 import Services from './Services/Services';
@@ -10,11 +7,19 @@ import Modal from "react-modal";
 
 import { useDispatch, useSelector } from 'react-redux';
 import { getProfessional } from '../../actions/professionals';
+import { getServices } from "../../actions/services";
 
-const ProfessionalProfile = ({profile}) => {
-    const [profileImage, setProfileImage] = useState("https://images.unsplash.com/photo-1588420343618-6141b3784bce?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80");
-    const [tags, setTags] = useState([]);
-    const [services, setServices] = useState([]);
+const ProfessionalProfile = (props) => {
+
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(getProfessional(props.match.params.id));
+    }, [dispatch]);
+  
+    const profile = useSelector((state) => state.professional);
+
+
     const [videoUrls, setVideoUrls] = useState([]);
     const [isProfessional, setIsProfessional] = useState(true);
     const [editDetailsIsOpen, setEditDetailsIsOpen] = useState(false);
@@ -31,51 +36,51 @@ const ProfessionalProfile = ({profile}) => {
         window.alert("Updated!");
     }
 
-    function createServices() {
-        var availableServices = services;
-        if (availableServices !== undefined && availableServices.length > 0) {
-            let items = availableServices.map((service, index) => {
-                return (
-                <tr
-                className="serviceCard"
-                value={service}>
-                    <td>
-                        <p style={{
-                            textAlign:"left",
-                            padding: "1%"
-                            }}>{service}</p>
-                    </td>
-                    <td>
-                    <div onClick={() => {
-                        var newServices = services;
-                        let index = newServices.indexOf(service);
-                        if (index !== -1) {
-                            newServices.splice(index,1);
-                            setServices([...services]);
-                            console.log(services);
-                            // TODO: submit changes to database
-                        }
-                    }} 
-                    value={service}>
-                    <FontAwesomeIcon 
-                        icon={faTrashAlt}
-                        style={{
-                            textAlign:"right",
-                            cursor:"pointer"
-                            }}
-                        value={service}
-                        />
-                    </div>
+    // function createServices(services) {
+    //     var availableServices = services;
+    //     if (availableServices !== undefined && availableServices.length > 0) {
+    //         let items = availableServices.map((service, index) => {
+    //             return (
+    //             <tr
+    //             className="serviceCard"
+    //             value={service}>
+    //                 <td>
+    //                     <p style={{
+    //                         textAlign:"left",
+    //                         padding: "1%"
+    //                         }}>{service}</p>
+    //                 </td>
+    //                 <td>
+    //                 <div onClick={() => {
+    //                     var newServices = services;
+    //                     let index = newServices.indexOf(service);
+    //                     if (index !== -1) {
+    //                         newServices.splice(index,1);
+    //                         setServices([...services]);
+    //                         console.log(services);
+    //                         // TODO: submit changes to database
+    //                     }
+    //                 }} 
+    //                 value={service}>
+    //                 <FontAwesomeIcon 
+    //                     icon={faTrashAlt}
+    //                     style={{
+    //                         textAlign:"right",
+    //                         cursor:"pointer"
+    //                         }}
+    //                     value={service}
+    //                     />
+    //                 </div>
                     
-                    </td>     
-                </tr>
-                );
-            });
-            return (<table>{items}</table>);
-        } else {
-            return (<div><p>Sorry, no services can be found!</p></div>);
-        }
-    }
+    //                 </td>     
+    //             </tr>
+    //             );
+    //         });
+    //         return (<table>{items}</table>);
+    //     } else {
+    //         return (<div><p>Sorry, no services can be found!</p></div>);
+    //     }
+    // }
 
     function generateEditLink(isProfessional) {
         if (isProfessional) {
@@ -83,40 +88,30 @@ const ProfessionalProfile = ({profile}) => {
         }
     }
 
-    function addService() {
-        let newService = document.getElementById("newServiceInput").value;
-        if (newService !== undefined && newService !== "") {
-            let oldServices = services;
-            oldServices.push(newService);
-            console.log( "old " + oldServices);
-            setServices(oldServices);
-            document.getElementById("newServiceInput").value = "";
-            // TODO: write new state to database
-        }
-    }
-    useEffect(() => {
-        
-    });
-    return(
+    // function addService() {
+    //     let newService = document.getElementById("newServiceInput").value;
+    //     if (newService !== undefined && newService !== "") {
+    //         let oldServices = services;
+    //         oldServices.push(newService);
+    //         console.log( "old " + oldServices);
+    //         setServices(oldServices);
+    //         document.getElementById("newServiceInput").value = "";
+    //         // TODO: write new state to database
+    //     }
+    // }
+
+    return (
         <div className="sectionContainer">
             <div className="section">
                 <div>
                     { generateEditLink(isProfessional)  }
                 </div>
-                <ProfileInfo 
-                name={profile.name}
-                location={profile.address}
-                profileImage={profileImage}
-                instagramLink={profile.instagramLink}
-                youtubeLink={profile.youtubeLink}
-                tags={profile.tags}
-                description={profile.bio}
-                />
-                {/* <ProfileInfo profile={profile}/> */}
+                <ProfileInfo profile={profile} />
             </div>
             <div className="section">
                 <Services 
-                services={services} 
+                //services={} 
+                userID={profile._id}
                 isProfessional={isProfessional}
                 toggleLink={() => setEditServicesIsOpen(!editServicesIsOpen)}
                 />

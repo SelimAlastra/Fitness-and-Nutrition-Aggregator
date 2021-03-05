@@ -1,9 +1,10 @@
 import './Service.css';
 
-function Service(props) {
+function Service({service}) {
     return (
         <div className="service">
-            <p className="text">{props.serviceInfo}</p>
+            <p className="text">{service.description}</p>
+            <p className="text">£{service.price}</p>
         </div>
     );
 }
