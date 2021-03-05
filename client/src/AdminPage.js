@@ -5,6 +5,8 @@ import { Form, Container, Button, Navbar, Nav, FormControl } from "react-bootstr
 import { LinkContainer } from "react-router-bootstrap";
 import Issues from './components/Issues/Issues'
 import Users from "./components/Users/Users";
+import UserDetails from "./components/Users/User/UserDetails";
+import UserEdit from "./components/Users/User/UserEdit";
 
 // This is the navigation bar that will be used for the admin's page
 const NavigationBar = () => (
@@ -38,10 +40,15 @@ const style = {
 const AdminPage = () => (
     <div>
         <NavigationBar />
-        <Switch>
-            <Route path='/users' component={Users}/>
-            <Route path='/issues' component={Issues}/>
-        </Switch>
+        <br />
+        <Container>
+            <Switch>
+                <Route exact path='/users' component={Users}/>
+                <Route exact path='/users/:id' component={UserDetails}/>
+                <Route exact path='/users/edit/:id' component={UserEdit}/>
+                <Route exact path='/issues' component={Issues}/>
+            </Switch>
+        </Container>
     </div>
 );
 

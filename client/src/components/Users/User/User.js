@@ -1,27 +1,22 @@
 import React from "react";
-import { Button,Container } from "react-bootstrap";
-import { updateUser, deleteUser } from "../../../actions/users";
+import { Button, Container } from "react-bootstrap";
+import { LinkContainer } from "react-router-bootstrap";
 import { useDispatch } from 'react-redux';
+import { render } from "react-dom";
 
 const User = ({ user }) => {
 
-    const dispatch = useDispatch();
-
-    const handleBan = () => {
-        user.isBanned = !user.isBanned;
-        dispatch(updateUser(user._id, user));
-    }
 
     return (
         <>
             <td>{user._id}</td>
             <td>{user.username}</td>
-            <td>{"" + user.isBanned}</td>
+            <td></td>
             <td>
                 <Container>
-                    <Button variant="primary" onClick={ () => { dispatch(deleteUser(user._id)) }}>Delete</Button> &nbsp;
-                    <Button variant="primary" onClick={ () => { handleBan() }}>Ban</Button> &nbsp;
-                    <Button variant="primary" onClick={ () => {}}>Details</Button>
+                    <LinkContainer to={{pathname:"/Users/" + user._id}}>
+                        <Button variant="primary">Details</Button>
+                    </LinkContainer>
                 </Container>
             </td>
         </>
