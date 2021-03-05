@@ -15,8 +15,7 @@ const Issue = ({ issue }) => {
             <td>
                 <Container>
                     <Button variant="primary" onClick={ () => { dispatch(deleteIssue(issue._id)) }}>Delete</Button> &nbsp;
-                    <Button variant="primary" onClick={ () => {}}>Reply</Button> &nbsp;
-                    <Button variant="primary" onClick={ () => {}}>Details</Button>
+                    <Button variant="primary" onClick={ () => {}}>Reply</Button>
                 </Container>
             </td>
         </>

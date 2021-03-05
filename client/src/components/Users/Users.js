@@ -25,8 +25,8 @@ const Users = () => {
                     <tr>
                         <th>ID</th>
                         <th>Username</th>
-                        <th>isBanned?</th>
-                        <th>Actions</th>
+                        <th>Email</th>
+                        <th>View</th>
                     </tr>
                 </thead>
                 <tbody>
