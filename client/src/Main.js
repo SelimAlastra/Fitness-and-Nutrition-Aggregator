@@ -2,8 +2,7 @@ import { React } from "react";
 import { Switch, Route } from "react-router-dom";
 import AdminLogin from "./AdminLogin";
 import AdminPage from "./AdminPage";
-import Issues from "./components/Issues/Issues";
-import Users from "./components/Users/Users";
+
 
 
 const Main = () => {
