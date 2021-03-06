@@ -26,3 +26,9 @@
     border: none;
 }
 
+.title {
+    padding: 1%;
+    background-color: #BBA78C;
+    color: white;
+}
+

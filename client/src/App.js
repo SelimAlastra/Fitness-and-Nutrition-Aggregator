@@ -7,7 +7,7 @@ const App = (props) => {
   return (
     <Switch>
       <Route exact path="/professional/profile/:id" component={ProfessionalProfile}></Route>
-      <Route exact path="/professional/profile/edit/:id" component={EditProfessionalDetails} ></Route>
+      <Route exact path="/professional/profile/edit/:id" component={EditProfessionalDetails}></Route>
     </Switch>
   );
 }
