@@ -1,0 +1,28 @@
+.formContainer {
+    padding: 5%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    background-color: #BBA78C;
+}
+
+.inputItem {
+    border-radius: 10px;
+    background-color: white;
+    color: Black;
+}
+
+.label {
+    color: white;
+}
+
+.saveButton {
+    background-color:  white;
+    border: none;
+    color: black;
+    min-width: 100px;
+}
+
+.saveButton:hover {
+    background-color: lightgray;
+    border: none;
+}
+
