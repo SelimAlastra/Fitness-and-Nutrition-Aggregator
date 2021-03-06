@@ -1,4 +1,3 @@
-
 # Created by https://www.toptal.com/developers/gitignore/api/vscode,node,react,windows,linux
 # Edit at https://www.toptal.com/developers/gitignore?templates=vscode,node,react,windows,linux
 
@@ -178,7 +177,5 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
-#.DS_Store
-.DS_Store
 
 # End of https://www.toptal.com/developers/gitignore/api/vscode,node,react,windows,linux
