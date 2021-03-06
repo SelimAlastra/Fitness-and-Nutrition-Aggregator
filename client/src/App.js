@@ -1,11 +1,13 @@
 import { Switch, Route } from "react-router-dom";
+import EditProfessionalDetails from "./components/ProfessionalProfile/EditProfessionalDetails";
 import ProfessionalProfile from './components/ProfessionalProfile/ProfessionalProfile';
 
-const App = () => {
 
+const App = (props) => {
   return (
     <Switch>
       <Route exact path="/professional/profile/:id" component={ProfessionalProfile}></Route>
+      <Route exact path="/professional/profile/edit/:id" component={EditProfessionalDetails} ></Route>
     </Switch>
   );
 }

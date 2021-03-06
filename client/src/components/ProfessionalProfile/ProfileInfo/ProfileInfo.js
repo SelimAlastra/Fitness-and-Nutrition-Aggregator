@@ -3,7 +3,7 @@ import { faInstagram, faYoutube } from "@fortawesome/free-brands-svg-icons"
 import './ProfileInfo.css';
 import Tags from '../Tags/Tags';
 
-function ProfileInfo({profile}) {
+function ProfileInfo({profile, name}) {
     return (
         <div>
             <div className="profileImage">
