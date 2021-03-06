@@ -25,11 +25,9 @@
 }
 
 .socialIcon {
-    padding: 2%;
-    width: 10%;
-    height: 10%;
     cursor: pointer;
-  }
+    margin: 10px;
+}
 
 .clientName {
     color:#BBA78C;
@@ -48,4 +46,7 @@
     justify-content: center;
     text-align: center;
     display:inline;
+}
+
+.socialTagBar {
 }

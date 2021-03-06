@@ -1,10 +1,9 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Form, Container, Button, Option } from "react-bootstrap";
+import { Form, Button, Option } from "react-bootstrap";
 import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-//import { getProfessional } from '../../actions/professionals';
+import { useDispatch  } from 'react-redux';
 import "./EditProfessionalDetails.css";
-import { updateProfessional } from '../../actions/professionals';
+import { updateProfessional } from '../../../actions/professionals';
 
 const EditProfessionalDetails = (props) => {
     const dispatch = useDispatch();
@@ -28,31 +27,34 @@ const EditProfessionalDetails = (props) => {
 
     useEffect(() => {
         const id = props.match.params.id;
-        fetch(`http://localhost:5000/professionalUsers/${id}`)
-        .then(response => {
-            if (!response.ok) return "error"
-            else return response.json();
-        })
-        .then(data => {
-            if (data === "error") {
-                setIsValidID(false);
-            } else {
-                setIsValidID(true);
-                setName(data.name);
-                setAddress(data.address);
-                setUsername(data.username);
-                setEmail(data.email);
-                setBio(data.bio);
-                setInstagramLink(data.instagramLink);
-                setYoutubeLink(data.youtubeLink);
-                setGender(data.gender);
-                setDob(data.dob);
-                setPassword(data.password);
-                setIsBanned(data.isBanned);
-                setTags(data.tags);
-                setID(data._id);
-            }
-        })
+        if (id !== undefined) {
+            fetch(`http://localhost:5000/professionalUsers/${id}`)
+            .then(response => {
+                if (!response.ok) return "error"
+                else return response.json();
+            })
+            .then(data => {
+                if (data === "error") {
+                    setIsValidID(false);
+                } else {
+                    setIsValidID(true);
+                    setName(data.name);
+                    setAddress(data.address);
+                    setUsername(data.username);
+                    setEmail(data.email);
+                    setBio(data.bio);
+                    setInstagramLink(data.instagramLink);
+                    setYoutubeLink(data.youtubeLink);
+                    setGender(data.gender);
+                    setDob(data.dob);
+                    setPassword(data.password);
+                    setIsBanned(data.isBanned);
+                    setTags(data.tags);
+                    setID(data._id);
+                }
+            })
+        }
+        
     }, [dispatch]);
 
     function handleSubmit(event) {
@@ -77,6 +79,7 @@ const EditProfessionalDetails = (props) => {
                 setValidated(true);
                 dispatch(updateProfessional(ID, updatedProfile));
                 window.alert("Details Saved!");
+                window.location.href = `/professional/profile/${ID}`
             } else {
                 event.preventDefault();
                 event.stopPropagation();
@@ -187,7 +190,8 @@ const EditProfessionalDetails = (props) => {
                             placeholder="YoutubeLink" 
                             onChange={(e) => setYoutubeLink(e.target.value)}    
                         /><br/>
-                        <Button type="submit" className="saveButton">Save</Button>
+                        <Button type="submit" className="actionButton">Save</Button>
+                        <Button type="button" className="actionButton" onClick={() => window.location.href=`/professional/profile/${ID}`}>Close</Button>
                     </Form.Group>
                 </Form>
             </div>

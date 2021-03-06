@@ -29,32 +29,6 @@
     font-size: small;
 }
 
-.modalTitle {
-    text-align: center;
-    color: #EFEAE4;
-}
-
-.modal {
-    background-color: #BBA78C;
-    max-width: 400px;
-    position: fixed;
-    width:40%;
-    top: 50%;
-    left: 50%;
-    overflow: auto;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    outline: none;
-    padding: 20px;
-    transform: translate(-50%, -50%);
-    justify-content: center;
-    text-align: center;
-    min-width: 200px;
-}
-
-.formContainer {
-    width: 100%;
-}
 
 .textInput {
     width: 100%;
@@ -79,21 +53,6 @@
     border-style: none;
 }
 
-.submitButton {
-width: 100%;
-  background-color: white;
-  padding: 14px 20px;
-  margin: 8px 0;
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
-}
-
-.submitButton:hover {
-    background-color: lightgray;
-    color: white;
-    cursor: hand;
-}
 
 .inputLabel {
     color: white;
@@ -120,20 +79,4 @@ width: 100%;
     display: flex;
 }
 
-.serviceCard {
-    background-color: white;
-}
 
-.services {
-    border-radius: 10px;
-    padding: 1%;
-    margin: auto;
-    text-align: center;
-    font-family: arial;
-    justify-content: center;
-    margin-bottom: 1%;
-}
-
-table {
-    width: 100%;
-}
