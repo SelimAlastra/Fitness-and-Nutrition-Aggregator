@@ -15,10 +15,10 @@ function ProfileInfo({profile, name}) {
                 { generateLocationContainer(profile.address) }
                 { generateDescriptionContainer(profile.bio) }
                 <Tags tags={profile.tags}/>   
-                <div data-testid="socialBar" className="socialTagBar">
+            </div>
+            <div data-testid="socialBar">
                     { generateInstagramLink(profile.instagramLink) }
                     { generateYoutubeLink(profile.youtubeLink) }
-                </div>
             </div>
         </div>
     );
@@ -26,42 +26,36 @@ function ProfileInfo({profile, name}) {
 
 export default ProfileInfo;
 
-// Creates the html markup for the location section
 function generateLocationContainer(location) {
     if (location !== undefined && location.length > 0) {
         return (<div className="outerContainer"><p className="textContainer">{location}</p></div>);
     }
 }
 
-// Creates the html markup for the description section
 function generateDescriptionContainer(description) {
     if (description !== undefined && description.length > 0) {
         return (<p className="textContainer">{description}</p>);  
     }
 }
 
-// Creates the Instagram icon with the associated
-// instagram account page linked
 function generateInstagramLink(link) {
     if (link !== undefined || link === "") {
         const url = "http://instagram.com/" + link;
         return <FontAwesomeIcon 
         className="socialIcon" 
-        size="lg" 
+        size="2x" 
         icon={faInstagram}
         onClick={() => { window.open(url); }}
         />;
     } 
 }
 
-// Creates the YouTube icon with the associated
-// YouTube account page linked
 function generateYoutubeLink(link) {
     if (link !== undefined || link === "") {
         const url = "http://www.youtube.com/" + link;
         return <FontAwesomeIcon 
         className="socialIcon" 
-        size="lg" 
+        size="2x" 
         icon={faYoutube} 
         onClick={() => { window.open(url); }}
         />

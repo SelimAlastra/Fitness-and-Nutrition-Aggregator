@@ -14,14 +14,15 @@
     color: white;
 }
 
-.saveButton {
+.actionButton {
     background-color:  white;
     border: none;
     color: black;
     min-width: 100px;
+    margin: 1%;
 }
 
-.saveButton:hover {
+.actionButton:hover {
     background-color: lightgray;
     border: none;
 }

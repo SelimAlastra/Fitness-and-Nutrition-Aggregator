@@ -6,7 +6,7 @@ import Service from './Service';
 import './Services.css';
 
 
-const Services = ({userID, isProfessional, toggleLink}) => {
+const Services = ({userID, isProfessional, editLink}) => {
 
     const dispatch = useDispatch();
 
@@ -42,9 +42,9 @@ const Services = ({userID, isProfessional, toggleLink}) => {
     }
 
     function generateEditServicesLink(isProfessional) {
-        // if (isProfessional) {
-        //     return (<h5 className="editLink" onClick={() => toggleLink()}>Edit my services</h5>);
-        // } 
+        if (isProfessional) {
+            return (<h5 className="editLink" onClick={() => window.location.href = `/professional/services/edit/${userID}`}>Edit my services</h5>);
+        } 
     }
 }
 

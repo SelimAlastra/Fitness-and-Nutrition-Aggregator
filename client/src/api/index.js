@@ -10,3 +10,5 @@ export const updateProfessional = (id, updatedProfile) => axios.post(`${professi
 // Services
 const servicesUrl = "http://localhost:5000/services";
 export const getServices = () => axios.get(servicesUrl);
+export const deleteService = (id) => axios.delete(`${servicesUrl}/${id}`)
+export const addService = (service) => axios.post(`${servicesUrl}/add`, service);
