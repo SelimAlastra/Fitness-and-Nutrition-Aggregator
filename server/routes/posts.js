@@ -9,11 +9,5 @@ router.post('/', createPost);
 router.patch('/:id', updatePost);
 router.delete('/:id', deletePost);
 router.patch('/:id/likePost', likePost);
-/*
-router.get('/:id', getPost);
-router.patch('/:id', updatePost);
-router.delete('/:id', deletePost);
-router.patch('/:id/likePost', likePost);*/
-
 
 export default router;
