@@ -11,7 +11,7 @@ function Tags(props) {
         let tagString = "";
         for (var i = 0; i < size; ++i) {
             tagString += tags[i];
-            if (i < 2) {
+            if (i < 2 && i < size-1) {
                 tagString += " | ";
             }
         }

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import './ProfessionalProfile.css';
-import ProfileInfo from './ProfileInfo/ProfileInfo';
+import ProfileInfo from '../ProfileInfo/ProfileInfo';
 import Services from './Services/Services';
 import Thumbnails from "./Thumbnails/Thumbnails";
 import Modal from "react-modal";
@@ -10,12 +10,6 @@ import { Link } from 'react-router-dom';
 
 const ProfessionalProfile = (props) => {
     const dispatch = useDispatch();
-
-    const [name, setName] = useState("");
-    const [location, setLocation] = useState("");
-    const [description, setDescription] = useState("");
-    const [instagramLink, setInstagramLink] = useState("");
-    const [youtubeLink, setYoutubeLink] = useState("");
     const [videoUrls, setVideoUrls] = useState([]);
     const [isProfessional, setIsProfessional] = useState(true);
 

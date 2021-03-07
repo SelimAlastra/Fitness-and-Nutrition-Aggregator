@@ -41,12 +41,14 @@
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 }
 
-
 .outerContainer {
     justify-content: center;
     text-align: center;
     display:inline;
 }
 
-.socialTagBar {
+.profileSeperator {
+    background-color: #BBA78C;
+    margin-left: 10%;
+    margin-right: 10%;
 }
