@@ -1,48 +1,59 @@
-const router = require('express').Router();
-let Post = require('../models/post.model');
+import mongoose from 'mongoose';
+import PostMessage from '../models/postMessage.js';
 
-router.route('/').get((req, res) => {
-  Post.find()
-    .then(posts => res.json(posts))
-    .catch(err => res.status(400).json('Error: Failed to get the post ' + err));
-});
+export const getPosts = async (req, res) => { 
+    try {
+        const postMessages = await PostMessage.find();
+                
+        res.status(200).json(postMessages);
+    } catch (error) {
+        res.status(404).json({ message: error.message });
+    }
+}
 
-router.route('/add').post((req, res) => {
-  const userID = req.body.userID;
-  const content = req.body.content;
+export const createPost = async (req, res) => {
+    const { title, message, selectedFile, creator, tags } = req.body;
 
+    const newPostMessage = new PostMessage({ title, message, selectedFile, creator, tags })
 
-  const newPost = new Post({userID,content});
+    try {
+        await newPostMessage.save();
 
-  newPost.save()
-    .then(() => res.json('post added!'))
-    .catch(err => res.status(400).json('Error: Failed to add post' + err));
-});
+        res.status(201).json(newPostMessage );
+    } catch (error) {
+        res.status(409).json({ message: error.message });
+    }
+}
 
-router.route('/:id').get((req, res) => {
-  Post.findById(req.params.id)
-    .then(professionalUser => res.json(professionalUser))
-    .catch(err => res.status(400).json('Error: Cannot find this post' + err));
-});
+export const updatePost = async (req, res) => {
+    const { id: _id } = req.params;
+    const post = req.body;
+    
+    if (!mongoose.Types.ObjectId.isValid(_id)) return res.status(404).send(`No post with id: id`);
 
-router.route('/:id').delete((req, res) => {
-  Post.findByIdAndDelete(req.params.id)
-    .then(() => res.json('post deleted.'))
-    .catch(err => res.status(400).json('Error: Cannot delete this post' + err));
-});
+    const updatedPost = await PostMessage.findByIdAndUpdate(_id,  { ...post, _id}, { new: true });
 
+    res.json(updatedPost);
+}
 
-router.route('/update/:id').post((req, res) => {
-  Post.findById(req.params.id)
-    .then(post => {
-      
-      post.content = req.body.content;
+export const deletePost = async (req ,res) =>{
+    const {id} = req.params;
 
-      post.save()
-        .then(() => res.json('post updated!'))
-        .catch(err => res.status(400).json('Error: ' + err));
-    })
-    .catch(err => res.status(400).json('Error: ' + err));
-});
+    if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send(`No post with id: id`);
 
-module.exports = router;
+    await PostMessage.findByIdAndRemove(id);
+
+    res.json({ message :'Post deleted successfully!'});
+}
+
+export const likePost = async (req, res) => {
+    const { id } = req.params;
+
+    if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send(`No post with id: ${id}`);
+    
+    const post = await PostMessage.findById(id);
+
+    const updatedPost = await PostMessage.findByIdAndUpdate(id, { likeCount: post.likeCount + 1 }, { new: true });
+    
+    res.json(updatedPost);
+}
