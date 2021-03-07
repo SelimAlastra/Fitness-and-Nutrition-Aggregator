@@ -3,7 +3,7 @@ import { faInstagram, faYoutube } from "@fortawesome/free-brands-svg-icons"
 import './ProfileInfo.css';
 import Tags from '../Tags/Tags';
 
-function ProfileInfo({profile, name}) {
+function ProfileInfo({profile}) {
     return (
         <div>
             <div className="profileImage">
@@ -11,10 +11,11 @@ function ProfileInfo({profile, name}) {
             </div>
             <div className="profileInfo">
                 <h2 className="clientName">{profile.name}</h2>
+                <hr className="profileSeperator"/>
                 <p className="textContainer">{profile.username}</p>
                 { generateLocationContainer(profile.address) }
                 { generateDescriptionContainer(profile.bio) }
-                <Tags tags={profile.tags}/>   
+                { generateTags(profile.tags) }  
             </div>
             <div data-testid="socialBar">
                     { generateInstagramLink(profile.instagramLink) }
@@ -25,6 +26,12 @@ function ProfileInfo({profile, name}) {
 }
 
 export default ProfileInfo;
+
+function generateTags(tags) {
+    if (tags !== undefined && tags.length > 0) {
+        return <Tags tags={tags}/> ;
+    }
+}
 
 function generateLocationContainer(location) {
     if (location !== undefined && location.length > 0) {
