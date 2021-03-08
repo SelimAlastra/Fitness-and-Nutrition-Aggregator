@@ -13,12 +13,12 @@ const Buckets = ({setCurrentBucketId}) => {
 
     return (
         !buckets.length ? <CircularProgress /> : (
-            <Grid className={classes.container} alignItems="stretch" spacing={3}> 
+            <Grid className={classes.mainContainer} container alignItems="stretch" spacing={3}> 
                 {buckets.map((bucket) => (
                        <Grid key={bucket._id} item xs={12} sm={6}>
                             <Bucket bucket={bucket} setCurrentBucketId={setCurrentBucketId} />
                        </Grid> 
-                ))};
+                ))}
             </Grid>
         )
     );

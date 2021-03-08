@@ -41,5 +41,9 @@ export default makeStyles((theme) => ({
     flexGrow: 1,
     padding: theme.spacing(3)
   },
-
+  paper: {
+    padding: theme.spacing(1),
+    textAlign: 'center',
+    color: theme.palette.text.secondary,
+  },
 }));

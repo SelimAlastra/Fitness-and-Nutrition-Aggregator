@@ -14,6 +14,8 @@ import InputLabel from "@material-ui/core/InputLabel";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import Videos from '../Videos/Videos';
+import { useSelector } from 'react-redux';
+import buckets from '../../../reducers/buckets';
 
 
 import { deletePost, likePost, toggleFavAction } from '../../../actions/posts';
@@ -38,6 +40,8 @@ const Post = ({ post , setCurrentId }) => {
         /*const arrBuckets[]=openBuckets();*/
         setOpen(true);
       };
+
+      const buckets = useSelector((state) => state.buckets);
 
     return (
         <Card className={classes.card}> 
@@ -79,7 +83,9 @@ const Post = ({ post , setCurrentId }) => {
                             <em>None</em>
                             </MenuItem>
                             <MenuItem>
-                            Buckets.map((Bucket) `#${Bucket.title} `)
+                            {buckets.map((bucket) => 
+                                 bucket=bucket._id.title
+                            )} 
                           {/*  {buckets.map((bucket) => (
                                 <MenuItem> <Button onClick={() =>dispatch(toggleFavAction(post._id))}>{bucket.title}</Button></MenuItem>
                             ))} */}
