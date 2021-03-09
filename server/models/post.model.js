@@ -7,7 +7,7 @@ const postSchema = new Schema({
   userID :{type: Schema.Types.ObjectId, required : true},
   // check how to use 2 differents ref
   
-  content :{type: String, required: true}
+  content :{type: String, required: true} 
 
 }, {
   timestamps: true,
