@@ -54,9 +54,9 @@ export const likePost = (id) => async (dispatch) => {
   }
 };
 
-export const toggleFavAction = (id) => async (dispatch) =>{
+export const toggleFavAction = (postID, bucketID) => async (dispatch) =>{
   try {
-    const { data } = await api.toggleFavAction(id);
+    const { data } = await api.toggleFavAction(postID, bucketID);
 
     dispatch({ type: ADD_FAV, payload: data});
   } catch (error) {

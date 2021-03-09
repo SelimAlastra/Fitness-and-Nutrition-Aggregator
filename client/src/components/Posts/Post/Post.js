@@ -19,6 +19,7 @@ import buckets from '../../../reducers/buckets';
 
 
 import { deletePost, likePost, toggleFavAction } from '../../../actions/posts';
+import { updateBucket } from "../../../actions/buckets";
 const Post = ({ post , setCurrentId }) => {
     const classes = useStyles();
     const dispatch =useDispatch();
@@ -42,6 +43,16 @@ const Post = ({ post , setCurrentId }) => {
       };
 
       const buckets = useSelector((state) => state.buckets);
+
+      const handleFavAction = (postID, bucketID) => {
+        const bucket = buckets.find(b => b._id === bucketID);
+        if (bucket.postsId.indexOf(postID) === -1) {
+            bucket.postsId.push(postID);
+            dispatch(updateBucket(bucket._id, bucket));
+        }
+      };
+
+      
 
     return (
         <Card className={classes.card}> 
@@ -83,12 +94,9 @@ const Post = ({ post , setCurrentId }) => {
                             <em>None</em>
                             </MenuItem>
                             <MenuItem>
-                            {buckets.map((bucket) => 
-                                 bucket=bucket._id.title
-                            )} 
-                          {/*  {buckets.map((bucket) => (
-                                <MenuItem> <Button onClick={() =>dispatch(toggleFavAction(post._id))}>{bucket.title}</Button></MenuItem>
-                            ))} */}
+                           {buckets.map((bucket) => (
+                                <MenuItem> <Button onClick={() =>handleFavAction(post._id, bucket._id)}>{bucket.title}</Button></MenuItem>
+                            ))}
                           </MenuItem>
                         </Select>
                         </FormControl>

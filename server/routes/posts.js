@@ -9,7 +9,7 @@ router.post('/', createPost);
 router.patch('/:id', updatePost);
 router.delete('/:id', deletePost);
 router.patch('/:id/likePost', likePost);
-router.patch('/:id/toggleFavAction', toggleFavAction);
+router.post('/:id/toggleFavAction', toggleFavAction);
 
 
 export default router;

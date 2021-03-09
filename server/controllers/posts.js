@@ -59,17 +59,21 @@ export const likePost = async (req, res) => {
     res.json(updatedPost);
 }
 
-export const toggleFavAction = async  (req, res) =>{
+export const toggleFavAction = async (req, res) => {
+    console.log('asfhsaj;lsakhfjalk');
     const { id } = req.params;
-    if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send(`No post with id: ${id}`);
-    const id1= id.toString();
-    const newBucketItem = new Bucket({postsId :id1});
+    console.log(id);
+    
 
-    try {
+    // if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send(`No post with id: ${id}`);
+    // const id1= id.toString();
+    // const newBucketItem = new Bucket({postsId :id1});
 
-        await newBucketItem.save();
-        res.status(201).json({ message :newBucketItem});
-    } catch (error) {
-        res.status(409).json({ message: error.message });
-    }
+    // try {
+
+    //     await newBucketItem.save();
+    //     res.status(201).json({ message :newBucketItem});
+    // } catch (error) {
+    //     res.status(409).json({ message: error.message });
+    // }
   }

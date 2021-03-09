@@ -7,7 +7,7 @@ import { createBucket} from '../../actions/buckets';
 
 
 const FormBucket = ({currentBucketId, setCurrentBucketId}) => {
-    const [postData, setPostData] = useState({ title: '',postsId: ''});
+    const [postData, setPostData] = useState({ title: ''});
     const bucket = useSelector((state) => currentBucketId ? state.buckets.find((p)=> p._id === currentBucketId ) : null);
     const classes = useStyles();
     const dispatch = useDispatch();
@@ -26,7 +26,6 @@ const FormBucket = ({currentBucketId, setCurrentBucketId}) => {
             <form autoComplete="off" noValidate className={`${classes.root} ${classes.form}`} onSubmit={handleSubmit}>
                 <Typography variant="h6">{currentBucketId ? 'Editing' : 'Creating' } a Bucket</Typography>
                 <TextField name="title" variant="outlined" label="Title" fullWidth value={postData.title} onChange={(e) => setPostData({ ...postData, title: e.target.value })} />
-                <TextField name="tags" variant="outlined" label="Post Ids (coma separated)" fullWidth value={postData.postsId} onChange={(e) => setPostData({ ...postData, postsId: e.target.value.split(',') })} />
                 <Button className={classes.buttonSubmit} variant="contained" color="primary" size="large" type="submit" fullWidth>Submit</Button>
             </form>
     </Paper>
