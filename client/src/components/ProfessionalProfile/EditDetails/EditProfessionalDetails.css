@@ -2,6 +2,16 @@
     padding: 5%;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     background-color: #BBA78C;
+    position: fixed;
+    width:40%;
+    top: 50%;
+    left: 50%;
+    overflow: auto;
+    border-radius: 4px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    outline: none;
+    padding: 20px;
+    transform: translate(-50%, -50%);
 }
 
 .inputItem {
@@ -19,7 +29,8 @@
     border: none;
     color: black;
     min-width: 100px;
-    margin: 1%;
+    margin-bottom: 1%;
+    border-radius: 10px;
 }
 
 .actionButton:hover {

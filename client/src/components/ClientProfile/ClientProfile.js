@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import Tags from "../Tags/Tags";
-import "./ClientProfile.css";
 import ProfileInfo from "../ProfileInfo/ProfileInfo";
 import PersonalInfo from '../ClientProfile/PersonalInfo';
 import Goals from '../ClientProfile/Goals';
@@ -26,7 +25,7 @@ const ClientProfile = (props) => {
     }, []);
 
     function generateGoals() {
-        if (user !== undefined) {
+        if (user !== undefined && user !== null) {
             const goals = user.goals;
             return <Goals goals={goals}/>;
         }

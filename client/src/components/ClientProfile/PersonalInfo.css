@@ -6,7 +6,6 @@
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 }
 
-
 .titleText {
     color: #BBA78C;
 }
@@ -15,4 +14,8 @@
     background-color: #BBA78C;
     margin-left: 10%;
     margin-right: 10%;
+}
+.notFound  {
+    color: black;
+    font-size: medium;
 }
