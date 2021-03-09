@@ -88,9 +88,10 @@ const EditProfessionalDetails = (props) => {
     }
 
     return (
-        <div>
+        <div className="formContainer">
             <h2 className="title">Edit Details</h2>
-            <div className="formContainer">
+            <hr className="seperator"/>
+            <div>
                 <Form noValidate validated={validated} onSubmit={handleSubmit}>
                     <Form.Group>
                         <Form.Label className="label">Name</Form.Label>

@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 const Schema = mongoose.Schema;
 
@@ -30,9 +30,11 @@ const professionalUserSchema = new Schema({
 
   bio :{type: String,  required: false},
 
+
   instagramLink: {type: String, required: false},
 
   youtubeLink: {type: String, required: false},
+
 
 }, {
   timestamps: true,
@@ -40,4 +42,5 @@ const professionalUserSchema = new Schema({
 
 const ProfessionalUser = mongoose.model('ProfessionalUser', professionalUserSchema);
 
-module.exports = ProfessionalUser;
+export default ProfessionalUser;
+

@@ -1,7 +1,7 @@
 import "./PersonalInfo.css";
 
 const PersonalInfo = ({profile}) => {
-    if (profile.bodyType !== undefined && profile.weight !== undefined && profile.gender !== undefined) {
+    if (profile !== undefined && profile !== null) {
         return (
             <div>
                 <div>

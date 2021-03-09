@@ -1,24 +1,22 @@
-import { Switch, Route } from "react-router-dom";
-import ClientProfile from "./components/ClientProfile/ClientProfile";
-import EditProfessionalDetails from "./components/ProfessionalProfile/EditDetails/EditProfessionalDetails";
-import EditServices from "./components/ProfessionalProfile/EditServices/EditServices";
-import ProfessionalProfile from './components/ProfessionalProfile/ProfessionalProfile';
+import './App.css';
+import Main from './Main';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Users from './components/Users/Users';
+import AdminPage from './AdminPage';
+import { getIssues } from './actions/issues';
 
+const loginStyle = {
+  margin: "33px auto 36px",
+  maxWidth: "550px",
+  padding: "35px",
+};
 
-const App = (props) => {
-
+function App() {
   return (
-    <Switch>
-      <Route exact path="/professional/profile/:id" component={ProfessionalProfile}></Route>
-      <Route exact path="/professional/profile/edit/:id" component={EditProfessionalDetails}></Route>
-      <Route exact path="/professional/services/edit/:id" component={EditServices}></Route>
-      <Route exact path="/user/profile/:id" component={ClientProfile}></Route>
-    </Switch>
+    <div className="App">
+      <Main />
+    </div>
   );
 }
 
 export default App;
-
-
-// test id=604130a84b864a0b7a757945
-
