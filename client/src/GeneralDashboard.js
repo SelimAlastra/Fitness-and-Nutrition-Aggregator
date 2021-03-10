@@ -5,7 +5,6 @@ import { useDispatch } from 'react-redux';
 
 import { getPosts, updatePost } from './actions/posts';
 import Posts from './components/Posts/Posts';
-import Form from './components/Form/Form';
 import memories from './images/memories.png';
 import useStyles from './styles';
 
@@ -31,9 +30,9 @@ return (
             <Grid item xs={12} sm={7}>
               <Posts setCurrentId={setCurrentId}/>
             </Grid>
-            <Grid item xs={12} sm={4}>
+            {/* <Grid item xs={12} sm={4}>
               <Form currentId={currentId} setCurrentId={setCurrentId} />
-            </Grid>
+            </Grid> */}
           </Grid>
         </Container>
       </Grow>
