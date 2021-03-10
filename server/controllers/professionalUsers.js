@@ -14,9 +14,11 @@ export const getProfessionalUsers = async (req, res) => {
 }
 
 export const createProfessionalUser = async (req, res) => {
+  const username = req.body.username;
   const name = req.body.name;
   const email = req.body.email;
   const password = req.body.password;
+  const profession = req.body.profession;
   const gender = req.body.gender;
   const dob = req.body.dob;
   const address = req.body.address;
@@ -25,7 +27,7 @@ export const createProfessionalUser = async (req, res) => {
   const bio = req.body.bio;
   const instagramLink = req.body.instagramLink;
   const youtubeLink = req.body.youtubeLink;
-  const newProfessionalUser = new ProfessionalUser({name, email, password, gender, dob,
+  const newProfessionalUser = new ProfessionalUser({username, name, email, password, profession, gender, dob,
      address, isBanned, tags, bio, instagramLink, youtubeLink});
   
   newProfessionalUser.save()
@@ -36,9 +38,11 @@ export const createProfessionalUser = async (req, res) => {
 export const updateProfessionalUser = async (req, res) => {
   ProfessionalUser.findById(req.params.id)
     .then(professionalUser => {
+      professionalUser.username = req.body.username;
       professionalUser.name = req.body.name;
       professionalUser.email = req.body.email;
       professionalUser.password = req.body.password;
+      professionalUser.profession = req.body.profession;
       professionalUser.gender = req.body.gender;
       professionalUser.dob = req.body.dob;
       professionalUser.address = req.body.address;
