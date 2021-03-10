@@ -1,38 +1,48 @@
-import Service from '../models/service.model.js';
-import mongoose from 'mongoose';
+const router = require('express').Router();
+let Service = require('../models/service.model');
 
-export const getServices = async (req, res) => {
+router.route('/').get((req, res) => {
   Service.find()
     .then(services => res.json(services))
-    .catch(error => res.status(400).json("Error: Failed to get the services " + error));
-};
+    .catch(err => res.status(400).json('Error: Failed to get the service ' + err));
+});
 
-export const createService = async (req, res) => {
-  const description = req.body.description;
-  const price = req.body.price;
+router.route('/add').post((req, res) => {
   const userID = req.body.userID;
-  const newService = new Service({description, price, userID});
+  const price = req.body.price;
+  const description = req.body.description;
+
+  const newService = new Service({userID,price,description});
 
   newService.save()
-    .then(() => res.json('service added'))
-    .catch(error => res.status(400).json("Error: Failed to add a service " + error ));
-};
+    .then(() => res.json('service added!'))
+    .catch(err => res.status(400).json('Error: Failed to add service' + err));
+});
 
-export const updateService = async (req, res) => {
+router.route('/:id').get((req, res) => {
+  Service.findById(req.params.id)
+    .then(professionalUser => res.json(professionalUser))
+    .catch(err => res.status(400).json('Error: Cannot find this service' + err));
+});
+
+router.route('/:id').delete((req, res) => {
+  Service.findByIdAndDelete(req.params.id)
+    .then(() => res.json('service deleted.'))
+    .catch(err => res.status(400).json('Error: Cannot delete this service' + err));
+});
+
+
+router.route('/update/:id').post((req, res) => {
   Service.findById(req.params.id)
     .then(service => {
-      service.description = res.body.description;
-      service.price = res.body.price;
-      service.userID = res.body.userID;
+      service.price = req.body.price;
+      service.description = req.body.description;
 
       service.save()
         .then(() => res.json('service updated!'))
-        .catch(error => res.status(400).josn('Error: ' + error))
+        .catch(err => res.status(400).json('Error: ' + err));
     })
-};
+    .catch(err => res.status(400).json('Error: ' + err));
+});
 
-export const deleteService = async (req, res) => {
-  Service.findByIdAndDelete(req.params.id)
-    .then(() => res.json('Service deleted!'))
-    .catch(error => res.json('Error: ' + error));
-};
+module.exports = router;
