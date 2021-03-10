@@ -53,9 +53,9 @@ const ResetPassword = ({match}) => {
                     newPassword: values.password1,
                     resetPasswordLink: token,
                   }
-                  axios.put(`http://localhost:5000/basicUsers/resetpassword`, newData)
+                  axios.put(`http://localhost:5000/professionalUsers/resetpassword`, newData)
                         .then(res => {
-                            history.push('/launch/users')
+                            history.push('/launch/professionals')
                           })
                       .catch(err => {
                             console.log(err.response);
