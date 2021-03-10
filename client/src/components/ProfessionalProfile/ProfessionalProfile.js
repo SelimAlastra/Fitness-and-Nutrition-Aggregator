@@ -3,7 +3,6 @@ import './ProfessionalProfile.css';
 import ProfileInfo from '../ProfileInfo/ProfileInfo';
 import Services from './Services/Services';
 import Thumbnails from "./Thumbnails/Thumbnails";
-import Modal from "react-modal";
 import { useDispatch, useSelector } from 'react-redux';
 import { getProfessional } from '../../actions/professionals';
 import { Link } from 'react-router-dom';
@@ -18,8 +17,6 @@ const ProfessionalProfile = (props) => {
     }, [dispatch]);
   
     const profile = useSelector((state) => state.professional);
-
-    Modal.setAppElement('body');
 
     function generateEditDetailsLink(isProfessional) {
         if (isProfessional) {
