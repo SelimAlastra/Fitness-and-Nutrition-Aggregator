@@ -11,7 +11,7 @@ import {
   } from '../controllers/basicUsersAuth.js';
 
 const router = express.Router();
-
+router.get('/:id', getBasicUser);
 router.get('/', getBasicUsers);
 router.post('/', createBasicUser);
 router.patch('/:id', updateBasicUser);
