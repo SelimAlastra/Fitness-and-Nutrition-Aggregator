@@ -25,8 +25,6 @@ export const updatePost = (id, updatedPost) => axios.patch(`${url}/${id}`, updat
 export const deletePost = (id) => axios.delete(`${url}/${id}`);
 export const likePost = (id) => axios.patch(`${url}/${id}/likePost`);
 
-
-
 export const getProfessional = (id) => axios.get(`${professionalUsersUrl}/${id}`);
 export const updateProfessional = (id, updatedProfile) => axios.patch(`${professionalUsersUrl}/update/${id}`, updatedProfile);
 
@@ -35,3 +33,4 @@ export const deleteService = (id) => axios.delete(`${servicesUrl}/${id}`)
 export const addService = (service) => axios.post(`${servicesUrl}/add`, service);
 
 export const getBasicUser = (id) => axios.get(`${basicUserUrl}/${id}`);
+

@@ -17,6 +17,7 @@ import professionalUserRoutes from './routes/professionalUsers.js';
 // import subscriptionRoutes from './routes/subscriptions.js';
 import serviceRoutes from './routes/services.js'
 
+
 const app = express();
 dotenv.config();
 
@@ -30,6 +31,7 @@ app.use('/basicUsers', basicUserRoutes);
 app.use('/professionalUsers', professionalUserRoutes);
 app.use('/admins', adminRoutes);
 app.use('/services', serviceRoutes);
+
 app.use('/posts', postRoutes);
 // app.use('/comments', commentRoutes);
 // app.use('/likes', likeRoutes);

@@ -35,7 +35,6 @@ const professionalUserSchema = new Schema({
 
   youtubeLink: {type: String, required: false},
 
-
 }, {
   timestamps: true,
 });
@@ -43,4 +42,5 @@ const professionalUserSchema = new Schema({
 const ProfessionalUser = mongoose.model('ProfessionalUser', professionalUserSchema);
 
 export default ProfessionalUser;
+
 
