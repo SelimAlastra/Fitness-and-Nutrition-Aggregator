@@ -9,10 +9,9 @@ const EditProfessionalDetails = (props) => {
     const dispatch = useDispatch();
     const [validated, setValidated] = useState(false);
     const [isValidID, setIsValidID] = useState(false);
-
     const [name, setName] = useState("");
-    const [address, setAddress] = useState("");
     const [username, setUsername] = useState("");
+    const [address, setAddress] = useState("");
     const [email, setEmail] = useState("");
     const [bio, setBio] = useState("");
     const [instagramLink, setInstagramLink] = useState("");
@@ -23,6 +22,7 @@ const EditProfessionalDetails = (props) => {
     const [isBanned, setIsBanned] = useState(false);
     const [tags, setTags] = useState([]);
     const [ID, setID] = useState("");
+    const [profession, setProfession] = useState("");
     
 
     useEffect(() => {
@@ -51,6 +51,8 @@ const EditProfessionalDetails = (props) => {
                     setIsBanned(data.isBanned);
                     setTags(data.tags);
                     setID(data._id);
+                    setProfession(data.profession);
+                    setUsername(data.username);
                 }
             })
         }
@@ -75,9 +77,11 @@ const EditProfessionalDetails = (props) => {
                     password: password,
                     isBanned: isBanned,
                     tags: tags,
+                    profession: profession
                 }
                 setValidated(true);
                 dispatch(updateProfessional(ID, updatedProfile));
+                console.log("Done");
                 window.alert("Details Saved!");
                 window.location.href = `/professional/profile/${ID}`
             } else {
