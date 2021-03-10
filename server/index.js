@@ -12,10 +12,11 @@ import basicUserRoutes from './routes/basicUsers.js';
 // import commentRoutes from './routes/comments.js';
 // import likeRoutes from './routes/likes.js';
 // import postRoutes from './routes/posts.js';
-// import professionalUserRoutes from './routes/professionalUsers.js';
+import professionalUserRoutes from './routes/professionalUsers.js';
 // import subscriberRoutes from './routes/subscribers.js';
 // import subscriptionRoutes from './routes/subscriptions.js';
-// import serviceRoutes from './routes/services.js'
+import serviceRoutes from './routes/services.js'
+
 
 const app = express();
 dotenv.config();
@@ -27,9 +28,10 @@ app.use(cors());
 app.use('/issues', issueRoutes);
 app.use('/users', userRoutes);
 app.use('/basicUsers', basicUserRoutes);
-//app.use('/professionalUsers', professionalUserRoutes);
+app.use('/professionalUsers', professionalUserRoutes);
 app.use('/admins', adminRoutes);
-// app.use('/services', serviceRoutes);
+app.use('/services', serviceRoutes);
+
 app.use('/posts', postRoutes);
 // app.use('/comments', commentRoutes);
 // app.use('/likes', likeRoutes);

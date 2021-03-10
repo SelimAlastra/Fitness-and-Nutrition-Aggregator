@@ -1,66 +1,62 @@
-const router = require('express').Router();
-let ProfessionalUser = require('../models/professionalUser.model');
+import ProfessionalUser from '../models/professionalUser.model.js';
+import mongoose from 'mongoose';
 
-router.route('/').get((req, res) => {
+export const getProfessionalUser = async (req, res) => {
+  ProfessionalUser.findById(req.params.id)
+    .then(professionalUser => res.json(professionalUser))
+    .catch(error => res.status(400).json("Error: Failed to get professional user"));
+}
+
+export const getProfessionalUsers = async (req, res) => {
   ProfessionalUser.find()
-    .then(users => res.json(users))
-    .catch(err => res.status(400).json('Error: Failed to get the professionalUser ' + err));
-});
+    .then(professionalUsers => res.json(professionalUsers))
+    .catch(error => res.status(400).json("Error: Failed to get the professional users " + error));
+}
 
-router.route('/add').post((req, res) => {
-  const username = req.body.username;
+export const createProfessionalUser = async (req, res) => {
   const name = req.body.name;
   const email = req.body.email;
   const password = req.body.password;
   const gender = req.body.gender;
-  const dob = Date.parse(req.body.dob);
-  const address = req.body.adress;
-  const isBanned = Boolean(req.body.isBanned);
+  const dob = req.body.dob;
+  const address = req.body.address;
+  const isBanned = req.body.isBanned;
   const tags = req.body.tags;
   const bio = req.body.bio;
-
-  const newProfessionalUser = new ProfessionalUser({username,name,email,password,gender,dob,address,isBanned,tags,bio});
-
+  const instagramLink = req.body.instagramLink;
+  const youtubeLink = req.body.youtubeLink;
+  const newProfessionalUser = new ProfessionalUser({name, email, password, gender, dob,
+     address, isBanned, tags, bio, instagramLink, youtubeLink});
+  
   newProfessionalUser.save()
-    .then(() => res.json('ProfessionalUser added!'))
-    .catch(err => res.status(400).json('Error: Failed to add ProfessionalUser' + err));
-});
+    .then(() => res.json('Professional user added!'))
+    .catch(error => res.status(400).json("Error: " + error));
+}
 
-router.route('/:id').get((req, res) => {
-  ProfessionalUser.findById(req.params.id)
-    .then(professionalUser => res.json(professionalUser))
-    .catch(err => res.status(400).json('Error: Cannot find this ProfessionalUser' + err));
-});
-
-router.route('/:id').delete((req, res) => {
-  ProfessionalUser.findByIdAndDelete(req.params.id)
-    .then(() => res.json('ProfessionalUser deleted.'))
-    .catch(err => res.status(400).json('Error: Cannot delete this professionalUser' + err));
-});
-
-
-router.route('/update/:id').post((req, res) => {
+export const updateProfessionalUser = async (req, res) => {
   ProfessionalUser.findById(req.params.id)
     .then(professionalUser => {
-      professionalUser.username = req.body.username;
       professionalUser.name = req.body.name;
       professionalUser.email = req.body.email;
       professionalUser.password = req.body.password;
       professionalUser.gender = req.body.gender;
-      professionalUser.dob = Date.parse(req.body.dob);
+      professionalUser.dob = req.body.dob;
       professionalUser.address = req.body.address;
-      professionalUser.isBanned = Boolean(req.body.isBanned);
-      professionalUser.bodyType = req.body.bodyType;
-      professionalUser.weight = req.body.weight;
-      professionalUser.goals = [req.body.goals];
-      professionalUser.tags = [req.body.tags];
+      professionalUser.isBanned = req.body.isBanned;
+      professionalUser.tags = req.body.tags;
       professionalUser.bio = req.body.bio;
+      professionalUser.instagramLink = req.body.instagramLink;
+      professionalUser.youtubeLink = req.body.youtubeLink;
 
       professionalUser.save()
-        .then(() => res.json('ProfessionalUser updated!'))
-        .catch(err => res.status(400).json('Error: ' + err));
-    })
-    .catch(err => res.status(400).json('Error: ' + err));
-});
+        .then(() => res.json('Professional user updated!'))
+        .catch(error => res.status(400).json("Error: " + error));
 
-module.exports = router;
+    })
+};
+
+export const deleteProfessionalUser = async (req, res) => {
+  ProfessionalUser.findByIdAndDelete(req.params.id)
+    .then(() => res.json("Professional user deleted"))
+    .catch(error => res.json("Error: " + error));
+}; 
