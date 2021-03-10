@@ -17,11 +17,11 @@ const basicUserSchema = new Schema({
 
   password :{type: String, required: true},
 
-  gender: {type: String, enum: ["Male", "Female", "Other"], required: true},
+  gender: {type: String, enum: ["Male", "Female", "Other"], required: false},
 
-  dob: {type: Date, required:true},
+  dob: {type: Date, required:false},
 
-  address: {type: String, required:true},
+  address: {type: String, required:false},
 
   isBanned: {type: Boolean, required: false},
 
@@ -36,9 +36,26 @@ const basicUserSchema = new Schema({
 
   bio :{type: String,  required: false},
 
+  resetPasswordLink :{type: String, default: '', required: false},
+
 }, {
   timestamps: true,
 });
+
+basicUserSchema
+  .virtual('password2')
+  .set(function(password2){
+    this.password = password2;
+  })
+  .get(function(){
+    return this.password;
+  });
+
+basicUserSchema.methods = {
+  authenticate: function(plainText) {
+    return plainText === this.password;
+  }
+};
 
 const BasicUser = mongoose.model('BasicUser', basicUserSchema);
 
