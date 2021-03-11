@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 import PostMessage from '../models/postMessage.js';
 
 export const getPosts = async (req, res) => { 
-    try {
+    try { 
         const postMessages = await PostMessage.find();
                 
         res.status(200).json(postMessages);
@@ -57,3 +57,4 @@ export const likePost = async (req, res) => {
     
     res.json(updatedPost);
 }
+
