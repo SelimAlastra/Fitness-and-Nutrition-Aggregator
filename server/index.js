@@ -12,10 +12,11 @@ import basicUserRoutes from './routes/basicUsers.js';
 // import commentRoutes from './routes/comments.js';
 // import likeRoutes from './routes/likes.js';
 // import postRoutes from './routes/posts.js';
-// import professionalUserRoutes from './routes/professionalUsers.js';
+import professionalUserRoutes from './routes/professionalUsers.js';
 // import subscriberRoutes from './routes/subscribers.js';
 // import subscriptionRoutes from './routes/subscriptions.js';
-// import serviceRoutes from './routes/services.js'
+import serviceRoutes from './routes/services.js'
+
 
 const app = express();
 dotenv.config();
@@ -27,20 +28,26 @@ app.use(cors());
 app.use('/issues', issueRoutes);
 app.use('/users', userRoutes);
 app.use('/basicUsers', basicUserRoutes);
-//app.use('/professionalUsers', professionalUserRoutes);
+app.use('/professionalUsers', professionalUserRoutes);
 app.use('/admins', adminRoutes);
-// app.use('/services', serviceRoutes);
+app.use('/services', serviceRoutes);
+
 app.use('/posts', postRoutes);
 // app.use('/comments', commentRoutes);
 // app.use('/likes', likeRoutes);
 // app.use('/subscriptions', subscriptionRoutes);
 // app.use('/subscribers', subscriberRoutes);
 
-const PORT = process.env.PORT|| 5000;
-const CONNECTION_URL = process.env.CONNECTION_URL;
+const PORT = process.env.PORT || 5000;
+const uri = process.env.ATLAS_URI;
 
-mongoose.connect(CONNECTION_URL, { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect(`${uri}`, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => app.listen(PORT, () => console.log('Server running on port: ' + PORT )))
     .catch((error) => console.log(error.message));
+
+const connection = mongoose.connection;
+connection.once('open', () => {
+    console.log("*******MongoDB database connection established successfully********");
+})
     
 mongoose.set('useFindAndModify', false);

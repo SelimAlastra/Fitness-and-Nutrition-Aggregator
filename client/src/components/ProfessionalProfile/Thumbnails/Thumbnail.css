@@ -1,0 +1,7 @@
+.container {
+    margin: 10%;
+    padding: 10%;
+    max-width: 80%;
+    max-height: 200px;
+    justify-content: center;
+}

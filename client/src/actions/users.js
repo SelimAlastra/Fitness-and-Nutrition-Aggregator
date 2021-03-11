@@ -41,7 +41,6 @@ export const deleteUser = (id) => async (dispatch) => {
         await api.deleteUser(id);
 
         dispatch({ type: 'DELETE_USER', payload: id });
-
     } catch (error) {
         console.log(error.message);
     }
