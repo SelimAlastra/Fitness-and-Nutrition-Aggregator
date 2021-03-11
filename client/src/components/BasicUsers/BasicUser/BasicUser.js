@@ -4,7 +4,7 @@ import { LinkContainer } from "react-router-bootstrap";
 import { useDispatch } from 'react-redux';
 import { render } from "react-dom";
 
-const User = ({ user }) => {
+const BasicUser = ({ user }) => {
 
 
     return (
@@ -14,7 +14,7 @@ const User = ({ user }) => {
             <td>{user.email}</td>
             <td>
                 <Container>
-                    <LinkContainer to={{pathname:"/Users/" + user._id}}>
+                    <LinkContainer to={{pathname:"/BasicUsers/" + user._id}}>
                         <Button variant="primary">Details</Button>
                     </LinkContainer>
                 </Container>
@@ -23,4 +23,4 @@ const User = ({ user }) => {
     )
 }
 
-export default User;
+export default BasicUser;

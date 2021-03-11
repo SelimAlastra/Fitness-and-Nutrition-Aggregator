@@ -1,21 +1,19 @@
 import { React, useEffect } from "react";
-import reactDom from "react-dom";
-import { Link } from "react-router-dom";
 import { Table } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
-import { getUsers } from "../../actions/users";
-import User from "./User/User";
-import UserForm from './UserForm'
+import ProfessionalUser from "./ProfessionalUser/ProfessionalUser";
+import UserForm from './ProfessionalUserForm'
+import { getProfessionalUsers } from "../../actions/professionals";
 
-const Users = () => {
+const ProfessionalUsers = () => {
 
     const dispatch = useDispatch();
 
     useEffect(() => {
-      dispatch(getUsers());
+      dispatch(getProfessionalUsers());
     }, [dispatch]);
 
-    const users = useSelector((state) => state.users);
+    const users = useSelector((state) => state.professional);
 
     return (
         <>
@@ -32,7 +30,7 @@ const Users = () => {
                 <tbody>
                     {users.map((user) => (
                         <tr key={user._id} >
-                            <User user={user} />
+                            <ProfessionalUser user={user} />
                         </tr>
                     ))}
                 </tbody>
@@ -41,4 +39,4 @@ const Users = () => {
     );
 }
 
-export default Users;
+export default ProfessionalUsers;

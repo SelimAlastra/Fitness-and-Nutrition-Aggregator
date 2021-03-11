@@ -1,17 +1,17 @@
 import React, {useState} from 'react';
 import { Form, Container, Button } from "react-bootstrap";
 import { useDispatch } from 'react-redux';
-import {  createUser } from "../../actions/users";
+import { createProfessionalUser } from '../../actions/professionals';
 
-const UserForm = () => {
+const ProfessionalUserForm = () => {
 
-    const [userData, setUserData] = useState( {username: ''} );
+    const [userData, setUserData] = useState( {username: '', name: 'kha lklj', email: 'kadsaj@kj', password: '123asd', profession: 'asd'} );
     const dispatch = useDispatch();
 
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        dispatch(createUser(userData));
+        dispatch(createProfessionalUser(userData));
     }
     
     return(
@@ -33,4 +33,4 @@ const UserForm = () => {
     );
 }
 
-export default UserForm;
+export default ProfessionalUserForm;

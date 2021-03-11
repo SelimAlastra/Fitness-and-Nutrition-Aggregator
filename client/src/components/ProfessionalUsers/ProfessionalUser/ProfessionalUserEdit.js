@@ -2,24 +2,23 @@ import React, { useState, useEffect } from 'react';
 import { Form, Button } from "react-bootstrap";
 import { LinkContainer } from 'react-router-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import {  updateUser } from "../../../actions/users";
-import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
+import { updateProfessional } from '../../../actions/professionals';
 
-const UserEdit = () => {
+const ProfessionalUserEdit = () => {
 
     const [userData, setUserData] = useState( {username: ''} );
     const dispatch = useDispatch();
 
     const { id } = useParams();
 
-    const user = useSelector((state) => id ? state.users.find(u => u._id === id) : null);
+    const user = useSelector((state) => id ? state.ProfessionalUsers.find(u => u._id === id) : null);
 
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        dispatch(updateUser(id, userData));
-        window.location.href="/Users";
+        dispatch(updateProfessional(id, userData));
+        window.location.href="/ProfessionalUsers";
     }
 
     useEffect(() => {
@@ -28,7 +27,7 @@ const UserEdit = () => {
     
     return( 
     <>
-        <LinkContainer to={`/Users/${user._id}`}>
+        <LinkContainer to={`/ProfessionalUsers/${user._id}`}>
             <Button variant="primary">Back</Button>
         </LinkContainer>
         <br />
@@ -73,4 +72,4 @@ const UserEdit = () => {
     );
 }
 
-export default UserEdit;
+export default ProfessionalUserEdit;

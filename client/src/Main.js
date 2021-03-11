@@ -26,7 +26,7 @@ import EditBasicUser from './components/EditBasicUser/EditBasicUser';
 
 const Main = () => {
     let logged = false;
-    if (!logged )
+    if (logged )
         return (
             <Switch>
                 <Route exact path='/' component={LandingPage}></Route>
