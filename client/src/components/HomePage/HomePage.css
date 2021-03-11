@@ -1,0 +1,44 @@
+.homepage{
+    padding: 1%;
+    background-color: #282c34;
+}
+
+.GoalsImage{
+    width: 850px;
+    border-radius: 5%;
+    margin: 30px;
+}
+
+.homepageGoals{
+    border-radius: 10px;
+    padding: 1%;
+    max-width: 800px;
+    margin: auto;
+    text-align: center;
+    font-family: arial;
+    justify-content: center;
+    background-color: transparent;
+    border-color: #8300FF;
+    border-style: solid;
+    margin-bottom: 1%;
+}
+
+.homePageTextContainer{
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    background-color: #8300FF;
+    border-radius: 10px;
+    padding: 1%;
+    color: white;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+.homePageTitleText{
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    color: white;
+}
+
+.homePagelineSeperator{
+    background-color: #8300FF;
+    margin-left: 10%;
+    margin-right: 10%;
+}
