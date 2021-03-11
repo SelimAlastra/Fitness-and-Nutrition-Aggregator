@@ -39,6 +39,7 @@ const ProfessionalUserDetails = () => {
                 <ListGroupItem>isBanned: {""+user.isBanned}</ListGroupItem>
                 <ListGroupItem>Gender: {user.gender}</ListGroupItem>
                 <ListGroupItem>DOB: {user.dob}</ListGroupItem>
+                <ListGroupItem>Created at: {user.createdAt}</ListGroupItem>
             </ListGroup>
             <br />
             <LinkContainer to={{pathname:"/ProfessionalUsers/edit/" + user._id, state: {user: user}}}>
