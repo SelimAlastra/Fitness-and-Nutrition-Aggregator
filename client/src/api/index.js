@@ -33,4 +33,5 @@ export const deleteService = (id) => axios.delete(`${servicesUrl}/${id}`)
 export const addService = (service) => axios.post(`${servicesUrl}/add`, service);
 
 export const getBasicUser = (id) => axios.get(`${basicUserUrl}/${id}`);
+export const updateBasicUser = (id, updatedBasicUser) => axios.patch(`${basicUserUrl}/update/${id}`, updatedBasicUser);
 

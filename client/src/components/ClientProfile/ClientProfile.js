@@ -3,26 +3,68 @@ import Tags from "../Tags/Tags";
 import ProfileInfo from "../ProfileInfo/ProfileInfo";
 import PersonalInfo from '../ClientProfile/PersonalInfo';
 import Goals from '../ClientProfile/Goals';
+import { useDispatch, useSelector } from "react-redux";
+import { getBasicUser } from "../../actions/basicUsers";
 
 const ClientProfile = (props) => {
+    const dispatch = useDispatch();
+    let user;
 
-    const [user, setUser] = useState({});
-  
     useEffect(() => {
-        const userID = props.match.params.id;
-        if (userID !== undefined) {
-            fetch(`http://localhost:5000/basicUsers/${userID}`)
-            .then(response => {
-                if (!response.ok) return "error";
-                else return response.json();
-            })
-            .then(data => {
-                if (data !== "error") {
-                    setUser(data)
-                } 
-            });
+        dispatch(getBasicUser(props.match.params.id));
+     }, [props]);
+
+    user = useSelector((state) => state.basicUsers);
+    const [name, setName] = useState("");
+    const [username, setUsername]= useState("");
+    const [email, setEmail] = useState("");
+    const [address, setAddress] = useState("");
+    const [day, setDay] = useState(1);
+    const [month, setMonth] = useState(1);
+    const [year, setYear] = useState(2021);
+    const [gender, setGender] = useState("");
+    const [bodyType, setBodyType] = useState("");
+    const [weight, setWeight] = useState("");
+    const [bio, setBio] = useState("");
+    const [ID, setID] = useState("");
+
+    useEffect(() => {
+        setName(user.name);
+        setUsername(user.username);
+        setEmail(user.email);
+        setAddress(user.address);
+        setGender(user.gender);
+        setBodyType(user.bodyType);
+        setWeight(user.weight);
+        setBio(user.bio);
+        setID(user._id);
+        const date = formatDate(user.dob);
+        setDay(user.day);
+        setMonth(date.month);
+        setYear(date.year);
+        
+    }, [user]);
+
+    
+function formatDate(toFormat) {
+    if (toFormat !== undefined) {
+        const splitDate = toFormat.split("-");
+        const year = parseInt(splitDate[0]);
+        const month = parseInt(splitDate[1]);
+        const day = parseInt(splitDate[2].substring(0,2));
+        return {
+           day: day,
+           month: month,
+           year: year 
         }
-    }, []);
+    } else {
+        return {
+            day: 1,
+            month: 1,
+            year: 2021 
+        }
+    }
+}
 
     function generateGoals() {
         if (user !== undefined && user !== null) {

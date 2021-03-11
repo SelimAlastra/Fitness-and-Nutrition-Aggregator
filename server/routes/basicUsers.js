@@ -14,7 +14,7 @@ const router = express.Router();
 router.get('/:id', getBasicUser);
 router.get('/', getBasicUsers);
 router.post('/', createBasicUser);
-router.patch('/:id', updateBasicUser);
+router.patch('/update/:id', updateBasicUser);
 router.delete('/:id', deleteBasicUser);
 
 router.post('/register', registerController)
