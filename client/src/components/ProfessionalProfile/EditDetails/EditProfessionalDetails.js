@@ -9,10 +9,9 @@ const EditProfessionalDetails = (props) => {
     const dispatch = useDispatch();
     const [validated, setValidated] = useState(false);
     const [isValidID, setIsValidID] = useState(false);
-
     const [name, setName] = useState("");
-    const [address, setAddress] = useState("");
     const [username, setUsername] = useState("");
+    const [address, setAddress] = useState("");
     const [email, setEmail] = useState("");
     const [bio, setBio] = useState("");
     const [instagramLink, setInstagramLink] = useState("");
@@ -80,6 +79,7 @@ const EditProfessionalDetails = (props) => {
                 }
                 setValidated(true);
                 dispatch(updateProfessional(ID, updatedProfile));
+                console.log("Done");
                 window.alert("Details Saved!");
                 window.location.href = `/professional/profile/${ID}`
             } else {
