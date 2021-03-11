@@ -11,7 +11,7 @@ const ProfessionalUserDetails = () => {
 
     const { id } = useParams();
 
-    const user = useSelector((state) => id ? state.ProfessionalUsers.find(u => u._id === id) : null);
+    const user = useSelector((state) => id ? state.professional.find(u => u._id === id) : null);
 
     const handleBan = () => {
         user.isBanned = !user.isBanned;
