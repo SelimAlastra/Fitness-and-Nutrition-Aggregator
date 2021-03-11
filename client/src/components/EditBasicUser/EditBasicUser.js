@@ -43,11 +43,11 @@ const EditBasicUser = (props) => {
         const date = formatDate(profile.dob);
         setDay(date.day);
         setMonth(date.month);
-        setYear(date.year);
-        
+        setYear(date.year);      
     }, [profile]);
 
     function handleSubmit(event) {
+        event.preventDefault();
         const editForm = event.currentTarget;
         if (editForm.checkValidity()) {
             if (checkEmail(email)) {
@@ -67,7 +67,7 @@ const EditBasicUser = (props) => {
                     isBanned: profile.isBanned,
                     dob: constructDate(day, month, year)
                 }
-                console.log(gender);
+                console.log(newBasicUser);
                 dispatch(updateBasicUser(ID, newBasicUser));
                 window.alert("Details Saved!");
             } 
@@ -225,6 +225,7 @@ const EditBasicUser = (props) => {
                     </Form.Control>
                 </Form.Group>
                 <button type="submit" className="actionButton">Save</button>
+                <button type="button" className="actionButton" onClick={() => window.location.href = "/"}>Close</button>
             </Form>
         </div>
     );
