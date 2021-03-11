@@ -3,7 +3,7 @@ import { Switch, Route } from "react-router-dom";
 import AdminLogin from "./AdminLogin";
 import AdminPage from "./AdminPage";
 import LandingPage from './LandingPage';
-import HomePage from './HomePage';
+import HomePage from './components/HomePage/HomePage';
 import GeneralDashboard from './GeneralDashboard';
 
 import Register from './components/BasicUsersAuth/userRegister.jsx';
@@ -31,7 +31,7 @@ const Main = () => {
         return (
             <Switch>
                 <Route exact path='/' component={LandingPage}></Route>
-                <Route exact path='/homePage' component={HomePage}></Route>
+                <Route exact path='/homePage/:id' component={HomePage}></Route>
                 <Route exact path='/adminLogin' component={AdminLogin}></Route>
                 <Route exact path='/adminPage' component={AdminPage}></Route>
                 <Route exact path='/generalDashboard' component={GeneralDashboard}></Route>
