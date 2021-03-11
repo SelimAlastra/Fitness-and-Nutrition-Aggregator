@@ -39,15 +39,15 @@ app.use('/posts', postRoutes);
 // app.use('/subscribers', subscriberRoutes);
 
 const PORT = process.env.PORT || 5000;
-const uri = process.env.ATLAS_URI;
+const uri = process.env.CONNECTION_URL;
 
 mongoose.connect(`${uri}`, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => app.listen(PORT, () => console.log('Server running on port: ' + PORT )))
     .catch((error) => console.log(error.message));
 
-const connection = mongoose.connection;
-connection.once('open', () => {
-    console.log("*******MongoDB database connection established successfully********");
-})
+// const connection = mongoose.connection;
+// connection.once('open', () => {
+//     console.log("*******MongoDB database connection established successfully********");
+// })
     
 mongoose.set('useFindAndModify', false);

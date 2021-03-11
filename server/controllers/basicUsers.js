@@ -8,21 +8,10 @@ export const getBasicUsers = async (req, res) => {
 };
 
 export const createBasicUser = async (req, res) => {
-  const username = req.body.username;
-  const name = req.body.name;
-  const email = req.body.email;
-  const password = req.body.password;
-  const gender = req.body.gender;
-  const dob = Date.parse(req.body.dob);
-  const address = req.body.address;
-  const isBanned = Boolean(req.body.isBanned);
-  const bodyType = req.body.bodyType;
-  const weight = req.body.weight;
-  const goals = req.body.goals;
-  const tags = req.body.tags;
-  const bio = req.body.bio;
 
-  const newBasicUser = new BasicUser({username,name,email,password,gender,dob,address,isBanned,bodyType,weight,goals,tags,bio});
+  const user = req.body;
+
+  const newBasicUser = new BasicUser(user);
 
   newBasicUser.save()
     .then(() => res.json('BasicUser added!'))
@@ -43,24 +32,13 @@ export const deleteBasicUser = async (req, res) => {
 
 
 export const updateBasicUser = async (req, res) => {
-  BasicUser.findById(req.params.id)
-    .then(basicUser => {
-      basicUser.username = req.body.username;
-      basicUser.name = req.body.name;
-      basicUser.email = req.body.email;
-      basicUser.password = req.body.password;
-      basicUser.gender = req.body.gender;
-      basicUser.dob = Date.parse(req.body.dob);
-      basicUser.address = req.body.address;
-      basicUser.isBanned = Boolean(req.body.isBanned);
-      basicUser.bodyType = req.body.bodyType;
-      basicUser.weight = req.body.weight;
-      basicUser.goals = req.body.goals;
-      basicUser.tags = req.body.tags;
-      basicUser.bio = req.body.bio;
-      basicUser.save()
-        .then(() => res.json('BasicUser updated!'))
-        .catch(err => res.status(400).json('Error: ' + err));
-    })
-    .catch(err => res.status(400).json('Error: ' + err));
+    const { id: _id } = req.params;
+    const user = req.body;
+  
+    if(!mongoose.Types.ObjectId.isValid(_id)) return (res.status(404).send('No user with that id'));
+  
+    const updatedUser = await BasicUser.findByIdAndUpdate(_id, { ...user, _id }, { new: true });
+  
+    res.json(updatedUser);
 };
+
