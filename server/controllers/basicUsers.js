@@ -45,6 +45,7 @@ export const deleteBasicUser = async (req, res) => {
 export const updateBasicUser = async (req, res) => {
   BasicUser.findById(req.params.id)
     .then(basicUser => {
+      console.log(basicUser);
       basicUser.username = req.body.username;
       basicUser.name = req.body.name;
       basicUser.email = req.body.email;
@@ -58,7 +59,6 @@ export const updateBasicUser = async (req, res) => {
       basicUser.goals = req.body.goals;
       basicUser.tags = req.body.tags;
       basicUser.bio = req.body.bio;
-
       basicUser.save()
         .then(() => res.json('BasicUser updated!'))
         .catch(err => res.status(400).json('Error: ' + err));

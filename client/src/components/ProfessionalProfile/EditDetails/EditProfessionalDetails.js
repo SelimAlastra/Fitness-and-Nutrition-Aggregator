@@ -23,7 +23,7 @@ const EditProfessionalDetails = (props) => {
     const [isBanned, setIsBanned] = useState(false);
     const [tags, setTags] = useState([]);
     const [ID, setID] = useState("");
-    
+    const [profession, setProfession] = useState("");
 
     useEffect(() => {
         const id = props.match.params.id;
@@ -51,6 +51,7 @@ const EditProfessionalDetails = (props) => {
                     setIsBanned(data.isBanned);
                     setTags(data.tags);
                     setID(data._id);
+                    setProfession(data.profession);
                 }
             })
         }
@@ -75,6 +76,7 @@ const EditProfessionalDetails = (props) => {
                     password: password,
                     isBanned: isBanned,
                     tags: tags,
+                    profession: profession,
                 }
                 setValidated(true);
                 dispatch(updateProfessional(ID, updatedProfile));

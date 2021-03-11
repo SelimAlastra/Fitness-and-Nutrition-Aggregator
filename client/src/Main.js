@@ -9,7 +9,7 @@ import ClientProfile from "./components/ClientProfile/ClientProfile";
 import EditProfessionalDetails from "./components/ProfessionalProfile/EditDetails/EditProfessionalDetails";
 import EditServices from "./components/ProfessionalProfile/EditServices/EditServices";
 import ProfessionalProfile from './components/ProfessionalProfile/ProfessionalProfile';
-
+import EditBasicUser from './components/EditBasicUser/EditBasicUser';
 
 
 const Main = () => {
@@ -22,11 +22,11 @@ const Main = () => {
                 <Route exact path='/adminPage' component={AdminPage}></Route>
                 <Route exact path='/generalDashboard' component={GeneralDashboard}></Route>
 
-
                 <Route exact path="/professional/profile/:id" component={ProfessionalProfile}></Route>
                 <Route exact path="/professional/profile/edit/:id" component={EditProfessionalDetails}></Route>
                 <Route exact path="/professional/services/edit/:id" component={EditServices}></Route>
                 <Route exact path="/user/profile/:id" component={ClientProfile}></Route>
+                <Route exact path="/user/edit/:id" component={EditBasicUser}></Route>
 
             </Switch>
         )
