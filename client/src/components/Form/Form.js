@@ -7,11 +7,10 @@ import useStyles from './styles';
 import './styles.css';
 import { createPost, updatePost} from '../../actions/posts';
 
-
 const Form = ({currentId, setCurrentId}) => {
     const [postData, setPostData] = useState({ creator: '', title: '', message: '', tags: '', selectedFile: '', url: '' });
-    const [value, setValue] = useState('photo');
     const [option, setOption] = useState('option1')
+    let Value= 'photo';
     const post = useSelector((state) => currentId ? state.posts.find((p)=> p._id === currentId ) : null);
     const classes = useStyles();
     const dispatch = useDispatch();
@@ -21,6 +20,12 @@ const Form = ({currentId, setCurrentId}) => {
     }, [post]);
 
     const handleSubmit = (e) => {
+      if(Value=='photo'){
+        setPostData({ ...postData, url: '' });
+      }
+      if(Value=='video'){
+        setPostData({ ...postData, selectedFile: ''});
+      }
         e.preventDefault();
         if(currentId){
             dispatch(updatePost(currentId, postData));
@@ -30,7 +35,16 @@ const Form = ({currentId, setCurrentId}) => {
         }
         clear();
     }
-
+  
+    const setValue = (x) =>{
+      Value = x;
+      if(Value=='photo')
+      setPostData({ ...postData, url: '' });
+      else
+      {
+        setPostData({ ...postData, selectedFile: ''});
+      }
+   }
     const clear = () => {
         setCurrentId(null);
         setPostData({ creator: '', title: '', message: '', tags: '', selectedFile: '', url: '' });
@@ -49,15 +63,15 @@ const Form = ({currentId, setCurrentId}) => {
 
 
                 <div>
-                    <input type="radio" name="choice-post" value="photo" checked onChange={ (e) => setValue(e.target.value) } required />
+                    <input type="radio" name="choice-post" value="photo" onChange={(e) => setValue(e.target.value)} required />
                     <label>Photo Post</label>
                         <div className="reveal-if-active" >
                         <label>Upload Photo</label>
-                            <FileBase type="file" multiple={false} className="require-if-active" data-require-pair="#choice-post-photo" onDone={({ base64 }) => setPostData({ ...postData, selectedFile: base64 })} />
+                            <FileBase type="file" multiple={false} onDone={({ base64 }) => setPostData({ ...postData, selectedFile: base64 })} />
                         </div>
                 </div>
                 <div>
-                    <input type="radio" name="choice-post" value="photo" checked onChange={ (e) => setValue(e.target.value) } required />
+                    <input type="radio" name="choice-post" value="video" onChange={(e) => setValue(e.target.value)} required />
                     <label>Video Post</label>
                         <div className="reveal-if-active" >
                         <label>Upload Video</label>
