@@ -34,9 +34,9 @@ const Main = () => {
                 <Route exact path='/adminLogin' component={AdminLogin}></Route>
                 <Route exact path='/adminPage' component={AdminPage}></Route>
                 <Route exact path='/generalDashboard' component={GeneralDashboard}></Route>
-<<<<<<< HEAD
+
                 <Route exact path='/userQuiz' component={Quiz}></Route>
-=======
+                
                 <Route exact path='/launch/users' exact render={props => <Fragment> <Login {...props}/> <Register {...props}/> </Fragment>} />
                 <Route exact path='/user' exact render={props => <UserPage {...props} />} />
                 <Route exact path='/user/password/forget' exact render={props => <ForgetPassword {...props} />} />
@@ -54,7 +54,6 @@ const Main = () => {
                 <Route exact path="/user/profile/:id" component={ClientProfile}></Route>
                 <Route exact path="/user/edit/:id" component={EditBasicUser}></Route>
 
->>>>>>> development
             </Switch>
         )
     else return (
