@@ -5,8 +5,6 @@ export const getIssues = async (req, res) => {
     try {
         const issues = await Issue.find();
 
-        console.log(issues);
-
         res.status(200).json(issues);
     } catch (error) {
         res.status(404).json({ message: error.message });
