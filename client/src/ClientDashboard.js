@@ -9,7 +9,7 @@ import Form from './components/Form/Form';
 import memories from './images/memories.png';
 import useStyles from './styles';
 
-const GeneralDashboard = () => {
+const ClientDashboard = () => {
     const [currentId, setCurrentId] = useState(null);
     const classes = useStyles();
     const dispatch = useDispatch();
@@ -31,9 +31,6 @@ return (
             <Grid item xs={12} sm={7}>
               <Posts setCurrentId={setCurrentId}/>
             </Grid>
-            <Grid item xs={12} sm={4}>
-              <Form currentId={currentId} setCurrentId={setCurrentId} />
-            </Grid>
           </Grid>
         </Container>
       </Grow>
@@ -42,4 +39,4 @@ return (
   );
 }
 
-export default GeneralDashboard;
+export default ClientDashboard;
