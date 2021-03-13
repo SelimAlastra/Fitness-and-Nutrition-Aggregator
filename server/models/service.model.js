@@ -6,7 +6,9 @@ const serviceSchema = new Schema({
 
   userID :{type: Schema.Types.ObjectId, ref: 'ProfessionalUser', required : true},
   price :{type: String, required: true},
-  description: {type: String ,required : true}
+  description: {type: String ,required : true},
+  urls: [{type: String, required: false}],
+  title: {type: String, required: true}
 
 }, {
   timestamps: true,
