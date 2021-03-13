@@ -1,0 +1,54 @@
+.profileImage {
+    display: flex;
+    justify-content: center;
+}
+.profileImage img {
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    padding: 1%;
+}
+
+.profileInfo {
+    text-align: center;
+    margin: none;
+}
+
+.subtext {
+    color: #EFEAE4;
+}
+
+.usernameText {
+    color: white;
+    font-size: medium;
+    padding: none;
+}
+
+.socialIcon {
+    cursor: pointer;
+    margin: 10px;
+}
+
+.clientName {
+    color:#BBA78C;
+}
+
+.textContainer {
+    background-color: #BBA78C;
+    border-radius: 10px;
+    padding: 1%;
+    color: #EFEAE4;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+.outerContainer {
+    justify-content: center;
+    text-align: center;
+    display:inline;
+}
+
+.profileSeperator {
+    background-color: #BBA78C;
+    margin-left: 10%;
+    margin-right: 10%;
+}

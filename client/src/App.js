@@ -1,22 +1,21 @@
-import React, { Component } from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import './App.css';
+import Main from './Main';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Users from './components/Users/Users';
+import AdminPage from './AdminPage';
+import { getIssues } from './actions/issues';
 
-import ProfessionalDashboard from './ProfessionalDashboard';
-import BucketList from './BucketList';
+const loginStyle = {
+  margin: "33px auto 36px",
+  maxWidth: "550px",
+  padding: "35px",
+};
 
-class App extends Component {
-  render() {
-    return (      
-       <BrowserRouter>
-        <div>
-            <Switch>
-             <Route path="/" component={ProfessionalDashboard} exact/>
-             <Route path="/buckets" component={BucketList}/>
-           </Switch>
-        </div> 
-      </BrowserRouter>
-    );
-  }
+function App() {
+  return (
+    <div className="App">
+      <Main />
+    </div>
+  );
 }
- 
 export default App;
