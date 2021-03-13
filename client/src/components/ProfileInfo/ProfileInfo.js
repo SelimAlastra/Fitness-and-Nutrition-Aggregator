@@ -1,4 +1,3 @@
-import './ProfileInfo.css';
 import Tags from '../Tags/Tags';
 
 function ProfileInfo({profile}) {
@@ -8,7 +7,7 @@ function ProfileInfo({profile}) {
                 <div className="profileImage">
                     <img src={"https://images.unsplash.com/photo-1588420343618-6141b3784bce?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80"}/>
                 </div>
-                <div className="profileInfo">
+                <div>
                     <h2 className="clientName">{profile.name}</h2>
                     <hr className="profileSeperator"/>
                     <p className="textContainer">{profile.username}</p>

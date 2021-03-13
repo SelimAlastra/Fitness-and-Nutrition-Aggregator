@@ -4,7 +4,8 @@ import { getServices, deleteService } from '../../../actions/services';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faTrashAlt } from "@fortawesome/free-regular-svg-icons"
 import { addService } from '../../../actions/services';
-import './EditServices.css';
+import '../../EditFormsStyles.css';
+import { Form, Button } from 'react-bootstrap';
 
 const EditServices = (props) => {
     const [newService, setNewService] = useState({
@@ -65,7 +66,7 @@ const EditServices = (props) => {
                                             <div>
                                             <FontAwesomeIcon 
                                                 icon={faTrashAlt}
-                                                style={{textAlign:"right", cursor:"pointer", color: "white"}}
+                                                style={{textAlign:"right", cursor:"pointer", color: "black"}}
                                                 value={service}
                                                 onClick={() => removeService(service)}
                                             />
@@ -82,54 +83,62 @@ const EditServices = (props) => {
     }
 
     return (
-        <div className="card">
+        <div className="formContainer">
             <h3 className="serviceText">Services</h3>
             <hr className="seperator"/>
             <div>
                 { generateTable() }
                 <hr className="seperator"/><br />
                 <h4 className="serviceText">Add Service</h4>
+                <br />
                 <div>
-                    <div className="addService">
-                        <input
-                            value={newService.description}
-                            id="descriptionInput"
-                            name="description" 
-                            placeholder="Description"
-                            className="textInput" 
-                            onChange={(e) => setNewService({
-                                ...newService,
-                                description: e.target.value
+                    <Form>
+                        <Form.Group>
+                            <Form.Label>Description</Form.Label>  
+                            <Form.Control
+                               value={newService.description}
+                                id="descriptionInput"
+                                name="description" 
+                                placeholder="Description"
+                                className="inputItem" 
+                                onChange={(e) => setNewService({
+                                    ...newService,
+                                    description: e.target.value
                             })}
-                        />
-                        <input
-                            value={newService.price}
-                            id="priceInput"
-                            name="price" 
-                            placeholder="Price"
-                            className="textInput" 
-                            onChange={(e) => setNewService({
-                                ...newService,
-                                price: e.target.value
-                            })}
-                        />
-                        <div className="buttonsContainer">
-                            <input
-                                className="submitButton" 
-                                type="submit" 
-                                value="Submit" 
-                                onClick={(event) => addNewService(event)} 
-                            />
-                        </div>
-                        <hr className="seperator"/><br />
-                        <div className="buttonsContainer">
-                            <input
-                                className="closeButton" 
-                                type="button" 
-                                value="Close" 
-                                onClick={(event) => window.location.href = `/professional/profile/${userID}`} 
-                            />
-                        </div>
+                            >
+                            </Form.Control>
+                        </Form.Group>
+                        <Form.Group>
+                            <Form.Label>Price</Form.Label> 
+                            <Form.Control
+                                value={newService.price}
+                                id="priceInput"
+                                name="price" 
+                                placeholder="Price"
+                                className="inputItem" 
+                                onChange={(e) => setNewService({
+                                    ...newService,
+                                    price: e.target.value
+                                })}
+                            >
+                            </Form.Control>
+                        </Form.Group>
+                    </Form>
+                    <div >
+                        <Button
+                            className="actionButton"
+                            type="submit"
+                            onClick={(event) => addNewService(event)} 
+                        >
+                        Save
+                        </Button>
+                        <Button
+                            className="actionButton"
+                            type="button"
+                            onClick={(event) => window.location.href = `/professional/profile/${userID}`} 
+                        >
+                        Close
+                        </Button>
                     </div>
                 </div>
             </div>

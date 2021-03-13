@@ -24,6 +24,7 @@ import EditProfessionalDetails from "./components/ProfessionalProfile/EditDetail
 import EditServices from "./components/ProfessionalProfile/EditServices/EditServices";
 import ProfessionalProfile from './components/ProfessionalProfile/ProfessionalProfile';
 import EditBasicUser from './components/EditBasicUser/EditBasicUser';
+import MyServices from './components/MyServices/MyServices';
 
 
 const Main = () => {
@@ -54,6 +55,7 @@ const Main = () => {
                 <Route exact path="/professional/services/edit/:id" component={EditServices}></Route>
                 <Route exact path="/user/profile/:id" component={ClientProfile}></Route>
                 <Route exact path="/user/edit/:id" component={EditBasicUser}></Route>
+                <Route exact path="/user/myservices/:id" component={MyServices}></Route>
 
             </Switch>
         )
