@@ -24,6 +24,7 @@ export const createPost = (newPost) => axios.post(url, newPost);
 export const updatePost = (id, updatedPost) => axios.patch(`${url}/${id}`, updatedPost);
 export const deletePost = (id) => axios.delete(`${url}/${id}`);
 export const likePost = (id) => axios.patch(`${url}/${id}/likePost`);
+export const toggleFavAction = (id) => axios.patch(`${url}/${id}/toggleFavAction`);
 
 export const getProfessional = (id) => axios.get(`${professionalUsersUrl}/${id}`);
 export const updateProfessional = (id, updatedProfile) => axios.patch(`${professionalUsersUrl}/update/${id}`, updatedProfile);

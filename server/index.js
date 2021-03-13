@@ -5,6 +5,7 @@ import cors from "cors";
 import dotenv from 'dotenv';
 
 import postRoutes from './routes/posts.js';
+import bucketRoutes from './routes/buckets.js';
 import userRoutes from './routes/users.js';
 import issueRoutes from './routes/issues.js';
 import adminRoutes from './routes/admins.js';
@@ -33,6 +34,7 @@ app.use('/admins', adminRoutes);
 app.use('/services', serviceRoutes);
 
 app.use('/posts', postRoutes);
+app.use('/buckets', bucketRoutes);
 // app.use('/comments', commentRoutes);
 // app.use('/likes', likeRoutes);
 // app.use('/subscriptions', subscriptionRoutes);
