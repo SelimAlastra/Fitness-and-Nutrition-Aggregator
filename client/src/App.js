@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
-import Dashboard from './Dashboard';
+import ProfessionalDashboard from './ProfessionalDashboard';
 import BucketList from './BucketList';
 
 class App extends Component {
@@ -10,7 +10,7 @@ class App extends Component {
        <BrowserRouter>
         <div>
             <Switch>
-             <Route path="/" component={Dashboard} exact/>
+             <Route path="/" component={ProfessionalDashboard} exact/>
              <Route path="/buckets" component={BucketList}/>
            </Switch>
         </div> 
