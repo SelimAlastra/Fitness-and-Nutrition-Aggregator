@@ -1,7 +1,7 @@
 .formContainer {
     padding: 5%;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    background-color: #BBA78C;
+    background-color: white;
     position: fixed;
     width:60%;
     max-height: 100%;
@@ -22,26 +22,30 @@
 }
 
 .label {
-    color: white;
-}
-
-.actionButton {
-    background-color:  white;
-    border: none;
     color: black;
-    min-width: 100px;
-    margin-bottom: 1%;
-    border-radius: 10px;
-}
-
-.actionButton:hover {
-    background-color: lightgray;
-    border: none;
 }
 
 .title {
     padding: 1%;
-    background-color: #BBA78C;
-    color: white;
+    color: Black;
 }
 
+.actionButton {
+    margin-top: 1%;
+    background-color: #61dafb;
+    border: none;
+}
+
+.actionButton:hover {
+    margin-top: 1%;
+}
+
+
+table {
+    width: 100%;
+}
+
+.subText {
+    opacity: 70%;
+    font-size: small;
+}
