@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { getServices } from "../../../actions/services";
 import Service from './Service';
-import './Services.css';
 
 
 const Services = ({userID, isProfessional, editLink}) => {
