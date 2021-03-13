@@ -2,10 +2,9 @@ import React, { useEffect, useState } from 'react';
 import {useSelector, useDispatch } from 'react-redux';
 import { getServices, deleteService } from '../../../actions/services';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faTrashAlt } from "@fortawesome/free-regular-svg-icons"
-import { addService } from '../../../actions/services';
+import { faTrashAlt } from "@fortawesome/free-regular-svg-icons";
 import '../../EditFormsStyles.css';
-import { Form, Button } from 'react-bootstrap';
+import { Form, Button, Col } from 'react-bootstrap';
 
 const EditServices = (props) => {
     const [newService, setNewService] = useState({
@@ -30,20 +29,6 @@ const EditServices = (props) => {
         window.location.href = `/professional/services/edit/${userID}`;
     }
 
-    function addNewService(event) {
-        const toAdd = {
-            description: newService.description,
-            price: newService.price,
-            userID: userID
-        };
-        dispatch(addService(toAdd));
-        setNewService({
-            description: "",
-            price: ""
-        });
-        window.location.href = `/professional/services/edit/${userID}`;
-    }
-
     function generateTable() {
         if (myServices === undefined || myServices.length === 0) {
             return (
@@ -60,8 +45,9 @@ const EditServices = (props) => {
                                 return (
                                     <tr key={index}>
                                         <td className="servicesContainer">
-                                            <p className="serviceText" style={{ textAlign:"left", padding: "1%"}}>{service.description}</p>
-                                        </td>
+                                            <h4 className="serviceText" style={{ textAlign:"left"}}>{service.title}</h4>
+                                            <p className="serviceText" style={{ textAlign:"left"}}>{service.description}</p>
+                                        </td> 
                                         <td>
                                             <div>
                                             <FontAwesomeIcon 
@@ -88,60 +74,13 @@ const EditServices = (props) => {
             <hr className="seperator"/>
             <div>
                 { generateTable() }
-                <hr className="seperator"/><br />
-                <h4 className="serviceText">Add Service</h4>
-                <br />
-                <div>
-                    <Form>
-                        <Form.Group>
-                            <Form.Label>Description</Form.Label>  
-                            <Form.Control
-                               value={newService.description}
-                                id="descriptionInput"
-                                name="description" 
-                                placeholder="Description"
-                                className="inputItem" 
-                                onChange={(e) => setNewService({
-                                    ...newService,
-                                    description: e.target.value
-                            })}
-                            >
-                            </Form.Control>
-                        </Form.Group>
-                        <Form.Group>
-                            <Form.Label>Price</Form.Label> 
-                            <Form.Control
-                                value={newService.price}
-                                id="priceInput"
-                                name="price" 
-                                placeholder="Price"
-                                className="inputItem" 
-                                onChange={(e) => setNewService({
-                                    ...newService,
-                                    price: e.target.value
-                                })}
-                            >
-                            </Form.Control>
-                        </Form.Group>
-                    </Form>
-                    <div >
-                        <Button
-                            className="actionButton"
-                            type="submit"
-                            onClick={(event) => addNewService(event)} 
-                        >
-                        Save
-                        </Button>
-                        <Button
-                            className="actionButton"
-                            type="button"
-                            onClick={(event) => window.location.href = `/professional/profile/${userID}`} 
-                        >
-                        Close
-                        </Button>
-                    </div>
-                </div>
             </div>
+            <Button 
+                className="actionButton" 
+                onClick={() => window.location.href =`/professional/services/add/${userID}`}
+                >
+                    Add New Service
+                </Button>
         </div>
     );
 }
