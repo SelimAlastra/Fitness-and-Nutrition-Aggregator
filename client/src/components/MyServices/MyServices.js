@@ -116,7 +116,6 @@ const MyServices = (props) => {
                                                 > 
                                                 </ReactPlayer>
                                             </div>
-
                                             <div>
                                                 <h3>{service.title}</h3>
                                                 <br />
