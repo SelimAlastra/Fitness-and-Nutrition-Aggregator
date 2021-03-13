@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import './ProfessionalProfile.css';
+import '../Profile.css';
 import ProfileInfo from '../ProfileInfo/ProfileInfo';
 import Services from './Services/Services';
 import Thumbnails from "./Thumbnails/Thumbnails";
@@ -20,8 +20,7 @@ const ProfessionalProfile = (props) => {
 
     function generateEditDetailsLink(isProfessional) {
         if (isProfessional) {
-            let url = `/professional/profile/edit/${profile._id}`;
-            return (<p className="editLink"><Link className="editLink" to={url}>Edit my details</Link></p>)
+            return (<h5 className="editLink" onClick={() => window.location.href = `/professional/profile/edit/${profile._id}`}>Edit my details</h5>);
         }
     }
 

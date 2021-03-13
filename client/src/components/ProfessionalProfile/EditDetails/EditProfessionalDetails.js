@@ -2,7 +2,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Form, Button, Option, Col } from "react-bootstrap";
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector  } from 'react-redux';
-import "./EditProfessionalDetails.css";
+import "../../EditFormsStyles.css";
 import { updateProfessional, getProfessional } from '../../../actions/professionals';
 
 const EditProfessionalDetails = (props) => {
@@ -196,8 +196,8 @@ const EditProfessionalDetails = (props) => {
                         </Col>
                     </Form.Row>
                     <Form.Group>
-                    <Button type="submit" className="actionButton">Save</Button>
-                                <Button type="button" className="actionButton" onClick={() => window.location.href=`/professional/profile/${ID}`}>Close</Button>
+                        <Button type="submit" className="actionButton">Save</Button>
+                        <Button type="button" className="actionButton" onClick={() => window.location.href=`/professional/profile/${ID}`}>Close</Button>
                     </Form.Group>
                 </Form>
             </div>
