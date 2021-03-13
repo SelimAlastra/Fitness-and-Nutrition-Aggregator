@@ -5,7 +5,6 @@ import { Button } from 'react-bootstrap';
 import '../MyServices/MyServices.css';
 import ReactPlayer from 'react-player';
 import Modal from 'react-modal';
-
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faWindowClose } from '@fortawesome/free-regular-svg-icons'
 
@@ -122,6 +121,7 @@ const MyServices = (props) => {
                                                 <h3>{service.title}</h3>
                                                 <br />
                                                 <p>{service.description}</p>
+                                                <p className="subText">This bundle contains {service.urls.length} videos</p>
                                                 <br />
                                                 <Button onClick={(e) => openModal(e, service)} className="actionButton">View Videos</Button>
                                             </div>                   

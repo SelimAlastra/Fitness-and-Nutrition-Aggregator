@@ -24,14 +24,14 @@ export const createService = async (req, res) => {
 export const updateService = async (req, res) => {
   Service.findById(req.params.id)
     .then(service => {
-      service.description = res.body.description;
-      service.price = res.body.price;
-      service.userID = res.body.userID;
-      service.urls = res.body.urls;
-      service.title = res.body.title;
+      service.description = req.body.description;
+      service.price = req.body.price;
+      service.userID = req.body.userID;
+      service.urls = req.body.urls;
+      service.title = req.body.title;
       service.save()
         .then(() => res.json('service updated!'))
-        .catch(error => res.status(400).josn('Error: ' + error))
+        .catch(error => res.status(400).json('Error: ' + error))
     })
 };
 
