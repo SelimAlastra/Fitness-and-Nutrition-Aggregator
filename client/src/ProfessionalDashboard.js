@@ -21,7 +21,7 @@ import Form from './components/Form/Form';
 import memories from './images/memories.png';
 import useStyles from './styles';
 
-const Dashboard = () => {
+const ProfessionalDashboard = () => {
     const [currentId, setCurrentId] = useState(null);
     
     const classes = useStyles();
@@ -88,4 +88,4 @@ return (
   );
 }
 
-export default Dashboard;
+export default ProfessionalDashboard;
