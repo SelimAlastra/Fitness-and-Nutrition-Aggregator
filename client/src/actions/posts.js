@@ -1,5 +1,5 @@
-import { FETCH_ALL, CREATE, UPDATE, DELETE } from '../constants/actionTypes';
-import * as api from '../api';
+import { FETCH_ALL, CREATE, UPDATE, DELETE , ADD_FAV} from '../constants/actionTypes';
+import * as api from '../api/index';
 
 
 // Action Creators
@@ -49,6 +49,16 @@ export const likePost = (id) => async (dispatch) => {
     const { data } = await api.likePost(id);
 
     dispatch({ type: UPDATE, payload: data });
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
+export const toggleFavAction = (id) => async (dispatch) =>{
+  try {
+    const { data } = await api.toggleFavAction(id);
+
+    dispatch({ type: ADD_FAV, payload: data});
   } catch (error) {
     console.log(error.message);
   }

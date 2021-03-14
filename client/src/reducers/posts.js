@@ -1,6 +1,6 @@
-import { FETCH_ALL, CREATE, UPDATE, DELETE } from '../constants/actionTypes';
+import { FETCH_ALL, CREATE, UPDATE, DELETE, ADD_FAV } from '../constants/actionTypes';
 
-export default (posts = [], action) => {
+export default (posts = [],action) => {
     switch (action.type) {
         case DELETE:
             return posts.filter((post) => post._id !== action.payload);
@@ -10,6 +10,8 @@ export default (posts = [], action) => {
             return action.payload; 
         case CREATE:
             return [ ...posts, action.payload];
+        case ADD_FAV:
+            return posts;
         default:
             return posts;
     }

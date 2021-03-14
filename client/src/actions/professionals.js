@@ -13,7 +13,7 @@ export const getProfessional = (id) => async (dispatch) => {
 export const updateProfessional = (id, updatedProfile) => async (dispatch) => {
     try {
         const { data } = await api.updateProfessional(id, updatedProfile);
-
+   
         dispatch({ type: 'UPDATE', payload: data});
     } catch (error) {
         console.log(error.message);

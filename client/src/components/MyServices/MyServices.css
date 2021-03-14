@@ -1,0 +1,60 @@
+.thumbnailVideo {
+    margin-top: 3%;
+    margin-bottom: 3%;
+    justify-content: center;
+    display: flex;
+}
+
+.serviceCard {
+    background-color: white;
+    padding: 5%;
+    margin-top: 1%;
+    margin-bottom: 1%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.serviceList {
+    padding-inline-start: none;
+    list-style: none;
+    margin: 5%;
+    min-width: 400px;
+}
+
+.titleText {
+    color: white;
+    margin: 5%;
+}
+
+.serviceSeperator {
+    background-color: white;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+.serviceModal {
+    height: max-content;
+    background-color: white;
+    margin: 5%;
+    padding: 1%;
+    text-align: center;
+    height: 100%;
+    border-radius: 10px;
+    padding: 1%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    overflow: scroll;
+}
+
+li {
+    align-items: center;
+    height: 100%;
+}
+
+.closeButton {
+    text-align: right;
+    cursor: pointer;
+}
+
+ul {
+    padding: 0px;
+}

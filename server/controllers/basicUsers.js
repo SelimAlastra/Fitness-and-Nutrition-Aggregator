@@ -58,7 +58,6 @@ export const updateBasicUser = async (req, res) => {
       basicUser.goals = req.body.goals;
       basicUser.tags = req.body.tags;
       basicUser.bio = req.body.bio;
-
       basicUser.save()
         .then(() => res.json('BasicUser updated!'))
         .catch(err => res.status(400).json('Error: ' + err));
