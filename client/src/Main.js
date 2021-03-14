@@ -3,7 +3,8 @@ import { Switch, Route } from "react-router-dom";
 import AdminLogin from "./AdminLogin";
 import AdminPage from "./AdminPage";
 import LandingPage from './LandingPage';
-import GeneralDashboard from './GeneralDashboard';
+import ClientDashboard from './ClientDashboard';
+import ProfessionalDashboard from './ProfessionalDashboard';
 import Quiz from './quiz/quizUser.js';
 import Tags from './quiz/tagsProffesional.js';
 
@@ -34,7 +35,8 @@ const Main = () => {
                 <Route exact path='/' component={LandingPage}></Route>
                 <Route exact path='/adminLogin' component={AdminLogin}></Route>
                 <Route exact path='/adminPage' component={AdminPage}></Route>
-                <Route exact path='/generalDashboard' component={GeneralDashboard}></Route>
+                <Route exact path='/clientDashboard' component={ClientDashboard}></Route>
+                <Route exact path='/professionalDashboard' component={ProfessionalDashboard}></Route>
 
                 <Route exact path='/userQuiz/:id' component={Quiz}></Route>
                 <Route exact path='/professionalTags/:id' component={Tags}></Route>
