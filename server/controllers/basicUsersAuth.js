@@ -14,6 +14,7 @@ dotenv.config();
 
 sgMail.setApiKey(process.env.MAIL_KEY);
 
+
 export const registerController = (req, res) => {
   const { username, email, password, name} = req.body;
   
@@ -155,7 +156,7 @@ export const googleController = (req, res) => {
                 });
               }
               const token = jwt.sign(
-                { _id: data._id },
+                { _: data._id },
                 process.env.JWT_SECRET,
                 { expiresIn: '7d' }
               );
