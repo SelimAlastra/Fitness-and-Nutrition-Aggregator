@@ -21,8 +21,10 @@ export const createBasicUser = async (req, res) => {
   const goals = req.body.goals;
   const tags = req.body.tags;
   const bio = req.body.bio;
+  const bundles = req.body.bundles;
 
-  const newBasicUser = new BasicUser({username,name,email,password,gender,dob,address,isBanned,bodyType,weight,goals,tags,bio});
+  const newBasicUser = new BasicUser({username,name,email,password,gender,dob,
+    address,isBanned,bodyType,weight,goals,tags,bio, bundles});
 
   newBasicUser.save()
     .then(() => res.json('BasicUser added!'))
@@ -58,6 +60,7 @@ export const updateBasicUser = async (req, res) => {
       basicUser.goals = req.body.goals;
       basicUser.tags = req.body.tags;
       basicUser.bio = req.body.bio;
+      basicUser.bundles = req.body.bundles;
       basicUser.save()
         .then(() => res.json('BasicUser updated!'))
         .catch(err => res.status(400).json('Error: ' + err));
