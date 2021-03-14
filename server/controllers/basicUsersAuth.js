@@ -2,7 +2,8 @@ import User from '../models/basicUser.model.js';
 import ProfUser from '../models/professionalUser.model.js';
 import expressJwt from 'express-jwt';
 import _ from 'lodash';
-import { OAuth2Client } from 'google-auth-library';
+import pkg from 'google-auth-library';
+const { OAuth2Client } = pkg;
 import fetch from 'node-fetch';
 
 import jwt from 'jsonwebtoken';
