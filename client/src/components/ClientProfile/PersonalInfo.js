@@ -1,5 +1,3 @@
-import "./PersonalInfo.css";
-
 const PersonalInfo = ({profile}) => {
     if (profile !== undefined && profile !== null) {
         return (
