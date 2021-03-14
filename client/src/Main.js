@@ -5,6 +5,7 @@ import AdminPage from "./AdminPage";
 import LandingPage from './LandingPage';
 import GeneralDashboard from './GeneralDashboard';
 import Quiz from './quiz/quizUser.js';
+import Tags from './quiz/tagsProffesional.js';
 
 import Register from './components/BasicUsersAuth/userRegister.jsx';
 import Login from './components/BasicUsersAuth/userLogin.jsx';
@@ -35,7 +36,8 @@ const Main = () => {
                 <Route exact path='/adminPage' component={AdminPage}></Route>
                 <Route exact path='/generalDashboard' component={GeneralDashboard}></Route>
 
-                <Route exact path='/userQuiz' component={Quiz}></Route>
+                <Route exact path='/userQuiz/:id' component={Quiz}></Route>
+                <Route exact path='/professionalTags/:id' component={Tags}></Route>
                 
                 <Route exact path='/launch/users' exact render={props => <Fragment> <Login {...props}/> <Register {...props}/> </Fragment>} />
                 <Route exact path='/user' exact render={props => <UserPage {...props} />} />

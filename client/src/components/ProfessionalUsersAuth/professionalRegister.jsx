@@ -13,6 +13,7 @@ import {faEye} from "@fortawesome/free-solid-svg-icons";
 import './professionalRegister.css';
 import Google from './googleLogin.jsx';
 import Facebook from './facebookLogin.jsx';
+import { useHistory } from 'react-router-dom';
 
 function PopUpSignUp(){
   const [show, setShow] = useState(false);
@@ -36,6 +37,8 @@ return(
 };
 
 const Register = () => {
+
+const history = useHistory();
 
 const eye = <FontAwesomeIcon icon={faEye} />;
 
@@ -85,9 +88,8 @@ const formik = useFormik({
         axios
           .post(`http://localhost:5000/professionalUsers/register`, newData)
           .catch(err => {
-                      
-                      console.log(err.response.data.errors)
                       if(err.response.data.errors){
+                        console.log(err.response.data.errors)
                         if(err.response.data.errors.includes('Email'))
                           actions.setFieldError('email', 'Email already in use')
                         else
@@ -95,6 +97,8 @@ const formik = useFormik({
                       }  
                     })
         actions.setSubmitting(false);
+
+        history.push(`/professionalTags/${values.username}`)
       }, 500);
     },
 });
