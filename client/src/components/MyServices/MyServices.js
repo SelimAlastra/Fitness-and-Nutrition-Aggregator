@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import {useEffect, useState } from 'react';
+import { getBasicUser } from '../../actions/basicUsers';
 import { getServices } from '../../actions/services';
 import { Button } from 'react-bootstrap';
 import '../MyServices/MyServices.css';
@@ -14,19 +15,45 @@ const MyServices = (props) => {
     const [modalOpen, setModalOpen] = useState(false);
     Modal.setAppElement('body');
 
+
+    const [myServices, setMyServices] = useState([]);
+
+    // get all services
+    // get user
+    // filter all services by the services in the basic user
+
+    // Get All services
     useEffect(() => {
         dispatch(getServices());
     },[dispatch]);
-
-
     const allServices = useSelector((state) => state.services);
-    const [myServices, setMyServices] = useState([]);
+    //
+
+    // Get User
+    useEffect(() => {
+        dispatch(getBasicUser(userID));
+    }, [dispatch]);
+    const basicUser = useSelector((state) => state.basicUsers);
+    let basicUserServiceIds = basicUser.bundles;
+    //
+
+    // filter all services by the services in basic user
+    useEffect(() => {
+        console.log("exe");
+        const filteredServices = allServices.filter(service => basicUserServiceIds.includes(service._id));
+        setMyServices(filteredServices);
+    }, [basicUser]);
+    //
+
+
+    // const [myServices, setMyServices] = useState([]);
     const [currentService, setCurrentService] = useState({});
 
-    useEffect(() => {
-        const services = allServices.filter(service => service.userID === userID);
-        setMyServices(services);
-    }, [allServices]);
+
+
+
+
+
 
 
     function openModal(event, service) {
@@ -65,7 +92,7 @@ const MyServices = (props) => {
                                         return (
                                             <li key={index}>
                                                 <div className="video">
-                                                    <div className="thumbnailVideo">
+                                                    <div className="videoView">
                                                         <ReactPlayer
                                                             url={url}
                                                             controls={true}
@@ -87,7 +114,6 @@ const MyServices = (props) => {
 
 
     if (myServices === undefined || myServices === []) {
-        console.log("eeheh");
         return (
             <div>
                 <p>Sorry, no services can be found!</p>
@@ -97,7 +123,8 @@ const MyServices = (props) => {
         return (
             <div>
                 <div className="titleText">
-                    <h1>My Services</h1>
+                    <h1>My Bundles</h1>
+                    <p>These are the bundles you have purchased.</p>
                     <hr  className="serviceSeperator"/>
                 </div>
                 <div>
