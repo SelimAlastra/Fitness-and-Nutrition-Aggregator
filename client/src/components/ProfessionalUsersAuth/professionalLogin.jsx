@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import { isAuth } from '../../actions/userAuth.js';
+import { authenticate, isAuth } from '../../actions/userAuth.js';
 import { Link, Redirect, useHistory } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
@@ -71,7 +71,9 @@ const schema = Yup.object().shape({
       }
       axios.post(`http://localhost:5000/professionalUsers/login`, newData)
           .then(res => {
+            authenticate(res, () => {
             history.push('/professional')
+            })
           })
           .catch(err => {
             if(err.response.data.errors){
