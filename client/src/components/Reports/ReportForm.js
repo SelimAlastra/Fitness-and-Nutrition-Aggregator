@@ -5,7 +5,7 @@ import {  createReport } from "../../actions/reports";
 
 const ReportForm = () => {
 
-    const [ReportData, setReportData] = useState( {description: ''} );
+    const [ReportData, setReportData] = useState( {reason: ''} );
     const dispatch = useDispatch();
 
     const handleSubmit = (e) => {
@@ -22,9 +22,9 @@ const ReportForm = () => {
             id="Description"
             name="Description"
             type="text"
-            value={ReportData.description}
+            value={ReportData.reason}
             placeholder="Enter Description"
-            onChange={(e) => setReportData( { ...ReportData, description: e.target.value } )}
+            onChange={(e) => setReportData( { ...ReportData, reason: e.target.value } )}
         />
         </Form.Group>
 

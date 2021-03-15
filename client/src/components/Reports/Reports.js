@@ -23,8 +23,10 @@ const Reports = () => {
         <Table>
                 <thead>
                     <tr>
-                        <th>User</th>
-                        <th>Description</th>
+                        <th>Reporter</th>
+                        <th>Reported user</th>
+                        <th>Reason</th>
+                        <th>postId</th>
                         <th>Time</th>
                         <th>Actions</th>
                     </tr>

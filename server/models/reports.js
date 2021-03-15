@@ -1,12 +1,15 @@
 import mongoose from 'mongoose';
 
 const reportSchema = mongoose.Schema({
-    username: {
-        type: String,
-        default: ''
-    },
-    description: String,
-});
+
+    reporterId: String,
+    reportedId: String,
+    reason: String,
+    postId: String
+
+}, {
+    timestamps: true,
+  });
 
 const Report = mongoose.model('Reports', reportSchema);
 
