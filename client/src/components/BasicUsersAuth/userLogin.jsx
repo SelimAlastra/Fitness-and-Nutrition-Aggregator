@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import { isAuth } from '../../actions/userAuth.js';
+import { authenticate, isAuth } from '../../actions/userAuth.js';
 import { Link, Redirect, useHistory } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
@@ -71,11 +71,13 @@ const schema = Yup.object().shape({
       }
       axios.post(`http://localhost:5000/basicUsers/login`, newData)
           .then(res => {
+            authenticate(res)
             history.push('/user')
           })
           .catch(err => {
-            if(err.response.data.errors){
-                if(err.response.data.errors.includes('User'))
+            console.log(err)
+            if(err.data.errors){
+                if(err.data.errors.includes('User'))
                   actions.setFieldError('email', 'User with that email does not exist. Please register.')
                 else
                   actions.setFieldError('password', 'Email and password do not match')     

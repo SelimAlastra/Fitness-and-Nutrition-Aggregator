@@ -112,14 +112,15 @@ export const loginController = (req, res) => {
           expiresIn: '7d'
         }
       );
-      const { _id, username, email} = user;
+      const { _id, username, email, name} = user;
 
       return res.json({
         token,
         user: {
           _id,
           username,
-          email
+          email,
+          name
         }
       });
     });
