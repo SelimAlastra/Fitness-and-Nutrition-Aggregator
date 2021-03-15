@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-
+//change getUser
 const EditBasicUser = (props) => {
     const dispatch = useDispatch();
     const [validated, setValidated] = useState(false);
