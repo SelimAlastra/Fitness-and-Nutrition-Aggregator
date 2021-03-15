@@ -3,7 +3,7 @@ import reactDom from "react-dom";
 import { Link, Switch, Route } from "react-router-dom";
 import { Form, Container, Button, Navbar, Nav, FormControl } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
-import Issues from './components/Issues/Issues'
+import Reports from './components/Reports/Reports'
 import BasicUsers from "./components/BasicUsers/BasicUsers";
 import BasicUserDetails from "./components/BasicUsers/BasicUser/BasicUserDetails";
 import BasicUserEdit from "./components/BasicUsers/BasicUser/BasicUserEdit";
@@ -18,9 +18,8 @@ const NavigationBar = () => (
         <Navbar.Brand>Admin</Navbar.Brand>
         <Nav>
             <Nav.Link>Statistics</Nav.Link>
+            <LinkContainer to="/Reports">
             <Nav.Link>Reports</Nav.Link>
-            <LinkContainer to="/Issues">
-            <Nav.Link>Issues</Nav.Link>
             </LinkContainer>
             <LinkContainer to="/BasicUsers">
                 <Nav.Link>Basic Users</Nav.Link>
@@ -55,7 +54,7 @@ const AdminPage = () => (
                 <Route exact path='/professionalUsers' component={ProfessionalUsers}/>
                 <Route exact path='/professionalUsers/:id' component={ProfessionalUserDetails}/>
                 <Route exact path='/professionalUsers/edit/:id' component={ProfessionalUserEdit}/>
-                <Route exact path='/issues' component={Issues}/>
+                <Route exact path='/reports' component={Reports}/>
             </Switch>
         </Container>
     </div>

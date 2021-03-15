@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const issueUrl = 'http://localhost:5000/issues';
+const reportUrl = 'http://localhost:5000/reports';
 const url = 'http://localhost:5000/posts';
 
 const professionalUsersUrl = 'http://localhost:5000/professionalUsers';
@@ -8,9 +8,9 @@ const servicesUrl = 'http://localhost:5000/services';
 const basicUserUrl = 'http://localhost:5000/basicUsers';
 
 
-export const fetchIssues = () => axios.get(issueUrl);
-export const createIssue = (newIssue) => axios.post(issueUrl, newIssue);
-export const deleteIssue = (id) => axios.delete(issueUrl+'/'+id);
+export const fetchReports = () => axios.get(reportUrl);
+export const createReport = (newReport) => axios.post(reportUrl, newReport);
+export const deleteReport = (id) => axios.delete(reportUrl+'/'+id);
 
 
 export const fetchPosts = () => axios.get(url);

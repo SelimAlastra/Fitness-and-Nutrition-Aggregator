@@ -3,23 +3,23 @@ import reactDom from "react-dom";
 import { Link } from "react-router-dom";
 import { Table } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
-import Issue from "./Issue/Issue";
-import IssueForm from './IssueForm'
-import { getIssues } from "../../actions/issues";
+import Report from "./Report/Report";
+import ReportForm from './ReportForm'
+import { getReports } from "../../actions/reports";
 
-const Issues = () => {
+const Reports = () => {
 
     const dispatch = useDispatch();
 
     useEffect(() => {
-      dispatch(getIssues());
+      dispatch(getReports());
     }, [dispatch]);
 
-    const issues = useSelector((state) => state.issues);
+    const reports = useSelector((state) => state.reports);
 
     return (
         <>
-        <IssueForm />
+        <ReportForm />
         <Table>
                 <thead>
                     <tr>
@@ -30,9 +30,9 @@ const Issues = () => {
                     </tr>
                 </thead>
                 <tbody>
-                {issues.map((issue) => (
-                        <tr key={issue._id} >
-                            <Issue issue={issue} />
+                {reports.map((report) => (
+                        <tr key={report._id} >
+                            <Report report={report} />
                         </tr>
                     ))}
                 </tbody>
@@ -41,4 +41,4 @@ const Issues = () => {
     );
 }
 
-export default Issues;
+export default Reports;
