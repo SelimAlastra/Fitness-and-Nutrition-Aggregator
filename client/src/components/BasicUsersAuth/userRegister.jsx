@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import { isAuth } from '../../actions/userAuth.js';
+import { authenticate, isAuth } from '../../actions/userAuth.js';
 import { Redirect } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
@@ -84,6 +84,11 @@ const formik = useFormik({
         }
         axios
           .post(`http://localhost:5000/basicUsers/register`, newData)
+          .then(res => {
+            authenticate(res, () => {
+            history.push(`/userQuiz/${values.username}`)
+            })
+          })
           .catch(err => {
                       if(err.response.data.errors){
                         console.log(err.response.data.errors)
@@ -94,15 +99,13 @@ const formik = useFormik({
                       }  
                     })
         actions.setSubmitting(false);
-
-        history.push(`/userQuiz/${values.username}`)
       }, 500);
     },
 });
 
   return (
       <div>
-        {isAuth() ? <Redirect to='/' /> : null}
+        {/* {isAuth() ? <Redirect to='/' /> : null} */}
       
     <Form autoComplete="off" onSubmit={formik.handleSubmit}>
     <Form.Label hidden = {true} htmlFor="email">Email</Form.Label>
