@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-const issueSchema = mongoose.Schema({
+const reportSchema = mongoose.Schema({
     username: {
         type: String,
         default: ''
@@ -8,6 +8,6 @@ const issueSchema = mongoose.Schema({
     description: String,
 });
 
-const Issue = mongoose.model('Issues', issueSchema);
+const Report = mongoose.model('Reports', reportSchema);
 
-export default Issue;
+export default Report;

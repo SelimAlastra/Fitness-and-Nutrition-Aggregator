@@ -1,9 +1,9 @@
 import * as api from '../api';
 
-export const getIssues = () => async (dispatch) => {
+export const getReports = () => async (dispatch) => {
 
     try {
-        const { data } = await api.fetchIssues();
+        const { data } = await api.fetchReports();
 
         dispatch({ type: 'FETCH_ALL_ISSUES', payload: data });
     } catch (error) {
@@ -11,10 +11,10 @@ export const getIssues = () => async (dispatch) => {
     }
 }
 
-export const createIssue = (Issue) => async (dispatch) => {
+export const createReport = (Report) => async (dispatch) => {
 
     try {
-        const { data } = await api.createIssue(Issue);
+        const { data } = await api.createReport(Report);
 
         dispatch({ type: 'CREATE_ISSUE', payload: data });
 
@@ -23,10 +23,10 @@ export const createIssue = (Issue) => async (dispatch) => {
     }
 }
 
-export const deleteIssue = (id) => async (dispatch) => {
+export const deleteReport = (id) => async (dispatch) => {
 
     try {
-        await api.deleteIssue(id);
+        await api.deleteReport(id);
 
         dispatch({ type: 'DELETE_ISSUE', payload: id });
 

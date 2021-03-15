@@ -5,7 +5,7 @@ import cors from "cors";
 import dotenv from 'dotenv';
 
 import postRoutes from './routes/posts.js';
-import issueRoutes from './routes/issues.js';
+import reportRoutes from './routes/reports.js';
 import adminRoutes from './routes/admins.js';
 import basicUserRoutes from './routes/basicUsers.js';
 // import commentRoutes from './routes/comments.js';
@@ -24,7 +24,7 @@ app.use(bodyParser.json({ limit: "30mb", extended: "true" }));
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: "true" }));
 app.use(cors());
 
-app.use('/issues', issueRoutes);
+app.use('/reports', reportRoutes);
 app.use('/basicUsers', basicUserRoutes);
 app.use('/professionalUsers', professionalUserRoutes);
 app.use('/admins', adminRoutes);

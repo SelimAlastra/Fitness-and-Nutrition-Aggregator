@@ -1,17 +1,17 @@
 import React, {useState} from 'react';
 import { Form, Container, Button } from "react-bootstrap";
 import { useDispatch } from 'react-redux';
-import {  createIssue } from "../../actions/issues";
+import {  createReport } from "../../actions/reports";
 
-const IssueForm = () => {
+const ReportForm = () => {
 
-    const [IssueData, setIssueData] = useState( {description: ''} );
+    const [ReportData, setReportData] = useState( {description: ''} );
     const dispatch = useDispatch();
 
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        dispatch(createIssue(IssueData));
+        dispatch(createReport(ReportData));
     }
     
     return(
@@ -22,9 +22,9 @@ const IssueForm = () => {
             id="Description"
             name="Description"
             type="text"
-            value={IssueData.description}
+            value={ReportData.description}
             placeholder="Enter Description"
-            onChange={(e) => setIssueData( { ...IssueData, description: e.target.value } )}
+            onChange={(e) => setReportData( { ...ReportData, description: e.target.value } )}
         />
         </Form.Group>
 
@@ -33,4 +33,4 @@ const IssueForm = () => {
     );
 }
 
-export default IssueForm;
+export default ReportForm;
