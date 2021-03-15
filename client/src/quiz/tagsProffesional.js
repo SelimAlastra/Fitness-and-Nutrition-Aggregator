@@ -4,7 +4,7 @@ import Answer from './components/answer';
 import Test from './testPage';
 import './styling/quizUser.css'
 
-export default class TagsProff extends Component{
+export default class Quiz extends Component{
 
     state = {
         questions: [
@@ -59,11 +59,12 @@ export default class TagsProff extends Component{
                 ],
             },
         ],
-
+    
         questionsReqInput: [6], //these are questions that require input
-
+    
         currentQuestion: 0,
-        complete: false
+        complete: false,
+        invalidInput: false
     }
 
     /**
@@ -75,30 +76,133 @@ export default class TagsProff extends Component{
      * (this function violates the Single-Responsability-Principle..)
      */
     handleAnswerButtonClick = (answer) => {
-        const{questions, currentQuestion, complete} = this.state;
-        const newItems = [...questions]
+        const{questions, currentQuestion, questionsReqInput} = this.state;
+        const newItems = [...questions];
 
+        // used to determine whether the next question will be automatically displayed or not (Yes if @true, No if @false)
+        let firstTimeSelected = true;
+
+        // remove previously selected answer
         if(newItems[currentQuestion].answerOptions.find(element => element.selected === true)){
-            const answerSelected = newItems[currentQuestion].answerOptions.find(element =>element.selected === true);
+            const answerSelected = newItems[currentQuestion].answerOptions.find(element => element.selected === true);
             answerSelected.selected = false; 
+            firstTimeSelected = false;
+
+            // if question required input, clear saved input
+            if(questionsReqInput.find(element => element === newItems[currentQuestion].questionId)){
+                newItems[currentQuestion].input.pop();
+            }
         }
 
+        // set new selected answer 
         if(newItems[currentQuestion].answerOptions.find(element => element === answer)){
             const answerToSelect = newItems[currentQuestion].answerOptions.find(element => element === answer);
             answerToSelect.selected = true;
         }
 
+        //update the @questions values
         this.setState({
             questions : newItems
         })
 
         if(currentQuestion + 1 < questions.length){
-            this.setState({
-                currentQuestion: currentQuestion+1,
-                answerToSelect : true
-            });
-        } else {
-            alert("Well done! Now go sweat it 'till you own it!")
+            if(firstTimeSelected === true && !questionsReqInput.find(element => element === questions[currentQuestion].questionId)){
+                this.setState({
+                    currentQuestion: currentQuestion+1,
+                    answerToSelect : true
+                });
+            } else {
+                this.setState({
+                    answerToSelect : true
+                });
+            }
+        }
+    }
+
+    /**
+     * check if @param value is an integer
+     */
+    isInt = (value) => {
+        return !isNaN(value) && 
+               parseInt(Number(value)) == value && 
+               !isNaN(parseInt(value, 10));
+      }
+
+    /**
+     * @return index of selected answer
+     */
+    findSelectedAnswer = () => {
+        const{questions, currentQuestion} = this.state;
+
+        for(let i=0; i<questions[currentQuestion].answerOptions.length; i++){
+            if(questions[currentQuestion].answerOptions[i].selected === true){
+                return i;
+            }
+        }
+    }
+
+    /**
+     * @param input is the value that seeks approval to be saved as user input
+     */
+    addInput = (input) => {
+        const{questions, currentQuestion} = this.state;
+        questions[currentQuestion].input.push(document.getElementById("inputBox").value);
+    /*
+        //for height question accept two types of input depending on selected value
+        if(questions[currentQuestion].questionId === 3){
+            if(this.findSelectedAnswer() === 0){
+                if(this.isInt(input)){
+                    //ERROR display still in progress
+                    //document.getElementById("inputAlert").classList.add("disabled");
+
+                    questions[currentQuestion].input.push(document.getElementById("inputBox").value);
+                } else {
+                    alert("ERROR! Input is invalid.");
+                    //ERROR display still in progress
+                    //document.getElementById("inputAlert").classList.remove("disabled");
+                }
+            } else {
+                if(input!=""){
+                    //const feet = input.replace("feet","")[0].match(/\b(\w+)\b/g)[0];
+                    //const inches = input.replace("inches","")[0].match(/\b(\w+)\b/g)[1];
+                    if(this.isInt(feet)){
+                        if(inches === ""){
+                            questions[currentQuestion].input.push(feet);
+                        } else {
+                            if(this.isInt(inches)){
+                                questions[currentQuestion].input.push(feet + " " + inches);
+                            } else{
+                                alert("ERROR! Input is invalid.");
+                            }
+                        }
+                    } else {
+                        alert("ERROR! Input is invalid.");
+                    }
+                }
+            }
+        } */
+    }
+
+    /**
+     * if question requires input, add input value 
+     * if there is already an input value, pop it and add new value
+     */
+    processInput = () => {
+        const{questions, currentQuestion, questionsReqInput} = this.state;
+
+        //check for question that requires input
+        if(questionsReqInput.find(element => element === questions[currentQuestion].questionId)){
+
+            //check if there has been previous input value
+            if(!questions[currentQuestion].input || !questions[currentQuestion].input.length){
+                this.addInput(document.getElementById("inputBox").value);
+            } else {
+                //save new input if value is not null
+                if(document.getElementById("inputBox").value.length > 0){
+                    questions[currentQuestion].input.pop();
+                    this.addInput(document.getElementById("inputBox").value);
+                }
+            }
         }
     }
 
@@ -108,6 +212,9 @@ export default class TagsProff extends Component{
     handleBackButtonClick = () => {
         const{currentQuestion} = this.state
         if(currentQuestion > 0){
+
+            this.processInput();
+
             this.setState({
                 currentQuestion: currentQuestion-1
             });
@@ -118,8 +225,11 @@ export default class TagsProff extends Component{
      * move to the next question only if there are other questions left
      */
     handleForwardButtonClick = () => {
-        const{questions, currentQuestion} = this.state
+        const{questions, currentQuestion, questionsReqInput} = this.state
         if(currentQuestion < questions.length){
+
+            this.processInput();
+
             this.setState({
                 currentQuestion: currentQuestion+1
             });
@@ -130,21 +240,30 @@ export default class TagsProff extends Component{
      * check if an answer has been selected for every question
      */
     isCompleted = () => {
-        const{questions} = this.state
-        let isComplete = true
+        const{questions, questionsReqInput} = this.state;
+        let isComplete = true;
         questions.forEach(question => {
-            if(! question.answerOptions.find(element => element.selected === true)) 
+            //check for empty input
+            if(questionsReqInput.find(element => element === question.questionId)){
+                //it seems the input length will always be 1
+                if(question.input.length > 0){
+                    if(question.input[0] === ""){
+                        isComplete = false;
+                    }
+                } else if(/*!question.input || !question.input.length || */!question.answerOptions.find(element => element.selected === true)){
+                    isComplete = false;
+                }
+            } else if(! question.answerOptions.find(element => element.selected === true)){
                 isComplete = false;
+            }
         });
-        return isComplete
+        return isComplete;
     }
 
     /**
-     * redirect to the quiz submission page
+     * change @questions completion status
      */
     handleFinishButtonClick = () => {
-        const{questions, complete} = this.state
-
         if(this.isCompleted() === true){
             this.setState({
                 complete: true
@@ -152,24 +271,22 @@ export default class TagsProff extends Component{
         } else {
             alert("You still have some questions to complete.");
         }
-        
     }
     
     render(){
+        let {questions, currentQuestion, complete, questionsReqInput, invalidInput} = this.state;
 
-        let {questions, currentQuestion, complete, questionsReqInput} = this.state;
-    
         return(
             
-            <div className="" /*style={{ backgroundImage: `url(${background})` }} */> 
-                {complete ? (
+            <div className=""> 
+                { complete ? (
                     <Test 
+                        //
                         questions = {questions}
+                        questionsReqInput = {questionsReqInput}
                     />
-                ) : (
-                    <>  
-                        <div className="container basic-wrap">
-                            {/* <img src={require('./luis-vidal.jpg')} /> */}
+                ) : ( 
+                        <div className="basic-wrap">
                             <div className="question-section">
                                 <Question
                                     question = {questions[currentQuestion]}
@@ -186,16 +303,15 @@ export default class TagsProff extends Component{
                                     questionsReqInput = {questionsReqInput}
                                     handleAnswerButtonClick = {this.handleAnswerButtonClick}
                                 />
-                                
                             </div>
 
                             <div>
                                 <button id="backward-btn" disabled={currentQuestion===0 ? true: false} onClick={() => this.handleBackButtonClick()}>ᐊ</button>
                                 <button id="forward-btn" disabled={currentQuestion===questions.length-1 ? true: false} style={{ display: currentQuestion===questions.length-1 ? 'none' : null }} onClick={() => this.handleForwardButtonClick()}>ᐅ</button>
+                                {/* ERROR display still in progress <div id="inputAlert" className="input-alert disabled">ERROR! Invalid input.</div> */}
                                 <button id="finish-btn" style = {{ display: currentQuestion===questions.length-1 ? null : 'none'}} onClick={() => this.handleFinishButtonClick()}>FINISH</button>
                             </div>
-                        </div>
-                    </>
+                            </div>
                 )}
             </div>
         );

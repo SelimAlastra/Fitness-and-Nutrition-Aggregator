@@ -6,6 +6,7 @@ import LandingPage from './LandingPage';
 import ClientDashboard from './ClientDashboard';
 import ProfessionalDashboard from './ProfessionalDashboard';
 import Quiz from './quiz/quizUser.js';
+import Tags from './quiz/tagsProffesional.js';
 
 import Register from './components/BasicUsersAuth/userRegister.jsx';
 import Login from './components/BasicUsersAuth/userLogin.jsx';
@@ -37,7 +38,9 @@ const Main = () => {
                 <Route exact path='/clientDashboard' component={ClientDashboard}></Route>
                 <Route exact path='/professionalDashboard' component={ProfessionalDashboard}></Route>
 
-                <Route exact path='/userQuiz' component={Quiz}></Route>
+                <Route exact path='/userQuiz/:id' component={Quiz}></Route>
+                <Route exact path='/professionalTags/:id' component={Tags}></Route>
+                
                 <Route exact path='/launch/users' exact render={props => <Fragment> <Login {...props}/> <Register {...props}/> </Fragment>} />
                 <Route exact path='/user' exact render={props => <UserPage {...props} />} />
                 <Route exact path='/user/password/forget' exact render={props => <ForgetPassword {...props} />} />
