@@ -9,13 +9,16 @@ const Report = ({ report }) => {
 
     return (
         <>
-            <td>{report.username}</td>
-            <td>{report.description}</td>
+            <td>{report.reporterId}</td>
+            <td>{report.reportedId}</td>
+            <td>{report.reason}</td>
+            <td>{report.postId}</td>
+            <td>{report.createdAt}</td>
             <td></td>
             <td>
                 <Container>
                     <Button variant="primary" onClick={ () => { dispatch(deleteReport(report._id)) }}>Delete</Button> &nbsp;
-                    <Button variant="primary" onClick={ () => {}}>Reply</Button>
+                    <Button variant="primary" onClick={ () => {}}>View Post</Button>
                 </Container>
             </td>
         </>
