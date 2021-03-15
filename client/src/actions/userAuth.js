@@ -1,29 +1,29 @@
 import cookie from 'js-cookie';
 
-export const setCookie = (key, value) => {
-    if(window !== 'undefined'){
-        cookie.set(key, value, {
-            expires: 1
-        })
-    }
-}
+// export const setCookie = (key, value) => {
+//     if(window !== 'undefined'){
+//         cookie.set(key, value, {
+//             expires: 1
+//         })
+//     }
+// }
 
-//Remove from cookie
-export const removeCookie = key => {
-    if(window !== 'undefined'){
-        cookie.remove(key, {
-            expires: 1
-        })
-    }
-}
+// //Remove from cookie
+// export const removeCookie = key => {
+//     if(window !== 'undefined'){
+//         cookie.remove(key, {
+//             expires: 1
+//         })
+//     }
+// }
 
-export const getCookie = key => {
-    if (window !== 'undefined'){
-        cookie.get(key, {
-            expires: 1
-        })
-    }
-}
+// export const getCookie = key => {
+//     if (window !== 'undefined'){
+//         cookie.get(key, {
+//             expires: 1
+//         })
+//     }
+// }
 
 export const setLocalStorage  = (key, value) => {
     if (window !== 'undefined') {
@@ -42,7 +42,7 @@ export const removeLocalStorage = key => {
 // Authenticate user by passing data to cookie and localStorage during signin
 export const authenticate = (response, next) => {
     console.log('AUTHENTICATE HELPER ON SIGNIN RESPONSE', response);
-    setCookie('token', response.data.token);
+    //setCookie('token', response.data.token);
     setLocalStorage('user', response.data.user);
     next();
 };
@@ -50,19 +50,19 @@ export const authenticate = (response, next) => {
 // Access user info from localstorage
 export const isAuth = () => {
     if (window !== 'undefined') {
-        const cookieChecked = getCookie('token');
-        if (cookieChecked) {
+        //const cookieChecked = getCookie('token');
+        //if (cookieChecked) {
             if (localStorage.getItem('user')) {
                 return JSON.parse(localStorage.getItem('user'));
             } else {
                 return false;
             }
-        }
+        //}
     }
 };
 
 export const signOut = next => {
-    removeCookie('token');
+    //removeCookie('token');
     removeLocalStorage('user');
     next();
 };

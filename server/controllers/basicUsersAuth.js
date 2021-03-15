@@ -15,6 +15,7 @@ dotenv.config();
 
 sgMail.setApiKey(process.env.MAIL_KEY);
 
+
 export const registerController = (req, res) => {
   const { username, email, password, name} = req.body;
   
@@ -46,9 +47,21 @@ export const registerController = (req, res) => {
               user.save()
                   .then(user => res.json(user))
                   .catch(err => console.log(err))
+              
             }
         })
       }
+      // const { _id, username, email, name} = user;
+      //           return res.json({
+      //           token,
+      //           user: {
+      //             _id,
+      //             username,
+      //             email,
+      //             name
+      //           }
+      // });
+          
     })
   }
    if(User.findOne({username}))
@@ -80,8 +93,18 @@ export const registerController = (req, res) => {
                       .catch(err => console.log(err))
               }
             })
-          }  
-       })
+          }
+          
+          // return res.json({
+          //   token,
+          //   user: {
+          //     _id,
+          //     username,
+          //     email,
+          //     name
+          //   }
+          // });
+        })
     }
   } 
 
@@ -140,10 +163,10 @@ export const googleController = (req, res) => {
             const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET, {
               expiresIn: '7d'
             });
-            const { _id, email, name } = user;
+            const { _id, email, name, username } = user;
             return res.json({
               token,
-              user: { _id, email, name }
+              user: { _id, email, name, username }
             });
           } else {
             let password = email + process.env.JWT_SECRET;
@@ -157,14 +180,14 @@ export const googleController = (req, res) => {
                 });
               }
               const token = jwt.sign(
-                { _id: data._id },
+                { _: data._id },
                 process.env.JWT_SECRET,
                 { expiresIn: '7d' }
               );
-              const { _id, email, name} = data;
+              const { _id, email, name, username} = data;
               return res.json({
                 token,
-                user: { _id, email, name }
+                user: { _id, email, name, username }
               });
             });
           }
@@ -195,10 +218,10 @@ export const facebookController = (req, res) => {
             const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET, {
               expiresIn: '7d'
             });
-            const { _id, email, name } = user;
+            const { _id, email, name, username } = user;
             return res.json({
               token,
-              user: { _id, email, name }
+              user: { _id, email, name, username }
             });
           } else {
             let username = name.trim();
@@ -216,10 +239,10 @@ export const facebookController = (req, res) => {
                 process.env.JWT_SECRET,
                 { expiresIn: '7d' }
               );
-              const { _id, email, name } = data;
+              const { _id, email, name, username } = data;
               return res.json({
                 token,
-                user: { _id, email, name }
+                user: { _id, email, name, username }
               });
             });
           }
