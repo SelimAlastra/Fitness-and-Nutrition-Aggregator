@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import '../Profile.css';
 import ProfileInfo from '../ProfileInfo/ProfileInfo';
-import Services from './Services/Services';
 import Thumbnails from "./Thumbnails/Thumbnails";
 import { useDispatch, useSelector } from 'react-redux';
 import { getProfessional } from '../../actions/professionals';
@@ -76,10 +75,29 @@ const ProfessionalProfile = (props) => {
 
     function generateServices() {
         if (isProfessional) {
-        } else {
             return (
                 <div>
                      { generateEditServicesLink(isProfessional) }
+                     <h2 className="pageText">Services</h2>
+                    <ul>
+                        {
+                            myServices.map((service, index) => {
+                                return (
+                                     <li key={index} className="serviceList">
+                                         <div className="serviceColumn">
+                                             <h4>{service.title}</h4>
+                                             <p>{service.description}</p>
+                                         </div>
+                                    </li>
+                                )
+                            })
+                        }
+                    </ul>
+                </div>
+            );
+        } else {
+            return (
+                <div>
                      <h2 className="pageText">Services</h2>
                     <ul>
                         {
@@ -116,17 +134,9 @@ const ProfessionalProfile = (props) => {
                 <ProfileInfo profile={profile} />
             </div>
             <div className="section">
-                {/* <Services 
-                userID={profile._id}
-                isProfessional={isProfessional}
-                /> */}
                 {
                     generateServices()
                 }
-            </div>
-            <div className="section">
-                <h2 className="pageText">Most Viewed Videos</h2>
-                <Thumbnails videoUrls={videoUrls}/>
             </div>
         </div>
     );

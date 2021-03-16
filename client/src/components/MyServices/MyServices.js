@@ -15,45 +15,26 @@ const MyServices = (props) => {
     const [modalOpen, setModalOpen] = useState(false);
     Modal.setAppElement('body');
 
-
     const [myServices, setMyServices] = useState([]);
 
-    // get all services
-    // get user
-    // filter all services by the services in the basic user
-
-    // Get All services
     useEffect(() => {
         dispatch(getServices());
-    },[dispatch]);
-    const allServices = useSelector((state) => state.services);
-    //
-
-    // Get User
-    useEffect(() => {
         dispatch(getBasicUser(userID));
     }, [dispatch]);
+
+    const allServices = useSelector((state) => state.services);
     const basicUser = useSelector((state) => state.basicUsers);
-    let basicUserServiceIds = basicUser.bundles;
-    //
 
-    // filter all services by the services in basic user
     useEffect(() => {
-        const filteredServices = allServices.filter(service => basicUserServiceIds.includes(service._id));
-        setMyServices(filteredServices);
-    }, [basicUser]);
-    //
+        if (basicUser !== undefined && allServices !== undefined && basicUser.bundles !== undefined) {
+            console.log(basicUser);
+            console.log(allServices);
+            const filteredServices = allServices.filter(service => basicUser.bundles.includes(service._id));
+            setMyServices(filteredServices);
+        }
+    }, [allServices, basicUser]);
 
-
-    // const [myServices, setMyServices] = useState([]);
     const [currentService, setCurrentService] = useState({});
-
-
-
-
-
-
-
 
     function openModal(event, service) {
         setCurrentService(service);
@@ -112,13 +93,14 @@ const MyServices = (props) => {
     }
 
 
-    if (myServices === undefined || myServices === []) {
+    if (myServices === undefined || myServices.length === 0 ) {
         return (
             <div>
                 <p>Sorry, no services can be found!</p>
             </div>
         );
     } else {
+        console.log(myServices);
         return (
             <div>
                 <div className="titleText">
