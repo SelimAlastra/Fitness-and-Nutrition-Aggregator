@@ -3,21 +3,25 @@ import { Form, Container, Button } from "react-bootstrap";
 import { useDispatch } from 'react-redux';
 import {  createReport } from "../../actions/reports";
 
-const ReportForm = () => {
+const ReportForm = (report) => {
 
-    const [ReportData, setReportData] = useState( {reason: '', postId: "6050cb8649b37b0caba750ba", reporterUsername: "@as"} );
+    let repData = report.reportData;
+
+    const [ReportData, setReportData] = useState( { reason: '', reporterUsername: repData.reporterUsername, reportedUsername: repData.reportedUsername, postId: repData.postId} );
+
     const dispatch = useDispatch();
 
     const handleSubmit = (e) => {
         e.preventDefault();
 
         dispatch(createReport(ReportData));
+        window.location.reload();
     }
     
     return(
     <Form onSubmit={handleSubmit} >
         <Form.Group>
-        <Form.Label>Description</Form.Label>
+        <Form.Label>Reason</Form.Label>
         <Form.Control
             id="Description"
             name="Description"
@@ -28,7 +32,7 @@ const ReportForm = () => {
         />
         </Form.Group>
 
-        <Button variant="primary" type="submit">Create</Button>
+        <Button variant="primary" type="submit">Submit</Button>
     </Form>
     );
 }

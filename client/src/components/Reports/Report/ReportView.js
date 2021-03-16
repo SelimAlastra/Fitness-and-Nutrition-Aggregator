@@ -3,7 +3,6 @@ import { Button, ListGroup, ListGroupItem, Container } from "react-bootstrap";
 import { useSelector, useDispatch } from 'react-redux';
 import { getReport, deleteReport } from "../../../actions/reports";
 import { getPost, deletePost } from "../../../actions/posts";
-import { getBasicUser } from "../../../actions/basicUsers";
 import { useParams } from "react-router-dom";
 import Post from "../../Posts/Post/Post";
 
@@ -32,7 +31,7 @@ const ReportView = () => {
 
     const post = useSelector((state) => state.posts);
 
-
+    
 
     const handleDelete = () => {
         dispatch(deleteReport(report._id));
@@ -44,7 +43,7 @@ const ReportView = () => {
         dispatch(deletePost(post._id));
         window.location.href="/reports";
     }
-    
+
     return(
         <>
             <Button variant="primary" onClick={() => {window.location.href="/reports"}}>Back</Button>
@@ -54,7 +53,7 @@ const ReportView = () => {
                 <ListGroupItem>Reporter Username: {report.reporterUsername}</ListGroupItem>
                 <ListGroupItem>Reported Username: {report.reportedUsername}</ListGroupItem>
                 <ListGroupItem>Reason: {report.reason}</ListGroupItem>
-                <ListGroupItem>Post: {report.postId}</ListGroupItem>
+                <ListGroupItem>Post: <Post post={post} /> </ListGroupItem>
                 <ListGroupItem>Created at: {report.createdAt}</ListGroupItem>
             </ListGroup>
             <br />
@@ -62,7 +61,6 @@ const ReportView = () => {
             <br />
             <br />
             <Button variant="primary" onClick={ () => { handleDelete2() }}>Delete Report & Post</Button>
-
         </>
     );
 }
