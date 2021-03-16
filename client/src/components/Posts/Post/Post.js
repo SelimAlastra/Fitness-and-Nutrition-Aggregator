@@ -14,6 +14,7 @@ import InputLabel from "@material-ui/core/InputLabel";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import Videos from '../Videos/Videos';
+import Audio from '../Audio/Audio';
 
 
 import { deletePost, likePost, toggleFavAction } from '../../../actions/posts';
@@ -103,6 +104,12 @@ const Post = ({ post , setCurrentId }) => {
             {   post.url ?
             <CardContent> 
              <Videos setUrl = {post.url} />
+            </CardContent>
+               : <div></div> 
+             }
+             {   post.audioFile ?
+            <CardContent> 
+             <Audio setSrc = {post.audioFile} />
             </CardContent>
                : <div></div> 
              }
