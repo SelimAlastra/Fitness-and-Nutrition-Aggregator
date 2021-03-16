@@ -25,6 +25,8 @@ const Post = ({ post , setCurrentId }) => {
     const dispatch =useDispatch();
     const [anchorEl, setAnchorEl] = React.useState(null);
     const [open, setOpen] = React.useState(false);
+    const user = JSON.parse(localStorage.getItem('user'));
+
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
       };
@@ -41,8 +43,20 @@ const Post = ({ post , setCurrentId }) => {
         /*const arrBuckets[]=openBuckets();*/
         setOpen(true);
       };
+
       
-      const user = JSON.parse(localStorage.getItem('user'));
+
+      const handleReport = () => {
+        const reportData = {
+          reporterUsername: user.username,
+          reportedUsername: post.creator,
+          reason:'',
+          postId: post._id
+        }
+        console.log(reportData);
+      }
+      
+      
      const Likes = () => {
       if (post.likes.length > 0) {
       return post.likes.find((like) => like === ( user?.result?._id))
@@ -107,7 +121,7 @@ const Post = ({ post , setCurrentId }) => {
                     </div>
                     </MenuItem>
                     { JSON.parse(localStorage.getItem('user')).type =='client' ? 
-                    <MenuItem size="small" >Report</MenuItem>
+                    <MenuItem size="small" onClick={() => handleReport()} >Report</MenuItem>
                     :
                     <MenuItem size="small" onClick={() => setCurrentId(post._id)}>Edit</MenuItem>
                     }
