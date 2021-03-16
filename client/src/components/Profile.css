@@ -69,6 +69,7 @@
     margin-bottom: 1%;
     color: white;
     border-radius: 12px;
+    min-width:min-content;
 }
 
 .purchaseButton {

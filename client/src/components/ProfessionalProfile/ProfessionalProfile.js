@@ -1,56 +1,55 @@
 import React, { useEffect, useState } from "react";
 import '../Profile.css';
 import ProfileInfo from '../ProfileInfo/ProfileInfo';
-import Thumbnails from "./Thumbnails/Thumbnails";
 import { useDispatch, useSelector } from 'react-redux';
 import { getProfessional } from '../../actions/professionals';
 import { getServices } from '../../actions/services';
-import { updateBasicUser } from '../../actions/basicUsers';
+import { updateBasicUser, getBasicUser } from '../../actions/basicUsers';
 import { Button } from 'react-bootstrap';
-import { getBasicUser } from "../../actions/basicUsers";
 
 const ProfessionalProfile = (props) => {
     const dispatch = useDispatch();
     const [videoUrls, setVideoUrls] = useState([]);
     const [isProfessional, setIsProfessional] = useState(props.isProfessional);
     const [basicUserID, setBasicUserID] = useState(props.basicUserID);
-    const userID = props.match.params.id;
+    const professionalUserID = props.match.params.id;
     const [basicUser, setBasicUser] = useState({});
 
     // Get Professional & basic User if a basicUser is viewing the profile
     useEffect(() => {
-        dispatch(getProfessional(userID));
-        if (basicUserID !== undefined) {
+        dispatch(getProfessional(professionalUserID));
+    }, [dispatch]);
+
+    useEffect(() => {
+       if (basicUserID !== undefined) {
             dispatch(getBasicUser(basicUserID));
-        }
-    }, [dispatch]);
+    }
+ }, [dispatch]);
 
 
-    let profile = useSelector((state) => state.professional);
-    let basicUserProfile = useSelector((state) => state.basicUsers);
-    useEffect(() => {
-        setBasicUser(basicUserProfile);
-    }, [basicUserProfile]);
+    let professionalUser = useSelector((state) => state.professional);
+ let basicUserProfile = useSelector((state) => state.basicUsers);
+     useEffect(() => {
+         setBasicUser(basicUserProfile);
+     }, [basicUserProfile]);
 
-    // Get Services
-    useEffect(() => {
-        dispatch(getServices());
-    }, [dispatch]);
+     // Get Services
+     useEffect(() => {
+         dispatch(getServices());
+     }, [dispatch]);
 
     const services = useSelector((state) => state.services);
-    const myServices = services.filter(service => service.userID === userID);
-    //
+    const myServices = services.filter(service => service.userID === professionalUserID);
   
-
     function generateEditDetailsLink(isProfessional) {
         if (isProfessional) {
-            return (<h5 className="editLink" onClick={() => window.location.href = `/professional/profile/edit/${profile._id}`}>Edit my details</h5>);
+            return (<h5 className="editLink" onClick={() => window.location.href = `/professional/profile/edit/${professionalUser._id}`}>Edit my details</h5>);
         }
     }
 
     function generateEditServicesLink(isProfessional) {
         if (isProfessional) {
-            return (<h5 className="editLink" onClick={() => window.location.href = `/professional/services/edit/${userID}`}>Edit my services</h5>);
+            return (<h5 className="editLink" onClick={() => window.location.href = `/professional/services/edit/${professionalUserID}`}>Edit my services</h5>);
         } 
     }
 
@@ -68,10 +67,9 @@ const ProfessionalProfile = (props) => {
                 basicUser.bundles = [bundleID];
             }
             // update basicUser
-            dispatch(updateBasicUser(profile._id, basicUser))
+            dispatch(updateBasicUser(basicUser._id, basicUser))
         }
     }
-
 
     function generateServices() {
         if (isProfessional) {
@@ -105,16 +103,16 @@ const ProfessionalProfile = (props) => {
                                 return (
                                      <li key={index} className="serviceList">
                                          <div className="serviceColumn">
-                                             <h4>{service.title}</h4>
-                                             <p>{service.description}</p>
-                                             <Button 
-                                                 value={service._id}
-                                                 className="purchaseButton"
-                                                 onClick={purchaseBundle}
+                                            <h4>{service.title}</h4>
+                                            <p>{service.description}</p>
+                                            <Button 
+                                                value={service._id}
+                                                className="purchaseButton"
+                                                onClick={purchaseBundle}
                                              >
-                                                 Purchase
-                                             </Button>
-                                         </div>
+                                                Purchase
+                                            </Button>
+                                        </div>
                                     </li>
                                 )
                             })
@@ -131,7 +129,7 @@ const ProfessionalProfile = (props) => {
                 <div>
                     { generateEditDetailsLink(isProfessional)  }
                 </div>
-                <ProfileInfo profile={profile} />
+                <ProfileInfo profile={professionalUser} />
             </div>
             <div className="section">
                 {

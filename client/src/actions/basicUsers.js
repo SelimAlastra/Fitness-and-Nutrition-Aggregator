@@ -4,7 +4,7 @@ export const getBasicUser = (id) => async (dispatch) => {
     try {
         const { data } = await api.getBasicUser(id);
         
-        dispatch( {type: 'FETCH', payload: data} );
+        dispatch( {type: 'FETCH_USER', payload: data} );
     } catch (error) {
         console.log(error.message);
     }
@@ -14,7 +14,7 @@ export const updateBasicUser = (id, newUser) => async (dispatch) => {
     try {
         const { data } = await api.updateBasicUser(id, newUser);
         
-        dispatch( {type: 'UPDATE', payload: data} );
+        dispatch( {type: 'UPDATE_USER', payload: data} );
     } catch (error) {
         console.log(error.message);
     }
