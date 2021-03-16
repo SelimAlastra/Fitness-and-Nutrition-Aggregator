@@ -1,0 +1,51 @@
+.formContainer {
+    padding: 5%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    background-color: white;
+    position: fixed;
+    width:60%;
+    max-height: 100%;
+    top: 50%;
+    left: 50%;
+    overflow: auto;
+    border-radius: 4px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    outline: none;
+    padding: 20px;
+    transform: translate(-50%, -50%);
+}
+
+.inputItem {
+    border-radius: 10px;
+    background-color: white;
+    color: Black;
+}
+
+.label {
+    color: black;
+}
+
+.title {
+    padding: 1%;
+    color: Black;
+}
+
+.actionButton {
+    margin-top: 1%;
+    background-color: #61dafb;
+    border: none;
+}
+
+.actionButton:hover {
+    margin-top: 1%;
+}
+
+
+table {
+    width: 100%;
+}
+
+.subText {
+    opacity: 70%;
+    font-size: small;
+}

@@ -3,8 +3,8 @@ import { getBasicUser, updateBasicUser } from '../../actions/basicUsers';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import '../EditFormsStyles.css';
 
-//change getUser
 const EditBasicUser = (props) => {
     const dispatch = useDispatch();
     const [validated, setValidated] = useState(false);
@@ -76,8 +76,8 @@ const EditBasicUser = (props) => {
 
     return (
         <div className="formContainer">
-            <h2 className="label">Edit Details</h2>
-            <hr className="seperator "/>
+            <h2 className="title">Edit Details</h2>
+            <hr className="seperator"/>
             <Form noValidate validated={validated} onSubmit={handleSubmit}>
                 <Form.Row>
                     <Col>
@@ -224,8 +224,8 @@ const EditBasicUser = (props) => {
                     >
                     </Form.Control>
                 </Form.Group>
-                <button type="submit" className="actionButton">Save</button>
-                <button type="button" className="actionButton" onClick={() => window.location.href = "/"}>Close</button>
+                <Button type="submit" className="actionButton">Save</Button>
+                <Button type="button" className="actionButton" onClick={() => window.location.href = "/"}>Close</Button>
             </Form>
         </div>
     );

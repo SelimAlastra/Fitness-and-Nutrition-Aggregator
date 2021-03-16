@@ -6,6 +6,8 @@ export default (services = [], action) => {
             return services.filter((service) => service._id !== action.payload);
         case 'CREATE':
             return [...services, action.payload];
+        case 'UPDATE':
+            return services.filter((service) => service._id != action.payload);
         default:
             return services;
     }
