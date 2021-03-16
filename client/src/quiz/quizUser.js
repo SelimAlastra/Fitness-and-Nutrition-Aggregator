@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import Question from './components/question';
 import Answer from './components/answer';
 import Test from './testPage';
-import './styling/quizUser.css'
+import './styling/quizUser.css';
+
+//const history = useHistory();
 
 export default class Quiz extends Component{
 
@@ -308,11 +310,13 @@ export default class Quiz extends Component{
     /**
      * change @questions completion status
      */
+
     handleFinishButtonClick = () => {
         if(this.isCompleted() === true){
             this.setState({
                 complete: true
             });
+            this.props.history.push(`/clientDashboard/${JSON.parse(localStorage.getItem('user')).username}-${JSON.parse(localStorage.getItem('user'))._id}`)
         } else {
             alert("You still have some questions to complete.");
         }
