@@ -62,3 +62,24 @@
     color: white;
 }
 
+.serviceColumn {
+    background-color:  #61dafb;
+    padding: 2%;
+    margin-top: 1%;
+    margin-bottom: 1%;
+    color: white;
+    border-radius: 12px;
+    min-width:min-content;
+}
+
+.purchaseButton {
+    background-color: white;
+    color: black;
+    border: none;
+
+}
+
+.purchaseButton:hover {
+    background-color: lightgray;
+    
+}

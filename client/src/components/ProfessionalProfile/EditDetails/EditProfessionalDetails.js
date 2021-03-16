@@ -111,7 +111,7 @@ const EditProfessionalDetails = (props) => {
                                 />
                             </Form.Group>
                         </Col>
-                    </Form.Row>
+                    </Form.Row> 
                     
                     <Form.Group>
                         <Form.Label className="label">Address</Form.Label>
