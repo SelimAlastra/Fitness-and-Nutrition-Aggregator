@@ -62,7 +62,7 @@ export const updateBasicUser = async (req, res) => {
       basicUser.bio = req.body.bio;
       basicUser.bundles = req.body.bundles;
       basicUser.save()
-        .then(() => res.json('BasicUser updated!'))
+        .then(() => res.json(basicUser))
         .catch(err => res.status(400).json('Error: ' + err));
     })
     .catch(err => res.status(400).json('Error: ' + err));

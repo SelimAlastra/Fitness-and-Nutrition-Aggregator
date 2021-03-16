@@ -6,27 +6,41 @@ import Thumbnails from "./Thumbnails/Thumbnails";
 import { useDispatch, useSelector } from 'react-redux';
 import { getProfessional } from '../../actions/professionals';
 import { getServices } from '../../actions/services';
+import { updateBasicUser } from '../../actions/basicUsers';
+import { Button } from 'react-bootstrap';
+import { getBasicUser } from "../../actions/basicUsers";
 
 const ProfessionalProfile = (props) => {
     const dispatch = useDispatch();
     const [videoUrls, setVideoUrls] = useState([]);
     const [isProfessional, setIsProfessional] = useState(props.isProfessional);
-    const [basicUserID, setBasicUserID] = useState("");
+    const [basicUserID, setBasicUserID] = useState(props.basicUserID);
     const userID = props.match.params.id;
+    const [basicUser, setBasicUser] = useState({});
 
+    // Get Professional & basic User if a basicUser is viewing the profile
     useEffect(() => {
         dispatch(getProfessional(userID));
+        if (basicUserID !== undefined) {
+            dispatch(getBasicUser(basicUserID));
+        }
     }, [dispatch]);
 
-    const profile = useSelector((state) => state.professional);
 
+    let profile = useSelector((state) => state.professional);
+    let basicUserProfile = useSelector((state) => state.basicUsers);
+    useEffect(() => {
+        setBasicUser(basicUserProfile);
+    }, [basicUserProfile]);
+
+    // Get Services
     useEffect(() => {
         dispatch(getServices());
-
     }, [dispatch]);
 
     const services = useSelector((state) => state.services);
     const myServices = services.filter(service => service.userID === userID);
+    //
   
 
     function generateEditDetailsLink(isProfessional) {
@@ -41,37 +55,55 @@ const ProfessionalProfile = (props) => {
         } 
     }
 
+    function purchaseBundle(event) {
+        event.preventDefault();
+        const bundleID = event.target.value;
+        let bundles = basicUser.bundles;
+        if (bundleID !== undefined) {
+            if (bundles !== undefined) {
+                if (!bundles.includes(bundleID)) {
+                    bundles.push(bundleID);
+                    basicUser.bundles = bundles;
+                }
+            } else {
+                basicUser.bundles = [bundleID];
+            }
+            // update basicUser
+            dispatch(updateBasicUser(profile._id, basicUser))
+        }
+    }
+
+
     function generateServices() {
         if (isProfessional) {
-           return (
-               <div>
-                    { generateEditServicesLink(isProfessional) }
-                    <h2 className="pageText">Services</h2>
-                   <ul>
-                       {
-                           myServices.map((service, index) => {
-                               return (
-                                    <li className="serviceList">
-                                        <div className="serviceColumn">
-                                            <h4>{service.title}</h4>
-                                            <p>{service.description}</p>
-                                        </div>
-                                        <div className="serviceColumn">
-                                            <Button>Purchase Bundle</Button>
-                                        </div>
-                                   </li>
-                               )
-                           })
-                       }
-                   </ul>
-               </div>
-           );
         } else {
-            if (basicUserID !== undefined && basicUserID !== "") {
-                // 
-            } else {
-                // 
-            }
+            return (
+                <div>
+                     { generateEditServicesLink(isProfessional) }
+                     <h2 className="pageText">Services</h2>
+                    <ul>
+                        {
+                            myServices.map((service, index) => {
+                                return (
+                                     <li key={index} className="serviceList">
+                                         <div className="serviceColumn">
+                                             <h4>{service.title}</h4>
+                                             <p>{service.description}</p>
+                                             <Button 
+                                                 value={service._id}
+                                                 className="purchaseButton"
+                                                 onClick={purchaseBundle}
+                                             >
+                                                 Purchase
+                                             </Button>
+                                         </div>
+                                    </li>
+                                )
+                            })
+                        }
+                    </ul>
+                </div>
+            );
         }
     }
 
