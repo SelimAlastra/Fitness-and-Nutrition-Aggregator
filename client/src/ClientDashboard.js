@@ -5,7 +5,6 @@ import Navbar from './components/Navbar/Navbar';
 
 import { getPosts, updatePost } from './actions/posts';
 import Posts from './components/Posts/Posts';
-import Form from './components/Form/Form';
 import memories from './images/memories.png';
 import useStyles from './styles';
 
