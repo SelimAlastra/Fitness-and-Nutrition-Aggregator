@@ -13,7 +13,7 @@ const Reports = () => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-      dispatch(getReports());  dispatch(getPosts());
+      dispatch(getReports());
     }, [dispatch]);
 
     const reports = useSelector((state) => state.reports);
@@ -24,11 +24,9 @@ const Reports = () => {
         <Table>
                 <thead>
                     <tr>
-                        <th>Reporter</th>
-                        <th>Reported user</th>
+                        <th>Reporter Username</th>
+                        <th>Reported Username</th>
                         <th>Reason</th>
-                        <th>postId</th>
-                        <th>Time</th>
                         <th>Actions</th>
                     </tr>
                 </thead>

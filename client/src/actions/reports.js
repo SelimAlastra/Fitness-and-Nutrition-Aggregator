@@ -36,10 +36,12 @@ export const deleteReport = (id) => async (dispatch) => {
 }
 
 export const getReport = (id) => async (dispatch) => {
+
     try {
         const { data } = await api.getReport(id);
         
-        dispatch( {type: 'FETCH', payload: data} );
+        dispatch( {type: 'FETCH_REPORT', payload: data} );
+        
     } catch (error) {
         console.log(error.message);
     }

@@ -5,7 +5,7 @@ import {  createReport } from "../../actions/reports";
 
 const ReportForm = () => {
 
-    const [ReportData, setReportData] = useState( {reason: ''} );
+    const [ReportData, setReportData] = useState( {reason: '', postId: "605099f09be04d071a8b7a2d", reporterUsername: "@as"} );
     const dispatch = useDispatch();
 
     const handleSubmit = (e) => {

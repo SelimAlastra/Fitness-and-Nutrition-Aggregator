@@ -2,8 +2,6 @@ import { FETCH_ALL, CREATE, UPDATE, DELETE , ADD_FAV} from '../constants/actionT
 import * as api from '../api/index';
 
 
-// Action Creators
-
 export const getPosts = () => async (dispatch) => {
     try {
       const { data } = await api.fetchPosts();
@@ -65,6 +63,7 @@ export const toggleFavAction = (id) => async (dispatch) =>{
 };
 
 export const getPost = (id) => async (dispatch) => {
+  
   try {
       const { data } = await api.getPost(id);
       

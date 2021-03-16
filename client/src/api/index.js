@@ -13,8 +13,6 @@ export const createReport = (newReport) => axios.post(reportUrl, newReport);
 export const deleteReport = (id) => axios.delete(reportUrl+'/'+id);
 export const getReport = (id) => axios.get(`${reportUrl}/${id}`);
 
-
-
 export const fetchPosts = () => axios.get(url);
 export const createPost = (newPost) => axios.post(url, newPost);
 export const updatePost = (id, updatedPost) => axios.patch(`${url}/${id}`, updatedPost);

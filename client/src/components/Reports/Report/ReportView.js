@@ -1,6 +1,11 @@
-
-
-
+import React, { useEffect, useState } from 'react';
+import { Button, ListGroup, ListGroupItem, Container } from "react-bootstrap";
+import { useSelector, useDispatch } from 'react-redux';
+import { getReport, deleteReport } from "../../../actions/reports";
+import { getPost, deletePost } from "../../../actions/posts";
+import { getBasicUser } from "../../../actions/basicUsers";
+import { useParams } from "react-router-dom";
+import Post from "../../Posts/Post/Post";
 
 
 
@@ -8,43 +13,56 @@ const ReportView = () => {
 
     const dispatch = useDispatch();
 
+    const report = useSelector((state) => state.reports);
+
     const { id } = useParams();
 
-    const report = useSelector((state) => id ? state.reports.find(u => u._id === id) : null);
-    const post = useSelector((state) => report.postId ? state.posts.find(u => u._id === report.postId) : null);
-    
+    useEffect(() => {
+        dispatch(getReport(id));
+    }, []);
+
     
 
+    useEffect(() => {
+        if (report){
+            dispatch(getPost(report.postId));
+        }
+    }, [report]);
+
+
+    const post = useSelector((state) => state.posts);
+
+
+
     const handleDelete = () => {
-        dispatch(deleteBasicUser(user._id));
+        dispatch(deleteReport(report._id));
+        window.location.href="/reports";
+    }
+
+    const handleDelete2 = () => {
+        dispatch(deleteReport(report._id));
+        dispatch(deletePost(post._id));
+        window.location.href="/reports";
     }
     
     return(
         <>
-            <LinkContainer to='/Reports'>
-                <Button variant="primary">Back</Button>
-            </LinkContainer>
+            <Button variant="primary" onClick={() => {window.location.href="/reports"}}>Back</Button>
             <br />
             <br />
             <ListGroup>
-                <ListGroupItem>Reporter Username: {report.reporter}</ListGroupItem>
-                <ListGroupItem>Reported Username: {user.name}</ListGroupItem>
+                <ListGroupItem>Reporter Username: {report.reporterUsername}</ListGroupItem>
+                <ListGroupItem>Reported Username: {report.reportedUsername}</ListGroupItem>
                 <ListGroupItem>Reason: {report.reason}</ListGroupItem>
-                <ListGroupItem>isBanned: {""+user.isBanned}</ListGroupItem>
-                <ListGroupItem>Gender: {user.gender}</ListGroupItem>
-                <ListGroupItem>DOB: {user.dob}</ListGroupItem>
-                <ListGroupItem>Created at: {user.createdAt}</ListGroupItem>
+                <ListGroupItem>Post: {report.postId}</ListGroupItem>
+                <ListGroupItem>Created at: {report.createdAt}</ListGroupItem>
             </ListGroup>
             <br />
-            <LinkContainer to={{pathname:"/BasicUsers/edit/" + user._id, state: {user: user}}}>
-                <Button variant="primary">Edit</Button>
-            </LinkContainer>
-            &nbsp; &nbsp;
-            <Button variant="primary" onClick={ () => { handleBan() }}>Ban</Button>
-            &nbsp; &nbsp;
-            <LinkContainer to='/BasicUsers'>
-                <Button variant="primary" onClick={ () => { handleDelete() }}>Delete</Button>
-            </LinkContainer>
+            <Button variant="primary" onClick={ () => { handleDelete() }}>Delete Report</Button>
+            <br />
+            <br />
+            <Button variant="primary" onClick={ () => { handleDelete2() }}>Delete Report & Post</Button>
+
         </>
     );
 }
