@@ -38,6 +38,8 @@ const basicUserSchema = new Schema({
 
   resetPasswordLink :{type: String, default: '', required: false},
 
+  bundles: [{type: String, required: true}]
+
 }, {
   timestamps: true,
 });
