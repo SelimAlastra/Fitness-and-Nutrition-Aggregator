@@ -3,7 +3,7 @@ import axios from 'axios';
 const API= axios.create({baseURL:'http://localhost:5000'});
 
 
-API.interceptors.request.use((req) => {
+/* API.interceptors.request.use((req) => {
   console.log( localStorage.getItem('user'));
     if (localStorage.getItem('user')) {
       req.headers.Authorization = ` ${JSON.parse(localStorage.getItem('user')).token}`;
@@ -11,7 +11,7 @@ API.interceptors.request.use((req) => {
     console.log( req.headers.Authorization);
     return req;
   });
-
+ */
 const userUrl = 'http://localhost:5000/users';
 const issueUrl = 'http://localhost:5000/issues';
 const url = 'http://localhost:5000/posts';

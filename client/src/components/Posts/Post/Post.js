@@ -64,7 +64,6 @@ const Post = ({ post , setCurrentId }) => {
                     open={Boolean(anchorEl)}
                     onClose={handleClose}
                 >
-                    <MenuItem size="small" onClick={() => setCurrentId(post._id)}>Edit</MenuItem>
                     <MenuItem onClick={handleClose}>
                     <div>
                         <FormControl className={classes.formControl}>
@@ -91,6 +90,11 @@ const Post = ({ post , setCurrentId }) => {
                         </FormControl>
                     </div>
                     </MenuItem>
+                    { JSON.parse(localStorage.getItem('user')).type =='client' ? 
+                    <MenuItem size="small" >Report</MenuItem>
+                    :
+                    <MenuItem size="small" onClick={() => setCurrentId(post._id)}>Edit</MenuItem>
+                    }
                 </Menu>
             </div>
             <div className={classes.details}> 
@@ -112,10 +116,15 @@ const Post = ({ post , setCurrentId }) => {
                     &nbsp; Like &nbsp;
                     {post.likeCount}                    
                 </Button>
-                <Button size="small" color="primary" onClick={() => dispatch(deletePost(post._id))}>
+               { JSON.parse(localStorage.getItem('user')).type =='client' ? 
+                 <Button size="small" color="primary">
+                 Follow                   
+                </Button>
+                : <Button size="small" color="primary" onClick={() => dispatch(deletePost(post._id))}>
                     <DeleteIcon fontSize="small" /> 
                     Delete                   
                 </Button>
+                }
             </CardActions>
         </Card>
     );
