@@ -14,9 +14,12 @@ import InputLabel from "@material-ui/core/InputLabel";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import Videos from '../Videos/Videos';
+import ThumbUpAltOutlined from '@material-ui/icons/ThumbUpAltOutlined';
 
 
 import { deletePost, likePost, toggleFavAction } from '../../../actions/posts';
+
+
 const Post = ({ post , setCurrentId }) => {
     const classes = useStyles();
     const dispatch =useDispatch();
@@ -38,7 +41,20 @@ const Post = ({ post , setCurrentId }) => {
         /*const arrBuckets[]=openBuckets();*/
         setOpen(true);
       };
+      
+      const user = JSON.parse(localStorage.getItem('user'));
+     const Likes = () => {
+      if (post.likes.length > 0) {
+      return post.likes.find((like) => like === ( user?.result?._id))
+        ? (
+          <><ThumbUpAltIcon fontSize="small" />&nbsp;{post.likes.length > 2 ? `You and ${post.likes.length - 1} others` : `${post.likes.length} like${post.likes.length > 1 ? 's' : ''}` }</>
+        ) : (
+          <><ThumbUpAltOutlined fontSize="small" />&nbsp;{post.likes.length} {post.likes.length === 1 ? 'Like' : 'Likes'}</>
+        );
+    }
 
+    return <><ThumbUpAltOutlined fontSize="small" />&nbsp;Like</>;
+  };
     return (
         <Card className={classes.card}> 
         {   post.selectedFile 
@@ -111,10 +127,8 @@ const Post = ({ post , setCurrentId }) => {
                : <div></div> 
              }
             <CardActions className={classes.cardActions}> 
-                <Button size="small" color="primary" onClick={() => dispatch(likePost(post._id))}>
-                    <ThumbUpAltIcon fontSize="small" /> 
-                    &nbsp; Like &nbsp;
-                    {post.likeCount}                    
+                <Button size="small" color="primary" onClick={() => dispatch(likePost(post._id,JSON.parse(localStorage.getItem('user'))._id))}>
+                <Likes/>                   
                 </Button>
                { JSON.parse(localStorage.getItem('user')).type =='client' ? 
                  <Button size="small" color="primary">
