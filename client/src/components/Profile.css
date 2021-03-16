@@ -62,3 +62,11 @@
     color: white;
 }
 
+.serviceColumn {
+    background-color:  #61dafb;
+    padding: 2%;
+    margin-top: 1%;
+    margin-bottom: 1%;
+    color: white;
+    border-radius: 12px;
+}

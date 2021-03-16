@@ -51,7 +51,7 @@ const Main = () => {
                 <Route exact path='/professional/password/reset/:token' exact render={props => <ProfResetPassword {...props} />} />
 
 
-                <Route exact path="/professional/profile/:id" component={ProfessionalProfile}></Route>
+                <Route exact path="/professional/profile/:id" render={props => <ProfessionalProfile {...props} isProfessional={true}/>}></Route>
                 <Route exact path="/professional/profile/edit/:id" component={EditProfessionalDetails}></Route>
                 <Route exact path="/professional/services/edit/:id" component={EditServices}></Route>
                 <Route exact path="/user/profile/:id" component={ClientProfile}></Route>
