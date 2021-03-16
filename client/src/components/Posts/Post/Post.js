@@ -69,6 +69,18 @@ const Post = ({ post , setCurrentId }) => {
 
     return <><ThumbUpAltOutlined fontSize="small" />&nbsp;Like</>;
   };
+     
+  const Delete=() =>{
+      console.log(post.userFrom);
+      console.log(String(JSON.parse(localStorage.getItem('user'))._id));
+    if (String(JSON.parse(localStorage.getItem('user'))._id)==post.userFrom) {
+       return( <Button size="small" color="primary" onClick={() => dispatch(deletePost(post._id))}>
+        <DeleteIcon fontSize="small" /> 
+        Delete                   
+     </Button>)
+    }
+    return <div></div>
+  }
     return (
         <Card className={classes.card}> 
         {   post.selectedFile 
@@ -148,10 +160,7 @@ const Post = ({ post , setCurrentId }) => {
                  <Button size="small" color="primary">
                  Follow                   
                 </Button>
-                : <Button size="small" color="primary" onClick={() => dispatch(deletePost(post._id))}>
-                    <DeleteIcon fontSize="small" /> 
-                    Delete                   
-                </Button>
+                : <Delete/>
                 }
             </CardActions>
         </Card>
