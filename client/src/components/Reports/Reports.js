@@ -19,8 +19,6 @@ const Reports = () => {
     const reports = useSelector((state) => state.reports);
 
     return (
-        <>
-        <ReportForm />
         <Table>
                 <thead>
                     <tr>
@@ -37,8 +35,7 @@ const Reports = () => {
                         </tr>
                     ))}
                 </tbody>
-            </Table>
-        </>
+        </Table>
     );
 }
 

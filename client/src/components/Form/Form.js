@@ -8,7 +8,7 @@ import './styles.css';
 import { createPost, updatePost} from '../../actions/posts';
 
 const Form = ({currentId, setCurrentId}) => {
-    const [postData, setPostData] = useState({ creator: JSON.parse(localStorage.getItem('user')).name,userFrom: JSON.parse(localStorage.getItem('user'))._id, title: '', message: '', tags: '', selectedFile: '', url: '' });
+    const [postData, setPostData] = useState({ creator: JSON.parse(localStorage.getItem('user')).name, userFrom: JSON.parse(localStorage.getItem('user'))._id, title: '', message: '', tags: '', selectedFile: '', url: '' });
     const [option, setOption] = useState('option1')
     let Value= 'photo';
     const post = useSelector((state) => currentId ? state.posts.find((p)=> p._id === currentId ) : null);

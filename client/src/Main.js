@@ -26,6 +26,9 @@ import EditBasicUser from './components/EditBasicUser/EditBasicUser';
 import MyServices from './components/MyServices/MyServices';
 import AddService from './components/ProfessionalProfile/EditServices/AddService';
 
+import Reports from './components/Reports/Reports'
+import ReportView from './components/Reports/Report/ReportView'
+
 
 const Main = () => {
     let logged = false;
@@ -56,6 +59,9 @@ const Main = () => {
                 <Route exact path="/user/edit/:id" component={EditBasicUser}></Route>
                 <Route exact path="/user/myservices/:id" component={MyServices}></Route>
                 <Route exact path="/professional/services/add/:id" component={AddService}></Route>
+
+                <Route exact path='/reports' component={Reports}/>
+                <Route exact path='/reports/:id' component={ReportView}/>
         
             </Switch>
         )

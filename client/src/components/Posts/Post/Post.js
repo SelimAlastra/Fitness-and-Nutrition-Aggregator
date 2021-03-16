@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Card, CardActions, CardContent, CardMedia, Button, Typography } from '@material-ui/core/';
 import ThumbUpAltIcon from '@material-ui/icons/ThumbUpAlt';
 import DeleteIcon from '@material-ui/icons/Delete';
@@ -15,6 +15,8 @@ import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import Videos from '../Videos/Videos';
 import ThumbUpAltOutlined from '@material-ui/icons/ThumbUpAltOutlined';
+import ReportForm from "../../Reports/ReportForm"
+import Modal from 'react-bootstrap/Modal';
 
 
 import { deletePost, likePost, toggleFavAction } from '../../../actions/posts';
@@ -44,16 +46,32 @@ const Post = ({ post , setCurrentId }) => {
         setOpen(true);
       };
 
-      
+      require('dotenv').config({path:'/.env'});
 
-      const handleReport = () => {
+      const [show, setShow] = useState(false);
+      const handleCloseReport = () => setShow(false);
+      const handleShowReport = () => setShow(true);
+
+
+      const ReportPopUp = () => {
         const reportData = {
           reporterUsername: user.username,
           reportedUsername: post.creator,
           reason:'',
           postId: post._id
         }
-        console.log(reportData);
+
+        return (
+          <>
+          <MenuItem size="small" onClick={() => handleShowReport()}> Report </MenuItem>
+            <Modal show={show} onHide={handleCloseReport}>
+              <Modal.Header closeButton>
+                <Modal.Title>Report</Modal.Title>
+              </Modal.Header>
+              <Modal.Body> <ReportForm reportData={reportData}/> </Modal.Body>
+            </Modal>
+          </>
+        );
       }
       
       
@@ -133,15 +151,18 @@ const Post = ({ post , setCurrentId }) => {
                     </div>
                     </MenuItem>
                     { JSON.parse(localStorage.getItem('user')).type =='client' ? 
-                    <MenuItem size="small" onClick={() => handleReport()} >Report</MenuItem>
+                    < ReportPopUp />
                     :
                     <MenuItem size="small" onClick={() => setCurrentId(post._id)}>Edit</MenuItem>
                     }
                 </Menu>
             </div>
+            {   post.tags ?
             <div className={classes.details}> 
                 <Typography variant="body2" color="textSecondary" component="h2">{post.tags.map((tag) => `#${tag} `)}</Typography>
             </div>
+              : <> </>
+            }
             <Typography className={classes.title} variant="h5" gutterBottom>{post.title}</Typography>
             <CardContent> 
                 <Typography  variant="body2" color="textSecondary" component="p" >{post.message}</Typography>
@@ -153,9 +174,12 @@ const Post = ({ post , setCurrentId }) => {
                : <div></div> 
              }
             <CardActions className={classes.cardActions}> 
+            { post.likes  ?
                 <Button size="small" color="primary" onClick={() => dispatch(likePost(post._id,JSON.parse(localStorage.getItem('user'))._id))}>
                 <Likes/>                   
                 </Button>
+              : <> </>
+            }
                { JSON.parse(localStorage.getItem('user')).type =='client' ? 
                  <Button size="small" color="primary">
                  Follow                   
