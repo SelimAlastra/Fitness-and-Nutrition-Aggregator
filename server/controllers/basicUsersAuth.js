@@ -19,93 +19,63 @@ sgMail.setApiKey(process.env.MAIL_KEY);
 export const registerController = (req, res) => {
   const { username, email, password, name } = req.body;
 
-  if(User.findOne({ email })) {
-    User.findOne({
-      email
-    }).exec((err, user) => {
-      if (user) {
-        return res.status(400).json({
-          errors: 'Email already in use.'
-        });
-      }
-      else if (ProfUser.findOne({ email })) {
-        ProfUser.findOne({
-          email
-        }).exec((err, user) => {
-          if (user) {
-            return res.status(400).json({
-              errors: 'Email already in use.'
-            });
-          }
-          else {
-            const user = new User({
-              username,
-              email,
-              password,
-              name
-            });
-            user.save()
-              .then(user => res.json(user))
-              .catch(err => console.log(err))
+  User.findOne({
+    email
+  }).exec((err, user) => {
+    if (user) {
+      return res.status(400).json({
+        errors: 'Email already in use.'
+      });
+    }
+  })
+ 
+  ProfUser.findOne({
+    email
+  }).exec((err, user) => {
+    if (user) {
+      return res.status(400).json({
+        errors: 'Email already in use.'
+      });
+    }
+  })
+ 
+  User.findOne({
+    username
+  }).exec((err, user) => {
+    if (user) {
+      return res.status(400).json({
+        errors: 'Username already in use.'
+      });
+    }
+  })
+ 
+  ProfUser.findOne({
+    username
+  }).exec((err, user) => {
+    if (user) {
+      return res.status(400).json({
+        errors: 'Username already in use.'
+      });
+    }
+  })
+ 
+  
+    const user = new User({
+      username,
+      email,
+      password,
+      name
+    });
+    user.save()
+      .then(user => res.json(user))
+      .catch(err => console.log(err))
+ 
+  //const { _id, username, email, name } = user;
+ 
+  return res.json({
+    user
+  });
 
-          }
-        })
-      }
-      // const { _id, username, email, name} = user;
-      //           return res.json({
-      //           token,
-      //           user: {
-      //             _id,
-      //             username,
-      //             email,
-      //             name
-      //           }
-      // });
-
-    })
-  }
-  if (User.findOne({ username })) {
-    User.findOne({
-      username
-    }).exec((err, user) => {
-      if (user) {
-        return res.status(400).json({
-          errors: 'Username already in use.'
-        });
-      } else if(User.findOne({ username })) {
-        ProfUser.findOne({
-          username
-        }).exec((err, user) => {
-          if (user) {
-            return res.status(400).json({
-              errors: 'Username already in use.'
-            });
-          }
-          else {
-            const user = new User({
-              username,
-              email,
-              password,
-              name
-            });
-            user.save()
-              .then(user => res.json(user))
-              .catch(err => console.log(err))
-          }
-        })
-      }
-
-      // return res.json({
-      //   token,
-      //   user: {
-      //     _id,
-      //     username,
-      //     email,
-      //     name
-      //   }
-      // });
-    })
-  }
 }
 
 export const loginController = (req, res) => {
