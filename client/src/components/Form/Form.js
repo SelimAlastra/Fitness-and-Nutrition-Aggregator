@@ -8,7 +8,7 @@ import './styles.css';
 import { createPost, updatePost} from '../../actions/posts';
 
 const Form = ({currentId, setCurrentId}) => {
-    const [postData, setPostData] = useState({ creator: '', title: '', message: '', tags: '', selectedFile: '', url: '' });
+    const [postData, setPostData] = useState({ creator: JSON.parse(localStorage.getItem('user')).name,userFrom: JSON.parse(localStorage.getItem('user'))._id, title: '', message: '', tags: '', selectedFile: '', url: '' });
     const [option, setOption] = useState('option1')
     let Value= 'photo';
     const post = useSelector((state) => currentId ? state.posts.find((p)=> p._id === currentId ) : null);
@@ -49,7 +49,6 @@ const Form = ({currentId, setCurrentId}) => {
         setCurrentId(null);
         setPostData({ creator: JSON.parse(localStorage.getItem('user')).name , title: '', message: '', tags: '', selectedFile: '', url: '' });
     }
-    console.log(JSON.parse(localStorage.getItem('user')).name)
     return (
         <Paper className={classes.paper}>
             <form autoComplete="off" noValidate className={`${classes.root} ${classes.form}`} method="post" action="#" onSubmit={handleSubmit}>
