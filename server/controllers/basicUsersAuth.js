@@ -19,63 +19,75 @@ sgMail.setApiKey(process.env.MAIL_KEY);
 export const registerController = (req, res) => {
   const { username, email, password, name } = req.body;
 
-  User.findOne({
-    email
-  }).exec((err, user) => {
-    if (user) {
-      return res.status(400).json({
-        errors: 'Email already in use.'
-      });
-    }
-  })
- 
-  ProfUser.findOne({
-    email
-  }).exec((err, user) => {
-    if (user) {
-      return res.status(400).json({
-        errors: 'Email already in use.'
-      });
-    }
-  })
- 
-  User.findOne({
-    username
-  }).exec((err, user) => {
-    if (user) {
-      return res.status(400).json({
-        errors: 'Username already in use.'
-      });
-    }
-  })
- 
-  ProfUser.findOne({
-    username
-  }).exec((err, user) => {
-    if (user) {
-      return res.status(400).json({
-        errors: 'Username already in use.'
-      });
-    }
-  })
- 
-  
-    const user = new User({
-      username,
-      email,
-      password,
-      name
-    });
-    user.save()
-      .then(user => res.json(user))
-      .catch(err => console.log(err))
- 
-  //const { _id, username, email, name } = user;
- 
-  return res.json({
-    user
-  });
-
+  if (User.findOne({ email })) {
+    User.findOne({
+      email
+    }).exec((err, user) => {
+      if (user) {
+        return res.status(400).json({
+          errors: 'Email already in use.'
+        });
+      }
+      else if (ProfUser.findOne({ email })) {
+        ProfUser.findOne({
+          email
+        }).exec((err, user) => {
+          if (user) {
+            return res.status(400).json({
+              errors: 'Email already in use.'
+            });
+          }
+          else if (User.findOne({ username })) {
+            User.findOne({
+              username
+            }).exec((err, user) => {
+              if (user) {
+                return res.status(400).json({
+                  errors: 'Username already in use.'
+                });
+              } else if (ProfUser.findOne({ username })) {
+                ProfUser.findOne({
+                  username
+                }).exec((err, user) => {
+                  if (user) {
+                    return res.status(400).json({
+                      errors: 'Username already in use.'
+                    });
+                  }
+                  else {
+                    const user = new User({
+                      username,
+                      email,
+                      password,
+                      name
+                    });
+                    user.save((err, data) => {
+                      if (err) {
+                        console.log('ERROR REGISTER ON USER SAVE', err);
+                        return res.status(400).json({
+                          error: 'User register failed'
+                        });
+                      }
+                      const token = jwt.sign(
+                        { _: data._id },
+                        process.env.JWT_SECRET,
+                        { expiresIn: '7d' }
+                      );
+                      const { _id, email, name, username } = data;
+                      return res.json({
+                        token,
+                        user: { _id, email, name, username }
+                      });
+                    });
+                  }
+                })
+              }
+            })
+          }
+        })
+      }
+    })
+  }
 }
 
 export const loginController = (req, res) => {

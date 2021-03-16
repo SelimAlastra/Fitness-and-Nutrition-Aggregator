@@ -90,6 +90,7 @@ const formik = useFormik({
             })
           })
           .catch(err => {
+              console.log(err);
                       if(err.response.data.errors){
                         console.log(err.response.data.errors)
                         if(err.response.data.errors.includes('Email'))
@@ -105,7 +106,7 @@ const formik = useFormik({
 
   return (
       <div>
-        {/* {isAuth() ? <Redirect to='/' /> : null} */}
+        {isAuth() ? <Redirect to='/' /> : null}
       
     <Form autoComplete="off" onSubmit={formik.handleSubmit}>
     <Form.Label hidden = {true} htmlFor="email">Email</Form.Label>

@@ -89,7 +89,7 @@ const formik = useFormik({
           .post(`http://localhost:5000/professionalUsers/register`, newData)
           .then(res => {
             authenticate(res, () => {
-            history.push(`/professionalTags/${JSON.parse(localStorage.getItem('user')).username}-${JSON.parse(localStorage.getItem('user'))._id}`)
+            history.push(`/professionalDashboard/${JSON.parse(localStorage.getItem('user')).username}-${JSON.parse(localStorage.getItem('user'))._id}`)
             })
           })
           .catch(err => {
@@ -101,16 +101,14 @@ const formik = useFormik({
                           actions.setFieldError('username', 'Username already in use')
                       }  
                     })
-        actions.setSubmitting(false);
-
-        
+        actions.setSubmitting(false);        
       }, 500);
     },
 });
 
   return (
       <div>
-        {/* {isAuth() ? <Redirect to='/' /> : null} */}
+        {isAuth() ? <Redirect to='/' /> : null}
       
     <Form autoComplete="off" onSubmit={formik.handleSubmit}>
     <Form.Label hidden = {true} htmlFor="email">Email</Form.Label>
