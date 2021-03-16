@@ -31,6 +31,7 @@ const Form = ({currentId, setCurrentId}) => {
             dispatch(updatePost(currentId, postData));
         }else
         {
+          console.log(postData);
             dispatch(createPost(postData));
         }
         clear();

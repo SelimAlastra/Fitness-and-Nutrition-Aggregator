@@ -29,7 +29,7 @@ import AddService from './components/ProfessionalProfile/EditServices/AddService
 
 const Main = () => {
     let logged = false;
-    if (logged )
+    if (!logged )
         return (
             <Switch>
                 <Route exact path='/' component={LandingPage}></Route>
