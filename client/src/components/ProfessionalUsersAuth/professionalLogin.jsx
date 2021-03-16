@@ -72,7 +72,7 @@ const schema = Yup.object().shape({
       axios.post(`http://localhost:5000/professionalUsers/login`, newData)
           .then(res => {
             authenticate(res, () => {
-            history.push('/professional')
+            history.push(`/professionalDashboard/${JSON.parse(localStorage.getItem('user')).username}-${JSON.parse(localStorage.getItem('user'))._id}`)
             })
           })
           .catch(err => {
@@ -90,7 +90,7 @@ const schema = Yup.object().shape({
 
 return (
 <div className="Form">
-    {isAuth() ? <Redirect to='/' /> : null}
+    {/* {isAuth() ? <Redirect to='/' /> : null} */}
 <Form onSubmit={formik.handleSubmit} autoComplete="Off">
   <Form.Label hidden = {true} htmlFor="email">Email</Form.Label>
     <Form.Control id="loginInput"
