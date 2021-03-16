@@ -39,7 +39,6 @@ const MyServices = (props) => {
 
     // filter all services by the services in basic user
     useEffect(() => {
-        console.log("exe");
         const filteredServices = allServices.filter(service => basicUserServiceIds.includes(service._id));
         setMyServices(filteredServices);
     }, [basicUser]);

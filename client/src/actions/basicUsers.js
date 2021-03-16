@@ -13,10 +13,10 @@ export const getBasicUser = (id) => async (dispatch) => {
 export const updateBasicUser = (id, newUser) => async (dispatch) => {
     try {
         const { data } = await api.updateBasicUser(id, newUser);
-
+        
         dispatch( {type: 'UPDATE', payload: data} );
     } catch (error) {
-        console.log("Oh no something went wrong");
+        console.log(error.message);
     }
 }
 
