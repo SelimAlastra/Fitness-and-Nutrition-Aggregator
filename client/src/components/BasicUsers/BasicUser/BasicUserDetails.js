@@ -11,24 +11,27 @@ const BasicUserDetails = () => {
 
     const { id } = useParams();
 
-    const user = useSelector((state) => id ? state.basicUsers.find(u => u._id === id) : null);
+    useEffect(() => {
+        dispatch(getBasicUser(id));
+     }, [dispatch]);
+
+    const user = useSelector((state) => state.basicUsers);
 
     const handleBan = () => {
         user.isBanned = !user.isBanned;
         console.log(user);
         dispatch(updateBasicUser(user._id, user));
-        window.location.href="/BasicUsers";
+        window.location.reload();
     }
 
     const handleDelete = () => {
         dispatch(deleteBasicUser(user._id));
+        window.location.href="/BasicUsers"
     }
     
     return(
         <>
-            <LinkContainer to='/BasicUsers'>
-                <Button variant="primary">Back</Button>
-            </LinkContainer>
+            <Button variant="primary" onClick={() => {window.location.href="/BasicUsers"}}>Back</Button>
             <br />
             <br />
             <ListGroup>
@@ -42,15 +45,11 @@ const BasicUserDetails = () => {
                 <ListGroupItem>Created at: {user.createdAt}</ListGroupItem>
             </ListGroup>
             <br />
-            <LinkContainer to={{pathname:"/BasicUsers/edit/" + user._id, state: {user: user}}}>
-                <Button variant="primary">Edit</Button>
-            </LinkContainer>
+            <Button variant="primary" onClick={() => {window.location.href="/BasicUsers/edit/" + user._id}}>Edit</Button>
             &nbsp; &nbsp;
             <Button variant="primary" onClick={ () => { handleBan() }}>Ban</Button>
             &nbsp; &nbsp;
-            <LinkContainer to='/BasicUsers'>
-                <Button variant="primary" onClick={ () => { handleDelete() }}>Delete</Button>
-            </LinkContainer>
+            <Button variant="primary" onClick={ () => { handleDelete() }}>Delete</Button>
         </>
     );
 

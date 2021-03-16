@@ -3,7 +3,7 @@ import { Form, Button } from "react-bootstrap";
 import { LinkContainer } from 'react-router-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from "react-router-dom";
-import { updateProfessional } from '../../../actions/professionals';
+import { updateProfessional, getProfessional } from '../../../actions/professionals';
 
 const ProfessionalUserEdit = () => {
 
@@ -12,13 +12,17 @@ const ProfessionalUserEdit = () => {
 
     const { id } = useParams();
 
-    const user = useSelector((state) => id ? state.professional.find(u => u._id === id) : null);
+    useEffect(() => {
+        dispatch(getProfessional(id));
+     }, [dispatch]);
+
+    const user = useSelector((state) => state.basicUsers);
 
     const handleSubmit = (e) => {
         e.preventDefault();
 
         dispatch(updateProfessional(id, userData));
-        window.location.href="/ProfessionalUsers";
+        window.location.href=`/ProfessionalUsers/${user._id}`;
     }
 
     useEffect(() => {
@@ -27,9 +31,7 @@ const ProfessionalUserEdit = () => {
     
     return( 
     <>
-        <LinkContainer to={`/ProfessionalUsers/${user._id}`}>
-            <Button variant="primary">Back</Button>
-        </LinkContainer>
+<Button variant="primary" onClick={() => {window.location.href=`/ProfessionalUsers/${user._id}`}}>Back</Button>
         <br />
         <br />
         <Form onSubmit={handleSubmit} >

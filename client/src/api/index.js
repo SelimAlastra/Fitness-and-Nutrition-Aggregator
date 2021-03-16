@@ -11,6 +11,8 @@ const basicUserUrl = 'http://localhost:5000/basicUsers';
 export const fetchReports = () => axios.get(reportUrl);
 export const createReport = (newReport) => axios.post(reportUrl, newReport);
 export const deleteReport = (id) => axios.delete(reportUrl+'/'+id);
+export const getReport = (id) => axios.get(`${reportUrl}/${id}`);
+
 
 
 export const fetchPosts = () => axios.get(url);
@@ -19,6 +21,7 @@ export const updatePost = (id, updatedPost) => axios.patch(`${url}/${id}`, updat
 export const deletePost = (id) => axios.delete(`${url}/${id}`);
 export const likePost = (id) => axios.patch(`${url}/${id}/likePost`);
 export const toggleFavAction = (id) => axios.patch(`${url}/${id}/toggleFavAction`);
+export const getPost = (id) => axios.get(`${url}/${id}`);
 
 export const getProfessional = (id) => axios.get(`${professionalUsersUrl}/${id}`);
 export const updateProfessional = (id, updatedProfile) => axios.patch(`${professionalUsersUrl}/update/${id}`, updatedProfile);

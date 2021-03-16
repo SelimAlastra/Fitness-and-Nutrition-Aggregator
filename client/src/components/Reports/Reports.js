@@ -6,13 +6,14 @@ import { useSelector, useDispatch } from "react-redux";
 import Report from "./Report/Report";
 import ReportForm from './ReportForm'
 import { getReports } from "../../actions/reports";
+import { getPosts } from "../../actions/posts";
 
 const Reports = () => {
 
     const dispatch = useDispatch();
 
     useEffect(() => {
-      dispatch(getReports());
+      dispatch(getReports());  dispatch(getPosts());
     }, [dispatch]);
 
     const reports = useSelector((state) => state.reports);

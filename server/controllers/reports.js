@@ -34,3 +34,9 @@ export const deleteReport = async (req, res) => {
 
     res.json({ message: 'Report deleted successfully' });
 };
+
+export const getReport = async (req, res) => {
+    Report.findById(req.params.id)
+      .then(report => res.json(report))
+      .catch(err => res.status(400).json('Error: Cannot find this Report' + err));
+  };

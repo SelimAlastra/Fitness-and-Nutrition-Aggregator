@@ -3,7 +3,7 @@ import { Button, ListGroup, ListGroupItem } from "react-bootstrap";
 import { useSelector, useDispatch } from 'react-redux';
 import { LinkContainer } from 'react-router-bootstrap';
 import { useParams } from "react-router-dom";
-import { deleteProfessionalUser, getProfessionalUser, updateProfessional } from '../../../actions/professionals';
+import { deleteProfessionalUser, getProfessional, updateProfessional } from '../../../actions/professionals';
 
 const ProfessionalUserDetails = () => {
     
@@ -11,24 +11,27 @@ const ProfessionalUserDetails = () => {
 
     const { id } = useParams();
 
-    const user = useSelector((state) => id ? state.professional.find(u => u._id === id) : null);
+    useEffect(() => {
+        dispatch(getProfessional(id));
+     }, [dispatch]);
+
+    const user = useSelector((state) => state.basicUsers);
 
     const handleBan = () => {
         user.isBanned = !user.isBanned;
         console.log(user);
         dispatch(updateProfessional(user._id, user));
-        window.location.href="/ProfessionalUsers";
+        window.location.reload();
     }
 
     const handleDelete = () => {
         dispatch(deleteProfessionalUser(user._id));
+        window.location.href="/ProfessionalUsers";
     }
     
     return(
         <>
-            <LinkContainer to='/ProfessionalUsers'>
-                <Button variant="primary">Back</Button>
-            </LinkContainer>
+            <Button variant="primary" onClick={() => {window.location.href="/ProfessionalUsers"}}>Back</Button>
             <br />
             <br />
             <ListGroup>
@@ -42,15 +45,11 @@ const ProfessionalUserDetails = () => {
                 <ListGroupItem>Created at: {user.createdAt}</ListGroupItem>
             </ListGroup>
             <br />
-            <LinkContainer to={{pathname:"/ProfessionalUsers/edit/" + user._id, state: {user: user}}}>
-                <Button variant="primary">Edit</Button>
-            </LinkContainer>
+            <Button variant="primary" onClick={() => {window.location.href=`/ProfessionalUsers/edit/${user._id}`}}>Edit</Button>
             &nbsp; &nbsp;
             <Button variant="primary" onClick={ () => { handleBan() }}>Ban</Button>
             &nbsp; &nbsp;
-            <LinkContainer to='/ProfessionalUsers'>
-                <Button variant="primary" onClick={ () => { handleDelete() }}>Delete</Button>
-            </LinkContainer>
+            <Button variant="primary" onClick={ () => { handleDelete() }}>Delete</Button>
         </>
     );
 
