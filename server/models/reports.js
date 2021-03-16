@@ -2,8 +2,8 @@ import mongoose from 'mongoose';
 
 const reportSchema = mongoose.Schema({
 
-    reporterId: String,
-    reportedId: String,
+    reporterUsername: String,
+    reportedUsername: String,
     reason: String,
     postId: String
 

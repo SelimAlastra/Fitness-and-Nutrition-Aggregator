@@ -15,7 +15,7 @@ const ProfessionalUserDetails = () => {
         dispatch(getProfessional(id));
      }, [dispatch]);
 
-    const user = useSelector((state) => state.basicUsers);
+    const user = useSelector((state) => state.professional);
 
     const handleBan = () => {
         user.isBanned = !user.isBanned;

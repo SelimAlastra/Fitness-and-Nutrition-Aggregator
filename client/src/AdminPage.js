@@ -2,8 +2,8 @@ import { React } from "react";
 import reactDom from "react-dom";
 import { Link, Switch, Route } from "react-router-dom";
 import { Form, Container, Button, Navbar, Nav, FormControl } from "react-bootstrap";
-import { LinkContainer } from "react-router-bootstrap";
 import Reports from './components/Reports/Reports'
+import ReportView from './components/Reports/Report/ReportView'
 import BasicUsers from "./components/BasicUsers/BasicUsers";
 import BasicUserDetails from "./components/BasicUsers/BasicUser/BasicUserDetails";
 import BasicUserEdit from "./components/BasicUsers/BasicUser/BasicUserEdit";
@@ -18,15 +18,9 @@ const NavigationBar = () => (
         <Navbar.Brand>Admin</Navbar.Brand>
         <Nav>
             <Nav.Link>Statistics</Nav.Link>
-            <LinkContainer to="/Reports">
-            <Nav.Link>Reports</Nav.Link>
-            </LinkContainer>
-            <LinkContainer to="/BasicUsers">
-                <Nav.Link>Basic Users</Nav.Link>
-            </LinkContainer>
-            <LinkContainer to="/ProfessionalUsers">
-                <Nav.Link>Professional Users</Nav.Link>
-            </LinkContainer>
+            <Nav.Link onClick={() => {window.location.href="/reports"}}>Reports</Nav.Link>
+            <Nav.Link onClick={() => {window.location.href="/basicUsers"}}>Basic Users</Nav.Link>
+            <Nav.Link onClick={() => {window.location.href="/ProfessionalUsers"}}>Professional Users</Nav.Link>
         </Nav>
         <Navbar.Toggle />
         <Form inline>
@@ -46,7 +40,6 @@ const AdminPage = () => (
     <div>
         <NavigationBar />
         <br />
-        <Container>
             <Switch>
                 <Route exact path='/basicUsers' component={BasicUsers}/>
                 <Route exact path='/basicUsers/:id' component={BasicUserDetails}/>
@@ -55,8 +48,8 @@ const AdminPage = () => (
                 <Route exact path='/professionalUsers/:id' component={ProfessionalUserDetails}/>
                 <Route exact path='/professionalUsers/edit/:id' component={ProfessionalUserEdit}/>
                 <Route exact path='/reports' component={Reports}/>
+                <Route exact path='/reports/:id' component={ReportView}/>
             </Switch>
-        </Container>
     </div>
 );
 
