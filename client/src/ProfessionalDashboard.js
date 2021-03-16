@@ -12,7 +12,7 @@ import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import InboxIcon from "@material-ui/icons/MoveToInbox";
 import MailIcon from "@material-ui/icons/Mail";
-
+import Navbar from "./components/Navbar/Navbar";
 import { useDispatch } from 'react-redux';
 
 import { getPosts, updatePost } from './actions/posts';
@@ -70,7 +70,7 @@ return (
       </Drawer>
       </AppBar>
     </div>
-
+       <Navbar/>
     <Grow in>
         <Container>
           <Grid className={classes.mainContainer} container justify="space-between" alignItems="stretch" spacing={3}>

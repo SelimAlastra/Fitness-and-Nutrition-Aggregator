@@ -1,8 +1,20 @@
 import axios from 'axios';
 
-const reportUrl = 'http://localhost:5000/reports';
-const url = 'http://localhost:5000/posts';
+const API= axios.create({baseURL:'http://localhost:5000'});
 
+
+/* API.interceptors.request.use((req) => {
+  console.log( localStorage.getItem('user'));
+    if (localStorage.getItem('user')) {
+      req.headers.Authorization = ` ${JSON.parse(localStorage.getItem('user')).token}`;
+    }
+    console.log( req.headers.Authorization);
+    return req;
+  });
+ */
+
+const url = 'http://localhost:5000/posts';
+const reportUrl = 'http://localhost:5000/reports';
 const professionalUsersUrl = 'http://localhost:5000/professionalUsers';
 const servicesUrl = 'http://localhost:5000/services';
 const basicUserUrl = 'http://localhost:5000/basicUsers';
@@ -13,12 +25,12 @@ export const createReport = (newReport) => axios.post(reportUrl, newReport);
 export const deleteReport = (id) => axios.delete(reportUrl+'/'+id);
 export const getReport = (id) => axios.get(`${reportUrl}/${id}`);
 
-export const fetchPosts = () => axios.get(url);
-export const createPost = (newPost) => axios.post(url, newPost);
-export const updatePost = (id, updatedPost) => axios.patch(`${url}/${id}`, updatedPost);
-export const deletePost = (id) => axios.delete(`${url}/${id}`);
-export const likePost = (id) => axios.patch(`${url}/${id}/likePost`);
-export const toggleFavAction = (id) => axios.patch(`${url}/${id}/toggleFavAction`);
+export const fetchPosts = () => API.get('/posts');
+export const createPost = (newPost) => API.post('/posts', newPost);
+export const updatePost = (id, updatedPost) =>API.patch(`/posts/${id}`, updatedPost);
+export const deletePost = (id) => API.delete(`/posts/${id}`);
+export const likePost = (id,userId) => API.patch(`/posts/${id}/${userId}/likePost`);
+export const toggleFavAction = (id) => API.patch(`/posts/${id}/toggleFavAction`);
 export const getPost = (id) => axios.get(`${url}/${id}`);
 
 export const getProfessional = (id) => axios.get(`${professionalUsersUrl}/${id}`);
