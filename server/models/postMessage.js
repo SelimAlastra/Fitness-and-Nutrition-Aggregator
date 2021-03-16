@@ -7,6 +7,7 @@ const postSchema = mongoose.Schema({
     tags: [String],
     selectedFile: String,
     url: String,
+    audioFile: String,
     likeCount: {
         type: Number,
         default: 0,

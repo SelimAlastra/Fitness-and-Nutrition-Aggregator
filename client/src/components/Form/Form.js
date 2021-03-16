@@ -8,7 +8,7 @@ import './styles.css';
 import { createPost, updatePost} from '../../actions/posts';
 
 const Form = ({currentId, setCurrentId}) => {
-    const [postData, setPostData] = useState({ creator: '', title: '', message: '', tags: '', selectedFile: '', url: '' });
+    const [postData, setPostData] = useState({ creator: '', title: '', message: '', tags: '', selectedFile: '', url: '', audioFile: ''});
     const [option, setOption] = useState('option1')
     let Value= 'photo';
     const post = useSelector((state) => currentId ? state.posts.find((p)=> p._id === currentId ) : null);
@@ -47,7 +47,7 @@ const Form = ({currentId, setCurrentId}) => {
    }
     const clear = () => {
         setCurrentId(null);
-        setPostData({ creator: '', title: '', message: '', tags: '', selectedFile: '', url: '' });
+        setPostData({ creator: '', title: '', message: '', tags: '', selectedFile: '', url: '', audioFile: ''});
     }
 
     return (
@@ -78,6 +78,15 @@ const Form = ({currentId, setCurrentId}) => {
                         <TextField name="url" variant="outlined" label="URL" fullWidth value={postData.url} onChange={(e) => setPostData({ ...postData, url: e.target.value })} />
                         </div>
                 </div>
+                <div>
+                    <input type="radio" name="choice-post" value="audio" onChange={(e) => setValue(e.target.value)} required />
+                    <label>Audio Post</label>
+                        <div className="reveal-if-active" >
+                        <label>Upload Audio</label>
+                        <TextField name="src" variant="outlined" label="URL/File" fullWidth value={postData.audioFile} onChange={(e) => setPostData({ ...postData, audioFile: e.target.value })} />
+                        </div>
+                </div>
+                
                 
 
 

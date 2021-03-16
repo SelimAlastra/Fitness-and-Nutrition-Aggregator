@@ -28,6 +28,7 @@
     "moment": "^2.29.1",
     "mongoose": "^5.11.18",
     "react": "^17.0.1",
+    "react-audio-player": "^0.14.0",
     "react-bootstrap": "^1.5.1",
     "react-dom": "^17.0.1",
     "react-facebook-login": "^4.1.1",
