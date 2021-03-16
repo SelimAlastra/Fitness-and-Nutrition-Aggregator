@@ -73,3 +73,9 @@ export const toggleFavAction = async  (req, res) =>{
         res.status(409).json({ message: error.message });
     }
   }
+
+  export const getPost = async (req, res) => {
+    PostMessage.findById(req.params.id)
+      .then(post => res.json(post))
+      .catch(err => res.status(400).json('Error: Cannot find this post' + err));
+  };

@@ -12,13 +12,17 @@ const BasicUserEdit = () => {
 
     const { id } = useParams();
 
-    const user = useSelector((state) => id ? state.basicUsers.find(u => u._id === id) : null);
+    useEffect(() => {
+        dispatch(getBasicUser(id));
+     }, [dispatch]);
+
+    const user = useSelector((state) => state.basicUsers);
 
     const handleSubmit = (e) => {
         e.preventDefault();
 
         dispatch(updateBasicUser(id, userData));
-        window.location.href="/BasicUsers";
+        window.location.href=`/BasicUsers/${user._id}`;
     }
 
     useEffect(() => {
@@ -27,9 +31,7 @@ const BasicUserEdit = () => {
     
     return( 
     <>
-        <LinkContainer to={`/BasicUsers/${user._id}`}>
-            <Button variant="primary">Back</Button>
-        </LinkContainer>
+        <Button variant="primary" onClick={() => {window.location.href=`/BasicUsers/${user._id}`}}>Back</Button>
         <br />
         <br />
         <Form onSubmit={handleSubmit} >
