@@ -32,16 +32,18 @@ const EditServices = (props) => {
     function addUrl(e) {
         e.preventDefault();
         const toUpdate = myServices.filter(sev => sev._id === serviceID)[0];
-        const currentUrls = toUpdate.urls;
-        currentUrls.push(url);
-        const updatedService = {
-            userID: toUpdate.userID,
-            description: toUpdate.description,
-            title: toUpdate.title,
-            price: toUpdate.price,
-            urls: currentUrls
+        if (toUpdate !== undefined) {
+            const currentUrls = toUpdate.urls;
+            currentUrls.push(url);
+            const updatedService = {
+                userID: toUpdate.userID,
+                description: toUpdate.description,
+                title: toUpdate.title,
+                price: toUpdate.price,
+                urls: currentUrls
+            }
+            dispatch(updateService(serviceID, updatedService));
         }
-        dispatch(updateService(serviceID, updatedService));
         setUrl("");
         setServiceID("");
     }
