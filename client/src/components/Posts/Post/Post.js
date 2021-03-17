@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, CardActions, CardContent, CardMedia, Button, Typography } from '@material-ui/core/';
+import { Card, CardActions, CardContent, CardMedia, Button, Typography, Container } from '@material-ui/core/';
 import ThumbUpAltIcon from '@material-ui/icons/ThumbUpAlt';
 import DeleteIcon from '@material-ui/icons/Delete';
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
@@ -15,6 +15,7 @@ import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import Videos from '../Videos/Videos';
 import ThumbUpAltOutlined from '@material-ui/icons/ThumbUpAltOutlined';
+import Buckets2 from "../../Buckets2/BucketModal";
 
 
 import { deletePost, likePost, toggleFavAction } from '../../../actions/posts';
@@ -67,6 +68,7 @@ const Post = ({ post , setCurrentId }) => {
     }
     return <div></div>
   }
+
     return (
         <Card className={classes.card}> 
         {   post.selectedFile 
@@ -143,9 +145,12 @@ const Post = ({ post , setCurrentId }) => {
                 <Likes/>                   
                 </Button>
                { JSON.parse(localStorage.getItem('user')).type =='client' ? 
+                <Container>
                  <Button size="small" color="primary">
                  Follow                   
                 </Button>
+                <Buckets2/>
+               </Container>
                 : <Delete/>
                 }
             </CardActions>
