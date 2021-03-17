@@ -1,7 +1,6 @@
 import React, { Fragment } from "react";
 import { Switch, Route } from "react-router-dom";
 import AdminLogin from "./AdminLogin";
-import AdminPage from "./AdminNavigationBar";
 import LandingPage from './LandingPage';
 import ClientDashboard from './ClientDashboard';
 import ProfessionalDashboard from './ProfessionalDashboard';
@@ -37,6 +36,7 @@ import ProfessionalUsers from "./components/ProfessionalUsers/ProfessionalUsers"
 import ProfessionalUserEdit from "./components/ProfessionalUsers/ProfessionalUser/ProfessionalUserEdit";
 import ProfessionalUserDetails from "./components/ProfessionalUsers/ProfessionalUser/ProfessionalUserDetails";
 import AdminNavigationBar from "./AdminNavigationBar";
+import AdminPrivateRoute from "./AdminPrivateRoute";
 
 
 const Main = () => (
@@ -70,14 +70,14 @@ const Main = () => (
         <Route exact path="/user/myservices/:id" component={MyServices}></Route>
         <Route exact path="/professional/services/add/:id" component={AddService}></Route>
 
-        <Route exact path='/admin/basicUsers' component={BasicUsers}/>
-        <Route exact path='/admin/basicUsers/:id' component={BasicUserDetails}/>
-        <Route exact path='/admin/basicUsers/edit/:id' component={BasicUserEdit}/>
-        <Route exact path='/admin/professionalUsers' component={ProfessionalUsers}/>
-        <Route exact path='/admin/professionalUsers/:id' component={ProfessionalUserDetails}/>
-        <Route exact path='/admin/professionalUsers/edit/:id' component={ProfessionalUserEdit}/>
-        <Route exact path='/admin/reports' component={Reports}/>
-        <Route exact path='/admin/reports/:id' component={ReportView}/>
+        <AdminPrivateRoute exact path='/admin/basicUsers' component={BasicUsers}/>
+        <AdminPrivateRoute exact path='/admin/basicUsers/:id' component={BasicUserDetails}/>
+        <AdminPrivateRoute exact path='/admin/basicUsers/edit/:id' component={BasicUserEdit}/>
+        <AdminPrivateRoute exact path='/admin/professionalUsers' component={ProfessionalUsers}/>
+        <AdminPrivateRoute exact path='/admin/professionalUsers/:id' component={ProfessionalUserDetails}/>
+        <AdminPrivateRoute exact path='/admin/professionalUsers/edit/:id' component={ProfessionalUserEdit}/>
+        <AdminPrivateRoute exact path='/admin/reports' component={Reports}/>
+        <AdminPrivateRoute exact path='/admin/reports/:id' component={ReportView}/>
     </Switch>
     </>
 )

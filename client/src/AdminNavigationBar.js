@@ -3,17 +3,13 @@ import { useHistory } from "react-router-dom";
 import { Navbar, Nav } from "react-bootstrap";
 import { signOut } from './actions/userAuth.js';
 
-import './AdminNavigationBar.css';
-
-
-
 // This is the navigation bar that will be used for the admin's page
 
 const AdminNavigationBar = () => {
     const history = useHistory();
     return (
     
-    <Navbar bg="dark" variant="dark" className="navigation" >
+    <Navbar fixed="top" bg="dark" variant="dark">
         <Navbar.Collapse id="basic-navbar-nav">
         <Navbar.Brand>Admin</Navbar.Brand>
         <Nav>
