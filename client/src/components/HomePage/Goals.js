@@ -3,7 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { faTrashAlt } from "@fortawesome/free-regular-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { getGoals , deleteGoal} from "../../actions/goals";
-import { Container , Row } from 'react-bootstrap';
+import { Grow, Grid} from '@material-ui/core';
+import {Container , Row} from 'react-bootstrap';
 import Goal from './Goal';
 import './Goals.css';
 
@@ -37,8 +38,9 @@ const Goals = ({userID}) => {
         let goalsComponents = myGoals.map((goal, index) => {
             return (
                 
-            <Container>
+
             <tr key={index}>
+
                 <Row>
                 <Goal key={index} goal={goal}/>
                 </Row>
@@ -54,8 +56,9 @@ const Goals = ({userID}) => {
                         </div>
 
                 </Row>
+
             </tr>
-            </Container>
+
 
                 );
         });
