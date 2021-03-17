@@ -4,12 +4,14 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './HomePage.css';
 import { useDispatch, useSelector } from "react-redux";
 import { getBasicUser } from "../../actions/basicUsers";
-import Goals from './Goals';
 import Image from 'react-bootstrap/Image'
+import { getGoalByUserID } from "../../actions/goals";
+import Goals from "./Goals"
+import UserInfo from "./UserInfo"
+
 
 
 const HomePage = (props) => {
-
     const dispatch = useDispatch();
     let user;
 
@@ -18,50 +20,34 @@ const HomePage = (props) => {
      }, [props]);
 
     user = useSelector((state) => state.basicUsers);
-
-    user = useSelector((state) => state.basicUsers);
     const [name, setName] = useState("");
-    const [username, setUsername]= useState("");
+    const [address, setAddress] = useState("");
     const [gender, setGender] = useState("");
-    const [bodyType, setBodyType] = useState("");
     const [weight, setWeight] = useState("");
-    const [bio, setBio] = useState("");
     const [ID, setID] = useState("");
 
     useEffect(() => {
         setName(user.name);
-        setUsername(user.username);
+        setAddress(user.address);
         setGender(user.gender);
-        setBodyType(user.bodyType);
         setWeight(user.weight);
-        setBio(user.bio);
         setID(user._id);
-        
-    }, [user]);
+
+    }, [user])
 
 
-    function generateGoals() {
-        if (user !== undefined && user !== null) {
-            const goals = user.goals;
-            return <Goals goals={goals}/>;
-        }
-    }
-
-    if (user !== undefined) {
         return (
             <div className="homepage">
-               <Alert className = 'alert1'> Welcome back {user.name} !</Alert>
-               <div>
+                <UserInfo user={user} />
+                <div>
                     <Image className ="GoalsImage" src="https://www.myzerona.com/content/uploads/2019/12/02-What-Are-SMART-Fitness-Goals.jpg" fluid />
-               </div>
-               <div className="homepageGoals">
-                    { generateGoals() }
+                </div>
+                <div className="homePagesection">
+                    <Goals userID={user._id}/>
                 </div>
             </div>
         );
-    } else {
-        return (<div>No profile can be found!</div>);
-    };
+
 }
 
 export default HomePage;

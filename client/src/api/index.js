@@ -8,6 +8,8 @@ const professionalUsersUrl = 'http://localhost:5000/professionalUsers';
 const servicesUrl = 'http://localhost:5000/services';
 const basicUserUrl = 'http://localhost:5000/basicUsers';
 
+const goalUrl = 'http://localhost:5000/goals';
+
 export const fetchUsers = () => axios.get(userUrl);
 export const createUser = (newUser) => axios.post(userUrl, newUser);
 export const updateUser = (id, updatedUser) => axios.patch(userUrl+'/'+id, updatedUser);
@@ -35,3 +37,7 @@ export const addService = (service) => axios.post(`${servicesUrl}/add`, service)
 export const getBasicUser = (id) => axios.get(`${basicUserUrl}/${id}`);
 export const updateBasicUser = (id, updatedBasicUser) => axios.patch(`${basicUserUrl}/update/${id}`, updatedBasicUser);
 
+export const getGoals = () => axios.get(goalUrl);
+export const getGoalByUserID = (id) => axios.get(`${goalUrl}/${id}`);
+export const updateGoal= (id, updatedGoal) => axios.patch(`${goalUrl}/update/${id}`, updatedGoal);
+export const deleteGoal = (id) => axios.delete(`${goalUrl}/${id}`)

@@ -4,7 +4,7 @@ import mongoose from "mongoose";
 export const getGoals = async (req, res) => {
   Goal.find()
     .then(goals => res.json(goals))
-    .catch(err => res.status(400).json('Error: Failed to get the goal ' + err));
+    .catch(error => res.status(400).json("Error: Failed to get the goals " + error));
 };
 
 export const createGoal = async (req, res) => {
@@ -22,9 +22,17 @@ export const createGoal = async (req, res) => {
 
 export const getGoal = async (req, res) => {
   Goal.findById(req.params.id)
-    .then(professionalUser => res.json(professionalUser))
+    .then(goal => res.json(goal))
     .catch(err => res.status(400).json('Error: Cannot find this goal' + err));
 };
+
+export const getGoalByUserID = async (req, res) => {
+  Goal.find({ userID: req.params.id}).exec()
+    .then(goal => res.json(goal))
+    .catch(err => res.status(400).json('Error: Cannot find this goal' + err));
+};
+
+
 
 export const deleteGoal = async (req, res) => {
   Goal.findByIdAndDelete(req.params.id)
