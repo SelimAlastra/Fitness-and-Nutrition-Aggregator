@@ -10,8 +10,6 @@ import './Goals.css';
 const Goals = ({userID}) => {
 
     const dispatch = useDispatch();
-    const [myGoals, setMyGoals] = useState([]);
-
 
     useEffect(() => {
         dispatch(getGoals());
@@ -19,20 +17,12 @@ const Goals = ({userID}) => {
     }, [dispatch]);
 
     const goals = useSelector((state) => state.goals);
-
-    useEffect(() => {
-        if(goals !== undefined)
-        {
-        setMyGoals(goals.filter(goals => goals.userID === userID));
-        }
-
-    }, [goals]);
+    const myGoals = goals.filter(goal => goal.userID === userID);
 
     if (myGoals === undefined || myGoals.legnth === 0) {
         return (
             <div>
-                <h2 className="goalsPageText">Goals</h2>
-                <p>You currenly have no goals !</p>
+                <h2 className="goalsPageText"> You currently have no goals !</h2>
             </div>
         )
     } else {
