@@ -6,16 +6,15 @@ import LandingPage from './LandingPage';
 import ClientDashboard from './ClientDashboard';
 import ProfessionalDashboard from './ProfessionalDashboard';
 import Quiz from './quiz/quizUser.js';
+import Tags from './quiz/tagsProffesional.js';
 
 import Register from './components/BasicUsersAuth/userRegister.jsx';
 import Login from './components/BasicUsersAuth/userLogin.jsx';
-import UserPage from './components/BasicUsersAuth/userPage.jsx';
 import ForgetPassword from './components/BasicUsersAuth/forgetPassword.jsx';
 import ResetPassword from './components/BasicUsersAuth/resetPassword.jsx';
 
 import ProfRegister from './components/ProfessionalUsersAuth/professionalRegister.jsx';
 import ProfLogin from './components/ProfessionalUsersAuth/professionalLogin.jsx';
-import ProfessionalPage from './components/ProfessionalUsersAuth/professionalPage.jsx';
 import ProfForgetPassword from './components/ProfessionalUsersAuth/forgetPassword.jsx';
 import ProfResetPassword from './components/ProfessionalUsersAuth/resetPassword.jsx';
 
@@ -37,17 +36,17 @@ const Main = () => {
                 <Route exact path='/' component={LandingPage}></Route>
                 <Route exact path='/adminLogin' component={AdminLogin}></Route>
                 <Route exact path='/adminPage' component={AdminPage}></Route>
-                <Route exact path='/clientDashboard' component={ClientDashboard}></Route>
-                <Route exact path='/professionalDashboard' component={ProfessionalDashboard}></Route>
+                <Route exact path='/clientDashboard/:id' component={ClientDashboard}></Route>
+                <Route exact path='/professionalDashboard/:id' component={ProfessionalDashboard}></Route>
 
-                <Route exact path='/userQuiz' component={Quiz}></Route>
+                <Route exact path='/userQuiz/:id' component={Quiz}></Route>
+                <Route exact path='/professionalTags/:id' component={Tags}></Route>
+                
                 <Route exact path='/launch/users' exact render={props => <Fragment> <Login {...props}/> <Register {...props}/> </Fragment>} />
-                <Route exact path='/user' exact render={props => <UserPage {...props} />} />
                 <Route exact path='/user/password/forget' exact render={props => <ForgetPassword {...props} />} />
                 <Route exact path='/user/password/reset/:token' exact render={props => <ResetPassword {...props} />} />
 
                 <Route exact path='/launch/professionals' exact render={props => <Fragment> <ProfLogin {...props}/> <ProfRegister {...props}/> </Fragment>} />
-                <Route exact path='/professional' exact render={props => <ProfessionalPage {...props} />} />
                 <Route exact path='/professional/password/forget' exact render={props => <ProfForgetPassword {...props} />} />
                 <Route exact path='/professional/password/reset/:token' exact render={props => <ProfResetPassword {...props} />} />
 
