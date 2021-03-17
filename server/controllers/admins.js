@@ -69,9 +69,6 @@ export const loginController = (req, res) => {
       });
     }
     // generate a token and send to client
-    console.log('############################################');
-    console.log(user);
-    console.log('############################################');
     const token = jwt.sign(
       {
         _id: user._id
