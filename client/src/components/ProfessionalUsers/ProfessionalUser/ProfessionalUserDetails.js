@@ -26,12 +26,12 @@ const ProfessionalUserDetails = () => {
 
     const handleDelete = () => {
         dispatch(deleteProfessionalUser(user._id));
-        window.location.href="/ProfessionalUsers";
+        window.location.href="/admin/ProfessionalUsers";
     }
     
     return(
         <>
-            <Button variant="primary" onClick={() => {window.location.href="/ProfessionalUsers"}}>Back</Button>
+            <Button variant="primary" onClick={() => {window.location.href="/admin/ProfessionalUsers"}}>Back</Button>
             <br />
             <br />
             <ListGroup>
@@ -45,7 +45,7 @@ const ProfessionalUserDetails = () => {
                 <ListGroupItem>Created at: {user.createdAt}</ListGroupItem>
             </ListGroup>
             <br />
-            <Button variant="primary" onClick={() => {window.location.href=`/ProfessionalUsers/edit/${user._id}`}}>Edit</Button>
+            <Button variant="primary" onClick={() => {window.location.href=`/admin/ProfessionalUsers/edit/${user._id}`}}>Edit</Button>
             &nbsp; &nbsp;
             <Button variant="primary" onClick={ () => { handleBan() }}>Ban</Button>
             &nbsp; &nbsp;

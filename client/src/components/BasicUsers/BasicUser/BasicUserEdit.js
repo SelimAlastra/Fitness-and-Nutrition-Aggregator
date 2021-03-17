@@ -22,7 +22,7 @@ const BasicUserEdit = () => {
         e.preventDefault();
 
         dispatch(updateBasicUser(id, userData));
-        window.location.href=`/BasicUsers/${user._id}`;
+        window.location.href=`/admin/BasicUsers/${user._id}`;
     }
 
     useEffect(() => {
@@ -31,7 +31,7 @@ const BasicUserEdit = () => {
     
     return( 
     <>
-        <Button variant="primary" onClick={() => {window.location.href=`/BasicUsers/${user._id}`}}>Back</Button>
+        <Button variant="primary" onClick={() => {window.location.href=`/admin/BasicUsers/${user._id}`}}>Back</Button>
         <br />
         <br />
         <Form onSubmit={handleSubmit} >

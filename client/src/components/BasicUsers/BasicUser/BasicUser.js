@@ -14,7 +14,7 @@ const BasicUser = ({ user }) => {
             <td>{user.email}</td>
             <td>
                 <Container>
-                    <LinkContainer to={{pathname:"/BasicUsers/" + user._id}}>
+                    <LinkContainer to={{pathname:"/admin/BasicUsers/" + user._id}}>
                         <Button variant="primary">Details</Button>
                     </LinkContainer>
                 </Container>

@@ -16,8 +16,6 @@ const BasicUsers = () => {
     const users = useSelector((state) => state.basicUsers);
 
     return (
-        <>
-        <UserForm />
         <Table>
                 <thead>
                     <tr>
@@ -34,8 +32,7 @@ const BasicUsers = () => {
                         </tr>
                     ))}
                 </tbody>
-            </Table>
-        </>
+        </Table>
     );
 }
 

@@ -22,7 +22,7 @@ const ProfessionalUserEdit = () => {
         e.preventDefault();
 
         dispatch(updateProfessional(id, userData));
-        window.location.href=`/ProfessionalUsers/${user._id}`;
+        window.location.href=`/admin/ProfessionalUsers/${user._id}`;
     }
 
     useEffect(() => {
@@ -31,7 +31,7 @@ const ProfessionalUserEdit = () => {
     
     return( 
     <>
-<Button variant="primary" onClick={() => {window.location.href=`/ProfessionalUsers/${user._id}`}}>Back</Button>
+<Button variant="primary" onClick={() => {window.location.href=`/admin/ProfessionalUsers/${user._id}`}}>Back</Button>
         <br />
         <br />
         <Form onSubmit={handleSubmit} >

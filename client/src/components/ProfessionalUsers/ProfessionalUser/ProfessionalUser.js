@@ -13,7 +13,7 @@ const ProfessionalUser = ({ user }) => {
             <td>{user.email}</td>
             <td>
                 <Container>
-                    <LinkContainer to={{pathname:"/ProfessionalUsers/" + user._id}}>
+                    <LinkContainer to={{pathname:"/admin/ProfessionalUsers/" + user._id}}>
                         <Button variant="primary">Details</Button>
                     </LinkContainer>
                 </Container>
