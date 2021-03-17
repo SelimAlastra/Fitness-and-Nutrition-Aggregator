@@ -84,6 +84,7 @@ const Form = ({currentId, setCurrentId}) => {
                         <div className="reveal-if-active" >
                         <label>Upload Audio</label>
                         <TextField name="src" variant="outlined" label="URL/File" fullWidth value={postData.audioFile} onChange={(e) => setPostData({ ...postData, audioFile: e.target.value })} />
+                        {/* <FileBase type="file" multiple={false} onDone={({ base64 }) => setPostData({ ...postData, audioFile: base64 })} /> */}
                         </div>
                 </div>
                 
