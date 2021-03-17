@@ -1,14 +1,18 @@
 import './Goal.css';
 import './GoalTags.css'
 
+
+
 function Goal({goal}) {
 
     let tags = goal.tags;
     if(tags === undefined) {
-        return (<div className="goal">
+        return (
+        <div className="goal">
         <p className="goalText">Description : {goal.description}</p>
         <p className="goalText">Deadline : {goal.deadline}</p>
-    </div>);
+        </div>
+        );
     } else {
         let size = 3;
         if (tags.length < 3) size = tags.length;
