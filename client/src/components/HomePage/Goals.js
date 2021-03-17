@@ -64,7 +64,7 @@ const Goals = ({userID}) => {
         });
         return (
             <div>
-                <h2 className="goalsPageText">Goals</h2>
+                <h2 className="goalsPageText"> Goals</h2>
                 <div className="goalsContainer">
                     {goalsComponents}
                 </div>
