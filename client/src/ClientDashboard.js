@@ -2,6 +2,7 @@ import React, { useEffect ,useState } from 'react';
 import { Container, AppBar, Typography, Grow, Grid } from '@material-ui/core';
 import { useDispatch } from 'react-redux';
 import Navbar from './components/Navbar/Navbar';
+import SearchBar from './components/SearchBar/SearchBar';
 
 import { getPosts, updatePost } from './actions/posts';
 import Posts from './components/Posts/Posts';
@@ -16,7 +17,7 @@ const ClientDashboard = () => {
     useEffect(() => {
       dispatch(getPosts());
     }, [currentId,dispatch]);
-
+    
 return (
   <Container maxWidth="lg">
     <AppBar className={classes.appBar} position="static" color="inherit">
@@ -24,6 +25,7 @@ return (
      <img className={classes.image} src={memories} alt="memories" height="60" />
      <Navbar/>
     </AppBar>
+    <SearchBar />
 
     <Grow in>
         <Container>

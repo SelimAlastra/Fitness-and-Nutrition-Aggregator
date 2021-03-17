@@ -3,6 +3,7 @@ import { Grid, CircularProgress } from '@material-ui/core';
 import { useSelector } from 'react-redux';
 
 import Post from './Post/Post';
+import SearchBar from './components/SearchBar/SearchBar';
 import useStyles from './styles';
 
 const Posts = ({setCurrentId}) => {
