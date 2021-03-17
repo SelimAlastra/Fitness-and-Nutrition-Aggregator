@@ -1,0 +1,8 @@
+.navigation {        
+    margin-right: auto;    
+    margin-left: auto;
+    margin-bottom: 30px;  
+    max-width: 100%;    
+    min-width: 1000px;
+    white-space: nowrap;
+}

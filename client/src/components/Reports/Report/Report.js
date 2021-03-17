@@ -16,7 +16,7 @@ const Report = ({ report }) => {
             <td>
                 <Container>
                     <Button variant="primary" onClick={ () => { dispatch(deleteReport(report._id)) }}>Delete</Button> &nbsp;
-                    <LinkContainer to={{pathname:"/reports/" + report._id}}>
+                    <LinkContainer to={{pathname:"/admin/reports/" + report._id}}>
                     <Button variant="primary">View Full Report</Button>
                     </LinkContainer>
                 </Container>

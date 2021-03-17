@@ -16,8 +16,6 @@ const ProfessionalUsers = () => {
     const users = useSelector((state) => state.professional);
 
     return (
-        <>
-        <UserForm />
         <Table>
                 <thead>
                     <tr>
@@ -34,8 +32,7 @@ const ProfessionalUsers = () => {
                         </tr>
                     ))}
                 </tbody>
-            </Table>
-        </>
+        </Table>
     );
 }
 

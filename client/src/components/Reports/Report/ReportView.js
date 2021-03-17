@@ -35,18 +35,18 @@ const ReportView = () => {
 
     const handleDelete = () => {
         dispatch(deleteReport(report._id));
-        window.location.href="/reports";
+        window.location.href="/admin/reports";
     }
 
     const handleDelete2 = () => {
         dispatch(deleteReport(report._id));
         dispatch(deletePost(post._id));
-        window.location.href="/reports";
+        window.location.href="/admin/reports";
     }
 
     return(
         <>
-            <Button variant="primary" onClick={() => {window.location.href="/reports"}}>Back</Button>
+            <Button variant="primary" onClick={() => {window.location.href="/admin/reports"}}>Back</Button>
             <br />
             <br />
             <ListGroup>

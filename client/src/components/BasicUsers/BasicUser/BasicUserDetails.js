@@ -26,12 +26,12 @@ const BasicUserDetails = () => {
 
     const handleDelete = () => {
         dispatch(deleteBasicUser(user._id));
-        window.location.href="/BasicUsers"
+        window.location.href="/admin/BasicUsers"
     }
     
     return(
         <>
-            <Button variant="primary" onClick={() => {window.location.href="/BasicUsers"}}>Back</Button>
+            <Button variant="primary" onClick={() => {window.location.href="/admin/BasicUsers"}}>Back</Button>
             <br />
             <br />
             <ListGroup>
@@ -45,7 +45,7 @@ const BasicUserDetails = () => {
                 <ListGroupItem>Created at: {user.createdAt}</ListGroupItem>
             </ListGroup>
             <br />
-            <Button variant="primary" onClick={() => {window.location.href="/BasicUsers/edit/" + user._id}}>Edit</Button>
+            <Button variant="primary" onClick={() => {window.location.href="/admin/BasicUsers/edit/" + user._id}}>Edit</Button>
             &nbsp; &nbsp;
             <Button variant="primary" onClick={ () => { handleBan() }}>Ban</Button>
             &nbsp; &nbsp;
