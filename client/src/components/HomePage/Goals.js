@@ -1,21 +1,54 @@
-const Goals = ({goals}) => {
-    return (
-        <div>
-            <h3 className="homePageTitleText">Your goals</h3>
-            <hr className="homePagelineSeperator"/>
-            { generateGoals() }
-        </div>
-    );
-    
-    function generateGoals() {
-        if (goals !== undefined && goals.length > 0) {
-            return goals.map((goal, index) => {return (<p className="homePageTextContainer" key={index}>{goal}</p>)});
-        } else {
-            return (<div><h3 className="notFound" data-testid="noGoalsMessage">Sorry, you currently have no goals!</h3></div>);
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from 'react-redux';
+
+import { getGoals } from "../../actions/goals";
+import Goal from './Goal';
+import './Goals.css';
+
+
+
+const Goals = ({userID}) => {
+
+    const dispatch = useDispatch();
+    const [myGoals, setMyGoals] = useState([]);
+
+
+    useEffect(() => {
+        dispatch(getGoals());
+
+    }, [dispatch]);
+
+    const goals = useSelector((state) => state.goals);
+
+    useEffect(() => {
+        if(goals !== undefined)
+        {
+        setMyGoals(goals.filter(goals => goals.userID === userID));
         }
+
+    }, [goals]);
+
+    if (myGoals === undefined || myGoals.legnth === 0) {
+        return (
+            <div>
+                <h2 className="goalsPageText">Goals</h2>
+                <p>You currenly have no goals !</p>
+            </div>
+        )
+    } else {
+        let goalsComponents = myGoals.map((goal, index) => {
+            return (<Goal key={index} goal={goal}/>);
+        });
+        return (
+            <div>
+                <h2 className="goalsPageText">Goals</h2>
+                <div className="goalsContainer">
+                    {goalsComponents}
+                </div>
+            </div>
+        );
     }
+
 }
-
-
 
 export default Goals;
