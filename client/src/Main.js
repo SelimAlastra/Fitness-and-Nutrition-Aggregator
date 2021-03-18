@@ -36,7 +36,7 @@ import ProfessionalUsers from "./components/ProfessionalUsers/ProfessionalUsers"
 import ProfessionalUserEdit from "./components/ProfessionalUsers/ProfessionalUser/ProfessionalUserEdit";
 import ProfessionalUserDetails from "./components/ProfessionalUsers/ProfessionalUser/ProfessionalUserDetails";
 import AdminNavigationBar from "./AdminNavigationBar";
-import AdminPrivateRoute from "./AdminPrivateRoute";
+import PrivateRoute from "./PrivateRoute";
 
 
 const Main = () => (
@@ -46,13 +46,13 @@ const Main = () => (
         <Route path="/admin"> <AdminNavigationBar/> </Route>
     </Switch>
     <Switch>
-        <Route exact path='/' component={LandingPage}></Route>
-        <Route exact path='/admin' component={AdminLogin}></Route>
-        <Route exact path='/clientDashboard/:id' component={ClientDashboard}></Route>
-        <Route exact path='/professionalDashboard/:id' component={ProfessionalDashboard}></Route>
+        <Route exact path='/' component={LandingPage}/>
+        <Route exact path='/admin' component={AdminLogin}/>
+        <PrivateRoute exact path='/clientDashboard/:id' component={ClientDashboard} userType={'client'}/>
+        <PrivateRoute exact path='/professionalDashboard/:id' component={ProfessionalDashboard} userType={'professional'}/>
 
-        <Route exact path='/userQuiz/:id' component={Quiz}></Route>
-        <Route exact path='/professionalTags/:id' component={Tags}></Route>
+        <PrivateRoute exact path='/userQuiz/:id' component={Quiz} userType={'client'}/>
+        <PrivateRoute exact path='/professionalTags/:id' component={Tags} userType={'professional'}/>
         
         <Route exact path='/launch/users' exact render={props => <Fragment> <Login {...props}/> <Register {...props}/> </Fragment>} />
         <Route exact path='/user/password/forget' exact render={props => <ForgetPassword {...props} />} />
@@ -62,22 +62,23 @@ const Main = () => (
         <Route exact path='/professional/password/forget' exact render={props => <ProfForgetPassword {...props} />} />
         <Route exact path='/professional/password/reset/:token' exact render={props => <ProfResetPassword {...props} />} />
 
-        <Route exact path="/professional/profile/:id" component={ProfessionalProfile}></Route>
-        <Route exact path="/professional/profile/edit/:id" component={EditProfessionalDetails}></Route>
-        <Route exact path="/professional/services/edit/:id" component={EditServices}></Route>
-        <Route exact path="/user/profile/:id" component={ClientProfile}></Route>
-        <Route exact path="/user/edit/:id" component={EditBasicUser}></Route>
-        <Route exact path="/user/myservices/:id" component={MyServices}></Route>
-        <Route exact path="/professional/services/add/:id" component={AddService}></Route>
+        <PrivateRoute exact path="/user/profile/:id" component={ClientProfile} userType={'client'}/>
+        <PrivateRoute exact path="/user/edit/:id" component={EditBasicUser} userType={'client'}/>
+        <PrivateRoute exact path="/user/myservices/:id" component={MyServices} userType={'client'}/>
 
-        <AdminPrivateRoute exact path='/admin/basicUsers' component={BasicUsers}/>
-        <AdminPrivateRoute exact path='/admin/basicUsers/:id' component={BasicUserDetails}/>
-        <AdminPrivateRoute exact path='/admin/basicUsers/edit/:id' component={BasicUserEdit}/>
-        <AdminPrivateRoute exact path='/admin/professionalUsers' component={ProfessionalUsers}/>
-        <AdminPrivateRoute exact path='/admin/professionalUsers/:id' component={ProfessionalUserDetails}/>
-        <AdminPrivateRoute exact path='/admin/professionalUsers/edit/:id' component={ProfessionalUserEdit}/>
-        <AdminPrivateRoute exact path='/admin/reports' component={Reports}/>
-        <AdminPrivateRoute exact path='/admin/reports/:id' component={ReportView}/>
+        <PrivateRoute exact path="/professional/profile/:id" component={ProfessionalProfile} userType={'professional'}/>
+        <PrivateRoute exact path="/professional/profile/edit/:id" component={EditProfessionalDetails} userType={'professional'}/>
+        <PrivateRoute exact path="/professional/services/edit/:id" component={EditServices} userType={'professional'}/>
+        <PrivateRoute exact path="/professional/services/add/:id" component={AddService} userType={'professional'}/>
+
+        <PrivateRoute exact path='/admin/basicUsers' component={BasicUsers} userType={'admin'}/>
+        <PrivateRoute exact path='/admin/basicUsers/:id' component={BasicUserDetails} userType={'admin'}/>
+        <PrivateRoute exact path='/admin/basicUsers/edit/:id' component={BasicUserEdit} userType={'admin'}/>
+        <PrivateRoute exact path='/admin/professionalUsers' component={ProfessionalUsers} userType={'admin'}/>
+        <PrivateRoute exact path='/admin/professionalUsers/:id' component={ProfessionalUserDetails} userType={'admin'}/>
+        <PrivateRoute exact path='/admin/professionalUsers/edit/:id' component={ProfessionalUserEdit} userType={'admin'}/>
+        <PrivateRoute exact path='/admin/reports' component={Reports} userType={'admin'}/>
+        <PrivateRoute exact path='/admin/reports/:id' component={ReportView} userType={'admin'}/>
     </Switch>
     </>
 )
