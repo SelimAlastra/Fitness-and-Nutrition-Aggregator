@@ -2,8 +2,22 @@ import React from "react";
 import { Button , Alert, Container, Carousel } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './LandingPage.css';
+import { useHistory } from 'react-router-dom';
 
 function LandingPage () {
+
+    const history = useHistory();
+
+    const basicUsers = () =>{ 
+      let path = `/launch/users`; 
+      history.push(path);
+    }
+
+    const professionalUsers = () =>{ 
+        let path = `launch/professionals`; 
+        history.push(path);
+    }
+
     return (
         <div className = 'landingPage'> 
             <body className = 'body'>   
@@ -13,8 +27,8 @@ function LandingPage () {
 
                 <div class="row justify-content-center"
                 >     
-                    <Button className="button" variant="outline-success"> Basic User </Button>
-                    <Button className="button" variant="outline-success" > Professional</Button>
+                    <Button className="button" variant="outline-success" onClick={basicUsers}> Basic User </Button>
+                    <Button className="button" variant="outline-success" onClick={professionalUsers}> Professional</Button>
                 </div>    
 
                 <Carousel className ="carousel">
