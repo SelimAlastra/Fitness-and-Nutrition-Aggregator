@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useEffect} from 'react';
 import { Card, CardActions, CardContent, CardMedia, Button, Typography } from '@material-ui/core/';
 import ThumbUpAltIcon from '@material-ui/icons/ThumbUpAlt';
 import DeleteIcon from '@material-ui/icons/Delete';
@@ -15,16 +15,20 @@ import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import Videos from '../Videos/Videos';
 import ThumbUpAltOutlined from '@material-ui/icons/ThumbUpAltOutlined';
+import { useSelector } from 'react-redux';
+
+import { deletePost, likePost, toggleFavAction, updatePost } from '../../../actions/posts';
 
 
-import { deletePost, likePost, toggleFavAction } from '../../../actions/posts';
-
-
-const Post = ({ post , setCurrentId }) => {
+const Post = ({ post , setCurrentId, updatePosts }) => {
+    //post= useSelector((state) => state.posts[setCurrentId]);
     const classes = useStyles();
     const dispatch =useDispatch();
     const [anchorEl, setAnchorEl] = React.useState(null);
     const [open, setOpen] = React.useState(false);
+    useEffect(() => {
+      dispatch(updatePost(setCurrentId,post));
+    }, [post,dispatch,setCurrentId,updatePosts]);
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
       };
