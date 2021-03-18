@@ -20,6 +20,7 @@ import Posts from './components/Posts/Posts';
 import Form from './components/Form/Form';
 import memories from './images/memories.png';
 import useStyles from './styles';
+import {filteredPosts} from './components/SearchBar/SearchBar';
 
 const ProfessionalDashboard = () => {
     const [currentId, setCurrentId] = useState(null);
@@ -29,7 +30,7 @@ const ProfessionalDashboard = () => {
 
     useEffect(() => {
       dispatch(getPosts());
-    }, [currentId,dispatch]);
+    }, [currentId,dispatch,filteredPosts]);
 
     /*useEffect(() => {
       dispatch(getBuckets());
@@ -75,7 +76,7 @@ return (
         <Container>
           <Grid className={classes.mainContainer} container justify="space-between" alignItems="stretch" spacing={3}>
             <Grid item xs={12} sm={7}>
-              <Posts setCurrentId={setCurrentId}/>
+              <Posts setCurrentId={setCurrentId} filteredPosts={filteredPosts}/>
             </Grid>
             <Grid item xs={12} sm={4}>
               <Form currentId={currentId} setCurrentId={setCurrentId} />

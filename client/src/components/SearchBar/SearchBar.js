@@ -1,15 +1,10 @@
   import React from 'react';
   import './styles.css';
-  import * as api from '../api/index';
   import { useSelector } from 'react-redux';
 
-
+var filteredPosts;
 const SearchBar = () => {
-
-const searchBar = document.getElementById('searchBar');
-
-let filteredPosts = useSelector((state) => state.posts);
-
+  filteredPosts = useSelector((state) => state.posts);
 
 /* const loadCharacters = async () => {
     try {
@@ -21,19 +16,14 @@ let filteredPosts = useSelector((state) => state.posts);
 
 //loadCharacters();
 
-searchBar.addEventListener('keyup', (e) => {
+const keyup= (e) => {
     const searchString = e.target.value.toLowerCase();
-
-    filteredPosts = filteredPosts.filter((post) => {
-        return (
+     
+    filteredPosts=filteredPosts.filter((post) => 
             post.title.toLowerCase().includes(searchString) ||
             post.message.toLowerCase().includes(searchString)
-        );
-    });
-});
-
-
-
+            );
+};
 
     return (
         <div>
@@ -43,13 +33,12 @@ searchBar.addEventListener('keyup', (e) => {
           <title>Document</title>
           <link rel="stylesheet" />
             <div id="searchWrapper">
-              <input type="text" name="searchBar" id="searchBar" placeholder="search for a character" />
+              <input type="text" name="searchBar" id="searchBar" placeholder="search for a character" onKeyUp={(e)=>keyup(e)}/>
             </div>
             <ul id="charactersList" />
         </div>
       );
   };
-
+  export {filteredPosts} ;
   export default SearchBar;
-
 

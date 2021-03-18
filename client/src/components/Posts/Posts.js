@@ -1,17 +1,14 @@
-import React from 'react';
+import React,{useEffect} from 'react';
 import { Grid, CircularProgress } from '@material-ui/core';
 import { useSelector } from 'react-redux';
-
+import { useDispatch } from 'react-redux';
 import Post from './Post/Post';
-import SearchBar from './components/SearchBar/SearchBar';
 import useStyles from './styles';
 
-const Posts = ({setCurrentId}) => {
-
-    const posts = useSelector((state) => state.posts);
+const Posts = ({setCurrentId,filteredPosts}) => {
+   
+    let posts = filteredPosts;
     const classes = useStyles();
-
-    console.log(posts);
 
     return (
         !posts.length ? <CircularProgress /> : (
