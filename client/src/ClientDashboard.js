@@ -8,15 +8,18 @@ import { getPosts, updatePost } from './actions/posts';
 import Posts from './components/Posts/Posts';
 import memories from './images/memories.png';
 import useStyles from './styles';
+import {filteredPosts} from './components/SearchBar/SearchBar';
 
 const ClientDashboard = () => {
     const [currentId, setCurrentId] = useState(null);
+    const [postsUpdated, setUpdatedPosts] = useState(filteredPosts);
     const classes = useStyles();
     const dispatch = useDispatch();
-
     useEffect(() => {
       dispatch(getPosts());
-    }, [currentId,dispatch]);
+      setUpdatedPosts(filteredPosts);
+      
+    }, [currentId,dispatch,filteredPosts]);
     
 return (
   <Container maxWidth="lg">
@@ -31,7 +34,7 @@ return (
         <Container>
           <Grid className={classes.mainContainer} container justify="space-between" alignItems="stretch" spacing={3}>
             <Grid item xs={12} sm={7}>
-              <Posts setCurrentId={setCurrentId}/>
+              <Posts setCurrentId={setCurrentId} filteredPosts={postsUpdated} />
             </Grid>
           </Grid>
         </Container>
@@ -40,5 +43,6 @@ return (
   </Container>
   );
 }
+
 
 export default ClientDashboard;
