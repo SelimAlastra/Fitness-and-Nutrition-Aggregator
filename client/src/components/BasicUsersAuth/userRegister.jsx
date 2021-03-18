@@ -196,7 +196,7 @@ const formik = useFormik({
       )}
       <p/>
       
-      <Button className="registerButton" type="submit" disabled={formik.isSubmitting}>
+      <Button className="registerButtonModal" variant="outline-success" type="submit" disabled={formik.isSubmitting}>
           Register
       </Button>
       <p style={{'marginLeft': '140px', 'fontWeight': 'bold'}}> OR </p>
