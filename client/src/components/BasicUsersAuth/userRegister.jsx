@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import { isAuth } from '../../actions/userAuth.js';
+import { authenticate, isAuth } from '../../actions/userAuth.js';
 import { Redirect } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
@@ -13,6 +13,7 @@ import {faEye} from "@fortawesome/free-solid-svg-icons";
 import './userRegister.css';
 import Google from './googleLogin.jsx';
 import Facebook from './facebookLogin.jsx';
+import { useHistory } from 'react-router-dom';
 
 function PopUpSignUp(){
   const [show, setShow] = useState(false);
@@ -35,7 +36,9 @@ return(
 );
 };
 
-const Register = () => {
+const Register = (props) => {
+
+const history = useHistory();
 
 const eye = <FontAwesomeIcon icon={faEye} />;
 
@@ -81,10 +84,15 @@ const formik = useFormik({
         }
         axios
           .post(`http://localhost:5000/basicUsers/register`, newData)
+          .then(res => {
+            authenticate(res, () => {
+            history.push(`/userQuiz/${JSON.parse(localStorage.getItem('user')).username}-${JSON.parse(localStorage.getItem('user'))._id}`)
+            })
+          })
           .catch(err => {
-                      
-                      console.log(err.response.data.errors)
+              console.log(err);
                       if(err.response.data.errors){
+                        console.log(err.response.data.errors)
                         if(err.response.data.errors.includes('Email'))
                           actions.setFieldError('email', 'Email already in use')
                         else
