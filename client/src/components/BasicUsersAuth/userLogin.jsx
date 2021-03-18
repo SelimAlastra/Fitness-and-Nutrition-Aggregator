@@ -22,7 +22,7 @@ function PopUpLogin(){
   const handleShow = () => setShow(true);
   return(
     <>
-    <Button className="loginButton" variant="primary" onClick={handleShow}>
+    <Button className="loginButton" variant="outline-success" variant="primary" onClick={handleShow}>
       Login
     </Button>
     <div className = "modal-dialog">
@@ -77,8 +77,8 @@ const schema = Yup.object().shape({
           })
           .catch(err => {
             console.log(err)
-            if(err.data.errors){
-                if(err.data.errors.includes('User'))
+            if(err.response.data.errors){
+                if(err.response.data.errors.includes('User'))
                   actions.setFieldError('email', 'User with that email does not exist. Please register.')
                 else
                   actions.setFieldError('password', 'Email and password do not match')     
@@ -94,7 +94,7 @@ return (
     {/* {isAuth() ? <Redirect to='/' /> : null} */}
 <Form onSubmit={formik.handleSubmit} autoComplete="Off">
   <Form.Label hidden = {true} htmlFor="email">Email</Form.Label>
-    <Form.Control id="loginInput"
+    <Form.Control className="loginInput"
         id="email"
         name="email"
         type="text"
@@ -126,7 +126,7 @@ return (
     )}
     <Link to="/user/password/forget">Forgot Password?</Link>
     <p/>
-    <Button className="loginButton" type="submit" name="loginBtn" disabled={formik.isSubmitting}>
+    <Button className="loginButtonModal" variant="outline-success" type="submit" name="loginBtn" disabled={formik.isSubmitting}>
         Log In
     </Button>
     <p style={{'marginLeft': '140px', 'fontWeight': 'bold'}}> OR </p>

@@ -5,6 +5,7 @@ import * as Yup from "yup";
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import './forgotPassword.css';
 
 const ForgetPassword = () => {
     
@@ -38,10 +39,10 @@ const ForgetPassword = () => {
     });
 
   return (
-    <div className="Form">
-    <Form onSubmit={formik.handleSubmit} autoComplete="Off">
+    <div className="FormForgotPassword">
+    <Form className="FormForgot" onSubmit={formik.handleSubmit} autoComplete="Off">
         <Form.Label hidden = {true} htmlFor="email">Email</Form.Label>
-            <Form.Control 
+            <Form.Control className="formControlForgetPassword"
                 id="email"
                 name="email"
                 type="text"
@@ -58,7 +59,7 @@ const ForgetPassword = () => {
         <Button className="forgetButton" type="submit" name="forgetBtn" disabled={formik.isSubmitting} >
             Submit
         </Button>
-        <Form.Text style={{color: "blue"}} className="input-feedback">{formik.values.general}</Form.Text>
+        <Form.Text style={{color: "blue"}} variant="outline-success" className="input-feedback">{formik.values.general}</Form.Text>
         </React.Fragment>
     </Form>
     </div>
