@@ -55,15 +55,13 @@ const Navbar = () => {
           </div>
         {/* ) : ( */}
           <Button component={Link} to="/launch/users" variant="contained" color="primary">Sign In</Button>
-          <Button 
-            component={Link} 
-            to={`/clientDashboard/${JSON.parse(localStorage.getItem('user')).username}-${JSON.parse(localStorage.getItem('user'))._id}`} 
+          <Button  
             variant="contained" 
             color="primary"
+            onClick={() => window.location.href = `/clientDashboard/${JSON.parse(localStorage.getItem('user')).username}-${JSON.parse(localStorage.getItem('user'))._id}`}
           >
-            Dahsboard
+            Dashboard
           </Button>
-
           <Button 
             component={Link} 
             to={`/user/myservices/${JSON.parse(localStorage.getItem('user'))._id}`} 

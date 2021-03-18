@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import {useEffect, useState } from 'react';
 import { getBasicUser } from '../../actions/basicUsers';
 import { getServices } from '../../actions/services';
-import { Button } from 'react-bootstrap';
+import { Button, Nav } from 'react-bootstrap';
 import '../MyServices/MyServices.css';
 import ReactPlayer from 'react-player';
 import Modal from 'react-modal';
@@ -97,6 +97,7 @@ const MyServices = (props) => {
     if (myServices === undefined || myServices.length === 0 ) {
         return (
             <div>
+                <Navbar />
                 <p>Sorry, no services can be found!</p>
             </div>
         );
