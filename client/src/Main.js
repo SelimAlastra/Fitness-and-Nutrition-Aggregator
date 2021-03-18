@@ -12,6 +12,7 @@ import Login from './components/BasicUsersAuth/userLogin.jsx';
 import UserPage from './components/BasicUsersAuth/userPage.jsx';
 import ForgetPassword from './components/BasicUsersAuth/forgetPassword.jsx';
 import ResetPassword from './components/BasicUsersAuth/resetPassword.jsx';
+import NavbarUser from './components/Navbar/NavbarUser.js';
 
 import ProfRegister from './components/ProfessionalUsersAuth/professionalRegister.jsx';
 import ProfLogin from './components/ProfessionalUsersAuth/professionalLogin.jsx';
@@ -44,6 +45,7 @@ const Main = () => {
                 <Route exact path='/user' exact render={props => <UserPage {...props} />} />
                 <Route exact path='/user/password/forget' exact render={props => <ForgetPassword {...props} />} />
                 <Route exact path='/user/password/reset/:token' exact render={props => <ResetPassword {...props} />} />
+                <Route exact path='/navbar' component = {NavbarUser}></Route>
 
                 <Route exact path='/launch/professionals' exact render={props => <Fragment> <ProfLogin {...props}/> <ProfRegister {...props}/> </Fragment>} />
                 <Route exact path='/professional' exact render={props => <ProfessionalPage {...props} />} />

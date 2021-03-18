@@ -4,6 +4,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Users from './components/Users/Users';
 import AdminPage from './AdminPage';
 import { getIssues } from './actions/issues';
+import React from 'react';
+import ReactDOM from 'react-dom';
 
 const loginStyle = {
   margin: "33px auto 36px",
@@ -13,9 +15,11 @@ const loginStyle = {
 
 function App() {
   return (
-    <div className="App">
-      <Main />
-    </div>
+    <>
+      <div className="App">
+        <Main />
+      </div>
+    </>
   );
 }
 export default App;

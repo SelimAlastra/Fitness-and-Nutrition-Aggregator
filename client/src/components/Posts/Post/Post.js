@@ -19,7 +19,7 @@ import Videos from '../Videos/Videos';
 import { deletePost, likePost, toggleFavAction } from '../../../actions/posts';
 const Post = ({ post , setCurrentId }) => {
     const classes = useStyles();
-    const dispatch =useDispatch();
+    const dispatch = useDispatch();
     const [anchorEl, setAnchorEl] = React.useState(null);
     const [open, setOpen] = React.useState(false);
     const handleClick = (event) => {
