@@ -2,7 +2,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Gochi+Hand&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Anton&display=swap");
 
-* {
+.quizz {
   font-family: "Paytone One", sans-serif;
 }
 
@@ -102,6 +102,13 @@ button:disabled {
   padding: 5px;
   align-items: center;
   border: 5px solid #234668;
+  margin-top: 0.4rem;
+}
+
+.inputBox:disabled {
+  pointer-events: none;
+  opacity: 0.7;
+  visibility: hidden;
 }
 
 .input-alert {
@@ -115,20 +122,6 @@ button:disabled {
 }
 
 /* previously '/index.css' */
-
-body {
-  margin: 0;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-body {
-  background-color: #7cc6fe;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-}
 
 .app {
   background-color: #252d4a;

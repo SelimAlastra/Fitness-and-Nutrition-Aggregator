@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Question from './components/question';
 import Answer from './components/answer';
 import Test from './testPage';
-import './styling/quizUser.css'
+import './styling/quizUser.css';
 
 export default class Quiz extends Component{
 
@@ -12,104 +12,129 @@ export default class Quiz extends Component{
                 questionText: "Are you a woman or a man?",
                 questionId: 1,
                 answerOptions: [
-                    { answerText: "Woman", selected:false },
-                    { answerText: "Man", selected:false },
+                    { answerText: "Woman", selected:false, requireInput: false, tags:[] },
+                    { answerText: "Man", selected:false, requireInput: false, tags:[] },
                 ],
             },{
                 questionText: "What is your age range?",
                 questionId: 2,
                 answerOptions: [
-                    { answerText: "Teens", selected:false },
-                    { answerText: "20's", selected:false },
-                    { answerText: "30's", selected:false },
-                    { answerText: "40's", selected:false },
-                    { answerText: "50's", selected:false },
-                    { answerText: "60+", selected:false },
+                    { answerText: "Teens", selected:false, requireInput: false, tags:[] },
+                    { answerText: "20's", selected:false, requireInput: false, tags:[] },
+                    { answerText: "30's", selected:false, requireInput: false, tags:[] },
+                    { answerText: "40's", selected:false, requireInput: false, tags:[] },
+                    { answerText: "50's", selected:false, requireInput: false, tags:[] },
+                    { answerText: "60+", selected:false, requireInput: false, tags:[] },
                 ],
             },{
                 questionText: "What is your height?",
                 questionId: 3,
                 answerOptions: [
-                    { answerText: "metric", selected:true  },
-                    { answerText: "imperial", selected:false },
+                    { answerText: "metric", selected:true, requireInput: false, tags:[]  },
+                    { answerText: "imperial", selected:false, requireInput: false, tags:[] },
                 ],
-                input:[], placeholder: ["cm", "feet, inches"], alert: ["e.g.: 177", "e.g.: 5 8"]
+                input:[], placeholder: ["cm", "feet, inches"], alert: ["Type only numeric values. (e.g.: 177)", "Type numeric values. (e.g.: 5 8, 6 2)"]
             },{
                 questionText: "What is your weight?",
                 questionId: 4,
                 answerOptions: [
-                    { answerText: "Kilograms(kg)", selected:true },
-                    { answerText: "Pounds(lb)", selected:false },
+                    { answerText: "Kilograms(kg)", selected:true, requireInput: false, tags:[] },
+                    { answerText: "Pounds(lb)", selected:false, requireInput: false, tags:[] },
                 ],
-                input:[], placeholder: ["kg","lb"],
+                input:[], placeholder: ["kg","lb"], alert: ["Type only numeric values. (e.g.: 82)", "Type only numeric values. (e.g.: 160)"]
             },{
                 questionText: "What best describes your body?",
                 questionId: 5,
                 answerOptions: [
-                    { answerText: "Lean and long, finding it hard to gain muscle mass", selected:false },
-                    { answerText: "Athletic, with a high metabolism", selected:false },
-                    { answerText: "Soft and round body, with a tendency to store body fat", selected:false },
+                    { answerText: "Lean and long", selected:false, tags:["tall", "ectomorph"], requireInput: false },
+                    { answerText: "Tall and heavy", selected:false, tags:["tall", "endomorph", "bodybuilding"], requireInput: false },
+                    { answerText: "Athletic, with a high metabolism", selected:false, tags:["athletic", "mesomorph"], requireInput: false },
+                    { answerText: "Soft and with a tendency to store body fat", selected:false, tags:["endomorph", "fatloss"], requireInput: false },
+                    { answerText: "Average", selected:false, tags:["average"], requireInput: false },
+                    { answerText: "Other:", selected:false, tags:[""], requireInput: true, placeholder: "e.g.: Fragile", alert: ["Answer using letters only."] }
                 ],
+                // input:[]
             },{
                 questionText: "Which best describes your current activity level?",
                 questionId: 6,
                 answerOptions: [
-                    { answerText: "stationary job and minimum physical activity", selected:false },
-                    { answerText: "generally active, but not fitness related", selected:false },
-                    { answerText: "exercise 2-4 times/week", selected:false },
-                    { answerText: "sweat it out on a daily basis", selected:false },
+                    { answerText: "minimum physical activity", selected:false, tags:["beginner"], requireInput: false },
+                    { answerText: "generally active, but not fitness related", selected:false, tags:["beginner"], requireInput: false },
+                    { answerText: "exercise 2-4 times/week", selected:false, tags:["intermediate"], requireInput: false },
+                    { answerText: "sweat it out on a daily basis", selected:false, tags:["advanced"], requireInput: false },
                 ],
             },{
                 questionText: "Which best describes your current diet?",
                 questionId: 7,
                 answerOptions: [
-                    { answerText: "can't seem to find my appetite", selected:false },
-                    { answerText: "I snack a little too much", selected:false },
-                    { answerText: "avoid highly processed snacks, but enjoy cheat days", selected:false },
-                    { answerText: "healthy and balanced diet", selected:false },
+                    { answerText: "can't seem to find my appetite", selected:false, tags:["anorexic", "nutrition"], requireInput: false },
+                    { answerText: "I snack a little too much", selected:false, tags:["dietplan", "nutrition", "fatloss"], requireInput: false },
+                    { answerText: "avoid highly processed snacks, but enjoy cheat days", selected:false, tags:["healthylifestyle"], requireInput: false },
+                    { answerText: "healthy and balanced diet", selected:false, tags:["healthylifestyle"], requireInput: false },
+                    { answerText: "Other:", selected: false, tags:[""], requireInput: true, placeholder: "e.g.: Vegetarian", alert: ["Answer using letters only."] }
                 ],
+                // input:[]
             },{
                 questionText: "What's your primary fitness goal?",
                 questionId: 8,
                 answerOptions: [
-                    { answerText: "lose fat", selected:false },
-                    { answerText: "look great at the beach", selected:false },
-                    { answerText: "build strength and ability", selected:false },
-                    { answerText: "build mad muscle mass", selected:false },
+                    { answerText: "lose fat", selected:false, tags:["losefat", "weightloss", "fatlosstips", "diet", "weightlossjourney", "sweat"], requireInput: false },
+                    { answerText: "look great at the beach", selected:false, tags:["getfit", "cardio", "fitnessmodel", "crossfit"], requireInput: false },
+                    { answerText: "build strength and ability", selected:false, tags:["calisthenics", "bodyweight", "bodybuilding", "crossfit", "strength", "athlete", "core"], requireInput: false },
+                    { answerText: "build mad muscle mass", selected:false, tags:["beastmode", "bodybuilding", "strength", "powerlifting", "weightlifting", "strongman"], requireInput: false },
+                    { answerText: "Other:", selected: false, tags:[""], requireInput: true, placeholder: "e.g.: do 100 pushups in one set", alert: ["Answer using letters and numbers only."] }
                 ],
+                // input:[]
             },{
                 questionText: "During the average week, how much time are you able to devote to your fitness regimen?",
                 questionId: 9,
                 answerOptions: [
-                    { answerText: "barely 15-30 min on any given day", selected:false },
-                    { answerText: "about one hour per day, 3-5 days a week", selected:false },
-                    { answerText: "an hour or more on most days", selected:false },
+                    { answerText: "barely 15-30 min on any given day", selected:false, tags:[""], requireInput: false },
+                    { answerText: "about one hour per day, 3-5 days a week", selected:false, tags:[""], requireInput: false },
+                    { answerText: "an hour or more on most days", selected:false, tags:[""], requireInput: false },
+                    { answerText: "Other:", selected: false, tags:[""], requireInput: true, placeholder: "e.g.: 1 hour each day during weekend", alert: ["Answer using letters and numbers only."] }
                 ],
+                // input:[]
             },{ 
                 questionText: "Where is your favorite place to exercise?",
                 questionId: 10,
                 answerOptions: [
-                    { answerText: "gym", selected:false },
-                    { answerText: "outdoors", selected:false },
-                    { answerText: "home", selected:false },
+                    { answerText: "gym", selected:false, tags:["gym"], requireInput: false },
+                    { answerText: "outdoors", selected:false, tags:["outdoor", "outdoortraining", "outdoorworkout", "nature"], requireInput: false },
+                    { answerText: "home", selected:false, tags:["home", "homeworkout", "homegym", "quarantine", "nogymnoproblem"], requireInput: false },
                 ],
             },{ 
                 questionText: "How much are you willing to spend? (gym membership, gear & equipment)",
                 questionId: 11,
                 answerOptions: [
-                    { answerText: "not much", selected:false },
-                    { answerText: "a fair amount", selected:false },
-                    { answerText: "no budget limit", selected:false },
+                    { answerText: "not much", selected:false, tags:["nocost"], requireInput: false },
+                    { answerText: "a fair amount", selected:false, tags:[""], requireInput: false },
+                    { answerText: "no budget limit", selected:false, tags:[""], requireInput: false },
+                    { answerText: "Other(per month):", selected: false, tags:[""], requireInput: true, placeholder: "e.g.: 100 pounds", alert: ["Answer using letters and numbers only."] }
                 ],
+                // input:[]
+            },{ 
+                questionText: "Lastly, which of the following are you interested in?",
+                questionId: 12,
+                answerOptions: [
+                    { answerText: "#mindset", selected:false, tags:["mindset", "motivation", "goals"], requireInput: false },
+                    { answerText: "#nutrition", selected:false, tags:["nutrition", "diet"], requireInput: false },
+                    { answerText: "#jogging", selected:false, tags:["jogging", "running"], requireInput: false },
+                    { answerText: "#bodyweightworkout", selected:false, tags:["bodyweightworkou", "calisthenics"], requireInput: false },
+                    { answerText: "#bodybuilding", selected:false, tags:["bodybuilding", "gains", "muscle"], requireInput: false },
+                    { answerText: "#powerlifting", selected:false, tags:["powerlifting", "deadlifting"], requireInput: false },
+                    { answerText: "Add your own:", selected: false, tags:[""], requireInput: true, placeholder: "e.g.: crossfit, boxing", alert: ["Answer using letters and numbers only."] }
+                ],
+                // input:[]
             }
         ],
 
-        // identify all questions that require input by adding their ID in this array
+        // identify questions that require input for all selections by adding their ID in this array
         questionsReqInput: [3,4],
+        associatedTags: [],
 
         currentQuestion: 0,
-        complete: false,
-        invalidInput: false
+        complete: false
     }
 
     /**
@@ -125,13 +150,17 @@ export default class Quiz extends Component{
         const newItems = [...questions];
 
         // used to determine whether the next question will be automatically displayed or not (Yes if @true, No if @false)
-        let firstTimeSelected = true;
+        let displayNext = true;
 
         // remove previously selected answer
         if(newItems[currentQuestion].answerOptions.find(element => element.selected === true)){
             const answerSelected = newItems[currentQuestion].answerOptions.find(element => element.selected === true);
-            answerSelected.selected = false; 
-            firstTimeSelected = false;
+            
+            //certain questions require multiple answer selections
+            if(questions[currentQuestion].id !== 12){
+                answerSelected.selected = false; 
+            }
+            displayNext = false;
 
             // if question required input, clear saved input
             if(questionsReqInput.find(element => element === newItems[currentQuestion].questionId)){
@@ -143,6 +172,9 @@ export default class Quiz extends Component{
         if(newItems[currentQuestion].answerOptions.find(element => element === answer)){
             const answerToSelect = newItems[currentQuestion].answerOptions.find(element => element === answer);
             answerToSelect.selected = true;
+            if(answerToSelect.requireInput === true){
+                displayNext = false;
+            }
         }
 
         //update the @questions values
@@ -151,7 +183,7 @@ export default class Quiz extends Component{
         })
 
         if(currentQuestion + 1 < questions.length){
-            if(firstTimeSelected === true && !questionsReqInput.find(element => element === questions[currentQuestion].questionId)){
+            if(displayNext === true && !questionsReqInput.find(element => element === questions[currentQuestion].questionId)){
                 this.setState({
                     currentQuestion: currentQuestion+1,
                     answerToSelect : true
@@ -192,40 +224,7 @@ export default class Quiz extends Component{
     addInput = (input) => {
         const{questions, currentQuestion} = this.state;
         questions[currentQuestion].input.push(document.getElementById("inputBox").value);
-    /*
-        //for height question accept two types of input depending on selected value
-        if(questions[currentQuestion].questionId === 3){
-            if(this.findSelectedAnswer() === 0){
-                if(this.isInt(input)){
-                    //ERROR display still in progress
-                    //document.getElementById("inputAlert").classList.add("disabled");
-
-                    questions[currentQuestion].input.push(document.getElementById("inputBox").value);
-                } else {
-                    alert("ERROR! Input is invalid.");
-                    //ERROR display still in progress
-                    //document.getElementById("inputAlert").classList.remove("disabled");
-                }
-            } else {
-                if(input!=""){
-                    //const feet = input.replace("feet","")[0].match(/\b(\w+)\b/g)[0];
-                    //const inches = input.replace("inches","")[0].match(/\b(\w+)\b/g)[1];
-                    if(this.isInt(feet)){
-                        if(inches === ""){
-                            questions[currentQuestion].input.push(feet);
-                        } else {
-                            if(this.isInt(inches)){
-                                questions[currentQuestion].input.push(feet + " " + inches);
-                            } else{
-                                alert("ERROR! Input is invalid.");
-                            }
-                        }
-                    } else {
-                        alert("ERROR! Input is invalid.");
-                    }
-                }
-            }
-        } */
+        console.log(questions[currentQuestion].input[0]);
     }
 
     /**
@@ -251,6 +250,33 @@ export default class Quiz extends Component{
         }
     }
 
+    // /**
+    //  * 
+    //  */
+    //  processAnswerInput = () => {
+    //     const{questions, currentQuestion} = this.state;
+
+    //     //check if answer selection requires input (e.g.: for "Other: ")
+    //     if(questions[currentQuestion].answerOptions.find(element => element.selected === true)){
+    //         const answerSelected = questions[currentQuestion].answerOptions.find(element => element.selected === true);
+
+    //         if(answerSelected.requireInput === true){
+    //             //check if there has been previous input value
+    //             if(!questions[currentQuestion].input || !questions[currentQuestion].input.length){
+    //                 this.addInput(document.getElementById("inputBox").value);
+    //             } else {
+    //                 //save new input if value is not null
+    //                 if(document.getElementById("inputBox").value.length > 0){
+    //                     questions[currentQuestion].input.pop();
+    //                     this.addInput(document.getElementById("inputBox").value);
+    //                 }
+    //             }
+    //         } 
+    //         // console.log(document.getElementById("inputBox").value);
+    //         console.log(answerSelected.input);
+    //     }
+    // }
+
     /**
      * move to the previous question, only if there are previos questions
      */
@@ -259,6 +285,7 @@ export default class Quiz extends Component{
         if(currentQuestion > 0){
 
             this.processInput();
+            // this.processAnswerInput();
 
             this.setState({
                 currentQuestion: currentQuestion-1
@@ -274,6 +301,7 @@ export default class Quiz extends Component{
         if(currentQuestion < questions.length){
 
             this.processInput();
+            // this.processAnswerInput();
 
             this.setState({
                 currentQuestion: currentQuestion+1
@@ -306,10 +334,27 @@ export default class Quiz extends Component{
     }
 
     /**
+     * add tags based on user selection during the quizz
+     */
+    addTags = () => {
+        const{questions} = this.state;
+        questions.forEach(question => {
+            const answers = question.answerOptions;
+            answers.forEach(answer => {
+                if(answer.selected === true){
+                    this.associatedTags += answer.tags;
+                }
+            });
+        });
+    }
+
+    /**
      * change @questions completion status
      */
     handleFinishButtonClick = () => {
         if(this.isCompleted() === true){
+            this.addTags();
+            console.log(this.associatedTags);
             this.setState({
                 complete: true
             });
@@ -319,7 +364,7 @@ export default class Quiz extends Component{
     }
     
     render(){
-        let {questions, currentQuestion, complete, questionsReqInput, invalidInput} = this.state;
+        let {questions, currentQuestion, complete, questionsReqInput, associatedTags} = this.state;
 
         return(
             
@@ -329,6 +374,7 @@ export default class Quiz extends Component{
                         //
                         questions = {questions}
                         questionsReqInput = {questionsReqInput}
+                        tags = {associatedTags}
                     />
                 ) : ( 
                         <div className="basic-wrap">

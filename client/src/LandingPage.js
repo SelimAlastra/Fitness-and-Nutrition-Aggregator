@@ -2,10 +2,12 @@ import React from "react";
 import { Button , Alert, Container, Carousel } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './LandingPage.css';
+import NavbarVisitor from './components/Navbar/NavbarVisitor.js';
 
 function LandingPage () {
     return (
         <div className = 'landingPage'> 
+            <NavbarVisitor />
             <body className = 'body'>   
 
                 <Alert className = 'alert1'> Welcome to our Fitness and Nutrition Aggregator !  </Alert>
