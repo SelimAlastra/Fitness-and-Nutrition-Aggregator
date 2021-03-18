@@ -12,14 +12,12 @@ import {filteredPosts} from './components/SearchBar/SearchBar';
 
 const ClientDashboard = () => {
     const [currentId, setCurrentId] = useState(null);
-    const [postsUpdated, setUpdatedPosts] = useState(filteredPosts);
     const classes = useStyles();
     const dispatch = useDispatch();
     useEffect(() => {
       dispatch(getPosts());
-      setUpdatedPosts(filteredPosts);
-      
-    }, [currentId,dispatch,filteredPosts]);
+    }, [currentId,dispatch]);
+    console.log(filteredPosts)
     
 return (
   <Container maxWidth="lg">
@@ -34,7 +32,7 @@ return (
         <Container>
           <Grid className={classes.mainContainer} container justify="space-between" alignItems="stretch" spacing={3}>
             <Grid item xs={12} sm={7}>
-              <Posts setCurrentId={setCurrentId} filteredPosts={postsUpdated} />
+              <Posts setCurrentId={setCurrentId} filteredPosts={filteredPosts} />
             </Grid>
           </Grid>
         </Container>

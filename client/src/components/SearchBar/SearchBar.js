@@ -1,11 +1,11 @@
-  import React from 'react';
+  import React,{useEffect} from 'react';
   import './styles.css';
   import { useSelector } from 'react-redux';
+import { updatePost } from '../../actions/posts';
 
-var filteredPosts;
-const SearchBar = () => {
-  filteredPosts = useSelector((state) => state.posts);
-
+var filteredPosts=[];
+const SearchBar = ({updatePosts,setUpdatedPosts}) => {
+  filteredPosts= useSelector((state) => state.posts);
 /* const loadCharacters = async () => {
     try {
          posts = await api.fetchPosts();
@@ -23,6 +23,7 @@ const keyup= (e) => {
             post.title.toLowerCase().includes(searchString) ||
             post.message.toLowerCase().includes(searchString)
             );
+      setUpdatedPosts(filteredPosts);
 };
 
     return (
