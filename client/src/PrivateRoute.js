@@ -2,13 +2,13 @@ import { Redirect, Route } from "react-router";
 
 
 
-const AdminPrivateRoute = ({component: Component, ...rest}) => {
+const PrivateRoute = ({component: Component, userType, ...rest}) => {
 
     const user = JSON.parse(localStorage.getItem('user'));
     let isLogged = false;
 
     if (user) {
-        if (user.type == 'admin') {
+        if (user.type == userType) {
             isLogged = true;
         }
     }
@@ -29,4 +29,4 @@ const AdminPrivateRoute = ({component: Component, ...rest}) => {
 };
 
 
-export default AdminPrivateRoute;
+export default PrivateRoute;
