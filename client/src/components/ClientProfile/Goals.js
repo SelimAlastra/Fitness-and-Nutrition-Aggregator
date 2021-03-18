@@ -1,7 +1,7 @@
 const Goals = ({goals}) => {
     return (
         <div>
-            <h3 className="titleText">Goals</h3>
+            <h3>Goals</h3>
             <hr className="lineSeperator"/>
             { generateGoals() }
         </div>
@@ -9,11 +9,12 @@ const Goals = ({goals}) => {
     
     function generateGoals() {
         if (goals !== undefined && goals.length > 0) {
+            const newGoals = goals.filter((goal) => goal === null);
             return goals.map((goal, index) => {return (<p className="textContainer" key={index}>{goal}</p>)});
         } else {
             return (<div><h3 className="notFound" data-testid="noGoalsMessage">Sorry, you currently have no goals!</h3></div>);
         }
-    }
+    } 
 }
 
 
