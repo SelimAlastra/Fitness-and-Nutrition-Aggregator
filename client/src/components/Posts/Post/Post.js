@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useEffect} from 'react';
 import { Card, CardActions, CardContent, CardMedia, Button, Typography } from '@material-ui/core/';
 import ThumbUpAltIcon from '@material-ui/icons/ThumbUpAlt';
 import DeleteIcon from '@material-ui/icons/Delete';
@@ -14,14 +14,21 @@ import InputLabel from "@material-ui/core/InputLabel";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import Videos from '../Videos/Videos';
+import ThumbUpAltOutlined from '@material-ui/icons/ThumbUpAltOutlined';
+import { useSelector } from 'react-redux';
+
+import { deletePost, likePost, toggleFavAction, updatePost } from '../../../actions/posts';
 
 
-import { deletePost, likePost, toggleFavAction } from '../../../actions/posts';
-const Post = ({ post , setCurrentId }) => {
+const Post = ({ post , setCurrentId, updatePosts }) => {
+    //post= useSelector((state) => state.posts[setCurrentId]);
     const classes = useStyles();
     const dispatch = useDispatch();
     const [anchorEl, setAnchorEl] = React.useState(null);
     const [open, setOpen] = React.useState(false);
+    useEffect(() => {
+      dispatch(updatePost(setCurrentId,post));
+    }, [post,dispatch,setCurrentId,updatePosts]);
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
       };
@@ -38,7 +45,32 @@ const Post = ({ post , setCurrentId }) => {
         /*const arrBuckets[]=openBuckets();*/
         setOpen(true);
       };
+      
+      const user = JSON.parse(localStorage.getItem('user'));
+     const Likes = () => {
+      if (post.likes.length > 0) {
+      return post.likes.find((like) => like === ( user?.result?._id))
+        ? (
+          <><ThumbUpAltIcon fontSize="small" />&nbsp;{post.likes.length > 2 ? `You and ${post.likes.length - 1} others` : `${post.likes.length} like${post.likes.length > 1 ? 's' : ''}` }</>
+        ) : (
+          <><ThumbUpAltOutlined fontSize="small" />&nbsp;{post.likes.length} {post.likes.length === 1 ? 'Like' : 'Likes'}</>
+        );
+    }
 
+    return <><ThumbUpAltOutlined fontSize="small" />&nbsp;Like</>;
+  };
+     
+  const Delete=() =>{
+      console.log(post.userFrom);
+      console.log(String(JSON.parse(localStorage.getItem('user'))._id));
+    if (String(JSON.parse(localStorage.getItem('user'))._id)==post.userFrom) {
+       return( <Button size="small" color="primary" onClick={() => dispatch(deletePost(post._id))}>
+        <DeleteIcon fontSize="small" /> 
+        Delete                   
+     </Button>)
+    }
+    return <div></div>
+  }
     return (
         <Card className={classes.card}> 
         {   post.selectedFile 
@@ -64,7 +96,6 @@ const Post = ({ post , setCurrentId }) => {
                     open={Boolean(anchorEl)}
                     onClose={handleClose}
                 >
-                    <MenuItem size="small" onClick={() => setCurrentId(post._id)}>Edit</MenuItem>
                     <MenuItem onClick={handleClose}>
                     <div>
                         <FormControl className={classes.formControl}>
@@ -91,6 +122,11 @@ const Post = ({ post , setCurrentId }) => {
                         </FormControl>
                     </div>
                     </MenuItem>
+                    { JSON.parse(localStorage.getItem('user')).type =='client' ? 
+                    <MenuItem size="small" >Report</MenuItem>
+                    :
+                    <MenuItem size="small" onClick={() => setCurrentId(post._id)}>Edit</MenuItem>
+                    }
                 </Menu>
             </div>
             <div className={classes.details}> 
@@ -107,15 +143,15 @@ const Post = ({ post , setCurrentId }) => {
                : <div></div> 
              }
             <CardActions className={classes.cardActions}> 
-                <Button size="small" color="primary" onClick={() => dispatch(likePost(post._id))}>
-                    <ThumbUpAltIcon fontSize="small" /> 
-                    &nbsp; Like &nbsp;
-                    {post.likeCount}                    
+                <Button size="small" color="primary" onClick={() => dispatch(likePost(post._id,JSON.parse(localStorage.getItem('user'))._id))}>
+                <Likes/>                   
                 </Button>
-                <Button size="small" color="primary" onClick={() => dispatch(deletePost(post._id))}>
-                    <DeleteIcon fontSize="small" /> 
-                    Delete                   
+               { JSON.parse(localStorage.getItem('user')).type =='client' ? 
+                 <Button size="small" color="primary">
+                 Follow                   
                 </Button>
+                : <Delete/>
+                }
             </CardActions>
         </Card>
     );

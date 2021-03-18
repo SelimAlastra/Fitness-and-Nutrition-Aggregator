@@ -3,6 +3,11 @@ import Question from './components/question';
 import Answer from './components/answer';
 import Test from './testPage';
 import './styling/quizUser.css';
+<<<<<<< HEAD
+=======
+
+//const history = useHistory();
+>>>>>>> searchBar
 
 export default class Quiz extends Component{
 
@@ -351,6 +356,7 @@ export default class Quiz extends Component{
     /**
      * change @questions completion status
      */
+
     handleFinishButtonClick = () => {
         if(this.isCompleted() === true){
             this.addTags();
@@ -358,6 +364,7 @@ export default class Quiz extends Component{
             this.setState({
                 complete: true
             });
+            this.props.history.push(`/clientDashboard/${JSON.parse(localStorage.getItem('user')).username}-${JSON.parse(localStorage.getItem('user'))._id}`)
         } else {
             alert("You still have some questions to complete.");
         }
