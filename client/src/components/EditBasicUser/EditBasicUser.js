@@ -4,7 +4,6 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../EditFormsStyles.css';
-import Navbar from '../Navbar/Navbar';
 
 const EditBasicUser = (props) => {
     const dispatch = useDispatch();
@@ -78,7 +77,6 @@ const EditBasicUser = (props) => {
 
     return (
         <div>
-            <Navbar/>
             <div className="formContainer">
                 <h2 className="title">Edit Details</h2>
                 <hr className="seperator"/>
