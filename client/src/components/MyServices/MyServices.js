@@ -28,8 +28,6 @@ const MyServices = (props) => {
 
     useEffect(() => {
         if (basicUser !== undefined && allServices !== undefined && basicUser.bundles !== undefined) {
-            console.log(basicUser);
-            console.log(allServices);
             const filteredServices = allServices.filter(service => basicUser.bundles.includes(service._id));
             setMyServices(filteredServices);
         }
