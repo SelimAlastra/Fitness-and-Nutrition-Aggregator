@@ -58,7 +58,9 @@ const Navbar = () => {
           <Button  
             variant="contained" 
             color="primary"
-            onClick={() => window.location.href = `/clientDashboard/${JSON.parse(localStorage.getItem('user')).username}-${JSON.parse(localStorage.getItem('user'))._id}`}
+            onClick={
+              () => window.location.href = `/clientDashboard/${JSON.parse(localStorage.getItem('user')).username}-${JSON.parse(localStorage.getItem('user'))._id}`
+            }
           >
             Dashboard
           </Button>
