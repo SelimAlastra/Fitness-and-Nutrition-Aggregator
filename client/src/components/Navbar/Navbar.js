@@ -57,6 +57,15 @@ const Navbar = () => {
           <Button component={Link} to="/launch/users" variant="contained" color="primary">Sign In</Button>
           <Button 
             component={Link} 
+            to={`/clientDashboard/${JSON.parse(localStorage.getItem('user')).username}-${JSON.parse(localStorage.getItem('user'))._id}`} 
+            variant="contained" 
+            color="primary"
+          >
+            Dahsboard
+          </Button>
+
+          <Button 
+            component={Link} 
             to={`/user/myservices/${JSON.parse(localStorage.getItem('user'))._id}`} 
             variant="contained" 
             color="primary"
