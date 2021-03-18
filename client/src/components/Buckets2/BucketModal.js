@@ -14,7 +14,7 @@ function PopUpBuckets(){
   const handleShow = () => setShow(true);
   return(
     <>
-    <Button size="small" color="primary" onClick={handleShow}>
+    <Button size="small" onClick={handleShow}>
     <FaFolderPlus/>                  
     </Button>
     <div className = "modal-dialog">
