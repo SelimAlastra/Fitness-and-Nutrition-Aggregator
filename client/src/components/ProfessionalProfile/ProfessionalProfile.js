@@ -6,6 +6,7 @@ import { getProfessional } from '../../actions/professionals';
 import { getServices } from '../../actions/services';
 import { updateBasicUser, getBasicUser } from '../../actions/basicUsers';
 import { Button } from 'react-bootstrap';
+import ProfessionalNavbar from '../Navbar/ProfessionalNavbar';
 
 const ProfessionalProfile = (props) => {
     const dispatch = useDispatch();
@@ -43,7 +44,7 @@ const ProfessionalProfile = (props) => {
   
     function generateEditDetailsLink(isProfessional) {
         if (isProfessional) {
-            return (<h5 className="editLink" onClick={() => window.location.href = `/professional/profile/edit/${professionalUser._id}`}>Edit my details</h5>);
+            return (<h5 className="editLink" onClick={() => window.location.href = `/professional/edit/${professionalUser._id}`}>Edit my details</h5>);
         }
     }
 
@@ -124,17 +125,20 @@ const ProfessionalProfile = (props) => {
     }
 
     return (
-        <div className="sectionContainer">
-            <div className="section">
-                <div>
-                    { generateEditDetailsLink(isProfessional)  }
+        <div>
+            <ProfessionalNavbar />
+            <div className="sectionContainer">
+                <div className="section">
+                    <div>
+                        { generateEditDetailsLink(isProfessional)  }
+                    </div>
+                    <ProfileInfo profile={professionalUser} />
                 </div>
-                <ProfileInfo profile={professionalUser} />
-            </div>
-            <div className="section">
-                {
-                    generateServices()
-                }
+                <div className="section">
+                    {
+                        generateServices()
+                    }
+                </div>
             </div>
         </div>
     );
