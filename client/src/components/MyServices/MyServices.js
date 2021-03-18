@@ -8,6 +8,7 @@ import ReactPlayer from 'react-player';
 import Modal from 'react-modal';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faWindowClose } from '@fortawesome/free-regular-svg-icons'
+import Navbar from '../Navbar/Navbar';
 
 const MyServices = (props) => {
     const dispatch = useDispatch();
@@ -100,9 +101,9 @@ const MyServices = (props) => {
             </div>
         );
     } else {
-        console.log(myServices);
         return (
             <div>
+                <Navbar/>
                 <div className="titleText">
                     <h1>My Bundles</h1>
                     <p>These are the bundles you have purchased.</p>

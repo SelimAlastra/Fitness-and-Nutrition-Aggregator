@@ -1,7 +1,7 @@
 const Goals = ({goals}) => {
     return (
         <div>
-            <h3 className="titleText">Goals</h3>
+            <h3>Goals</h3>
             <hr className="lineSeperator"/>
             { generateGoals() }
         </div>
