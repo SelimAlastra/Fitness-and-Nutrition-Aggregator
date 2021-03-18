@@ -125,7 +125,7 @@ return (
     )}
     <Link to="/professional/password/forget">Forgot Password?</Link>
     <p/>
-    <Button className="loginButton" type="submit" name="loginBtn" disabled={formik.isSubmitting}>
+    <Button className="loginButtonModal" variant="outline-success" type="submit" name="loginBtn" disabled={formik.isSubmitting}>
         Log In
     </Button>
     <p style={{'marginLeft': '140px', 'fontWeight': 'bold'}}> OR </p>
