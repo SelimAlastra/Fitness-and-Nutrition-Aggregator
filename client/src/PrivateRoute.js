@@ -10,6 +10,7 @@ const PrivateRoute = ({component: Component, userType, ...rest}) => {
     if (user) {
         if (user.type == userType) {
             isLogged = true;
+        
         }
     }
 

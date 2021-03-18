@@ -16,6 +16,7 @@ const BasicUsers = () => {
     const users = useSelector((state) => state.basicUsers);
 
     return (
+        
         <Table>
                 <thead>
                     <tr>
