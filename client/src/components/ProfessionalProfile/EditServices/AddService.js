@@ -95,7 +95,7 @@ const AddService = (props) => {
                         <Button
                             className="actionButton"
                             type="button"
-                            onClick={(event) => window.location.href = `/professional/services/edit/${userID}`} 
+                            onClick={(event) => window.location.href = `/professional/profile/${userID}`} 
                         >
                         Close
                         </Button>
