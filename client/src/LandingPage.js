@@ -20,15 +20,15 @@ function LandingPage () {
 
     return (
         <div className = 'landingPage'> 
-            <body className = 'body'>   
+            <body className = 'bodyLandingPage'>   
 
                 <Alert className = 'alert1'> Welcome to our Fitness and Nutrition Aggregator !  </Alert>
-                <Alert className = 'alert2'> Please precise us if you are a professional user or not. </Alert>
+                <Alert className = 'alert2'> Please state if you are a professional user or not. </Alert>
 
                 <div class="row justify-content-center"
                 >     
-                    <Button className="button" variant="outline-success" onClick={basicUsers}> Basic User </Button>
-                    <Button className="button" variant="outline-success" onClick={professionalUsers}> Professional</Button>
+                    <Button className="landingButton" style={{"color": "black", "border-color": "#8a5853", }} variant="outline-success"  onClick={basicUsers}> Basic User </Button>
+                    <Button className="landingButton" style={{"color": "black", "border-color": "#8a5853"}} variant="outline-success"onClick={professionalUsers}> Professional</Button>
                 </div>    
 
                 <Carousel className ="carousel">

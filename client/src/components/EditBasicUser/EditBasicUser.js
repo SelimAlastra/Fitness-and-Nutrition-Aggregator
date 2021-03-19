@@ -226,8 +226,8 @@ const EditBasicUser = (props) => {
                         >
                         </Form.Control>
                     </Form.Group>
-                    <Button type="submit" className="actionButton">Save</Button>
-                    <Button type="button" className="actionButton" onClick={() => window.location.href = `/user/profile/${ID}`}>Close</Button>
+                    <Button type="submit"  variant="outline-success" className=" edit actionButton">Save</Button>
+                    <Button type="button" variant="outline-success" className="edit actionButton" onClick={() => window.location.href = `/user/profile/${ID}`}>Close</Button>
                 </Form>
             </div>
         </div>

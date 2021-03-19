@@ -326,6 +326,9 @@ export default class Quiz extends Component{
         let {questions, currentQuestion, complete, questionsReqInput, invalidInput} = this.state;
 
         return(
+            <div>
+            <img className="backgroundJPG"
+            src="https://static.onecms.io/wp-content/uploads/sites/35/2010/07/28170650/fb-interval-training-workouts.jpg" />
             
             <div className=""> 
                 { complete ? (
@@ -362,6 +365,7 @@ export default class Quiz extends Component{
                             </div>
                             </div>
                 )}
+            </div>
             </div>
         );
     }

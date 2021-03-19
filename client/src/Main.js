@@ -7,16 +7,15 @@ import ProfessionalDashboard from './ProfessionalDashboard';
 import Quiz from './quiz/quizUser.js';
 import Tags from './quiz/tagsProffesional.js';
 
-import Register from './components/BasicUsersAuth/userRegister.jsx';
-import Login from './components/BasicUsersAuth/userLogin.jsx';
+import UserPage from './ClientLoginRegister';
 import ForgetPassword from './components/BasicUsersAuth/forgetPassword.jsx';
 import ResetPassword from './components/BasicUsersAuth/resetPassword.jsx';
 
-import ProfRegister from './components/ProfessionalUsersAuth/professionalRegister.jsx';
-import ProfLogin from './components/ProfessionalUsersAuth/professionalLogin.jsx';
+import ProfPage from './ProfessionalLoginRegister'
 import ProfForgetPassword from './components/ProfessionalUsersAuth/forgetPassword.jsx';
 import ProfResetPassword from './components/ProfessionalUsersAuth/resetPassword.jsx';
 
+import BucketPage from "./components/Buckets2/BucketsPage";
 import ClientProfile from "./components/ClientProfile/ClientProfile";
 import EditProfessionalDetails from "./components/ProfessionalProfile/EditDetails/EditProfessionalDetails";
 import EditServices from "./components/ProfessionalProfile/EditServices/EditServices";
@@ -38,7 +37,6 @@ import ProfessionalUserDetails from "./components/ProfessionalUsers/Professional
 import AdminNavigationBar from "./AdminNavigationBar";
 import PrivateRoute from "./PrivateRoute";
 
-
 const Main = () => (
     <>
     <Switch>
@@ -50,7 +48,10 @@ const Main = () => (
         <Route exact path='/admin' component={AdminLogin}/>
         <Route exact path='/clientDashboard/:id' component={ClientDashboard}/>
         <Route exact path='/professionalDashboard/:id' component={ProfessionalDashboard}/>
+        <Route exact path='/buckets' component={BucketPage}></Route>
+        <Route exact path='/launch/users' exact render={props => <UserPage {...props} />} /> 
 
+        <Route exact path='/launch/professionals' exact render={props => <ProfPage {...props} />} />
         <Route exact path='/userQuiz/:id' component={Quiz}/>
         <Route exact path='/professionalTags/:id' component={Tags}/>
                 {/* this is for testing */}
@@ -60,11 +61,9 @@ const Main = () => (
 
                 
         <Route exact path="/professional/edit/:id" component={EditProfessionalDetails}></Route>
-        <Route exact path='/launch/users' exact render={props => <Fragment> <Login {...props}/> <Register {...props}/> </Fragment>} />
         <Route exact path='/user/password/forget' exact render={props => <ForgetPassword {...props} />} />
         <Route exact path='/user/password/reset/:token' exact render={props => <ResetPassword {...props} />} />
 
-        <Route exact path='/launch/professionals' exact render={props => <Fragment> <ProfLogin {...props}/> <ProfRegister {...props}/> </Fragment>} />
         <Route exact path='/professional/password/forget' exact render={props => <ProfForgetPassword {...props} />} />
         <Route exact path='/professional/password/reset/:token' exact render={props => <ProfResetPassword {...props} />} />
 
