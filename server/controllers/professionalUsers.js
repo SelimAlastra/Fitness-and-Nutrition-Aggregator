@@ -14,21 +14,10 @@ export const getProfessionalUsers = async (req, res) => {
 }
 
 export const createProfessionalUser = async (req, res) => {
-  const username = req.body.username;
-  const name = req.body.name;
-  const email = req.body.email;
-  const password = req.body.password;
-  const profession = req.body.profession;
-  const gender = req.body.gender;
-  const dob = req.body.dob;
-  const address = req.body.address;
-  const isBanned = req.body.isBanned;
-  const tags = req.body.tags;
-  const bio = req.body.bio;
-  const instagramLink = req.body.instagramLink;
-  const youtubeLink = req.body.youtubeLink;
-  const newProfessionalUser = new ProfessionalUser({username, name, email, password, profession, gender, dob,
-     address, isBanned, tags, bio, instagramLink, youtubeLink});
+
+  const user = req.body;
+
+  const newProfessionalUser = new ProfessionalUser(user);
   
   newProfessionalUser.save()
     .then(() => res.json('Professional user added!'))
@@ -36,28 +25,16 @@ export const createProfessionalUser = async (req, res) => {
 }
 
 export const updateProfessionalUser = async (req, res) => {
-  ProfessionalUser.findById(req.params.id)
-    .then(professionalUser => {
-      professionalUser.username = req.body.username;
-      professionalUser.name = req.body.name;
-      professionalUser.email = req.body.email;
-      professionalUser.password = req.body.password;
-      professionalUser.profession = req.body.profession;
-      professionalUser.gender = req.body.gender;
-      professionalUser.dob = req.body.dob;
-      professionalUser.address = req.body.address;
-      professionalUser.isBanned = req.body.isBanned;
-      professionalUser.tags = req.body.tags;
-      professionalUser.bio = req.body.bio;
-      professionalUser.instagramLink = req.body.instagramLink;
-      professionalUser.youtubeLink = req.body.youtubeLink;
+  const { id: _id } = req.params;
+  const user = req.body;
 
-      professionalUser.save()
-        .then(() => res.json('Professional user updated!'))
-        .catch(error => res.status(400).json("Error: " + error));
+  if(!mongoose.Types.ObjectId.isValid(_id)) return (res.status(404).send('No user with that id'));
 
-    })
+  const updatedUser = await ProfessionalUser.findByIdAndUpdate(_id, { ...user, _id }, { new: true });
+
+  res.json(updatedUser);
 };
+
 
 export const deleteProfessionalUser = async (req, res) => {
   ProfessionalUser.findByIdAndDelete(req.params.id)

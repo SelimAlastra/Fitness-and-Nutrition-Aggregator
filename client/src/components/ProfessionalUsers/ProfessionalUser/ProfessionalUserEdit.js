@@ -2,24 +2,27 @@ import React, { useState, useEffect } from 'react';
 import { Form, Button } from "react-bootstrap";
 import { LinkContainer } from 'react-router-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import {  updateUser } from "../../../actions/users";
-import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
+import { updateProfessional, getProfessional } from '../../../actions/professionals';
 
-const UserEdit = () => {
+const ProfessionalUserEdit = () => {
 
     const [userData, setUserData] = useState( {username: ''} );
     const dispatch = useDispatch();
 
     const { id } = useParams();
 
-    const user = useSelector((state) => id ? state.users.find(u => u._id === id) : null);
+    useEffect(() => {
+        dispatch(getProfessional(id));
+     }, [dispatch]);
+
+    const user = useSelector((state) => state.basicUsers);
 
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        dispatch(updateUser(id, userData));
-        window.location.href="/Users";
+        dispatch(updateProfessional(id, userData));
+        window.location.href=`/admin/ProfessionalUsers/${user._id}`;
     }
 
     useEffect(() => {
@@ -28,9 +31,7 @@ const UserEdit = () => {
     
     return( 
     <>
-        <LinkContainer to={`/Users/${user._id}`}>
-            <Button variant="primary">Back</Button>
-        </LinkContainer>
+<Button variant="primary" onClick={() => {window.location.href=`/admin/ProfessionalUsers/${user._id}`}}>Back</Button>
         <br />
         <br />
         <Form onSubmit={handleSubmit} >
@@ -73,4 +74,4 @@ const UserEdit = () => {
     );
 }
 
-export default UserEdit;
+export default ProfessionalUserEdit;

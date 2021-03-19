@@ -1,25 +1,22 @@
 import { React, useEffect } from "react";
-import reactDom from "react-dom";
-import { Link } from "react-router-dom";
 import { Table } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
-import { getUsers } from "../../actions/users";
-import User from "./User/User";
-import UserForm from './UserForm'
+import BasicUser from "./BasicUser/BasicUser";
+import UserForm from './BasicUserForm'
+import { getBasicUsers } from "../../actions/basicUsers";
 
-const Users = () => {
+const BasicUsers = () => {
 
     const dispatch = useDispatch();
 
     useEffect(() => {
-      dispatch(getUsers());
+      dispatch(getBasicUsers());
     }, [dispatch]);
 
-    const users = useSelector((state) => state.users);
+    const users = useSelector((state) => state.basicUsers);
 
     return (
-        <>
-        <UserForm />
+        
         <Table>
                 <thead>
                     <tr>
@@ -32,13 +29,12 @@ const Users = () => {
                 <tbody>
                     {users.map((user) => (
                         <tr key={user._id} >
-                            <User user={user} />
+                            <BasicUser user={user} />
                         </tr>
                     ))}
                 </tbody>
-            </Table>
-        </>
+        </Table>
     );
 }
 
-export default Users;
+export default BasicUsers;

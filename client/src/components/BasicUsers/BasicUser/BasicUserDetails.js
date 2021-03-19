@@ -2,33 +2,36 @@ import React, { useState, useEffect } from 'react';
 import { Button, ListGroup, ListGroupItem } from "react-bootstrap";
 import { useSelector, useDispatch } from 'react-redux';
 import { LinkContainer } from 'react-router-bootstrap';
-import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
-import { updateUser, deleteUser } from "../../../actions/users";
+import { deleteBasicUser, getBasicUser, updateBasicUser } from '../../../actions/basicUsers';
 
-const UserDetails = () => {
+const BasicUserDetails = () => {
     
     const dispatch = useDispatch();
 
     const { id } = useParams();
 
-    const user = useSelector((state) => id ? state.users.find(u => u._id === id) : null);
+    useEffect(() => {
+        dispatch(getBasicUser(id));
+     }, [dispatch]);
+
+    const user = useSelector((state) => state.basicUsers);
 
     const handleBan = () => {
         user.isBanned = !user.isBanned;
-        dispatch(updateUser(user._id, user));
+        console.log(user);
+        dispatch(updateBasicUser(user._id, user));
+        window.location.reload();
     }
 
     const handleDelete = () => {
-        dispatch(deleteUser(user._id));
-        //window.location.href="/Users";
+        dispatch(deleteBasicUser(user._id));
+        window.location.href="/admin/BasicUsers"
     }
     
     return(
         <>
-            <LinkContainer to='/Users'>
-                <Button variant="primary">Back</Button>
-            </LinkContainer>
+            <Button variant="primary" onClick={() => {window.location.href="/admin/BasicUsers"}}>Back</Button>
             <br />
             <br />
             <ListGroup>
@@ -39,20 +42,17 @@ const UserDetails = () => {
                 <ListGroupItem>isBanned: {""+user.isBanned}</ListGroupItem>
                 <ListGroupItem>Gender: {user.gender}</ListGroupItem>
                 <ListGroupItem>DOB: {user.dob}</ListGroupItem>
+                <ListGroupItem>Created at: {user.createdAt}</ListGroupItem>
             </ListGroup>
             <br />
-            <LinkContainer to={{pathname:"/Users/edit/" + user._id, state: {user: user}}}>
-                <Button variant="primary">Edit</Button>
-            </LinkContainer>
+            <Button variant="primary" onClick={() => {window.location.href="/admin/BasicUsers/edit/" + user._id}}>Edit</Button>
             &nbsp; &nbsp;
             <Button variant="primary" onClick={ () => { handleBan() }}>Ban</Button>
             &nbsp; &nbsp;
-            <LinkContainer to='/Users'>
-                <Button variant="primary" onClick={ () => { handleDelete() }}>Delete</Button>
-            </LinkContainer>
+            <Button variant="primary" onClick={ () => { handleDelete() }}>Delete</Button>
         </>
     );
 
 }
 
-export default UserDetails;
+export default BasicUserDetails;
