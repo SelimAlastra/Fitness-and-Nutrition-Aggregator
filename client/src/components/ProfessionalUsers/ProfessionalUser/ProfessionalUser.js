@@ -1,10 +1,9 @@
 import React from "react";
 import { Button, Container } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
-import { useDispatch } from 'react-redux';
-import { render } from "react-dom";
 
-const User = ({ user }) => {
+
+const ProfessionalUser = ({ user }) => {
 
 
     return (
@@ -14,7 +13,7 @@ const User = ({ user }) => {
             <td>{user.email}</td>
             <td>
                 <Container>
-                    <LinkContainer to={{pathname:"/Users/" + user._id}}>
+                    <LinkContainer to={{pathname:"/admin/ProfessionalUsers/" + user._id}}>
                         <Button variant="primary">Details</Button>
                     </LinkContainer>
                 </Container>
@@ -23,4 +22,4 @@ const User = ({ user }) => {
     )
 }
 
-export default User;
+export default ProfessionalUser;
