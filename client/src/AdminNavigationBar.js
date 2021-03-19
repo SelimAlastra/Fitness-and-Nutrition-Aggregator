@@ -8,8 +8,7 @@ import { signOut } from './actions/userAuth.js';
 const AdminNavigationBar = () => {
     const history = useHistory();
     return (
-    
-    <Navbar fixed="top" bg="dark" variant="dark">
+    <Navbar fixed="top" bg="dark" variant="dark" sticky="top" style={{width: '100%'}} >
         <Navbar.Collapse id="basic-navbar-nav">
         <Navbar.Brand>Admin</Navbar.Brand>
         <Nav>
