@@ -39,7 +39,7 @@ app.use('/buckets', bucketRoutes);
 // app.use('/subscribers', subscriberRoutes);
 
 const PORT = process.env.PORT || 5000;
-const uri = process.env.CONNECTION_URL;
+const uri = process.env.ATLAS_URI;
 
 mongoose.connect(`${uri}`, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => app.listen(PORT, () => console.log('Server running on port: ' + PORT )))
