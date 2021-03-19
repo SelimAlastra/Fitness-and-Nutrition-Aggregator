@@ -48,12 +48,18 @@ const Main = () => (
     <Switch>
         <Route exact path='/' component={LandingPage}/>
         <Route exact path='/admin' component={AdminLogin}/>
-        <PrivateRoute exact path='/clientDashboard/:id' component={ClientDashboard} userType={'client'}/>
-        <PrivateRoute exact path='/professionalDashboard/:id' component={ProfessionalDashboard} userType={'professional'}/>
+        <Route exact path='/clientDashboard/:id' component={ClientDashboard}/>
+        <Route exact path='/professionalDashboard/:id' component={ProfessionalDashboard}/>
 
-        <PrivateRoute exact path='/userQuiz/:id' component={Quiz} userType={'client'}/>
-        <PrivateRoute exact path='/professionalTags/:id' component={Tags} userType={'professional'}/>
-        
+        <Route exact path='/userQuiz/:id' component={Quiz}/>
+        <Route exact path='/professionalTags/:id' component={Tags}/>
+                {/* this is for testing */}
+                {/* <Route exact path="/professional/profile/:id" render={props => <ProfessionalProfile {...props} isProfessional={false} basicUserID="6044e87ba64dcf1f659df72a"/>}></Route> */}
+                {/* <Route exact path="/professional/profile/:id" render={props => <ProfessionalProfile {...props} isProfessional={false} basicUserID="6044e87ba64dcf1f659df72a"/>}></Route> */}
+        <Route exact path="/professional/profile/:id" render={props => <ProfessionalProfile {...props} isProfessional={true} />}></Route>
+
+                
+        <Route exact path="/professional/edit/:id" component={EditProfessionalDetails}></Route>
         <Route exact path='/launch/users' exact render={props => <Fragment> <Login {...props}/> <Register {...props}/> </Fragment>} />
         <Route exact path='/user/password/forget' exact render={props => <ForgetPassword {...props} />} />
         <Route exact path='/user/password/reset/:token' exact render={props => <ResetPassword {...props} />} />
@@ -62,14 +68,14 @@ const Main = () => (
         <Route exact path='/professional/password/forget' exact render={props => <ProfForgetPassword {...props} />} />
         <Route exact path='/professional/password/reset/:token' exact render={props => <ProfResetPassword {...props} />} />
 
-        <PrivateRoute exact path="/user/profile/:id" component={ClientProfile} userType={'client'}/>
-        <PrivateRoute exact path="/user/edit/:id" component={EditBasicUser} userType={'client'}/>
-        <PrivateRoute exact path="/user/myservices/:id" component={MyServices} userType={'client'}/>
+        <Route exact path="/user/profile/:id" component={ClientProfile}/>
+        <Route exact path="/user/edit/:id" component={EditBasicUser}/>
+        <Route exact path="/user/myservices/:id" component={MyServices}/>
 
-        <PrivateRoute exact path="/professional/profile/:id" component={ProfessionalProfile} userType={'professional'}/>
-        <PrivateRoute exact path="/professional/profile/edit/:id" component={EditProfessionalDetails} userType={'professional'}/>
-        <PrivateRoute exact path="/professional/services/edit/:id" component={EditServices} userType={'professional'}/>
-        <PrivateRoute exact path="/professional/services/add/:id" component={AddService} userType={'professional'}/>
+        {/*<Route exact path="/professional/profile/:id" component={ProfessionalProfile}/>*/}
+        {/*<Route exact path="/professional/profile/edit/:id" component={EditProfessionalDetails}/>*/}
+        <Route exact path="/professional/services/edit/:id" component={EditServices}/>
+        <Route exact path="/professional/services/add/:id" component={AddService}/>
 
         <PrivateRoute exact path='/admin/basicUsers' component={BasicUsers} userType={'admin'}/>
         <PrivateRoute exact path='/admin/basicUsers/:id' component={BasicUserDetails} userType={'admin'}/>
