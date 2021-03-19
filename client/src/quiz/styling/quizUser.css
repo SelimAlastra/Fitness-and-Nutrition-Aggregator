@@ -61,6 +61,7 @@
   }
 
   .app {
+    background-color: #252d4a;
     width: 450px;
     min-height: 200px;
     height: min-content;
