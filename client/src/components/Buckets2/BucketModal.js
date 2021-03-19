@@ -10,20 +10,34 @@ function PopUpBuckets() {
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
-    return ( <
-        > < Button size = "small"
-        onClick = { handleShow } > < FaFolderPlus / > < /Button> < div className = "modal-dialog" > < Modal className = "bucket" show = { show } onHide = { handleClose } > < Modal.Header closeButton > < Modal.Title > Add this post to a bucket < /Modal.Title > < / Modal.Header > < Modal.Body > < BucketList / > < /Modal.Body> < Modal.Footer > < PopUpNewBuckets / > < /Modal.Footer> < /
-        Modal > < /div> < / > );
+    return (
+        <>
+            <Button size="small" onClick={handleShow} >
+                < FaFolderPlus />
+            </Button>
+            <div className="modal-dialog">
+                <Modal className="bucket" show={show} onHide={handleClose}>
+                    <Modal.Header closeButton>
+                        <Modal.Title> Add this post to a bucket
+                           </Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                        <BucketList />
+                    </Modal.Body>
+                    <Modal.Footer> < PopUpNewBuckets /> </Modal.Footer>
+                </Modal > </div> </>);
 };
 
 function PopUpNewBuckets() {
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
-    return ( < > < Button class = "bucket button"
-        size = "medium"
-        color = "primary"
-        onClick = { handleShow } > Create a new bucket < /Button> < div className = "modal-dialog" > < Modal className = "newBucket" show = { show } onHide = { handleClose } > < Modal.Header closeButton > < Modal.Title > Create a new bucket < /Modal.Title > < / Modal.Header > < Modal.Body > < FormBucket / > < /Modal.Body> < /
-        Modal > < /div> < / > );
+    return (<>
+        <Button class="bucket button"
+            size="medium"
+            color="primary"
+            onClick={handleShow}> Create a new bucket </Button> <div className="modal-dialog" > < Modal className="newBucket" show={show} onHide={handleClose} > < Modal.Header closeButton > < Modal.Title > Create a new bucket </Modal.Title > </Modal.Header > < Modal.Body > < FormBucket /> </Modal.Body> </Modal > </div>
+    </>
+    );
 };
 export default PopUpBuckets;

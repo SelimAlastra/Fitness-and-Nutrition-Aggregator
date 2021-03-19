@@ -7,6 +7,7 @@ import { getPosts, updatePost } from './actions/posts';
 import Posts from './components/Posts/Posts';
 import memories from './images/memories.png';
 import useStyles from './styles';
+import './ClientDashboard.css';
 
 const ClientDashboard = () => {
     const [currentId, setCurrentId] = useState(null);
@@ -18,7 +19,7 @@ const ClientDashboard = () => {
     }, [currentId,dispatch]);
 
 return (
-  <Container maxWidth="lg">
+  <Container className="containerClientDashboard"maxWidth="lg">
     <AppBar className={classes.appBar} position="static" color="inherit">
       <Typography className={classes.heading} variant="h2" align="center">Dashboard</Typography>
      <img className={classes.image} src={memories} alt="memories" height="60" />

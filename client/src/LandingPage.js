@@ -20,7 +20,7 @@ function LandingPage () {
 
     return (
         <div className = 'landingPage'> 
-            <body className = 'body'>   
+            <body className = 'bodyLandingPage'>   
 
                 <Alert className = 'alert1'> Welcome to our Fitness and Nutrition Aggregator !  </Alert>
                 <Alert className = 'alert2'> Please state if you are a professional user or not. </Alert>

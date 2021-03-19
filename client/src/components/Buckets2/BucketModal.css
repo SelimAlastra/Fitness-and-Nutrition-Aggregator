@@ -1,7 +1,7 @@
 .bucket .modal-body {
     overflow: scroll !important;
     max-height: 400px;
-    height: 300px;
+    height: 350px;
 }
 
 .modal-footer {
