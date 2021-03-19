@@ -23,7 +23,6 @@ import EditServices from "./components/ProfessionalProfile/EditServices/EditServ
 import ProfessionalProfile from './components/ProfessionalProfile/ProfessionalProfile';
 import EditBasicUser from './components/EditBasicUser/EditBasicUser';
 import MyServices from './components/MyServices/MyServices';
-import ServiceVideos from './components/MyServices/ServiceVideos';
 import AddService from './components/ProfessionalProfile/EditServices/AddService';
 
 
@@ -49,15 +48,18 @@ const Main = () => {
                 <Route exact path='/professional/password/forget' exact render={props => <ProfForgetPassword {...props} />} />
                 <Route exact path='/professional/password/reset/:token' exact render={props => <ProfResetPassword {...props} />} />
 
+                {/* this is for testing */}
+                {/* <Route exact path="/professional/profile/:id" render={props => <ProfessionalProfile {...props} isProfessional={false} basicUserID="6044e87ba64dcf1f659df72a"/>}></Route> */}
+                {/* <Route exact path="/professional/profile/:id" render={props => <ProfessionalProfile {...props} isProfessional={false} basicUserID="6044e87ba64dcf1f659df72a"/>}></Route> */}
+                <Route exact path="/professional/profile/:id" render={props => <ProfessionalProfile {...props} isProfessional={true} />}></Route>
 
-                <Route exact path="/professional/profile/:id" component={ProfessionalProfile}></Route>
-                <Route exact path="/professional/profile/edit/:id" component={EditProfessionalDetails}></Route>
+                
+                <Route exact path="/professional/edit/:id" component={EditProfessionalDetails}></Route>
                 <Route exact path="/professional/services/edit/:id" component={EditServices}></Route>
                 <Route exact path="/user/profile/:id" component={ClientProfile}></Route>
                 <Route exact path="/user/edit/:id" component={EditBasicUser}></Route>
                 <Route exact path="/user/myservices/:id" component={MyServices}></Route>
                 <Route exact path="/professional/services/add/:id" component={AddService}></Route>
-                <Route exact path="/user/myservices/videos/:id" component={ServiceVideos}></Route>
         
             </Switch>
         )
