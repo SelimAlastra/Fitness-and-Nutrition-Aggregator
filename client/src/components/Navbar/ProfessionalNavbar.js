@@ -59,22 +59,14 @@ const Navbar = () => {
             variant="contained" 
             color="primary"
             onClick={
-              () => window.location.href = `/clientDashboard/${JSON.parse(localStorage.getItem('user')).username}-${JSON.parse(localStorage.getItem('user'))._id}`
+              () => window.location.href = `/professionalDashboard/${JSON.parse(localStorage.getItem('user')).username}-${JSON.parse(localStorage.getItem('user'))._id}`
             }
           >
             Dashboard
           </Button>
-          <Button 
-            component={Link} 
-            to={`/user/myservices/${JSON.parse(localStorage.getItem('user'))._id}`} 
-            variant="contained" 
-            color="primary"
-          >
-            My Bundles
-          </Button>
           <Button
             component={Link}
-            to={`/user/profile/${JSON.parse(localStorage.getItem('user'))._id}`}
+            to={`/professional/profile/${JSON.parse(localStorage.getItem('user'))._id}`}
             variant="contained" 
             color="primary"
           >
@@ -82,11 +74,27 @@ const Navbar = () => {
           </Button>
           <Button
             component={Link}
-            to={`/user/edit/${JSON.parse(localStorage.getItem('user'))._id}`}
+            to={`/professional/edit/${JSON.parse(localStorage.getItem('user'))._id}`}
             variant="contained" 
             color="primary"
           >
             Edit My Details
+          </Button>
+          <Button
+            component={Link}
+            to={`/professional/services/edit/${JSON.parse(localStorage.getItem('user'))._id}`}
+            variant="contained" 
+            color="primary"
+          >
+            Edit My Bundles
+          </Button>
+          <Button
+            component={Link}
+            to={`/professional/services/add/${JSON.parse(localStorage.getItem('user'))._id}`}
+            variant="contained" 
+            color="primary"
+          >
+            Add new Bundle
           </Button>
         {/* )} */}
       </Toolbar>

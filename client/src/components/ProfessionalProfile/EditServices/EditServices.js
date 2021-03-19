@@ -6,6 +6,7 @@ import '../../EditFormsStyles.css';
 import { Form, Button, Col } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faWindowClose } from '@fortawesome/free-regular-svg-icons'
+import ProfessionalNavbar from '../../Navbar/ProfessionalNavbar';
 
 const EditServices = (props) => {
 
@@ -32,16 +33,18 @@ const EditServices = (props) => {
     function addUrl(e) {
         e.preventDefault();
         const toUpdate = myServices.filter(sev => sev._id === serviceID)[0];
-        const currentUrls = toUpdate.urls;
-        currentUrls.push(url);
-        const updatedService = {
-            userID: toUpdate.userID,
-            description: toUpdate.description,
-            title: toUpdate.title,
-            price: toUpdate.price,
-            urls: currentUrls
+        if (toUpdate !== undefined) {
+            const currentUrls = toUpdate.urls;
+            currentUrls.push(url);
+            const updatedService = {
+                userID: toUpdate.userID,
+                description: toUpdate.description,
+                title: toUpdate.title,
+                price: toUpdate.price,
+                urls: currentUrls
+            }
+            dispatch(updateService(serviceID, updatedService));
         }
-        dispatch(updateService(serviceID, updatedService));
         setUrl("");
         setServiceID("");
     }
@@ -87,58 +90,78 @@ const EditServices = (props) => {
     }
 
     return (
-        <div className="formContainer">
-            <div className="closeButton">
-                        <FontAwesomeIcon
-                            icon={faWindowClose}
-                            size="2x"
-                            onClick={() => window.location.href = `/professional/profile/${userID}`}
-                        >
-                        </FontAwesomeIcon>
+        //
+        <div>
+            <ProfessionalNavbar/>
+            <div className="columnContainer">
+                <div className="column">
+                    <div>
+                        <div className="closeButton">
+                                <FontAwesomeIcon
+                                    icon={faWindowClose}
+                                    size="2x"
+                                    onClick={() => window.location.href = `/professional/profile/${userID}`}
+                                >
+                                </FontAwesomeIcon>
+                        </div>
+                        <h3 className="serviceText">Services</h3>
+                        <hr className="seperator"/>
+                        <div>
+                            { generateTable() }
+                        </div>
+                        <Button 
+                            className="actionButton" 
+                            onClick={() => window.location.href =`/professional/services/add/${userID}`}
+                            >
+                                Add New Service
+                        </Button>
+                        <br />
                     </div>
-            <h3 className="serviceText">Services</h3>
-            <hr className="seperator"/>
-            <div>
-                { generateTable() }
+                </div>
+                <div className="column">
+                    <div className="closeButton">
+                                <FontAwesomeIcon
+                                    icon={faWindowClose}
+                                    size="2x"
+                                    onClick={() => window.location.href = `/professional/profile/${userID}`}
+                                >
+                                </FontAwesomeIcon>
+                        </div>
+                    <h4>Add URL to Service</h4>
+                    <hr className="seperator"/>
+                    <br />
+                    <Form>             
+                        <Form.Control
+                            value={serviceID}
+                            id="serviceIDInput"
+                            className="inputItem"
+                            onChange={(e) => setServiceID(e.target.value)}
+                            placeholder="Service ID"
+                        >
+                        </Form.Control>     
+                        <br />       
+                        <Form.Control
+                            value={url}
+                            id="urlInput"
+                            name="url" 
+                            placeholder="New URL"
+                            className="inputItem"
+                            onChange={(e) => setUrl(e.target.value)} 
+                        >
+                        </Form.Control>   
+                        <br />                            
+                        <Button 
+                            className="actionButton"
+                            onClick={(e) => addUrl(e)}
+                        >
+                            Add
+                        </Button>                 
+                    </Form>
+                </div>
+
             </div>
-            <Button 
-                className="actionButton" 
-                onClick={() => window.location.href =`/professional/services/add/${userID}`}
-                >
-                    Add New Service
-            </Button>
-            <br />
-            <hr  className="seperator"/>
-            <h4>Add URL to Service</h4>
-            <br />
-            <Form>             
-                    <Form.Control
-                        value={serviceID}
-                        id="serviceIDInput"
-                        className="inputItem"
-                        onChange={(e) => setServiceID(e.target.value)}
-                        placeholder="Service ID"
-                    >
-                    </Form.Control>     
-                    <br />       
-                    <Form.Control
-                        value={url}
-                        id="urlInput"
-                        name="url" 
-                        placeholder="New URL"
-                        className="inputItem"
-                        onChange={(e) => setUrl(e.target.value)} 
-                    >
-                    </Form.Control>   
-                    <br />                            
-                    <Button 
-                        className="actionButton"
-                        onClick={(e) => addUrl(e)}
-                    >
-                        Add
-                    </Button>                 
-            </Form>
         </div>
+
     );
 }
 
