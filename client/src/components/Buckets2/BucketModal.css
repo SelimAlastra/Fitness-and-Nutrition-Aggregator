@@ -1,19 +1,23 @@
-.bucket .modal-body{
+.bucket .modal-body {
     overflow: scroll !important;
     max-height: 400px;
-}
-.bucket .modal-footer{
-    height: 1% !important;
+    height: 300px;
 }
 
-.bucket .modal-content{
+.modal-footer {
+    height: 80px !important;
+}
+
+.bucket .modal-content {
     width: 120%;
+    overflow: hidden;
 }
 
 .bucket .button {
-    height: 20px;
+    height: 50px;
+    width: fit-content
 }
 
-.bucket .modal{
+.bucket .modal {
     position: absolute;
 }

@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 
 import { getBuckets} from '../../actions/buckets';
 import { ListGroup } from 'react-bootstrap';
+import './BucketList.css'
 
 const BucketList = () => {
     const [currentBucketId, setCurrentBucketId] = useState(null);
@@ -14,9 +15,9 @@ const BucketList = () => {
     }, [currentBucketId,dispatch]);
 
     return ( 
-     <ListGroup>
+     <ul className="list-group" >
           <BucketGrid currentBucketId={currentBucketId} setCurrentBucketId={setCurrentBucketId}/>
-     </ListGroup>
+     </ul>
      );
 }
 
