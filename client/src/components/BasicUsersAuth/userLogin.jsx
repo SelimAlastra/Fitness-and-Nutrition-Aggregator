@@ -77,8 +77,8 @@ const schema = Yup.object().shape({
           })
           .catch(err => {
             console.log(err)
-            if(err.data.errors){
-                if(err.data.errors.includes('User'))
+            if(err.response.data.errors){
+                if(err.response.data.errors.includes('User'))
                   actions.setFieldError('email', 'User with that email does not exist. Please register.')
                 else
                   actions.setFieldError('password', 'Email and password do not match')     

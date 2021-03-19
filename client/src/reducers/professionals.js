@@ -4,7 +4,7 @@ export default (professional = [], action) => {
             return action.payload;
         case 'FETCH':
             return action.payload;
-        case 'UPDATE':
+        case 'UPDATE_PROFESSIONAL':
             return action.payload;
         case 'CREATE_USER':
             return [ ...professional, action.payload ]
