@@ -32,7 +32,7 @@
 
 .actionButton {
     margin-top: 1%;
-    background-color: #61dafb;
+    background-color: black;
     border: none;
 }
 
@@ -63,4 +63,14 @@ table {
     background-color:white;
     margin-bottom: 1%;
     margin: 1%
+}
+
+.actionButton {
+    color: black;
+    background-color: #D7C5B4 !important;
+    border-radius: 10px;
+}
+
+.actionButton:hover{
+    background-color: #8a5853 !important;
 }
