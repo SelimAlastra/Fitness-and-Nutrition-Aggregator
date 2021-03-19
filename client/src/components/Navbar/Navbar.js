@@ -53,8 +53,6 @@ const Navbar = () => {
             Logout
             </Button>
           </div>
-        {/* ) : ( */}
-          <Button component={Link} to="/launch/users" variant="contained" color="primary">Sign In</Button>
           <Button  
             variant="contained" 
             color="primary"
@@ -63,6 +61,14 @@ const Navbar = () => {
             }
           >
             Dashboard
+          </Button>
+          <Button 
+            component={Link} 
+            to={'/buckets'} 
+            variant="contained" 
+            color="primary"
+          >
+            My Buckets
           </Button>
           <Button 
             component={Link} 

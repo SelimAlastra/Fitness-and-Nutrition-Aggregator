@@ -39,15 +39,10 @@ const ProfessionalDashboard = () => {
 
 return (
   <Container maxWidth="lg">
-    <div className={classes.root}>
-     <CssBaseline />
       <AppBar position="static" className={classes.appBar} color="inherit">
-        <Toolbar>
         <Typography className={classes.heading} variant="h2" align="center">Dashboard</Typography>
         <img className={classes.image} src={memories} alt="memories" height="60" />
-        </Toolbar>
-{/*      
-      <Drawer
+      {/* <Drawer
         className={classes.drawer}
         variant="permanent"
         classes={{
@@ -67,14 +62,13 @@ return (
             ))}
           </List>
         </div>
-      </Drawer> */}
+      </Drawer> */} 
+      <ProfessionalNavbar/>
       </AppBar>
-    </div>
-       <ProfessionalNavbar/>
     <Grow in>
         <Container>
           <Grid className={classes.mainContainer} container justify="space-between" alignItems="stretch" spacing={3}>
-            <Grid item xs={12} sm={7}>
+            <Grid item xs={12} sm={5}>
               <Posts setCurrentId={setCurrentId}/>
             </Grid>
             <Grid item xs={12} sm={4}>

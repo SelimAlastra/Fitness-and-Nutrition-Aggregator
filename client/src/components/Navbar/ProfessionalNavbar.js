@@ -53,8 +53,6 @@ const Navbar = () => {
             Logout
             </Button>
           </div>
-        {/* ) : ( */}
-          <Button component={Link} to="/launch/users" variant="contained" color="primary">Sign In</Button>
           <Button  
             variant="contained" 
             color="primary"
