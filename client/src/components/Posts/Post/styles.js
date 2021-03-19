@@ -19,8 +19,10 @@ export default makeStyles((theme) => ({
     flexDirection: 'column',
     position: 'relative',
     height: '365px',
+    width: '379px',
     backgroundColor: 'white',
     borderRadius: '15px',
+    margin: '10px 10px 10px 10px',
   },
   overlay: {
     top: '10px',

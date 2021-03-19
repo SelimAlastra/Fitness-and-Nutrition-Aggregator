@@ -38,7 +38,7 @@
     border-color: black;
     font-size: large;
     font-family: 'Helvetica', serif !important;
-    height: 500px;
+    min-height: 500px !important;
 }
 
 Form {

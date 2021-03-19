@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Grid, CircularProgress, GridList } from '@material-ui/core';
 import { useSelector } from 'react-redux';
+import Navbar from '../Navbar/Navbar';
 
 import Bucket from './Bucket';
 import { Container, ListGroup, Row, Col } from 'react-bootstrap';
@@ -14,7 +15,8 @@ const Buckets = ({ setCurrentBucketId }) => {
     console.log(buckets);
 
     return (
-        !buckets.length ? <CircularProgress /> : (
+        <div>
+        <Navbar/>
             <div class="container">
                 <div class="row">
                     {buckets.map((bucket) => (
@@ -26,7 +28,7 @@ const Buckets = ({ setCurrentBucketId }) => {
                     ))}
                 </div>
             </div>
-        )
+        </div>
     );
 }
 
