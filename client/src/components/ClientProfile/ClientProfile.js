@@ -78,14 +78,12 @@ function formatDate(toFormat) {
         return (
             <div>
                 <Navbar/>
-                <div className="sectionContainer">
-                    <div className="section">
+                <div className="columnContainer">
+                    <div className="column">
                         <ProfileInfo profile={user} />
                     </div>
-                    <div className="section">
+                    <div className="column">
                         <PersonalInfo profile={user}/>
-                    </div>
-                    <div className="section">
                         { generateGoals() }
                     </div>
                 </div>

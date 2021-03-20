@@ -5,9 +5,8 @@ const PersonalInfo = ({profile}) => {
                 <div>
                     <h3>Body Data</h3>
                     <hr className="lineSeperator"/>
-                    { getBodyType(profile.bodyType) }
-                    { getWeight(profile.weight) }
-                    { getGender(profile.gender) }
+                    { generateInfoSection(profile.gender, profile.bodyType, profile.weight) }
+                    <br />
                 </div>
             </div>
         ); 
@@ -18,7 +17,7 @@ const PersonalInfo = ({profile}) => {
     function getBodyType(bodyType) {
         if (bodyType !== undefined && bodyType !== null && bodyType !== "") {
             return (
-                <p className="textContainer">Body Type: {bodyType}</p>
+                <p>Body Type: {bodyType}</p>
             );
         }
     }
@@ -27,7 +26,7 @@ const PersonalInfo = ({profile}) => {
     function getWeight(weight) {
         if (weight !== undefined && weight !== null && weight !== "") {
             return (
-                <p className="textContainer">Body Type: {weight}</p>
+                <p>Weight: {weight}</p>
             );
         }
     }
@@ -36,9 +35,34 @@ const PersonalInfo = ({profile}) => {
     function getGender(gender) {
         if (gender !== undefined && gender !== null && gender !== "") {
             return (
-                <p className="textContainer">Gender: {gender}</p>
+                <p>Gender: {gender}</p>
             );
         }
+    }
+
+    function generateInfoSection(gender, bodyType, weight) {
+        let weightComponent = getWeight(weight);
+        let genderComponent = getGender(gender);
+        let bodyTypeComponent = getBodyType(bodyType);
+        let parts = [weightComponent, genderComponent, bodyTypeComponent];
+        let filtered = parts.filter(part => part !== undefined);
+        console.log(filtered);
+        return (
+
+            <div className="textContainer">
+                {
+                    filtered.map((item, index) => {
+                        return (
+                            <div key={index}>
+                                {item}
+        
+                            </div>
+                        )
+                    })
+                }
+            </div>
+        );
+        console.log(filtered);
     }
     
 }

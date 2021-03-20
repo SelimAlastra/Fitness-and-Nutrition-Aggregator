@@ -7,14 +7,16 @@ import { getServices } from '../../actions/services';
 import { updateBasicUser, getBasicUser } from '../../actions/basicUsers';
 import { Button } from 'react-bootstrap';
 import ProfessionalNavbar from '../Navbar/ProfessionalNavbar';
+import Navbar from "../Navbar/Navbar";
 
 const ProfessionalProfile = (props) => {
     const dispatch = useDispatch();
     const [videoUrls, setVideoUrls] = useState([]);
     const [isProfessional, setIsProfessional] = useState(props.isProfessional);
-    const [basicUserID, setBasicUserID] = useState(props.basicUserID);
-    const professionalUserID = props.match.params.id;
+    const basicUserID = props.match.params.clientID;
+    const professionalUserID = props.match.params.professionalID;
     const [basicUser, setBasicUser] = useState({});
+
 
     // Get Professional & basic User if a basicUser is viewing the profile
     useEffect(() => {
@@ -126,7 +128,7 @@ const ProfessionalProfile = (props) => {
 
     return (
         <div>
-            <ProfessionalNavbar />
+            { generateNavbar() }
             <div className="sectionContainer">
                 <div className="section">
                     <div>
@@ -142,6 +144,14 @@ const ProfessionalProfile = (props) => {
             </div>
         </div>
     );
+
+    function generateNavbar() {
+        if (isProfessional) {
+            return <ProfessionalNavbar />;
+        } else {
+            return <Navbar />;
+        }
+    }
 }
 
 export default ProfessionalProfile;

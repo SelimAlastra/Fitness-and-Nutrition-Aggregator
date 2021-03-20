@@ -54,10 +54,8 @@ const Main = () => (
         <Route exact path='/launch/professionals' exact render={props => <ProfPage {...props} />} />
         <Route exact path='/userQuiz/:id' component={Quiz}/>
         <Route exact path='/professionalTags/:id' component={Tags}/>
-                {/* this is for testing */}
-                {/* <Route exact path="/professional/profile/:id" render={props => <ProfessionalProfile {...props} isProfessional={false} basicUserID="6044e87ba64dcf1f659df72a"/>}></Route> */}
-                {/* <Route exact path="/professional/profile/:id" render={props => <ProfessionalProfile {...props} isProfessional={false} basicUserID="6044e87ba64dcf1f659df72a"/>}></Route> */}
-        <Route exact path="/professional/profile/:id" render={props => <ProfessionalProfile {...props} isProfessional={true} />}></Route>
+        <Route exact path="/professional/profile/:professionalID" render={props => <ProfessionalProfile {...props} isProfessional={true} />}></Route>
+        <Route exact path="/user/professional/profile/:professionalID/:clientID" render={props => <ProfessionalProfile {...props} isProfessional={false} />}></Route>
 
                 
         <Route exact path="/professional/edit/:id" component={EditProfessionalDetails}></Route>

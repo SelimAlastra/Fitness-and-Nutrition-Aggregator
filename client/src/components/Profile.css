@@ -27,15 +27,16 @@
 }
 
 .textContainer {
-    background-color: #61dafb;
+    background-color: #D7C5B4;
     border-radius: 10px;
     padding: 1%;
     color: #EFEAE4;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    font-size: medium;
 }
 
 .seperator {
-    background-color: #61dafb;
+    background-color: #D7C5B4;
     margin-left: 10%;
     margin-right: 10%;
 }
@@ -52,7 +53,7 @@
 }
 
 .service {
-    background-color: #61dafb;
+    background-color: #D7C5B4;
     border-radius: 10px;
     margin-left: 1%;
     margin-right: 1%;
@@ -63,7 +64,7 @@
 }
 
 .serviceColumn {
-    background-color:  #61dafb;
+    background-color:  #D7C5B4;
     padding: 2%;
     margin-top: 1%;
     margin-bottom: 1%;
@@ -82,4 +83,15 @@
 .purchaseButton:hover {
     background-color: lightgray;
     
+}
+
+.minorText {
+    font-size: small;
+}
+
+.helpText {
+    text-align: left;
+    font: small;
+    margin: 1%;
+    color: #808080;
 }
