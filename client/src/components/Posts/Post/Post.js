@@ -93,8 +93,6 @@ const Post = ({ post, setCurrentId }) => {
   };
 
   const Delete = () => {
-    console.log(post.userFrom);
-    console.log(String(JSON.parse(localStorage.getItem('user'))._id));
     if (String(JSON.parse(localStorage.getItem('user'))._id) == post.userFrom) {
       return (<Button size="small" onClick={() => dispatch(deletePost(post._id))}>
         <DeleteIcon fontSize="small" />
@@ -103,6 +101,19 @@ const Post = ({ post, setCurrentId }) => {
     }
     return <div></div>
   }
+
+  const Edit = () => {
+    console.log(post.userFrom);
+    console.log(String(JSON.parse(localStorage.getItem('user'))._id));
+    if (String(JSON.parse(localStorage.getItem('user'))._id) == post.userFrom) {
+      return (
+      <Button size="small" onClick={() => setCurrentId(post._id)}>Edit</Button>
+      )
+    }
+    return <div></div>
+  }
+
+
 
   return (
     <Card className={classes.card}>
@@ -125,11 +136,13 @@ const Post = ({ post, setCurrentId }) => {
           open={Boolean(anchorEl)}
           onClose={handleClose}
         >
+          <MenuItem> 
           {JSON.parse(localStorage.getItem('user')).type == 'client' ?
             <ReportPopUp />
-            :
-            <MenuItem size="small" onClick={() => setCurrentId(post._id)}>Edit</MenuItem>
+            : <Edit />
           }
+          </MenuItem>
+
         </Menu>
       </div>
       <Typography hidden={true} className={classes.title} variant="h5" gutterBottom>{post.title}</Typography>
