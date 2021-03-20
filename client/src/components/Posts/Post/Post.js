@@ -56,9 +56,9 @@ const Post = ({ post , setCurrentId }) => {
     return <><ThumbUpAltOutlined fontSize="small" />&nbsp;Like</>;
   };
      
-  const Delete=() =>{
-      console.log(post.userFrom);
-      console.log(String(JSON.parse(localStorage.getItem('user'))._id));
+  const Delete = () =>{
+     /*  console.log(post.userFrom);
+      console.log(String(JSON.parse(localStorage.getItem('user'))._id)); */
     if (String(JSON.parse(localStorage.getItem('user'))._id)==post.userFrom) {
        return( <Button size="small" color="primary" onClick={() => dispatch(deletePost(post._id))}>
         <DeleteIcon fontSize="small" /> 
