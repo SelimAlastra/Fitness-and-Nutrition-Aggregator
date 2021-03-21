@@ -2,11 +2,8 @@ import React from "react";
 import { Button , Alert, Container, Carousel } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './LandingPage.css';
-<<<<<<< HEAD
 import NavbarVisitor from './components/Navbar/NavbarVisitor.js';
-=======
 import { useHistory } from 'react-router-dom';
->>>>>>> searchBar
 
 function LandingPage () {
 

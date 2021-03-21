@@ -3,11 +3,8 @@ import Question from './components/question';
 import Answer from './components/answer';
 import Test from './testPage';
 import './styling/quizUser.css';
-<<<<<<< HEAD
-=======
 
 //const history = useHistory();
->>>>>>> searchBar
 
 export default class Quiz extends Component{
 
