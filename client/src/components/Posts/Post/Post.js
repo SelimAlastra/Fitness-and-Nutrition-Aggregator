@@ -15,6 +15,7 @@ import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import Videos from '../Videos/Videos';
 import Audio from '../Audio/Audio';
+import EmbeddedLinks from '../EmbeddedLinks/EmbeddedLinks';
 
 
 import { deletePost, likePost, toggleFavAction } from '../../../actions/posts';
@@ -110,6 +111,12 @@ const Post = ({ post , setCurrentId }) => {
              {   post.audioFile ?
             <CardContent> 
              <Audio setSrc = {post.audioFile} />
+            </CardContent>
+               : <div></div> 
+             }
+             {   post.embeddedLink ?
+            <CardContent> 
+             <EmbeddedLinks setLink = {post.embeddedLink} />
             </CardContent>
                : <div></div> 
              }
