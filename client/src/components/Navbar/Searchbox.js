@@ -38,59 +38,102 @@ const styles = theme => ({
   });
 
 
-class Searchbox extends React.Component {
 
-    constructor (props) {
-        super(props);
-        this.state = {
-            query: '',
-            results: {},
-            loading: false,
-            message: '',
-        }
+var filteredPosts=[];
+const Searchbox = ({updatePosts,setUpdatedPosts}) => {
+  filteredPosts= useSelector((state) => state.posts);
+/* const loadCharacters = async () => {
+    try {
+         posts = await api.fetchPosts();
+    } catch (error) {
+        console.error(error);
     }
+}; */
 
-    /**
-     * query value updates while typing input
-     */
-    handleOnInputChange = (event) => {
-        const query = event.target.value;
-        this.setState({query: query, loading: true, message: this.state.name});
-        // let filteredPosts = useSelector((state) => state.posts)
-
-        // const searchString = query.toLowerCase();
-     
-        // filteredPosts = filteredPosts.filter((post) => 
-        //     post.title.toLowerCase().includes(searchString) ||
-        //     post.message.toLowerCase().includes(searchString)
-        //     );
-        // this.props.setUpdatedPosts(filteredPosts);
-    };
-
-    render(){
-        const {query} = this.state;
-        const {classes} = this.props;
-        console.log(this.state);
-        return (
-            <div className="searchbox-container">
-                <label className="search-label" htmlFor="search-input">
-                    <InputBase
-                        type="text" 
-                        name="query"
-                        value={query}
-                        placeholder="Search…"
-                        id="search-input"
-                        onChange={this.handleOnInputChange}
-                        classes={{
-                            root: classes.inputRoot,
-                            input: classes.inputInput,
-                        }}
-                        inputProps={{ 'aria-label': 'search' }}
-                        />
-                </label>
-            </div>
-        )
-    }
+//loadCharacters();
+const findTag =(array,searchString)=>{
+  for(var i=0; i<array.length;i++)
+  {
+      if(array[i].trim().toLowerCase()===searchString)
+       return true
+  }
+  return false
 }
 
-export default withStyles(styles)(Searchbox);
+const keyup = (e) => {
+    const searchString = e.target.value.toLowerCase();
+     
+    filteredPosts=filteredPosts.filter((post) => 
+            post.title.toLowerCase().includes(searchString) ||
+            post.message.toLowerCase().includes(searchString) ||
+            findTag(post.tags,searchString)
+            );
+      setUpdatedPosts(filteredPosts);
+};
+
+    return (
+      <div id="searchWrapper">
+        <input type="text" name="searchBar" id="searchBar" placeholder="search for a character" onKeyUp={(e)=>keyup(e)}/>
+      </div>
+      );
+  };
+  export {filteredPosts} ;
+  export default withStyles(styles)(Searchbox);
+
+
+// class Searchbox extends React.Component {
+
+//     constructor (props) {
+//         super(props);
+//         this.state = {
+//             query: '',
+//             results: {},
+//             loading: false,
+//             message: '',
+//         }
+//     }
+
+//     /**
+//      * query value updates while typing input
+//      */
+//     handleOnInputChange = (event) => {
+//         const query = event.target.value;
+//         this.setState({query: query, loading: true, message: this.state.name});
+//         // let filteredPosts = useSelector((state) => state.posts)
+
+//         // const searchString = query.toLowerCase();
+     
+//         // filteredPosts = filteredPosts.filter((post) => 
+//         //     post.title.toLowerCase().includes(searchString) ||
+//         //     post.message.toLowerCase().includes(searchString)
+//         //     );
+//         // this.props.setUpdatedPosts(filteredPosts);
+//     };
+
+//     render(){
+//         const {query} = this.state;
+//         const {classes} = this.props;
+//         console.log(this.state);
+//         return (
+//             <div className="searchbox-container">
+//                 <label className="search-label" htmlFor="search-input">
+//                     <InputBase
+//                         type="text" 
+//                         name="query"
+//                         value={query}
+//                         placeholder="Search…"
+//                         id="search-input"
+//                         onChange={this.handleOnInputChange}
+//                         classes={{
+//                             root: classes.inputRoot,
+//                             input: classes.inputInput,
+//                         }}
+//                         inputProps={{ 'aria-label': 'search' }}
+//                         />
+//                 </label>
+//             </div>
+//         )
+//     }
+// }
+
+// export default withStyles(styles)(Searchbox);

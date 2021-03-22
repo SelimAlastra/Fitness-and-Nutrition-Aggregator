@@ -1,7 +1,7 @@
   import React,{useEffect} from 'react';
   import './styles.css';
   import { useSelector } from 'react-redux';
-import { updatePost } from '../../actions/posts';
+  import { updatePost } from '../../actions/posts';
 
 var filteredPosts=[];
 const SearchBar = ({updatePosts,setUpdatedPosts}) => {
@@ -20,7 +20,7 @@ const findTag =(array,searchString)=>{
   {
       if(array[i].trim().toLowerCase()===searchString)
        return true
-  }
+  } 
   return false
 }
 

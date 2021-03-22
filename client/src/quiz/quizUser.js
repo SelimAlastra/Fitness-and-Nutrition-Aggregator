@@ -6,6 +6,8 @@ import './styling/quizUser.css';
 
 //const history = useHistory();
 
+var associatedTags = [];
+
 export default class Quiz extends Component{
 
     state = {
@@ -14,34 +16,34 @@ export default class Quiz extends Component{
                 questionText: "Are you a woman or a man?",
                 questionId: 1,
                 answerOptions: [
-                    { answerText: "Woman", selected:false, requireInput: false, tags:[] },
-                    { answerText: "Man", selected:false, requireInput: false, tags:[] },
+                    { answerText: "Woman", selected:false, requireInput: false, tags:["womensfitness"] },
+                    { answerText: "Man", selected:false, requireInput: false, tags:["menfitness"] },
                 ],
             },{
                 questionText: "What is your age range?",
                 questionId: 2,
                 answerOptions: [
-                    { answerText: "Teens", selected:false, requireInput: false, tags:[] },
-                    { answerText: "20's", selected:false, requireInput: false, tags:[] },
-                    { answerText: "30's", selected:false, requireInput: false, tags:[] },
-                    { answerText: "40's", selected:false, requireInput: false, tags:[] },
-                    { answerText: "50's", selected:false, requireInput: false, tags:[] },
-                    { answerText: "60+", selected:false, requireInput: false, tags:[] },
+                    { answerText: "Teens", selected:false, requireInput: false, tags:[""] },
+                    { answerText: "20's", selected:false, requireInput: false, tags:[""] },
+                    { answerText: "30's", selected:false, requireInput: false, tags:[""] },
+                    { answerText: "40's", selected:false, requireInput: false, tags:[""] },
+                    { answerText: "50's", selected:false, requireInput: false, tags:[""] },
+                    { answerText: "60+", selected:false, requireInput: false, tags:[""] },
                 ],
             },{
                 questionText: "What is your height?",
                 questionId: 3,
                 answerOptions: [
-                    { answerText: "metric", selected:true, requireInput: false, tags:[]  },
-                    { answerText: "imperial", selected:false, requireInput: false, tags:[] },
+                    { answerText: "metric", selected:true, requireInput: false, tags:[""]  },
+                    { answerText: "imperial", selected:false, requireInput: false, tags:[""] },
                 ],
                 input:[], placeholder: ["cm", "feet, inches"], alert: ["Type only numeric values. (e.g.: 177)", "Type numeric values. (e.g.: 5 8, 6 2)"]
             },{
                 questionText: "What is your weight?",
                 questionId: 4,
                 answerOptions: [
-                    { answerText: "Kilograms(kg)", selected:true, requireInput: false, tags:[] },
-                    { answerText: "Pounds(lb)", selected:false, requireInput: false, tags:[] },
+                    { answerText: "Kilograms(kg)", selected:true, requireInput: false, tags:[""] },
+                    { answerText: "Pounds(lb)", selected:false, requireInput: false, tags:[""] },
                 ],
                 input:[], placeholder: ["kg","lb"], alert: ["Type only numeric values. (e.g.: 82)", "Type only numeric values. (e.g.: 160)"]
             },{
@@ -112,7 +114,7 @@ export default class Quiz extends Component{
                     { answerText: "not much", selected:false, tags:["nocost"], requireInput: false },
                     { answerText: "a fair amount", selected:false, tags:[""], requireInput: false },
                     { answerText: "no budget limit", selected:false, tags:[""], requireInput: false },
-                    { answerText: "Other(per month):", selected: false, tags:[""], requireInput: true, placeholder: "e.g.: 100 pounds", alert: ["Answer using letters and numbers only."] }
+                    // { answerText: "Other(per month):", selected: false, tags:[""], requireInput: true, placeholder: "e.g.: 100 pounds", alert: ["Answer using letters and numbers only."] }
                 ],
                 // input:[]
             },{ 
@@ -125,7 +127,7 @@ export default class Quiz extends Component{
                     { answerText: "#bodyweightworkout", selected:false, tags:["bodyweightworkou", "calisthenics"], requireInput: false },
                     { answerText: "#bodybuilding", selected:false, tags:["bodybuilding", "gains", "muscle"], requireInput: false },
                     { answerText: "#powerlifting", selected:false, tags:["powerlifting", "deadlifting"], requireInput: false },
-                    { answerText: "Add your own:", selected: false, tags:[""], requireInput: true, placeholder: "e.g.: crossfit, boxing", alert: ["Answer using letters and numbers only."] }
+                    // { answerText: "Add your own:", selected: false, tags:[""], requireInput: true, placeholder: "e.g.: crossfit, boxing", alert: ["Answer using letters and numbers only."] }
                 ],
                 // input:[]
             }
@@ -133,7 +135,6 @@ export default class Quiz extends Component{
 
         // identify questions that require input for all selections by adding their ID in this array
         questionsReqInput: [3,4],
-        associatedTags: [],
 
         currentQuestion: 0,
         complete: false
@@ -312,12 +313,18 @@ export default class Quiz extends Component{
      * add tags based on user selection during the quizz
      */
     addTags = () => {
-        const{questions} = this.state;
+        const {questions} = this.state;
+        // let {associatedTags} = this.state;
         questions.forEach(question => {
             const answers = question.answerOptions;
+
             answers.forEach(answer => {
                 if(answer.selected === true){
-                    this.associatedTags += answer.tags;
+                    answer.tags.forEach(tag => {
+                        if(tag !== ""){
+                            associatedTags.push(tag);
+                        }
+                    });
                 }
             });
         });
@@ -385,3 +392,5 @@ export default class Quiz extends Component{
         );
     }
 }
+
+export {associatedTags}
