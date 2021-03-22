@@ -115,41 +115,42 @@ const getSearchValue = () => {
 /**
  * @return Navbar element
  */
-export default function NavbarProfessional() {
-  const dispatch = useDispatch();
+export default function NavbarProfessional({updatedPosts, setUpdatedPosts}) {
 
-  /**
-   * get posts
-   */
-  const [currentId, setCurrentId] = useState(null);
-  useEffect(() => {
-      dispatch(getPosts());
-  }, [currentId,dispatch]);
+  // const dispatch = useDispatch();
 
-  const posts = useSelector((state) => state.posts);
+  // /**
+  //  * get posts
+  //  */
+  // const [currentId, setCurrentId] = useState(null);
+  // useEffect(() => {
+  //     dispatch(getPosts());
+  // }, [currentId,dispatch]);
 
-  /**
-   * update posts
-   */
-  const [updatedPosts,setUpdatedPosts]= useState([]);
-  useEffect(() => {
-    dispatch(getPosts());
-    //GetModifiedPosts(data);
-    setUpdatedPosts(updatedPosts);
-  }, [currentId,dispatch,setUpdatedPosts]);
+  // const posts = useSelector((state) => state.posts);
 
-  let filteredPosts= useSelector((state) => state.posts);
+  // /**
+  //  * update posts
+  //  */
+  // const [updatedPosts,setUpdatedPosts]= useState([]);
+  // useEffect(() => {
+  //   dispatch(getPosts());
+  //   //GetModifiedPosts(data);
+  //   setUpdatedPosts(updatedPosts);
+  // }, [currentId,dispatch,setUpdatedPosts]);
 
-  /**
-   * get searched posts
-   */
-  const getSearchPosts = () => {
-    const searchPosts = posts.filter(post => post.tags.find(tag => tag === "nutrition"));
+  // let filteredPosts= useSelector((state) => state.posts);
 
-    searchPosts.forEach(element => {
-      console.log(element);
-    });
-  };
+  // /**
+  //  * get searched posts
+  //  */
+  // const getSearchPosts = () => {
+  //   const searchPosts = posts.filter(post => post.tags.find(tag => tag === "nutrition"));
+
+  //   searchPosts.forEach(element => {
+  //     console.log(element);
+  //   });
+  // };
 
   const classes = useStyles();
   const history = useHistory();
@@ -273,7 +274,7 @@ export default function NavbarProfessional() {
             <div className={classes.searchIcon}>
               <SearchIcon />
             </div>
-            <Searchbox name="tomi" updatedPosts={updatedPosts} setUpdatedPosts={setUpdatedPosts} filteredPosts={filteredPosts}/>
+            <Searchbox updatedPosts={updatedPosts} setUpdatedPosts={setUpdatedPosts}/>
           </div>
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
@@ -312,7 +313,7 @@ export default function NavbarProfessional() {
       {renderMobileMenu}
       {renderMenu}
 
-      <ul id="postsList">{getSearchPosts()}</ul>
+      {/* <ul id="postsList">{getSearchPosts()}</ul> */}
 
       {/* <Posts setCurrentId={setCurrentId}/> */}
     </div>
