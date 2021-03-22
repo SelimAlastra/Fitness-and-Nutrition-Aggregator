@@ -13,12 +13,17 @@ import Menu from '@material-ui/core/Menu';
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
 import AccountCircle from '@material-ui/icons/AccountCircle';
+import SettingsIcon from '@material-ui/icons/Settings';
 import MailIcon from '@material-ui/icons/Mail';
+import CollectionsBookmarkIcon from '@material-ui/icons/CollectionsBookmark';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
+import AccountBoxIcon from '@material-ui/icons/AccountBox';
 import { FETCH_ALL} from '../../constants/actionTypes';
 import * as api from '../../api/index';
 import Posts from '../Posts/Posts';
+import { signOut } from '../../actions/userAuth.js';
+import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
 /**
@@ -132,6 +137,7 @@ export default function NavbarUser() {
   };
 
   const classes = useStyles();
+  const history = useHistory();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 
@@ -166,8 +172,29 @@ export default function NavbarUser() {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-      <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+      <MenuItem onClick={handleMenuClose}>
+        <IconButton> 
+          <div>
+            <AccountBoxIcon/> 
+            <text style={{fontSize:"1.2rem"}}>Profile</text>
+          </div>
+        </IconButton>
+      </MenuItem>
+      <MenuItem onClick={handleMenuClose}>
+        <IconButton> 
+          <div>
+            <SettingsIcon/> 
+            <text style={{fontSize:"1.2rem"}}>Settings</text>
+          </div>
+        </IconButton></MenuItem>
+      <MenuItem onClick={handleMenuClose}>
+        <IconButton onClick={() => { signOut(() => { history.push('/'); });}}> 
+          <div>
+            <AccountBoxIcon/> 
+            <text style={{fontSize:"1.2rem"}}>Log out</text>
+          </div>
+        </IconButton>
+      </MenuItem>
     </Menu>
   );
 
@@ -213,7 +240,7 @@ export default function NavbarUser() {
   );
 
   return (
-    <div className={classes.grow}>
+    <div className={classes.grow, "navbar-top"}>
       <AppBar position="static">
         <Toolbar>
           <IconButton 
@@ -236,12 +263,12 @@ export default function NavbarUser() {
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
             <IconButton style={{width: '50px'}} aria-label="show 4 new mails" color="inherit">
-              <Badge badgeContent={4} color="secondary">
-                <MailIcon />
+              <Badge badgeContent={2} color="secondary">
+                <CollectionsBookmarkIcon />
               </Badge>
             </IconButton>
             <IconButton style={{width: '50px'}} aria-label="show 17 new notifications" color="inherit">
-              <Badge badgeContent={17} color="secondary">
+              <Badge badgeContent={13} color="secondary">
                 <NotificationsIcon />
               </Badge>
             </IconButton>

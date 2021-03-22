@@ -3,6 +3,8 @@ import './Navbar.css';
 import { withStyles } from '@material-ui/core/styles';
 import { fade } from '@material-ui/core/styles';
 import InputBase from '@material-ui/core/InputBase';
+import { useSelector } from 'react-redux';
+import { updatePost } from '../../actions/posts';
 
 const styles = theme => ({
     search: {
@@ -40,12 +42,11 @@ class Searchbox extends React.Component {
 
     constructor (props) {
         super(props);
-
         this.state = {
             query: '',
             results: {},
             loading: false,
-            message: ''
+            message: '',
         }
     }
 
@@ -54,12 +55,21 @@ class Searchbox extends React.Component {
      */
     handleOnInputChange = (event) => {
         const query = event.target.value;
-        this.setState({query: query, loading: true, message: ''});
+        this.setState({query: query, loading: true, message: this.state.name});
+        // let filteredPosts = useSelector((state) => state.posts)
+
+        // const searchString = query.toLowerCase();
+     
+        // filteredPosts = filteredPosts.filter((post) => 
+        //     post.title.toLowerCase().includes(searchString) ||
+        //     post.message.toLowerCase().includes(searchString)
+        //     );
+        // this.props.setUpdatedPosts(filteredPosts);
     };
 
     render(){
-        const{query} = this.state;
-        const { classes } = this.props;
+        const {query} = this.state;
+        const {classes} = this.props;
         console.log(this.state);
         return (
             <div className="searchbox-container">

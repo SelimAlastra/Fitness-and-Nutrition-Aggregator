@@ -116,12 +116,12 @@ export default function NavbarVisitor() {
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
             <IconButton style={{width: '100px'}} color="inherit">
-                <button>Sign up</button>
+                <text style = {{fontSize: "1.2rem"}}>Sign up</text>
             </IconButton>
             <IconButton style={{width: '100px'}} color="inherit">
-                <button>Log in</button>
+                <text style = {{fontSize: "1.2rem"}}>Log in</text>
             </IconButton>
-            <IconButton style={{width: '50px'}}
+            {/* <IconButton style={{width: '50px'}}
               edge="end"
               aria-label="account of current user"
               aria-controls={menuId}
@@ -130,7 +130,7 @@ export default function NavbarVisitor() {
               color="inherit"
             >
               <AccountCircle />
-            </IconButton>
+            </IconButton> */}
           </div>
           <div className={classes.sectionMobile}>
             <IconButton style={{width: '50px'}}

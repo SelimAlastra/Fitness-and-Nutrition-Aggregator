@@ -1,18 +1,9 @@
-//import logo from './logo.svg';
-//import './App.css';
+
 import React, { useEffect ,useState } from 'react';
 import { Container, AppBar, Typography, Grow, Grid } from '@material-ui/core';
-import Drawer from "@material-ui/core/Drawer";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Toolbar from "@material-ui/core/Toolbar";
-import List from "@material-ui/core/List";
-import Divider from "@material-ui/core/Divider";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemIcon from "@material-ui/core/ListItemIcon";
-import ListItemText from "@material-ui/core/ListItemText";
-import InboxIcon from "@material-ui/icons/MoveToInbox";
-import MailIcon from "@material-ui/icons/Mail";
-import Navbar from "./components/Navbar/Navbar";
+import NavbarProfessional from "./components/Navbar/NavbarProfessional";
 import { useDispatch } from 'react-redux';
 import SearchBar from './components/SearchBar/SearchBar';
 import { getPosts, updatePost } from './actions/posts';
@@ -48,10 +39,9 @@ const ProfessionalDashboard = () => {
       dispatch(getBuckets());
     }, [currentBucketId,dispatch]); */
 
-
-
 return (
-  <Container maxWidth="lg">
+  <>
+    <NavbarProfessional updatedPosts={updatedPosts} setUpdatedPosts={setUpdatedPosts}/>
     <div className={classes.root}>
       <CssBaseline />
       <AppBar position="static" className={classes.appBar} color="inherit">
@@ -59,29 +49,6 @@ return (
         <Typography className={classes.heading} variant="h2" align="center">Dashboard</Typography>
         <img className={classes.image} src={memories} alt="memories" height="60" />
         </Toolbar>
-     
-      <Drawer
-        className={classes.drawer}
-        variant="permanent"
-        classes={{
-          paper: classes.drawerPaper
-        }}
-      >
-        <Toolbar />
-        <div className={classes.drawerContainer}>
-          <List>
-            {["", "", ""].map((text, index) => (
-              <ListItem button key={text}>
-                <ListItemIcon>
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                </ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItem>
-            ))}
-          </List>
-        </div>
-      </Drawer>
-      <Navbar/>
       </AppBar>
     </div>
        <SearchBar updatedPosts={updatedPosts} setUpdatedPosts={setUpdatedPosts}/>
@@ -99,7 +66,7 @@ return (
         </Container>
       </Grow>
       
-  </Container>
+  </>
   );
 }
 
