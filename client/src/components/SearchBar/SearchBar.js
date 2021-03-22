@@ -16,7 +16,7 @@ const SearchBar = ({updatePosts,setUpdatedPosts}) => {
 
 //loadCharacters();
 
-const keyup= (e) => {
+const keyup = (e) => {
     const searchString = e.target.value.toLowerCase();
      
     filteredPosts=filteredPosts.filter((post) => 
@@ -27,17 +27,9 @@ const keyup= (e) => {
 };
 
     return (
-        <div>
-          <meta charSet="UTF-8" />
-          <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-          <meta httpEquiv="X-UA-Compatible" content="ie=edge" />
-          <title>Document</title>
-          <link rel="stylesheet" />
-            <div id="searchWrapper">
-              <input type="text" name="searchBar" id="searchBar" placeholder="search for a character" onKeyUp={(e)=>keyup(e)}/>
-            </div>
-            <ul id="charactersList" />
-        </div>
+      <div id="searchWrapper">
+        <input type="text" name="searchBar" id="searchBar" placeholder="search for a character" onKeyUp={(e)=>keyup(e)}/>
+      </div>
       );
   };
   export {filteredPosts} ;

@@ -3,11 +3,6 @@ import Question from './components/question';
 import Answer from './components/answer';
 import Test from './testPage';
 import './styling/quizUser.css';
-<<<<<<< HEAD
-=======
-
-//const history = useHistory();
->>>>>>> searchBar
 
 export default class Quiz extends Component{
 
@@ -254,33 +249,6 @@ export default class Quiz extends Component{
             }
         }
     }
-
-    // /**
-    //  * 
-    //  */
-    //  processAnswerInput = () => {
-    //     const{questions, currentQuestion} = this.state;
-
-    //     //check if answer selection requires input (e.g.: for "Other: ")
-    //     if(questions[currentQuestion].answerOptions.find(element => element.selected === true)){
-    //         const answerSelected = questions[currentQuestion].answerOptions.find(element => element.selected === true);
-
-    //         if(answerSelected.requireInput === true){
-    //             //check if there has been previous input value
-    //             if(!questions[currentQuestion].input || !questions[currentQuestion].input.length){
-    //                 this.addInput(document.getElementById("inputBox").value);
-    //             } else {
-    //                 //save new input if value is not null
-    //                 if(document.getElementById("inputBox").value.length > 0){
-    //                     questions[currentQuestion].input.pop();
-    //                     this.addInput(document.getElementById("inputBox").value);
-    //                 }
-    //             }
-    //         } 
-    //         // console.log(document.getElementById("inputBox").value);
-    //         console.log(answerSelected.input);
-    //     }
-    // }
 
     /**
      * move to the previous question, only if there are previos questions
