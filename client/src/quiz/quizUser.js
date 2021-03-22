@@ -4,6 +4,8 @@ import Answer from './components/answer';
 import Test from './testPage';
 import './styling/quizUser.css';
 
+//const history = useHistory();
+
 export default class Quiz extends Component{
 
     state = {

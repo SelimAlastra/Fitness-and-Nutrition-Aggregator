@@ -7,7 +7,12 @@ import useStyles from './styles';
 import { getPosts, updatePost } from '../../actions/posts';
 
 const Posts = ({setCurrentId,updatedPosts,setUpdatedPosts}) => {
-    const posts =useSelector((state) => state.posts.filter((post) => updatedPosts.includes(post)));
+    var newPosts=[];
+    for(var i=0; i<updatedPosts.length;i++)
+    {
+        newPosts.push(updatedPosts[i]._id);
+    }
+    const posts =useSelector((state) => state.posts.filter((post) => newPosts.includes(post._id)));
     const classes = useStyles();
     const dispatch =useDispatch();
     return (
