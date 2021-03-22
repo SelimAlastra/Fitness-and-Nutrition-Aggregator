@@ -15,13 +15,22 @@ const SearchBar = ({updatePosts,setUpdatedPosts}) => {
 }; */
 
 //loadCharacters();
+const findTag =(array,searchString)=>{
+  for(var i=0; i<array.length;i++)
+  {
+      if(array[i].trim().toLowerCase()===searchString)
+       return true
+  }
+  return false
+}
 
 const keyup = (e) => {
     const searchString = e.target.value.toLowerCase();
      
     filteredPosts=filteredPosts.filter((post) => 
             post.title.toLowerCase().includes(searchString) ||
-            post.message.toLowerCase().includes(searchString)
+            post.message.toLowerCase().includes(searchString) ||
+            findTag(post.tags,searchString)
             );
       setUpdatedPosts(filteredPosts);
 };

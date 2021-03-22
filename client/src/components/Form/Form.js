@@ -47,7 +47,7 @@ const Form = ({currentId, setCurrentId}) => {
    }
     const clear = () => {
         setCurrentId(null);
-        setPostData({ creator: JSON.parse(localStorage.getItem('user')).name , title: '', message: '', tags: '', selectedFile: '', url: '' });
+        setPostData({ creator: JSON.parse(localStorage.getItem('user')).name, userFrom: JSON.parse(localStorage.getItem('user'))._id, title: '', message: '', tags: '', selectedFile: '', url: '' });
     }
     return (
         <Paper className={classes.paper}>
