@@ -10,9 +10,7 @@ function ProfileInfo({profile}) {
                 <div>
                     <h2 className="clientName">{profile.name} <p className="minorText">({profile.username})</p></h2>
                     <hr className="profileSeperator"/>
-                    <p className="helpText">Location</p>
                     { generateLocationContainer(profile.address) }
-                    <p className="helpText">Bio</p>
                     { generateDescriptionContainer(profile.bio) }
                     { generateTags(profile.tags) } 
                     <p className="helpText">Contact Info</p> 
@@ -33,19 +31,29 @@ export default ProfileInfo;
 
 function generateTags(tags) {
     if (tags !== undefined && tags.length > 0) {
-        return <Tags tags={tags}/> ;
+        return <Tags tags={tags}/>;
     }
 }
 
 function generateLocationContainer(location) {
     if (location !== undefined && location.length > 0) {
-        return (<div className="outerContainer"><p className="textContainer">{location}</p></div>);
+        return (
+        <div>
+            <p className="helpText">Location</p>
+            <div className="outerContainer"><p className="textContainer">{location}</p></div>
+        </div>
+        );
     }
 }
 
 function generateDescriptionContainer(description) {
     if (description !== undefined && description.length > 0) {
-        return (<p className="textContainer">{description}</p>);  
+        return (
+            <div>
+                <p className="helpText">Bio</p>
+                <p className="textContainer">{description}</p>
+            </div>
+        );  
     }
 }
 
