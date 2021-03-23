@@ -76,7 +76,7 @@ export const registerController = (req, res) => {
                       const { _id, email, name, username } = data;
                       return res.json({
                         token,
-                        user: { _id, email, name, username }
+                        user: { _id, email, name, username, type: 'professional' }
                       });
                     });
                   }

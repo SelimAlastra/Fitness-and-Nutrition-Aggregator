@@ -46,7 +46,6 @@ const PersonalInfo = ({profile}) => {
         let bodyTypeComponent = getBodyType(bodyType);
         let parts = [weightComponent, genderComponent, bodyTypeComponent];
         let filtered = parts.filter(part => part !== undefined);
-        console.log(filtered);
         return (
 
             <div className="textContainer">
