@@ -6,6 +6,6 @@ const router = express.Router();
 
 router.get('/', getBuckets);
 router.post('/', createBucket);
-router.patch('/', updateBucket);
+router.patch('/:id', updateBucket);
 
 export default router;
