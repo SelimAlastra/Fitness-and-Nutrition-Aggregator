@@ -21,7 +21,6 @@ const ReportView = () => {
     }, []);
 
     
-
     useEffect(() => {
         if (report){
             dispatch(getPost(report.postId));
