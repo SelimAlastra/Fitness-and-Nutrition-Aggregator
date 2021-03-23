@@ -1,8 +1,11 @@
   import React,{useEffect} from 'react';
   import { useSelector } from 'react-redux';
   import { updatePost } from '../../actions/posts';
+  import {associatedTags} from '../../quiz/quizUser';
 
 var filteredPosts=[];
+var newArray=[];
+const initialFilteredPosts = new Set();
 const SearchBar = ({updatePosts,setUpdatedPosts}) => {
   filteredPosts= useSelector((state) => state.posts);
 /* const loadCharacters = async () => {
@@ -12,8 +15,6 @@ const SearchBar = ({updatePosts,setUpdatedPosts}) => {
         console.error(error);
     }
 }; */
-
-//loadCharacters();
 const findTag =(array,searchString)=>{
   for(var i=0; i<array.length;i++)
   {
@@ -22,16 +23,35 @@ const findTag =(array,searchString)=>{
   } 
   return false
 }
-
-const keyup = (e) => {
-    const searchString = e.target.value.toLowerCase();
-     
-    filteredPosts=filteredPosts.filter((post) => 
+const filterPosts=(searchString)=>{
+  var newFilteredPosts;
+       newFilteredPosts=filteredPosts.filter((post) => 
             post.title.toLowerCase().includes(searchString) ||
             post.message.toLowerCase().includes(searchString) ||
             findTag(post.tags,searchString)
             );
-      setUpdatedPosts(filteredPosts);
+      newFilteredPosts.forEach(post=> initialFilteredPosts.add(post));
+
+}
+const initialSearch =() =>{
+  for(var i=0;i<associatedTags.length;i++)
+  {
+      filterPosts(associatedTags[i]);
+  }
+  newArray=[];
+  initialFilteredPosts.forEach(v => newArray.push(v));
+}
+ initialSearch();
+//loadCharacters();
+
+const keyup = (e) => {
+    const searchString = e.target.value.toLowerCase();
+    initialFilteredPosts.clear();
+   filterPosts(searchString);
+   var newArray=[];
+   initialFilteredPosts.forEach(v => newArray.push(v));
+      setUpdatedPosts(newArray);
+    
 };
 
     return (
@@ -40,6 +60,6 @@ const keyup = (e) => {
       </div>
       );
   };
-  export {filteredPosts} ;
+  export {filteredPosts, newArray} ;
   export default SearchBar;
 

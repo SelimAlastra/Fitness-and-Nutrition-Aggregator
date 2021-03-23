@@ -109,7 +109,7 @@ export default class Quiz extends Component{
                 questionText: "Where is your favorite place to exercise?",
                 questionId: 10,
                 answerOptions: [
-                    { answerText: "gym", selected:false, tags:["gym"], requireInput: false },
+                    { answerText: "gym", selected:false, tags:[""], requireInput: false },
                     { answerText: "outdoors", selected:false, tags:["outdoor", "outdoortraining", "outdoorworkout", "nature"], requireInput: false },
                     { answerText: "home", selected:false, tags:["home", "homeworkout", "homegym", "quarantine", "nogymnoproblem"], requireInput: false },
                 ],
@@ -127,7 +127,7 @@ export default class Quiz extends Component{
                 questionText: "Lastly, which of the following are you interested in?",
                 questionId: 12,
                 answerOptions: [
-                    { answerText: "#mindset", selected:true, tags:["mindset", "motivation", "goals"], requireInput: false },
+                    { answerText: "#mindset", selected:false, tags:["mindset", "motivation", "goals"], requireInput: false },
                     { answerText: "#nutrition", selected:false, tags:["nutrition", "diet"], requireInput: false },
                     { answerText: "#jogging", selected:false, tags:["jogging", "running"], requireInput: false },
                     { answerText: "#bodyweightworkout", selected:false, tags:["bodyweightworkou", "calisthenics"], requireInput: false },
