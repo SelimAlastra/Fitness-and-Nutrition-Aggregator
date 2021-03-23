@@ -14,7 +14,7 @@ const router = express.Router();
 
 router.get('/:id', getProfessionalUser);
 router.get('/', getProfessionalUsers);
-router.post('/add', createProfessionalUser);
+router.post('/', createProfessionalUser);
 router.patch('/update/:id', updateProfessionalUser);
 router.delete('/:id', deleteProfessionalUser);
 

@@ -2,7 +2,8 @@ import User from '../models/basicUser.model.js';
 import ProfUser from '../models/professionalUser.model.js';
 import expressJwt from 'express-jwt';
 import _ from 'lodash';
-import { OAuth2Client } from 'google-auth-library';
+import pkg from 'google-auth-library';
+const { OAuth2Client } = pkg;
 import fetch from 'node-fetch';
 
 import jwt from 'jsonwebtoken';
@@ -15,76 +16,79 @@ dotenv.config();
 sgMail.setApiKey(process.env.MAIL_KEY);
 
 export const registerController = (req, res) => {
-  const { username, email, password, name, profession} = req.body;
-  
-  if (ProfUser.findOne({email}))
-      {ProfUser.findOne({
+  const { username, email, password, name, profession } = req.body;
+
+  if (ProfUser.findOne({ email })) {
+    ProfUser.findOne({
       email
-      }).exec((err, user) => {
-        if(user) {
-      return res.status(400).json({
-        errors: 'Email already in use.'
-      });
-    } 
-        else if(User.findOne({email}))
-        {User.findOne({
-        email
-        }).exec((err, user) => {
-          if(user) {
+    }).exec((err, user) => {
+      if (user) {
         return res.status(400).json({
           errors: 'Email already in use.'
         });
       }
-        else {
-          const user = new ProfUser({
-              username,
-              email,
-              password,
-              name, 
-              profession
-          });
-              user.save()
-                  .then(user => res.json(user))
-                  .catch(err => console.log(err))
-            }
+      else if (User.findOne({ email })) {
+        User.findOne({
+          email
+        }).exec((err, user) => {
+          if (user) {
+            return res.status(400).json({
+              errors: 'Email already in use.'
+            });
+          }
+          else if (ProfUser.findOne({ username })) {
+            ProfUser.findOne({
+              username
+            }).exec((err, user) => {
+              if (user) {
+                return res.status(400).json({
+                  errors: 'Username already in use.'
+                });
+              } else if (User.findOne({ username })) {
+                User.findOne({
+                  username
+                }).exec((err, user) => {
+                  if (user) {
+                    return res.status(400).json({
+                      errors: 'Username already in use.'
+                    });
+                  }
+                  else {
+                    const user = new ProfUser({
+                      username,
+                      email,
+                      password,
+                      name,
+                      profession
+                    });
+                    user.save((err, data) => {
+                      if (err) {
+                        console.log('ERROR REGISTER ON USER SAVE', err);
+                        return res.status(400).json({
+                          error: 'User register failed'
+                        });
+                      }
+                      const token = jwt.sign(
+                        { _: data._id },
+                        process.env.JWT_SECRET,
+                        { expiresIn: '7d' }
+                      );
+                      const { _id, email, name, username } = data;
+                      return res.json({
+                        token,
+                        user: { _id, email, name, username, type: 'professional' }
+                      });
+                    });
+                  }
+                })
+              }
+            })
+          }
         })
       }
     })
   }
-   if(ProfUser.findOne({username}))
-      {ProfUser.findOne({
-      username
-      }).exec((err, user) => {
-        if(user) {
-      return res.status(400).json({
-        errors: 'Username already in use.'
-      });
-    }else if(ProfUser.findOne({username}))
-              {User.findOne({
-              username
-              }).exec((err, user) => {
-                if(user) {
-              return res.status(400).json({
-                errors: 'Username already in use.'
-              });
-              }
-              else{
-              const user = new ProfUser({
-                  username,
-                  email,
-                  password, 
-                  name,
-                  profession
-              });
-                  user.save()
-                      .then(user => res.json(user))
-                      .catch(err => console.log(err))
-              }
-            })
-          }  
-       })
-    }
-  } 
+} 
 
 export const loginController = (req, res) => {
   const { email, password } = req.body;
@@ -113,14 +117,16 @@ export const loginController = (req, res) => {
           expiresIn: '7d'
         }
       );
-      const { _id, username, email} = user;
+      const { _id, username, email, name , type} = user;
 
       return res.json({
         token,
         user: {
           _id,
           username,
-          email
+          email,
+          name,
+          type: 'professional'
         }
       });
     });
@@ -140,10 +146,10 @@ export const googleController = (req, res) => {
             const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET, {
               expiresIn: '7d'
             });
-            const { _id, email, name } = user;
+            const { _id, email, name, username, type } = user;
             return res.json({
               token,
-              user: { _id, email, name }
+              user: { _id, email, name, username ,type:'professional' }
             });
           } else {
             let password = email + process.env.JWT_SECRET;
@@ -162,10 +168,10 @@ export const googleController = (req, res) => {
                 process.env.JWT_SECRET,
                 { expiresIn: '7d' }
               );
-              const { _id, email, name} = data;
+              const { _id, email, name, username, type} = data;
               return res.json({
                 token,
-                user: { _id, email, name }
+                user: { _id, email, name, username, type: 'professional'}
               });
             });
           }
@@ -196,10 +202,10 @@ export const facebookController = (req, res) => {
             const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET, {
               expiresIn: '7d'
             });
-            const { _id, email, name } = user;
+            const { _id, email, name, username, type} = user;
             return res.json({
               token,
-              user: { _id, email, name }
+              user: { _id, email, name, username, type:'professional'}
             });
           } else {
             let username = name.trim();
@@ -218,10 +224,10 @@ export const facebookController = (req, res) => {
                 process.env.JWT_SECRET,
                 { expiresIn: '7d' }
               );
-              const { _id, email, name } = data;
+              const { _id, email, name, username ,type} = data;
               return res.json({
                 token,
-                user: { _id, email, name }
+                user: { _id, email, name, username , type:'professional'}
               });
             });
           }

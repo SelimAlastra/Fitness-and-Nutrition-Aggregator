@@ -55,6 +55,21 @@ Form {
 }
 
 .registerButton {
+    background-color: #8a5853!important;
+    border-color: black !important;
+    box-shadow: none !important;
+    font-size: medium;
+    font-weight: bold;
+    font-family: 'Helvetica', serif;
+    border-radius: 25px;
+    width: 200px !important;
+    text-align: center;
+    margin-left: 55px;
+}
+
+
+.registerButtonModal{
+    background-color: #8a5853;
     color: white !important;
     box-shadow: none !important;
     font-size: medium;
@@ -64,6 +79,13 @@ Form {
     width: 200px !important;
     text-align: center;
     margin-left: 55px;
+    font-weight: bold;
+    border-color: #6e2d16;
+}
+
+.registerButtonModal:hover{
+    background-color: #6e2d16!important;
+    border-color: #6e2d16 !important;
 }
 
 .input-feedback {

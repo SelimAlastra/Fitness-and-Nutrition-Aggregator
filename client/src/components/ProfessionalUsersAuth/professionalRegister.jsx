@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import { isAuth } from '../../actions/userAuth.js';
+import { authenticate, isAuth } from '../../actions/userAuth.js';
 import { Redirect } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
@@ -13,6 +13,7 @@ import {faEye} from "@fortawesome/free-solid-svg-icons";
 import './professionalRegister.css';
 import Google from './googleLogin.jsx';
 import Facebook from './facebookLogin.jsx';
+import { useHistory } from 'react-router-dom';
 
 function PopUpSignUp(){
   const [show, setShow] = useState(false);
@@ -36,6 +37,8 @@ return(
 };
 
 const Register = () => {
+
+const history = useHistory();
 
 const eye = <FontAwesomeIcon icon={faEye} />;
 
@@ -84,17 +87,21 @@ const formik = useFormik({
         }
         axios
           .post(`http://localhost:5000/professionalUsers/register`, newData)
+          .then(res => {
+            authenticate(res, () => {
+            history.push(`/professionalDashboard/${JSON.parse(localStorage.getItem('user'))._id}`)
+            })
+          })
           .catch(err => {
-                      
-                      console.log(err.response.data.errors)
                       if(err.response.data.errors){
+                        console.log(err.response.data.errors)
                         if(err.response.data.errors.includes('Email'))
                           actions.setFieldError('email', 'Email already in use')
                         else
                           actions.setFieldError('username', 'Username already in use')
                       }  
                     })
-        actions.setSubmitting(false);
+        actions.setSubmitting(false);        
       }, 500);
     },
 });
@@ -207,7 +214,7 @@ const formik = useFormik({
       )}
       <p/>
       
-      <Button className="registerButton" type="submit" disabled={formik.isSubmitting}>
+      <Button className="registerButtonModal" variant="outline-success" type="submit" disabled={formik.isSubmitting}>
           Register
       </Button>
       <p style={{'marginLeft': '140px', 'fontWeight': 'bold'}}> OR </p>
