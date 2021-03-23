@@ -5,8 +5,8 @@ import { faTrashAlt } from "@fortawesome/free-regular-svg-icons";
 import '../../EditFormsStyles.css';
 import { Form, Button, Col } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faWindowClose } from '@fortawesome/free-regular-svg-icons'
-import ProfessionalNavbar from '../../Navbar/ProfessionalNavbar';
+import { faWindowClose } from '@fortawesome/free-regular-svg-icons';
+import NavbarProfessional from "../../Navbar/NavbarProfessional";
 
 const EditServices = (props) => {
 
@@ -92,7 +92,7 @@ const EditServices = (props) => {
     return (
         //
         <div>
-            <ProfessionalNavbar/>
+            <NavbarProfessional/>
             <div className="columnContainer">
                 <div className="column">
                     <div>

@@ -1,7 +1,6 @@
 import React, { useEffect ,useState } from 'react';
 import { Container, AppBar, Typography, Grow, Grid } from '@material-ui/core';
 import { useDispatch } from 'react-redux';
-// import SearchBar from './components/SearchBar/SearchBar';
 import NavbarUser from "./components/Navbar/NavbarUser";
 import { getPosts, updatePost } from './actions/posts';
 import Posts from './components/Posts/Posts';
@@ -20,14 +19,13 @@ const ClientDashboard = () => {
     }, [currentId,dispatch,setUpdatedPosts]);
     
 return (
+  <>
+  <NavbarUser updatedPosts={updatedPosts} setUpdatedPosts={setUpdatedPosts}/>
   <Container maxWidth="lg">
-    <NavbarUser updatedPosts={updatedPosts} setUpdatedPosts={setUpdatedPosts}/>
     <AppBar className={classes.appBar} position="static" color="inherit">
       <Typography className={classes.heading} variant="h2" align="center">Dashboard</Typography>
      <img className={classes.image} src={memories} alt="memories" height="60" />
-     {/* <Navbar/> */}
     </AppBar>
-    {/* <SearchBar updatedPosts={updatedPosts} setUpdatedPosts={setUpdatedPosts}/> */}
 
     <Grow in>
         <Container>
@@ -40,6 +38,7 @@ return (
       </Grow>
       
   </Container>
+  </>
   );
 }
 

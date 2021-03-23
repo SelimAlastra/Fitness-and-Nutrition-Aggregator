@@ -6,8 +6,8 @@ import { getProfessional } from '../../actions/professionals';
 import { getServices } from '../../actions/services';
 import { updateBasicUser, getBasicUser } from '../../actions/basicUsers';
 import { Button } from 'react-bootstrap';
-import ProfessionalNavbar from '../Navbar/ProfessionalNavbar';
-import Navbar from "../Navbar/Navbar";
+import NavbarUser from "../Navbar/NavbarUser";
+import NavbarProfessional from "../Navbar/NavbarProfessional";
 
 const ProfessionalProfile = (props) => {
     const dispatch = useDispatch();
@@ -147,9 +147,9 @@ const ProfessionalProfile = (props) => {
 
     function generateNavbar() {
         if (isProfessional) {
-            return <ProfessionalNavbar />;
+            return <NavbarProfessional />;
         } else {
-            return <Navbar />;
+            return <NavbarUser />;
         }
     }
 }

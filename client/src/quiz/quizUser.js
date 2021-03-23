@@ -127,7 +127,7 @@ export default class Quiz extends Component{
                 questionText: "Lastly, which of the following are you interested in?",
                 questionId: 12,
                 answerOptions: [
-                    { answerText: "#mindset", selected:false, tags:["mindset", "motivation", "goals"], requireInput: false },
+                    { answerText: "#mindset", selected:true, tags:["mindset", "motivation", "goals"], requireInput: false },
                     { answerText: "#nutrition", selected:false, tags:["nutrition", "diet"], requireInput: false },
                     { answerText: "#jogging", selected:false, tags:["jogging", "running"], requireInput: false },
                     { answerText: "#bodyweightworkout", selected:false, tags:["bodyweightworkou", "calisthenics"], requireInput: false },
@@ -183,7 +183,7 @@ export default class Quiz extends Component{
      * (this function violates the Single-Responsability-Principle..)
      */
     handleAnswerButtonClick = (answer) => {
-        const{questions, currentQuestion, questionsReqInput} = this.state;
+        const{questions, currentQuestion} = this.state;
         let newItems = [...questions];
         let newAnswer = newItems[currentQuestion].answerOptions.find(element => element === answer);
 
@@ -209,17 +209,17 @@ export default class Quiz extends Component{
             //     const answerSelected = newItems[currentQuestion].answerOptions.find(element => element.selected === true && element === answer);
             //     answerSelected.selected = false;
             // } else {
-                newAnswer.selected = true;
+                // newAnswer.selected = true;
             // }
 
             //another method tried
             // if(newAnswer.selected === true){
             //     newAnswer.selected = false;
+            //     console.log("IF REACHED - true")
             // } else {
-            //     newAnswer.selected = true;
+            //     newAnswer.selected = false;
+            //     console.log("IF REACHED - false")
             // }
-
-            console.log("TRUE REQ MULTIPLE")
         }
 
         //if question required input, clear saved input

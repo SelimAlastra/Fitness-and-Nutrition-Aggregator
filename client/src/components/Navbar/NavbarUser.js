@@ -1,7 +1,5 @@
 import React from 'react';
 import { fade, makeStyles } from '@material-ui/core/styles';
-import { useEffect ,useState } from 'react';
-import { useSelector } from 'react-redux';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
@@ -14,13 +12,15 @@ import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import SettingsIcon from '@material-ui/icons/Settings';
-import MailIcon from '@material-ui/icons/Mail';
+import HomeIcon from '@material-ui/icons/Home';
 import CollectionsBookmarkIcon from '@material-ui/icons/CollectionsBookmark';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import AccountBoxIcon from '@material-ui/icons/AccountBox';
 import { signOut } from '../../actions/userAuth.js';
-import { useHistory } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
+import LayersIcon from '@material-ui/icons/Layers';
 import "./Navbar.css"
 
 /**
@@ -63,6 +63,11 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  iconButton: {
+    '&:hover': {
+      color: "rgb(61, 128, 184)",
+    },
   },
   inputRoot: {
     color: 'inherit',
@@ -133,7 +138,7 @@ export default function NavbarUser({updatedPosts, setUpdatedPosts}) {
       onClose={handleMenuClose}
     >
       <MenuItem onClick={handleMenuClose}>
-        <IconButton> 
+        <IconButton component={Link} to={`/user/profile/${JSON.parse(localStorage.getItem('user'))._id}`}> 
           <div>
             <AccountBoxIcon/> 
             <text style={{fontSize:"1.2rem"}}>Profile</text>
@@ -141,16 +146,25 @@ export default function NavbarUser({updatedPosts, setUpdatedPosts}) {
         </IconButton>
       </MenuItem>
       <MenuItem onClick={handleMenuClose}>
-        <IconButton> 
+        <IconButton component={Link} to={'/buckets'} > 
+          <div>
+            <LayersIcon/> 
+            <text style={{fontSize:"1.2rem"}}>Buckets</text>
+          </div>
+        </IconButton>
+      </MenuItem>
+      <MenuItem onClick={handleMenuClose}>
+        <IconButton component={Link} to={`/user/edit/${JSON.parse(localStorage.getItem('user'))._id}`}> 
           <div>
             <SettingsIcon/> 
             <text style={{fontSize:"1.2rem"}}>Settings</text>
           </div>
-        </IconButton></MenuItem>
+        </IconButton>
+      </MenuItem>
       <MenuItem onClick={handleMenuClose}>
         <IconButton onClick={() => { signOut(() => { history.push('/'); });}}> 
           <div>
-            <AccountBoxIcon/> 
+            <ExitToAppIcon/> 
             <text style={{fontSize:"1.2rem"}}>Log out</text>
           </div>
         </IconButton>
@@ -170,7 +184,31 @@ export default function NavbarUser({updatedPosts, setUpdatedPosts}) {
       onClose={handleMobileMenuClose}
     >
       <MenuItem>
-        <IconButton > 
+        <IconButton onClick={() => window.location.href = `/clientDashboard/${JSON.parse(localStorage.getItem('user')).username}-${JSON.parse(localStorage.getItem('user'))._id}`} > 
+          <div>
+            <HomeIcon/> 
+            <text style={{fontSize:"1.2rem"}}>Home</text>
+          </div>
+        </IconButton>
+      </MenuItem>
+      <MenuItem>
+        <IconButton component={Link} to={`/user/myservices/${JSON.parse(localStorage.getItem('user'))._id}`} > 
+          <div>
+            <CollectionsBookmarkIcon/> 
+            <text style={{fontSize:"1.2rem"}}>Bundles</text>
+          </div>
+        </IconButton>
+      </MenuItem>
+      <MenuItem>
+        <IconButton component={Link} to={'/buckets'} > 
+          <div>
+            <LayersIcon/> 
+            <text style={{fontSize:"1.2rem"}}>Buckets</text>
+          </div>
+        </IconButton>
+      </MenuItem>
+      <MenuItem>
+        <IconButton component={Link} to={`/user/profile/${JSON.parse(localStorage.getItem('user'))._id}`} > 
           <div>
             <AccountBoxIcon/> 
             <text style={{fontSize:"1.2rem"}}>Profile</text>
@@ -178,7 +216,7 @@ export default function NavbarUser({updatedPosts, setUpdatedPosts}) {
         </IconButton>
       </MenuItem>
       <MenuItem>
-      <IconButton> 
+      <IconButton component={Link} to={`/user/edit/${JSON.parse(localStorage.getItem('user'))._id}`}> 
           <div>
             <SettingsIcon/> 
             <text style={{fontSize:"1.2rem"}}>Settings</text>
@@ -189,19 +227,10 @@ export default function NavbarUser({updatedPosts, setUpdatedPosts}) {
       <MenuItem onClick={handleProfileMenuOpen}>
       <IconButton onClick={() => { signOut(() => { history.push('/'); });}}> 
           <div>
-            <AccountBoxIcon/> 
+            <ExitToAppIcon/> 
             <text style={{fontSize:"1.2rem"}}>Log out</text>
           </div>
         </IconButton>
-        {/* <IconButton style={{width: '50px'}}
-          aria-label="account of current user"
-          aria-controls="primary-search-account-menu"
-          aria-haspopup="true"
-          color="inherit"
-        >
-          <AccountCircle />
-        </IconButton>
-        <p>Profile</p> */}
       </MenuItem>
     </Menu>
   );
@@ -218,25 +247,36 @@ export default function NavbarUser({updatedPosts, setUpdatedPosts}) {
           >
             <MenuIcon />
           </IconButton>
-          <Typography className={classes.title, "logo"} variant="h6" noWrap>
+          <Typography onClick={() => window.location.href = `/clientDashboard/${JSON.parse(localStorage.getItem('user')).username}-${JSON.parse(localStorage.getItem('user'))._id}`} className={classes.title, "logo"} variant="h6" noWrap>
             LOGO
           </Typography>
+
+          { document.URL.includes("clientDashboard/") ? (
           <div className={classes.search}>
             <div className={classes.searchIcon}>
               <SearchIcon />
             </div>
             <Searchbox updatedPosts={updatedPosts} setUpdatedPosts={setUpdatedPosts}/>
           </div>
+          ) : (<div></div>)
+          }
+
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
-            <IconButton style={{width: '50px'}} aria-label="show 4 new mails" color="inherit">
+            <IconButton 
+              onClick={() => window.location.href = `/clientDashboard/${JSON.parse(localStorage.getItem('user')).username}-${JSON.parse(localStorage.getItem('user'))._id}`} 
+              style={{width: '50px'}} 
+              color="inherit">
+              <HomeIcon className={classes.iconButton} />
+            </IconButton>
+            <IconButton component={Link} to={`/user/myservices/${JSON.parse(localStorage.getItem('user'))._id}`} style={{width: '50px'}} color="inherit">
               <Badge badgeContent={2} color="secondary">
-                <CollectionsBookmarkIcon />
+                <CollectionsBookmarkIcon className={classes.iconButton}/>
               </Badge>
             </IconButton>
-            <IconButton style={{width: '50px'}} aria-label="show 17 new notifications" color="inherit">
+            <IconButton style={{width: '50px'}} color="inherit">
               <Badge badgeContent={13} color="secondary">
-                <NotificationsIcon />
+                <NotificationsIcon className={classes.iconButton}/>
               </Badge>
             </IconButton>
             <IconButton style={{width: '50px'}}
@@ -247,7 +287,7 @@ export default function NavbarUser({updatedPosts, setUpdatedPosts}) {
               onClick={handleProfileMenuOpen}
               color="inherit"
             >
-              <AccountCircle />
+              <AccountCircle className={classes.iconButton}/>
             </IconButton>
           </div>
           <div className={classes.sectionMobile}>
@@ -258,7 +298,7 @@ export default function NavbarUser({updatedPosts, setUpdatedPosts}) {
               onClick={handleMobileMenuOpen}
               color="inherit"
             >
-              <MoreIcon style={{width: '50px'}} />
+              <MoreIcon style={{width: '50px'}} className={classes.iconButton}/>
             </IconButton>
           </div>
         </Toolbar>
