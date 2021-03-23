@@ -5,9 +5,10 @@ import './HomePage.css';
 import { useDispatch, useSelector } from "react-redux";
 import { getBasicUser } from "../../actions/basicUsers";
 import Image from 'react-bootstrap/Image'
-import { getGoalByUserID } from "../../actions/goals";
 import Goals from "./Goals"
+import Services from "./Services"
 import UserInfo from "./UserInfo"
+
 
 
 
@@ -35,17 +36,21 @@ const HomePage = (props) => {
 
     }, [user])
 
-
+    
         return (
             <div className="homepage">
                 <UserInfo user={user} />
                 <div>
                     <Image className ="GoalsImage" src="https://www.myzerona.com/content/uploads/2019/12/02-What-Are-SMART-Fitness-Goals.jpg" fluid />
                 </div>
-                <div className="homePagesection">
+                <div>
+                    <Services/>
+                </div>
+                <div>
                     <Goals userID={user._id}/>
                 </div>
             </div>
+            
         );
 
 }

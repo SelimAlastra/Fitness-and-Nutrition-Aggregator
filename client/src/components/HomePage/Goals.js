@@ -28,6 +28,7 @@ const Goals = ({userID}) => {
         window.location.href = `/homePage/${userID}`;
     }
 
+    function generateGoals() {
     if (myGoals === undefined || myGoals.legnth === 0) {
         return (
             <div>
@@ -35,44 +36,37 @@ const Goals = ({userID}) => {
             </div>
         )
     } else {
-        let goalsComponents = myGoals.map((goal, index) => {
+        return (
+        <Grid container>{
+            myGoals.map((goal, index) => {
             return (
-                
-
-            <tr key={index}>
-
-                <Row>
+                <Grid item xs= {3}>
                 <Goal key={index} goal={goal}/>
-                </Row>
-                <Row className="justify-content-md-center">
-
-                        <div>
                             <FontAwesomeIcon 
                                 icon={faTrashAlt}
                                 style={{ cursor:"pointer", color: "white"}}
                                 value={goal}
                                  onClick={() => removeGoal(goal)}
                             />
-                        </div>
-
-                </Row>
-
-            </tr>
-
-
-                );
-        });
+                </Grid>           
+            ); })}
+            </Grid>
+        );
+    }
+    }
+      
+    
         return (
             <div>
                 <h2 className="goalsPageText"> Goals</h2>
                 <div className="goalsContainer">
-                    {goalsComponents}
+                    {generateGoals()}
                 </div>
                 
             </div>
         );
     }
 
-}
+
 
 export default Goals;
