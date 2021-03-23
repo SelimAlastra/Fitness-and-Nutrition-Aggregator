@@ -1,11 +1,13 @@
-import { Button , Alert, Container, Carousel } from 'react-bootstrap';
+import './Service.css';
+import { Button } from 'react-bootstrap';
 
-const Service = ({service}) => {
-    const link =  `/professional/profile/${service.userID}`
+const Service = ({service, userID}) => {
+    console.log(userID);
+    const link =  `/user/professional/profile/${service.userID}/${userID}`;
     return (
-        <div className="service">
-            <p className="text">{service.description}</p>
-            <p className="text">£{service.price}</p>
+        <div className="homePageService">
+            <p className="homePageServiceText">{service.description}</p>
+            <p className="homePageServiceText">£{service.price}</p>
             <Button variant="outline-warning" href = {link} > Check profile </Button>
         </div>
     );
