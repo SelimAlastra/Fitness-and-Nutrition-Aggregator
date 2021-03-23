@@ -13,7 +13,6 @@ import { Container, ListGroup } from 'react-bootstrap';
 const Buckets = (post) => {
 
     let postID = post.postToAdd.postId;
-    //console.log(postID);
     const [currentBucketId, setCurrentBucketId] = useState(null);
     const dispatch = useDispatch();
 
@@ -21,15 +20,16 @@ const Buckets = (post) => {
          dispatch(getBuckets());
     }, [currentBucketId, dispatch]);
 
-    const buckets = useSelector((state) => state.buckets);
-    const userId = JSON.parse(localStorage.getItem('user'))._id;
-    const myBuckets = buckets.filter(bucket => bucket.userId === userId);
+    const user = JSON.parse(localStorage.getItem('user'));
+    
+    const myBuckets = useSelector((state) => user._id ? state.buckets.filter((b) => b.userId === user._id) : null);
 
     const addToBucket = (postId, bucketId) => {
-        const bucket = myBuckets.find(bucket => bucket._id === bucketId);
+        const bucket = myBuckets.find((bucket) => bucket._id === bucketId);
         bucket.postsId.push(postId);
         
         dispatch(updateBucket(bucket._id, bucket));
+        window.location.reload();   
     }
 
     if (myBuckets === undefined || myBuckets.length === 0) {
