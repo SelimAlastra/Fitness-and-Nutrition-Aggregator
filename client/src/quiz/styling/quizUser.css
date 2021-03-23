@@ -1,0 +1,94 @@
+.basic-wrap {
+    width: 800px;
+    border-radius: 40px;
+    background: 
+    white;
+    color: black;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    padding: 2% 2%;
+  
+    display: inline-block;
+    /* width: 45rem; */
+    box-shadow: 10px 10px 42px 0px rgba(0, 0, 0, 0.75);
+  }
+
+  .answer-section {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+
+  #backward-btn {
+    float: left;
+    display: inline-block;
+    max-width: 3rem;
+    margin-top: 0.4rem;
+  }
+  #forward-btn {
+    float: right;
+    display: inline-block;
+    max-width: 3rem;
+    margin-top: 0.4rem;
+  }
+
+  button:disabled {
+    pointer-events: none;
+    opacity: 0.7;
+    visibility: hidden;
+  }
+
+  button {
+
+    border-color: black !important;
+    width: 100%;
+    font-size: 16px;
+    color: black;
+    background-color: white;
+    border-radius: 15px;
+    display: flex;
+    padding: 5px;
+    justify-content: flex-start;
+    align-items: center;
+    cursor: pointer;
+    margin-bottom: 10px;
+  }
+
+  .app {
+    background-color: #252d4a;
+    width: 450px;
+    min-height: 200px;
+    height: min-content;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 10px 10px 42px 0px rgba(0, 0, 0, 0.75);
+    display: flex;
+    justify-content: space-evenly;
+  }
+
+  #finish-btn {
+    float: right;
+    display: inline-block;
+    max-width: 6rem;
+    margin-top: 0.4rem;
+  }
+
+
+  .toggleButton {
+    /* background-color: #5e678a; */
+    background-color: #D7C5B4;
+  }
+  
+  .valid {
+    background-color: #6e2d16;
+  }
+  
+  .invalid {
+    color: red;
+  }

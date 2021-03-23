@@ -28,3 +28,13 @@ export const addService = (service) => async (dispatch) => {
         console.log(error.message);
     }
 } 
+
+export const updateService = (id, updatedService) => async (dispatch) => {
+    try {
+        const { data } = await api.updateService(id, updatedService);
+   
+        dispatch({ type: 'UPDATE', payload: data});
+    } catch (error) {
+        console.log(error.message);
+    }
+}

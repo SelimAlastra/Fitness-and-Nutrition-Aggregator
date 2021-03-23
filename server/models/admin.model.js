@@ -16,6 +16,12 @@ const adminSchema = new Schema({
   timestamps: true,
 });
 
+adminSchema.methods = {
+  authenticate: function(plainText) {
+    return plainText === this.password;
+  }
+};
+
 const Admin = mongoose.model('Admin', adminSchema);
 
 export default Admin;

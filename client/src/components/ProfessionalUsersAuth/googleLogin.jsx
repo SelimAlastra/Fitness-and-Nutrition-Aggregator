@@ -29,7 +29,7 @@ const sendGoogleToken = tokenId => {
 const informParent = response => {
   authenticate(response, () => {
     isAuth() 
-    history.push('/professional');
+    history.push(`/professionalDashboard/${JSON.parse(localStorage.getItem('user'))._id}`);
   });
 };
 

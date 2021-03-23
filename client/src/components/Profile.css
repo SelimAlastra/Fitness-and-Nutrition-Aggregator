@@ -1,0 +1,97 @@
+.sectionContainer {
+    padding: 1%;
+    width: 100%;
+}
+
+.section {
+    border-radius: 10px;
+    padding: 1%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    width: 100%;
+    min-width: 100%;
+    margin: auto;
+    text-align: center;
+    font-family: arial;
+    justify-content: center;
+    background-color:white;
+    margin-bottom: 1%;
+}
+
+.editLink {
+    text-align: right;
+    padding-right: 10px;
+    text-decoration: underline;
+    cursor: pointer;
+    color: black;
+    font-size: small;
+}
+
+.textContainer {
+    background-color: #D7C5B4;
+    border-radius: 10px;
+    padding: 1%;
+    color: #EFEAE4;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    font-size: medium;
+}
+
+.seperator {
+    background-color: #D7C5B4;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+.profileImage {
+    display: flex;
+    justify-content: center;
+}
+.profileImage img {
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    padding: 1%;
+}
+
+.service {
+    background-color: #D7C5B4;
+    border-radius: 10px;
+    margin-left: 1%;
+    margin-right: 1%;
+}
+
+.text {
+    color: white;
+}
+
+.serviceColumn {
+    background-color:  #D7C5B4;
+    padding: 2%;
+    margin-top: 1%;
+    margin-bottom: 1%;
+    color: white;
+    border-radius: 12px;
+    min-width:min-content;
+}
+
+.purchaseButton {
+    background-color: white;
+    color: black;
+    border: none;
+
+}
+
+.purchaseButton:hover {
+    background-color: lightgray;
+    
+}
+
+.minorText {
+    font-size: small;
+}
+
+.helpText {
+    text-align: left;
+    font: small;
+    margin: 1%;
+    color: #808080;
+}

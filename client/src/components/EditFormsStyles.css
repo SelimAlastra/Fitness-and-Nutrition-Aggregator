@@ -1,0 +1,76 @@
+.formContainer {
+    padding: 5%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    background-color: white;
+    position: fixed;
+    width:60%;
+    max-height: 100%;
+    top: 50%;
+    left: 50%;
+    overflow: auto;
+    border-radius: 4px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    outline: none;
+    padding: 20px;
+    transform: translate(-50%, -50%);
+}
+
+.inputItem {
+    border-radius: 10px;
+    background-color: white;
+    color: Black;
+}
+
+.label {
+    color: black;
+}
+
+.title {
+    padding: 1%;
+    color: Black;
+}
+
+.actionButton {
+    margin-top: 1%;
+    background-color: black;
+    border: none;
+}
+
+.actionButton:hover {
+    margin-top: 1%;
+}
+
+
+table {
+    width: 100%;
+}
+
+.subText {
+    opacity: 70%;
+    font-size: small;
+}
+
+.columnContainer {
+    display: flex;
+}
+
+.column {
+    width: 50%;
+    border-radius: 10px;
+    padding: 1%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    font-family: arial;
+    background-color:white;
+    margin-bottom: 1%;
+    margin: 1%
+}
+
+.actionButton {
+    color: black;
+    background-color: #D7C5B4 !important;
+    border-radius: 10px;
+}
+
+.actionButton:hover{
+    background-color: #8a5853 !important;
+}
