@@ -316,7 +316,7 @@ export default class Quiz extends Component{
             this.setState({
                 complete: true
             });
-            this.props.history.push(`/clientDashboard/${JSON.parse(localStorage.getItem('user')).username}-${JSON.parse(localStorage.getItem('user'))._id}`)
+            this.props.history.push(`/clientDashboard/${JSON.parse(localStorage.getItem('user'))._id}`)
         } else {
             alert("You still have some questions to complete.");
         }

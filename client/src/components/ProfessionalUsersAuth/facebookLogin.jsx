@@ -31,7 +31,7 @@ const Facebook = () => {
   const informParent = response => {
     authenticate(response, () => {
       isAuth() 
-      history.push(`/professionalDashboard/${JSON.parse(localStorage.getItem('user')).username}-${JSON.parse(localStorage.getItem('user'))._id}`);
+      history.push(`/professionalDashboard/${JSON.parse(localStorage.getItem('user'))._id}`);
     });
   };
 
