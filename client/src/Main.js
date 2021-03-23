@@ -36,6 +36,7 @@ import ProfessionalUserEdit from "./components/ProfessionalUsers/ProfessionalUse
 import ProfessionalUserDetails from "./components/ProfessionalUsers/ProfessionalUser/ProfessionalUserDetails";
 import AdminNavigationBar from "./AdminNavigationBar";
 import PrivateRoute from "./PrivateRoute";
+import Wrapper from "./Wrapper";
 
 const Main = () => (
     <>
@@ -46,9 +47,9 @@ const Main = () => (
     <Switch>
         <Route exact path='/' component={LandingPage}/>
         <Route exact path='/admin' component={AdminLogin}/>
-        <Route exact path='/clientDashboard/:id' component={ClientDashboard}/>
-        <Route exact path='/professionalDashboard/:id' component={ProfessionalDashboard}/>
-        <Route exact path='/buckets' component={BucketPage}></Route>
+        <PrivateRoute exact path='/clientDashboard/:id' component={Wrapper} componentToRender={ClientDashboard} userType={'client'}/>
+        <PrivateRoute exact path='/professionalDashboard/:id' component={ProfessionalDashboard} userType={'professional'}/>
+        <Route exact path='/buckets' component={BucketPage}/>
         <Route exact path='/launch/users' exact render={props => <UserPage {...props} />} /> 
 
         <Route exact path='/launch/professionals' exact render={props => <ProfPage {...props} />} />
@@ -58,7 +59,7 @@ const Main = () => (
         <Route exact path="/user/professional/profile/:professionalID/:clientID" render={props => <ProfessionalProfile {...props} isProfessional={false} />}></Route>
 
                 
-        <Route exact path="/professional/edit/:id" component={EditProfessionalDetails}></Route>
+        <PrivateRoute exact path="/professional/edit/:id" component={Wrapper} componentToRender={EditProfessionalDetails} userType={'professional'}/>
         <Route exact path='/user/password/forget' exact render={props => <ForgetPassword {...props} />} />
         <Route exact path='/user/password/reset/:token' exact render={props => <ResetPassword {...props} />} />
 
@@ -66,13 +67,13 @@ const Main = () => (
         <Route exact path='/professional/password/reset/:token' exact render={props => <ProfResetPassword {...props} />} />
 
         <Route exact path="/user/profile/:id" component={ClientProfile}/>
-        <Route exact path="/user/edit/:id" component={EditBasicUser}/>
-        <Route exact path="/user/myservices/:id" component={MyServices}/>
+        <PrivateRoute exact path="/user/edit/:id" component={Wrapper} componentToRender={EditBasicUser} userType={'client'}/>
+        <PrivateRoute exact path="/user/myservices/:id" component={Wrapper} componentToRender={MyServices} userType={'client'}/>
 
         {/*<Route exact path="/professional/profile/:id" component={ProfessionalProfile}/>*/}
         {/*<Route exact path="/professional/profile/edit/:id" component={EditProfessionalDetails}/>*/}
-        <Route exact path="/professional/services/edit/:id" component={EditServices}/>
-        <Route exact path="/professional/services/add/:id" component={AddService}/>
+        <PrivateRoute exact path="/professional/services/edit/:id" component={Wrapper} componentToRender={EditServices} userType={'professional'}/>
+        <PrivateRoute exact path="/professional/services/add/:id" component={Wrapper} componentToRender={AddService} userType={'professional'}/>
 
         <PrivateRoute exact path='/admin/basicUsers' component={BasicUsers} userType={'admin'}/>
         <PrivateRoute exact path='/admin/basicUsers/:id' component={BasicUserDetails} userType={'admin'}/>
