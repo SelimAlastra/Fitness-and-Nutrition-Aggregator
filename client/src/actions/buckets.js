@@ -1,5 +1,5 @@
 import { FETCH_ALL_BUCKETS, CREATE_BUCKETS, UPDATE_BUCKET } from '../constants/actionTypes';
-import * as api from '../api/buckets';
+import * as api from '../api/index';
 
 
 // Action Creators
