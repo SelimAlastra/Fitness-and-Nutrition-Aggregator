@@ -4,7 +4,8 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector  } from 'react-redux';
 import "../../EditFormsStyles.css";
 import { updateProfessional, getProfessional } from '../../../actions/professionals';
-import ProfessionalNavbar from '../../Navbar/ProfessionalNavbar';
+import NavbarProfessional from "../../Navbar/NavbarProfessional";
+
 
 const EditProfessionalDetails = (props) => {
     const dispatch = useDispatch();
@@ -79,7 +80,7 @@ const EditProfessionalDetails = (props) => {
 
     return (
         <div>
-            <ProfessionalNavbar />
+            <NavbarProfessional />
             <div className="formContainer">
                 <h2 className="title">Edit Details</h2>
                 <hr className="seperator"/>

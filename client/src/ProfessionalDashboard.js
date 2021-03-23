@@ -19,7 +19,6 @@ import Form from './components/Form/Form';
 import memories from './images/memories.png';
 import useStyles from './styles';
 import { useSelector } from 'react-redux';
-import NavbarUser from './components/Navbar/NavbarUser';
 
 const ProfessionalDashboard = () => {
     const [currentId, setCurrentId] = useState(null);
@@ -47,8 +46,9 @@ const ProfessionalDashboard = () => {
     }, [currentBucketId,dispatch]); */
 
 return (
+  <>
+  <NavbarProfessional updatedPosts={updatedPosts} setUpdatedPosts={setUpdatedPosts}/>
   <Container maxWidth="lg">
-    <NavbarProfessional updatedPosts={updatedPosts} setUpdatedPosts={setUpdatedPosts}/>
       <AppBar position="static" className={classes.appBar} color="inherit">
         <Typography className={classes.heading} variant="h2" align="center">Dashboard</Typography>
         <img className={classes.image} src={memories} alt="memories" height="60" />
@@ -73,7 +73,7 @@ return (
           </List>
         </div>
       </Drawer> */} 
-      <ProfessionalNavbar/>
+      {/* <ProfessionalNavbar/> */}
       </AppBar>
     <Grow in>
         <Container>
@@ -89,6 +89,7 @@ return (
       </Grow>
 
     </Container>
+    </>
   );
 }
 

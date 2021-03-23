@@ -5,7 +5,7 @@ import PersonalInfo from '../ClientProfile/PersonalInfo';
 import Goals from '../ClientProfile/Goals';
 import { useDispatch, useSelector } from "react-redux";
 import { getBasicUser } from "../../actions/basicUsers";
-import Navbar from "../Navbar/Navbar";
+import NavbarUser from "../Navbar/NavbarUser";
 
 const ClientProfile = (props) => {
     const dispatch = useDispatch();
@@ -77,7 +77,7 @@ function formatDate(toFormat) {
     if (user !== undefined) {
         return (
             <div>
-                <Navbar/>
+                <NavbarUser/>
                 <div className="columnContainer">
                     <div className="column">
                         <ProfileInfo profile={user} />
