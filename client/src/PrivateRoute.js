@@ -6,7 +6,6 @@ const PrivateRoute = ({component: Component, componentToRender: componentToRende
 
     const user = JSON.parse(localStorage.getItem('user'));
     let isLogged = false;
-    console.log(rest);
 
     if (user) {
         if (user.type == userType) {
