@@ -1,6 +1,6 @@
 import './UserInfo.css'
 
-function UserInfo({user}) {
+const UserInfo = ({user}) => {
     if (user !== undefined && user !== null) {
         return (
             <div>

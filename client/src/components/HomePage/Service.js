@@ -1,6 +1,6 @@
 import { Button , Alert, Container, Carousel } from 'react-bootstrap';
 
-function Service({service}) {
+const Service = ({service}) => {
     const link =  `/professional/profile/${service.userID}`
     return (
         <div className="service">

@@ -4,13 +4,13 @@ import { getServices } from '../../actions/services';
 import Service from './Service';
 
 
-function Services () {
+const Services = () => {
         
     const dispatch = useDispatch();
 
     useEffect(() => {
         dispatch(getServices());
-    }, [dispatch]);
+    }, [dispatch])
 
     const services = useSelector((state) => state.services);
 
