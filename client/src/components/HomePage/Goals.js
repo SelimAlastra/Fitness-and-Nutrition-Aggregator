@@ -2,9 +2,10 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { faTrashAlt } from "@fortawesome/free-regular-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { getGoals , deleteGoal} from "../../actions/goals";
+import { getGoal, getGoals , deleteGoal} from "../../actions/goals";
 import { Grow, Grid} from '@material-ui/core';
 import {Container , Row} from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
 import Goal from './Goal';
 import './Goals.css';
 
@@ -48,6 +49,7 @@ const Goals = ({userID}) => {
                                     value={goal}
                                     onClick={() => removeGoal(goal)}
                                 />
+                    <Button className = "goalsButton" variant="outline-warning" > Edit Goal </Button>
                     </Grid>           
                 ))}
             </Grid>

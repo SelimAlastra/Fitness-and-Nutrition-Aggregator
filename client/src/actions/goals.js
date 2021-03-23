@@ -10,9 +10,9 @@ export const getGoals = () => async (dispatch) => {
     }
 }
 
-export const getGoalByUserID = (id) => async (dispatch) => {
+export const getGoal = (id) => async (dispatch) => {
     try {
-        const { data } = await api.getGoalByUserID(id);
+        const { data } = await api.getGoal(id);
         
         dispatch( {type: 'FETCH', payload: data} );
     } catch (error) {
