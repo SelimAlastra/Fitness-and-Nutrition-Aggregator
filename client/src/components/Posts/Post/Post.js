@@ -21,6 +21,10 @@ import Buckets2 from "../../Buckets2/BucketModal";
 import ThumbUpAltOutlined from '@material-ui/icons/ThumbUpAltOutlined';
 import ReportForm from "../../Reports/ReportForm"
 import Modal from 'react-bootstrap/Modal';
+import { FaFolderPlus } from "react-icons/fa";
+import BucketList from '../../Buckets2/BucketList.js';
+import BucketsGrid from '../../Buckets2/BucketsGrid.js';
+
 
 
 import { deletePost, likePost, toggleFavAction } from '../../../actions/posts';
@@ -55,6 +59,34 @@ const Post = ({ post, setCurrentId }) => {
   const [show, setShow] = useState(false);
   const handleCloseReport = () => setShow(false);
   const handleShowReport = () => setShow(true);
+
+
+  function PopUpBuckets() {
+    const [show, setShow] = useState(false);
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+
+    const postToAdd = {
+      postId: post._id
+    }
+
+    //console.log(postToAdd);
+    return (<> <Button size="small"
+      onClick={handleShow} >
+      < FaFolderPlus />
+    </Button>
+      < div className="modal-dialog" >
+        < Modal className="bucket" show={show} onHide={handleClose} >
+          < Modal.Header closeButton > < Modal.Title > Add this post to a bucket </Modal.Title >
+          </ Modal.Header >
+          < Modal.Body >
+            < BucketsGrid postToAdd={postToAdd} />
+          </Modal.Body>
+          < Modal.Footer >
+            < Buckets2 />
+          </Modal.Footer>
+        </ Modal > </div> </>);
+  };
 
 
   const ReportPopUp = () => {
@@ -162,7 +194,7 @@ const Post = ({ post, setCurrentId }) => {
         <Container className={classes.buttons}>
           <div className={classes.button}>
             {post.likes ?
-              <Button size="small" color="primary" onClick={() => dispatch(likePost(post._id, JSON.parse(localStorage.getItem('user'))._id))}>
+              <Button size="small" onClick={() => dispatch(likePost(post._id, JSON.parse(localStorage.getItem('user'))._id))}>
                 <Likes />
               </Button>
               : <> </>
@@ -170,7 +202,7 @@ const Post = ({ post, setCurrentId }) => {
           </div>
           {JSON.parse(localStorage.getItem('user')).type == 'client' ?
             <div className={classes.button}>
-              <Buckets2 />
+              <PopUpBuckets />
             </div>
             : <Delete />
           }
