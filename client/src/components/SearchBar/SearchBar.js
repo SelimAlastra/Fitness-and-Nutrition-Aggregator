@@ -1,5 +1,4 @@
   import React,{useEffect} from 'react';
-  import './styles.css';
   import { useSelector } from 'react-redux';
   import { updatePost } from '../../actions/posts';
 

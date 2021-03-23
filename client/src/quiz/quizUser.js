@@ -79,14 +79,19 @@ export default class Quiz extends Component{
                 ],
                 // input:[]
             },{
-                questionText: "What's your primary fitness goal?",
+                questionText: "What's your primary fitness goal? (multiple selections allowed)",
                 questionId: 8,
                 answerOptions: [
                     { answerText: "lose fat", selected:false, tags:["losefat", "weightloss", "fatlosstips", "diet", "weightlossjourney", "sweat"], requireInput: false },
-                    { answerText: "look great at the beach", selected:false, tags:["getfit", "cardio", "fitnessmodel", "crossfit"], requireInput: false },
+                    { answerText: "get fit/look great at the beach", selected:false, tags:["getfit", "cardio", "fitnessmodel", "crossfit"], requireInput: false },
+                    { answerText: "recover from an injury", selected:false, tags:[""], requireInput: false },
+                    { answerText: "get some nice legs and booty", selected:false, tags:[""], requireInput: false },
+                    { answerText: "build endurance/run a marathon", selected:false, tags:[""], requireInput: false },
+                    { answerText: "fitness as a social activity", selected:false, tags:[""], requireInput: false },
+                    { answerText: "train discipline and focus", selected:false, tags:[""], requireInput: false },
                     { answerText: "build strength and ability", selected:false, tags:["calisthenics", "bodyweight", "bodybuilding", "crossfit", "strength", "athlete", "core"], requireInput: false },
                     { answerText: "build mad muscle mass", selected:false, tags:["beastmode", "bodybuilding", "strength", "powerlifting", "weightlifting", "strongman"], requireInput: false },
-                    { answerText: "Other:", selected: false, tags:[""], requireInput: true, placeholder: "e.g.: do 100 pushups in one set", alert: ["Answer using letters and numbers only."] }
+                    // { answerText: "Other:", selected: false, tags:[""], requireInput: true, placeholder: "e.g.: do 100 pushups in one set", alert: ["Answer using letters and numbers only."] }
                 ],
                 // input:[]
             },{
@@ -94,9 +99,10 @@ export default class Quiz extends Component{
                 questionId: 9,
                 answerOptions: [
                     { answerText: "barely 15-30 min on any given day", selected:false, tags:[""], requireInput: false },
-                    { answerText: "about one hour per day, 3-5 days a week", selected:false, tags:[""], requireInput: false },
-                    { answerText: "an hour or more on most days", selected:false, tags:[""], requireInput: false },
-                    { answerText: "Other:", selected: false, tags:[""], requireInput: true, placeholder: "e.g.: 1 hour each day during weekend", alert: ["Answer using letters and numbers only."] }
+                    { answerText: "between 30 min and one hour per day, 3 days a week", selected:false, tags:[""], requireInput: false },
+                    { answerText: "around one hour per day, 3 days a week", selected:false, tags:[""], requireInput: false },
+                    { answerText: "around one hour per day on most days", selected:false, tags:[""], requireInput: false },
+                    { answerText: "more than one hour per day on most days", selected:false, tags:[""], requireInput: false },
                 ],
                 // input:[]
             },{ 
@@ -113,7 +119,7 @@ export default class Quiz extends Component{
                 answerOptions: [
                     { answerText: "not much", selected:false, tags:["nocost"], requireInput: false },
                     { answerText: "a fair amount", selected:false, tags:[""], requireInput: false },
-                    { answerText: "no budget limit", selected:false, tags:[""], requireInput: false },
+                    { answerText: "no budget limit", selected:false, tags:["expensive"], requireInput: false },
                     // { answerText: "Other(per month):", selected: false, tags:[""], requireInput: true, placeholder: "e.g.: 100 pounds", alert: ["Answer using letters and numbers only."] }
                 ],
                 // input:[]
@@ -121,7 +127,7 @@ export default class Quiz extends Component{
                 questionText: "Lastly, which of the following are you interested in?",
                 questionId: 12,
                 answerOptions: [
-                    { answerText: "#mindset", selected:false, tags:["mindset", "motivation", "goals"], requireInput: false },
+                    { answerText: "#mindset", selected:true, tags:["mindset", "motivation", "goals"], requireInput: false },
                     { answerText: "#nutrition", selected:false, tags:["nutrition", "diet"], requireInput: false },
                     { answerText: "#jogging", selected:false, tags:["jogging", "running"], requireInput: false },
                     { answerText: "#bodyweightworkout", selected:false, tags:["bodyweightworkou", "calisthenics"], requireInput: false },
@@ -135,9 +141,37 @@ export default class Quiz extends Component{
 
         // identify questions that require input for all selections by adding their ID in this array
         questionsReqInput: [3,4],
+        // identify questions that accept multiple selections by adding their ID in this array
+        questionsMultipleChoices:[8,12],
 
         currentQuestion: 0,
         complete: false
+    }
+
+    /** 
+     * @return true if question allows for multiple answer selections
+     * @return false otherwise
+    */
+    checkMultipleAllowed = () => {
+        const{questions, currentQuestion, questionsMultipleChoices} = this.state;
+        if(questionsMultipleChoices.find(element => element === questions[currentQuestion].questionId)){
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * @return true if question answers requires input
+     * @return false otherwise
+     */
+    checkReqInput = () => {
+        const{questions, currentQuestion, questionsReqInput} = this.state;
+        if(questionsReqInput.find(element => element === questions[currentQuestion].questionId)){
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**
@@ -150,53 +184,68 @@ export default class Quiz extends Component{
      */
     handleAnswerButtonClick = (answer) => {
         const{questions, currentQuestion, questionsReqInput} = this.state;
-        const newItems = [...questions];
+        let newItems = [...questions];
+        let newAnswer = newItems[currentQuestion].answerOptions.find(element => element === answer);
 
         // used to determine whether the next question will be automatically displayed or not (Yes if @true, No if @false)
         let displayNext = true;
 
-        // remove previously selected answer
-        if(newItems[currentQuestion].answerOptions.find(element => element.selected === true)){
-            const answerSelected = newItems[currentQuestion].answerOptions.find(element => element.selected === true);
-            
-            //certain questions require multiple answer selections
-            if(questions[currentQuestion].id !== 12){
+        //certain questions require multiple answer selections
+        if(this.checkMultipleAllowed() === false){
+            // remove previously selected answer
+            if(newItems[currentQuestion].answerOptions.find(element => element.selected === true)){
+                const answerSelected = newItems[currentQuestion].answerOptions.find(element => element.selected === true);
                 answerSelected.selected = false; 
-            }
-            displayNext = false;
-
-            // if question required input, clear saved input
-            if(questionsReqInput.find(element => element === newItems[currentQuestion].questionId)){
-                newItems[currentQuestion].input.pop();
-            }
-        }
-
-        // set new selected answer 
-        if(newItems[currentQuestion].answerOptions.find(element => element === answer)){
-            const answerToSelect = newItems[currentQuestion].answerOptions.find(element => element === answer);
-            answerToSelect.selected = true;
-            if(answerToSelect.requireInput === true){
                 displayNext = false;
             }
+            // set new selected answer 
+            newAnswer.selected = true;
+        } else {
+            if(newItems[currentQuestion].answerOptions.find(element => element.selected === true)){
+                displayNext = false;
+            }
+            //ERROR: can't make selected answer false again...
+            // if(newItems[currentQuestion].answerOptions.find(element => element.selected === true && element === answer)){
+            //     const answerSelected = newItems[currentQuestion].answerOptions.find(element => element.selected === true && element === answer);
+            //     answerSelected.selected = false;
+            // } else {
+                newAnswer.selected = true;
+            // }
+
+            //another method tried
+            // if(newAnswer.selected === true){
+            //     newAnswer.selected = false;
+            // } else {
+            //     newAnswer.selected = true;
+            // }
+
+            console.log("TRUE REQ MULTIPLE")
         }
 
-        //update the @questions values
-        this.setState({
-            questions : newItems
-        })
+        //if question required input, clear saved input
+        if(this.checkReqInput()){
+            newItems[currentQuestion].input.pop();
+        }
+        
+        //keep on the same question when there is need for input
+        if(newAnswer.requireInput === true){
+            displayNext = false;
+        }
 
         if(currentQuestion + 1 < questions.length){
-            if(displayNext === true && !questionsReqInput.find(element => element === questions[currentQuestion].questionId)){
+            if(displayNext === true && this.checkReqInput()===false){
                 this.setState({
-                    currentQuestion: currentQuestion+1,
-                    answerToSelect : true
+                    questions : newItems,
+                    currentQuestion: currentQuestion+1
                 });
             } else {
                 this.setState({
-                    answerToSelect : true
+                    questions : newItems
                 });
             }
         }
+
+        console.log(questions[currentQuestion].answerOptions);
     }
 
     /**
@@ -352,7 +401,7 @@ export default class Quiz extends Component{
 
         return(
             
-            <div className=""> 
+            <div className="quizz"> 
                 { complete ? (
                     <Test 
                         //

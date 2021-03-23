@@ -19,24 +19,9 @@ import CollectionsBookmarkIcon from '@material-ui/icons/CollectionsBookmark';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import AccountBoxIcon from '@material-ui/icons/AccountBox';
-import { FETCH_ALL} from '../../constants/actionTypes';
-import * as api from '../../api/index';
-import Posts from '../Posts/Posts';
 import { signOut } from '../../actions/userAuth.js';
 import { useHistory } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-
-/**
- * @return all available posts
- */
-const getPosts = () => async (dispatch) => {
-  try {
-      const { data } = await api.fetchPosts();
-      dispatch({ type: FETCH_ALL, payload: data });
-  } catch (error) {
-      console.log(error.message);
-  }
-};
+import "./Navbar.css"
 
 /**
  * style the Navbar
@@ -106,35 +91,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const getSearchValue = () => {
-  return document.getElementById("search-input").value;
-}
-
 /**
  * @return Navbar element
  */
-export default function NavbarUser() {
-
-  /**
-   * get posts
-   */
-  const [currentId, setCurrentId] = useState(null);
-  const dispatch = useDispatch();
-  useEffect(() => {
-      dispatch(getPosts());
-  }, [currentId,dispatch]);
-  const posts = useSelector((state) => state.posts);
-
-  /**
-   * get searched posts
-   */
-  const getSearchPosts = () => {
-    const searchPosts = posts.filter(post => post.tags.find(tag => tag === "nutrition"));
-
-    searchPosts.forEach(element => {
-      console.log(element);
-    });
-  };
+export default function NavbarUser({updatedPosts, setUpdatedPosts}) {
 
   const classes = useStyles();
   const history = useHistory();
@@ -210,23 +170,30 @@ export default function NavbarUser() {
       onClose={handleMobileMenuClose}
     >
       <MenuItem>
-        <IconButton style={{width: '50px'}} aria-label="show 4 new mails" color="inherit">
-          <Badge badgeContent={4} color="secondary">
-            <MailIcon />
-          </Badge>
+        <IconButton > 
+          <div>
+            <AccountBoxIcon/> 
+            <text style={{fontSize:"1.2rem"}}>Profile</text>
+          </div>
         </IconButton>
-        <p>Messages</p>
       </MenuItem>
       <MenuItem>
-        <IconButton style={{width: '50px'}} aria-label="show 11 new notifications" color="inherit">
-          <Badge badgeContent={11} color="secondary">
-            <NotificationsIcon />
-          </Badge>
+      <IconButton> 
+          <div>
+            <SettingsIcon/> 
+            <text style={{fontSize:"1.2rem"}}>Settings</text>
+          </div>
         </IconButton>
-        <p>Notifications</p>
+        {/* <p>Settings</p> */}
       </MenuItem>
       <MenuItem onClick={handleProfileMenuOpen}>
-        <IconButton style={{width: '50px'}}
+      <IconButton onClick={() => { signOut(() => { history.push('/'); });}}> 
+          <div>
+            <AccountBoxIcon/> 
+            <text style={{fontSize:"1.2rem"}}>Log out</text>
+          </div>
+        </IconButton>
+        {/* <IconButton style={{width: '50px'}}
           aria-label="account of current user"
           aria-controls="primary-search-account-menu"
           aria-haspopup="true"
@@ -234,14 +201,14 @@ export default function NavbarUser() {
         >
           <AccountCircle />
         </IconButton>
-        <p>Profile</p>
+        <p>Profile</p> */}
       </MenuItem>
     </Menu>
   );
 
   return (
     <div className={classes.grow, "navbar-top"}>
-      <AppBar position="static">
+      <AppBar position="static" color="transparent">
         <Toolbar>
           <IconButton 
             edge="start"
@@ -251,14 +218,14 @@ export default function NavbarUser() {
           >
             <MenuIcon />
           </IconButton>
-          <Typography className={classes.title} variant="h6" noWrap>
+          <Typography className={classes.title, "logo"} variant="h6" noWrap>
             LOGO
           </Typography>
           <div className={classes.search}>
             <div className={classes.searchIcon}>
               <SearchIcon />
             </div>
-            <Searchbox />
+            <Searchbox updatedPosts={updatedPosts} setUpdatedPosts={setUpdatedPosts}/>
           </div>
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
@@ -298,10 +265,6 @@ export default function NavbarUser() {
       </AppBar>
       {renderMobileMenu}
       {renderMenu}
-
-      <ul id="postsList">{getSearchPosts()}</ul>
-
-      {/* <Posts setCurrentId={setCurrentId}/> */}
     </div>
   );
 }

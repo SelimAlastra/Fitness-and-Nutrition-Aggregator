@@ -1,12 +1,12 @@
 import React from 'react';
 import { fade, makeStyles } from '@material-ui/core/styles';
-import { useEffect ,useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
-import Searchbox from './Searchbox';
+import SearchBox from './Searchbox';
 import Badge from '@material-ui/core/Badge';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
@@ -19,25 +19,9 @@ import AddCircleIcon from '@material-ui/icons/AddCircle';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import AccountBoxIcon from '@material-ui/icons/AccountBox';
 import SettingsIcon from '@material-ui/icons/Settings';
-import { FETCH_ALL} from '../../constants/actionTypes';
-import * as api from '../../api/index';
-import Posts from '../Posts/Posts';
-import { useDispatch } from 'react-redux';
 import { signOut } from '../../actions/userAuth.js';
 import { useHistory } from 'react-router-dom';
-import { filteredPosts } from '../SearchBar/SearchBar';
-
-/**
- * @return all available posts
- */
-const getPosts = () => async (dispatch) => {
-  try {
-      const { data } = await api.fetchPosts();
-      dispatch({ type: FETCH_ALL, payload: data });
-  } catch (error) {
-      console.log(error.message);
-  }
-};
+import "./Navbar.css"
 
 /**
  * style the Navbar
@@ -107,50 +91,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const getSearchValue = () => {
-  console.log(document.getElementById("search-input").value);
-  return document.getElementById("search-input").value;
-}
-
 /**
  * @return Navbar element
  */
 export default function NavbarProfessional({updatedPosts, setUpdatedPosts}) {
-
-  // const dispatch = useDispatch();
-
-  // /**
-  //  * get posts
-  //  */
-  // const [currentId, setCurrentId] = useState(null);
-  // useEffect(() => {
-  //     dispatch(getPosts());
-  // }, [currentId,dispatch]);
-
-  // const posts = useSelector((state) => state.posts);
-
-  // /**
-  //  * update posts
-  //  */
-  // const [updatedPosts,setUpdatedPosts]= useState([]);
-  // useEffect(() => {
-  //   dispatch(getPosts());
-  //   //GetModifiedPosts(data);
-  //   setUpdatedPosts(updatedPosts);
-  // }, [currentId,dispatch,setUpdatedPosts]);
-
-  // let filteredPosts= useSelector((state) => state.posts);
-
-  // /**
-  //  * get searched posts
-  //  */
-  // const getSearchPosts = () => {
-  //   const searchPosts = posts.filter(post => post.tags.find(tag => tag === "nutrition"));
-
-  //   searchPosts.forEach(element => {
-  //     console.log(element);
-  //   });
-  // };
 
   const classes = useStyles();
   const history = useHistory();
@@ -189,7 +133,7 @@ export default function NavbarProfessional({updatedPosts, setUpdatedPosts}) {
       onClose={handleMenuClose}
     >
       <MenuItem onClick={handleMenuClose}>
-        <IconButton> 
+        <IconButton > 
           <div>
             <AccountBoxIcon/> 
             <text style={{fontSize:"1.2rem"}}>Profile</text>
@@ -202,7 +146,8 @@ export default function NavbarProfessional({updatedPosts, setUpdatedPosts}) {
             <SettingsIcon/> 
             <text style={{fontSize:"1.2rem"}}>Settings</text>
           </div>
-        </IconButton></MenuItem>
+        </IconButton>
+      </MenuItem>
       <MenuItem onClick={handleMenuClose}>
         <IconButton onClick={() => { signOut(() => { history.push('/'); });}}> 
           <div>
@@ -226,23 +171,30 @@ export default function NavbarProfessional({updatedPosts, setUpdatedPosts}) {
       onClose={handleMobileMenuClose}
     >
       <MenuItem>
-        <IconButton style={{width: '50px'}} aria-label="show 4 new mails" color="inherit">
-          <Badge badgeContent={4} color="secondary">
-            <MailIcon />
-          </Badge>
+        <IconButton > 
+          <div>
+            <AccountBoxIcon/> 
+            <text style={{fontSize:"1.2rem"}}>Profile</text>
+          </div>
         </IconButton>
-        <p>Messages</p>
       </MenuItem>
       <MenuItem>
-        <IconButton style={{width: '50px'}} aria-label="show 11 new notifications" color="inherit">
-          <Badge badgeContent={11} color="secondary">
-            <NotificationsIcon />
-          </Badge>
+      <IconButton> 
+          <div>
+            <SettingsIcon/> 
+            <text style={{fontSize:"1.2rem"}}>Settings</text>
+          </div>
         </IconButton>
-        <p>Notifications</p>
+        {/* <p>Settings</p> */}
       </MenuItem>
       <MenuItem onClick={handleProfileMenuOpen}>
-        <IconButton style={{width: '50px'}}
+      <IconButton onClick={() => { signOut(() => { history.push('/'); });}}> 
+          <div>
+            <AccountBoxIcon/> 
+            <text style={{fontSize:"1.2rem"}}>Log out</text>
+          </div>
+        </IconButton>
+        {/* <IconButton style={{width: '50px'}}
           aria-label="account of current user"
           aria-controls="primary-search-account-menu"
           aria-haspopup="true"
@@ -250,14 +202,14 @@ export default function NavbarProfessional({updatedPosts, setUpdatedPosts}) {
         >
           <AccountCircle />
         </IconButton>
-        <p>Profile</p>
+        <p>Profile</p> */}
       </MenuItem>
     </Menu>
   );
 
   return (
-    <div className={classes.grow}>
-      <AppBar position="static">
+    <div className={classes.grow, "navbar-top"}>
+      <AppBar position="static" color="transparent">
         <Toolbar>
           <IconButton 
             edge="start"
@@ -267,14 +219,14 @@ export default function NavbarProfessional({updatedPosts, setUpdatedPosts}) {
           >
             <MenuIcon />
           </IconButton>
-          <Typography className={classes.title} variant="h6" noWrap>
+          <Typography className={classes.title, "logo"} variant="h6" noWrap>
             LOGO
           </Typography>
           <div className={classes.search}>
             <div className={classes.searchIcon}>
               <SearchIcon />
             </div>
-            <Searchbox updatedPosts={updatedPosts} setUpdatedPosts={setUpdatedPosts}/>
+            <SearchBox updatedPosts={updatedPosts} setUpdatedPosts={setUpdatedPosts}/>
           </div>
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
@@ -312,10 +264,6 @@ export default function NavbarProfessional({updatedPosts, setUpdatedPosts}) {
       </AppBar>
       {renderMobileMenu}
       {renderMenu}
-
-      {/* <ul id="postsList">{getSearchPosts()}</ul> */}
-
-      {/* <Posts setCurrentId={setCurrentId}/> */}
     </div>
   );
 }

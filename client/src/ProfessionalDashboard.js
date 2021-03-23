@@ -5,14 +5,13 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import Toolbar from "@material-ui/core/Toolbar";
 import NavbarProfessional from "./components/Navbar/NavbarProfessional";
 import { useDispatch } from 'react-redux';
-import SearchBar from './components/SearchBar/SearchBar';
 import { getPosts, updatePost } from './actions/posts';
 import Posts from './components/Posts/Posts';
 import Form from './components/Form/Form';
 import memories from './images/memories.png';
 import useStyles from './styles';
 import { useSelector } from 'react-redux';
-//import {filteredPosts} from './components/SearchBar/SearchBar';
+import NavbarUser from './components/Navbar/NavbarUser';
 
 const ProfessionalDashboard = () => {
     const [currentId, setCurrentId] = useState(null);
@@ -42,6 +41,7 @@ const ProfessionalDashboard = () => {
 return (
   <>
     <NavbarProfessional updatedPosts={updatedPosts} setUpdatedPosts={setUpdatedPosts}/>
+    <NavbarUser updatedPosts={updatedPosts} setUpdatedPosts={setUpdatedPosts}/>
     <div className={classes.root}>
       <CssBaseline />
       <AppBar position="static" className={classes.appBar} color="inherit">
@@ -51,7 +51,6 @@ return (
         </Toolbar>
       </AppBar>
     </div>
-       <SearchBar updatedPosts={updatedPosts} setUpdatedPosts={setUpdatedPosts}/>
        
     <Grow in>
         <Container>
