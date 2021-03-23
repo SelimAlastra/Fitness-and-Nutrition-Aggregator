@@ -3,7 +3,7 @@ import './GoalTags.css'
 
 
 
-function Goal({goal}) {
+const Goal = ({goal}) => {
 
     let tags = goal.tags;
     if(tags === undefined) {

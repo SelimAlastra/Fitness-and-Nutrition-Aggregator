@@ -8,33 +8,36 @@ import Image from 'react-bootstrap/Image'
 import Goals from "./Goals"
 import Services from "./Services"
 import UserInfo from "./UserInfo"
+import { getServices } from '../../actions/services';
+import { getGoals } from '../../actions/goals';
+import { set } from "mongoose";
 
 
 
 
 const HomePage = (props) => {
     const dispatch = useDispatch();
-    let user;
 
     useEffect(() => {
         dispatch(getBasicUser(props.match.params.id));
-     }, [props]);
+    }, [dispatch]);
 
-    user = useSelector((state) => state.basicUsers);
-    const [name, setName] = useState("");
-    const [address, setAddress] = useState("");
-    const [gender, setGender] = useState("");
-    const [weight, setWeight] = useState("");
-    const [ID, setID] = useState("");
+    const user = useSelector((state) => state.basicUsers);
+    
+    // const [name, setName] = useState("");
+    // const [address, setAddress] = useState("");
+    // const [gender, setGender] = useState("");
+    // const [weight, setWeight] = useState("");
+    // const [ID, setID] = useState("");
 
-    useEffect(() => {
-        setName(user.name);
-        setAddress(user.address);
-        setGender(user.gender);
-        setWeight(user.weight);
-        setID(user._id);
+    // useEffect(() => {
+    //     setName(user.name);
+    //     setAddress(user.address);
+    //     setGender(user.gender);
+    //     setWeight(user.weight);
+    //     setID(user._id);
 
-    }, [user])
+    // }, [user])
 
     
         return (

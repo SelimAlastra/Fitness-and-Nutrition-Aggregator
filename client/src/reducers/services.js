@@ -1,6 +1,6 @@
 export default (services = [], action) => {
     switch (action.type) {
-        case 'FETCH_ALL':
+        case 'FETCH_ALL_SERVICES':
             return action.payload;
         case 'DELETE':
             return services.filter((service) => service._id !== action.payload);

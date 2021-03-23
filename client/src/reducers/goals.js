@@ -1,6 +1,6 @@
 export default (goals = [], action) => {
     switch (action.type) {
-        case 'FETCH_ALL':
+        case 'FETCH_ALL_GOALS':
             return action.payload;
 
         case 'DELETE':

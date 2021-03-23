@@ -16,11 +16,12 @@ const Goals = ({userID}) => {
 
     useEffect(() => {
         dispatch(getGoals());
-
-    }, [dispatch]);
+    }, [dispatch])
 
     const goals = useSelector((state) => state.goals);
     const myGoals = goals.filter(goal => goal.userID === userID);
+
+    console.log(myGoals);
 
     function removeGoal(toDelete) {
         dispatch(deleteGoal(toDelete._id));
@@ -37,26 +38,23 @@ const Goals = ({userID}) => {
         )
     } else {
         return (
-        <Grid container>{
-            myGoals.map((goal, index) => {
-            return (
-                <Grid item xs= {3}>
-                <Goal key={index} goal={goal}/>
-                            <FontAwesomeIcon 
-                                icon={faTrashAlt}
-                                style={{ cursor:"pointer", color: "white"}}
-                                value={goal}
-                                 onClick={() => removeGoal(goal)}
-                            />
-                </Grid>           
-            ); })}
+            <Grid container>
+                {myGoals.map((goal) => (
+                    <Grid item xs= {3}>
+                    <Goal key={goal._id} goal={goal}/>
+                                <FontAwesomeIcon 
+                                    icon={faTrashAlt}
+                                    style={{ cursor:"pointer", color: "white"}}
+                                    value={goal}
+                                    onClick={() => removeGoal(goal)}
+                                />
+                    </Grid>           
+                ))}
             </Grid>
         );
     }
     }
-      
-    
-        return (
+    return (
             <div>
                 <h2 className="goalsPageText"> Goals</h2>
                 <div className="goalsContainer">
