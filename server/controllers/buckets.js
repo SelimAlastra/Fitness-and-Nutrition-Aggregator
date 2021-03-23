@@ -23,3 +23,14 @@ export const createBucket = async (req, res) => {
         res.status(409).json({ message: error.message });
     }
 }
+
+export const updateBucket = async (req, res) => {
+    const { id: _id } = req.params;
+    const bucket = req.body;
+  
+    if(!mongoose.Types.ObjectId.isValid(_id)) return (res.status(404).send('No bucket with that id'));
+  
+    const updatedBucket = await Bucket.findByIdAndUpdate(_id, { ...bucket, _id }, { new: true });
+  
+    res.json(updatedBucket);
+};
