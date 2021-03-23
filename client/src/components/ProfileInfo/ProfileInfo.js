@@ -8,12 +8,15 @@ function ProfileInfo({profile}) {
                     <img src={"https://images.unsplash.com/photo-1588420343618-6141b3784bce?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80"}/>
                 </div>
                 <div>
-                    <h2 className="clientName">{profile.name}</h2>
+                    <h2 className="clientName">{profile.name} <p className="minorText">({profile.username})</p></h2>
                     <hr className="profileSeperator"/>
-                    <p className="textContainer">{profile.username}</p>
+                    <p className="helpText">Location</p>
                     { generateLocationContainer(profile.address) }
+                    <p className="helpText">Bio</p>
                     { generateDescriptionContainer(profile.bio) }
-                    { generateTags(profile.tags) }  
+                    { generateTags(profile.tags) } 
+                    <p className="helpText">Contact Info</p> 
+                    <p className="textContainer">{profile.email}</p>
                 </div>
                 <div data-testid="socialBar">
                         { generateInstagramLink(profile.instagramLink) }
@@ -70,7 +73,6 @@ function generateYoutubeLink(link) {
             />
         );
     }
-
 }
 
 // Instagram & YouTube icons from http://www.icons8.com - under free section 

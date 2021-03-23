@@ -53,8 +53,47 @@ const Navbar = () => {
             Logout
             </Button>
           </div>
-        {/* ) : ( */}
-          <Button component={Link} to="/launch/users" variant="contained" color="primary">Sign In</Button>
+          <Button  
+            variant="contained" 
+            color="primary"
+            onClick={
+              () => window.location.href = `/clientDashboard/${JSON.parse(localStorage.getItem('user')).username}-${JSON.parse(localStorage.getItem('user'))._id}`
+            }
+          >
+            Dashboard
+          </Button>
+          <Button 
+            component={Link} 
+            to={'/buckets'} 
+            variant="contained" 
+            color="primary"
+          >
+            My Buckets
+          </Button>
+          <Button 
+            component={Link} 
+            to={`/user/myservices/${JSON.parse(localStorage.getItem('user'))._id}`} 
+            variant="contained" 
+            color="primary"
+          >
+            My Bundles
+          </Button>
+          <Button
+            component={Link}
+            to={`/user/profile/${JSON.parse(localStorage.getItem('user'))._id}`}
+            variant="contained" 
+            color="primary"
+          >
+            My Profile
+          </Button>
+          <Button
+            component={Link}
+            to={`/user/edit/${JSON.parse(localStorage.getItem('user'))._id}`}
+            variant="contained" 
+            color="primary"
+          >
+            Edit My Details
+          </Button>
         {/* )} */}
       </Toolbar>
     // </AppBar>

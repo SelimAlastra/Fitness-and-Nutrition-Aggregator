@@ -8,8 +8,8 @@ const Videos = ({setUrl}) => {
 
 
     return (
-         <ReactPlayer width = '300px' height = '250px' controls url = {setUrl} /> 
-    );
+         <ReactPlayer width = '379px' height = '200px' controls url = {setUrl} /> 
+    )
 }
 
 export default Videos;

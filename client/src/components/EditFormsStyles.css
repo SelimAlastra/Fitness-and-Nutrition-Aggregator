@@ -32,7 +32,7 @@
 
 .actionButton {
     margin-top: 1%;
-    background-color: #61dafb;
+    background-color: black;
     border: none;
 }
 
@@ -48,4 +48,29 @@ table {
 .subText {
     opacity: 70%;
     font-size: small;
+}
+
+.columnContainer {
+    display: flex;
+}
+
+.column {
+    width: 50%;
+    border-radius: 10px;
+    padding: 1%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    font-family: arial;
+    background-color:white;
+    margin-bottom: 1%;
+    margin: 1%
+}
+
+.actionButton {
+    color: black;
+    background-color: #D7C5B4 !important;
+    border-radius: 10px;
+}
+
+.actionButton:hover{
+    background-color: #8a5853 !important;
 }

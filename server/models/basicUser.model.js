@@ -23,7 +23,7 @@ const basicUserSchema = new Schema({
 
   address: {type: String, required:false},
 
-  isBanned: {type: Boolean, required: false},
+  isBanned: {type: Boolean, required: false, default: false},
 
   bodyType :{type: String,  required: false},
 

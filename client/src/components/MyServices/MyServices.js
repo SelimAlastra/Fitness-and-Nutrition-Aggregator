@@ -2,12 +2,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import {useEffect, useState } from 'react';
 import { getBasicUser } from '../../actions/basicUsers';
 import { getServices } from '../../actions/services';
-import { Button } from 'react-bootstrap';
+import { Button, Nav } from 'react-bootstrap';
 import '../MyServices/MyServices.css';
 import ReactPlayer from 'react-player';
 import Modal from 'react-modal';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faWindowClose } from '@fortawesome/free-regular-svg-icons'
+import Navbar from '../Navbar/Navbar';
 
 const MyServices = (props) => {
     const dispatch = useDispatch();
@@ -15,46 +16,24 @@ const MyServices = (props) => {
     const [modalOpen, setModalOpen] = useState(false);
     Modal.setAppElement('body');
 
-
     const [myServices, setMyServices] = useState([]);
 
-    // get all services
-    // get user
-    // filter all services by the services in the basic user
-
-    // Get All services
     useEffect(() => {
         dispatch(getServices());
-    },[dispatch]);
-    const allServices = useSelector((state) => state.services);
-    //
-
-    // Get User
-    useEffect(() => {
         dispatch(getBasicUser(userID));
     }, [dispatch]);
+
+    const allServices = useSelector((state) => state.services);
     const basicUser = useSelector((state) => state.basicUsers);
-    let basicUserServiceIds = basicUser.bundles;
-    //
 
-    // filter all services by the services in basic user
     useEffect(() => {
-        console.log("exe");
-        const filteredServices = allServices.filter(service => basicUserServiceIds.includes(service._id));
-        setMyServices(filteredServices);
-    }, [basicUser]);
-    //
+        if (basicUser !== undefined && allServices !== undefined && basicUser.bundles !== undefined) {
+            const filteredServices = allServices.filter(service => basicUser.bundles.includes(service._id));
+            setMyServices(filteredServices);
+        }
+    }, [allServices, basicUser]);
 
-
-    // const [myServices, setMyServices] = useState([]);
     const [currentService, setCurrentService] = useState({});
-
-
-
-
-
-
-
 
     function openModal(event, service) {
         setCurrentService(service);
@@ -113,15 +92,17 @@ const MyServices = (props) => {
     }
 
 
-    if (myServices === undefined || myServices === []) {
+    if (myServices === undefined || myServices.length === 0 ) {
         return (
             <div>
+                <Navbar />
                 <p>Sorry, no services can be found!</p>
             </div>
         );
     } else {
         return (
             <div>
+                <Navbar/>
                 <div className="titleText">
                     <h1>My Bundles</h1>
                     <p>These are the bundles you have purchased.</p>
