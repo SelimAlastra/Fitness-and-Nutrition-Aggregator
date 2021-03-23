@@ -47,14 +47,11 @@ export const updateService = (id, updatedService) => axios.patch(`${servicesUrl}
 
 export const getBasicUser = (id) => axios.get(`${basicUserUrl}/${id}`);
 export const updateBasicUser = (id, updatedBasicUser) => axios.patch(`${basicUserUrl}/update/${id}`, updatedBasicUser);
-<<<<<<< HEAD
 
 export const getGoals = () => axios.get(goalUrl);
 export const getGoalByUserID = (id) => axios.get(`${goalUrl}/${id}`);
 export const updateGoal= (id, updatedGoal) => axios.patch(`${goalUrl}/update/${id}`, updatedGoal);
 export const deleteGoal = (id) => axios.delete(`${goalUrl}/${id}`)
-=======
 export const fetchBasicUsers = () => axios.get(basicUserUrl);
 export const createBasicUser = (newUser) => axios.post(basicUserUrl, newUser);
 export const deleteBasicUser = (id) => axios.delete(`${basicUserUrl}/${id}`);
->>>>>>> 98406005fd86cdbf66f12aa3bd3c14bf65d0f937

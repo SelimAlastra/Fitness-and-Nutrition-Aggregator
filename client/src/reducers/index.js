@@ -8,5 +8,5 @@ import basicUsers from './basicUsers';
 import goals from "./goals"
 
 
-export default combineReducers({  reports, posts, buckets, professional, services, basicUsers ,goals });
+export default combineReducers({ reports, posts, buckets, professional, services, basicUsers, goals });
 
