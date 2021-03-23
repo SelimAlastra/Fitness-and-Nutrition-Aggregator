@@ -3,6 +3,7 @@
     text-align: center;
     min-width: 100px;
     display: flex;
+    margin : 20px;
 }
 
 .editLink {

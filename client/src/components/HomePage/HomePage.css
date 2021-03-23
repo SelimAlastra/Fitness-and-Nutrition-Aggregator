@@ -1,6 +1,7 @@
 .homepage{
     padding: 1%;
     background-color: #282c34;
+    min-width: 1000px;
 }
 
 .homePagesection {
