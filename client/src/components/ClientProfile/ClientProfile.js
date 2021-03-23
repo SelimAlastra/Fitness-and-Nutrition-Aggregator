@@ -9,43 +9,16 @@ import NavbarUser from "../Navbar/NavbarUser";
 
 const ClientProfile = (props) => {
     const dispatch = useDispatch();
+    const userID = props.match.params.id;
     let user;
 
     useEffect(() => {
-        dispatch(getBasicUser(props.match.params.id));
-     }, [props]);
+        dispatch(getBasicUser(userID));
+ 
+     }, [dispatch]);
 
     user = useSelector((state) => state.basicUsers);
-    const [name, setName] = useState("");
-    const [username, setUsername]= useState("");
-    const [email, setEmail] = useState("");
-    const [address, setAddress] = useState("");
-    const [day, setDay] = useState(1);
-    const [month, setMonth] = useState(1);
-    const [year, setYear] = useState(2021);
-    const [gender, setGender] = useState("");
-    const [bodyType, setBodyType] = useState("");
-    const [weight, setWeight] = useState("");
-    const [bio, setBio] = useState("");
     const [ID, setID] = useState("");
-
-    useEffect(() => {
-        setName(user.name);
-        setUsername(user.username);
-        setEmail(user.email);
-        setAddress(user.address);
-        setGender(user.gender);
-        setBodyType(user.bodyType);
-        setWeight(user.weight);
-        setBio(user.bio);
-        setID(user._id);
-        const date = formatDate(user.dob);
-        setDay(user.day);
-        setMonth(date.month);
-        setYear(date.year);
-        
-    }, [user]);
-
     
 function formatDate(toFormat) {
     if (toFormat !== undefined) {

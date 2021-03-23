@@ -69,7 +69,6 @@ const EditBasicUser = (props) => {
                     dob: constructDate(day, month, year),
                     bundles: profile.bundles
                 }
-                console.log(newBasicUser);
                 dispatch(updateBasicUser(ID, newBasicUser));
                 window.alert("Details Saved!");
             } 
@@ -169,7 +168,6 @@ const EditBasicUser = (props) => {
                             value={address}
                             placeholder="Address" 
                             onChange={(e) => setAddress(e.target.value)}
-                            required
                         >
                         </Form.Control>
                     </Form.Group>
@@ -268,6 +266,6 @@ function checkEmail(toCheck) {
 }
 
 function constructDate(day, month, year) {
+    console.log(day + " " + month + " " + year);
     return year + "-" + month + "-" + day;
 }
-

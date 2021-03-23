@@ -11,7 +11,6 @@ import NavbarProfessional from "../Navbar/NavbarProfessional";
 
 const ProfessionalProfile = (props) => {
     const dispatch = useDispatch();
-    const [videoUrls, setVideoUrls] = useState([]);
     const [isProfessional, setIsProfessional] = useState(props.isProfessional);
     const basicUserID = props.match.params.clientID;
     const professionalUserID = props.match.params.professionalID;
@@ -26,12 +25,14 @@ const ProfessionalProfile = (props) => {
     useEffect(() => {
        if (basicUserID !== undefined) {
             dispatch(getBasicUser(basicUserID));
-    }
- }, [dispatch]);
-
+        }
+    }, [dispatch]);
 
     let professionalUser = useSelector((state) => state.professional);
- let basicUserProfile = useSelector((state) => state.basicUsers);
+
+
+    let basicUserProfile = useSelector((state) => state.basicUsers);
+    console.log(professionalUser);
      useEffect(() => {
          setBasicUser(basicUserProfile);
      }, [basicUserProfile]);
