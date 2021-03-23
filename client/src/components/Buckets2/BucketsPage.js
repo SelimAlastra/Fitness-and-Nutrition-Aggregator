@@ -12,24 +12,34 @@ import './BucketsPage.css';
 
 const Buckets = ({ setCurrentBucketId }) => {
     const buckets = useSelector((state) => state.buckets);
-    console.log(buckets);
+    const userId = JSON.parse(localStorage.getItem('user'))._id;
+    const myBuckets = buckets.filter(bucket => bucket.userId === userId);
 
-    return (
-        <div>
-        <Navbar/>
-            <div class="container">
-                <div class="row">
-                    {buckets.map((bucket) => (
-                        <Col xs={6} md={4}>
-                        <div class="card">
-                            <Bucket bucket={bucket} setCurrentBucketId={setCurrentBucketId} />
-                        </div>
-                        </Col>
-                    ))}
+    if (myBuckets === undefined || myBuckets.length === 0) {
+        return (
+            <div>
+                You have no buckets.
+            </div>
+        )
+    }
+    else {
+        return (
+            <div>
+                <Navbar />
+                <div class="container">
+                    <div class="row">
+                        {myBuckets.map((bucket) => (
+                            <Col xs={6} md={4}>
+                                <div class="card">
+                                    <Bucket bucket={bucket} setCurrentBucketId={setCurrentBucketId} />
+                                </div>
+                            </Col>
+                        ))}
+                    </div>
                 </div>
             </div>
-        </div>
-    );
+        );
+    }
 }
 
 const BucketPage = () => {
@@ -41,7 +51,11 @@ const BucketPage = () => {
     }, [currentBucketId, dispatch]);
 
     return (
-        <Buckets style={{ "justifyContent": "space-between" }} currentBucketId={currentBucketId} setCurrentBucketId={setCurrentBucketId} />
+        <Buckets
+            style={{ "justifyContent": "space-between" }}
+            currentBucketId={currentBucketId}
+            setCurrentBucketId={setCurrentBucketId}
+        />
     );
 }
 

@@ -48,7 +48,7 @@ const Main = () => (
         <Route exact path='/admin' component={AdminLogin}/>
         <Route exact path='/clientDashboard/:id' component={ClientDashboard}/>
         <Route exact path='/professionalDashboard/:id' component={ProfessionalDashboard}/>
-        <Route exact path='/buckets' component={BucketPage}></Route>
+        <Route exact path='/user/myBuckets/:id' component={BucketPage}></Route>
         <Route exact path='/launch/users' exact render={props => <UserPage {...props} />} /> 
 
         <Route exact path='/launch/professionals' exact render={props => <ProfPage {...props} />} />
