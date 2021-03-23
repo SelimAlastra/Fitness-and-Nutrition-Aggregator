@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux';
 import Post from './Post/Post';
 import useStyles from './styles';
 import { getPosts, updatePost } from '../../actions/posts';
-import {newArray} from '../SearchBar/SearchBar';
+import {newArray} from '../Navbar/Searchbox';
 var newPosts=[];
 const Posts = ({setCurrentId,updatedPosts,setUpdatedPosts}) => {
     if(updatedPosts.length>0)

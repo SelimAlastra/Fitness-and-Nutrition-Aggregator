@@ -4,6 +4,7 @@ import { fade } from '@material-ui/core/styles';
 import { makeStyles } from '@material-ui/core/styles';
 import InputBase from '@material-ui/core/InputBase';
 import { useSelector } from 'react-redux';
+import {associatedTags} from '../../quiz/quizUser';
 
 /**
  * styles for the searchbox
@@ -40,6 +41,8 @@ const useStyles = makeStyles((theme) => ({
   }));
 
 var filteredPosts=[];
+var newArray=[];
+const initialFilteredPosts = new Set();
 
 /**
  * 
@@ -49,24 +52,57 @@ const SearchBox = ({updatePosts,setUpdatedPosts}) => {
   filteredPosts = useSelector((state) => state.posts);
 
   const findTag =(array,searchString)=>{
-    for(var i=0; i<array.length;i++){
-      if(array[i].trim().toLowerCase()===searchString){
-        return true
-      }
-    }
+    for(var i=0; i<array.length;i++)
+    {
+        if(array[i].trim().toLowerCase()===searchString)
+         return true
+    } 
     return false
   }
-
-  const handleOnInputChange = (e) => {
-    const searchString = e.target.value.toLowerCase();
-     
-    filteredPosts=filteredPosts.filter((post) => 
-            post.title.toLowerCase().includes(searchString) ||
-            post.message.toLowerCase().includes(searchString) ||
-            findTag(post.tags,searchString)
-            );
-    setUpdatedPosts(filteredPosts);
+  const filterPosts=(searchString)=>{
+    var newFilteredPosts;
+         newFilteredPosts=filteredPosts.filter((post) => 
+              post.title.toLowerCase().includes(searchString) ||
+              post.message.toLowerCase().includes(searchString) ||
+              findTag(post.tags,searchString)
+              );
+        newFilteredPosts.forEach(post=> initialFilteredPosts.add(post));
+  
+  }
+  const initialSearch =() =>{
+    for(var i=0;i<associatedTags.length;i++)
+    {
+        filterPosts(associatedTags[i]);
+    }
+    newArray=[];
+    initialFilteredPosts.forEach(v => newArray.push(v));
+  }
+   initialSearch();
+  //loadCharacters();
+  
+  const keyup = (e) => {
+      const searchString = e.target.value.toLowerCase();
+      initialFilteredPosts.clear();
+     filterPosts(searchString);
+     var newArray=[];
+     initialFilteredPosts.forEach(v => newArray.push(v));
+        setUpdatedPosts(newArray);
+      
   };
+
+  // const handleOnInputChange = (e) => {
+  //   const searchString = e.target.value.toLowerCase();
+     
+  //   filterPosts = (searchString) => {
+  //     var newFilteredPosts;
+  //          newFilteredPosts=filteredPosts.filter((post) => 
+  //               post.title.toLowerCase().includes(searchString) ||
+  //               post.message.toLowerCase().includes(searchString) ||
+  //               findTag(post.tags,searchString)
+  //               );
+  //         newFilteredPosts.forEach(post=> initialFilteredPosts.add(post));
+  //   }
+  // };
 
   return (
     <div className="searchbox-container">
@@ -76,7 +112,7 @@ const SearchBox = ({updatePosts,setUpdatedPosts}) => {
             name="query"
             id="search-input"
             placeholder="Search…" 
-            onKeyUp={(e)=>handleOnInputChange(e)}
+            onKeyUp={(e)=>keyup(e)}
             classes={{root: classes.inputRoot, input: classes.inputInput}}
             inputProps={{ 'aria-label': 'search' }}
           />
@@ -85,5 +121,5 @@ const SearchBox = ({updatePosts,setUpdatedPosts}) => {
     );
 };
 
-export {filteredPosts} ;
+export {filteredPosts, newArray} ;
 export default SearchBox;
