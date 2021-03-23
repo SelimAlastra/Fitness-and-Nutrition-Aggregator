@@ -2,6 +2,8 @@ import { FETCH_ALL, CREATE, UPDATE, DELETE, ADD_FAV } from '../constants/actionT
 
 export default (posts = [],action) => {
     switch (action.type) {
+        case 'FETCH':
+            return action.payload
         case DELETE:
             return posts.filter((post) => post._id !== action.payload);
         case UPDATE:   

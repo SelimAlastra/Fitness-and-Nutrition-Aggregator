@@ -1,0 +1,17 @@
+.list-group-item {
+    overflow: hidden !important;
+    border-radius: 25px !important;
+    margin-bottom: 3%;
+    border-width: thin;
+    border-color: black !important;
+}
+
+.list-group-item:last-child {
+    margin-bottom: 0px;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
