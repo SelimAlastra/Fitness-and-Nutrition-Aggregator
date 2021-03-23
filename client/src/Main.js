@@ -16,6 +16,7 @@ import ProfForgetPassword from './components/ProfessionalUsersAuth/forgetPasswor
 import ProfResetPassword from './components/ProfessionalUsersAuth/resetPassword.jsx';
 
 import BucketPage from "./components/Buckets2/BucketsPage";
+import BucketContent from "./components/Buckets2/BucketContent";
 import ClientProfile from "./components/ClientProfile/ClientProfile";
 import EditProfessionalDetails from "./components/ProfessionalProfile/EditDetails/EditProfessionalDetails";
 import EditServices from "./components/ProfessionalProfile/EditServices/EditServices";
@@ -49,6 +50,7 @@ const Main = () => (
         <Route exact path='/clientDashboard/:id' component={ClientDashboard}/>
         <Route exact path='/professionalDashboard/:id' component={ProfessionalDashboard}/>
         <Route exact path='/user/myBuckets/:id' component={BucketPage}></Route>
+        <Route exact path='/user/myBuckets/:id/:title' component={BucketContent}></Route>
         <Route exact path='/launch/users' exact render={props => <UserPage {...props} />} /> 
 
         <Route exact path='/launch/professionals' exact render={props => <ProfPage {...props} />} />

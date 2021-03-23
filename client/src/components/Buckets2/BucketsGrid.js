@@ -17,19 +17,20 @@ const Buckets = (post) => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-         dispatch(getBuckets());
+        dispatch(getBuckets());
     }, [currentBucketId, dispatch]);
 
     const user = JSON.parse(localStorage.getItem('user'));
-    
+
     const myBuckets = useSelector((state) => user._id ? state.buckets.filter((b) => b.userId === user._id) : null);
 
     const addToBucket = (postId, bucketId) => {
         const bucket = myBuckets.find((bucket) => bucket._id === bucketId);
-        bucket.postsId.push(postId);
-        
-        dispatch(updateBucket(bucket._id, bucket));
-        window.location.reload();   
+        if (bucket.postsId.indexOf(postId) === -1) {
+            bucket.postsId.push(postId);
+            dispatch(updateBucket(bucket._id, bucket));
+            window.location.reload();
+        }
     }
 
     if (myBuckets === undefined || myBuckets.length === 0) {
@@ -44,11 +45,11 @@ const Buckets = (post) => {
             <ListGroup>
                 {myBuckets.map((bucket) => (
                     <ListGroup.Item action key={bucket._id} item="true" xs={12} sm={6}>
-                        <Button bucket={bucket} 
-                        currentBucketId={currentBucketId}
-                         setCurrentBucketId={setCurrentBucketId}
-                          onClick={() => addToBucket(postID, bucket._id)}> 
-                          {bucket.title}</Button>
+                        <Button bucket={bucket}
+                            currentBucketId={currentBucketId}
+                            setCurrentBucketId={setCurrentBucketId}
+                            onClick={() => addToBucket(postID, bucket._id)}>
+                            {bucket.title}</Button>
                     </ListGroup.Item>
                 ))}
             </ListGroup>
