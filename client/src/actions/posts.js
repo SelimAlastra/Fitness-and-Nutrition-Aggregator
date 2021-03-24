@@ -82,3 +82,14 @@ export const getPost = (id) => async (dispatch) => {
       console.log(error.message);
   }
 };
+
+export const getBucketPosts = ([postsId]) => async (dispatch) => {
+  
+  try {
+      const { data } = await api.getBucketPosts([postsId]);
+      
+      dispatch( {type: 'FETCH_ALL_POSTS_FROM_A_BUCKET', payload: data} );
+  } catch (error) {
+      console.log(error.message);
+  }
+};

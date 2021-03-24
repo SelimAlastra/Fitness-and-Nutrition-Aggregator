@@ -2,6 +2,8 @@ import { FETCH_ALL, CREATE, UPDATE, DELETE, ADD_FAV } from '../constants/actionT
 
 export default (posts = [],action) => {
     switch (action.type) {
+        case 'FETCH_ALL_POSTS_FROM_A_BUCKET':
+            return action.payload
         case 'FETCH':
             return action.payload
         case DELETE:

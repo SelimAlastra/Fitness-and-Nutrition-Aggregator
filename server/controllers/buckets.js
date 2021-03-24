@@ -34,3 +34,19 @@ export const updateBucket = async (req, res) => {
   
     res.json(updatedBucket);
 };
+
+export const getBucket = async (req, res) => {
+    Bucket.findById(req.params.id)
+      .then(bucket => res.json(bucket))
+      .catch(err => res.status(400).json('Error: Cannot find this Bucket' + err));
+  };
+
+  export const deleteBucket = async (req, res) => {
+    const { id: _id } = req.params;
+
+    if(!mongoose.Types.ObjectId.isValid(_id)) return (res.status(404).send('No bucket with that id'));
+
+    await Bucket.findByIdAndRemove(_id);
+
+    res.json({ message: 'Bucket deleted successfully' });
+};
