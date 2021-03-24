@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Question from './components/question';
 import Answer from './components/answer';
-import Test from './testPage';
 import './styling/quizUser.css';
 
 import {questions,questionsReqInput,questionsMultipleChoices} from './resources/clientQuestions';
@@ -280,12 +279,7 @@ export default class Quiz extends Component{
             
             <div className="quizz"> 
                 { complete ? (
-                    <Test 
-                        //
-                        questions = {questions}
-                        questionsReqInput = {questionsReqInput}
-                        tags = {associatedTags}
-                    />
+                    <div></div>
                 ) : ( 
                         <div className="basic-wrap">
                             <div className="question-section">
