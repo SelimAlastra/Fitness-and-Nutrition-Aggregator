@@ -184,7 +184,7 @@ export default function NavbarUser({updatedPosts, setUpdatedPosts}) {
       onClose={handleMobileMenuClose}
     >
       <MenuItem>
-        <IconButton onClick={() => window.location.href = `/clientDashboard/${JSON.parse(localStorage.getItem('user')).username}-${JSON.parse(localStorage.getItem('user'))._id}`} > 
+        <IconButton onClick={() => window.location.href = `/clientDashboard/${JSON.parse(localStorage.getItem('user'))._id}`} > 
           <div>
             <HomeIcon/> 
             <text style={{fontSize:"1.2rem"}}>Home</text>
@@ -247,7 +247,7 @@ export default function NavbarUser({updatedPosts, setUpdatedPosts}) {
           >
             <MenuIcon />
           </IconButton>
-          <Typography onClick={() => window.location.href = `/clientDashboard/${JSON.parse(localStorage.getItem('user')).username}-${JSON.parse(localStorage.getItem('user'))._id}`} className={classes.title, "logo"} variant="h6" noWrap>
+          <Typography onClick={() => window.location.href = `/clientDashboard/${JSON.parse(localStorage.getItem('user'))._id}`} className={classes.title, "logo"} variant="h6" noWrap>
             LOGO
           </Typography>
 
