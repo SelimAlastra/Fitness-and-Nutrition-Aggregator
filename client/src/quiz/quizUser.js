@@ -87,13 +87,13 @@ export default class Quiz extends Component{
             // }
 
             //another method tried
-            // if(newAnswer.selected === true){
-            //     newAnswer.selected = false;
-            //     console.log("IF REACHED - true")
-            // } else {
-            //     newAnswer.selected = false;
-            //     console.log("IF REACHED - false")
-            // }
+            if(newAnswer.selected === true){
+                newAnswer.selected = false;
+                console.log("IF REACHED - true")
+            } else {
+                newAnswer.selected = true;
+                console.log("IF REACHED - false")
+            }
         }
 
         //if question required input, clear saved input
