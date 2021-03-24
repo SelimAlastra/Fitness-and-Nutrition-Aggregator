@@ -12,28 +12,40 @@ import Navbar from "../Navbar/Navbar";
 const ProfessionalProfile = (props) => {
     const dispatch = useDispatch();
     const [videoUrls, setVideoUrls] = useState([]);
-    const [isProfessional, setIsProfessional] = useState(props.isProfessional);
-    const basicUserID = props.match.params.clientID;
-    const professionalUserID = props.match.params.professionalID;
+    const [isProfessional, setIsProfessional] = useState(null);
+    const [basicUserID, setBasicUserID] = useState(null);
+    const [professionalUserID, setProfessionalUserID] = useState(null);
+
+    useEffect(() => {
+        if (JSON.parse(localStorage.getItem('user')).type === 'client') {
+            setBasicUserID(props.match.params.id);
+            setProfessionalUserID(props.match.params.professionalID);
+            setIsProfessional(false);
+        }
+        else if (JSON.parse(localStorage.getItem('user')).type === "professional") {
+            setProfessionalUserID(props.match.params.id);
+            setIsProfessional(true);
+        }
+    }, [])
+
+
+
     const [basicUser, setBasicUser] = useState({});
 
 
     // Get Professional & basic User if a basicUser is viewing the profile
     useEffect(() => {
         dispatch(getProfessional(professionalUserID));
-    }, [dispatch]);
-
-    useEffect(() => {
-       if (basicUserID !== undefined) {
+        if(!isProfessional)
             dispatch(getBasicUser(basicUserID));
-    }
- }, [dispatch]);
 
+    }, [isProfessional, professionalUserID]);
 
     let professionalUser = useSelector((state) => state.professional);
- let basicUserProfile = useSelector((state) => state.basicUsers);
+    let basicUserProfile = useSelector((state) => state.basicUsers);
      useEffect(() => {
          setBasicUser(basicUserProfile);
+         
      }, [basicUserProfile]);
 
      // Get Services
