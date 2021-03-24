@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { Container, CardGroup, Breadcrumb } from "react-bootstrap";
+import { Button, ListGroup } from "react-bootstrap";
 import { useSelector, useDispatch } from 'react-redux';
-import { getPost, getPostsFromArray } from "../../actions/posts";
+import { getPostsFromArray } from "../../actions/posts";
 import { useParams } from "react-router-dom";
 import Post from "../Posts/Post/Post";
-import { getBucket } from '../../actions/buckets';
+import { getBucket, removeFromBucket, updateBucket } from '../../actions/buckets';
 import Navbar from '../Navbar/Navbar';
 
 const BucketView = () => {
@@ -23,11 +23,19 @@ const BucketView = () => {
 
     useEffect(() => {
         if (bucket) {
-            dispatch(getPostsFromArray(bucket._id))
-            
+            dispatch(getPostsFromArray(bucket._id)) 
         }
     }, [bucket]);
     
+    const removeFromBucket = (postId) => {
+        const post = bucket.postsId.indexOf(postId);
+        if(post > - 1)
+        {
+            bucket.postsId.splice(post, 1);
+            dispatch(updateBucket(bucket._id, bucket))
+            window.location.reload();
+        }
+    }
 
     if ((posts === undefined || posts.length === 0) && !loading) {
         return (
@@ -44,10 +52,11 @@ const BucketView = () => {
             <>
             <Navbar/>
             {posts.map((post)=> (
+                <ListGroup>
                  <Post post={post} />
-                )
-            )
-            }
+                 <Button onClick = {() => (removeFromBucket(post._id))}>Delete</Button>
+                </ListGroup>
+            ))}
             </> 
         );
     }
