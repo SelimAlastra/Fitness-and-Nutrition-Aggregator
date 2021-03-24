@@ -114,7 +114,7 @@ const questions = [
         questionText: "Lastly, which of the following are you interested in?",
         questionId: 12,
         answerOptions: [
-            { answerText: "#mindset", selected:true, tags:["mindset", "motivation", "goals"], requireInput: false },
+            { answerText: "#mindset", selected:false, tags:["mindset", "motivation", "goals"], requireInput: false },
             { answerText: "#nutrition", selected:false, tags:["nutrition", "diet"], requireInput: false },
             { answerText: "#jogging", selected:false, tags:["jogging", "running"], requireInput: false },
             { answerText: "#bodyweightworkout", selected:false, tags:["bodyweightworkou", "calisthenics"], requireInput: false },
