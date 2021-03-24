@@ -64,9 +64,11 @@ const Navbar = () => {
           </Button>
           <Button 
             component={Link} 
-            to={`/user/myBuckets/${JSON.parse(localStorage.getItem('user'))._id}`} 
             variant="contained" 
             color="primary"
+            onClick={
+              () => window.location.href = `/user/myBuckets/${JSON.parse(localStorage.getItem('user'))._id}`
+            }
           >
             My Buckets
           </Button>

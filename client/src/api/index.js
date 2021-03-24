@@ -34,7 +34,7 @@ export const likePost = (id,userId) => API.patch(`/posts/${id}/${userId}/likePos
 export const toggleFavAction = (id) => API.patch(`/posts/${id}/toggleFavAction`);
 export const addToBucket = (id, bucketId) => API.patch(`${url}/${id}/addToBucket`, bucketId);
 export const getPost = (id) => axios.get(`${url}/${id}`);
-export const getBucketPosts = ([postsId]) => axios.get(`${url}/${postsId}/getPosts`);
+export const getPostsFromArray = (bucketId) => axios.get(`${url}/${bucketId}/bucket`);
 
 export const getProfessional = (id) => axios.get(`${professionalUsersUrl}/${id}`);
 export const updateProfessional = (id, updatedProfile) => axios.patch(`${professionalUsersUrl}/update/${id}`, updatedProfile);
