@@ -85,3 +85,12 @@ export const toggleFavAction = async  (req, res) =>{
       .then(post => res.json(post))
       .catch(err => res.status(400).json('Error: Cannot find this post' + err));
   };
+
+  export const getBucketPosts = async (req, res) => {
+    const { ids } = req.params
+    for(let i=0; i<ids.length; i++){
+        PostMessage.findById(ids[i])
+        .then(post => res.json(post))
+        .catch(err => res.status(400).json('Error: Cannot find this post' + err));
+    }
+  };

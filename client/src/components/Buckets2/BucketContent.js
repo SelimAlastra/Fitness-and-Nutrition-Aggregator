@@ -1,44 +1,54 @@
 import React, { useEffect, useState } from 'react';
 import { Container, CardGroup } from "react-bootstrap";
 import { useSelector, useDispatch } from 'react-redux';
-import { getPost } from "../../actions/posts";
+import { getPost} from "../../actions/posts";
 import { useParams } from "react-router-dom";
 import Post from "../Posts/Post/Post";
-import { getBuckets } from '../../actions/buckets';
+import { getBucket } from '../../actions/buckets';
+import Navbar from '../Navbar/Navbar';
 
 const BucketView = () => {
 
     const dispatch = useDispatch();
 
-    const user = JSON.parse(localStorage.getItem('user'));
-
-    const bucket = useSelector((state) => user._id ? state.buckets.filter((b) => b.userId === user._id) : null);
-
     const { id } = useParams();
 
+    console.log(id);
+
+    const bucket = useSelector((state) => state.buckets);
+
     useEffect(() => {
-        dispatch(getBuckets(id));
+            dispatch(getBucket(id));
     }, []);
 
-    
-    useEffect(() => {
-            dispatch(getPost());
-    }, [bucket]);
+    const post = bucket.postsId;
 
     console.log(bucket);
 
+    console.log(post);
 
-    const post = useSelector((state) => state.posts);
-
-    console.log(post)
-
-    return(
-        <>
-        {post.map((post) => (
-                <CardGroup xs={12} sm={2}> <Post post={post} /> </CardGroup>
-        ))}
-        </>
-    );
+    if (post === undefined || post.length === 0) {
+        return (
+            <>
+            <Navbar/>
+            <div>
+                You have no posts.
+            </div>
+            </>
+        )
+    }
+    else {
+        return(
+            <>
+            <Navbar/>
+            {post.map((post)=> (
+                 <Post post={post} />
+                )
+            )
+            }
+            </> 
+        );
+    }
 }
 
 export default BucketView;

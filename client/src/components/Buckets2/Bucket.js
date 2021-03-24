@@ -1,32 +1,26 @@
 import React, { useState , useEffect} from 'react';
-import { Card, CardActions, CardContent, CardMedia, Button, Typography, List } from '@material-ui/core/';
-import DeleteIcon from '@material-ui/icons/Delete';
-import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
-import {useDispatch} from 'react-redux';
-
-import Menu from "@material-ui/core/Menu";
-import MenuItem from "@material-ui/core/MenuItem";
-import { ListGroup } from 'react-bootstrap';
-
-
-
+import { CardContent, Button} from '@material-ui/core/';
+import { LinkContainer } from 'react-router-bootstrap';
+import { useSelector, useDispatch } from 'react-redux';
+import {deleteBucket} from '../../actions/buckets';
 //import { deletePost, likePost, toggleFavAction } from '../../../actions/posts';
 // removePost
-const Bucket = ({ bucket , setCurrentBucketId }) => {
-    const dispatch = useDispatch();
-    const [anchorEl, setAnchorEl] = useState(null);
+const Bucket = ({ bucket }) => {
 
-    const handleClick = (event) => {
-        setAnchorEl(event.currentTarget);
-      };
-    
-      const handleClose = () => {
-        setAnchorEl(null);
-      };
+    const user = JSON.parse(localStorage.getItem('user'));
+
+    const dispatch = useDispatch();
     
     return (
         <CardContent style={{"alignContent" : "center"}}>
-            {bucket.title}
+        <LinkContainer to={{pathname:`/user/myBuckets/${bucket._id}/${bucket.title}`}}>
+            <Button>
+                {bucket.title}
+            </Button>
+        </LinkContainer>
+        <Button onClick= {() => {dispatch(deleteBucket(bucket._id))}}>
+            Delete
+        </Button>
         </CardContent>
                 
             /* /*<div className={classes.overlay2}> 
