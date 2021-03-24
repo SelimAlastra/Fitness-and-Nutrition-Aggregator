@@ -1,6 +1,6 @@
 import express from 'express';
 
-import { getBuckets, createBucket, updateBucket, getBucket, deleteBucket} from '../controllers/buckets.js';
+import { getBuckets, createBucket, updateBucket, getBucket, deleteBucket } from '../controllers/buckets.js';
 
 const router = express.Router();
 

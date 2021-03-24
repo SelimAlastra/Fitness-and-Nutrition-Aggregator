@@ -1,4 +1,4 @@
-import { FETCH_ALL, CREATE, UPDATE, DELETE , ADD_FAV, ADD_TO_BUCKET} from '../constants/actionTypes';
+import { FETCH_ALL, CREATE, UPDATE, DELETE , ADD_FAV } from '../constants/actionTypes';
 import * as api from '../api/index';
 
 
@@ -57,16 +57,6 @@ export const toggleFavAction = (id) => async (dispatch) =>{
     const { data } = await api.toggleFavAction(id);
 
     dispatch({ type: ADD_FAV, payload: data});
-  } catch (error) {
-    console.log(error.message);
-  }
-};
-
-export const addToBucket = (postId, bucketId) => async (dispatch) =>{
-  try {
-    const { data } = await api.addToBucket(postId, bucketId);
-
-    dispatch({ type: ADD_TO_BUCKET, payload: data});
   } catch (error) {
     console.log(error.message);
   }

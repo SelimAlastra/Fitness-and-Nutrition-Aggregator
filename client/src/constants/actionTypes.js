@@ -6,5 +6,4 @@ export const ADD_FAV='ADD_FAV' ;
 export const FETCH_ALL_BUCKETS = 'FETCH_ALL_BUCKETS';
 export const CREATE_BUCKETS = 'CREATE_BUCKETS';
 export const UPDATE_BUCKET = 'UPDATE_BUCKET';
-export const ADD_TO_BUCKET = 'ADD_TO_BUCKET';
 export const FETCH_BUCKET = 'FETCH_BUCKET';

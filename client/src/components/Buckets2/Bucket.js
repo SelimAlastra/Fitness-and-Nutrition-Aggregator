@@ -2,7 +2,9 @@ import React, { useState , useEffect} from 'react';
 import { CardContent, Button} from '@material-ui/core/';
 import { LinkContainer } from 'react-router-bootstrap';
 import { useSelector, useDispatch } from 'react-redux';
-import {deleteBucket} from '../../actions/buckets';
+import {deleteBucket, updateBucket} from '../../actions/buckets';
+import UpdateBucket from './UpdateBucket';
+import Modal from 'react-bootstrap/Modal';
 //import { deletePost, likePost, toggleFavAction } from '../../../actions/posts';
 // removePost
 const Bucket = ({ bucket }) => {
@@ -10,6 +12,10 @@ const Bucket = ({ bucket }) => {
     const user = JSON.parse(localStorage.getItem('user'));
 
     const dispatch = useDispatch();
+
+    const bucketToEdit = {
+        bucketId: bucket._id
+    }
     
     return (
         <CardContent style={{"alignContent" : "center"}}>
@@ -21,6 +27,7 @@ const Bucket = ({ bucket }) => {
         <Button onClick= {() => {dispatch(deleteBucket(bucket._id))}}>
             Delete
         </Button>
+        <UpdateBucket bucketToEdit={bucketToEdit} />
         </CardContent>
                 
             /* /*<div className={classes.overlay2}> 
@@ -51,5 +58,6 @@ const Bucket = ({ bucket }) => {
 
     );
 }
+
 
 export default Bucket;
