@@ -79,6 +79,8 @@ const schema = Yup.object().shape({
             if(err.response.data.errors){
                 if(err.response.data.errors.includes('User'))
                   actions.setFieldError('email', 'User with that email does not exist. Please register.')
+                else if(err.response.data.errors.includes('banned'))
+                  actions.setFieldError('email', 'You cannot login, as you are banned.') 
                 else
                   actions.setFieldError('password', 'Email and password do not match')     
             }
