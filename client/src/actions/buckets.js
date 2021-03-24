@@ -57,4 +57,5 @@ export const deleteBucket = (id) => async (dispatch) => {
   } catch (error) {
       console.log(error.message);
   }
-}
+};
+

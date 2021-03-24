@@ -83,13 +83,13 @@ export const getPost = (id) => async (dispatch) => {
   }
 };
 
-export const getBucketPosts = ([postsId]) => async (dispatch) => {
-  
+export const getPostsFromArray = (id) => async (dispatch) => {
   try {
-      const { data } = await api.getBucketPosts([postsId]);
+    const { data } = await api.getPostsFromArray(id);
       
-      dispatch( {type: 'FETCH_ALL_POSTS_FROM_A_BUCKET', payload: data} );
+    dispatch( {type: 'FETCH_POSTS_FROM_ARRAY', payload: data} );
   } catch (error) {
-      console.log(error.message);
+    console.log(error.message);
   }
+
 };

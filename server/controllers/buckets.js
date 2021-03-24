@@ -41,7 +41,7 @@ export const getBucket = async (req, res) => {
       .catch(err => res.status(400).json('Error: Cannot find this Bucket' + err));
   };
 
-  export const deleteBucket = async (req, res) => {
+export const deleteBucket = async (req, res) => {
     const { id: _id } = req.params;
 
     if(!mongoose.Types.ObjectId.isValid(_id)) return (res.status(404).send('No bucket with that id'));

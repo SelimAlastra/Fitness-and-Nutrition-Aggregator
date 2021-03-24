@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { Container, CardGroup } from "react-bootstrap";
+import { Container, CardGroup, Breadcrumb } from "react-bootstrap";
 import { useSelector, useDispatch } from 'react-redux';
-import { getPost} from "../../actions/posts";
+import { getPost, getPostsFromArray } from "../../actions/posts";
 import { useParams } from "react-router-dom";
 import Post from "../Posts/Post/Post";
 import { getBucket } from '../../actions/buckets';
@@ -13,21 +13,23 @@ const BucketView = () => {
 
     const { id } = useParams();
 
-    console.log(id);
-
     const bucket = useSelector((state) => state.buckets);
+    const loading = true;
+    const posts = useSelector((state) => state.posts);
 
     useEffect(() => {
             dispatch(getBucket(id));
     }, []);
 
-    const post = bucket.postsId;
+    useEffect(() => {
+        if (bucket) {
+            dispatch(getPostsFromArray(bucket._id))
+            
+        }
+    }, [bucket]);
+    
 
-    console.log(bucket);
-
-    console.log(post);
-
-    if (post === undefined || post.length === 0) {
+    if ((posts === undefined || posts.length === 0) && !loading) {
         return (
             <>
             <Navbar/>
@@ -41,7 +43,7 @@ const BucketView = () => {
         return(
             <>
             <Navbar/>
-            {post.map((post)=> (
+            {posts.map((post)=> (
                  <Post post={post} />
                 )
             )
