@@ -49,7 +49,7 @@ const Goals = ({userID}) => {
                                     value={goal}
                                     onClick={() => removeGoal(goal)}
                                 />
-                    <Button className = "goalsButton" variant="outline-warning" > Edit Goal </Button>
+
                     </Grid>           
                 ))}
             </Grid>
@@ -59,6 +59,7 @@ const Goals = ({userID}) => {
     return (
             <div>
                 <h2 className="goalsPageText"> Goals</h2>
+                <Button className = "goalsButton" variant="outline-warning" onClick={() => window.location.href = `/homePage/edit/${userID}`}> Edit Goals </Button>
                 <div className="goalsContainer">
                     {generateGoals()}
                 </div>
