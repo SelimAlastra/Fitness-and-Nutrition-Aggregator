@@ -1,0 +1,41 @@
+
+.goalFormContainer {
+    padding: 5%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    background-color: white;
+    max-height: 100%;
+    top: 50%;
+    left: 50%;
+    overflow: auto;
+    border-radius: 4px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    outline: none;
+    margin: 20px;
+
+}
+
+.goalInputItem {
+    border-radius: 10px;
+    background-color: white;
+    color: Black;
+}
+
+.goalLabel {
+    color: black;
+}
+
+
+.actionButton {
+    margin-top: 1%;
+    background-color: black;
+    border: none;
+}
+
+.actionButton:hover {
+    margin-top: 1%;
+}
+
+.goalActionButton {
+    border-radius: 10px;
+}
+

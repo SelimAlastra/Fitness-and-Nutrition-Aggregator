@@ -50,7 +50,7 @@ export const updateBasicUser = (id, updatedBasicUser) => axios.patch(`${basicUse
 
 export const getGoals = () => axios.get(goalUrl);
 export const getGoal = (id) => axios.get(`${goalUrl}/${id}`);
-export const updateGoal= (id, updatedGoal) => axios.patch(`${goalUrl}/update/${id}`, updatedGoal);
+export const updateGoal= (id, updatedGoal) => axios.patch(`${goalUrl}/${id}`, updatedGoal);
 export const deleteGoal = (id) => axios.delete(`${goalUrl}/${id}`)
 export const fetchBasicUsers = () => axios.get(basicUserUrl);
 export const createBasicUser = (newUser) => axios.post(basicUserUrl, newUser);

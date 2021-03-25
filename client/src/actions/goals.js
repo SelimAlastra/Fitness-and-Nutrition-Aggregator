@@ -24,7 +24,7 @@ export const updateGoal = (id, newGoal) => async (dispatch) => {
     try {
         const { data } = await api.updateGoal(id, newGoal);
 
-        dispatch( {type: 'UPDATE', payload: data} );
+        dispatch( {type: 'UPDATE_GOAL', payload: data} );
     } catch (error) {
         console.log("Oh no something went wrong");
     }
