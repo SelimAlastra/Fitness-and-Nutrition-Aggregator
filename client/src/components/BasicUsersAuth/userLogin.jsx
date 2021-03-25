@@ -72,7 +72,7 @@ const schema = Yup.object().shape({
       axios.post(`http://localhost:5000/basicUsers/login`, newData)
           .then(res => {
             authenticate(res, () => {
-            history.push(`/clientDashboard/${JSON.parse(localStorage.getItem('user')).username}-${JSON.parse(localStorage.getItem('user'))._id}`) 
+            history.push(`/clientDashboard/${JSON.parse(localStorage.getItem('user'))._id}`) 
             })
           })
           .catch(err => {

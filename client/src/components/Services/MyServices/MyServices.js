@@ -1,14 +1,14 @@
 import { useDispatch, useSelector } from 'react-redux';
 import {useEffect, useState } from 'react';
-import { getBasicUser } from '../../actions/basicUsers';
-import { getServices } from '../../actions/services';
+import { getBasicUser } from '../../../actions/basicUsers';
+import { getServices } from '../../../actions/services';
 import { Button, Nav } from 'react-bootstrap';
-import '../MyServices/MyServices.css';
+import './MyServices.css';
 import ReactPlayer from 'react-player';
 import Modal from 'react-modal';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faWindowClose } from '@fortawesome/free-regular-svg-icons'
-import Navbar from '../Navbar/Navbar';
+import NavbarUser from '../../Navbar/NavbarUser';
 
 const MyServices = (props) => {
     const dispatch = useDispatch();
@@ -95,14 +95,14 @@ const MyServices = (props) => {
     if (myServices === undefined || myServices.length === 0 ) {
         return (
             <div>
-                <Navbar />
+                <NavbarUser/>
                 <p>Sorry, no services can be found!</p>
             </div>
         );
     } else {
         return (
             <div>
-                <Navbar/>
+                <NavbarUser/>
                 <div className="titleText">
                     <h1>My Bundles</h1>
                     <p>These are the bundles you have purchased.</p>

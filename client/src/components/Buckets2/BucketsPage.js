@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Grid, CircularProgress, GridList } from '@material-ui/core';
 import { useSelector } from 'react-redux';
-import Navbar from '../Navbar/Navbar';
+import NavbarUser from "../Navbar/NavbarUser";
 
 import Bucket from './Bucket';
 import { Container, ListGroup, Row, Col } from 'react-bootstrap';
@@ -16,7 +16,7 @@ const Buckets = ({ setCurrentBucketId }) => {
 
     return (
         <div>
-        <Navbar/>
+        <NavbarUser/>
             <div class="container">
                 <div class="row">
                     {buckets.map((bucket) => (

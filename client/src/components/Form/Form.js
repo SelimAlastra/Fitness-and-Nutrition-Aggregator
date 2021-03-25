@@ -48,7 +48,7 @@ const Form = ({currentId, setCurrentId}) => {
    }
     const clear = () => {
         setCurrentId(null);
-        setPostData({ creator: JSON.parse(localStorage.getItem('user')).name , title: '', message: '', tags: '', selectedFile: '', url: '' , audioFile: '', embeddedLink: '', facebookLink: ''});
+        setPostData({ creator: JSON.parse(localStorage.getItem('user')).name ,userFrom: JSON.parse(localStorage.getItem('user'))._id, title: '', message: '', tags: '', selectedFile: '', url: '' , audioFile: '', embeddedLink: '', facebookLink: ''});
     }
     return (
             <form autoComplete="off" noValidate className={`${classes.root} ${classes.form}`} method="post" action="#" onSubmit={handleSubmit}>
