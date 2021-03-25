@@ -32,7 +32,6 @@ const ProfessionalProfile = (props) => {
 
 
     let basicUserProfile = useSelector((state) => state.basicUsers);
-    console.log(professionalUser);
      useEffect(() => {
          setBasicUser(basicUserProfile);
      }, [basicUserProfile]);
