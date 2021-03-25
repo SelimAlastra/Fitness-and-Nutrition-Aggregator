@@ -19,6 +19,7 @@ import Form from './components/Form/Form';
 import memories from './images/memories.png';
 import useStyles from './styles';
 import { useSelector } from 'react-redux';
+import { getProfessional } from './actions/professionals';
 
 const ProfessionalDashboard = () => {
     const [currentId, setCurrentId] = useState(null);
@@ -37,6 +38,7 @@ const ProfessionalDashboard = () => {
     } */
     useEffect(() => {
       dispatch(getPosts());
+      dispatch(getProfessional(currentId));
       //GetModifiedPosts(data);
       setUpdatedPosts(updatedPosts);
     }, [currentId,dispatch,setUpdatedPosts]);

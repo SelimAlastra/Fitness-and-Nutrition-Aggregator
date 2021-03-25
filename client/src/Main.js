@@ -19,11 +19,11 @@ import ProfResetPassword from './components/ProfessionalUsersAuth/resetPassword.
 import BucketPage from "./components/Buckets2/BucketsPage";
 import ClientProfile from "./components/ClientProfile/ClientProfile";
 import EditProfessionalDetails from "./components/ProfessionalProfile/EditDetails/EditProfessionalDetails";
-import EditServices from "./components/ProfessionalProfile/EditServices/EditServices";
+import EditServices from "./components/Services/EditServices/EditServices";
 import ProfessionalProfile from './components/ProfessionalProfile/ProfessionalProfile';
 import EditBasicUser from './components/EditBasicUser/EditBasicUser';
-import MyServices from './components/MyServices/MyServices';
-import AddService from './components/ProfessionalProfile/EditServices/AddService';
+import MyServices from './components/Services/MyServices/MyServices';
+import AddService from './components/Services/EditServices/AddService';
 
 import Reports from './components/Reports/Reports'
 import ReportView from './components/Reports/Report/ReportView'

@@ -37,7 +37,7 @@ const AddService = (props) => {
             <NavbarProfessional />
             <div className="formContainer">
                 <div>
-                    <h4 className="serviceText">Add Service</h4>
+                    <h4 className="serviceText">Add Bundle</h4>
                     <hr className="seperator"/>
                     <div>
                         <Form>
