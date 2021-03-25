@@ -78,6 +78,14 @@ const Navbar = () => {
           >
             My Bundles
           </Button>
+          <Button 
+            component={Link} 
+            to={`/homePage/${JSON.parse(localStorage.getItem('user'))._id}`} 
+            variant="contained" 
+            color="primary"
+          >
+            HomePage
+          </Button>
           <Button
             component={Link}
             to={`/user/profile/${JSON.parse(localStorage.getItem('user'))._id}`}
