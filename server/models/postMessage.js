@@ -9,6 +9,7 @@ const postSchema = mongoose.Schema({
     url: String,
     audioFile: String,
     embeddedLink: String,
+    facebookLink: String,
     likeCount: {
         type: Number,
         default: 0,

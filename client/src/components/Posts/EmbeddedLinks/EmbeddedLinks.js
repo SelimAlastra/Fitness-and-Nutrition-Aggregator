@@ -8,7 +8,7 @@ const EmbeddedLinks = ({setLink}) => {
 
 
     return (
-         <Iframe url = {setLink} width = '100%' height = '100%' display="initial" position="relative"/> 
+         <Iframe url = {setLink} position="relative" width="100%" height="450" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"/> 
     );
 }
 

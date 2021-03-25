@@ -16,6 +16,7 @@ import Select from "@material-ui/core/Select";
 import Videos from '../Videos/Videos';
 import Audio from '../Audio/Audio';
 import EmbeddedLinks from '../EmbeddedLinks/EmbeddedLinks';
+import FacebookLinks from '../FacebookLinks/FacebookLinks';
 
 
 import { deletePost, likePost, toggleFavAction } from '../../../actions/posts';
@@ -117,6 +118,12 @@ const Post = ({ post , setCurrentId }) => {
              {   post.embeddedLink ?
             <CardContent> 
              <EmbeddedLinks setLink = {post.embeddedLink} />
+            </CardContent>
+               : <div></div> 
+             }
+             {   post.facebookLink ?
+            <CardContent> 
+             <FacebookLinks setLink = {post.facebookLink} />
             </CardContent>
                : <div></div> 
              }
