@@ -3,6 +3,8 @@ import { React } from "react";
 import reactDom from "react-dom";
 import { Link, Redirect, useHistory } from "react-router-dom";
 import { Form, Container, Button } from "react-bootstrap";
+import axios from 'axios';
+import { authenticate } from './actions/userAuth.js';
 import * as Yup from "yup";
 
 
@@ -36,22 +38,35 @@ const Login = () => {
 
     const history = useHistory();
 
-    const reroute = () => {
-        let newPage = 'AdminPage';
-        history.push(newPage);
-    }
-
     const Formik = useFormik({
         initialValues: {
             username: "",
             password: ""
         },
         validationSchema: adminSchema,
-        onSubmit(values) {
-            console.log("Log in details: ", values);
-            reroute();
-        }
-    });
+        onSubmit: (values, actions) => {
+          if(values.username && values.password){
+            console.log("Logging in", values);
+            const newData = {
+                username: values.username,
+                password: values.password,
+            }
+            axios.post(`http://localhost:5000/admins/login`, newData)
+                .then(res => {
+                  authenticate(res, () => {
+                  history.push(`/admin/basicusers`) 
+                  })
+                })
+                .catch(err => {
+                  console.log(err)
+                  if(err.data){
+                    actions.setFieldError('Not an Admin');    
+                  }
+                })
+            actions.setSubmitting(false);
+          }
+        },
+      });
 
     return(
         <Form onSubmit={Formik.handleSubmit} >

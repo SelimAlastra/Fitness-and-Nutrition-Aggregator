@@ -1,11 +1,10 @@
 import React, { useEffect ,useState } from 'react';
 import { Container, AppBar, Typography, Grow, Grid } from '@material-ui/core';
 import { useDispatch } from 'react-redux';
-
+import Navbar from './components/Navbar/Navbar';
 
 import { getPosts, updatePost } from './actions/posts';
 import Posts from './components/Posts/Posts';
-import Form from './components/Form/Form';
 import memories from './images/memories.png';
 import useStyles from './styles';
 
@@ -23,11 +22,12 @@ return (
     <AppBar className={classes.appBar} position="static" color="inherit">
       <Typography className={classes.heading} variant="h2" align="center">Dashboard</Typography>
      <img className={classes.image} src={memories} alt="memories" height="60" />
+     <Navbar/>
     </AppBar>
 
     <Grow in>
         <Container>
-          <Grid className={classes.mainContainer} container justify="space-between" alignItems="stretch" spacing={3}>
+          <Grid className={classes.mainContainer} container justify="space-between" alignItems="stretch" spacing={6}>
             <Grid item xs={12} sm={7}>
               <Posts setCurrentId={setCurrentId}/>
             </Grid>

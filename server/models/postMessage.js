@@ -3,6 +3,8 @@ import mongoose from 'mongoose';
 const postSchema = mongoose.Schema({
     title: String,
     message: String,
+    userFrom: String,
+    name:String,
     creator: String,
     tags: [String],
     selectedFile: String,
@@ -10,9 +12,9 @@ const postSchema = mongoose.Schema({
     audioFile: String,
     embeddedLink: String,
     facebookLink: String,
-    likeCount: {
-        type: Number,
-        default: 0,
+    likes: {
+        type: [String],
+        default: [],
     },
     createdAt: {
         type: Date,

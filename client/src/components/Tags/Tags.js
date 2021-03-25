@@ -1,5 +1,4 @@
 import React, {useState} from "react";
-import "./Tags.css";
 
 function Tags(props) {
     let tags = props.tags;
@@ -15,7 +14,7 @@ function Tags(props) {
                 tagString += " | ";
             }
         }
-        return (<div data-testid="tags" className="tagContainer">{tagString}</div>);
+        return (<div data-testid="tags" className="textContainer">{tagString}</div>);
     }
 }
 

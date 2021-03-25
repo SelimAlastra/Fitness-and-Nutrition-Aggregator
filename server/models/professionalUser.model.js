@@ -25,7 +25,7 @@ const professionalUserSchema = new Schema({
 
   address: {type: String, required: false},
 
-  isBanned: {type: Boolean, required: false},
+  isBanned: {type: Boolean, required: false, default: false},
 
   tags : [{type: String,  required: false}],
   //I used an array here cause an user may have multiple tags

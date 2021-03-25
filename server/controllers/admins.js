@@ -1,6 +1,12 @@
 import Admin from '../models/admin.model.js'
 import mongoose from "mongoose";
 
+import _ from 'lodash';
+import jwt from 'jsonwebtoken';
+import dotenv from 'dotenv';
+
+dotenv.config();
+
 export const getAdmins = async (req, res) => {
   Admin.find()
     .then(admins => res.json(admins))
@@ -42,4 +48,46 @@ export const updateAdmin = async (req, res) => {
         .catch(err => res.status(400).json('Error: ' + err));
     })
     .catch(err => res.status(400).json('Error: ' + err));
+};
+
+
+export const loginController = (req, res) => {
+  const { username, password } = req.body;
+  // check if user exist
+  Admin.findOne({
+    username
+  }).exec((err, user) => {
+    if (err || !user) {
+      return res.status(400).json({
+        errors: 'Error'
+      });
+    }
+    // authenticate
+    else if (!user.authenticate(password)) {
+      return res.status(400).json({
+        errors: 'Error'
+      });
+    }
+    // generate a token and send to client
+    const token = jwt.sign(
+      {
+        _id: user._id
+      },
+      process.env.JWT_SECRET,
+      {
+        expiresIn: '7d'
+      }
+    );
+    const { _id, username, type } = user;
+
+
+    return res.json({
+      token,
+      user: {
+        _id,
+        username,
+        type: 'admin'
+      },
+    });
+  });
 };

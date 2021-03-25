@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import Question from './components/question';
 import Answer from './components/answer';
 import Test from './testPage';
-import './styling/quizUser.css'
+import './styling/quizUser.css';
+
+//const history = useHistory();
 
 export default class Quiz extends Component{
 
@@ -308,11 +310,13 @@ export default class Quiz extends Component{
     /**
      * change @questions completion status
      */
+
     handleFinishButtonClick = () => {
         if(this.isCompleted() === true){
             this.setState({
                 complete: true
             });
+            this.props.history.push(`/clientDashboard/${JSON.parse(localStorage.getItem('user')).username}-${JSON.parse(localStorage.getItem('user'))._id}`)
         } else {
             alert("You still have some questions to complete.");
         }
@@ -322,6 +326,9 @@ export default class Quiz extends Component{
         let {questions, currentQuestion, complete, questionsReqInput, invalidInput} = this.state;
 
         return(
+            <div>
+            <img className="backgroundJPG"
+            src="https://static.onecms.io/wp-content/uploads/sites/35/2010/07/28170650/fb-interval-training-workouts.jpg" />
             
             <div className=""> 
                 { complete ? (
@@ -358,6 +365,7 @@ export default class Quiz extends Component{
                             </div>
                             </div>
                 )}
+            </div>
             </div>
         );
     }

@@ -12,7 +12,7 @@ import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import InboxIcon from "@material-ui/icons/MoveToInbox";
 import MailIcon from "@material-ui/icons/Mail";
-
+import ProfessionalNavbar from "./components/Navbar/ProfessionalNavbar";
 import { useDispatch } from 'react-redux';
 
 import { getPosts, updatePost } from './actions/posts';
@@ -39,15 +39,10 @@ const ProfessionalDashboard = () => {
 
 return (
   <Container maxWidth="lg">
-    <div className={classes.root}>
-      <CssBaseline />
       <AppBar position="static" className={classes.appBar} color="inherit">
-        <Toolbar>
         <Typography className={classes.heading} variant="h2" align="center">Dashboard</Typography>
         <img className={classes.image} src={memories} alt="memories" height="60" />
-        </Toolbar>
-     
-      <Drawer
+      {/* <Drawer
         className={classes.drawer}
         variant="permanent"
         classes={{
@@ -67,24 +62,23 @@ return (
             ))}
           </List>
         </div>
-      </Drawer>
+      </Drawer> */} 
+      <ProfessionalNavbar/>
       </AppBar>
-    </div>
-
     <Grow in>
         <Container>
           <Grid className={classes.mainContainer} container justify="space-between" alignItems="stretch" spacing={3}>
-            <Grid item xs={12} sm={7}>
+            <Grid item xs={12} sm={5}>
               <Posts setCurrentId={setCurrentId}/>
             </Grid>
             <Grid item xs={12} sm={4}>
               <Form currentId={currentId} setCurrentId={setCurrentId} />
-            </Grid>
+            </Grid> 
           </Grid>
         </Container>
       </Grow>
-      
-  </Container>
+
+    </Container>
   );
 }
 
