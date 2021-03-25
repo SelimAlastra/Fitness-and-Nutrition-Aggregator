@@ -8,12 +8,13 @@ function ProfileInfo({profile}) {
                     <img src={"https://images.unsplash.com/photo-1588420343618-6141b3784bce?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80"}/>
                 </div>
                 <div>
-                    <h2 className="clientName">{profile.name}</h2>
+                    <h2 className="clientName">{profile.name} <p className="minorText">({profile.username})</p></h2>
                     <hr className="profileSeperator"/>
-                    <p className="textContainer">{profile.username}</p>
                     { generateLocationContainer(profile.address) }
                     { generateDescriptionContainer(profile.bio) }
-                    { generateTags(profile.tags) }  
+                    { generateTags(profile.tags) } 
+                    <p className="helpText">Contact Info</p> 
+                    <p className="textContainer">{profile.email}</p>
                 </div>
                 <div data-testid="socialBar">
                         { generateInstagramLink(profile.instagramLink) }
@@ -30,19 +31,29 @@ export default ProfileInfo;
 
 function generateTags(tags) {
     if (tags !== undefined && tags.length > 0) {
-        return <Tags tags={tags}/> ;
+        return <Tags tags={tags}/>;
     }
 }
 
 function generateLocationContainer(location) {
     if (location !== undefined && location.length > 0) {
-        return (<div className="outerContainer"><p className="textContainer">{location}</p></div>);
+        return (
+        <div>
+            <p className="helpText">Location</p>
+            <div className="outerContainer"><p className="textContainer">{location}</p></div>
+        </div>
+        );
     }
 }
 
 function generateDescriptionContainer(description) {
     if (description !== undefined && description.length > 0) {
-        return (<p className="textContainer">{description}</p>);  
+        return (
+            <div>
+                <p className="helpText">Bio</p>
+                <p className="textContainer">{description}</p>
+            </div>
+        );  
     }
 }
 
@@ -70,7 +81,6 @@ function generateYoutubeLink(link) {
             />
         );
     }
-
 }
 
 // Instagram & YouTube icons from http://www.icons8.com - under free section 

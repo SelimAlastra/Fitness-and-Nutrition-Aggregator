@@ -2,6 +2,7 @@ import { Form, Button } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
 import { useState } from 'react';
 import { addService } from '../../../actions/services';
+import NavbarProfessional from "../../Navbar/NavbarProfessional";
 
 const AddService = (props) => {
     const dispatch = useDispatch();
@@ -33,9 +34,10 @@ const AddService = (props) => {
 
     return (
         <div>
+            <NavbarProfessional />
             <div className="formContainer">
                 <div>
-                    <h4 className="serviceText">Add Service</h4>
+                    <h4 className="serviceText">Add Bundle</h4>
                     <hr className="seperator"/>
                     <div>
                         <Form>
