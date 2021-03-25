@@ -33,7 +33,7 @@ const EditServices = (props) => {
     function addUrl(e) {
         e.preventDefault();
         const toUpdate = myServices.filter(sev => sev._id === serviceID)[0];
-        if (toUpdate !== undefined) {
+        if (toUpdate !== undefined && serviceID !== "error" && url !== "") {
             const currentUrls = toUpdate.urls;
             currentUrls.push(url);
             const updatedService = {
@@ -90,7 +90,7 @@ const EditServices = (props) => {
     }
 
     return (
-        //
+        
         <div>
             <NavbarProfessional/>
             <div className="columnContainer">
@@ -104,7 +104,7 @@ const EditServices = (props) => {
                                 >
                                 </FontAwesomeIcon>
                         </div>
-                        <h3 className="serviceText">Services</h3>
+                        <h3 className="serviceText">Bundles</h3>
                         <hr className="seperator"/>
                         <div>
                             { generateTable() }
@@ -113,7 +113,7 @@ const EditServices = (props) => {
                             className="actionButton" 
                             onClick={() => window.location.href =`/professional/services/add/${userID}`}
                             >
-                                Add New Service
+                                Add New Bundle
                         </Button>
                         <br />
                     </div>
@@ -127,28 +127,40 @@ const EditServices = (props) => {
                                 >
                                 </FontAwesomeIcon>
                         </div>
-                    <h4>Add URL to Service</h4>
+                    <h4>Add Video to Bundle</h4>
                     <hr className="seperator"/>
                     <br />
                     <Form>             
                         <Form.Control
+                            as="select"
                             value={serviceID}
                             id="serviceIDInput"
                             className="inputItem"
                             onChange={(e) => setServiceID(e.target.value)}
                             placeholder="Service ID"
                         >
+                        <option value="error">Select Bundle</option>
+                        {
+                            myServices.map((service, index) => {
+                                return (
+                                    <option key={index} value={service._id}>{service.title}</option>
+                                )
+                            })
+                        }
                         </Form.Control>     
                         <br />       
                         <Form.Control
                             value={url}
                             id="urlInput"
                             name="url" 
-                            placeholder="New URL"
+                            placeholder="Video URL"
                             className="inputItem"
                             onChange={(e) => setUrl(e.target.value)} 
                         >
                         </Form.Control>   
+                        <Form.Text className="text-muted">
+                            Enter the url of the video you wish to add to the selected bundle.
+                        </Form.Text>
                         <br />                            
                         <Button 
                             className="actionButton"
