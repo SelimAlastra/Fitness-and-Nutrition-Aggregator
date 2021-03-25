@@ -5,6 +5,7 @@ import PersonalInfo from '../ClientProfile/PersonalInfo';
 import Goals from '../ClientProfile/Goals';
 import { useDispatch, useSelector } from "react-redux";
 import { getBasicUser } from "../../actions/basicUsers";
+import Navbar from "../Navbar/Navbar";
 
 const ClientProfile = (props) => {
     const dispatch = useDispatch();
@@ -75,15 +76,18 @@ function formatDate(toFormat) {
     
     if (user !== undefined) {
         return (
-            <div className="sectionContainer">
-                <div className="section">
-                    <ProfileInfo profile={user} />
-                </div>
-                <div className="section">
-                    <PersonalInfo profile={user}/>
-                </div>
-                <div className="section">
-                    { generateGoals() }
+            <div>
+                <Navbar/>
+                <div className="sectionContainer">
+                    <div className="section">
+                        <ProfileInfo profile={user} />
+                    </div>
+                    <div className="section">
+                        <PersonalInfo profile={user}/>
+                    </div>
+                    <div className="section">
+                        { generateGoals() }
+                    </div>
                 </div>
             </div>
         );

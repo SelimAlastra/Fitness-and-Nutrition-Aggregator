@@ -23,7 +23,7 @@ const basicUserSchema = new Schema({
 
   address: {type: String, required:false},
 
-  isBanned: {type: Boolean, required: false},
+  isBanned: {type: Boolean, required: false, default: false},
 
   bodyType :{type: String,  required: false},
 
@@ -37,6 +37,8 @@ const basicUserSchema = new Schema({
   bio :{type: String,  required: false},
 
   resetPasswordLink :{type: String, default: '', required: false},
+
+  bundles: [{type: String, required: true}]
 
 }, {
   timestamps: true,
