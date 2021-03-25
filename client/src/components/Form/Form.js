@@ -8,7 +8,7 @@ import './styles.css';
 import { createPost, updatePost} from '../../actions/posts';
 
 const Form = ({currentId, setCurrentId}) => {
-    const [postData, setPostData] = useState({ creator: '', title: '', message: '', tags: '', selectedFile: '', url: '', audioFile: '', embeddedLink: ''});
+    const [postData, setPostData] = useState({ creator: '', title: '', message: '', tags: '', selectedFile: '', url: '', audioFile: '', embeddedLink: '', facebookLink: ''});
     const [option, setOption] = useState('option1')
     let Value= 'photo';
     const post = useSelector((state) => currentId ? state.posts.find((p)=> p._id === currentId ) : null);
@@ -47,7 +47,7 @@ const Form = ({currentId, setCurrentId}) => {
    }
     const clear = () => {
         setCurrentId(null);
-        setPostData({ creator: '', title: '', message: '', tags: '', selectedFile: '', url: '', audioFile: '', embeddedLink: ''});
+        setPostData({ creator: '', title: '', message: '', tags: '', selectedFile: '', url: '', audioFile: '', embeddedLink: '', facebookLink: ''});
     }
 
     return (
@@ -94,7 +94,15 @@ const Form = ({currentId, setCurrentId}) => {
                         <label>Upload Link</label>
                         <TextField name="src" variant="outlined" label="URL" fullWidth value={postData.embeddedLink} onChange={(e) => setPostData({ ...postData, embeddedLink: e.target.value })} />
                         </div>
-                </div>           
+                </div>   
+                <div>
+                    <input type="radio" name="choice-post" value="facebooklink" onChange={(e) => setValue(e.target.value)} required />
+                    <label>Facebook Post</label>
+                        <div className="reveal-if-active" >
+                        <label>Upload Link</label>
+                        <TextField name="src" variant="outlined" label="URL" fullWidth value={postData.facebookLink} onChange={(e) => setPostData({ ...postData, facebookLink: e.target.value })} />
+                        </div>
+                </div>         
                 
                 <Button className={classes.buttonSubmit} variant="contained" color="primary" size="large" type="submit" fullWidth>Submit</Button>
                 <Button variant="contained" color="secondary" size="small" onClick={clear} fullWidth>Clear</Button>
