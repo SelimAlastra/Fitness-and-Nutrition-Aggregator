@@ -82,9 +82,9 @@ const Post = ({ post, setCurrentId }) => {
 
 
   const ReportPopUp = () => {
-    const [show, setShow] = useState(false);
-    const handleCloseReport = () => setShow(false);
-    const handleShowReport = () => setShow(true);
+    const [show1, setShow1] = useState(false);
+    const handleCloseReport = () => setShow1(false);
+    const handleShowReport = () => setShow1(true);
     const reportData = {
       reporterUsername: user.username,
       reportedUsername: post.creator,
