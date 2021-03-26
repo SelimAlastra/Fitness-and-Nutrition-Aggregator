@@ -26,7 +26,7 @@ const Post = ({ post, setCurrentId }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const [anchorEl, setAnchorEl] = React.useState(null);
-  const [open, setOpen] = React.useState(false);
+  //const [open, setOpen] = React.useState(false);
   const user = JSON.parse(localStorage.getItem('user'));
 
   const handleClick = (event) => {
@@ -82,6 +82,9 @@ const Post = ({ post, setCurrentId }) => {
 
 
   const ReportPopUp = () => {
+    const [show, setShow] = useState(false);
+    const handleCloseReport = () => setShow(false);
+    const handleShowReport = () => setShow(true);
     const reportData = {
       reporterUsername: user.username,
       reportedUsername: post.creator,
@@ -160,13 +163,10 @@ const Post = ({ post, setCurrentId }) => {
           open={Boolean(anchorEl)}
           onClose={handleClose}
         >
-          <MenuItem> 
           {JSON.parse(localStorage.getItem('user')).type == 'client' ?
             <ReportPopUp/>
             : <Edit />
           }
-          </MenuItem>
-
         </Menu>
       </div>
       <Typography hidden={true} className={classes.title} variant="h5" gutterBottom>{post.title}</Typography>
@@ -217,7 +217,7 @@ const Post = ({ post, setCurrentId }) => {
           <div className={classes.button}>
             {post.likes ?
               <Button size="small" onClick={() => dispatch(likePost(post._id, JSON.parse(localStorage.getItem('user'))._id))}>
-                <Likes />
+                <Likes/>
               </Button>
               : <> </>
             }
