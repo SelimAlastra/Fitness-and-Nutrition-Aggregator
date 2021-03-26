@@ -146,7 +146,9 @@ export default function NavbarUser({updatedPosts, setUpdatedPosts}) {
         </IconButton>
       </MenuItem>
       <MenuItem onClick={handleMenuClose}>
-        <IconButton component={Link} to={'/buckets'} > 
+        <IconButton component={Link} onClick={
+              () => window.location.href = `/user/myBuckets/${JSON.parse(localStorage.getItem('user'))._id}`
+            } > 
           <div>
             <LayersIcon/> 
             <text style={{fontSize:"1.2rem"}}>Buckets</text>
@@ -200,7 +202,9 @@ export default function NavbarUser({updatedPosts, setUpdatedPosts}) {
         </IconButton>
       </MenuItem>
       <MenuItem>
-        <IconButton component={Link} to={'/buckets'} > 
+        <IconButton component={Link} onClick={
+              () => window.location.href = `/user/myBuckets/${JSON.parse(localStorage.getItem('user'))._id}`
+            } > 
           <div>
             <LayersIcon/> 
             <text style={{fontSize:"1.2rem"}}>Buckets</text>

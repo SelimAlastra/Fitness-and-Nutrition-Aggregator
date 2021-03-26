@@ -1,4 +1,4 @@
-import { FETCH_ALL, CREATE, UPDATE, DELETE , ADD_FAV} from '../constants/actionTypes';
+import { FETCH_ALL, CREATE, UPDATE, DELETE , ADD_FAV } from '../constants/actionTypes';
 import * as api from '../api/index';
 
 
@@ -71,4 +71,15 @@ export const getPost = (id) => async (dispatch) => {
   } catch (error) {
       console.log(error.message);
   }
+};
+
+export const getPostsFromArray = (id) => async (dispatch) => {
+  try {
+    const { data } = await api.getPostsFromArray(id);
+      
+    dispatch( {type: 'FETCH_POSTS_FROM_ARRAY', payload: data} );
+  } catch (error) {
+    console.log(error.message);
+  }
+
 };
