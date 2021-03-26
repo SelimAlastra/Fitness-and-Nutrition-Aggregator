@@ -14,25 +14,6 @@ const Buckets = () => {
     const user = JSON.parse(localStorage.getItem('user'));
     const myBuckets = useSelector((state) => user._id ? state.buckets.filter((b) => b.userId === user._id) : null);
 
-    return (
-        <div>
-        <NavbarUser/>
-            <div class="container">
-                <div class="row">
-                    {buckets.map((bucket) => (
-                        <Col xs={6} md={4}>
-                        <div class="card">
-                            <Bucket bucket={bucket} setCurrentBucketId={setCurrentBucketId} />
-                        </div>
-                        </Col>
-                    ))}
-                </div>
-            </div>
-        </div>
-    );
-}
-
-const BucketPage = () => {
     const [currentBucketId, setCurrentBucketId] = useState(null);
     const dispatch = useDispatch();
 
@@ -40,16 +21,19 @@ const BucketPage = () => {
         dispatch(getBuckets());
     }, [currentBucketId, dispatch]);
 
+
     if (myBuckets === undefined || myBuckets.length === 0) {
         return (
             <div>
+            <NavbarUser/>
                 You have no buckets.
             </div>
-        )
+        );
     }
     else {
         return (
             <div>
+                <NavbarUser/>
                 <div class="container">
                     <div class="row">
                         {myBuckets.map((bucket) => (
