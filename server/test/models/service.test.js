@@ -2,7 +2,7 @@ import { expect } from 'chai';
 import mongoose from 'mongoose';
 import Service from '../../models/service.model.js';
 
-describe('Service model tests', function() {
+describe('Testing Service model', function() {
     it('should be valid, as all fields are supplied correctly ', function(done) {
         const serviceBody = {
             price: "23.45",

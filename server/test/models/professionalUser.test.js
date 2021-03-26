@@ -1,5 +1,4 @@
 import { expect } from 'chai';
-import mongoose from 'mongoose';
 import ProfessionalUser from '../../models/professionalUser.model.js';
 
 describe('Testing ProfessionalUser model', function() {
@@ -112,5 +111,4 @@ describe('Testing ProfessionalUser model', function() {
         });
         done();
     });
-
 });
