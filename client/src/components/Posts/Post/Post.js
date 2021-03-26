@@ -26,7 +26,7 @@ const Post = ({ post, setCurrentId }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const [anchorEl, setAnchorEl] = React.useState(null);
-  const [open, setOpen] = React.useState(false);
+  //const [open, setOpen] = React.useState(false);
   const user = JSON.parse(localStorage.getItem('user'));
 
   const handleClick = (event) => {
@@ -37,51 +37,47 @@ const Post = ({ post, setCurrentId }) => {
     setAnchorEl(null);
   };
 
-  const handleClose1 = () => {
-    setOpen(false);
-  };
-
-  const handleOpen = () => {
-    /*const arrBuckets[]=openBuckets();*/
-    setOpen(true);
-  };
 
   require('dotenv').config({ path: '/.env' });
 
+
+function PopUpBuckets() {
   const [show, setShow] = useState(false);
-  const handleCloseReport = () => setShow(false);
-  const handleShowReport = () => setShow(true);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
+  const postToAdd = {
+    postId: post._id
+  }
 
-  function PopUpBuckets() {
-    const [show, setShow] = useState(false);
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
-
-    const postToAdd = {
-      postId: post._id
-    }
-
-    //console.log(postToAdd);
-    return (<> <Button size="small"
-      onClick={handleShow} >
-      < FaFolderPlus />
-    </Button>
-      < div className="modal-dialog" >
-        < Modal className="bucket" show={show} onHide={handleClose} >
-          < Modal.Header closeButton > < Modal.Title > Add this post to a bucket </Modal.Title >
-          </ Modal.Header >
-          < Modal.Body >
-            < BucketsGrid postToAdd={postToAdd} />
-          </Modal.Body>
-          < Modal.Footer >
-            < Buckets2 />
-          </Modal.Footer>
-        </ Modal > </div> </>);
-  };
+  return (
+  <> 
+  <Button size="small"
+    onClick={handleShow}>
+    <FaFolderPlus/>
+  </Button>
+  <div className="modal-dialog">
+    <Modal shouldCloseOnOverlayClick={false} className="bucket" show={show} onHide={handleClose}>
+      <Modal.Header closeButton > 
+        <Modal.Title> Add this post to a bucket </Modal.Title >
+      </Modal.Header>
+        <Modal.Body>
+          <BucketsGrid postToAdd={postToAdd}/>
+        </Modal.Body>
+      <Modal.Footer>
+        <Buckets2/>
+      </Modal.Footer>
+    </Modal> 
+  </div> 
+  </>
+  );
+};
 
 
   const ReportPopUp = () => {
+    const [show, setShow] = useState(false);
+    const handleCloseReport = () => setShow(false);
+    const handleShowReport = () => setShow(true);
     const reportData = {
       reporterUsername: user.username,
       reportedUsername: post.creator,
@@ -91,7 +87,7 @@ const Post = ({ post, setCurrentId }) => {
 
     return (
       <>
-        <MenuItem size="small" onClick={() => handleShowReport()}> Report </MenuItem>
+        <MenuItem size="small" onClick={handleShowReport}> Report </MenuItem>
         <Modal show={show} onHide={handleCloseReport}>
           <Modal.Header closeButton>
             <Modal.Title>Report</Modal.Title>
@@ -160,13 +156,13 @@ const Post = ({ post, setCurrentId }) => {
           open={Boolean(anchorEl)}
           onClose={handleClose}
         >
-          <MenuItem> 
           {JSON.parse(localStorage.getItem('user')).type == 'client' ?
             <ReportPopUp />
-            : <Edit />
+            : 
+            <MenuItem> 
+            <Edit />
+            </MenuItem>
           }
-          </MenuItem>
-
         </Menu>
       </div>
       <Typography hidden={true} className={classes.title} variant="h5" gutterBottom>{post.title}</Typography>
@@ -217,16 +213,19 @@ const Post = ({ post, setCurrentId }) => {
           <div className={classes.button}>
             {post.likes ?
               <Button size="small" onClick={() => dispatch(likePost(post._id, JSON.parse(localStorage.getItem('user'))._id))}>
-                <Likes />
+                <Likes/>
               </Button>
               : <> </>
             }
           </div>
           {JSON.parse(localStorage.getItem('user')).type == 'client' ?
             <div className={classes.button}>
-              <PopUpBuckets />
+              <PopUpBuckets/>
             </div>
-            : <Delete />
+            :
+            <div className={classes.button}>
+             <Delete />
+            </div>
           }
         </Container>
       </CardActions>
