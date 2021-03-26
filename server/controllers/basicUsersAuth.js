@@ -153,7 +153,7 @@ export const googleController = (req, res) => {
             });
           } else {
             let password = email + process.env.JWT_SECRET;
-            let username = name.trim(); //implement random number generator later
+            let username = name.replace(/\s/g, "").toLowerCase() + Math.floor(Math.random() * 10000); //implement random number generator later
             user = new User({ username, email, password, name });
             user.save((err, data) => {
               if (err) {
@@ -207,7 +207,7 @@ export const facebookController = (req, res) => {
               user: { _id, email, name, username, type:'client' }
             });
           } else {
-            let username = name.trim();
+            let username = name.replace(/\s/g, "").toLowerCase() + Math.floor(Math.random() * 10000);
             let password = email + process.env.JWT_SECRET;
             user = new User({ username, email, password, name });
             user.save((err, data) => {
