@@ -1,0 +1,33 @@
+.goalsContainer {
+    justify-content: center;
+    text-align: center;
+    min-width: 100px;
+    display: flex;
+}
+
+.goalsEditLink {
+    text-align: right;
+    padding-right: 10px;
+    text-decoration: underline;
+    cursor: pointer;
+    color: #8300FF;
+    font-size: small;
+}
+
+.goalsPageText {
+    margin : 20px;
+    color : white;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    text-align: center;
+    padding: none;
+}
+
+.goalsButton {
+    margin : 5px;
+    padding : 1%;
+    max-width: 200px;
+}
+
+.center {
+    text-align: center; 
+  }
