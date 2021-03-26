@@ -27,6 +27,7 @@ const Posts = ({setCurrentId,updatedPosts,setUpdatedPosts}) => {
     const posts =useSelector((state) => state.posts.filter((post) => newPosts.includes(post._id)));
     const classes = useStyles();
     const dispatch =useDispatch();
+  
     return (
             <Grid className={classes.mainContainer} container spacing={3}> 
                 {posts.map((post) => (
