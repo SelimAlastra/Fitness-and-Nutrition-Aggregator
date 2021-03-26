@@ -251,7 +251,7 @@ export default function NavbarUser({updatedPosts, setUpdatedPosts}) {
           >
             <MenuIcon />
           </IconButton>
-          <Typography onClick={() => window.location.href = `/clientDashboard/${JSON.parse(localStorage.getItem('user'))._id}`} className={classes.title, "logo"} variant="h6" noWrap>
+          <Typography onClick={() => window.location.href = `/clientDashboard/${JSON.parse(localStorage.getItem('user'))._id}`} className={classes.title, "logo"} style = {{"cursor" : "pointer"}} variant="h6" noWrap>
             LOGO
           </Typography>
 

@@ -1,4 +1,4 @@
-import { Card, CardActions, CardContent, CardMedia, Button, Typography, Container, CardHeader, } from '@material-ui/core/';
+import { Card, CardActions, CardContent, CardMedia, Button, Typography, Container, Link } from '@material-ui/core/';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import React, { useState } from 'react';
@@ -22,6 +22,7 @@ import BucketsGrid from '../../Buckets2/BucketsGrid.js';
 import { deletePost, likePost, toggleFavAction, updatePost } from '../../../actions/posts';
 
 
+
 const Post = ({ post, setCurrentId }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
@@ -37,38 +38,23 @@ const Post = ({ post, setCurrentId }) => {
     setAnchorEl(null);
   };
 
-  const handleClose1 = () => {
-    setOpen(false);
-  };
+  require('dotenv').config({ path: '/.env' });
 
-  const handleOpen = () => {
-    /*const arrBuckets[]=openBuckets();*/
-    setOpen(true);
-  };
   const [show2, setShow2] = useState(false);
   const handleClose2 = () => setShow2(false);
   const handleShow = () => setShow2(true);
-
-
-  require('dotenv').config({ path: '/.env' });
-
-  const [show1, setShow1] = useState(false);
-  const handleCloseReport = () => setShow1(false);
-  const handleShowReport = () => setShow1(true);
-
 
   function PopUpBuckets() {
     const postToAdd = {
       postId: post._id
     }
 
-    //console.log(postToAdd);
     return (<> 
   <Button size="small" onClick={() =>handleShow()}
   >
     <FaFolderPlus/>
   </Button> 
-        < Modal className="bucket" className="bucket" show={show2} >
+        < Modal className="bucket" className="bucket" show={show2} onHide={handleClose2}>
           < Modal.Header closeButton > < Modal.Title > Add this post to a bucket </Modal.Title >
           </ Modal.Header >
           < Modal.Body >
@@ -145,7 +131,7 @@ const Post = ({ post, setCurrentId }) => {
   return (
     <Card className={classes.card}>
       <div className={classes.overlay}>
-        <Typography style={{ "color": "black", "fontWeight": "bold" }}>{post.creator}</Typography>
+        <Typography> <Link onClick={() => window.location.href = `/user/professional/profile/${post.userFrom}/${JSON.parse(localStorage.getItem('user'))._id}`} style={{ "color": "black", "fontWeight": "bold", "cursor" : "pointer" }}>{post.creator}</Link></Typography>
         <Typography className={classes.time} style={{ "color": "black" }}>{moment(post.createdAt).fromNow()}</Typography>
       </div>
       <div className={classes.overlay2}>
