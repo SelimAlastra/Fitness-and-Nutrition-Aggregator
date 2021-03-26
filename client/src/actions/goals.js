@@ -1,5 +1,16 @@
 import * as api from '../api';
 
+
+export const createGoal = (goal) => async (dispatch) => {
+    try {
+      const { data } = await api.createGoal(goal);
+  
+      dispatch({ type: "CREATE_GOAL", payload: data });
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
 export const getGoals = () => async (dispatch) => {
     try {
         const { data } = await api.getGoals();

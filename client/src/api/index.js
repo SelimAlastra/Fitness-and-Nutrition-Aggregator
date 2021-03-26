@@ -52,6 +52,8 @@ export const getGoals = () => axios.get(goalUrl);
 export const getGoal = (id) => axios.get(`${goalUrl}/${id}`);
 export const updateGoal= (id, updatedGoal) => axios.patch(`${goalUrl}/${id}`, updatedGoal);
 export const deleteGoal = (id) => axios.delete(`${goalUrl}/${id}`)
+export const createGoal = (newGoal) => API.post('/goals', newGoal);
+
 export const fetchBasicUsers = () => axios.get(basicUserUrl);
 export const createBasicUser = (newUser) => axios.post(basicUserUrl, newUser);
 export const deleteBasicUser = (id) => axios.delete(`${basicUserUrl}/${id}`);
