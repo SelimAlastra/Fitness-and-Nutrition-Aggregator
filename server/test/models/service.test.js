@@ -90,7 +90,10 @@ describe('Service model tests', function() {
           };
         const newService = new Service(serviceBody);
         expect(typeof newService.price).to.equal('string');
-        done();
+        newService.validate(function(error) {
+            expect(error).to.not.exist;
+            done();
+        })
     });
 
     it('should be valid, as description and title are converted to strings', function(done) {
@@ -104,10 +107,9 @@ describe('Service model tests', function() {
           const newService = new Service(serviceBody);
           expect(typeof newService.title).to.equal('string');
           expect(typeof newService.description).to.equal('string');
-          done();
-
+          newService.validate(function(error) {
+            expect(error).to.not.exist;
+            done();
+        })
     });
-
-
-
 });
