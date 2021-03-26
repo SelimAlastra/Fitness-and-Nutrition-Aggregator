@@ -1,6 +1,6 @@
 export default (professional = [], action) => {
     switch (action.type) {
-        case 'FETCH_ALL':
+        case 'FETCH_ALL_PROFESSIONALS':
             return action.payload;
         case 'FETCH_PROFESSIONAL':
             return action.payload;

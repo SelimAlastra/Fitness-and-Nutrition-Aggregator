@@ -6,7 +6,13 @@ import { getPosts, updatePost } from './actions/posts';
 import Posts from './components/Posts/Posts';
 import memories from './images/memories.png';
 import useStyles from './styles';
-//import {filteredPosts} from './components/SearchBar/SearchBar';
+import { getProfessionalUsers } from './actions/professionals';
+import {finalFilteredProfiles} from './components/Navbar/Searchbox';
+import AccountCircle from '@material-ui/icons/AccountCircle';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import ExpandLessIcon from '@material-ui/icons/ExpandLess';
+import { Link } from 'react-router-dom';
+import "./App.css"
 
 const ClientDashboard = () => {
     const [currentId, setCurrentId] = useState(null);
@@ -15,9 +21,32 @@ const ClientDashboard = () => {
     const dispatch = useDispatch();
     useEffect(() => {
       dispatch(getPosts());
+      dispatch(getProfessionalUsers());
       setUpdatedPosts(updatedPosts);
     }, [currentId,dispatch,setUpdatedPosts]);
-    
+
+    // var showConstrained = false;
+
+    const showProfiles = (event) => {
+      var profiles = document.getElementById("profiles-full");
+      var profilesMinimized = document.getElementById("profiles-minimized");
+
+      var expandMore = document.getElementById("ExpandMoreIcon");
+      var expandLess = document.getElementById("ExpandLessIcon");
+
+      if(profiles.style.display === "block"){
+        profiles.style.display = "none";
+        expandLess.style.display = "none";
+        profilesMinimized.style.display = "block";
+        expandMore.style.display = "block";
+      } else {
+        profiles.style.display = "block";
+        expandLess.style.display = "block";
+        profilesMinimized.style.display = "none";
+        expandMore.style.display = "none";
+      }
+    };
+
 return (
   <>
   <NavbarUser updatedPosts={updatedPosts} setUpdatedPosts={setUpdatedPosts}/>
@@ -26,6 +55,35 @@ return (
       <Typography className={classes.heading} variant="h2" align="center">Dashboard</Typography>
      <img className={classes.image} src={memories} alt="memories" height="60" />
     </AppBar>
+
+    { finalFilteredProfiles !== [] ? (
+      finalFilteredProfiles.length < 6 ? (
+        <div class="profile-search">
+          {finalFilteredProfiles.map((profile) => (
+            <button class="profile-button"  onClick={() => window.location.href = `/user/professional/profile/${profile._id}/${JSON.parse(localStorage.getItem('user'))._id}`}><AccountCircle/>{profile.name}</button>
+          ))}
+        </div>
+        ) : (
+          <>
+          {/* view profiles in full */}
+          <div id="profiles-full" class="profile-search-full">
+            {finalFilteredProfiles.map((profile) => (
+              <button class="profile-button" onClick={() => window.location.href = `/user/professional/profile/${profile._id}/${JSON.parse(localStorage.getItem('user'))._id}`}><AccountCircle/>{profile.name}</button>
+            ))}
+          </div>
+
+          {/* view profiles minimized: only the first 6 profiles */}
+          <div id="profiles-minimized" class="profile-search-minimized">
+            {finalFilteredProfiles.slice(0, 6).map((profile) => (
+              <button class="profile-button" onClick={() => window.location.href = `/user/professional/profile/${profile._id}/${JSON.parse(localStorage.getItem('user'))._id}`}><AccountCircle/>{profile.name}</button>
+            ))}
+          </div>
+
+          <ExpandMoreIcon id="ExpandMoreIcon" onClick={showProfiles} class="profile-expand-button" />
+          <ExpandLessIcon id="ExpandLessIcon" onClick={showProfiles} class="profile-expand-button" />
+          </>
+      )) : (<div></div>)
+    }
 
     <Grow in>
         <Container>
@@ -41,6 +99,5 @@ return (
   </>
   );
 }
-
 
 export default ClientDashboard;

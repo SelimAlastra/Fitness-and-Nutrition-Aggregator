@@ -1,22 +1,23 @@
 import React, { Component } from 'react';
 import Question from './components/question';
 import Answer from './components/answer';
-import Test from './testPage';
 import './styling/quizUser.css';
 
 import {questions,questionsReqInput,questionsMultipleChoices} from './resources/clientQuestions';
+// import {questions,questionsReqInput,questionsMultipleChoices} from './resources/clientQuestions';
+// <Quiz questions={questions} questionsReqInput={questionsReqInput} questionsMultipleChoices={questionsMultipleChoices}>
 
 var associatedTags = [];
 
 export default class Quiz extends Component{
 
     state = {
-        questions: questions,
+        questions: /*this.props.*/questions,
 
         // identify questions that require input for all selections by adding their ID in this array
-        questionsReqInput: questionsReqInput,
+        questionsReqInput: /*this.props.*/questionsReqInput,
         // identify questions that accept multiple selections by adding their ID in this array
-        questionsMultipleChoices: questionsMultipleChoices,
+        questionsMultipleChoices: /*this.props.*/questionsMultipleChoices,
 
         currentQuestion: 0,
         complete: false
@@ -149,8 +150,17 @@ export default class Quiz extends Component{
      */
     addInput = (input) => {
         const{questions, currentQuestion} = this.state;
-        questions[currentQuestion].input.push(document.getElementById("inputBox").value);
+        questions[currentQuestion].input.push(input);
         console.log(questions[currentQuestion].input[0]);
+    }
+
+    /**
+     * 
+     */
+    addIndividualInput = (answer, input) => {
+        answer.input.push(input);
+        console.log("input: " + input);
+        console.log("answer input: " + answer.input[0]);
     }
 
     /**
@@ -159,6 +169,7 @@ export default class Quiz extends Component{
      */
     processInput = () => {
         const{questions, currentQuestion, questionsReqInput} = this.state;
+        const answers = questions[currentQuestion].answerOptions;
 
         //check for question that requires input
         if(questionsReqInput.find(element => element === questions[currentQuestion].questionId)){
@@ -174,6 +185,17 @@ export default class Quiz extends Component{
                 }
             }
         }
+
+        answers.forEach(answer => {
+            if(answer.requireInput === true){
+                if(!answer.input || !answer.input.length){
+                    this.addIndividualInput(answer, document.getElementById("inputBox").value);
+                } else {
+                    answer.input.pop();
+                    this.addIndividualInput(answer, document.getElementById("inputBox").value);
+                }
+            }
+        });
     }
 
     /**
@@ -280,12 +302,7 @@ export default class Quiz extends Component{
             
             <div className="quizz"> 
                 { complete ? (
-                    <Test 
-                        //
-                        questions = {questions}
-                        questionsReqInput = {questionsReqInput}
-                        tags = {associatedTags}
-                    />
+                    <div></div>
                 ) : ( 
                         <div className="basic-wrap">
                             <div className="question-section">

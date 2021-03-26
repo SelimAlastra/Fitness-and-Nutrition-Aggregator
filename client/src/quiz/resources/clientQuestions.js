@@ -42,9 +42,8 @@ const questions = [
             { answerText: "Athletic, with a high metabolism", selected:false, tags:["athletic", "mesomorph"], requireInput: false },
             { answerText: "Soft and with a tendency to store body fat", selected:false, tags:["endomorph", "fatloss"], requireInput: false },
             { answerText: "Average", selected:false, tags:["average"], requireInput: false },
-            { answerText: "Other:", selected:false, tags:[""], requireInput: true, placeholder: "e.g.: Fragile", alert: ["Answer using letters only."] }
+            { answerText: "Other:", selected:false, tags:[""], requireInput: true, placeholder: "e.g.: Fragile", alert: ["Answer using letters only."], input: [] }
         ],
-        // input:[]
     },{
         questionText: "Which best describes your current activity level?",
         questionId: 6,
@@ -62,7 +61,7 @@ const questions = [
             { answerText: "I snack a little too much", selected:false, tags:["dietplan", "nutrition", "fatloss"], requireInput: false },
             { answerText: "avoid highly processed snacks, but enjoy cheat days", selected:false, tags:["healthylifestyle"], requireInput: false },
             { answerText: "healthy and balanced diet", selected:false, tags:["healthylifestyle"], requireInput: false },
-            { answerText: "Other:", selected: false, tags:[""], requireInput: true, placeholder: "e.g.: Vegetarian", alert: ["Answer using letters only."] }
+            { answerText: "Other:", selected: false, tags:[""], requireInput: true, placeholder: "e.g.: Vegetarian", alert: ["Answer using letters only."], input: [] }
         ],
         // input:[]
     },{

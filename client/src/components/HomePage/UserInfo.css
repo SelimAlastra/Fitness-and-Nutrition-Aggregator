@@ -1,0 +1,10 @@
+.homePageProfileInfo {
+    text-align: center;
+    margin: none;
+}
+
+.homePageClientName {
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    color: whitesmoke;
+    padding: 20px;
+}

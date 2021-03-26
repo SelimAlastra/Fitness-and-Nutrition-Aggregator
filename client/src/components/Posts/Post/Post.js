@@ -26,7 +26,7 @@ const Post = ({ post, setCurrentId }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const [anchorEl, setAnchorEl] = React.useState(null);
-  //const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = React.useState(false);
   const user = JSON.parse(localStorage.getItem('user'));
 
   const handleClick = (event) => {
@@ -37,47 +37,54 @@ const Post = ({ post, setCurrentId }) => {
     setAnchorEl(null);
   };
 
+  const handleClose1 = () => {
+    setOpen(false);
+  };
+
+  const handleOpen = () => {
+    /*const arrBuckets[]=openBuckets();*/
+    setOpen(true);
+  };
+  const [show2, setShow2] = useState(false);
+  const handleClose2 = () => setShow2(false);
+  const handleShow = () => setShow2(true);
+
 
   require('dotenv').config({ path: '/.env' });
 
+  const [show1, setShow1] = useState(false);
+  const handleCloseReport = () => setShow1(false);
+  const handleShowReport = () => setShow1(true);
 
-function PopUpBuckets() {
-  const [show, setShow] = useState(false);
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
 
-  const postToAdd = {
-    postId: post._id
-  }
+  function PopUpBuckets() {
+    const postToAdd = {
+      postId: post._id
+    }
 
-  return (
-  <> 
-  <Button size="small"
-    onClick={handleShow}>
+    //console.log(postToAdd);
+    return (<> 
+  <Button size="small" onClick={() =>handleShow()}
+  >
     <FaFolderPlus/>
-  </Button>
-  <div className="modal-dialog">
-    <Modal shouldCloseOnOverlayClick={false} className="bucket" show={show} onHide={handleClose}>
-      <Modal.Header closeButton > 
-        <Modal.Title> Add this post to a bucket </Modal.Title >
-      </Modal.Header>
-        <Modal.Body>
-          <BucketsGrid postToAdd={postToAdd}/>
-        </Modal.Body>
-      <Modal.Footer>
-        <Buckets2/>
-      </Modal.Footer>
-    </Modal> 
-  </div> 
-  </>
-  );
-};
+  </Button> 
+        < Modal className="bucket" className="bucket" show={show2} >
+          < Modal.Header closeButton > < Modal.Title > Add this post to a bucket </Modal.Title >
+          </ Modal.Header >
+          < Modal.Body >
+            < BucketsGrid postToAdd={postToAdd} />
+          </Modal.Body>
+          < Modal.Footer >
+            < Buckets2 />
+          </Modal.Footer>
+        </ Modal > </>);
+  };
 
 
   const ReportPopUp = () => {
-    const [show, setShow] = useState(false);
-    const handleCloseReport = () => setShow(false);
-    const handleShowReport = () => setShow(true);
+    const [show1, setShow1] = useState(false);
+    const handleCloseReport = () => setShow1(false);
+    const handleShowReport = () => setShow1(true);
     const reportData = {
       reporterUsername: user.username,
       reportedUsername: post.creator,
@@ -87,8 +94,8 @@ function PopUpBuckets() {
 
     return (
       <>
-        <MenuItem size="small" onClick={handleShowReport}> Report </MenuItem>
-        <Modal show={show} onHide={handleCloseReport}>
+        <MenuItem size="small" onClick={() => handleShowReport()}> Report </MenuItem>
+        <Modal show={show1} onHide={handleCloseReport}>
           <Modal.Header closeButton>
             <Modal.Title>Report</Modal.Title>
           </Modal.Header>
@@ -157,11 +164,8 @@ function PopUpBuckets() {
           onClose={handleClose}
         >
           {JSON.parse(localStorage.getItem('user')).type == 'client' ?
-            <ReportPopUp />
-            : 
-            <MenuItem> 
-            <Edit />
-            </MenuItem>
+            <ReportPopUp/>
+            : <Edit />
           }
         </Menu>
       </div>
@@ -219,13 +223,9 @@ function PopUpBuckets() {
             }
           </div>
           {JSON.parse(localStorage.getItem('user')).type == 'client' ?
-            <div className={classes.button}>
-              <PopUpBuckets/>
-            </div>
-            :
-            <div className={classes.button}>
-             <Delete />
-            </div>
+             <PopUpBuckets />
+
+            : <Delete />
           }
         </Container>
       </CardActions>
