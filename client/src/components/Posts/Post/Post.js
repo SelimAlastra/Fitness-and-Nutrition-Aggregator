@@ -2,27 +2,22 @@ import { Card, CardActions, CardContent, CardMedia, Button, Typography, Containe
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import React, { useState } from 'react';
-import ThumbUpAltIcon from '@material-ui/icons/ThumbUpAlt';
 import DeleteIcon from '@material-ui/icons/Delete';
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 import moment from 'moment';
 import { useDispatch } from 'react-redux';
 import useStyles from './styles';
-import Bucket from '../../Buckets/Bucket/Bucket';
-import Buckets from '../../Buckets/Buckets';
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
-import InputLabel from "@material-ui/core/InputLabel";
-import FormControl from "@material-ui/core/FormControl";
-import Select from "@material-ui/core/Select";
 import Videos from '../Videos/Videos';
 import Buckets2 from "../../Buckets2/BucketModal";
-import ThumbUpAltOutlined from '@material-ui/icons/ThumbUpAltOutlined';
 import ReportForm from "../../Reports/ReportForm"
 import Modal from 'react-bootstrap/Modal';
 import Audio from '../Audio/Audio';
 import EmbeddedLinks from '../EmbeddedLinks/EmbeddedLinks';
 import FacebookLinks from '../FacebookLinks/FacebookLinks';
+import { FaFolderPlus } from "react-icons/fa";
+import BucketsGrid from '../../Buckets2/BucketsGrid.js';
 
 import { deletePost, likePost, toggleFavAction, updatePost } from '../../../actions/posts';
 
@@ -56,6 +51,34 @@ const Post = ({ post, setCurrentId }) => {
   const [show, setShow] = useState(false);
   const handleCloseReport = () => setShow(false);
   const handleShowReport = () => setShow(true);
+
+
+  function PopUpBuckets() {
+    const [show, setShow] = useState(false);
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+
+    const postToAdd = {
+      postId: post._id
+    }
+
+    //console.log(postToAdd);
+    return (<> <Button size="small"
+      onClick={handleShow} >
+      < FaFolderPlus />
+    </Button>
+      < div className="modal-dialog" >
+        < Modal className="bucket" show={show} onHide={handleClose} >
+          < Modal.Header closeButton > < Modal.Title > Add this post to a bucket </Modal.Title >
+          </ Modal.Header >
+          < Modal.Body >
+            < BucketsGrid postToAdd={postToAdd} />
+          </Modal.Body>
+          < Modal.Footer >
+            < Buckets2 />
+          </Modal.Footer>
+        </ Modal > </div> </>);
+  };
 
 
   const ReportPopUp = () => {
@@ -193,7 +216,7 @@ const Post = ({ post, setCurrentId }) => {
         <Container className={classes.buttons}>
           <div className={classes.button}>
             {post.likes ?
-              <Button size="small" color="primary" onClick={() => dispatch(likePost(post._id, JSON.parse(localStorage.getItem('user'))._id))}>
+              <Button size="small" onClick={() => dispatch(likePost(post._id, JSON.parse(localStorage.getItem('user'))._id))}>
                 <Likes />
               </Button>
               : <> </>
@@ -201,7 +224,7 @@ const Post = ({ post, setCurrentId }) => {
           </div>
           {JSON.parse(localStorage.getItem('user')).type == 'client' ?
             <div className={classes.button}>
-              <Buckets2 />
+              <PopUpBuckets />
             </div>
             : <Delete />
           }

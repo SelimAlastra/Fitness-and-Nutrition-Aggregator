@@ -85,3 +85,18 @@ export const toggleFavAction = async  (req, res) =>{
       .then(post => res.json(post))
       .catch(err => res.status(400).json('Error: Cannot find this post' + err));
   };
+
+  export const getPostsFromArray = async  (req, res) =>{
+    const { id } = req.params;
+
+    try { 
+        const bucket = await Bucket.findById(id);
+        const postIds = bucket.postsId;
+        const allPosts = await PostMessage.find();
+        const bucketPosts = allPosts.filter(p => postIds.includes(p._id));
+
+        res.status(200).json(bucketPosts);
+    } catch (error) {
+        res.status(404).json({ message: error.message });
+    }
+  };

@@ -38,7 +38,10 @@ const basicUserSchema = new Schema({
 
   resetPasswordLink :{type: String, default: '', required: false},
 
-  bundles: [{type: String, required: true}]
+  bundles: [{type: String, required: true}],
+
+  buckets: [{type: String, required: true}]
+
 
 }, {
   timestamps: true,
