@@ -6,14 +6,10 @@ import { createBucket } from '../../actions/buckets';
 import * as Yup from "yup";
 import { getBasicUser, updateBasicUser} from '../../actions/basicUsers';
 
-const FormBucket = ({ currentBucketId, setCurrentBucketId }) => {
+const FormBucket = () => {
     const [postData, setPostData] = useState({ title: '' });
-    const bucket = useSelector((state) => currentBucketId ? state.buckets.find((p) => p._id === currentBucketId) : null);
-    const buckets = useSelector((state) => state.buckets);
-    let bucketArray = [];
     const dispatch = useDispatch();
     const userId = JSON.parse(localStorage.getItem('user'))._id;
-    console.log(bucket);
 
     const handleSubmit = (e) => {
         e.preventDefault();
