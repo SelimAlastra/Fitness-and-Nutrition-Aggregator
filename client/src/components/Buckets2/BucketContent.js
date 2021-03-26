@@ -5,7 +5,7 @@ import { getPostsFromArray } from "../../actions/posts";
 import { useParams } from "react-router-dom";
 import Post from "../Posts/Post/Post";
 import { getBucket, removeFromBucket, updateBucket } from '../../actions/buckets';
-import Navbar from '../Navbar/Navbar';
+import NavbarUser from '../Navbar/NavbarUser';
 
 const BucketView = () => {
 
@@ -40,7 +40,7 @@ const BucketView = () => {
     if ((posts === undefined || posts.length === 0) && !loading) {
         return (
             <>
-            <Navbar/>
+            <NavbarUser/>
             <div>
                 You have no posts.
             </div>
@@ -50,11 +50,12 @@ const BucketView = () => {
     else {
         return(
             <>
-            <Navbar/>
+            <NavbarUser/>
+            <h1>{bucket.title}</h1>
             {posts.map((post)=> (
                 <ListGroup>
                  <Post post={post} />
-                 <Button onClick = {() => (removeFromBucket(post._id))}>Delete</Button>
+                 <Button onClick = {() => (removeFromBucket(post._id))}>Remove</Button>
                 </ListGroup>
             ))}
             </> 
