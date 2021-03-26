@@ -12,16 +12,13 @@ const Buckets = (post) => {
     const [currentBucketId, setCurrentBucketId] = useState(null);
     const dispatch = useDispatch();
 
-    useEffect(() => {
-        dispatch(getBuckets());
-    }, [currentBucketId, dispatch]);
-
     const user = JSON.parse(localStorage.getItem('user'));
 
     const myBuckets = useSelector((state) => user._id ? state.buckets.filter((b) => b.userId === user._id) : null);
 
     const addToBucket = (postId, bucketId) => {
         const bucket = myBuckets.find((bucket) => bucket._id === bucketId);
+        console.log('as;ldm');
         if (bucket.postsId.indexOf(postId) === -1) {
             bucket.postsId.push(postId);
             dispatch(updateBucket(bucket._id, bucket));

@@ -11,6 +11,7 @@ import {finalFilteredProfiles} from './components/Navbar/Searchbox';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import ExpandLessIcon from '@material-ui/icons/ExpandLess';
+import { getBuckets } from "./actions/buckets";
 import { Link } from 'react-router-dom';
 import "./App.css"
 
@@ -23,7 +24,8 @@ const ClientDashboard = () => {
       dispatch(getPosts());
       dispatch(getProfessionalUsers());
       setUpdatedPosts(updatedPosts);
-    }, [currentId,dispatch,setUpdatedPosts]);
+      dispatch(getBuckets());
+    }, [dispatch]);
 
     // var showConstrained = false;
 

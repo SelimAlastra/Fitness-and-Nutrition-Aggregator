@@ -15,14 +15,6 @@ const FormBucket = ({ currentBucketId, setCurrentBucketId }) => {
     const userId = JSON.parse(localStorage.getItem('user'))._id;
     console.log(bucket);
 
-    useEffect(() => {
-        dispatch(getBasicUser(userId));
-    }, [userId]);
-
-    useEffect(() => {
-        if (bucket) setPostData(bucket);
-    }, [bucket]);
-
     const handleSubmit = (e) => {
         e.preventDefault();
         const newData = {
