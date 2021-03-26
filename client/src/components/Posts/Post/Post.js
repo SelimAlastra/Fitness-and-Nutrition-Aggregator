@@ -26,7 +26,7 @@ const Post = ({ post, setCurrentId }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const [anchorEl, setAnchorEl] = React.useState(null);
-  //const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = React.useState(false);
   const user = JSON.parse(localStorage.getItem('user'));
 
   const handleClick = (event) => {
