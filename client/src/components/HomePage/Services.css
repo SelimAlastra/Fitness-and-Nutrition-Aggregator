@@ -1,0 +1,24 @@
+.homePageServicecontainer {
+    justify-content: center;
+    text-align: center;
+    min-width: 100px;
+    display: flex;
+    margin : 20px;
+}
+
+.homePageEditLink {
+    text-align: right;
+    padding-right: 10px;
+    text-decoration: underline;
+    cursor: pointer;
+    color: #BBA78C;
+    font-size: small;
+}
+
+.servicesText {
+    margin : 20px;
+    color : white;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    text-align: center;
+    padding: none;
+}

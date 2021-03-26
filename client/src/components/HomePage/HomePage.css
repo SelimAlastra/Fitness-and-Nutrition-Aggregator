@@ -1,0 +1,32 @@
+.homepage{
+    padding: 1%;
+    background-color: #282c34;
+    min-width: 1100px;
+}
+
+.homePagesection {
+    border-radius: 10px;
+    padding: 1%;
+
+    max-width: 800px;
+    margin: auto;
+    text-align: center;
+    font-family: arial;
+    justify-content: center;
+    background-color: transparent;
+    margin-bottom: 1%;
+}
+
+.homePageAlert{
+    color : white;
+    font-size: 40px;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    text-align: center;
+    padding-top: 60px;
+}
+
+.GoalsImage{
+    width: 850px;
+    border-radius: 5%;
+    margin: 30px;
+}
