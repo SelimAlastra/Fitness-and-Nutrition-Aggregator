@@ -45,30 +45,30 @@ const Post = ({ post, setCurrentId }) => {
     /*const arrBuckets[]=openBuckets();*/
     setOpen(true);
   };
+  const [show2, setShow2] = useState(false);
+  const handleClose2 = () => setShow2(false);
+  const handleShow = () => setShow2(true);
+
 
   require('dotenv').config({ path: '/.env' });
 
-  const [show, setShow] = useState(false);
-  const handleCloseReport = () => setShow(false);
-  const handleShowReport = () => setShow(true);
+  const [show1, setShow1] = useState(false);
+  const handleCloseReport = () => setShow1(false);
+  const handleShowReport = () => setShow1(true);
 
 
   function PopUpBuckets() {
-    const [show, setShow] = useState(false);
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
-
     const postToAdd = {
       postId: post._id
     }
 
     //console.log(postToAdd);
-    return (<> <Button size="small"
-      onClick={handleShow} >
-      < FaFolderPlus />
-    </Button>
-      < div className="modal-dialog" >
-        < Modal className="bucket" show={show} onHide={handleClose} >
+    return (<> 
+  <Button size="small" onClick={() =>handleShow()}
+  >
+    <FaFolderPlus/>
+  </Button> 
+        < Modal className="bucket" className="bucket" show={show2} >
           < Modal.Header closeButton > < Modal.Title > Add this post to a bucket </Modal.Title >
           </ Modal.Header >
           < Modal.Body >
@@ -77,7 +77,7 @@ const Post = ({ post, setCurrentId }) => {
           < Modal.Footer >
             < Buckets2 />
           </Modal.Footer>
-        </ Modal > </div> </>);
+        </ Modal > </>);
   };
 
 
@@ -92,7 +92,7 @@ const Post = ({ post, setCurrentId }) => {
     return (
       <>
         <MenuItem size="small" onClick={() => handleShowReport()}> Report </MenuItem>
-        <Modal show={show} onHide={handleCloseReport}>
+        <Modal show={show1} onHide={handleCloseReport}>
           <Modal.Header closeButton>
             <Modal.Title>Report</Modal.Title>
           </Modal.Header>
@@ -162,7 +162,7 @@ const Post = ({ post, setCurrentId }) => {
         >
           <MenuItem> 
           {JSON.parse(localStorage.getItem('user')).type == 'client' ?
-            <ReportPopUp />
+            <ReportPopUp/>
             : <Edit />
           }
           </MenuItem>
@@ -223,9 +223,8 @@ const Post = ({ post, setCurrentId }) => {
             }
           </div>
           {JSON.parse(localStorage.getItem('user')).type == 'client' ?
-            <div className={classes.button}>
-              <PopUpBuckets />
-            </div>
+             <PopUpBuckets />
+
             : <Delete />
           }
         </Container>
