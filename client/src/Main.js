@@ -10,6 +10,7 @@ import Tags from './quiz/tagsProffesional.js';
 import UserPage from './ClientLoginRegister';
 import ForgetPassword from './components/BasicUsersAuth/forgetPassword.jsx';
 import ResetPassword from './components/BasicUsersAuth/resetPassword.jsx';
+import NavbarUser from './components/Navbar/NavbarUser.js';
 
 import ProfPage from './ProfessionalLoginRegister'
 import ProfForgetPassword from './components/ProfessionalUsersAuth/forgetPassword.jsx';
@@ -19,11 +20,11 @@ import BucketPage from "./components/Buckets2/BucketsPage";
 import BucketContent from "./components/Buckets2/BucketContent";
 import ClientProfile from "./components/ClientProfile/ClientProfile";
 import EditProfessionalDetails from "./components/ProfessionalProfile/EditDetails/EditProfessionalDetails";
-import EditServices from "./components/ProfessionalProfile/EditServices/EditServices";
+import EditServices from "./components/Services/EditServices/EditServices";
 import ProfessionalProfile from './components/ProfessionalProfile/ProfessionalProfile';
 import EditBasicUser from './components/EditBasicUser/EditBasicUser';
-import MyServices from './components/MyServices/MyServices';
-import AddService from './components/ProfessionalProfile/EditServices/AddService';
+import MyServices from './components/Services/MyServices/MyServices';
+import AddService from './components/Services/EditServices/AddService';
 
 import Reports from './components/Reports/Reports'
 import ReportView from './components/Reports/Report/ReportView'
@@ -37,6 +38,7 @@ import ProfessionalUserEdit from "./components/ProfessionalUsers/ProfessionalUse
 import ProfessionalUserDetails from "./components/ProfessionalUsers/ProfessionalUser/ProfessionalUserDetails";
 import AdminNavigationBar from "./AdminNavigationBar";
 import PrivateRoute from "./PrivateRoute";
+import Wrapper from "./Wrapper";
 
 const Main = () => (
     <>
@@ -47,22 +49,23 @@ const Main = () => (
     <Switch>
         <Route exact path='/' component={LandingPage}/>
         <Route exact path='/admin' component={AdminLogin}/>
-        <Route exact path='/clientDashboard/:id' component={ClientDashboard}/>
-        <Route exact path='/professionalDashboard/:id' component={ProfessionalDashboard}/>
+  
+        <PrivateRoute exact path='/clientDashboard/:id' component={Wrapper} componentToRender={ClientDashboard} userType={'client'}/>
+        <PrivateRoute exact path='/professionalDashboard/:id' component={ProfessionalDashboard} userType={'professional'}/>
+  
         <Route exact path='/user/myBuckets/:id' component={BucketPage}></Route>
         <Route exact path='/user/myBuckets/:id/:title' component={BucketContent}></Route>
+  
         <Route exact path='/launch/users' exact render={props => <UserPage {...props} />} /> 
 
         <Route exact path='/launch/professionals' exact render={props => <ProfPage {...props} />} />
         <Route exact path='/userQuiz/:id' component={Quiz}/>
         <Route exact path='/professionalTags/:id' component={Tags}/>
-                {/* this is for testing */}
-                {/* <Route exact path="/professional/profile/:id" render={props => <ProfessionalProfile {...props} isProfessional={false} basicUserID="6044e87ba64dcf1f659df72a"/>}></Route> */}
-                {/* <Route exact path="/professional/profile/:id" render={props => <ProfessionalProfile {...props} isProfessional={false} basicUserID="6044e87ba64dcf1f659df72a"/>}></Route> */}
-        <Route exact path="/professional/profile/:id" render={props => <ProfessionalProfile {...props} isProfessional={true} />}></Route>
+        <Route exact path="/professional/profile/:professionalID" render={props => <ProfessionalProfile {...props} isProfessional={true} />}></Route>
+        <Route exact path="/user/professional/profile/:professionalID/:clientID" render={props => <ProfessionalProfile {...props} isProfessional={false} />}></Route>
 
                 
-        <Route exact path="/professional/edit/:id" component={EditProfessionalDetails}></Route>
+        <PrivateRoute exact path="/professional/edit/:id" component={Wrapper} componentToRender={EditProfessionalDetails} userType={'professional'}/>
         <Route exact path='/user/password/forget' exact render={props => <ForgetPassword {...props} />} />
         <Route exact path='/user/password/reset/:token' exact render={props => <ResetPassword {...props} />} />
 
@@ -70,13 +73,13 @@ const Main = () => (
         <Route exact path='/professional/password/reset/:token' exact render={props => <ProfResetPassword {...props} />} />
 
         <Route exact path="/user/profile/:id" component={ClientProfile}/>
-        <Route exact path="/user/edit/:id" component={EditBasicUser}/>
-        <Route exact path="/user/myservices/:id" component={MyServices}/>
+        <PrivateRoute exact path="/user/edit/:id" component={Wrapper} componentToRender={EditBasicUser} userType={'client'}/>
+        <PrivateRoute exact path="/user/myservices/:id" component={Wrapper} componentToRender={MyServices} userType={'client'}/>
 
         {/*<Route exact path="/professional/profile/:id" component={ProfessionalProfile}/>*/}
         {/*<Route exact path="/professional/profile/edit/:id" component={EditProfessionalDetails}/>*/}
-        <Route exact path="/professional/services/edit/:id" component={EditServices}/>
-        <Route exact path="/professional/services/add/:id" component={AddService}/>
+        <PrivateRoute exact path="/professional/services/edit/:id" component={Wrapper} componentToRender={EditServices} userType={'professional'}/>
+        <PrivateRoute exact path="/professional/services/add/:id" component={Wrapper} componentToRender={AddService} userType={'professional'}/>
 
         <PrivateRoute exact path='/admin/basicUsers' component={BasicUsers} userType={'admin'}/>
         <PrivateRoute exact path='/admin/basicUsers/:id' component={BasicUserDetails} userType={'admin'}/>

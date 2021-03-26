@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Grid, CircularProgress, GridList, Button } from '@material-ui/core';
 import { useSelector } from 'react-redux';
-import Navbar from '../Navbar/Navbar';
+import NavbarUser from "../Navbar/NavbarUser";
+
 import BucketContent from './BucketContent';
 import Bucket from './Bucket';
 import { Container, ListGroup, Row, Col } from 'react-bootstrap';
@@ -13,6 +14,25 @@ const Buckets = () => {
     const user = JSON.parse(localStorage.getItem('user'));
     const myBuckets = useSelector((state) => user._id ? state.buckets.filter((b) => b.userId === user._id) : null);
 
+    return (
+        <div>
+        <NavbarUser/>
+            <div class="container">
+                <div class="row">
+                    {buckets.map((bucket) => (
+                        <Col xs={6} md={4}>
+                        <div class="card">
+                            <Bucket bucket={bucket} setCurrentBucketId={setCurrentBucketId} />
+                        </div>
+                        </Col>
+                    ))}
+                </div>
+            </div>
+        </div>
+    );
+}
+
+const BucketPage = () => {
     const [currentBucketId, setCurrentBucketId] = useState(null);
     const dispatch = useDispatch();
 
@@ -30,7 +50,6 @@ const Buckets = () => {
     else {
         return (
             <div>
-                <Navbar />
                 <div class="container">
                     <div class="row">
                         {myBuckets.map((bucket) => (
