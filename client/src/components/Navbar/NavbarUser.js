@@ -186,7 +186,7 @@ export default function NavbarUser({updatedPosts, setUpdatedPosts}) {
       onClose={handleMobileMenuClose}
     >
       <MenuItem>
-        <IconButton onClick={() => window.location.href = `/clientDashboard/${JSON.parse(localStorage.getItem('user'))._id}`} > 
+        <IconButton onClick={() => window.location.href = `/homePage/${JSON.parse(localStorage.getItem('user'))._id}`} > 
           <div>
             <HomeIcon/> 
             <text style={{fontSize:"1.2rem"}}>Home</text>
@@ -268,7 +268,7 @@ export default function NavbarUser({updatedPosts, setUpdatedPosts}) {
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
             <IconButton 
-              onClick={() => window.location.href = `/clientDashboard/${JSON.parse(localStorage.getItem('user'))._id}`}
+              onClick={() => window.location.href = `/homePage/${JSON.parse(localStorage.getItem('user'))._id}`}
               style={{width: '50px'}} 
               color="inherit">
               <HomeIcon className={classes.iconButton} />

@@ -6,7 +6,7 @@ import ClientDashboard from './ClientDashboard';
 import ProfessionalDashboard from './ProfessionalDashboard';
 import Quiz from './quiz/quizUser.js';
 // import Tags from './quiz/tagsProffesional.js';
-import Tags from './quiz/tagsProffesional.js';
+
 import HomePage from './components/HomePage/HomePage';
 import EditGoals from './components/HomePage/EditGoals';
 
