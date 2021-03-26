@@ -4,7 +4,8 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector  } from 'react-redux';
 import "../../EditFormsStyles.css";
 import { updateProfessional, getProfessional } from '../../../actions/professionals';
-import ProfessionalNavbar from '../../Navbar/ProfessionalNavbar';
+import NavbarProfessional from "../../Navbar/NavbarProfessional";
+
 
 const EditProfessionalDetails = (props) => {
     const dispatch = useDispatch();
@@ -48,9 +49,9 @@ const EditProfessionalDetails = (props) => {
     }, [professional]);
 
     function handleSubmit(event) {
+        event.preventDefault();
         const editForm = event.currentTarget;
         if (editForm.checkValidity()) {
-            event.preventDefault();
             const updatedProfile = {
                 name: name,
                 username: username,
@@ -68,18 +69,16 @@ const EditProfessionalDetails = (props) => {
             }
             setValidated(true);
             dispatch(updateProfessional(ID, updatedProfile));
-            console.log("Done");
             window.alert("Details Saved!");
-            window.location.href = `/professional/profile/${ID}`
+            //window.location.href = `/professional/profile/${ID}`
         } else {
-            event.preventDefault();
             event.stopPropagation();
         }
     }
 
     return (
         <div>
-            <ProfessionalNavbar />
+            <NavbarProfessional />
             <div className="formContainer">
                 <h2 className="title">Edit Details</h2>
                 <hr className="seperator"/>
@@ -125,7 +124,6 @@ const EditProfessionalDetails = (props) => {
                                 value={address} 
                                 placeholder="Address" 
                                 onChange={(e) => setAddress(e.target.value)} 
-                                required
                             />
                         </Form.Group>
                         
@@ -151,7 +149,6 @@ const EditProfessionalDetails = (props) => {
                                 value={gender} 
                                 placeholder="Gender" 
                                 onChange={(e) => setGender(e.target.value)} 
-                                required
                             >
                                 <option>Male</option> 
                                 <option>Female</option> 

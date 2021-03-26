@@ -4,114 +4,48 @@ import Answer from './components/answer';
 import Test from './testPage';
 import './styling/quizUser.css';
 
-//const history = useHistory();
+import {questions,questionsReqInput,questionsMultipleChoices} from './resources/clientQuestions';
+
+var associatedTags = [];
 
 export default class Quiz extends Component{
 
     state = {
-        questions: [
-            {
-                questionText: "Are you a woman or a man?",
-                questionId: 1,
-                answerOptions: [
-                    { answerText: "Woman", selected:false },
-                    { answerText: "Man", selected:false },
-                ],
-            },{
-                questionText: "What is your age range?",
-                questionId: 2,
-                answerOptions: [
-                    { answerText: "Teens", selected:false },
-                    { answerText: "20's", selected:false },
-                    { answerText: "30's", selected:false },
-                    { answerText: "40's", selected:false },
-                    { answerText: "50's", selected:false },
-                    { answerText: "60+", selected:false },
-                ],
-            },{
-                questionText: "What is your height?",
-                questionId: 3,
-                answerOptions: [
-                    { answerText: "metric", selected:true  },
-                    { answerText: "imperial", selected:false },
-                ],
-                input:[], placeholder: ["cm", "feet, inches"], alert: ["e.g.: 177", "e.g.: 5 8"]
-            },{
-                questionText: "What is your weight?",
-                questionId: 4,
-                answerOptions: [
-                    { answerText: "Kilograms(kg)", selected:true },
-                    { answerText: "Pounds(lb)", selected:false },
-                ],
-                input:[], placeholder: ["kg","lb"],
-            },{
-                questionText: "What best describes your body?",
-                questionId: 5,
-                answerOptions: [
-                    { answerText: "Lean and long, finding it hard to gain muscle mass", selected:false },
-                    { answerText: "Athletic, with a high metabolism", selected:false },
-                    { answerText: "Soft and round body, with a tendency to store body fat", selected:false },
-                ],
-            },{
-                questionText: "Which best describes your current activity level?",
-                questionId: 6,
-                answerOptions: [
-                    { answerText: "stationary job and minimum physical activity", selected:false },
-                    { answerText: "generally active, but not fitness related", selected:false },
-                    { answerText: "exercise 2-4 times/week", selected:false },
-                    { answerText: "sweat it out on a daily basis", selected:false },
-                ],
-            },{
-                questionText: "Which best describes your current diet?",
-                questionId: 7,
-                answerOptions: [
-                    { answerText: "can't seem to find my appetite", selected:false },
-                    { answerText: "I snack a little too much", selected:false },
-                    { answerText: "avoid highly processed snacks, but enjoy cheat days", selected:false },
-                    { answerText: "healthy and balanced diet", selected:false },
-                ],
-            },{
-                questionText: "What's your primary fitness goal?",
-                questionId: 8,
-                answerOptions: [
-                    { answerText: "lose fat", selected:false },
-                    { answerText: "look great at the beach", selected:false },
-                    { answerText: "build strength and ability", selected:false },
-                    { answerText: "build mad muscle mass", selected:false },
-                ],
-            },{
-                questionText: "During the average week, how much time are you able to devote to your fitness regimen?",
-                questionId: 9,
-                answerOptions: [
-                    { answerText: "barely 15-30 min on any given day", selected:false },
-                    { answerText: "about one hour per day, 3-5 days a week", selected:false },
-                    { answerText: "an hour or more on most days", selected:false },
-                ],
-            },{ 
-                questionText: "Where is your favorite place to exercise?",
-                questionId: 10,
-                answerOptions: [
-                    { answerText: "gym", selected:false },
-                    { answerText: "outdoors", selected:false },
-                    { answerText: "home", selected:false },
-                ],
-            },{ 
-                questionText: "How much are you willing to spend? (gym membership, gear & equipment)",
-                questionId: 11,
-                answerOptions: [
-                    { answerText: "not much", selected:false },
-                    { answerText: "a fair amount", selected:false },
-                    { answerText: "no budget limit", selected:false },
-                ],
-            }
-        ],
+        questions: questions,
 
-        // identify all questions that require input by adding their ID in this array
-        questionsReqInput: [3,4],
+        // identify questions that require input for all selections by adding their ID in this array
+        questionsReqInput: questionsReqInput,
+        // identify questions that accept multiple selections by adding their ID in this array
+        questionsMultipleChoices: questionsMultipleChoices,
 
         currentQuestion: 0,
-        complete: false,
-        invalidInput: false
+        complete: false
+    }
+
+    /** 
+     * @return true if question allows for multiple answer selections
+     * @return false otherwise
+    */
+    checkMultipleAllowed = () => {
+        const{questions, currentQuestion, questionsMultipleChoices} = this.state;
+        if(questionsMultipleChoices.find(element => element === questions[currentQuestion].questionId)){
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * @return true if question answers requires input
+     * @return false otherwise
+     */
+    checkReqInput = () => {
+        const{questions, currentQuestion, questionsReqInput} = this.state;
+        if(questionsReqInput.find(element => element === questions[currentQuestion].questionId)){
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**
@@ -123,47 +57,69 @@ export default class Quiz extends Component{
      * (this function violates the Single-Responsability-Principle..)
      */
     handleAnswerButtonClick = (answer) => {
-        const{questions, currentQuestion, questionsReqInput} = this.state;
-        const newItems = [...questions];
+        const{questions, currentQuestion} = this.state;
+        let newItems = [...questions];
+        let newAnswer = newItems[currentQuestion].answerOptions.find(element => element === answer);
 
         // used to determine whether the next question will be automatically displayed or not (Yes if @true, No if @false)
-        let firstTimeSelected = true;
+        let displayNext = true;
 
-        // remove previously selected answer
-        if(newItems[currentQuestion].answerOptions.find(element => element.selected === true)){
-            const answerSelected = newItems[currentQuestion].answerOptions.find(element => element.selected === true);
-            answerSelected.selected = false; 
-            firstTimeSelected = false;
+        //certain questions require multiple answer selections
+        if(this.checkMultipleAllowed() === false){
+            // remove previously selected answer
+            if(newItems[currentQuestion].answerOptions.find(element => element.selected === true)){
+                const answerSelected = newItems[currentQuestion].answerOptions.find(element => element.selected === true);
+                answerSelected.selected = false; 
+                displayNext = false;
+            }
+            // set new selected answer 
+            newAnswer.selected = true;
+        } else {
+            if(newItems[currentQuestion].answerOptions.find(element => element.selected === true)){
+                displayNext = false;
+            }
+            //ERROR: can't make selected answer false again...
+            // if(newItems[currentQuestion].answerOptions.find(element => element.selected === true && element === answer)){
+            //     const answerSelected = newItems[currentQuestion].answerOptions.find(element => element.selected === true && element === answer);
+            //     answerSelected.selected = false;
+            // } else {
+                // newAnswer.selected = true;
+            // }
 
-            // if question required input, clear saved input
-            if(questionsReqInput.find(element => element === newItems[currentQuestion].questionId)){
-                newItems[currentQuestion].input.pop();
+            //another method tried
+            if(newAnswer.selected === true){
+                newAnswer.selected = false;
+                console.log("IF REACHED - true")
+            } else {
+                newAnswer.selected = true;
+                console.log("IF REACHED - false")
             }
         }
 
-        // set new selected answer 
-        if(newItems[currentQuestion].answerOptions.find(element => element === answer)){
-            const answerToSelect = newItems[currentQuestion].answerOptions.find(element => element === answer);
-            answerToSelect.selected = true;
+        //if question required input, clear saved input
+        if(this.checkReqInput()){
+            newItems[currentQuestion].input.pop();
+        }
+        
+        //keep on the same question when there is need for input
+        if(newAnswer.requireInput === true){
+            displayNext = false;
         }
 
-        //update the @questions values
-        this.setState({
-            questions : newItems
-        })
-
         if(currentQuestion + 1 < questions.length){
-            if(firstTimeSelected === true && !questionsReqInput.find(element => element === questions[currentQuestion].questionId)){
+            if(displayNext === true && this.checkReqInput()===false){
                 this.setState({
-                    currentQuestion: currentQuestion+1,
-                    answerToSelect : true
+                    questions : newItems,
+                    currentQuestion: currentQuestion+1
                 });
             } else {
                 this.setState({
-                    answerToSelect : true
+                    questions : newItems
                 });
             }
         }
+
+        console.log(questions[currentQuestion].answerOptions);
     }
 
     /**
@@ -194,40 +150,7 @@ export default class Quiz extends Component{
     addInput = (input) => {
         const{questions, currentQuestion} = this.state;
         questions[currentQuestion].input.push(document.getElementById("inputBox").value);
-    /*
-        //for height question accept two types of input depending on selected value
-        if(questions[currentQuestion].questionId === 3){
-            if(this.findSelectedAnswer() === 0){
-                if(this.isInt(input)){
-                    //ERROR display still in progress
-                    //document.getElementById("inputAlert").classList.add("disabled");
-
-                    questions[currentQuestion].input.push(document.getElementById("inputBox").value);
-                } else {
-                    alert("ERROR! Input is invalid.");
-                    //ERROR display still in progress
-                    //document.getElementById("inputAlert").classList.remove("disabled");
-                }
-            } else {
-                if(input!=""){
-                    //const feet = input.replace("feet","")[0].match(/\b(\w+)\b/g)[0];
-                    //const inches = input.replace("inches","")[0].match(/\b(\w+)\b/g)[1];
-                    if(this.isInt(feet)){
-                        if(inches === ""){
-                            questions[currentQuestion].input.push(feet);
-                        } else {
-                            if(this.isInt(inches)){
-                                questions[currentQuestion].input.push(feet + " " + inches);
-                            } else{
-                                alert("ERROR! Input is invalid.");
-                            }
-                        }
-                    } else {
-                        alert("ERROR! Input is invalid.");
-                    }
-                }
-            }
-        } */
+        console.log(questions[currentQuestion].input[0]);
     }
 
     /**
@@ -261,6 +184,7 @@ export default class Quiz extends Component{
         if(currentQuestion > 0){
 
             this.processInput();
+            // this.processAnswerInput();
 
             this.setState({
                 currentQuestion: currentQuestion-1
@@ -276,6 +200,7 @@ export default class Quiz extends Component{
         if(currentQuestion < questions.length){
 
             this.processInput();
+            // this.processAnswerInput();
 
             this.setState({
                 currentQuestion: currentQuestion+1
@@ -308,34 +233,58 @@ export default class Quiz extends Component{
     }
 
     /**
+     * add tags based on user selection during the quizz
+     */
+    addTags = () => {
+        const {questions} = this.state;
+        // let {associatedTags} = this.state;
+        questions.forEach(question => {
+            const answers = question.answerOptions;
+
+            answers.forEach(answer => {
+                if(answer.selected === true){
+                    answer.tags.forEach(tag => {
+                        if(tag !== ""){
+                            associatedTags.push(tag);
+                        }
+                    });
+                }
+            });
+        });
+    }
+
+    /**
      * change @questions completion status
      */
 
     handleFinishButtonClick = () => {
         if(this.isCompleted() === true){
+            this.addTags();
+            console.log(this.associatedTags);
             this.setState({
                 complete: true
             });
-            this.props.history.push(`/clientDashboard/${JSON.parse(localStorage.getItem('user')).username}-${JSON.parse(localStorage.getItem('user'))._id}`)
+            this.props.history.push(`/clientDashboard/${JSON.parse(localStorage.getItem('user'))._id}`)
         } else {
             alert("You still have some questions to complete.");
         }
     }
     
     render(){
-        let {questions, currentQuestion, complete, questionsReqInput, invalidInput} = this.state;
+        let {questions, currentQuestion, complete, questionsReqInput, associatedTags} = this.state;
 
         return(
             <div>
             <img className="backgroundJPG"
             src="https://static.onecms.io/wp-content/uploads/sites/35/2010/07/28170650/fb-interval-training-workouts.jpg" />
             
-            <div className=""> 
+            <div className="quizz"> 
                 { complete ? (
                     <Test 
                         //
                         questions = {questions}
                         questionsReqInput = {questionsReqInput}
+                        tags = {associatedTags}
                     />
                 ) : ( 
                         <div className="basic-wrap">
@@ -370,3 +319,5 @@ export default class Quiz extends Component{
         );
     }
 }
+
+export {associatedTags}

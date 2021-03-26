@@ -4,6 +4,8 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../EditFormsStyles.css';
+import NavbarUser from '../Navbar/NavbarUser';
+import { Grid } from '@material-ui/core';
 
 const EditBasicUser = (props) => {
     const dispatch = useDispatch();
@@ -68,7 +70,6 @@ const EditBasicUser = (props) => {
                     dob: constructDate(day, month, year),
                     bundles: profile.bundles
                 }
-                console.log(newBasicUser);
                 dispatch(updateBasicUser(ID, newBasicUser));
                 window.alert("Details Saved!");
             } 
@@ -77,9 +78,11 @@ const EditBasicUser = (props) => {
 
     return (
         <div>
+            <NavbarUser />
             <div className="formContainer">
                 <h2 className="title">Edit Details</h2>
                 <hr className="seperator"/>
+                <Grid>
                 <Form noValidate validated={validated} onSubmit={handleSubmit}>
                     <Form.Row>
                         <Col>
@@ -167,7 +170,6 @@ const EditBasicUser = (props) => {
                             value={address}
                             placeholder="Address" 
                             onChange={(e) => setAddress(e.target.value)}
-                            required
                         >
                         </Form.Control>
                     </Form.Group>
@@ -229,6 +231,8 @@ const EditBasicUser = (props) => {
                     <Button type="submit"  variant="outline-success" className=" edit actionButton">Save</Button>
                     <Button type="button" variant="outline-success" className="edit actionButton" onClick={() => window.location.href = `/user/profile/${ID}`}>Close</Button>
                 </Form>
+                </Grid>
+                
             </div>
         </div>
     );
@@ -266,6 +270,6 @@ function checkEmail(toCheck) {
 }
 
 function constructDate(day, month, year) {
+    console.log(day + " " + month + " " + year);
     return year + "-" + month + "-" + day;
 }
-

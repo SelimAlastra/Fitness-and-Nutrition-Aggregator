@@ -6,15 +6,16 @@ import { getProfessional } from '../../actions/professionals';
 import { getServices } from '../../actions/services';
 import { updateBasicUser, getBasicUser } from '../../actions/basicUsers';
 import { Button } from 'react-bootstrap';
-import ProfessionalNavbar from '../Navbar/ProfessionalNavbar';
+import NavbarUser from "../Navbar/NavbarUser";
+import NavbarProfessional from "../Navbar/NavbarProfessional";
 
 const ProfessionalProfile = (props) => {
     const dispatch = useDispatch();
-    const [videoUrls, setVideoUrls] = useState([]);
     const [isProfessional, setIsProfessional] = useState(props.isProfessional);
-    const [basicUserID, setBasicUserID] = useState(props.basicUserID);
-    const professionalUserID = props.match.params.id;
+    const basicUserID = props.match.params.clientID;
+    const professionalUserID = props.match.params.professionalID;
     const [basicUser, setBasicUser] = useState({});
+
 
     // Get Professional & basic User if a basicUser is viewing the profile
     useEffect(() => {
@@ -24,12 +25,13 @@ const ProfessionalProfile = (props) => {
     useEffect(() => {
        if (basicUserID !== undefined) {
             dispatch(getBasicUser(basicUserID));
-    }
- }, [dispatch]);
-
+        }
+    }, [dispatch]);
 
     let professionalUser = useSelector((state) => state.professional);
- let basicUserProfile = useSelector((state) => state.basicUsers);
+
+
+    let basicUserProfile = useSelector((state) => state.basicUsers);
      useEffect(() => {
          setBasicUser(basicUserProfile);
      }, [basicUserProfile]);
@@ -126,7 +128,7 @@ const ProfessionalProfile = (props) => {
 
     return (
         <div>
-            <ProfessionalNavbar />
+            { generateNavbar() }
             <div className="sectionContainer">
                 <div className="section">
                     <div>
@@ -142,6 +144,14 @@ const ProfessionalProfile = (props) => {
             </div>
         </div>
     );
+
+    function generateNavbar() {
+        if (isProfessional) {
+            return <NavbarProfessional />;
+        } else {
+            return <NavbarUser />;
+        }
+    }
 }
 
 export default ProfessionalProfile;

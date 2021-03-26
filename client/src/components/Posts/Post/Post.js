@@ -1,4 +1,3 @@
-
 import { Card, CardActions, CardContent, CardMedia, Button, Typography, Container, CardHeader, } from '@material-ui/core/';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import FavoriteIcon from '@material-ui/icons/Favorite';
@@ -14,12 +13,13 @@ import Videos from '../Videos/Videos';
 import Buckets2 from "../../Buckets2/BucketModal";
 import ReportForm from "../../Reports/ReportForm"
 import Modal from 'react-bootstrap/Modal';
+import Audio from '../Audio/Audio';
+import EmbeddedLinks from '../EmbeddedLinks/EmbeddedLinks';
+import FacebookLinks from '../FacebookLinks/FacebookLinks';
 import { FaFolderPlus } from "react-icons/fa";
 import BucketsGrid from '../../Buckets2/BucketsGrid.js';
 
-
-
-import { deletePost, likePost, toggleFavAction } from '../../../actions/posts';
+import { deletePost, likePost, toggleFavAction, updatePost } from '../../../actions/posts';
 
 
 const Post = ({ post, setCurrentId }) => {
@@ -117,8 +117,6 @@ const Post = ({ post, setCurrentId }) => {
   };
 
   const Delete = () => {
-    console.log(post.userFrom);
-    console.log(String(JSON.parse(localStorage.getItem('user'))._id));
     if (String(JSON.parse(localStorage.getItem('user'))._id) == post.userFrom) {
       return (<Button size="small" onClick={() => dispatch(deletePost(post._id))}>
         <DeleteIcon fontSize="small" />
@@ -127,6 +125,19 @@ const Post = ({ post, setCurrentId }) => {
     }
     return <div></div>
   }
+
+  const Edit = () => {
+    console.log(post.userFrom);
+    console.log(String(JSON.parse(localStorage.getItem('user'))._id));
+    if (String(JSON.parse(localStorage.getItem('user'))._id) == post.userFrom) {
+      return (
+      <Button size="small" onClick={() => setCurrentId(post._id)}>Edit</Button>
+      )
+    }
+    return <div></div>
+  }
+
+
 
   return (
     <Card className={classes.card}>
@@ -149,11 +160,13 @@ const Post = ({ post, setCurrentId }) => {
           open={Boolean(anchorEl)}
           onClose={handleClose}
         >
+          <MenuItem> 
           {JSON.parse(localStorage.getItem('user')).type == 'client' ?
             <ReportPopUp />
-            :
-            <MenuItem size="small" onClick={() => setCurrentId(post._id)}>Edit</MenuItem>
+            : <Edit />
           }
+          </MenuItem>
+
         </Menu>
       </div>
       <Typography hidden={true} className={classes.title} variant="h5" gutterBottom>{post.title}</Typography>
@@ -175,7 +188,24 @@ const Post = ({ post, setCurrentId }) => {
           : <div></div>
         }
       </div>
-
+      {   post.audioFile ?
+            <CardContent> 
+             <Audio setSrc = {post.audioFile} />
+            </CardContent>
+               : <div></div> 
+             }
+             {   post.embeddedLink ?
+            <CardContent> 
+             <EmbeddedLinks setLink = {post.embeddedLink} />
+            </CardContent>
+               : <div></div> 
+             }
+             {   post.facebookLink ?
+            <CardContent> 
+             <FacebookLinks setLink = {post.facebookLink} />
+            </CardContent>
+               : <div></div> 
+             }
       { post.tags ?
         <div className={classes.details}>
           <Typography variant="body2" color="textSecondary" component="h2">{post.tags.map((tag) => `#${tag} `)}</Typography>

@@ -11,6 +11,7 @@
     margin-bottom: 1%;
     display: grid;
     grid-template-columns: 1fr 1fr;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 }
 
 .serviceList {
@@ -21,12 +22,10 @@
 }
 
 .titleText {
-    color: white;
     margin: 5%;
 }
 
 .serviceSeperator {
-    background-color: white;
     margin-left: 10%;
     margin-right: 10%;
 }

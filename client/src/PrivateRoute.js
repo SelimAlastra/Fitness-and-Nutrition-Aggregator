@@ -2,7 +2,7 @@ import { Redirect, Route } from "react-router";
 
 
 
-const PrivateRoute = ({component: Component, userType, ...rest}) => {
+const PrivateRoute = ({component: Component, componentToRender: componentToRender, userType, ...rest}) => {
 
     const user = JSON.parse(localStorage.getItem('user'));
     let isLogged = false;
@@ -10,7 +10,6 @@ const PrivateRoute = ({component: Component, userType, ...rest}) => {
     if (user) {
         if (user.type == userType) {
             isLogged = true;
-        
         }
     }
 
@@ -19,7 +18,7 @@ const PrivateRoute = ({component: Component, userType, ...rest}) => {
             {...rest}
             render={props =>
             isLogged ? (
-                <Component {...props} />
+                <Component {...props} component={componentToRender}/>
             ) : (
                 <Redirect to={{ pathname: '/', state: {from: props.location} }} />
             )
