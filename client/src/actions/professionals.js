@@ -24,7 +24,7 @@ export const getProfessionalUsers = () => async (dispatch) => {
     try {
         const { data } = await api.fetchProfessionalUsers();
         
-        dispatch( {type: 'FETCH_ALL', payload: data} );
+        dispatch( {type: 'FETCH_ALL_PROFESSIONALS', payload: data} );
     } catch (error) {
         console.log(error.message);
     }

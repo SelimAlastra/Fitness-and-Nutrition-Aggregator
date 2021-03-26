@@ -24,9 +24,9 @@ const Posts = ({setCurrentId,updatedPosts,setUpdatedPosts}) => {
         }
         console.log(newPosts);
     }
-    const posts =useSelector((state) => state.posts.filter((post) => newPosts.includes(post._id)));
+    const posts = useSelector((state) => state.posts.filter((post) => newPosts.includes(post._id)));
     const classes = useStyles();
-    const dispatch =useDispatch();
+    const dispatch = useDispatch();
     return (
             <Grid className={classes.mainContainer} container spacing={3}> 
                 {posts.map((post) => (
@@ -39,3 +39,9 @@ const Posts = ({setCurrentId,updatedPosts,setUpdatedPosts}) => {
 }
 
 export default Posts;
+
+
+
+// professional -> has post -> visible
+
+// search -> profile -> not found -> "The user you are looking for might not have an account or has not posted anything yet."
