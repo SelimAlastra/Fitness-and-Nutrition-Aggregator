@@ -3,8 +3,7 @@ import { AppBar, Typography, Toolbar, Avatar, Button } from '@material-ui/core';
 import { Link, useHistory, useLocation } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { signOut } from '../../actions/userAuth.js';
-/* import decode from 'jwt-decode';
-import * as actionType from '../../constants/actionTypes'; */
+/* import decode from 'jwt-decode';*/
 import useStyles from './styles';
 
 const Navbar = () => {

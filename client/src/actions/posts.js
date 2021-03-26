@@ -1,4 +1,4 @@
-import { FETCH_ALL, CREATE, UPDATE, DELETE , ADD_FAV } from '../constants/actionTypes';
+import { FETCH_ALL, CREATE, UPDATE, DELETE, ADD_TO_FAV, FETCH_FROM_ARRAY, FETCH } from '../constants/postsActionTypes';
 import * as api from '../api/index';
 
 
@@ -56,7 +56,7 @@ export const toggleFavAction = (id) => async (dispatch) =>{
   try {
     const { data } = await api.toggleFavAction(id);
 
-    dispatch({ type: ADD_FAV, payload: data});
+    dispatch({ type: ADD_TO_FAV, payload: data});
   } catch (error) {
     console.log(error.message);
   }
@@ -67,7 +67,7 @@ export const getPost = (id) => async (dispatch) => {
   try {
       const { data } = await api.getPost(id);
       
-      dispatch( {type: 'FETCH', payload: data} );
+      dispatch( {type: FETCH, payload: data} );
   } catch (error) {
       console.log(error.message);
   }
@@ -77,7 +77,7 @@ export const getPostsFromArray = (id) => async (dispatch) => {
   try {
     const { data } = await api.getPostsFromArray(id);
       
-    dispatch( {type: 'FETCH_POSTS_FROM_ARRAY', payload: data} );
+    dispatch( {type: FETCH_FROM_ARRAY, payload: data} );
   } catch (error) {
     console.log(error.message);
   }
