@@ -1,10 +1,10 @@
 import React, { useState , useEffect} from 'react';
-import { CardContent, Button} from '@material-ui/core/';
 import { LinkContainer } from 'react-router-bootstrap';
 import { useSelector, useDispatch } from 'react-redux';
 import {deleteBucket, updateBucket} from '../../actions/buckets';
 import FormBucket from './BucketForm';
 import Modal from 'react-bootstrap/Modal';
+import Button from 'react-bootstrap/Button';
 import { createBucket } from '../../actions/buckets';
 import * as Yup from "yup";
 import { getBasicUser, updateBasicUser} from '../../actions/basicUsers';
@@ -21,7 +21,6 @@ function UpdateBucketForm(bucket) {
     }
     return (< > < Button class="bucket button"
         size="medium"
-        color="primary"
         onClick={handleShow} >
         Edit bucket </Button>
         < div className="modal-dialog" >
