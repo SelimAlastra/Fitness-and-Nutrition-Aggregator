@@ -11,7 +11,7 @@ import UserInfo from "./UserInfo"
 import { getServices } from '../../actions/services';
 import { getGoals } from '../../actions/goals';
 import { set } from "mongoose";
-import Navbar from '../Navbar/Navbar';
+import NavbarUser from '../Navbar/NavbarUser';
 
 
 
@@ -43,16 +43,16 @@ const HomePage = (props) => {
     
         return (
             <div className="homepage">
-                <Navbar/>
+                <NavbarUser/>
                 <UserInfo user={user} />
-                <div>
-                    <Image className ="GoalsImage" src="https://www.myzerona.com/content/uploads/2019/12/02-What-Are-SMART-Fitness-Goals.jpg" fluid />
-                </div>
                 <div>
                     <Services userID = {user._id} />
                 </div>
                 <div>
                     <Goals userID={user._id}/>
+                </div>
+                <div>
+                    <Image className ="GoalsImage" src="https://www.myzerona.com/content/uploads/2019/12/02-What-Are-SMART-Fitness-Goals.jpg" fluid />
                 </div>
             </div>
             

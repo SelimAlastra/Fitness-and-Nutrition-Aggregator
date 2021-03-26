@@ -5,6 +5,7 @@ import { Grow, Grid} from '@material-ui/core';
 import EditGoal from './EditGoal';
 import { Form, Button, Col } from 'react-bootstrap';
 import './EditGoals.css'
+import NavbarUser from '../Navbar/NavbarUser';
 
 const EditGoals = (props) => {
 
@@ -21,6 +22,7 @@ const EditGoals = (props) => {
 
     return (
         <div className = 'editGoalsDiv'>
+        <NavbarUser/>
         <Grid container>
             {myGoals.map((goal) => (
                 <Grid item xs= {4}>
