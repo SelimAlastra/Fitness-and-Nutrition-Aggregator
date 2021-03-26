@@ -53,8 +53,8 @@ const Main = () => (
         <Route exact path='/launch/users' exact render={props => <UserPage {...props} />} /> 
 
         <Route exact path='/launch/professionals' exact render={props => <ProfPage {...props} />} />
-        <Route exact path='/userQuiz/:id' component={Quiz}/>
-        <Route exact path='/professionalTags/:id' component={Tags}/>
+        <PrivateRoute exact path='/userQuiz/:id' component={Wrapper} componentToRender={Quiz} userType={'client'}/>
+        <PrivateRoute exact path='/professionalTags/:id' component={Wrapper} componentToRender={Tags} userType={'professional'}/>
         <PrivateRoute exact path="/professional/profile/:id" component={Wrapper} componentToRender={ProfessionalProfile} userType={'professional'}/>
         <PrivateRoute exact path="/user/professional/profile/:professionalID/:id" component={Wrapper} componentToRender={ProfessionalProfile} userType={'client'}/>
 
