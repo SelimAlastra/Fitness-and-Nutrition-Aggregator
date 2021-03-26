@@ -6,8 +6,6 @@ import { getPost, deletePost } from "../../../actions/posts";
 import { useParams } from "react-router-dom";
 import Post from "../../Posts/Post/Post";
 
-
-
 const ReportView = () => {
 
     const dispatch = useDispatch();
@@ -21,7 +19,6 @@ const ReportView = () => {
     }, []);
 
     
-
     useEffect(() => {
         if (report){
             dispatch(getPost(report.postId));
@@ -30,7 +27,6 @@ const ReportView = () => {
 
 
     const post = useSelector((state) => state.posts);
-
     
 
     const handleDelete = () => {

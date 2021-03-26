@@ -1,14 +1,14 @@
 import { useDispatch, useSelector } from 'react-redux';
 import {useEffect, useState } from 'react';
-import { getBasicUser } from '../../actions/basicUsers';
-import { getServices } from '../../actions/services';
+import { getBasicUser } from '../../../actions/basicUsers';
+import { getServices } from '../../../actions/services';
 import { Button, Nav } from 'react-bootstrap';
-import '../MyServices/MyServices.css';
+import './MyServices.css';
 import ReactPlayer from 'react-player';
 import Modal from 'react-modal';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faWindowClose } from '@fortawesome/free-regular-svg-icons'
-import NavbarUser from '../Navbar/NavbarUser';
+import NavbarUser from '../../Navbar/NavbarUser';
 
 const MyServices = (props) => {
     const dispatch = useDispatch();

@@ -4,7 +4,7 @@ export const getProfessional = (id) => async (dispatch) => {
     try {
         const { data } = await api.getProfessional(id);
    
-        dispatch({type: 'FETCH', payload: data});
+        dispatch({type: 'FETCH_PROFESSIONAL', payload: data});
     } catch (error) {
         console.log(error.message);
     }

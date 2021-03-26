@@ -18,6 +18,7 @@ const reportUrl = 'http://localhost:5000/reports';
 const professionalUsersUrl = 'http://localhost:5000/professionalUsers';
 const servicesUrl = 'http://localhost:5000/services';
 const basicUserUrl = 'http://localhost:5000/basicUsers';
+const bucketUrl = 'http://localhost:5000/buckets';
 
 
 export const fetchReports = () => axios.get(reportUrl);
@@ -32,6 +33,7 @@ export const deletePost = (id) => API.delete(`/posts/${id}`);
 export const likePost = (id,userId) => API.patch(`/posts/${id}/${userId}/likePost`);
 export const toggleFavAction = (id) => API.patch(`/posts/${id}/toggleFavAction`);
 export const getPost = (id) => axios.get(`${url}/${id}`);
+export const getPostsFromArray = (bucketId) => axios.get(`${url}/${bucketId}/bucket`);
 
 export const getProfessional = (id) => axios.get(`${professionalUsersUrl}/${id}`);
 export const updateProfessional = (id, updatedProfile) => axios.patch(`${professionalUsersUrl}/update/${id}`, updatedProfile);
@@ -49,3 +51,11 @@ export const updateBasicUser = (id, updatedBasicUser) => axios.patch(`${basicUse
 export const fetchBasicUsers = () => axios.get(basicUserUrl);
 export const createBasicUser = (newUser) => axios.post(basicUserUrl, newUser);
 export const deleteBasicUser = (id) => axios.delete(`${basicUserUrl}/${id}`);
+
+export const fetchBuckets = () => axios.get(bucketUrl);
+export const createBucket = (newBucket) => axios.post(bucketUrl, newBucket);
+export const updateBucket = (id, updatedBucket) => axios.patch(`${bucketUrl}/${id}`, updatedBucket);
+export const getBucket = (id) => axios.get(`${bucketUrl}/${id}`);
+export const deleteBucket = (id) => axios.delete(`${bucketUrl}/${id}`);
+
+
