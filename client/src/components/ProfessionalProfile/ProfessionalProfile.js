@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getProfessional } from '../../actions/professionals';
 import { getServices } from '../../actions/services';
 import { updateBasicUser, getBasicUser } from '../../actions/basicUsers';
-import { Button } from 'react-bootstrap';
+import { Button, Container } from 'react-bootstrap';
 import ProfessionalNavbar from '../Navbar/ProfessionalNavbar';
 import Navbar from "../Navbar/Navbar";
 
@@ -141,6 +141,7 @@ const ProfessionalProfile = (props) => {
     return (
         <div>
             { generateNavbar() }
+            { !professionalUser.isBanned ?
             <div className="sectionContainer">
                 <div className="section">
                     <div>
@@ -154,6 +155,11 @@ const ProfessionalProfile = (props) => {
                     }
                 </div>
             </div>
+            :          
+            <Container>
+                <h2>The user: "{professionalUser.username}"" has been banned.</h2>
+            </Container>
+            }
         </div>
     );
 
