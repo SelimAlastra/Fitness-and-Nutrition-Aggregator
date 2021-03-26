@@ -41,6 +41,8 @@ const useStyles = makeStyles((theme) => ({
   }));
 
 var filteredPosts=[];
+var filteredProfiles=[];
+var finalFilteredProfiles=[];
 var newArray=[];
 const initialFilteredPosts = new Set();
 
@@ -50,6 +52,7 @@ const initialFilteredPosts = new Set();
 const SearchBox = ({updatePosts,setUpdatedPosts}) => {
   const classes = useStyles();
   filteredPosts = useSelector((state) => state.posts);
+  filteredProfiles = useSelector((state) => state.professional);
 
   const findTag =(array,searchString)=>{
     for(var i=0; i<array.length;i++)
@@ -61,13 +64,24 @@ const SearchBox = ({updatePosts,setUpdatedPosts}) => {
   }
   const filterPosts=(searchString)=>{
     var newFilteredPosts;
-         newFilteredPosts=filteredPosts.filter((post) => 
+    var newFilteredProfiles;
+
+    searchString = searchString.toLowerCase();
+    
+    newFilteredPosts=filteredPosts.filter((post) => 
               post.title.toLowerCase().includes(searchString) ||
               post.message.toLowerCase().includes(searchString) ||
-              findTag(post.tags,searchString)
+              post.creator.toLowerCase().includes(searchString) ||
+              findTag(post.tags,searchString) 
               );
-        newFilteredPosts.forEach(post=> initialFilteredPosts.add(post));
-  
+    newFilteredPosts.forEach(post => initialFilteredPosts.add(post));
+
+    if(filteredProfiles !== undefined && filteredProfiles !== []){
+      newFilteredProfiles = filteredProfiles.filter((profile) => 
+              profile.name.toLowerCase().includes(searchString)
+              );
+      finalFilteredProfiles = newFilteredProfiles;
+    }
   }
   const initialSearch =() =>{
     for(var i=0;i<associatedTags.length;i++)
@@ -81,30 +95,24 @@ const SearchBox = ({updatePosts,setUpdatedPosts}) => {
   //loadCharacters();
   
   const keyup = (e) => {
-      const searchString = e.target.value.toLowerCase();
-      initialFilteredPosts.clear();
-     filterPosts(searchString);
-     var newArray=[];
-     initialFilteredPosts.forEach(v => newArray.push(v));
-        setUpdatedPosts(newArray);
-      
+    //the user input
+    const searchString = e.target.value.toLowerCase();
+    initialFilteredPosts.clear();
+
+    //filter posts accordingly
+    filterPosts(searchString);
+    var newArray=[];
+    initialFilteredPosts.forEach(v => newArray.push(v));
+    setUpdatedPosts(newArray);
+
+    //if input is empty, reset the filtered profiles
+    if ( e.target.value === ""){
+      finalFilteredProfiles = [];
+    }
   };
 
-  // const handleOnInputChange = (e) => {
-  //   const searchString = e.target.value.toLowerCase();
-     
-  //   filterPosts = (searchString) => {
-  //     var newFilteredPosts;
-  //          newFilteredPosts=filteredPosts.filter((post) => 
-  //               post.title.toLowerCase().includes(searchString) ||
-  //               post.message.toLowerCase().includes(searchString) ||
-  //               findTag(post.tags,searchString)
-  //               );
-  //         newFilteredPosts.forEach(post=> initialFilteredPosts.add(post));
-  //   }
-  // };
-
   return (
+    <>
     <div className="searchbox-container">
       <label className="search-label" htmlFor="search-input">
         <InputBase
@@ -118,8 +126,9 @@ const SearchBox = ({updatePosts,setUpdatedPosts}) => {
           />
       </label>
     </div>
+    </>
     );
 };
 
-export {filteredPosts, newArray} ;
+export {filteredPosts, newArray, finalFilteredProfiles} ;
 export default SearchBox;

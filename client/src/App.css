@@ -36,3 +36,35 @@
     transform: rotate(360deg);
   }
 }
+
+/* DISPLAY PROFILES - CLIENT DASHBOARD */
+
+.profile-button {
+  border-radius: 1rem;
+  background-color: rgb(9, 30, 41);
+  color: white;
+  padding: 0.5rem 0.8rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+  float: left;
+}
+
+.profile-expand-button {
+  width: 1.3rem;
+  float: left;
+  height: 3rem;
+  top: 50%;
+  margin-left: 0.5rem;
+}
+
+.profile-search-full {
+  display: none;
+}
+
+.profile-search-minimized {
+  display: block;
+}
+
+#ExpandLessIcon {
+  display: none;
+}
