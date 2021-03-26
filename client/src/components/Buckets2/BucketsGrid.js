@@ -1,13 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { Grid, CircularProgress, GridList } from '@material-ui/core';
 import { useSelector } from 'react-redux';
 import { Button } from '@material-ui/core';
 import { useDispatch } from 'react-redux';
 import { updateBucket, getBuckets } from '../../actions/buckets';
-
-
-import Bucket from './Bucket';
-import { Container, ListGroup } from 'react-bootstrap';
+import { ListGroup } from 'react-bootstrap';
 
 
 const Buckets = (post) => {
