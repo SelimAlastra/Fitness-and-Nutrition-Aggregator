@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { authenticate, isAuth } from '../../actions/userAuth.js';
-import { Link, Redirect, useHistory } from 'react-router-dom';
+import { Link, Redirect, useHistory, useLocation } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
@@ -42,6 +42,8 @@ const Login = () => {
 
 const history = useHistory();
     
+const location = useLocation();
+
 const eye = <FontAwesomeIcon icon={faEye} />;
 
 const schema = Yup.object().shape({
@@ -69,21 +71,40 @@ const schema = Yup.object().shape({
         email: values.email,
         password: values.password,
       }
-      axios.post(`http://localhost:5000/basicUsers/login`, newData)
-          .then(res => {
-            authenticate(res, () => {
-            history.push(`/clientDashboard/${JSON.parse(localStorage.getItem('user'))._id}`) 
+      if(location.pathname.includes("users")){
+        axios.post(`http://localhost:5000/basicUsers/login`, newData)
+            .then(res => {
+              authenticate(res, () => {
+              history.push(`/clientDashboard/${JSON.parse(localStorage.getItem('user'))._id}`) 
+              })
             })
-          })
-          .catch(err => {
-            console.log(err)
-            if(err.response.data.errors){
-                if(err.response.data.errors.includes('User'))
-                  actions.setFieldError('email', 'User with that email does not exist. Please register.')
+            .catch(err => {
+              console.log(err)
+              if(err.response.data.errors){
+                  if(err.response.data.errors.includes('User'))
+                    actions.setFieldError('email', 'User with that email does not exist. Please register.')
+                  else
+                    actions.setFieldError('password', 'Email and password do not match')     
+              }
+            })
+      }
+      else if(location.pathname.includes("professionals")){
+        axios.post(`http://localhost:5000/professionalUsers/login`, newData)
+            .then(res => {
+              authenticate(res, () => {
+              history.push(`/professionalDashboard/${JSON.parse(localStorage.getItem('user'))._id}`) 
+              })
+            })
+            .catch(err => {
+              if(err.response.data.errors){
+                console.log(err.response.data.errors)
+                if(err.response.data.errors.includes('Email'))
+                  actions.setFieldError('email', 'Email already in use')
                 else
-                  actions.setFieldError('password', 'Email and password do not match')     
-            }
-          })
+                  actions.setFieldError('username', 'Username already in use')
+              }  
+            })
+      }
       actions.setSubmitting(false);
     }
   },
@@ -124,7 +145,11 @@ return (
     {formik.errors.password && formik.touched.password && (
     <div className="input-feedback">{formik.errors.password}</div>
     )}
+    { location.pathname.includes("users") ?
     <Link to="/user/password/forget">Forgot Password?</Link>
+    :
+    <Link to="/professional/password/forget">Forgot Password?</Link>
+    }
     <p/>
     <Button className="loginButtonModal" variant="outline-success" type="submit" name="loginBtn" disabled={formik.isSubmitting}>
         Log In

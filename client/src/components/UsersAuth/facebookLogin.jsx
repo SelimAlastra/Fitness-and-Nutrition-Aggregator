@@ -2,7 +2,7 @@ import React from 'react';
 import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props';
 import axios from 'axios';
 import { authenticate, isAuth } from '../../actions/userAuth.js';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFacebookF } from '@fortawesome/free-brands-svg-icons' 
 import './facebookLogin.css';
@@ -11,10 +11,27 @@ const Facebook = () => {
 
   const history = useHistory();
 
+  const location = useLocation();
+
   const icon = <FontAwesomeIcon icon={faFacebookF} />
 
   const sendFacebookToken = (userID, accessToken) => {
-    axios
+    if(location.pathname.includes("users")){
+      axios
+        .post(`http://localhost:5000/basicUsers/facebooklogin`, {
+          userID,
+          accessToken
+        })
+        .then(res => {
+          console.log(res.data);
+          informParent(res);
+        })
+        .catch(error => {
+          console.log('FACEBOOK SIGN IN ERROR', error.response);
+        });
+    }
+    else if(location.pathname.includes("professioanls")){
+      axios
       .post(`http://localhost:5000/professionalUsers/facebooklogin`, {
         userID,
         accessToken
@@ -26,12 +43,18 @@ const Facebook = () => {
       .catch(error => {
         console.log('FACEBOOK SIGN IN ERROR', error.response);
       });
+    }
   };
 
   const informParent = response => {
     authenticate(response, () => {
-      isAuth() 
-      history.push(`/professionalDashboard/${JSON.parse(localStorage.getItem('user'))._id}`);
+      isAuth()
+      if(location.pathname.includes("users")){
+        history.push(`/clientDashboard/${JSON.parse(localStorage.getItem('user'))._id}`);
+      }
+      else if(location.pathname.includes("professionals")){
+        history.push(`/clientDashboard/${JSON.parse(localStorage.getItem('user'))._id}`);
+      }
     });
   };
 

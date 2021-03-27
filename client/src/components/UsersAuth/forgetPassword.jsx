@@ -6,9 +6,12 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './forgotPassword.css';
+import { useLocation } from 'react-router-dom';
 
 const ForgetPassword = () => {
     
+  const location = useLocation();
+
     const schema = Yup.object().shape({
         email: Yup.string()
             .email("Email must be valid.")
@@ -24,7 +27,8 @@ const ForgetPassword = () => {
           const newData = {
             email: values.email,
           }
-          axios.put(`http://localhost:5000/professionalUsers/forgotpassword`, newData)
+          if(location.pathname.includes("users")){
+          axios.put(`http://localhost:5000/basicUsers/forgotpassword`, newData)
               .then(() => {
                 actions.setFieldValue('general', `Email has been sent to ${values.email}. Please follow the instructions to reset your password.`)
               })
@@ -33,14 +37,27 @@ const ForgetPassword = () => {
                     console.log(err.response);   
                     actions.setSubmitting(false);
               })
-          actions.setSubmitting(true);
+          }
+          else if(location.pathname.includes("professionals"))
+          {
+          axios.put(`http://localhost:5000/professionalUsers/forgotpassword`, newData)
+              .then(() => {
+                actions.setFieldValue('general', `Email has been sent to ${values.email}. Please follow the instructions to reset your password.`)
+              })
+              .catch(err => {
+                    actions.setFieldError('email', 'User with that email does not exist. Please register.')
+                    console.log(err.response);   
+                    actions.setSubmitting(false);
+            })
+          }
+        actions.setSubmitting(true);
         }
       },
     });
 
   return (
     <div className="FormForgotPassword">
-    <Form className="FormForgot" onSubmit={formik.handleSubmit} autoComplete="Off">
+    <Form className="FormForgot"onSubmit={formik.handleSubmit} autoComplete="Off">
         <Form.Label hidden = {true} htmlFor="email">Email</Form.Label>
             <Form.Control className="formControlForgetPassword"
                 id="email"
@@ -56,10 +73,10 @@ const ForgetPassword = () => {
             <div className="input-feedback">{formik.errors.email}</div>
             )}
           <React.Fragment>
-        <Button className="forgetButton" type="submit" name="forgetBtn" disabled={formik.isSubmitting} >
+        <Button className="forgetButton" variant="outline-success" type="submit" name="forgetBtn" disabled={formik.isSubmitting} >
             Submit
         </Button>
-        <Form.Text style={{color: "blue"}} variant="outline-success" className="input-feedback">{formik.values.general}</Form.Text>
+        <Form.Text style={{color: "blue"}} className="input-feedback">{formik.values.general}</Form.Text>
         </React.Fragment>
     </Form>
     </div>
