@@ -1,7 +1,7 @@
 import Tags from '../Tags/Tags';
 
 function ProfileInfo({profile}) {
-    if (profile !== undefined && profile !== null) {
+    if (profile !== undefined && profile !== null && !profile.isBanned) {
         return (
             <div>
                 <div className="profileImage">
@@ -21,6 +21,29 @@ function ProfileInfo({profile}) {
                 <div data-testid="socialBar">
                         { generateInstagramLink(profile.instagramLink) }
                         { generateYoutubeLink(profile.youtubeLink) }
+                </div>
+            </div>
+        );
+    }else if (profile.isBanned) {
+                return (
+            <div>
+                <div className="profileImage">
+                    <img src={"https://images.unsplash.com/photo-1588420343618-6141b3784bce?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80"}/>
+                </div>
+                <div>
+                    <h2 className="clientName">{profile.name} <p className="minorText">({profile.username})</p></h2>
+                    <hr className="profileSeperator"/>
+                    <h2>Sorry, this account has been banned</h2>
+                    <hr className="profileSeperator"/>
+                    <p className="helpText">Location</p>
+                    { generateLocationContainer('???') }
+                    <p className="helpText">Bio</p>
+                    { generateDescriptionContainer('???') }
+                    { generateTags('???') } 
+                    <p className="helpText">Contact Info</p> 
+                    <p className="textContainer">{'???'}</p>
+                </div>
+                <div data-testid="socialBar">
                 </div>
             </div>
         );

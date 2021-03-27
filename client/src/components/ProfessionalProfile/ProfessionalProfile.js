@@ -48,6 +48,10 @@ const ProfessionalProfile = (props) => {
          
      }, [basicUserProfile]);
 
+     console.log(professionalUser);
+
+
+
      // Get Services
      useEffect(() => {
          dispatch(getServices());
@@ -141,7 +145,7 @@ const ProfessionalProfile = (props) => {
     return (
         <div>
             { generateNavbar() }
-            { !professionalUser.isBanned ?
+            
             <div className="sectionContainer">
                 <div className="section">
                     <div>
@@ -149,17 +153,15 @@ const ProfessionalProfile = (props) => {
                     </div>
                     <ProfileInfo profile={professionalUser} />
                 </div>
+                { !professionalUser.isBanned ?
                 <div className="section">
                     {
                         generateServices()
                     }
                 </div>
+                    : <></>
+                }
             </div>
-            :          
-            <Container>
-                <h2>The user: "{professionalUser.username}"" has been banned.</h2>
-            </Container>
-            }
         </div>
     );
 
