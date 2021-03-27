@@ -5,11 +5,11 @@ import LandingPage from './LandingPage';
 import ClientDashboard from './ClientDashboard';
 import ProfessionalDashboard from './ProfessionalDashboard';
 import Quiz from './quiz/quizUser.js';
-// import Tags from './quiz/tagsProffesional.js';
+import {questionsClient,questionsReqInputClient,questionsMultipleChoicesClient} from './quiz/resources/clientQuestions';
+import {questionsProfessional,questionsReqInputProfessional,questionsMultipleChoicesProfessional} from './quiz/resources/professionalQuestions';
 
 import HomePage from './components/HomePage/HomePage';
 import EditGoals from './components/HomePage/EditGoals';
-
 
 import UserPage from './ClientLoginRegister';
 import ForgetPassword from './components/BasicUsersAuth/forgetPassword.jsx';
@@ -65,8 +65,8 @@ const Main = () => (
         <Route exact path='/launch/users' exact render={props => <UserPage {...props} />} /> 
 
         <Route exact path='/launch/professionals' exact render={props => <ProfPage {...props} />} />
-        <Route exact path='/userQuiz/:id' component={Quiz}/>
-        {/* <Route exact path='/professionalTags/:id' component={Tags}/> */}
+        <Route exact path='/user/quiz/:id' exact render={props => <Quiz {...props} questions={questionsClient} questionsReqInput={questionsReqInputClient} questionsMultipleChoices={questionsMultipleChoicesClient} />}/>
+        <Route exact path='/professional/quiz/:id' exact render={props => <Quiz {...props} questions={questionsProfessional} questionsReqInput={questionsReqInputProfessional} questionsMultipleChoices={questionsMultipleChoicesProfessional} />}/>
         <Route exact path="/professional/profile/:professionalID" render={props => <ProfessionalProfile {...props} isProfessional={true} />}></Route>
         <Route exact path="/user/professional/profile/:professionalID/:clientID" render={props => <ProfessionalProfile {...props} isProfessional={false} />}></Route>
 

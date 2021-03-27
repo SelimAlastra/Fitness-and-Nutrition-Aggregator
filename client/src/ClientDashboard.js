@@ -62,7 +62,7 @@ return (
       finalFilteredProfiles.length < 6 ? (
         <div class="profile-search">
           {finalFilteredProfiles.map((profile) => (
-            <button class="profile-button"  onClick={() => window.location.href = `/user/professional/profile/${profile._id}/${JSON.parse(localStorage.getItem('user'))._id}`}><AccountCircle/>{profile.name}</button>
+            <button class="profile-button"  onClick={() => window.location.href = `/user/professional/profile/${profile._id}/${JSON.parse(localStorage.getItem('user'))._id}`}><AccountCircle/>{profile.username}</button>
           ))}
         </div>
         ) : (
@@ -70,14 +70,14 @@ return (
           {/* view profiles in full */}
           <div id="profiles-full" class="profile-search-full">
             {finalFilteredProfiles.map((profile) => (
-              <button class="profile-button" onClick={() => window.location.href = `/user/professional/profile/${profile._id}/${JSON.parse(localStorage.getItem('user'))._id}`}><AccountCircle/>{profile.name}</button>
+              <button class="profile-button" onClick={() => window.location.href = `/user/professional/profile/${profile._id}/${JSON.parse(localStorage.getItem('user'))._id}`}><AccountCircle/>{profile.username}</button>
             ))}
           </div>
 
           {/* view profiles minimized: only the first 6 profiles */}
           <div id="profiles-minimized" class="profile-search-minimized">
             {finalFilteredProfiles.slice(0, 6).map((profile) => (
-              <button class="profile-button" onClick={() => window.location.href = `/user/professional/profile/${profile._id}/${JSON.parse(localStorage.getItem('user'))._id}`}><AccountCircle/>{profile.name}</button>
+              <button class="profile-button" onClick={() => window.location.href = `/user/professional/profile/${profile._id}/${JSON.parse(localStorage.getItem('user'))._id}`}><AccountCircle/>{profile.username}</button>
             ))}
           </div>
 
