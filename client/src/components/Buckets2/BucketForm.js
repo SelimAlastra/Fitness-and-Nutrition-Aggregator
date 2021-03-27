@@ -18,10 +18,10 @@ const FormBucket = ({ currentBucketId, setCurrentBucketId }) => {
     useEffect(() => {
         dispatch(getBasicUser(userId));
     }, [userId]);
-
+ 
     useEffect(() => {
         if (bucket) setPostData(bucket);
-    }, [bucket]);
+    }, [bucket]); 
 
     const handleSubmit = (e) => {
         e.preventDefault();

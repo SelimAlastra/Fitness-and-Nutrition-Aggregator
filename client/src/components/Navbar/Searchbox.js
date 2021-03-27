@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './Navbar.css';
 import { fade } from '@material-ui/core/styles';
 import { makeStyles } from '@material-ui/core/styles';
 import InputBase from '@material-ui/core/InputBase';
-import { useSelector } from 'react-redux';
-import {associatedTags} from '../../quiz/quizUser';
-
+import { useDispatch, useSelector } from 'react-redux';
+import { getBasicUser, updateBasicUser } from '../../actions/basicUsers';
+import { getProfessional } from '../../actions/professionals';
 /**
  * styles for the searchbox
  */
@@ -44,13 +44,29 @@ var filteredPosts=[];
 var filteredProfiles=[];
 var finalFilteredProfiles=[];
 var newArray=[];
+/* var profile;
+var profile1;
+var profile2; */
 const initialFilteredPosts = new Set();
 
 /**
  * 
  */
-const SearchBox = ({updatePosts,setUpdatedPosts}) => {
+const SearchBox = ({profile1,updatePosts,setUpdatedPosts}) => {
   const classes = useStyles();
+  const dispatch = useDispatch();
+/*   useEffect(() => {
+    dispatch(getBasicUser(JSON.parse(localStorage.getItem('user'))._id));
+    dispatch(getProfessional(JSON.parse(localStorage.getItem('user'))._id));
+   }, []);
+  
+   profile1 = useSelector((state) => state.basicUsers);
+    profile2 = useSelector((state) => state.professional); */
+   /* if(JSON.parse(localStorage.getItem('user')).type == 'client')
+     profile=profile1;
+    else
+     profile=profile2; */
+     console.log(profile1);
   filteredPosts = useSelector((state) => state.posts);
   filteredProfiles = useSelector((state) => state.professional);
 
@@ -84,10 +100,13 @@ const SearchBox = ({updatePosts,setUpdatedPosts}) => {
     }
   }
   const initialSearch =() =>{
-    for(var i=0;i<associatedTags.length;i++)
+ /*     if(profile.tags.length>0)
     {
-        filterPosts(associatedTags[i]);
+    for(var i=0;i<profile.tags.length;i++)
+    {
+        filterPosts(profile.tags[i]);
     }
+    }   */
     newArray=[];
     initialFilteredPosts.forEach(v => newArray.push(v));
   }

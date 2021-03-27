@@ -99,7 +99,7 @@ const useStyles = makeStyles((theme) => ({
 /**
  * @return Navbar element
  */
-export default function NavbarUser({updatedPosts, setUpdatedPosts}) {
+export default function NavbarUser({profile,updatedPosts, setUpdatedPosts}) {
 
   const classes = useStyles();
   const history = useHistory();
@@ -260,7 +260,7 @@ export default function NavbarUser({updatedPosts, setUpdatedPosts}) {
             <div className={classes.searchIcon}>
               <SearchIcon />
             </div>
-            <Searchbox updatedPosts={updatedPosts} setUpdatedPosts={setUpdatedPosts}/>
+            <Searchbox profile1={profile} updatedPosts={updatedPosts} setUpdatedPosts={setUpdatedPosts}/>
           </div>
           ) : (<div></div>)
           }

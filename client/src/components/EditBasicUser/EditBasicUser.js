@@ -6,6 +6,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import '../EditFormsStyles.css';
 import NavbarUser from '../Navbar/NavbarUser';
 import { Grid } from '@material-ui/core';
+import {associatedTags} from '../../quiz/quizUser';
 
 const EditBasicUser = (props) => {
     const dispatch = useDispatch();
@@ -16,7 +17,6 @@ const EditBasicUser = (props) => {
     useEffect(() => {
        dispatch(getBasicUser(props.match.params.id));
     }, [props]);
-
     profile = useSelector((state) => state.basicUsers);
 
     const [name, setName] = useState("");
@@ -31,6 +31,7 @@ const EditBasicUser = (props) => {
     const [weight, setWeight] = useState("");
     const [bio, setBio] = useState("");
     const [ID, setID] = useState("");
+    const[tags,setTags]=useState("");
 
     useEffect(() => {
         setName(profile.name);
@@ -45,7 +46,8 @@ const EditBasicUser = (props) => {
         const date = formatDate(profile.dob);
         setDay(date.day);
         setMonth(date.month);
-        setYear(date.year);      
+        setYear(date.year);    
+        setTags(profile.tags);
     }, [profile]);
 
     function handleSubmit(event) {
@@ -64,7 +66,7 @@ const EditBasicUser = (props) => {
                     bodyType: bodyType,
                     weight: weight,
                     bio: bio,
-                    tags: profile.tags,
+                    tags: tags,
                     goals: profile.goals,
                     isBanned: profile.isBanned,
                     dob: constructDate(day, month, year),
@@ -149,6 +151,18 @@ const EditBasicUser = (props) => {
                                 </Form.Control>  
                             </Col>
                         </Form.Row>
+                    </Form.Group>
+                    <Form.Group>
+                        <Form.Label className="label">Tags</Form.Label>
+                        <Form.Control
+                            className="inputItem"
+                            id="tags"
+                            value={tags}
+                            placeholder="Tags" 
+                            onChange={(e) => setTags(e.target.value.split(','))}
+                            required
+                        >
+                        </Form.Control>
                     </Form.Group>
                     <Form.Group>
                         <Form.Label className="label">Email</Form.Label>

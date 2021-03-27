@@ -1,19 +1,31 @@
 import React, { Component } from 'react';
+import { useEffect, useState } from 'react';
 import Question from './components/question';
 import Answer from './components/answer';
 import './styling/quizUser.css';
+import { useDispatch, useSelector } from 'react-redux';
+import { getBasicUser, updateBasicUser } from './../actions/basicUsers';
+import { getProfessional } from './../actions/professionals';
 
 import {questions,questionsReqInput,questionsMultipleChoices} from './resources/clientQuestions';
 // import {questions,questionsReqInput,questionsMultipleChoices} from './resources/clientQuestions';
 // <Quiz questions={questions} questionsReqInput={questionsReqInput} questionsMultipleChoices={questionsMultipleChoices}>
-
+var profile;
+function DispatchAction(){
+   const dispatch= useDispatch();
+   useEffect(() => {
+       {JSON.parse(localStorage.getItem('user')).type == 'client' ?
+       profile=dispatch(getBasicUser(JSON.parse(localStorage.getItem('user'))._id)) :
+       profile=dispatch(getProfessional(JSON.parse(localStorage.getItem('user'))._id))
+       }
+      },[dispatch]);
+}
 var associatedTags = [];
-
 export default class Quiz extends Component{
+   
 
     state = {
         questions: /*this.props.*/questions,
-
         // identify questions that require input for all selections by adding their ID in this array
         questionsReqInput: /*this.props.*/questionsReqInput,
         // identify questions that accept multiple selections by adding their ID in this array
@@ -278,14 +290,15 @@ export default class Quiz extends Component{
     /**
      * change @questions completion status
      */
-
-    handleFinishButtonClick = () => {
+    HandleFinishButtonClick = () => {
         if(this.isCompleted() === true){
             this.addTags();
             console.log(this.associatedTags);
             this.setState({
                 complete: true
             });
+            DispatchAction();
+            profile.tags=associatedTags;
             this.props.history.push(`/clientDashboard/${JSON.parse(localStorage.getItem('user'))._id}`)
         } else {
             alert("You still have some questions to complete.");
@@ -327,7 +340,7 @@ export default class Quiz extends Component{
                                 <button id="backward-btn" disabled={currentQuestion===0 ? true: false} onClick={() => this.handleBackButtonClick()}>ᐊ</button>
                                 <button id="forward-btn" disabled={currentQuestion===questions.length-1 ? true: false} style={{ display: currentQuestion===questions.length-1 ? 'none' : null }} onClick={() => this.handleForwardButtonClick()}>ᐅ</button>
                                 {/* ERROR display still in progress <div id="inputAlert" className="input-alert disabled">ERROR! Invalid input.</div> */}
-                                <button id="finish-btn" style = {{ display: currentQuestion===questions.length-1 ? null : 'none'}} onClick={() => this.handleFinishButtonClick()}>FINISH</button>
+                                <button id="finish-btn" style = {{ display: currentQuestion===questions.length-1 ? null : 'none'}} onClick={() => this.HandleFinishButtonClick()}>FINISH</button>
                             </div>
                             </div>
                 )}

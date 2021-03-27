@@ -1,6 +1,6 @@
 import React, { useEffect ,useState } from 'react';
 import { Container, AppBar, Typography, Grow, Grid } from '@material-ui/core';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import NavbarUser from "./components/Navbar/NavbarUser";
 import { getPosts, updatePost } from './actions/posts';
 import Posts from './components/Posts/Posts';
@@ -11,6 +11,8 @@ import {finalFilteredProfiles} from './components/Navbar/Searchbox';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import ExpandLessIcon from '@material-ui/icons/ExpandLess';
+import { getBasicUser, updateBasicUser } from './actions/basicUsers';
+import { getProfessional } from './actions/professionals';
 import { Link } from 'react-router-dom';
 import "./App.css"
 
@@ -18,14 +20,27 @@ const ClientDashboard = () => {
     const [currentId, setCurrentId] = useState(null);
     const [updatedPosts,setUpdatedPosts]= useState([]);
     const classes = useStyles();
+    var profile;
+    var profile1;
+    var profile2;
     const dispatch = useDispatch();
-    useEffect(() => {
-      dispatch(getPosts());
-      dispatch(getProfessionalUsers());
-      setUpdatedPosts(updatedPosts);
-    }, [currentId,dispatch,setUpdatedPosts]);
-
+    
     // var showConstrained = false;
+    
+
+   useEffect(() => {
+    dispatch(getPosts());
+    setUpdatedPosts(updatedPosts);
+    dispatch(getBasicUser(JSON.parse(localStorage.getItem('user'))._id));
+    dispatch(getProfessional(JSON.parse(localStorage.getItem('user'))._id));
+  }, [currentId,dispatch,setUpdatedPosts]);
+  console.log(JSON.parse(localStorage.getItem('user'))._id);
+    profile1 = useSelector((state) => state.basicUsers);
+    profile2 = useSelector((state) => state.professional); 
+   if(JSON.parse(localStorage.getItem('user')).type == 'client')
+     profile=profile1;
+    else
+     profile=profile2; 
 
     const showProfiles = (event) => {
       var profiles = document.getElementById("profiles-full");
@@ -49,7 +64,7 @@ const ClientDashboard = () => {
 
 return (
   <>
-  <NavbarUser updatedPosts={updatedPosts} setUpdatedPosts={setUpdatedPosts}/>
+  <NavbarUser profile={profile} updatedPosts={updatedPosts} setUpdatedPosts={setUpdatedPosts}/>
   <Container maxWidth="lg">
     <AppBar className={classes.appBar} position="static" color="inherit">
       <Typography className={classes.heading} variant="h2" align="center">Dashboard</Typography>
