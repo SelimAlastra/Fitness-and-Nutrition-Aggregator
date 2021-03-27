@@ -86,7 +86,7 @@ const formik = useFormik({
           .post(`http://localhost:5000/basicUsers/register`, newData)
           .then(res => {
             authenticate(res, () => {
-            history.push(`/userQuiz/${JSON.parse(localStorage.getItem('user'))._id}`)
+            history.push(`/user/quiz/${JSON.parse(localStorage.getItem('user'))._id}`)
             })
           })
           .catch(err => {
