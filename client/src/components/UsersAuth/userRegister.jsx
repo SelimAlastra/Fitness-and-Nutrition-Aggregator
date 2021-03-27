@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useFormik } from "formik";
 import * as Yup from "yup";
@@ -10,10 +10,10 @@ import Modal from 'react-bootstrap/Modal';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faEye} from "@fortawesome/free-solid-svg-icons";
-import './professionalRegister.css';
+import './userRegister.css';
 import Google from './googleLogin.jsx';
 import Facebook from './facebookLogin.jsx';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 
 function PopUpSignUp(){
   const [show, setShow] = useState(false);
@@ -36,9 +36,11 @@ return(
 );
 };
 
-const Register = () => {
+const Register = (props) => {
 
 const history = useHistory();
+
+const location = useLocation();
 
 const eye = <FontAwesomeIcon icon={faEye} />;
 
@@ -47,8 +49,6 @@ const [passwordShown, setPasswordShown] = useState(false);
         setPasswordShown(passwordShown ? false : true);
   };
       
-
-
 const schema = Yup.object().shape({
     email: Yup.string()
         .email("Email must be valid.")
@@ -60,8 +60,6 @@ const schema = Yup.object().shape({
         .required("No username provided."),
     name: Yup.string()
         .required("No name provided."),
-    profession: Yup.string()
-        .required("No profession provided."),
     password: Yup.string()
         .required("No password provided.")
         .min(8, "Password is too short - should be 8 chars minimum.")
@@ -73,7 +71,7 @@ const schema = Yup.object().shape({
 });
 
 const formik = useFormik({
-    initialValues:{ email: "", username: "", password: "", retypePassword: "", name: "", profession: ""},
+    initialValues:{ email: "", username: "", password: "", retypePassword: "", name: ""},
     validationSchema: schema,
     onSubmit: (values, actions) => {
       setTimeout(() => {
@@ -83,25 +81,46 @@ const formik = useFormik({
           username: values.username,
           password: values.password,
           name: values.name,
-          profession: values.profession,
         }
+        if(location.pathname.includes("users")){
         axios
+          .post(`http://localhost:5000/basicUsers/register`, newData)
+          .then(res => {
+            authenticate(res, () => {
+            history.push(`/user/quiz/${JSON.parse(localStorage.getItem('user'))._id}`)
+            })
+            .catch(err => {
+                console.log(err);
+                        if(err.response.data.errors){
+                          console.log(err.response.data.errors)
+                          if(err.response.data.errors.includes('Email'))
+                            actions.setFieldError('email', 'Email already in use')
+                          else
+                            actions.setFieldError('username', 'Username already in use')
+                        }  
+                      })
+          })
+        }
+        else if(location.pathname.includes("professionals")){
+          axios
           .post(`http://localhost:5000/professionalUsers/register`, newData)
           .then(res => {
             authenticate(res, () => {
             history.push(`/professional/quiz/${JSON.parse(localStorage.getItem('user'))._id}`)
             })
+            .catch(err => {
+                console.log(err);
+                        if(err.response.data.errors){
+                          console.log(err.response.data.errors)
+                          if(err.response.data.errors.includes('Email'))
+                            actions.setFieldError('email', 'Email already in use')
+                          else
+                            actions.setFieldError('username', 'Username already in use')
+                        }  
+                      })
           })
-          .catch(err => {
-                      if(err.response.data.errors){
-                        console.log(err.response.data.errors)
-                        if(err.response.data.errors.includes('Email'))
-                          actions.setFieldError('email', 'Email already in use')
-                        else
-                          actions.setFieldError('username', 'Username already in use')
-                      }  
-                    })
-        actions.setSubmitting(false);        
+        }
+        actions.setSubmitting(false);
       }, 500);
     },
 });
@@ -160,21 +179,27 @@ const formik = useFormik({
       )}
       <p/>
       
-      <Form.Label hidden = {true} htmlFor="profession">Name</Form.Label>
-      <Form.Control
-          id="profession"
-          name="profession"
-          type="text"
-          placeholder="Enter your profession here"
-          value={formik.values.profession}
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          className={formik.errors.profession && formik.touched.profession && "error"}
-      />
-      {formik.errors.profession && formik.touched.profession && (
-      <div style={{color: "red"}} className="input-feedback">{formik.errors.profession}</div>
-      )}
-      <p/>
+    {location.pathname.includes("professionals") ? 
+      <div>
+      <Form.Label hidden = {true} htmlFor="profession">Profession</Form.Label>
+        <Form.Control
+            id="profession"
+            name="profession"
+            type="text"
+            placeholder="Enter your profession here"
+            value={formik.values.profession}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            className={formik.errors.profession && formik.touched.profession && "error"}
+        />
+        {formik.errors.profession && formik.touched.profession && (
+        <div style={{color: "red"}} className="input-feedback">{formik.errors.profession}</div>
+        )}
+      </div>
+    :
+      null
+    }
+    <p/>
   
     <Form.Label hidden = {true} htmlFor="password">Password</Form.Label> 
       <div className="parent1">

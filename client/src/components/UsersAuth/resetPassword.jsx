@@ -7,11 +7,12 @@ import Form from 'react-bootstrap/Form';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faEye} from "@fortawesome/free-solid-svg-icons";
-import { useHistory } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 
 const ResetPassword = ({match}) => {
     const eye = <FontAwesomeIcon icon={faEye} />;
     const history = useHistory();
+    const location = useLocation();
     const [passwordShown, setPasswordShown] = useState(false);
 
     const togglePasswordVisibility = () => {
@@ -53,7 +54,19 @@ const ResetPassword = ({match}) => {
                     newPassword: values.password1,
                     resetPasswordLink: token,
                   }
-                  axios.put(`http://localhost:5000/professionalUsers/resetpassword`, newData)
+                if(location.pathname.includes("user")){
+                    axios.put(`http://localhost:5000/basicUsers/resetpassword`, newData)
+                            .then(res => {
+                                history.push('/launch/users')
+                            })
+                        .catch(err => {
+                                console.log(err.response);
+                                if(err.response.data.error)
+                                    actions.setFieldError('general', err.response.data.error);   
+                        })
+                }
+                else if(location.pathname.includes("user")){
+                    axios.put(`http://localhost:5000/professionalUsers/resetpassword`, newData)
                         .then(res => {
                             history.push('/launch/professionals')
                           })
@@ -62,6 +75,7 @@ const ResetPassword = ({match}) => {
                             if(err.response.data.error)
                                 actions.setFieldError('general', err.response.data.error);   
                       })
+                }
                 actions.setSubmitting(false);
             },
         })

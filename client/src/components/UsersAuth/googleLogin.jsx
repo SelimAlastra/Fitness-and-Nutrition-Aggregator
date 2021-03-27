@@ -2,7 +2,7 @@ import React from 'react';
 import {GoogleLogin} from 'react-google-login';
 import axios from 'axios';
 import { authenticate, isAuth } from '../../actions/userAuth.js';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faGoogle } from '@fortawesome/free-brands-svg-icons' 
 import './googleLogin.css';
@@ -10,10 +10,26 @@ import './googleLogin.css';
 const Google = () => {
     const history = useHistory()
 
+    const location = useLocation();
+
     const icon = <FontAwesomeIcon icon={faGoogle} />
 
 const sendGoogleToken = tokenId => {
+  if(location.pathname.includes("users")){
   axios
+    .post(`http://localhost:5000/basicUsers/googlelogin`, {
+      idToken: tokenId
+    })
+    .then(res => {
+      console.log(res.data);
+      informParent(res);
+    })
+    .catch(error => {
+      console.log('GOOGLE SIGN IN ERROR', error.response);
+    });
+  }
+  else if(location.pathname.includes("professionals")){
+    axios
     .post(`http://localhost:5000/professionalUsers/googlelogin`, {
       idToken: tokenId
     })
@@ -24,12 +40,16 @@ const sendGoogleToken = tokenId => {
     .catch(error => {
       console.log('GOOGLE SIGN IN ERROR', error.response);
     });
+  }
 };
 
 const informParent = response => {
   authenticate(response, () => {
     isAuth() 
-    history.push(`/professionalDashboard/${JSON.parse(localStorage.getItem('user'))._id}`);
+    if(location.pathname.includes("users"))
+      history.push(`/clientDashboard/${JSON.parse(localStorage.getItem('user'))._id}`);
+    else if(location.pathname.includes("professionals"))
+      history.push(`/professionalDashboard/${JSON.parse(localStorage.getItem('user'))._id}`);
   });
 };
 
