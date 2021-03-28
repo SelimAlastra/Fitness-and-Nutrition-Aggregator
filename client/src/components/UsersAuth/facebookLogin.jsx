@@ -30,7 +30,7 @@ const Facebook = () => {
           console.log('FACEBOOK SIGN IN ERROR', error.response);
         });
     }
-    else if(location.pathname.includes("professioanls")){
+    else if(location.pathname.includes("professionals")){
       axios
       .post(`http://localhost:5000/professionalUsers/facebooklogin`, {
         userID,

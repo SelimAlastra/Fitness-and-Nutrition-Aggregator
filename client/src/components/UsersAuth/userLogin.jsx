@@ -5,7 +5,6 @@ import { authenticate, isAuth } from '../../actions/userAuth.js';
 import { Link, Redirect, useHistory, useLocation } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import Modal from 'react-bootstrap/Modal';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faEye} from "@fortawesome/free-solid-svg-icons";
@@ -13,30 +12,6 @@ import './userLogin.css';
 import axios from 'axios';
 import Google from './googleLogin.jsx';
 import Facebook from './facebookLogin.jsx';
-
-require('dotenv').config({path:'/.env'});
-
-function PopUpLogin(){
-    const [show, setShow] = useState(false);
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
-  return(
-    <>
-    <Button className="loginButton" variant="outline-success" variant="primary" onClick={handleShow}>
-      Login
-    </Button>
-    <div className = "modal-dialog">
-    <Modal className="logIn" show={show} onHide={handleClose}>
-      <Modal.Header closeButton>
-        <Modal.Title>LOGIN FORM</Modal.Title>
-      </Modal.Header>
-      <Modal.Body> <Login/> </Modal.Body>
-    </Modal>
-    </div>
-  </>
-  );
-
-};
 
 const Login = () => {
 
@@ -159,11 +134,12 @@ return (
         Log In
     </Button>
     <p style={{'marginLeft': '140px', 'fontWeight': 'bold'}}> OR </p>
-    <Google/>
-    <p/>
-    <Facebook/>
-</Form>
+  </Form>
+  <Google/>
+  <p/>
+  <Facebook/>
 </div>
 );
 };
-  export default PopUpLogin;
+
+export default Login;

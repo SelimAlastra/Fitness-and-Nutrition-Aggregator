@@ -6,7 +6,6 @@ import { authenticate, isAuth } from '../../actions/userAuth.js';
 import { Redirect } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import Modal from 'react-bootstrap/Modal';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faEye} from "@fortawesome/free-solid-svg-icons";
@@ -15,28 +14,7 @@ import Google from './googleLogin.jsx';
 import Facebook from './facebookLogin.jsx';
 import { useHistory, useLocation } from 'react-router-dom';
 
-function PopUpSignUp(){
-  const [show, setShow] = useState(false);
-const handleClose = () => setShow(false);
-const handleShow = () => setShow(true);
-return(
-  <>
-  <Button className="registerButton" onClick={handleShow}>
-    Create an account
-  </Button>
-
-  <Modal className="signUp" show={show} onHide={handleClose}>
-    
-    <Modal.Header closeButton>
-      <Modal.Title >REGISTRATION FORM</Modal.Title>
-    </Modal.Header>
-    <Modal.Body> <Register/> </Modal.Body>
-  </Modal>
-</>
-);
-};
-
-const Register = (props) => {
+const Register = () => {
 
 const history = useHistory();
 
@@ -129,7 +107,7 @@ const formik = useFormik({
       <div>
         {isAuth() ? <Redirect to='/' /> : null}
       
-    <Form autoComplete="off" onSubmit={formik.handleSubmit}>
+    <Form autoComplete="off">
     <Form.Label hidden = {true} htmlFor="email">Email</Form.Label>
       <Form.Control
           id="email"
@@ -239,16 +217,16 @@ const formik = useFormik({
       )}
       <p/>
       
-      <Button className="registerButtonModal" variant="outline-success" type="submit" disabled={formik.isSubmitting}>
+      <Button className="registerButtonModal" variant="outline-success" type="submit" disabled={formik.isSubmitting} onSubmit={formik.handleSubmit}>
           Register
       </Button>
       <p style={{'marginLeft': '140px', 'fontWeight': 'bold'}}> OR </p>
-      <Google/>
-      <p/>
-      <Facebook/>
     </Form>
+    <Google/>
+    <p/>
+    <Facebook/>
     </div>
     );
 };
 
-export default PopUpSignUp;
+export default Register;
