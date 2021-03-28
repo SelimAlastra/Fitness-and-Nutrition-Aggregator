@@ -67,9 +67,8 @@ const Main = () => (
 
         <Route exact path='/user/quiz/:id' exact render={props => <Quiz {...props} questions={questionsClient} questionsReqInput={questionsReqInputClient} questionsMultipleChoices={questionsMultipleChoicesClient} />}/>
         <Route exact path='/professional/quiz/:id' exact render={props => <Quiz {...props} questions={questionsProfessional} questionsReqInput={questionsReqInputProfessional} questionsMultipleChoices={questionsMultipleChoicesProfessional} />}/>
-        
-        <Route exact path="/professional/profile/:professionalID" render={props => <ProfessionalProfile {...props} isProfessional={true} />}></Route>
-        <Route exact path="/user/professional/profile/:professionalID/:clientID" render={props => <ProfessionalProfile {...props} isProfessional={false} />}></Route>
+        <PrivateRoute exact path="/professional/profile/:id" component={Wrapper} componentToRender={ProfessionalProfile} userType={'professional'}/>
+        <PrivateRoute exact path="/user/professional/profile/:professionalID/:id" component={Wrapper} componentToRender={ProfessionalProfile} userType={'client'}/>
 
                 
         <PrivateRoute exact path="/professional/edit/:id" component={Wrapper} componentToRender={EditProfessionalDetails} userType={'professional'}/>
@@ -78,8 +77,6 @@ const Main = () => (
         <PrivateRoute exact path="/user/edit/:id" component={Wrapper} componentToRender={EditBasicUser} userType={'client'}/>
         <PrivateRoute exact path="/user/myservices/:id" component={Wrapper} componentToRender={MyServices} userType={'client'}/>
 
-        {/*<Route exact path="/professional/profile/:id" component={ProfessionalProfile}/>*/}
-        {/*<Route exact path="/professional/profile/edit/:id" component={EditProfessionalDetails}/>*/}
         <PrivateRoute exact path="/professional/services/edit/:id" component={Wrapper} componentToRender={EditServices} userType={'professional'}/>
         <PrivateRoute exact path="/professional/services/add/:id" component={Wrapper} componentToRender={AddService} userType={'professional'}/>
 

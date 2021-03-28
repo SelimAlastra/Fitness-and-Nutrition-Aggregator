@@ -107,6 +107,12 @@ export const loginController = (req, res) => {
         errors: 'Email and password do not match'
       });
     }
+    // check if banned
+    else if (user.isBanned) {
+      return res.status(400).json({
+        errors: 'You cannot login, as you are banned.'
+      });
+    }
     // generate a token and send to client
     const token = jwt.sign(
       {
