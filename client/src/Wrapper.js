@@ -3,7 +3,6 @@ import ClientDashboard from "./ClientDashboard";
 
 const Wrapper = (props, {...rest}) => {
     const MyComponent = props.component;
-    console.log(props);
 
     if(props.match.params.id === JSON.parse(localStorage.getItem('user'))._id)
         return <MyComponent {...props} />

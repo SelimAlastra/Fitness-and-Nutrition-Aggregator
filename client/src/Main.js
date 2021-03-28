@@ -53,7 +53,7 @@ const Main = () => (
         <PrivateRoute exact path='/homePage/:id' component={Wrapper} componentToRender={HomePage} userType={'client'}/>
         <PrivateRoute exact path='/homePage/edit/:id' component={Wrapper} componentToRender={EditGoals} userType={'client'}/>
         <PrivateRoute exact path='/clientDashboard/:id' component={Wrapper} componentToRender={ClientDashboard} userType={'client'}/>
-        <PrivateRoute exact path='/professionalDashboard/:id' component={ProfessionalDashboard} userType={'professional'}/>
+        <PrivateRoute exact path='/professionalDashboard/:id' component={Wrapper} componentToRender={ProfessionalDashboard} userType={'professional'}/>
   
         <Route exact path='/user/myBuckets/:id' component={BucketPage}></Route>
         <Route exact path='/user/myBuckets/:id/:title' component={BucketContent}></Route>
