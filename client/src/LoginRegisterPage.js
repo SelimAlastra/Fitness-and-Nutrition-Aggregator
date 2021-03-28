@@ -1,6 +1,6 @@
-import Login from './components/UsersAuth/userLogin.jsx';
-import Register from './components/UsersAuth/userRegister.jsx';
-import './ClientLoginRegister.css';
+import Login from './components/UsersAuth/loginModal.jsx';
+import Register from './components/UsersAuth/registerModal.jsx';
+import './LoginRegisterPage.css';
 
 const UserPage = () => {
     return (

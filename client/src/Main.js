@@ -12,6 +12,8 @@ import HomePage from './components/HomePage/HomePage';
 import EditGoals from './components/HomePage/EditGoals';
 
 import UserPage from './LoginRegisterPage';
+import Login from './components/UsersAuth/userLogin';
+import Register from './components/UsersAuth/userRegister';
 import ForgetPassword from './components/UsersAuth/forgetPassword.jsx';
 import ResetPassword from './components/UsersAuth/resetPassword.jsx';
 import NavbarUser from './components/Navbar/NavbarUser.js';
@@ -46,6 +48,7 @@ const Main = () => (
         <Route exact path="/admin"> <span/> </Route>
         <Route path="/admin"> <AdminNavigationBar/> </Route>
     </Switch>
+    
     <Switch>
         <Route exact path='/' component={LandingPage}/>
         <Route exact path='/admin' component={AdminLogin}/>
@@ -57,8 +60,9 @@ const Main = () => (
   
         <Route exact path='/user/myBuckets/:id' component={BucketPage}></Route>
         <Route exact path='/user/myBuckets/:id/:title' component={BucketContent}></Route>
-  
+
         <Route exact path='/launch/users' exact render={props => <UserPage {...props} />} /> 
+
         <Route exact path='/launch/professionals' exact render={props => <UserPage {...props} />} />
         <Route exact path='/user/password/forget' exact render={props => <ForgetPassword {...props} />} />
         <Route exact path='/user/password/reset/:token' exact render={props => <ResetPassword {...props} />} />
@@ -69,7 +73,6 @@ const Main = () => (
         <Route exact path='/professional/quiz/:id' exact render={props => <Quiz {...props} questions={questionsProfessional} questionsReqInput={questionsReqInputProfessional} questionsMultipleChoices={questionsMultipleChoicesProfessional} />}/>
         <PrivateRoute exact path="/professional/profile/:id" component={Wrapper} componentToRender={ProfessionalProfile} userType={'professional'}/>
         <PrivateRoute exact path="/user/professional/profile/:professionalID/:id" component={Wrapper} componentToRender={ProfessionalProfile} userType={'client'}/>
-
                 
         <PrivateRoute exact path="/professional/edit/:id" component={Wrapper} componentToRender={EditProfessionalDetails} userType={'professional'}/>
 
