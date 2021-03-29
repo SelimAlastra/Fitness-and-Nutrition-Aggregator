@@ -91,7 +91,8 @@ const MyServices = (props) => {
         }
     }
 
-
+    console.log(allServices);
+    console.log(myServices);
     if (myServices === undefined || myServices.length === 0 ) {
         return (
             <div>
