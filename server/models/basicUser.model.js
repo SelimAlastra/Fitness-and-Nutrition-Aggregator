@@ -31,7 +31,7 @@ const basicUserSchema = new Schema({
 
   goals :[{type: String,  required: false}],
 
-  tags : [{type: String,  required: false}],
+  tags : [String],
   //I used an array here cause an user may have multiple tags
 
   bio :{type: String,  required: false},

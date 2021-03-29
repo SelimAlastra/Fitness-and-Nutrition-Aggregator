@@ -1,11 +1,12 @@
-import React from 'react';
+import React,{useEffect} from 'react';
 import './Navbar.css';
 import { fade } from '@material-ui/core/styles';
 import { makeStyles } from '@material-ui/core/styles';
 import InputBase from '@material-ui/core/InputBase';
-import { useSelector } from 'react-redux';
 import {associatedTags} from '../../quiz/quizUser';
-
+import { useDispatch, useSelector } from 'react-redux';
+import { getBasicUser, getBasicUsers, updateBasicUser } from '../../actions/basicUsers';
+import { getProfessional } from '../../actions/professionals';
 /**
  * styles for the searchbox
  */
@@ -51,6 +52,7 @@ const initialFilteredPosts = new Set();
  */
 const SearchBox = ({updatePosts,setUpdatedPosts}) => {
   const classes = useStyles();
+ 
   filteredPosts = useSelector((state) => state.posts);
   filteredProfiles = useSelector((state) => state.professional);
 
@@ -74,24 +76,70 @@ const SearchBox = ({updatePosts,setUpdatedPosts}) => {
               post.creator.toLowerCase().includes(searchString) ||
               findTag(post.tags,searchString) 
               );
-    newFilteredPosts.forEach(post => initialFilteredPosts.add(post));
+   newFilteredPosts.forEach(post => initialFilteredPosts.add(post));
 
-    if(filteredProfiles !== undefined && filteredProfiles !== []){
+    if(filteredProfiles !==null && filteredProfiles !== []){
       newFilteredProfiles = filteredProfiles.filter((profile) => 
               profile.name.toLowerCase().includes(searchString)
               );
       finalFilteredProfiles = newFilteredProfiles;
     }
   }
-  const initialSearch =() =>{
-    for(var i=0;i<associatedTags.length;i++)
-    {
-        filterPosts(associatedTags[i]);
+  const InitialSearch =() =>{
+    var tags;
+    var profile1;
+    var profile2;
+    var profile;
+    const dispatch = useDispatch();
+    useEffect(() => {
+     dispatch(getBasicUser(JSON.parse(localStorage.getItem('user'))._id));
+     dispatch(getProfessional(JSON.parse(localStorage.getItem('user'))._id));
+    }, [dispatch]);
+    profile1 = useSelector((state) => state.basicUsers);
+     profile2 = useSelector((state) => state.professional); 
+     if(JSON.parse(localStorage.getItem('user')).type == 'client')
+      {
+        tags=profile1.tags;
+        profile=profile1;
+      }
+     else
+     {
+      tags=profile2.tags;
+      profile=profile2;
     }
+      console.log(profile1);
+      console.log(associatedTags);
+    if(associatedTags.length>0)
+    { 
+      tags=associatedTags;
+      const newBasicUser = {
+        name:profile.name,
+        username: profile.username,
+        email: profile.email,
+        password: profile.password,
+        address: profile.address,
+        gender: profile.gender,
+        bodyType: profile.bodyType,
+        weight: profile.weight,
+        bio: profile.bio,
+        tags:associatedTags,
+        goals: profile.goals,
+        isBanned: profile.isBanned,
+        dob: profile.dob,
+        bundles: profile.bundles
+    }
+   dispatch(updateBasicUser(JSON.parse(localStorage.getItem('user'))._id, newBasicUser));
+    }
+    if(tags !== undefined){
+      for(var i=0;i<tags.length;i++)
+    {
+        filterPosts(tags[i]);
+    } 
+  } 
     newArray=[];
     initialFilteredPosts.forEach(v => newArray.push(v));
   }
-   initialSearch();
+   InitialSearch();
   //loadCharacters();
   
   const keyup = (e) => {
