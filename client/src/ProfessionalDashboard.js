@@ -14,6 +14,7 @@ import MailIcon from "@material-ui/icons/Mail";
 import ProfessionalNavbar from "./components/Navbar/ProfessionalNavbar";
 import { useDispatch } from 'react-redux';
 import { getPosts, updatePost } from './actions/posts';
+import { getProfessionalUsers } from './actions/professionals';
 import Posts from './components/Posts/Posts';
 import Form from './components/Form/Form';
 import memories from './images/memories.png';
@@ -38,7 +39,7 @@ const ProfessionalDashboard = () => {
     } */
     useEffect(() => {
       dispatch(getPosts());
-      dispatch(getProfessional(currentId));
+      //dispatch(getProfessionalUsers());
       //GetModifiedPosts(data);
       setUpdatedPosts(updatedPosts);
     }, [currentId,dispatch,setUpdatedPosts]);

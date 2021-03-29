@@ -6,7 +6,6 @@ const questionsClient = [
             { answerText: "Woman", selected:false, requireInput: false, tags:["womensfitness"] },
             { answerText: "Man", selected:false, requireInput: false, tags:["menfitness"] },
             { answerText: "Other", selected:false,requireInput: false, tags:[""] },
-            { answerText: "I prefer not to say", selected:false, requireInput: false, tags:[""]}
         ],
     },{
         questionText: "What is your age range?",
@@ -39,6 +38,7 @@ const questionsClient = [
         questionText: "What best describes your body?",
         questionId: 5,
         answerOptions: [
+            { answerText: "Short and sturdy", selected:false, tags:["short", "shortperson"], requireInput: false },
             { answerText: "Lean and long", selected:false, tags:["tall", "ectomorph"], requireInput: false },
             { answerText: "Tall and heavy", selected:false, tags:["tall", "endomorph", "bodybuilding"], requireInput: false },
             { answerText: "Athletic, with a high metabolism", selected:false, tags:["athletic", "mesomorph"], requireInput: false },

@@ -57,7 +57,7 @@ const questionsProfessional = [
     },
 ];
 
-const questionsReqInputProfessional = [6];
+const questionsReqInputProfessional = [];
 const questionsMultipleChoicesProfessional = [];
 
 export {questionsProfessional,questionsReqInputProfessional,questionsMultipleChoicesProfessional}
