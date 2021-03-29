@@ -31,6 +31,7 @@ const EditBasicUser = (props) => {
     const [weight, setWeight] = useState("");
     const [bio, setBio] = useState("");
     const [ID, setID] = useState("");
+    const[tags,setTags]=useState("");
 
     useEffect(() => {
         setName(profile.name);
@@ -46,6 +47,7 @@ const EditBasicUser = (props) => {
         setDay(date.day);
         setMonth(date.month);
         setYear(date.year);      
+        setTags(profile.tags);
     }, [profile]);
 
     function handleSubmit(event) {
@@ -64,7 +66,7 @@ const EditBasicUser = (props) => {
                     bodyType: bodyType,
                     weight: weight,
                     bio: bio,
-                    tags: profile.tags,
+                    tags: tags,
                     goals: profile.goals,
                     isBanned: profile.isBanned,
                     dob: constructDate(day, month, year),
@@ -158,6 +160,18 @@ const EditBasicUser = (props) => {
                             value={email}
                             placeholder="Email" 
                             onChange={(e) => setEmail(e.target.value)}
+                            required
+                        >
+                        </Form.Control>
+                    </Form.Group>
+                    <Form.Group>
+                        <Form.Label className="label">Tags</Form.Label>
+                        <Form.Control
+                            className="inputItem"
+                            id="tags"
+                            value={tags}
+                            placeholder="Tags" 
+                            onChange={(e) => setTags(e.target.value.split(','))}
                             required
                         >
                         </Form.Control>
