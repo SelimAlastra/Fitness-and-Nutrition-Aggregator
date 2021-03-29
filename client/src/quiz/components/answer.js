@@ -71,6 +71,23 @@ const Answer = (props) => {
     }
 
     /**
+     * auto-select input answer 
+     */
+    const autoSelect = (event, answerOption) => {
+        const query = event.target.value;
+        if(query !== ""){
+            if (validateInput(query)===true){
+                if(answerOption){
+                    if(props.answer.find(element => element.selected === true)){
+                        props.answer.find(element => element.selected === true).selected = false;
+                    }
+                    answerOption.selected = true;
+                }
+            }
+        }
+    }
+
+    /**
      * check validation for every character input
      */
     function handleOnInputChange(event) {
@@ -150,7 +167,7 @@ const Answer = (props) => {
                     />
                 ))}
             </div>
-            <input className="inputBox" id="inputBox" type="text" name="name" placeholder={placeholderValidation()} key={"key_" + props.currentQuestion} onChange={handleOnInputChange}/>
+            <input className="inputBox" id="inputBox" type="text" name="name" placeholder={placeholderValidation()} key={"key_" + props.currentQuestion} onChange={e => handleOnInputChange(e)}/>
             </>
         );
     } else {
@@ -168,7 +185,7 @@ const Answer = (props) => {
                         handleAnswerButtonClick = {props.handleAnswerButtonClick} 
                         questions = {props.questions}
                     />
-                    <input style = {{ display: answerOption.requireInput ? 'block' : 'none'}} className="inputBox" id="inputBox" type="text" name="name" placeholder={answerOption.placeholder} key={"key_" + props.currentQuestion} onChange={handleOnInputChange}/>
+                    <input style = {{ display: answerOption.requireInput ? 'block' : 'none'}} className="inputBox" id="inputBox" type="text" name="name" placeholder={answerOption.placeholder} key={"key_" + props.currentQuestion} onChange={e => handleOnInputChange(e)} onKeyUp={(e)=>autoSelect(e, answerOption)}/>
                 </>
                 ))}
             </div>

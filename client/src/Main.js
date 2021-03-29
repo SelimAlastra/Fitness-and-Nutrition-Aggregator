@@ -69,8 +69,8 @@ const Main = () => (
         <Route exact path='/professional/password/forget' exact render={props => <ForgetPassword {...props} />} />
         <Route exact path='/professional/password/reset/:token' exact render={props => <ResetPassword {...props} />} />
 
-        <Route exact path='/user/quiz/:id' exact render={props => <Quiz {...props} questions={questionsClient} questionsReqInput={questionsReqInputClient} questionsMultipleChoices={questionsMultipleChoicesClient} />}/>
-        <Route exact path='/professional/quiz/:id' exact render={props => <Quiz {...props} questions={questionsProfessional} questionsReqInput={questionsReqInputProfessional} questionsMultipleChoices={questionsMultipleChoicesProfessional} />}/>
+        <Route exact path='/user/quiz/:id' exact render={props => <Quiz {...props} questions={questionsClient} questionsReqInput={questionsReqInputClient} questionsMultipleChoices={questionsMultipleChoicesClient} isClient={true}/>}/>
+        <Route exact path='/professional/quiz/:id' exact render={props => <Quiz {...props} questions={questionsProfessional} questionsReqInput={questionsReqInputProfessional} questionsMultipleChoices={questionsMultipleChoicesProfessional} isClient={false}/>}/>
         
         <PrivateRoute exact path="/professional/profile/:id" component={Wrapper} componentToRender={ProfessionalProfile} userType={'professional'}/>
         <PrivateRoute exact path="/user/professional/profile/:professionalID/:id" component={Wrapper} componentToRender={ProfessionalProfile} userType={'client'}/>

@@ -3,10 +3,6 @@ import Question from './components/question';
 import Answer from './components/answer';
 import './styling/quizUser.css';
 
-// import {questions,questionsReqInput,questionsMultipleChoices, questionsClient, questionsReqInputClient, questionsMultipleChoicesClient} from './resources/clientQuestions';
-// import {questions,questionsReqInput,questionsMultipleChoices} from './resources/clientQuestions';
-// <Quiz questions={questions} questionsReqInput={questionsReqInput} questionsMultipleChoices={questionsMultipleChoices}>
-
 var associatedTags = [];
 
 export default class Quiz extends Component{
@@ -18,6 +14,8 @@ export default class Quiz extends Component{
         questionsReqInput: this.props.questionsReqInput,
         // identify questions that accept multiple selections by adding their ID in this array
         questionsMultipleChoices: this.props.questionsMultipleChoices,
+        // @true if it is client's and @false if it is a professional's quiz 
+        isClient: this.props.isClient,
 
         currentQuestion: 0,
         complete: false
@@ -65,41 +63,40 @@ export default class Quiz extends Component{
         // used to determine whether the next question will be automatically displayed or not (Yes if @true, No if @false)
         let displayNext = true;
 
-        //certain questions require multiple answer selections
+        // if answer already selected, keep on the same question 
+        if(newItems[currentQuestion].answerOptions.find(element => element.selected === true)){
+            displayNext = false;
+        }
+
+        // certain questions require multiple answer selections
         if(this.checkMultipleAllowed() === false){
             // remove previously selected answer
             if(newItems[currentQuestion].answerOptions.find(element => element.selected === true)){
                 const answerSelected = newItems[currentQuestion].answerOptions.find(element => element.selected === true);
                 answerSelected.selected = false; 
-                displayNext = false;
             }
             // set new selected answer 
             newAnswer.selected = true;
         } else {
-            if(newItems[currentQuestion].answerOptions.find(element => element.selected === true)){
-                displayNext = false;
-            }
-
             // select or deselect answer
             if(newAnswer.selected === true){
                 newAnswer.selected = false;
-                console.log("IF REACHED - true");
             } else {
                 newAnswer.selected = true;
-                console.log("IF REACHED - false");
             }
         }
 
-        //if question required input, clear saved input
+        // if question required input, clear saved input
         if(this.checkReqInput()){
             newItems[currentQuestion].input.pop();
         }
         
-        //keep on the same question when there is need for input
+        // keep on the same question when there is need for input
         if(newAnswer.requireInput === true){
             displayNext = false;
         }
 
+        // update the state
         if(currentQuestion + 1 < questions.length){
             if(displayNext === true && this.checkReqInput()===false){
                 this.setState({
@@ -164,7 +161,7 @@ export default class Quiz extends Component{
         const{questions, currentQuestion, questionsReqInput} = this.state;
         const answers = questions[currentQuestion].answerOptions;
 
-        //check for question that requires input
+        // check for question that requires input
         if(questionsReqInput.find(element => element === questions[currentQuestion].questionId)){
 
             //check if there has been previous input value
@@ -179,6 +176,7 @@ export default class Quiz extends Component{
             }
         }
 
+        // add input if required by answer
         answers.forEach(answer => {
             if(answer.requireInput === true){
                 if(!answer.input || !answer.input.length){
@@ -271,15 +269,20 @@ export default class Quiz extends Component{
     /**
      * change @questions completion status
      */
-
     handleFinishButtonClick = () => {
+        const {isClient} = this.state;
+
         if(this.isCompleted() === true){
             this.addTags();
             console.log(this.associatedTags);
             this.setState({
                 complete: true
             });
-            this.props.history.push(`/clientDashboard/${JSON.parse(localStorage.getItem('user'))._id}`)
+            if(isClient) {
+                this.props.history.push(`/clientDashboard/${JSON.parse(localStorage.getItem('user'))._id}`);
+            } else {
+                this.props.history.push(`/professionalDashboard/${JSON.parse(localStorage.getItem('user'))._id}`);
+            }
         } else {
             alert("You still have some questions to complete.");
         }
