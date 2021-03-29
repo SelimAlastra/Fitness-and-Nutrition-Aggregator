@@ -32,7 +32,6 @@ export const getBasicUsers = () => async (dispatch) => {
 }
 
 export const createBasicUser = (user) => async (dispatch) => {
-    console.log(user);
 
     try {
         const { data } = await api.createBasicUser(user);

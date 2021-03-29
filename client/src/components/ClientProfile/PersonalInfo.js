@@ -61,7 +61,6 @@ const PersonalInfo = ({profile}) => {
                 }
             </div>
         );
-        console.log(filtered);
     }
     
 }

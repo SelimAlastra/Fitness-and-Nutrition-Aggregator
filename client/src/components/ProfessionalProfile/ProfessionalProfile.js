@@ -44,10 +44,6 @@ const ProfessionalProfile = (props) => {
          
      }, [basicUserProfile]);
 
-     console.log(professionalUser);
-
-
-
      // Get Services
      useEffect(() => {
          dispatch(getServices());

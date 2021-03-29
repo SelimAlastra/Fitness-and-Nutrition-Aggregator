@@ -19,7 +19,7 @@ const BasicUserDetails = () => {
 
     const handleBan = () => {
         user.isBanned = !user.isBanned;
-        console.log(user);
+
         dispatch(updateBasicUser(user._id, user));
         window.location.reload();
     }

@@ -76,13 +76,9 @@ const Answer = (props) => {
     function addIndividualInput (answer, input) {
         if(!answer.input || !answer.input.length){
             answer.input.push(input);
-            console.log("input: " + input);
-            console.log("answer input: " + answer.input[0]);
         } else {
             answer.input.pop();
             answer.input.push(input);
-            console.log("input: " + input);
-            console.log("answer input: " + answer.input[0]);
         }
     }
 
@@ -107,7 +103,6 @@ const Answer = (props) => {
         
         if (validateInput(query)===true){
             input = query;
-            console.log(input);
             autoSelect(answerOption);
             if(answerOption){
                 if(answerOption.requireInput === true){
@@ -116,7 +111,6 @@ const Answer = (props) => {
             }
         } else {
             document.getElementById("inputBox").value=input;
-            console.log(input);
         } 
     };
 
