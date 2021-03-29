@@ -4,14 +4,12 @@ import mongoose from "mongoose";
 import cors from "cors";
 import dotenv from 'dotenv';
 
-import postRoutes from './routes/posts.js';
 import reportRoutes from './routes/reports.js';
 import bucketRoutes from './routes/buckets.js';
 import adminRoutes from './routes/admins.js';
 import basicUserRoutes from './routes/basicUsers.js';
 // import commentRoutes from './routes/comments.js';
 // import likeRoutes from './routes/likes.js';
-// import postRoutes from './routes/posts.js';
 import professionalUserRoutes from './routes/professionalUsers.js';
 // import subscriberRoutes from './routes/subscribers.js';
 // import subscriptionRoutes from './routes/subscriptions.js';
@@ -34,7 +32,6 @@ app.use('/admins', adminRoutes);
 app.use('/services', serviceRoutes);
 app.use('/goals', goalsRoutes);
 
-app.use('/posts', postRoutes);
 app.use('/buckets', bucketRoutes);
 // app.use('/comments', commentRoutes);
 // app.use('/likes', likeRoutes);
