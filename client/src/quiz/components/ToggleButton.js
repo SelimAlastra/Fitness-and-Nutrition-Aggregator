@@ -21,7 +21,7 @@ const Button = (props) => {
     if(props.answerOption.selected === true){
         return (
           //for using the handleClickButton, you must add the following: className={`${color}, ...}
-          <button className={`toggleButton`}> {props.answerText} </button> 
+          <button onClick={() => {handleClickButton("toggleButton"); props.handleAnswerButtonClick(props.answerOption)} } className={`toggleButton`}> {props.answerText} </button> 
         );
     } else { 
         return (
