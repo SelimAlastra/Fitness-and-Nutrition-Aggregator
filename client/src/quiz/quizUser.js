@@ -79,15 +79,8 @@ export default class Quiz extends Component{
             if(newItems[currentQuestion].answerOptions.find(element => element.selected === true)){
                 displayNext = false;
             }
-            //ERROR: can't make selected answer false again...
-            // if(newItems[currentQuestion].answerOptions.find(element => element.selected === true && element === answer)){
-            //     const answerSelected = newItems[currentQuestion].answerOptions.find(element => element.selected === true && element === answer);
-            //     answerSelected.selected = false;
-            // } else {
-                // newAnswer.selected = true;
-            // }
 
-            //another method tried
+            // select or deselect answer
             if(newAnswer.selected === true){
                 newAnswer.selected = false;
                 console.log("IF REACHED - true");
@@ -133,7 +126,7 @@ export default class Quiz extends Component{
       }
 
     /**
-     * @return index of selected answer
+     * @return index of selected answer (type: INT)
      */
     findSelectedAnswer = () => {
         const{questions, currentQuestion} = this.state;

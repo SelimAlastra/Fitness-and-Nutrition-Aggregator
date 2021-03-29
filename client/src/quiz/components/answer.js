@@ -145,7 +145,7 @@ const Answer = (props) => {
                         key={answerOption.answerText} 
                         answerOption = {answerOption}
                         answerText = {answerOption.answerText}
-                        handleAnswerButtonClick = {props.handleAnswerButtonClick} 
+                        handleAnswerButtonClick = {props.handleAnswerButtonClick}
                         questions = {props.questions}
                     />
                 ))}
