@@ -62,7 +62,7 @@ const Facebook = () => {
           history.push(`/professional/quiz/${JSON.parse(localStorage.getItem('user'))._id}`)
         }
         else{
-          history.push(`/clientDashboard/${JSON.parse(localStorage.getItem('user'))._id}`);
+          history.push(`/professionalDashboard/${JSON.parse(localStorage.getItem('user'))._id}`);
         }
       }
     });
