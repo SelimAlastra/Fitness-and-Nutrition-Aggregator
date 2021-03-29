@@ -1,16 +1,16 @@
-import { FETCH_ALL_BUCKETS, CREATE_BUCKETS, UPDATE_BUCKET, FETCH_BUCKET } from '../constants/actionTypes';
+import { FETCH_ALL, CREATE, UPDATE, FETCH, DELETE } from '../constants/bucketsActionTypes';
 
 export default (buckets = [],action) => {
     switch (action.type) {
-        case FETCH_BUCKET:
+        case FETCH:
             return action.payload;
-        case FETCH_ALL_BUCKETS:
+        case FETCH_ALL:
             return action.payload; 
-        case CREATE_BUCKETS:
+        case CREATE:
             return [ ...buckets, action.payload];
-        case UPDATE_BUCKET:
+        case UPDATE:
             return action.payload;
-        case 'DELETE_BUCKET':
+        case DELETE:
             return buckets.filter((bucket) => bucket._id !== action.payload);
         default:
             return buckets;

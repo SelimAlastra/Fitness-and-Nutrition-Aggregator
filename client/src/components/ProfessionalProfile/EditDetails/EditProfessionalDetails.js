@@ -21,9 +21,9 @@ const EditProfessionalDetails = (props) => {
     const [dob, setDob] = useState(new Date());
     const [password, setPassword] = useState("");
     const [isBanned, setIsBanned] = useState(false);
-    const [tags, setTags] = useState([]);
     const [ID, setID] = useState("");
     const [profession, setProfession] = useState("");
+    const[tags,setTags]=useState("");
     let professional;
     useEffect(() => {
         dispatch(getProfessional(props.match.params.id));
@@ -136,6 +136,18 @@ const EditProfessionalDetails = (props) => {
                                 value={email} 
                                 placeholder="Email" 
                                 onChange={(e) => setEmail(e.target.value)} 
+                                required
+                            />
+                        </Form.Group>
+                        <Form.Group>
+                            <Form.Label className="label">Tags</Form.Label>
+                            <Form.Control 
+                                className="inputItem"
+                                id="tags" 
+                                name="tags" 
+                                value={tags} 
+                                placeholder="Tags" 
+                                onChange={(e) => setTags(e.target.value.split(','))} 
                                 required
                             />
                         </Form.Group>

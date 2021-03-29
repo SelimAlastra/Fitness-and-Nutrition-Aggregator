@@ -25,12 +25,12 @@ const Bucket = ({ bucket }) => {
     return (
         <div>
         <CardContent style={{"alignContent" : "center"}}>
-        <LinkContainer to={{pathname:`/user/myBuckets/${bucket._id}/${bucket.title}`}}>
+        <LinkContainer style={{"fontWeight" : "bold"}} to={{pathname:`/user/myBuckets/${bucket._id}/${bucket.title}`}}>
             <Button>
                 {bucket.title}
             </Button>
         </LinkContainer>
-        <p>{bucket.postsId.length} Posts</p>
+        <div>{bucket.postsId.length} Posts</div>
         </CardContent>
         <Button onClick= {() => handleDelete(bucket._id)}>
             Delete
