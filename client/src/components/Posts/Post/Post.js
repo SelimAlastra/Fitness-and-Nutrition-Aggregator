@@ -26,23 +26,25 @@ import { deletePost, likePost, toggleFavAction, updatePost } from '../../../acti
 const Post = ({ post, setCurrentId }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const [anchorEl, setAnchorEl] = React.useState(null);
+  
   const [open, setOpen] = React.useState(false);
   const user = JSON.parse(localStorage.getItem('user'));
 
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const handleClick = (event) => setAnchorEl(event.currentTarget);
+  const handleClose = () => setAnchorEl(null);
 
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
+  const [showReport, setShowReport] = useState(false);
+  const handleCloseReport = () => setShowReport(false);
+  const handleShowReport = () => setShowReport(true);
+
+  const [showBucket, setShowBucket] = useState(false);
+  const handleCloseBucket = () => setShowBucket(false);
+  const handleShowBucket = () => setShowBucket(true);
+
+
 
   require('dotenv').config({ path: '/.env' });
-
-  const [show2, setShow2] = useState(false);
-  const handleClose2 = () => setShow2(false);
-  const handleShow = () => setShow2(true);
 
   function PopUpBuckets() {
     const postToAdd = {
@@ -50,11 +52,11 @@ const Post = ({ post, setCurrentId }) => {
     }
 
     return (<> 
-  <Button size="small" onClick={() =>handleShow()}
+  <Button size="small" onClick={() =>handleShowBucket()}
   >
     <FaFolderPlus/>
   </Button> 
-        < Modal className="bucket" className="bucket" show={show2} onHide={handleClose2}>
+        < Modal className="bucket" className="bucket" show={showBucket} onHide={handleCloseBucket}>
           < Modal.Header closeButton > < Modal.Title > Add this post to a bucket </Modal.Title >
           </ Modal.Header >
           < Modal.Body >
@@ -66,11 +68,8 @@ const Post = ({ post, setCurrentId }) => {
         </ Modal > </>);
   };
 
-
   const ReportPopUp = () => {
-    const [show1, setShow1] = useState(false);
-    const handleCloseReport = () => setShow1(false);
-    const handleShowReport = () => setShow1(true);
+
     const reportData = {
       reporterUsername: user.username,
       reportedUsername: post.creator,
@@ -80,12 +79,14 @@ const Post = ({ post, setCurrentId }) => {
 
     return (
       <>
-        <MenuItem size="small" onClick={() => handleShowReport()}> Report </MenuItem>
-        <Modal show={show1} onHide={handleCloseReport}>
+        <Button size="small" onClick={() => handleShowReport()}> Report </Button>
+        <Modal show={showReport} onHide={handleCloseReport} backdrop="static">
           <Modal.Header closeButton>
             <Modal.Title>Report</Modal.Title>
           </Modal.Header>
-          <Modal.Body> <ReportForm reportData={reportData} /> </Modal.Body>
+          <Modal.Body>
+            <ReportForm reportData={reportData} />
+          </Modal.Body>
         </Modal>
       </>
     );
