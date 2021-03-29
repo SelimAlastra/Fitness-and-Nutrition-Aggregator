@@ -80,7 +80,7 @@ const formik = useFormik({
                       })
         }
         else if(location.pathname.includes("professionals")){
-        const newData = {
+        const newData2 = {
             email: values.email,
             username: values.username,
             password: values.password,
@@ -88,7 +88,7 @@ const formik = useFormik({
             profession: values.profession,
         }
         axios
-          .post(`http://localhost:5000/professionalUsers/register`, newData)
+          .post(`http://localhost:5000/professionalUsers/register`, newData2)
           .then(res => {
             authenticate(res, () => {
             history.push(`/professional/quiz/${JSON.parse(localStorage.getItem('user'))._id}`)

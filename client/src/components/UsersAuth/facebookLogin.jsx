@@ -50,10 +50,20 @@ const Facebook = () => {
     authenticate(response, () => {
       isAuth()
       if(location.pathname.includes("users")){
-        history.push(`/clientDashboard/${JSON.parse(localStorage.getItem('user'))._id}`);
+        if(response.data.isNew){
+          history.push(`/user/quiz/${JSON.parse(localStorage.getItem('user'))._id}`)
+        }
+        else{
+          history.push(`/clientDashboard/${JSON.parse(localStorage.getItem('user'))._id}`);
+        }
       }
       else if(location.pathname.includes("professionals")){
-        history.push(`/clientDashboard/${JSON.parse(localStorage.getItem('user'))._id}`);
+        if(response.data.isNew){
+          history.push(`/professional/quiz/${JSON.parse(localStorage.getItem('user'))._id}`)
+        }
+        else{
+          history.push(`/clientDashboard/${JSON.parse(localStorage.getItem('user'))._id}`);
+        }
       }
     });
   };

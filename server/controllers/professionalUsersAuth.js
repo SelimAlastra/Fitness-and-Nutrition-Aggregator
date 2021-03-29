@@ -174,9 +174,13 @@ export const googleController = (req, res) => {
                 process.env.JWT_SECRET,
                 { expiresIn: '7d' }
               );
+              
+              const isNew = "true";
+
               const { _id, email, name, username, type} = data;
               return res.json({
                 token,
+                isNew : isNew,
                 user: { _id, email, name, username, type: 'professional'}
               });
             });
@@ -230,9 +234,13 @@ export const facebookController = (req, res) => {
                 process.env.JWT_SECRET,
                 { expiresIn: '7d' }
               );
+
+              const isNew = "true";
+
               const { _id, email, name, username ,type} = data;
               return res.json({
                 token,
+                isNew : isNew,
                 user: { _id, email, name, username , type:'professional'}
               });
             });
