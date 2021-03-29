@@ -304,13 +304,11 @@ export const forgotPasswordController = (req, res) => {
             sgMail
               .send(emailData)
               .then(sent => {
-                // console.log('SIGNUP EMAIL SENT', sent)
                 return res.json({
                   message: `Email has been sent to ${email}. Follow the instruction to reset your password.`
                 });
               })
               .catch(err => {
-                // console.log('SIGNUP EMAIL SENT ERROR', err)
                 return res.json({
                   message: err.message
                 });
@@ -342,7 +340,6 @@ export const resetPasswordController = (req, res) => {
         },
         (err, user) => {
           if (err || !user) {
-            console.log(user);
             return res.status(400).json({
               error: 'Something went wrong. Please try again later.'
             });

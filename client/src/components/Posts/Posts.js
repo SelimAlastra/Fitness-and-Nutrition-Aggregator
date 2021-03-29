@@ -22,7 +22,6 @@ const Posts = ({setCurrentId,updatedPosts,setUpdatedPosts}) => {
         {
             newPosts.push(newArray[i]._id);
         }
-        console.log(newPosts);
     }
     const posts = useSelector((state) => state.posts.filter((post) => newPosts.includes(post._id)));
     const classes = useStyles();
