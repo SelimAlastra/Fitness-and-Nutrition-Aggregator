@@ -21,8 +21,18 @@ describe('Testing Report model', function() {
 		expect(newReport.postId).to.equal("342");
 		newReport.validate(function(error) {
 			expect(error).to.not.exist;
+			done();
 		});
 	});
 
-	
+	it('is invalid as the mandatory fields are not supplied', function(done) {
+		newReport.reportedUsername = null;
+		newReport.reporterUsername = null;
+		newReport.postId = null;
+		newReport.validate(function(error) {
+			expect(error).to.exist;
+		});
+		done();
+	});
+
 });
