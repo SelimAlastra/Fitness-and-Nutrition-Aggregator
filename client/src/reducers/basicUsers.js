@@ -1,14 +1,16 @@
+import { FETCH_ALL, CREATE, UPDATE, DELETE, FETCH } from '../constants/basicUsersActionTypes';
+
 export default (basicUsers = [], action) => {
     switch (action.type) {
         case 'FETCH_ALL_USERS':
             return action.payload;
-        case 'FETCH_USER':
+        case FETCH:
             return action.payload;
-        case 'UPDATE_USER':
+        case UPDATE:
             return action.payload;
-        case 'CREATE_USER':
+        case CREATE:
             return [ ...basicUsers, action.payload ]
-        case 'DELETE_USER':
+        case DELETE:
             return basicUsers.filter((user) => user._id !== action.payload);
         default:
             return basicUsers;

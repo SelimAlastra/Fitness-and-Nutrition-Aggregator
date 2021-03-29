@@ -5,16 +5,18 @@ import LandingPage from './LandingPage';
 import ClientDashboard from './ClientDashboard';
 import ProfessionalDashboard from './ProfessionalDashboard';
 import Quiz from './quiz/quizUser.js';
-// import Tags from './quiz/tagsProffesional.js';
+import {questionsClient,questionsReqInputClient,questionsMultipleChoicesClient} from './quiz/resources/clientQuestions';
+import {questionsProfessional,questionsReqInputProfessional,questionsMultipleChoicesProfessional} from './quiz/resources/professionalQuestions';
 
-import UserPage from './ClientLoginRegister';
-import ForgetPassword from './components/BasicUsersAuth/forgetPassword.jsx';
-import ResetPassword from './components/BasicUsersAuth/resetPassword.jsx';
+import HomePage from './components/HomePage/HomePage';
+import EditGoals from './components/HomePage/EditGoals';
+
+import UserPage from './LoginRegisterPage';
+import Login from './components/UsersAuth/userLogin';
+import Register from './components/UsersAuth/userRegister';
+import ForgetPassword from './components/UsersAuth/forgetPassword.jsx';
+import ResetPassword from './components/UsersAuth/resetPassword.jsx';
 import NavbarUser from './components/Navbar/NavbarUser.js';
-
-import ProfPage from './ProfessionalLoginRegister'
-import ProfForgetPassword from './components/ProfessionalUsersAuth/forgetPassword.jsx';
-import ProfResetPassword from './components/ProfessionalUsersAuth/resetPassword.jsx';
 
 import BucketPage from "./components/Buckets2/BucketsPage";
 import BucketContent from "./components/Buckets2/BucketContent";
@@ -46,38 +48,39 @@ const Main = () => (
         <Route exact path="/admin"> <span/> </Route>
         <Route path="/admin"> <AdminNavigationBar/> </Route>
     </Switch>
+    
     <Switch>
         <Route exact path='/' component={LandingPage}/>
         <Route exact path='/admin' component={AdminLogin}/>
   
+        <PrivateRoute exact path='/homePage/:id' component={Wrapper} componentToRender={HomePage} userType={'client'}/>
+        <PrivateRoute exact path='/homePage/edit/:id' component={Wrapper} componentToRender={EditGoals} userType={'client'}/>
         <PrivateRoute exact path='/clientDashboard/:id' component={Wrapper} componentToRender={ClientDashboard} userType={'client'}/>
-        <PrivateRoute exact path='/professionalDashboard/:id' component={ProfessionalDashboard} userType={'professional'}/>
+        <PrivateRoute exact path='/professionalDashboard/:id' component={Wrapper} componentToRender={ProfessionalDashboard} userType={'professional'}/>
   
         <Route exact path='/user/myBuckets/:id' component={BucketPage}></Route>
         <Route exact path='/user/myBuckets/:id/:title' component={BucketContent}></Route>
-  
+
         <Route exact path='/launch/users' exact render={props => <UserPage {...props} />} /> 
 
-        <Route exact path='/launch/professionals' exact render={props => <ProfPage {...props} />} />
-        <Route exact path='/userQuiz/:id' component={Quiz}/>
-        {/* <Route exact path='/professionalTags/:id' component={Tags}/> */}
-        <Route exact path="/professional/profile/:professionalID" render={props => <ProfessionalProfile {...props} isProfessional={true} />}></Route>
-        <Route exact path="/user/professional/profile/:professionalID/:clientID" render={props => <ProfessionalProfile {...props} isProfessional={false} />}></Route>
-
-                
-        <PrivateRoute exact path="/professional/edit/:id" component={Wrapper} componentToRender={EditProfessionalDetails} userType={'professional'}/>
+        <Route exact path='/launch/professionals' exact render={props => <UserPage {...props} />} />
         <Route exact path='/user/password/forget' exact render={props => <ForgetPassword {...props} />} />
         <Route exact path='/user/password/reset/:token' exact render={props => <ResetPassword {...props} />} />
+        <Route exact path='/professional/password/forget' exact render={props => <ForgetPassword {...props} />} />
+        <Route exact path='/professional/password/reset/:token' exact render={props => <ResetPassword {...props} />} />
 
-        <Route exact path='/professional/password/forget' exact render={props => <ProfForgetPassword {...props} />} />
-        <Route exact path='/professional/password/reset/:token' exact render={props => <ProfResetPassword {...props} />} />
+        <Route exact path='/user/quiz/:id' exact render={props => <Quiz {...props} questions={questionsClient} questionsReqInput={questionsReqInputClient} questionsMultipleChoices={questionsMultipleChoicesClient} />}/>
+        <Route exact path='/professional/quiz/:id' exact render={props => <Quiz {...props} questions={questionsProfessional} questionsReqInput={questionsReqInputProfessional} questionsMultipleChoices={questionsMultipleChoicesProfessional} />}/>
+        
+        <PrivateRoute exact path="/professional/profile/:id" component={Wrapper} componentToRender={ProfessionalProfile} userType={'professional'}/>
+        <PrivateRoute exact path="/user/professional/profile/:professionalID/:id" component={Wrapper} componentToRender={ProfessionalProfile} userType={'client'}/>
+                
+        <PrivateRoute exact path="/professional/edit/:id" component={Wrapper} componentToRender={EditProfessionalDetails} userType={'professional'}/>
 
         <Route exact path="/user/profile/:id" component={ClientProfile}/>
         <PrivateRoute exact path="/user/edit/:id" component={Wrapper} componentToRender={EditBasicUser} userType={'client'}/>
         <PrivateRoute exact path="/user/myservices/:id" component={Wrapper} componentToRender={MyServices} userType={'client'}/>
 
-        {/*<Route exact path="/professional/profile/:id" component={ProfessionalProfile}/>*/}
-        {/*<Route exact path="/professional/profile/edit/:id" component={EditProfessionalDetails}/>*/}
         <PrivateRoute exact path="/professional/services/edit/:id" component={Wrapper} componentToRender={EditServices} userType={'professional'}/>
         <PrivateRoute exact path="/professional/services/add/:id" component={Wrapper} componentToRender={AddService} userType={'professional'}/>
 

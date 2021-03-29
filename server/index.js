@@ -17,6 +17,8 @@ import professionalUserRoutes from './routes/professionalUsers.js';
 // import subscriptionRoutes from './routes/subscriptions.js';
 import serviceRoutes from './routes/services.js'
 
+import goalsRoutes from './routes/goals.js';
+
 
 const app = express();
 dotenv.config();
@@ -30,6 +32,7 @@ app.use('/basicUsers', basicUserRoutes);
 app.use('/professionalUsers', professionalUserRoutes);
 app.use('/admins', adminRoutes);
 app.use('/services', serviceRoutes);
+app.use('/goals', goalsRoutes);
 
 app.use('/posts', postRoutes);
 app.use('/buckets', bucketRoutes);

@@ -107,6 +107,12 @@ export const loginController = (req, res) => {
         errors: 'Email and password do not match'
       });
     }
+    // check if banned
+    else if (user.isBanned) {
+      return res.status(400).json({
+        errors: 'You cannot login, as you are banned.'
+      });
+    }
     // generate a token and send to client
     const token = jwt.sign(
       {
@@ -167,9 +173,12 @@ export const googleController = (req, res) => {
                 process.env.JWT_SECRET,
                 { expiresIn: '7d' }
               );
+              const isNew = "true";
+              
               const { _id, email, name, username, type } = data;
               return res.json({
                 token,
+                isNew : isNew,
                 user: { _id, email, name, username , type:'client'}
               });
             });
@@ -222,9 +231,13 @@ export const facebookController = (req, res) => {
                 process.env.JWT_SECRET,
                 { expiresIn: '7d' }
               );
+
+              const isNew = "true";
+
               const { _id, email, name, username , type} = data;
               return res.json({
                 token,
+                isNew : isNew,
                 user: { _id, email, name, username , type:'client'}
               });
             });

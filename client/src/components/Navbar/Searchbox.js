@@ -6,7 +6,7 @@ import InputBase from '@material-ui/core/InputBase';
 import {associatedTags} from '../../quiz/quizUser';
 import { useDispatch, useSelector } from 'react-redux';
 import { getBasicUser, getBasicUsers, updateBasicUser } from '../../actions/basicUsers';
-import { getProfessional } from '../../actions/professionals';
+import { getProfessional, getProfessionalUsers } from '../../actions/professionals';
 /**
  * styles for the searchbox
  */
@@ -77,13 +77,15 @@ const SearchBox = ({updatePosts,setUpdatedPosts}) => {
               findTag(post.tags,searchString) 
               );
    newFilteredPosts.forEach(post => initialFilteredPosts.add(post));
-
-    if(filteredProfiles !==null && filteredProfiles !== []){
+   console.log(filteredProfiles);
+   if(JSON.parse(localStorage.getItem('user')).type == 'client'){
+    if(filteredProfiles!=null && filteredProfiles !== []){
       newFilteredProfiles = filteredProfiles.filter((profile) => 
-              profile.name.toLowerCase().includes(searchString)
+              profile.username.toLowerCase().includes(searchString)
               );
       finalFilteredProfiles = newFilteredProfiles;
-    }
+    } 
+  }
   }
   const InitialSearch =() =>{
     var tags;
@@ -104,6 +106,7 @@ const SearchBox = ({updatePosts,setUpdatedPosts}) => {
       }
      else
      {
+       if(profile2.tags)
       tags=profile2.tags;
       profile=profile2;
     }

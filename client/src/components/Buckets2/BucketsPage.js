@@ -3,7 +3,7 @@ import { Grid, CircularProgress, GridList, Button } from '@material-ui/core';
 import { useSelector } from 'react-redux';
 import NavbarUser from "../Navbar/NavbarUser";
 
-import BucketContent from './BucketContent';
+import BucketModal from './BucketModal';
 import Bucket from './Bucket';
 import { Container, ListGroup, Row, Col } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
@@ -26,6 +26,7 @@ const Buckets = () => {
         return (
             <div>
             <NavbarUser/>
+            <BucketModal/>
                 You have no buckets.
             </div>
         );
@@ -34,6 +35,7 @@ const Buckets = () => {
         return (
             <div>
                 <NavbarUser/>
+                <BucketModal/>
                 <div class="container">
                     <div class="row">
                         {myBuckets.map((bucket) => (

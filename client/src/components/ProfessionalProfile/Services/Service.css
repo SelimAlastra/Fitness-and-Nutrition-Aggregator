@@ -1,0 +1,18 @@
+.text {
+    text-align: center;
+    justify-content: center;
+    color: #EFEAE4;
+    padding: 1%;
+}
+
+.service {
+    background-color: #BBA78C;
+    min-width: 300px;
+    max-width: 300px;
+    border-radius: 10px;
+    padding: 1%;
+    margin: 1%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    display: inline-block;
+}
+

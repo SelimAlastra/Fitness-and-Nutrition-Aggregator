@@ -1,14 +1,16 @@
+import { FETCH_ALL, CREATE, UPDATE, DELETE, FETCH } from '../constants/professionalsActionTypes';
+
 export default (professional = [], action) => {
     switch (action.type) {
-        case 'FETCH_ALL_PROFESSIONALS':
+        case FETCH_ALL:
             return action.payload;
-        case 'FETCH_PROFESSIONAL':
+        case FETCH:
             return action.payload;
-        case 'UPDATE_PROFESSIONAL':
+        case UPDATE:
             return action.payload;
-        case 'CREATE_USER':
+        case CREATE:
             return [ ...professional, action.payload ]
-        case 'DELETE_USER':
+        case DELETE:
             return professional.filter((user) => user._id !== action.payload);
         default:
             return professional;
