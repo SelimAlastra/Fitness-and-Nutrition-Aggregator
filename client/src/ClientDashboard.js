@@ -7,6 +7,7 @@ import Posts from './components/Posts/Posts';
 import memories from './images/memories.png';
 import useStyles from './styles';
 import { getProfessionalUsers } from './actions/professionals';
+import { getBasicUsers ,getBasicUser, updateBasicUser } from './actions/basicUsers';
 import {finalFilteredProfiles} from './components/Navbar/Searchbox';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
