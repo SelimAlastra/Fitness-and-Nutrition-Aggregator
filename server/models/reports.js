@@ -14,3 +14,4 @@ const reportSchema = mongoose.Schema({
 const Report = mongoose.model('Reports', reportSchema);
 
 export default Report;
+ 
