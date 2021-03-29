@@ -2,7 +2,7 @@ import { FETCH_ALL, CREATE, UPDATE, DELETE, FETCH } from '../constants/servicesA
 
 export default (services = [], action) => {
     switch (action.type) {
-        case FETCH_ALL_SERVICES:
+        case FETCH_ALL:
             return action.payload;
         case DELETE:
             return services.filter((service) => service._id !== action.payload);
