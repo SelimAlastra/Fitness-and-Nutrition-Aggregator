@@ -49,25 +49,26 @@ const schema = Yup.object().shape({
 });
 
 const formik = useFormik({
-    initialValues:{ email: "", username: "", password: "", retypePassword: "", name: ""},
+    initialValues:{ email: "", username: "", password: "", retypePassword: "", name: "", profession: ""},
     validationSchema: schema,
     onSubmit: (values, actions) => {
       setTimeout(() => {
         console.log("Signing Up", values);
+      if(location.pathname.includes("users")){
         const newData = {
           email: values.email,
           username: values.username,
           password: values.password,
           name: values.name,
         }
-        if(location.pathname.includes("users")){
         axios
           .post(`http://localhost:5000/basicUsers/register`, newData)
           .then(res => {
             authenticate(res, () => {
             history.push(`/user/quiz/${JSON.parse(localStorage.getItem('user'))._id}`)
             })
-            .catch(err => {
+          })
+          .catch(err => {
                 console.log(err);
                         if(err.response.data.errors){
                           console.log(err.response.data.errors)
@@ -77,15 +78,22 @@ const formik = useFormik({
                             actions.setFieldError('username', 'Username already in use')
                         }  
                       })
-          })
         }
         else if(location.pathname.includes("professionals")){
-          axios
+        const newData = {
+            email: values.email,
+            username: values.username,
+            password: values.password,
+            name: values.name,
+            profession: values.profession,
+        }
+        axios
           .post(`http://localhost:5000/professionalUsers/register`, newData)
           .then(res => {
             authenticate(res, () => {
             history.push(`/professional/quiz/${JSON.parse(localStorage.getItem('user'))._id}`)
             })
+          })
             .catch(err => {
                 console.log(err);
                         if(err.response.data.errors){
@@ -96,8 +104,7 @@ const formik = useFormik({
                             actions.setFieldError('username', 'Username already in use')
                         }  
                       })
-          })
-        }
+          }
         actions.setSubmitting(false);
       }, 500);
     },
@@ -107,7 +114,7 @@ const formik = useFormik({
       <div>
         {isAuth() ? <Redirect to='/' /> : null}
       
-    <Form autoComplete="off">
+    <Form autoComplete="off" onSubmit={formik.handleSubmit}>
     <Form.Label hidden = {true} htmlFor="email">Email</Form.Label>
       <Form.Control
           id="email"
@@ -217,7 +224,7 @@ const formik = useFormik({
       )}
       <p/>
       
-      <Button className="registerButtonModal" variant="outline-success" type="submit" disabled={formik.isSubmitting} onSubmit={formik.handleSubmit}>
+      <Button className="registerButtonModal" variant="outline-success" type="submit" disabled={formik.isSubmitting}>
           Register
       </Button>
       <p style={{'marginLeft': '140px', 'fontWeight': 'bold'}}> OR </p>

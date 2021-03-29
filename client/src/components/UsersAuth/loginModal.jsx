@@ -3,6 +3,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Button from 'react-bootstrap/Button';
 import React, { useState } from 'react';
 import Login from './userLogin';
+import { useLocation } from 'react-router';
+import { Route } from "react-router-dom";
 
 function PopUpLogin(){
     const [show, setShow] = useState(false);
