@@ -73,29 +73,26 @@ const Answer = (props) => {
     /**
      * auto-select input answer 
      */
-    const autoSelect = (event, answerOption) => {
-        const query = event.target.value;
-        if(query !== ""){
-            if (validateInput(query)===true){
-                if(answerOption){
-                    if(props.answer.find(element => element.selected === true)){
-                        props.answer.find(element => element.selected === true).selected = false;
-                    }
-                    answerOption.selected = true;
-                }
+    const autoSelect = (answerOption) => {
+        if(answerOption){
+            if(props.answer.find(element => element.selected === true)){
+                props.answer.find(element => element.selected === true).selected = false;
             }
+            answerOption.selected = true;
+            console.log(answerOption);
         }
     }
 
     /**
      * check validation for every character input
      */
-    function handleOnInputChange(event) {
+    function handleOnInputChange(event, answerOption) {
         const query = event.target.value;
         if(query !== ""){
             if (validateInput(query)===true){
                 input = query;
                 console.log(input);
+                autoSelect(answerOption);
             } else {
                 document.getElementById("inputBox").value=input;
                 console.log(input);
@@ -185,7 +182,7 @@ const Answer = (props) => {
                         handleAnswerButtonClick = {props.handleAnswerButtonClick} 
                         questions = {props.questions}
                     />
-                    <input style = {{ display: answerOption.requireInput ? 'block' : 'none'}} className="inputBox" id="inputBox" type="text" name="name" placeholder={answerOption.placeholder} key={"key_" + props.currentQuestion} onChange={e => handleOnInputChange(e)} onKeyUp={(e)=>autoSelect(e, answerOption)}/>
+                    <input style = {{ display: answerOption.requireInput ? 'block' : 'none'}} className="inputBox" id="inputBox" type="text" name="name" placeholder={answerOption.placeholder} key={"key_" + props.currentQuestion} onChange={e => handleOnInputChange(e, answerOption)}/>
                 </>
                 ))}
             </div>
