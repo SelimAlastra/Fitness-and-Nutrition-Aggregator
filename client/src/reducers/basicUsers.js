@@ -1,6 +1,6 @@
 export default (basicUsers = [], action) => {
     switch (action.type) {
-        case 'FETCH_ALL':
+        case 'FETCH_ALL_USERS':
             return action.payload;
         case 'FETCH_USER':
             return action.payload;
