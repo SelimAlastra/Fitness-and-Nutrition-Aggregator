@@ -136,21 +136,21 @@ export default class Quiz extends Component{
     }
 
     /**
+     * re-set the current state questions
+     */
+    refresh = (newQuestions) => {
+        this.setState({
+            questions : newQuestions
+        });
+    }
+
+    /**
      * @param input is the value that seeks approval to be saved as user input
      */
     addInput = (input) => {
         const{questions, currentQuestion} = this.state;
         questions[currentQuestion].input.push(input);
-        console.log(questions[currentQuestion].input[0]);
-    }
-
-    /**
-     * 
-     */
-    addIndividualInput = (answer, input) => {
-        answer.input.push(input);
-        console.log("input: " + input);
-        console.log("answer input: " + answer.input[0]);
+        console.log("input: " + questions[currentQuestion].input[0]);
     }
 
     /**
@@ -175,18 +175,6 @@ export default class Quiz extends Component{
                 }
             }
         }
-
-        // add input if required by answer
-        answers.forEach(answer => {
-            if(answer.requireInput === true){
-                if(!answer.input || !answer.input.length){
-                    this.addIndividualInput(answer, document.getElementById("inputBox").value);
-                } else {
-                    answer.input.pop();
-                    this.addIndividualInput(answer, document.getElementById("inputBox").value);
-                }
-            }
-        });
     }
 
     /**
@@ -316,6 +304,7 @@ export default class Quiz extends Component{
                                     currentQuestion = {currentQuestion}
                                     questionsReqInput = {questionsReqInput}
                                     handleAnswerButtonClick = {this.handleAnswerButtonClick}
+                                    refresh = {this.refresh}
                                 />
                             </div>
 
