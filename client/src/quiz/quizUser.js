@@ -2,6 +2,10 @@ import React, { Component } from 'react';
 import Question from './components/question';
 import Answer from './components/answer';
 import './styling/quizUser.css';
+import { useDispatch, useSelector } from 'react-redux';
+import { getBasicUser, updateBasicUser } from './../actions/basicUsers';
+import { getProfessional } from './../actions/professionals';
+import { useEffect, useState } from 'react';
 
 var associatedTags = [];
 
@@ -269,7 +273,7 @@ export default class Quiz extends Component{
     /**
      * change @questions completion status
      */
-    handleFinishButtonClick = () => {
+    HandleFinishButtonClick = () => {
         const {isClient} = this.state;
 
         if(this.isCompleted() === true){
@@ -323,7 +327,7 @@ export default class Quiz extends Component{
                                 <button id="backward-btn" disabled={currentQuestion===0 ? true: false} onClick={() => this.handleBackButtonClick()}>ᐊ</button>
                                 <button id="forward-btn" disabled={currentQuestion===questions.length-1 ? true: false} style={{ display: currentQuestion===questions.length-1 ? 'none' : null }} onClick={() => this.handleForwardButtonClick()}>ᐅ</button>
                                 {/* ERROR display still in progress <div id="inputAlert" className="input-alert disabled">ERROR! Invalid input.</div> */}
-                                <button id="finish-btn" style = {{ display: currentQuestion===questions.length-1 ? null : 'none'}} onClick={() => this.handleFinishButtonClick()}>FINISH</button>
+                                <button id="finish-btn" style = {{ display: currentQuestion===questions.length-1 ? null : 'none'}} onClick={() => this.HandleFinishButtonClick()}>FINISH</button>
                             </div>
                             </div>
                 )}
