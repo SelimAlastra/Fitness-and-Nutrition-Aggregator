@@ -1,10 +1,12 @@
-const questions = [
+const questionsClient = [
     {
-        questionText: "Are you a woman or a man?",
+        questionText: "What gender do you identify with?",
         questionId: 1,
         answerOptions: [
             { answerText: "Woman", selected:false, requireInput: false, tags:["womensfitness"] },
             { answerText: "Man", selected:false, requireInput: false, tags:["menfitness"] },
+            { answerText: "Other", selected:false,requireInput: false, tags:[""] },
+            { answerText: "I prefer not to say", selected:false, requireInput: false, tags:[""]}
         ],
     },{
         questionText: "What is your age range?",
@@ -125,7 +127,7 @@ const questions = [
     }
 ];
 
-const questionsReqInput = [3,4];
-const questionsMultipleChoices = [8,12];
+const questionsReqInputClient = [3,4];
+const questionsMultipleChoicesClient = [8,12];
 
-export {questions,questionsReqInput,questionsMultipleChoices}
+export {questionsClient,questionsReqInputClient,questionsMultipleChoicesClient}
