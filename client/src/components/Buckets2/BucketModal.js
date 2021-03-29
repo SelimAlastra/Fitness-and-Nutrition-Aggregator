@@ -1,6 +1,6 @@
 import Modal from 'react-bootstrap/Modal';
 import React, { useState, useEffect } from 'react';
-import { Button } from '@material-ui/core';
+import Button from 'react-bootstrap/Button';
 import FormBucket from './BucketForm.js';
 import './BucketModal.css';
 
@@ -8,6 +8,7 @@ function PopUpNewBuckets() {
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+    
     return (<> 
     <Button class="bucket button"
         size="medium"

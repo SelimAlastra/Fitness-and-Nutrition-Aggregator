@@ -1,0 +1,16 @@
+.FacebookLogin {
+    color: white !important;
+    font-weight: bold !important;
+    background-color: #4267B2 !important;
+    border: none;
+    box-shadow: none !important;
+    font-size: medium;
+    font-family:'Helvetica', serif;
+    border-radius: 25px;
+    height: 30;
+    width: 230px !important;
+    text-align: center;
+    display: flex;
+    margin-left: 110px;
+}
+

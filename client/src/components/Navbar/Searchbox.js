@@ -78,7 +78,7 @@ const SearchBox = ({updatePosts,setUpdatedPosts}) => {
 
     if(filteredProfiles !== undefined && filteredProfiles !== []){
       newFilteredProfiles = filteredProfiles.filter((profile) => 
-              profile.name.toLowerCase().includes(searchString)
+              profile.username.toLowerCase().includes(searchString)
               );
       finalFilteredProfiles = newFilteredProfiles;
     }

@@ -1,10 +1,10 @@
-import { FETCH_ALL, CREATE, UPDATE, DELETE, ADD_FAV } from '../constants/actionTypes';
+import { FETCH_ALL, CREATE, UPDATE, DELETE, ADD_TO_FAV, FETCH_FROM_ARRAY, FETCH } from '../constants/postsActionTypes';
 
 export default (posts = [],action) => {
     switch (action.type) {
-        case 'FETCH_POSTS_FROM_ARRAY':
+        case FETCH_FROM_ARRAY:
             return action.payload
-        case 'FETCH':
+        case FETCH:
             return action.payload
         case DELETE:
             return posts.filter((post) => post._id !== action.payload);
@@ -14,7 +14,7 @@ export default (posts = [],action) => {
             return action.payload; 
         case CREATE:
             return [ ...posts, action.payload];
-        case ADD_FAV:
+        case ADD_TO_FAV:
             return posts;
         default:
             return posts;
