@@ -25,7 +25,7 @@ export const getBasicUsers = () => async (dispatch) => {
     try {
         const { data } = await api.fetchBasicUsers();
         
-        dispatch( {type: 'FETCH_ALL_USERS', payload: data} );
+        dispatch( {type: FETCH_ALL, payload: data} );
     } catch (error) {
         console.log(error.message);
     }
