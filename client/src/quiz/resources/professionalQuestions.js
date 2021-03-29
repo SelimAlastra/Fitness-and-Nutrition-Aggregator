@@ -49,7 +49,7 @@ const questionsProfessional = [
         answerOptions: [
             { answerText: "crossfit", selected:false, requireInput: false, tags:[""] },
             { answerText: "muscle", selected:false, requireInput: false, tags:[""] },
-            { answerText: " ", selected:false, requireInput: false, tags:[""] },
+            { answerText: "bodyweight workout", selected:false, requireInput: false, tags:[""] },
             { answerText: " ", selected:false, requireInput: false, tags:[""] },
             /** e.g.: #aerobic, #plyometric  */
         ],
