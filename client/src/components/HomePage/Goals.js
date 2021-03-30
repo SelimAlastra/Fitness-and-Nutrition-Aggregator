@@ -50,14 +50,16 @@ const Goals = ({userID}) => {
             <Grid container justify="center">
                 {myGoals.map((goal) => (
                     <Grid item xs= {3}>
+                    <Container>
                     <Goal key={goal._id} goal={goal}/>
                                 <FontAwesomeIcon 
                                     icon={faTrashAlt}
-                                    style={{ cursor:"pointer", color: "white", width: "50px"}}
+                                    size= '2x'
+                                    style={{ cursor:"pointer", color: "white"}}
                                     value={goal}
                                     onClick={() => removeGoal(goal)}
                                 />
-
+                    </Container>
                     </Grid>           
                 ))}
             </Grid>
