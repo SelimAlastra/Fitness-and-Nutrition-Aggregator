@@ -1,9 +1,17 @@
 .goalEditButton{
     width: 400px;
-    margin: 30px
+    margin: 10px
 }
 
 
 .editGoalsDiv{
-    background-color: #282c34;
+    background-color: #D7C5B4;
+}
+
+.EditGoalsText{
+        margin-top : 60px;
+        color : rgb(9, 30, 41);
+        font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+        text-align: center;
+        padding: none;
 }
