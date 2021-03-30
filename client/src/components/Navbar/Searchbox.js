@@ -3,10 +3,12 @@ import './Navbar.css';
 import { fade } from '@material-ui/core/styles';
 import { makeStyles } from '@material-ui/core/styles';
 import InputBase from '@material-ui/core/InputBase';
-import {associatedTags} from '../../quiz/quizUser';
+import { details } from '../../quiz/quizUser';
 import { useDispatch, useSelector } from 'react-redux';
 import { getBasicUser, getBasicUsers, updateBasicUser } from '../../actions/basicUsers';
 import { getProfessional, getProfessionalUsers } from '../../actions/professionals';
+import { createGoal } from '../../actions/goals';
+
 /**
  * styles for the searchbox
  */
@@ -86,26 +88,47 @@ const SearchBox = ({updatePosts,setUpdatedPosts}) => {
     } 
   }
   }
-  const InitialSearch =() =>{
+  const InitialSearch = () =>{
+
+    const associatedTags = details.associatedTags;
     var tags;
     var profile1;
     var profile2;
     var profile;
+    const goals = details.goals;
+
+    let newGoal = {
+      userID : JSON.parse(localStorage.getItem('user'))._id,
+      description: '',
+      deadline: '',
+      tags : []
+    }
+
     const dispatch = useDispatch();
-    useEffect(() => {
-     dispatch(getBasicUser(JSON.parse(localStorage.getItem('user'))._id));
-     dispatch(getProfessional(JSON.parse(localStorage.getItem('user'))._id));
-    }, [dispatch]);
+      dispatch(getBasicUser(JSON.parse(localStorage.getItem('user'))._id));
+      dispatch(getProfessional(JSON.parse(localStorage.getItem('user'))._id));
+
+      useEffect(() => {
+        console.log(details);
+        if(details.isNew) {
+          goals.forEach((g) => {
+            newGoal.description = g;
+              dispatch(createGoal(newGoal));
+            })
+        }
+      }, [])
+
     profile1 = useSelector((state) => state.basicUsers);
-     profile2 = useSelector((state) => state.professional); 
-     if(JSON.parse(localStorage.getItem('user')).type == 'client')
+    profile2 = useSelector((state) => state.professional); 
+
+      if(JSON.parse(localStorage.getItem('user')).type == 'client')
       {
         tags=profile1.tags;
         profile=profile1;
       }
-     else
-     {
-       if(profile2.tags)
+      else
+      {
+        if(profile2.tags)
       tags=profile2.tags;
       profile=profile2;
     }
@@ -118,18 +141,23 @@ const SearchBox = ({updatePosts,setUpdatedPosts}) => {
         email: profile.email,
         password: profile.password,
         address: profile.address,
-        gender: profile.gender,
+        gender: details.gender,
         bodyType: profile.bodyType,
-        weight: profile.weight,
+        weight: details.weight,
         bio: profile.bio,
-        tags:associatedTags,
-        goals: profile.goals,
+        tags: associatedTags,
+        goals: details.goals,
         isBanned: profile.isBanned,
         dob: profile.dob,
-        bundles: profile.bundles
+        bundles: profile.bundles,
+        height: details.height
+      }
+      dispatch(updateBasicUser(JSON.parse(localStorage.getItem('user'))._id, newBasicUser));
+    
     }
-   dispatch(updateBasicUser(JSON.parse(localStorage.getItem('user'))._id, newBasicUser));
-    }
+
+    var tags = details.associatedTags;
+
     if(tags !== undefined){
       for(var i=0;i<tags.length;i++)
     {
