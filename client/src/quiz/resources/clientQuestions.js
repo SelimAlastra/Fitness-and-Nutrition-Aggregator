@@ -3,8 +3,8 @@ const questionsClient = [
         questionText: "What gender do you identify with?",
         questionId: 1,
         answerOptions: [
-            { answerText: "Woman", selected:false, requireInput: false, tags:["womensfitness"] },
-            { answerText: "Man", selected:false, requireInput: false, tags:["menfitness"] },
+            { answerText: "Female", selected:false, requireInput: false, tags:["womensfitness"] },
+            { answerText: "Male", selected:false, requireInput: false, tags:["menfitness"] },
             { answerText: "Other", selected:false,requireInput: false, tags:[""] },
         ],
     },{

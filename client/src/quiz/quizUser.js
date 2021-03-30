@@ -2,15 +2,20 @@ import React, { Component } from 'react';
 import Question from './components/question';
 import Answer from './components/answer';
 import './styling/quizUser.css';
-import { useDispatch, useSelector } from 'react-redux';
-import { getBasicUser, updateBasicUser } from './../actions/basicUsers';
-import { getProfessional } from './../actions/professionals';
-import { useEffect, useState } from 'react';
 
-var associatedTags = [];
+
+var details = {
+    associatedTags: [],
+    goals: [],
+    weight: '',
+    height: '',
+    gender: '',
+    isNew: false,
+}
+
 
 export default class Quiz extends Component{
-
+    
     state = {
         questions: this.props.questions,
 
@@ -22,7 +27,7 @@ export default class Quiz extends Component{
         isClient: this.props.isClient,
 
         currentQuestion: 0,
-        complete: false
+        complete: false,
     }
 
     /** 
@@ -244,7 +249,6 @@ export default class Quiz extends Component{
      */
     addTags = () => {
         const {questions} = this.state;
-        // let {associatedTags} = this.state;
         questions.forEach(question => {
             const answers = question.answerOptions;
 
@@ -252,13 +256,66 @@ export default class Quiz extends Component{
                 if(answer.selected === true){
                     answer.tags.forEach(tag => {
                         if(tag !== ""){
-                            associatedTags.push(tag);
+                            details.associatedTags.push(tag);
                         }
                     });
                 }
             });
         });
     }
+
+    /**
+     * updating client account, and details:
+     */
+
+    addGoals = () => {
+        const {questions} = this.state;
+        const answers = questions[7].answerOptions;
+
+        answers.forEach(answer => {
+            if(answer.selected === true){
+                const goal = answer.answerText;
+                if(goal !== ""){
+                    details.goals.push(goal);
+                }
+            }
+        });
+    }
+
+    updateGender = () => {
+        const {questions} = this.state;
+        const answers = questions[0].answerOptions;
+
+        answers.forEach(answer => {
+            if(answer.selected === true){
+                const answerGender = answer.answerText;
+                if(answerGender !== ""){
+                    details.gender = answerGender;
+                }
+            }
+        });
+    }
+
+    updateClientDetails = () => {
+        const {questions} = this.state;
+        let answer = questions[2];
+
+        const answerHeight = answer.input[0];
+        if(answerHeight !== ""){
+            details.height = answerHeight;
+        }
+
+        answer = questions[3];
+        const answerWeight = answer.input[0];
+        if(answerWeight !== ""){
+            details.weight = answerWeight;
+        }
+
+        this.updateGender();
+        this.addGoals();
+        details.isNew = true;
+    }
+    
 
     /**
      * change @questions completion status
@@ -273,6 +330,7 @@ export default class Quiz extends Component{
             });
             if(isClient) {
                 // update the db
+                this.updateClientDetails();
                 
                 this.props.history.push(`/clientDashboard/${JSON.parse(localStorage.getItem('user'))._id}`);
             } else {
@@ -286,7 +344,8 @@ export default class Quiz extends Component{
     }
     
     render(){
-        let {questions, currentQuestion, complete, questionsReqInput, associatedTags, isClient} = this.state;
+        let {questions, currentQuestion, complete, questionsReqInput, isClient} = this.state;
+
 
         return(
             <div>
@@ -332,4 +391,4 @@ export default class Quiz extends Component{
     }
 }
 
-export {associatedTags}
+export {details}
