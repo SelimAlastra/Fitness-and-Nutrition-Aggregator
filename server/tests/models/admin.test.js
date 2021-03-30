@@ -58,6 +58,5 @@ describe('Testing Admin model', function() {
             expect(error).to.exist;
             done();
         });
-        done();
     });
 });
