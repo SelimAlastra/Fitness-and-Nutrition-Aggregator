@@ -1,7 +1,7 @@
 import request from 'supertest';
 import chai from 'chai';
 const expect = chai.expect;
-const {app} = require('../index.js');
+import app from '../index.js';
 import Report from '../models/reports.js'
 import BasicUser from '../models/basicUser.model.js'
 import ProfessionalUser from '../models/professionalUser.model.js'
@@ -38,35 +38,32 @@ describe('report routes', () => {
     let report;
     describe('post /reports', () => {
         it('should make a new report', (done) => {
-            app.router()
+            request(app)
             .post('/reports')
             .send({
-                repoterUsername: reporter.username,
+                reporterUsername: reporter.username,
                 reportedUsername: reported.username,
                 postId: reportedPost._id,
                 reason: 'Test Report'
             })
             .end((err, res) => {
                 report = res.body
-                expect(res.status).to.eq(200);
+                expect(res.status).to.eq(201);
                 expect(res.body.reason).to.eq('Test Report');
                 done()
             })
         })
-        it('should have the reporter username', (done) => {
-            expect(report).to.have.property(repoterUsername)
-            expect(report.repoterUsername).to.eq(reporter.username)
-            done()
+        it('should have the reporter username', () => {
+            expect(report).to.have.property(reporterUsername)
+            expect(report.reporterUsername).to.eq(reporter.username)
         })
-        it('should have the reported username', (done) => {
+        it('should have the reported username', () => {
             expect(report).to.have.property(repotedUsername)
             expect(report.repotedUsername).to.eq(reported.username)
-            done()
         })
-        it('should have the reported post id', (done) => {
+        it('should have the reported post id', () => {
             expect(report).to.have.property(postId)
             expect(report.postId).to.eq(reportedPost._id)
-            done()
         })
     })
 });
