@@ -24,7 +24,7 @@ export const deleteService = (id) => async (dispatch) => {
 export const addService = (service) => async (dispatch) => {
     try {
         const { data } = await api.addService(service);
-        console.log(data);
+        
         dispatch({ type: CREATE, payload: data});
     } catch (error) {
         console.log(error.message);
