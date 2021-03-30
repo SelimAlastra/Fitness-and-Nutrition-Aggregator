@@ -53,7 +53,7 @@ const Goals = ({userID}) => {
                     <Goal key={goal._id} goal={goal}/>
                                 <FontAwesomeIcon 
                                     icon={faTrashAlt}
-                                    style={{ cursor:"pointer", color: "white"}}
+                                    style={{ cursor:"pointer", color: "white", width: "50px"}}
                                     value={goal}
                                     onClick={() => removeGoal(goal)}
                                 />
