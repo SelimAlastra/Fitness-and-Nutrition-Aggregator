@@ -16,7 +16,7 @@ describe('services routes', function() {
             password: "password123",
             buckets: ["bucket1"],
             bundles: ["bundle1"]
-        }).then(() => done())
+        });
         done();
     });
 
