@@ -7,34 +7,37 @@ import BasicUser from '../../models/basicUser.model.js'
 import ProfessionalUser from '../../models/professionalUser.model.js'
 import PostMessage from '../../models/postMessage.js'
 
-let reporter, reported, reportedPost;
-before(() => {
-    reporter = new BasicUser({
-        username: 'Bob_123',
-        email: 'bob@hotmail.com',
-        password: 'bOb@123123',
-        name: 'Bob'})
-});
 
-before(() => {
-    reported = new ProfessionalUser({
-        username: 'Alice_123',
-        email: 'alice@hotmail.com',
-        password: 'aliCe@123123',
-        name: 'Alice'})
-});
-
-
-before((done) => {
-    reportedPost = new PostMessage({
-        creator: reported.username,
-        userFrom: reported._id,
-        title: 'Test Post'
-    })
-    done()
-});
 
 describe('report routes', () => {
+    let reporter, reported, reportedPost;
+    before(() => {
+        reporter = new BasicUser({
+            username: 'Bob_123',
+            email: 'bob@hotmail.com',
+            password: 'bOb@123123',
+            name: 'Bob'})
+    });
+
+    before(() => {
+        reported = new ProfessionalUser({
+            username: 'Alice_123',
+            email: 'alice@hotmail.com',
+            password: 'aliCe@123123',
+            name: 'Alice'})
+    });
+
+
+    before((done) => {
+        reportedPost = new PostMessage({
+            creator: reported.username,
+            userFrom: reported._id,
+            title: 'Test Post'
+        })
+        done()
+    });
+
+
     let report;
     describe('post /reports', () => {
         it('should make a new report', (done) => {
@@ -48,31 +51,36 @@ describe('report routes', () => {
             })
             .end((err, res) => {
                 report = res.body
-                expect(res.status).to.eq(201);
-                expect(res.body.reason).to.eq('Test Report');
-                done()
+                expect(res.status).to.equal(201);
+                expect(res.body.reason).to.equal('Test Report');
+                expect(report).to.have.property("reporterUsername");
+                expect(report.reporterUsername).to.equal(reporter.username);
+                expect(report).to.have.property("reportedUsername");
+                expect(report.reportedUsername).to.equal(reported.username);
+                expect(report).to.have.property("postId");
+                expect(report.postId).to.equal("" + reportedPost._id);
+                done();
             })
         })
-        it('should have the reporter username', () => {
-            expect(report).to.have.property(reporterUsername)
-            expect(report.reporterUsername).to.eq(reporter.username)
-        })
-        it('should have the reported username', () => {
-            expect(report).to.have.property(repotedUsername)
-            expect(report.repotedUsername).to.eq(reported.username)
-        })
-        it('should have the reported post id', () => {
-            expect(report).to.have.property(postId)
-            expect(report.postId).to.eq(reportedPost._id)
-        })
+        // it('should have the reporter username', () => {
+        //     expect(report).to.have.property(reporterUsername)
+        //     expect(report.reporterUsername).to.eq(reporter.username)
+        // })
+        // it('should have the reported username', () => {
+        //     expect(report).to.have.property(repotedUsername)
+        //     expect(report.repotedUsername).to.eq(reported.username)
+        // })
+        // it('should have the reported post id', () => {
+        //     expect(report).to.have.property(postId)
+        //     expect(report.postId).to.eq(reportedPost._id)
+        // })
     })
-});
 
-
-after(async (done) => {
-    await Report.deleteMany({});
-    await BasicUser.deleteMany({});
-    await ProfessionalUser.deleteMany({});
-    await PostMessage.deleteMany({});
-    done()
+    after((done) => {
+        Report.deleteMany({});
+        BasicUser.deleteMany({});
+        ProfessionalUser.deleteMany({});
+        PostMessage.deleteMany({});
+        done()
+    });
 });
