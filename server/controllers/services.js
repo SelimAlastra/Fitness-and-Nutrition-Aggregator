@@ -33,10 +33,11 @@ export const updateService = async (req, res) => {
         .then(() => res.json('service updated!'))
         .catch(error => res.status(400).json('Error: ' + error))
     })
+    .catch(error => res.status(400).json('Error: ' + error));
 };
 
 export const deleteService = async (req, res) => {
   Service.findByIdAndDelete(req.params.id)
     .then(() => res.json('Service deleted!'))
-    .catch(error => res.json('Error: ' + error));
+    .catch(error => res.status(400).json('Error: ' + error));
 };
