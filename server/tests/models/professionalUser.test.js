@@ -107,7 +107,7 @@ describe('Testing ProfessionalUser model', function() {
     it('is invalid as the username and email are not unique', function(done) {
         duplicateUser.save();
         newFullUser.save(function(error){
-            expect(error.errors).to.exist;
+            expect(error).to.exist;
         });
         done();
     });
