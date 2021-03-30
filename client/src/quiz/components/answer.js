@@ -6,6 +6,7 @@ const Answer = (props) => {
 
     let input = props.questions[props.currentQuestion].input;
     
+    // depending on user input, @return true or false if value is valid
     function validateInput(query) {
         const questionId = props.questions[props.currentQuestion].questionId;
         const answers = props.questions[props.currentQuestion].answerOptions;
@@ -25,6 +26,7 @@ const Answer = (props) => {
             }
         }
 
+        // validate depending on client/professional user
         if(props.isClient === true){
             if(questionId === 3){
                 //for metric value selected, allow only number inputs
@@ -74,7 +76,8 @@ const Answer = (props) => {
                     return true;
                 }
                 return false;
-            }
+            }/*else if(){
+            }*/
         }
     }
 
@@ -115,10 +118,12 @@ const Answer = (props) => {
             if(answerOption){
                 if(answerOption.requireInput === true){
                     addIndividualInput(answerOption, input);
+                    console.log(answerOption);
                 }
             }
         } else {
             document.getElementById("inputBox").value=input;
+            console.log(answerOption);
         } 
     };
 
