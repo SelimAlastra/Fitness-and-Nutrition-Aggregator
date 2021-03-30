@@ -19,7 +19,6 @@ const ProfessionalUserDetails = () => {
 
     const handleBan = () => {
         user.isBanned = !user.isBanned;
-        console.log(user);
         dispatch(updateProfessional(user._id, user));
         window.location.reload();
     }

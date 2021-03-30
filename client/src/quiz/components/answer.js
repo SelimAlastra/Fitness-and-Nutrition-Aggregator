@@ -71,36 +71,47 @@ const Answer = (props) => {
     }
 
     /**
+     * store an answer's input value 
+     */
+    function addIndividualInput (answer, input) {
+        if(!answer.input || !answer.input.length){
+            answer.input.push(input);
+        } else {
+            answer.input.pop();
+            answer.input.push(input);
+        }
+    }
+
+    /**
      * auto-select input answer 
      */
-    const autoSelect = (event, answerOption) => {
-        const query = event.target.value;
-        if(query !== ""){
-            if (validateInput(query)===true){
-                if(answerOption){
-                    if(props.answer.find(element => element.selected === true)){
-                        props.answer.find(element => element.selected === true).selected = false;
-                    }
-                    answerOption.selected = true;
-                }
+    const autoSelect = (answerOption) => {
+        if(answerOption){
+            if(props.answer.find(element => element.selected === true)){
+                props.answer.find(element => element.selected === true).selected = false;
             }
+            answerOption.selected = true;
+            props.refresh(props.questions);
         }
     }
 
     /**
      * check validation for every character input
      */
-    function handleOnInputChange(event) {
+    function handleOnInputChange(event, answerOption) {
         const query = event.target.value;
-        if(query !== ""){
-            if (validateInput(query)===true){
-                input = query;
-                console.log(input);
-            } else {
-                document.getElementById("inputBox").value=input;
-                console.log(input);
-            } 
-        }
+        
+        if (validateInput(query)===true){
+            input = query;
+            autoSelect(answerOption);
+            if(answerOption){
+                if(answerOption.requireInput === true){
+                    addIndividualInput(answerOption, input);
+                }
+            }
+        } else {
+            document.getElementById("inputBox").value=input;
+        } 
     };
 
     /**
@@ -148,6 +159,19 @@ const Answer = (props) => {
         }
     }
 
+
+    /**
+     * @return input value for individual answer input boxes
+     */
+    function inputValue(answer) {
+        if(answer.requireInput === true){
+            if(answer.input){
+                return answer.input[0];
+            }
+        }
+        return ""
+    }
+
     /**
      * check if question requires input unrelated to selected answer
      */
@@ -185,7 +209,7 @@ const Answer = (props) => {
                         handleAnswerButtonClick = {props.handleAnswerButtonClick} 
                         questions = {props.questions}
                     />
-                    <input style = {{ display: answerOption.requireInput ? 'block' : 'none'}} className="inputBox" id="inputBox" type="text" name="name" placeholder={answerOption.placeholder} key={"key_" + props.currentQuestion} onChange={e => handleOnInputChange(e)} onKeyUp={(e)=>autoSelect(e, answerOption)}/>
+                    <input value={inputValue(answerOption)} style = {{ display: answerOption.requireInput ? 'block' : 'none'}} className="inputBox" id="inputBox" type="text" name="name" placeholder={answerOption.placeholder} key={"key_" + props.currentQuestion} onChange={e => handleOnInputChange(e, answerOption)}/>
                 </>
                 ))}
             </div>
