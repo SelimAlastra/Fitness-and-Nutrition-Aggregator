@@ -65,7 +65,6 @@ const questionsClient = [
             { answerText: "healthy and balanced diet", selected:false, tags:["healthylifestyle"], requireInput: false },
             { answerText: "Other:", selected: false, tags:[""], requireInput: true, placeholder: "e.g.: Vegetarian", alert: ["Answer using letters only."], input: [] }
         ],
-        // input:[]
     },{
         questionText: "What's your primary fitness goal? (multiple selections allowed)",
         questionId: 8,
@@ -73,15 +72,12 @@ const questionsClient = [
             { answerText: "lose fat", selected:false, tags:["losefat", "weightloss", "fatlosstips", "diet", "weightlossjourney", "sweat"], requireInput: false },
             { answerText: "get fit/look great at the beach", selected:false, tags:["getfit", "cardio", "fitnessmodel", "crossfit"], requireInput: false },
             { answerText: "recover from an injury", selected:false, tags:[""], requireInput: false },
-            { answerText: "get some nice legs and booty", selected:false, tags:[""], requireInput: false },
             { answerText: "build endurance/run a marathon", selected:false, tags:[""], requireInput: false },
             { answerText: "fitness as a social activity", selected:false, tags:[""], requireInput: false },
             { answerText: "train discipline and focus", selected:false, tags:[""], requireInput: false },
             { answerText: "build strength and ability", selected:false, tags:["calisthenics", "bodyweight", "bodybuilding", "crossfit", "strength", "athlete", "core"], requireInput: false },
-            { answerText: "build mad muscle mass", selected:false, tags:["beastmode", "bodybuilding", "strength", "powerlifting", "weightlifting", "strongman"], requireInput: false },
-            // { answerText: "Other:", selected: false, tags:[""], requireInput: true, placeholder: "e.g.: do 100 pushups in one set", alert: ["Answer using letters and numbers only."] }
+            { answerText: "build mad muscle mass", selected:false, tags:["beastmode", "bodybuilding", "strength", "powerlifting", "weightlifting", "strongman"], requireInput: false }
         ],
-        // input:[]
     },{
         questionText: "During the average week, how much time are you able to devote to your fitness regimen?",
         questionId: 9,
@@ -92,7 +88,6 @@ const questionsClient = [
             { answerText: "around one hour per day on most days", selected:false, tags:[""], requireInput: false },
             { answerText: "more than one hour per day on most days", selected:false, tags:[""], requireInput: false },
         ],
-        // input:[]
     },{ 
         questionText: "Where is your favorite place to exercise?",
         questionId: 10,
@@ -108,9 +103,7 @@ const questionsClient = [
             { answerText: "not much", selected:false, tags:["nocost"], requireInput: false },
             { answerText: "a fair amount", selected:false, tags:[""], requireInput: false },
             { answerText: "no budget limit", selected:false, tags:["expensive"], requireInput: false },
-            // { answerText: "Other(per month):", selected: false, tags:[""], requireInput: true, placeholder: "e.g.: 100 pounds", alert: ["Answer using letters and numbers only."] }
         ],
-        // input:[]
     },{ 
         questionText: "Lastly, which of the following are you interested in?",
         questionId: 12,
@@ -121,9 +114,8 @@ const questionsClient = [
             { answerText: "#bodyweightworkout", selected:false, tags:["bodyweightworkou", "calisthenics"], requireInput: false },
             { answerText: "#bodybuilding", selected:false, tags:["bodybuilding", "gains", "muscle"], requireInput: false },
             { answerText: "#powerlifting", selected:false, tags:["powerlifting", "deadlifting"], requireInput: false },
-            // { answerText: "Add your own:", selected: false, tags:[""], requireInput: true, placeholder: "e.g.: crossfit, boxing", alert: ["Answer using letters and numbers only."] }
+            { answerText: "Add your own:", selected: false, tags:[""], requireInput: true, placeholder: "e.g.: crossfit, boxing", alert: ["Answer using letters and numbers only."], input: [] }
         ],
-        // input:[]
     }
 ];
 

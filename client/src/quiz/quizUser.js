@@ -159,7 +159,7 @@ export default class Quiz extends Component{
      * if there is already an input value, pop it and add new value
      */
     processInput = () => {
-        const{questions, currentQuestion, questionsReqInput} = this.state;
+        const{questions, currentQuestion, questionsReqInput, isClient} = this.state;
         const answers = questions[currentQuestion].answerOptions;
 
         // check for question that requires input
@@ -175,6 +175,11 @@ export default class Quiz extends Component{
                     this.addInput(document.getElementById("inputBox").value);
                 }
             }
+        }
+
+        // process input from client's quiz, question number 12 into tags.
+        if(isClient && questions[currentQuestion].questionId === 12){
+
         }
     }
 
