@@ -14,6 +14,10 @@ const AddGoal = ({userID}) => {
     const [tags, setTags]= useState("");
     const [ID, setID] = useState("");
 
+    function redirectHomePage() {
+        window.location.href = `/homePage/${userID}`;
+    }
+
 
     function handleSubmit(event) {
         event.preventDefault();
@@ -29,6 +33,7 @@ const AddGoal = ({userID}) => {
                 dispatch(createGoal(newGoal));
                 window.alert("Details Saved!");
             }
+        redirectHomePage();
 
     }
 
@@ -82,7 +87,7 @@ const AddGoal = ({userID}) => {
                      </Form.Group>
                     </Col>
                 </Form.Row>
-                <Button type="submit"  variant="outline-success" className="goalActionButton2">Save</Button>
+                <Button type="submit" variant="outline-success" className="goalActionButton2">Save</Button>
             </Form>
         </div>
     );

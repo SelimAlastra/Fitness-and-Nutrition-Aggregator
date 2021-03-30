@@ -96,7 +96,7 @@ const Goals = ({userID}) => {
                 <h2 className="goalsPageText">Add goal</h2>
                 <AddGoal userID = {userID}/>
                 <Container className = 'center'>
-                <Button className = "goalActionButton2" variant="outline-danger" onClick={() => window.location.href = `/homePage/${userID}`}> Close </Button>
+                <Button className = "goalActionButton2" variant="outline-danger" onClick={() => setModalIsOpen(false)}> Close </Button>
                 </Container>
             </div>
             </Modal>
