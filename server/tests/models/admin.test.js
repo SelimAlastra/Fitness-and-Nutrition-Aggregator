@@ -56,7 +56,7 @@ describe('Testing Admin model', function() {
         duplicateUser.save();
         newAdminUser.save(function(error) {
             expect(error).to.exist;
-            done();
         });
+        done();
     });
 });
