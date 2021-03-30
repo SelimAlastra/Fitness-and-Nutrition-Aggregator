@@ -2,7 +2,6 @@ import './Service.css';
 import { Button } from 'react-bootstrap';
 
 const Service = ({service, userID}) => {
-    console.log(userID);
     const link =  `/user/professional/profile/${service.userID}/${userID}`;
     return (
         <div className="homePageService">

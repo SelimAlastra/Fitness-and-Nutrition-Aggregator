@@ -29,8 +29,6 @@ const Goals = ({userID}) => {
     const goals = useSelector((state) => state.goals);
     const myGoals = goals.filter(goal => goal.userID === userID);
 
-    console.log(myGoals);
-
     function removeGoal(toDelete) {
         dispatch(deleteGoal(toDelete._id));
         myGoals.filter(goal => goal === toDelete);

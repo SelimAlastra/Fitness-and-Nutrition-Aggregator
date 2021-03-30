@@ -2,7 +2,7 @@ import { FETCH_ALL, CREATE, UPDATE, DELETE, FETCH } from '../constants/basicUser
 
 export default (basicUsers = [], action) => {
     switch (action.type) {
-        case 'FETCH_ALL_USERS':
+        case FETCH_ALL:
             return action.payload;
         case FETCH:
             return action.payload;
