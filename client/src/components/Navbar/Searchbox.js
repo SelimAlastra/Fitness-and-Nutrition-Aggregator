@@ -86,7 +86,7 @@ const SearchBox = ({updatePosts,setUpdatedPosts}) => {
     } 
   }
   }
-  const InitialSearch =() =>{
+  const InitialSearch = () =>{
     var tags;
     var profile1;
     var profile2;
