@@ -284,6 +284,5 @@ function checkEmail(toCheck) {
 }
 
 function constructDate(day, month, year) {
-    console.log(day + " " + month + " " + year);
     return year + "-" + month + "-" + day;
 }

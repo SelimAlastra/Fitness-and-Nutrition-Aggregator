@@ -113,8 +113,6 @@ export default class Quiz extends Component{
                 });
             }
         }
-
-        console.log(questions[currentQuestion].answerOptions);
     }
 
     /**
@@ -154,7 +152,6 @@ export default class Quiz extends Component{
     addInput = (input) => {
         const{questions, currentQuestion} = this.state;
         questions[currentQuestion].input.push(input);
-        console.log("input: " + questions[currentQuestion].input[0]);
     }
 
     /**
@@ -266,7 +263,6 @@ export default class Quiz extends Component{
 
         if(this.isCompleted() === true){
             this.addTags();
-            console.log(this.associatedTags);
             this.setState({
                 complete: true
             });

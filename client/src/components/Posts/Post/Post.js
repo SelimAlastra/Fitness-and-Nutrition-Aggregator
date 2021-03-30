@@ -117,8 +117,6 @@ const Post = ({ post, setCurrentId }) => {
   }
 
   const Edit = () => {
-    console.log(post.userFrom);
-    console.log(String(JSON.parse(localStorage.getItem('user'))._id));
     if (String(JSON.parse(localStorage.getItem('user'))._id) == post.userFrom) {
       return (
       <Button size="small" onClick={() => setCurrentId(post._id)}>Edit</Button>
