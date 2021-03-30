@@ -42,8 +42,9 @@ const HomePage = (props) => {
 
     
         return (
+            <div>
+            <NavbarUser/>
             <div className="homepage">
-                <NavbarUser/>
                 <UserInfo user={user} />
                 <div>
                     <Services userID = {user._id} />
@@ -54,6 +55,7 @@ const HomePage = (props) => {
                 <div>
                     <Image className ="GoalsImage" src="https://yoursimplynutrition.com/blog/wp-content/uploads/2020/04/Screenshot-2020-04-21-09.57.12.png" fluid />
                 </div>
+            </div>
             </div>
             
         );
