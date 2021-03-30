@@ -5,7 +5,6 @@ import { useDispatch } from 'react-redux';
 import { updateBucket, getBuckets } from '../../actions/buckets';
 import { ListGroup } from 'react-bootstrap';
 
-
 const Buckets = (post) => {
 
     let postID = post.postToAdd.postId;
@@ -18,12 +17,11 @@ const Buckets = (post) => {
 
     const addToBucket = (postId, bucketId) => {
         const bucket = myBuckets.find((bucket) => bucket._id === bucketId);
-
         if (bucket.postsId.indexOf(postId) === -1) {
             bucket.postsId.push(postId);
             dispatch(updateBucket(bucket._id, bucket));
-            window.location.reload();
         }
+        window.location.reload();
     }
 
     if (myBuckets === undefined || myBuckets.length === 0) {
@@ -41,7 +39,8 @@ const Buckets = (post) => {
                         <Button bucket={bucket}
                             currentBucketId={currentBucketId}
                             setCurrentBucketId={setCurrentBucketId}
-                            onClick={() => addToBucket(postID, bucket._id)}>
+                            onClick={() => addToBucket(postID, bucket._id)}
+                            >
                             {bucket.title}</Button>
                     </ListGroup.Item>
                 ))}
