@@ -46,7 +46,6 @@ const Login = () => {
         validationSchema: adminSchema,
         onSubmit: (values, actions) => {
           if(values.username && values.password){
-            console.log("Logging in", values);
             const newData = {
                 username: values.username,
                 password: values.password,
@@ -58,7 +57,6 @@ const Login = () => {
                   })
                 })
                 .catch(err => {
-                  console.log(err)
                   if(err.data){
                     actions.setFieldError('Not an Admin');    
                   }

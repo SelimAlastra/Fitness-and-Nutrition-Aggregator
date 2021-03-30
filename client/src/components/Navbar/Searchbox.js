@@ -77,7 +77,6 @@ const SearchBox = ({updatePosts,setUpdatedPosts}) => {
               findTag(post.tags,searchString) 
               );
    newFilteredPosts.forEach(post => initialFilteredPosts.add(post));
-   console.log(filteredProfiles);
    if(JSON.parse(localStorage.getItem('user')).type == 'client'){
     if(filteredProfiles!=null && filteredProfiles !== []){
       newFilteredProfiles = filteredProfiles.filter((profile) => 
@@ -110,8 +109,6 @@ const SearchBox = ({updatePosts,setUpdatedPosts}) => {
       tags=profile2.tags;
       profile=profile2;
     }
-      console.log(profile1);
-      console.log(associatedTags);
     if(associatedTags.length>0)
     { 
       tags=associatedTags;

@@ -18,7 +18,7 @@ const Buckets = (post) => {
 
     const addToBucket = (postId, bucketId) => {
         const bucket = myBuckets.find((bucket) => bucket._id === bucketId);
-        console.log('as;ldm');
+
         if (bucket.postsId.indexOf(postId) === -1) {
             bucket.postsId.push(postId);
             dispatch(updateBucket(bucket._id, bucket));

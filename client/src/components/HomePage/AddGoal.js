@@ -26,7 +26,6 @@ const AddGoal = ({userID}) => {
                     deadline: deadline,
                     tags : tags
                 }
-                console.log(newGoal);
                 dispatch(createGoal(newGoal));
                 window.alert("Details Saved!");
             }
