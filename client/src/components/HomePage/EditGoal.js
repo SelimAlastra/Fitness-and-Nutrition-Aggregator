@@ -32,7 +32,6 @@ const EditGoal = ({goal}) => {
                     deadline: deadline,
                     tags : tags
                 }
-                console.log(newGoal);
                 dispatch(updateGoal(ID, newGoal));
                 window.alert("Details Saved!");
             }

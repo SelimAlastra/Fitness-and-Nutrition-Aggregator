@@ -12,7 +12,6 @@ const AdminNavigationBar = () => {
         <Navbar.Collapse id="basic-navbar-nav">
         <Navbar.Brand>Admin</Navbar.Brand>
         <Nav>
-            <Nav.Link>Statistics</Nav.Link>
             <Nav.Link onClick={() => {window.location.href="/admin/reports"}}>Reports</Nav.Link>
             <Nav.Link onClick={() => {window.location.href="/admin/basicUsers"}}>Basic Users</Nav.Link>
             <Nav.Link onClick={() => {window.location.href="/admin/ProfessionalUsers"}}>Professional Users</Nav.Link>

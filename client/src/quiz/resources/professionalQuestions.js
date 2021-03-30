@@ -6,7 +6,6 @@ const questionsProfessional = [
             { answerText: "Woman", selected:false, requireInput: false, tags:[""] },
             { answerText: "Man", selected:false, requireInput: false, tags:[""] },
             { answerText: "Other", selected:false, requireInput: false, tags:[""] },
-            { answerText: "I prefer not to say", selected:false, requireInput: false, tags:[""]}
         ],
     },{
         questionText: "How many years have you been a personal trainer for",
@@ -50,7 +49,7 @@ const questionsProfessional = [
         answerOptions: [
             { answerText: "crossfit", selected:false, requireInput: false, tags:[""] },
             { answerText: "muscle", selected:false, requireInput: false, tags:[""] },
-            { answerText: " ", selected:false, requireInput: false, tags:[""] },
+            { answerText: "bodyweight workout", selected:false, requireInput: false, tags:[""] },
             { answerText: " ", selected:false, requireInput: false, tags:[""] },
             /** e.g.: #aerobic, #plyometric  */
         ],
