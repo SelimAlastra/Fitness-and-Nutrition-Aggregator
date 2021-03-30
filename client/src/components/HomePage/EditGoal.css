@@ -14,40 +14,28 @@
 }
 
 .goalFormContainer2{
-    padding: 5%;
+    margin: 5px;
     background-color: white;
     max-height: 100%;
-    top: 50%;
-    left: 50%;
     overflow: auto;
     border-radius: 4px;
     outline: none;
-    margin: 20px;
 
 }
 
-.goalInputItem {
-    border-radius: 10px;
-    background-color: white;
-    color: Black;
-}
 
 .goalLabel {
     color: black;
 }
 
-
-.actionButton {
-    margin-top: 1%;
-    background-color: black;
-    border: none;
-}
-
-.actionButton:hover {
-    margin-top: 1%;
-}
-
 .goalActionButton {
     border-radius: 10px;
+    width: 100px;
+    margin: 20px;
+}
+.goalActionButton2 {
+    border-radius: 10px;
+    width: 200px;
+    margin: 18px;
 }
 
