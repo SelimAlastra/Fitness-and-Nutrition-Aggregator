@@ -1,57 +1,57 @@
-import { expect } from 'chai';
-import sinon from 'sinon';
-import request from 'supertest';
-import { getServices, createService, updateService, deleteService } from '../../controllers/services.js';
-import Service from '../../models/service.model.js';
-import BasicUser from '../../models/basicUser.model.js';
+// import { expect } from 'chai';
+// import sinon from 'sinon';
+// import request from 'supertest';
+// import { getServices, createService, updateService, deleteService } from '../../controllers/services.js';
+// import Service from '../../models/service.model.js';
+// import BasicUser from '../../models/basicUser.model.js';
 
-const {app} = require('../../index.js');
+// const {app} = require('../../index.js');
 
-describe('Service routes', function() {
-	let service;
-	let basicUser;
+// describe('Service routes', function() {
+// 	let service;
+// 	let basicUser;
 
-	before((done) => {
-		let basicUser = new BasicUser({
-			username: "basic1234098",
-			name: "Bob Smith",
-			email: "bobsmith@me.com",
-			password: "pass123"
-		});
-		let serviceBody = {
-			userID: basicUser._id,
-			price: "23.23",
-			description: "Hello World",
-			urls: ["http://youtube.com", "https://localhost:3000"],
-			title: "New Service"
-		};
-	});
+// 	before((done) => {
+// 		let basicUser = new BasicUser({
+// 			username: "basic1234098",
+// 			name: "Bob Smith",
+// 			email: "bobsmith@me.com",
+// 			password: "pass123"
+// 		});
+// 		let serviceBody = {
+// 			userID: basicUser._id,
+// 			price: "23.23",
+// 			description: "Hello World",
+// 			urls: ["http://youtube.com", "https://localhost:3000"],
+// 			title: "New Service"
+// 		};
+// 	});
 
-	describe('Testing post /services', function() {
-		let service;
+// 	describe('Testing post /services', function() {
+// 		let service;
 
-		it('should make a new service', function(done) {
-			app.router()
-				.post('/services')
-				.send(serviceBody)
-				.end((error, res) => {
-					service = res.serviceBody
-					expect(res.status).to.equal(200);
-					expect(service).to.have.property(userID);
-					expect(serivce.userID).to.equal(serviceBody.userID);
-				})
-		});
-	});
-
-
-	after(async (done) => {
-		await Service.deleteMany({});
-		await BasicUser.deleteMany({});
-		done();
-	});
+// 		it('should make a new service', function(done) {
+// 			app.router()
+// 				.post('/services')
+// 				.send(serviceBody)
+// 				.end((error, res) => {
+// 					service = res.serviceBody
+// 					expect(res.status).to.equal(200);
+// 					expect(service).to.have.property(userID);
+// 					expect(serivce.userID).to.equal(serviceBody.userID);
+// 				})
+// 		});
+// 	});
 
 
-});
+// 	after(async (done) => {
+// 		await Service.deleteMany({});
+// 		await BasicUser.deleteMany({});
+// 		done();
+// 	});
+
+
+// });
 
 
 
