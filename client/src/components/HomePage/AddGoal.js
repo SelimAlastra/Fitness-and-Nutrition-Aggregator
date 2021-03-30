@@ -82,7 +82,7 @@ const AddGoal = ({userID}) => {
                      </Form.Group>
                     </Col>
                 </Form.Row>
-                <Button type="submit"  variant="outline-warning" className=" edit goalActionButton">Save</Button>
+                <Button type="submit"  variant="outline-success" className="goalActionButton2">Save</Button>
             </Form>
         </div>
     );

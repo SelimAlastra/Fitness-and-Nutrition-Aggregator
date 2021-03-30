@@ -52,7 +52,7 @@ const HomePage = (props) => {
                     <Goals userID={user._id}/>
                 </div>
                 <div>
-                    <Image className ="GoalsImage" src="https://www.myzerona.com/content/uploads/2019/12/02-What-Are-SMART-Fitness-Goals.jpg" fluid />
+                    <Image className ="GoalsImage" src="https://yoursimplynutrition.com/blog/wp-content/uploads/2020/04/Screenshot-2020-04-21-09.57.12.png" fluid />
                 </div>
             </div>
             
