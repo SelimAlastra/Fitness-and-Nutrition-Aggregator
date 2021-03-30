@@ -32,18 +32,10 @@ app.use('/buckets', bucketRoutes);
 
 
 const PORT = process.env.PORT || 5000;
-let uri = process.env.ATLAS_URI;
-
-const env = process.env.NODE_ENV || 'development';
-if (env === 'test') {
-    uri = process.env.CONNECTION_URL;
-}
+const uri = process.env.ATLAS_URI;
 
 mongoose.connect(`${uri}`, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => app.listen(PORT, () => console.log('Server running on port: ' + PORT )))
     .catch((error) => console.log(error.message));
 
 mongoose.set('useFindAndModify', false);
-mongoose.set("useCreateIndex", true);
-
-module.exports = app;
