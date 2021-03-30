@@ -1,0 +1,6 @@
+{
+    "experimentalComponentTesting": true,
+    "componentFolder":"./cypress/component",
+    "integrationFolder": "./cypress/integration",
+    "fixturesFolder": false
+}
