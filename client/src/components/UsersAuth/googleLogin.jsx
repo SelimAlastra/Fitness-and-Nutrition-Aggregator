@@ -65,6 +65,7 @@ const informParent = response => {
   });
 };
 
+
 const responseGoogle = response => {
   console.log(response);
   sendGoogleToken(response.tokenId);
