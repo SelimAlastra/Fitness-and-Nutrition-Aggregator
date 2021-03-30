@@ -267,8 +267,12 @@ export default class Quiz extends Component{
                 complete: true
             });
             if(isClient) {
+                // update the db
+                
                 this.props.history.push(`/clientDashboard/${JSON.parse(localStorage.getItem('user'))._id}`);
             } else {
+                // update the db 
+
                 this.props.history.push(`/professionalDashboard/${JSON.parse(localStorage.getItem('user'))._id}`);
             }
         } else {
@@ -305,7 +309,7 @@ export default class Quiz extends Component{
                                     questionsReqInput = {questionsReqInput}
                                     handleAnswerButtonClick = {this.handleAnswerButtonClick}
                                     refresh = {this.refresh}
-                                    isClient = {this.isClient}
+                                    isClient = {isClient}
                                 />
                             </div>
 

@@ -30,8 +30,9 @@ const professionalUserSchema = new Schema({
   tags : [{type: String,  required: false}],
   //I used an array here cause an user may have multiple tags
 
-  bio :{type: String,  required: false},
+  yearsOfExperience: [{type: String, required: false}],
 
+  bio :{type: String,  required: false},
 
   instagramLink: {type: String, required: false},
 
