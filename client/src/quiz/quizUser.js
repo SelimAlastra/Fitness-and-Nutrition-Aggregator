@@ -277,7 +277,7 @@ export default class Quiz extends Component{
     }
     
     render(){
-        let {questions, currentQuestion, complete, questionsReqInput, associatedTags} = this.state;
+        let {questions, currentQuestion, complete, questionsReqInput, associatedTags, isClient} = this.state;
 
         return(
             <div>
@@ -305,6 +305,7 @@ export default class Quiz extends Component{
                                     questionsReqInput = {questionsReqInput}
                                     handleAnswerButtonClick = {this.handleAnswerButtonClick}
                                     refresh = {this.refresh}
+                                    isClient = {this.isClient}
                                 />
                             </div>
 

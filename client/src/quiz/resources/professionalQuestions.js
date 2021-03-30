@@ -23,10 +23,9 @@ const questionsProfessional = [
             { answerText: "Nutrition advice", selected:false, requireInput: false, tags:[""] },
             { answerText: "Yoga, pilates", selected:false, requireInput: false, tags:[""] },
             { answerText: "Cardio and weight loss", selected:false, requireInput: false, tags:[""] },
-            { answerText: "", selected:false, requireInput: false, tags:[""] },
             { answerText: "Weight training and strength focused", selected:false, requireInput: false, tags:[""] },
             { answerText: "All-around and complex", selected:false, requireInput: false, tags:[""] },
-            //{ answerText: "Other:", selected: false, tags:[""], requireInput: true, placeholder: "", alert: ["Answer using letters only."], input: [] }
+            { answerText: "Other:", selected: false, tags:[""], requireInput: true, placeholder: "", alert: ["Answer using letters only."], input: [] }
         ],
     },{
         questionText: "Do you offer diet advice?",
@@ -48,15 +47,15 @@ const questionsProfessional = [
         questionId: 6,
         answerOptions: [
             { answerText: "crossfit", selected:false, requireInput: false, tags:[""] },
-            { answerText: "muscle", selected:false, requireInput: false, tags:[""] },
-            { answerText: "bodyweight workout", selected:false, requireInput: false, tags:[""] },
-            { answerText: " ", selected:false, requireInput: false, tags:[""] },
-            /** e.g.: #aerobic, #plyometric  */
+            { answerText: "weightlifting", selected:false, requireInput: false, tags:[""] },
+            { answerText: "bodyweight", selected:false, requireInput: false, tags:[""] },
+            { answerText: "functionaltraining", selected:false, requireInput: false, tags:[""] },
+            { answerText: "Other:", selected: false, tags:[""], requireInput: true, placeholder: "e.g.: aerobic, plyometric, boxing", alert: ["Answer using letters only."], input: [] }
         ],
     },
 ];
 
 const questionsReqInputProfessional = [];
-const questionsMultipleChoicesProfessional = [];
+const questionsMultipleChoicesProfessional = [6];
 
 export {questionsProfessional,questionsReqInputProfessional,questionsMultipleChoicesProfessional}
