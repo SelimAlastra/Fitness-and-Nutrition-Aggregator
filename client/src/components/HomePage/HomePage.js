@@ -24,6 +24,7 @@ const HomePage = (props) => {
     }, [dispatch]);
 
     const user = useSelector((state) => state.basicUsers);
+    console.log(user);
     
     // const [name, setName] = useState("");
     // const [address, setAddress] = useState("");
