@@ -1,9 +1,11 @@
 import React from "react";
-import { Button , Alert, Container, Carousel } from 'react-bootstrap';
+import { Alert, Carousel } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './LandingPage.css';
 import NavbarVisitor from './components/Navbar/NavbarVisitor.js';
 import { useHistory } from 'react-router-dom';
+import BasicUsers from './components/UsersAuth/clientModal';
+import Professional from './components/UsersAuth/professionalModal';
 
 function LandingPage () {
 
@@ -29,8 +31,10 @@ function LandingPage () {
 
                 <div class="row justify-content-center"
                 >     
-                    <Button className="landingButton" style={{"color": "black", "border-color": "#8a5853", }} variant="outline-success"  onClick={basicUsers}> Basic User </Button>
-                    <Button className="landingButton" style={{"color": "black", "border-color": "#8a5853"}} variant="outline-success"onClick={professionalUsers}> Professional</Button>
+                    {/* <Button className="landingButton" style={{"color": "black", "border-color": "#8a5853", }} variant="outline-success"  onClick={basicUsers}> Basic User </Button> */}
+                    <BasicUsers variant="outline-success"/>
+                    {/* <Button className="landingButton" style={{"color": "black", "border-color": "#8a5853"}} variant="outline-success" onClick={professionalUsers}> Professional</Button> */}
+                    <Professional variant="outline-success"/>
                 </div>    
 
                 <Carousel className ="carousel">

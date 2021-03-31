@@ -2,21 +2,21 @@ import React from 'react';
 import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props';
 import axios from 'axios';
 import { authenticate, isAuth } from '../../actions/userAuth.js';
-import { useHistory, useLocation } from 'react-router-dom';
+import { useHistory} from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFacebookF } from '@fortawesome/free-brands-svg-icons' 
 import './facebookLogin.css';
 
-const Facebook = () => {
+const Facebook = (client) => {
+
+  const isClient = client.isClient;
 
   const history = useHistory();
-
-  const location = useLocation();
 
   const icon = <FontAwesomeIcon icon={faFacebookF} />
 
   const sendFacebookToken = (userID, accessToken) => {
-    if(location.pathname.includes("users")){
+    if(isClient == "true"){
       axios
         .post(`http://localhost:5000/basicUsers/facebooklogin`, {
           userID,
@@ -27,10 +27,11 @@ const Facebook = () => {
           informParent(res);
         })
         .catch(error => {
+          window.location.reload();
           console.log('FACEBOOK SIGN IN ERROR', error.response);
         });
     }
-    else if(location.pathname.includes("professionals")){
+    else{
       axios
       .post(`http://localhost:5000/professionalUsers/facebooklogin`, {
         userID,
@@ -41,6 +42,7 @@ const Facebook = () => {
         informParent(res);
       })
       .catch(error => {
+        window.location.reload();
         console.log('FACEBOOK SIGN IN ERROR', error.response);
       });
     }
@@ -49,7 +51,7 @@ const Facebook = () => {
   const informParent = response => {
     authenticate(response, () => {
       isAuth()
-      if(location.pathname.includes("users")){
+      if(isClient == "true"){
         if(response.data.isNew){
           history.push(`/user/quiz/${JSON.parse(localStorage.getItem('user'))._id}`)
         }
@@ -57,7 +59,7 @@ const Facebook = () => {
           history.push(`/clientDashboard/${JSON.parse(localStorage.getItem('user'))._id}`);
         }
       }
-      else if(location.pathname.includes("professionals")){
+      else{
         if(response.data.isNew){
           history.push(`/professional/quiz/${JSON.parse(localStorage.getItem('user'))._id}`)
         }
