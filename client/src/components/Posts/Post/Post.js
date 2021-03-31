@@ -47,6 +47,7 @@ const Post = ({ post, setCurrentId }) => {
   require('dotenv').config({ path: '/.env' });
 
   function PopUpBuckets() {
+
     const postToAdd = {
       postId: post._id
     }
@@ -122,6 +123,10 @@ const Post = ({ post, setCurrentId }) => {
       <Button size="small" onClick={() => setCurrentId(post._id)}>Edit</Button>
       )
     }
+    else
+      return (
+        <ReportPopUp/>
+      )
     return <div></div>
   }
 

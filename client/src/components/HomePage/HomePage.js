@@ -43,8 +43,9 @@ const HomePage = (props) => {
 
     
         return (
+            <div>
+            <NavbarUser/>
             <div className="homepage">
-                <NavbarUser/>
                 <UserInfo user={user} />
                 <div>
                     <Services userID = {user._id} />
@@ -53,8 +54,9 @@ const HomePage = (props) => {
                     <Goals userID={user._id}/>
                 </div>
                 <div>
-                    <Image className ="GoalsImage" src="https://www.myzerona.com/content/uploads/2019/12/02-What-Are-SMART-Fitness-Goals.jpg" fluid />
+                    <Image className ="GoalsImage" src="https://www.verywellmind.com/thmb/Fu42J0v7zBzVwquGqf89B0S13Ts=/1500x1000/filters:fill(ABEAC3,1)/smart-goals-for-lifestyle-change-2224097_final-1e7ebd33b46948959ca5d106f18241ee.png" fluid />
                 </div>
+            </div>
             </div>
             
         );

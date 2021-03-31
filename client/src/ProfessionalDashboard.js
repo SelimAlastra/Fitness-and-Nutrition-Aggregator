@@ -52,10 +52,10 @@ return (
   <>
   <NavbarProfessional updatedPosts={updatedPosts} setUpdatedPosts={setUpdatedPosts}/>
   <Container maxWidth="lg">
-      <AppBar position="static" className={classes.appBar} color="inherit">
+      {/* <AppBar position="static" className={classes.appBar} color="inherit">
         <Typography className={classes.heading} variant="h2" align="center">Dashboard</Typography>
         <img className={classes.image} src={memories} alt="memories" height="60" />
-      {/* <Drawer
+       <Drawer
         className={classes.drawer}
         variant="permanent"
         classes={{
@@ -75,9 +75,9 @@ return (
             ))}
           </List>
         </div>
-      </Drawer> */} 
-      {/* <ProfessionalNavbar/> */}
-      </AppBar>
+      </Drawer> 
+      <ProfessionalNavbar/> 
+      </AppBar> */}
     <Grow in>
         <Container>
           <Grid className={classes.mainContainer} container justify="space-between" alignItems="stretch" spacing={3}>

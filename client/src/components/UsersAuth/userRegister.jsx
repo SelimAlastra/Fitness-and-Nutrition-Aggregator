@@ -12,13 +12,13 @@ import {faEye} from "@fortawesome/free-solid-svg-icons";
 import './userRegister.css';
 import Google from './googleLogin.jsx';
 import Facebook from './facebookLogin.jsx';
-import { useHistory, useLocation } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
-const Register = () => {
+const Register = (client) => {
+
+const isClient = client.checkClient;
 
 const history = useHistory();
-
-const location = useLocation();
 
 const eye = <FontAwesomeIcon icon={faEye} />;
 
@@ -54,7 +54,7 @@ const formik = useFormik({
     onSubmit: (values, actions) => {
       setTimeout(() => {
         console.log("Signing Up", values);
-      if(location.pathname.includes("users")){
+      if(isClient == "true"){
         const newData = {
           email: values.email,
           username: values.username,
@@ -69,8 +69,10 @@ const formik = useFormik({
             })
           })
           .catch(err => {
-                console.log(err);
-                        if(err.response.data.errors){
+                if(err.response == undefined){
+                  window.location.reload();
+                }
+                else if(err.response.data.errors){
                           console.log(err.response.data.errors)
                           if(err.response.data.errors.includes('Email'))
                             actions.setFieldError('email', 'Email already in use')
@@ -79,7 +81,7 @@ const formik = useFormik({
                         }  
                       })
         }
-        else if(location.pathname.includes("professionals")){
+        else{
         const newData2 = {
             email: values.email,
             username: values.username,
@@ -95,8 +97,10 @@ const formik = useFormik({
             })
           })
             .catch(err => {
-                console.log(err);
-                        if(err.response.data.errors){
+                if(err.response == undefined){
+                  window.location.reload();
+                }
+                else if(err.response.data.errors){
                           console.log(err.response.data.errors)
                           if(err.response.data.errors.includes('Email'))
                             actions.setFieldError('email', 'Email already in use')
@@ -164,7 +168,7 @@ const formik = useFormik({
       )}
       <p/>
       
-    {location.pathname.includes("professionals") ? 
+    {isClient != "true" ? 
       <div>
       <Form.Label hidden = {true} htmlFor="profession">Profession</Form.Label>
         <Form.Control
@@ -229,9 +233,9 @@ const formik = useFormik({
       </Button>
       <p style={{'marginLeft': '140px', 'fontWeight': 'bold'}}> OR </p>
     </Form>
-    <Google/>
+    <Google isClient = {isClient}/>
     <p/>
-    <Facebook/>
+    <Facebook isClient = {isClient}/>
     </div>
     );
 };
