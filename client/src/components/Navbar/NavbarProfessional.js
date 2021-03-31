@@ -113,7 +113,6 @@ export default function NavbarProfessional({updatedPosts, setUpdatedPosts}) {
     const dispatch = useDispatch();
     
     dispatch(getProfessional(JSON.parse(localStorage.getItem('user'))._id));
-
     profile2 = useSelector((state) => state.professional); 
 
     if(JSON.parse(localStorage.getItem('user')).type === 'professional'){
