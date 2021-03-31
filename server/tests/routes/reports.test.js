@@ -9,7 +9,7 @@ import PostMessage from '../../models/postMessage.js'
 
 
 describe('report routes', () => {
-    let reporter, reported, reportedPost;
+    let reporter, reported, reportedPost, report;
     before((done) => {
         reporter = new BasicUser({
             username: 'Bob_123',
@@ -42,16 +42,18 @@ describe('report routes', () => {
                 reason: 'Test Report'
             })
             .end((err, res) => {
+                report = res.body;
                 expect(res.status).to.equal(200);
-                expect(res.body.reason).to.equal('Test Report');
-                expect(res.body).to.have.property("reporterUsername");
-                expect(res.body).to.have.property('reporterUsername')
-                expect(res.body.reporterUsername).to.eq(reporter.username)
-                expect(res.body).to.have.property('reportedUsername')
-                expect(res.body.reportedUsername).to.eq(reported.username)
-                expect(res.body).to.have.property('postId')
-                expect(res.body.postId).to.eq("" +reportedPost._id)
-                done()
+                expect(report).to.have.property("reason");
+                expect(report.reason).to.equal('Test Report');
+                expect(report).to.have.property("reporterUsername");
+                expect(report).to.have.property('reporterUsername')
+                expect(report.reporterUsername).to.eq(reporter.username)
+                expect(report).to.have.property('reportedUsername')
+                expect(report.reportedUsername).to.eq(reported.username)
+                expect(report).to.have.property('postId')
+                expect(report.postId).to.eq("" +reportedPost._id)
+                done();
             })
             
         })
@@ -69,18 +71,56 @@ describe('report routes', () => {
         });
     });
 
+    describe('get /reports/:id', function() {
+        it('should retrieve a specific report', function(done) {
+            request(app)
+            .get(`/reports/${report._id}`)
+            .send()
+            .end((err, res) => {
+                expect(res.status).to.equal(200);
+                expect(res.body).to.have.property('_id');
+                expect(res.body._id).to.equal(report._id);
+                done();
+            }); 
+        });
+    });
 
     describe('get /reports', function() {
-
-
         it('should get all reports and return a 200 status code', function(done) {
             request(app)
             .get('/reports')
             .send()
             .end((err, res) => {
                 expect(res.status).to.equal(200);
+                expect(res.body.length).to.equal(1);
+                expect(res.body[0]).to.have.property('_id');
+                expect(res.body[0]._id).to.equal(report._id);
+                done();
             }); 
-            done();
+        });
+    });
+
+    describe('delete /reports/:id', function() {
+        it('should delete the report associated with the uri', function(done) {
+            request(app)
+            .delete(`/reports/${report._id}`)
+            .send()
+            .end((err, res) => {
+                expect(res.status).to.equal(200);
+                expect(res.body.message).to.equal("Report deleted successfully");
+                done();
+            }); 
+        });
+
+        it('should return 400 status code as the uri is not associated with a report', function(done) {
+            request(app)
+            .delete(`/reports/${1234}`)
+            .send()
+            .end((err, res) => {
+                expect(res.body).to.not.equal("Report deleted successfully");
+                expect(res.status).to.equal(404);
+                done();
+            });
         });
     });
 
