@@ -123,6 +123,10 @@ const Post = ({ post, setCurrentId }) => {
       <Button size="small" onClick={() => setCurrentId(post._id)}>Edit</Button>
       )
     }
+    else
+      return (
+        <ReportPopUp/>
+      )
     return <div></div>
   }
 
