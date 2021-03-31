@@ -16,8 +16,6 @@ function PopUpProfessional(){
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  const checkClient = "false";
-
   return(
     <>
     <Button className="landingButton2" onClick={handleShow}>
@@ -34,10 +32,10 @@ function PopUpProfessional(){
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        { login === true ?
-        <Login checkClient = {checkClient}/>
+        { login == true ?
+        <Login/>
         :
-        <Register checkClient = {checkClient}/>
+        <Register/>
         }
       </Modal.Body>
       <Modal.Footer>

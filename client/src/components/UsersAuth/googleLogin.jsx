@@ -26,10 +26,11 @@ const sendGoogleToken = tokenId => {
       informParent(res);
     })
     .catch(error => {
+      window.location.reload();
       console.log('GOOGLE SIGN IN ERROR', error.response);
     });
   }
-  else if(isClient == "false"){
+  else{
     axios
     .post(`http://localhost:5000/professionalUsers/googlelogin`, {
       idToken: tokenId
@@ -39,6 +40,7 @@ const sendGoogleToken = tokenId => {
       informParent(res);
     })
     .catch(error => {
+      window.location.reload();
       console.log('GOOGLE SIGN IN ERROR', error.response);
     });
   }
@@ -46,7 +48,8 @@ const sendGoogleToken = tokenId => {
 
 const informParent = response => {
   authenticate(response, () => {
-    isAuth() 
+    isAuth()
+    console.log(isClient);
     if(isClient == "true")
       if(response.data.isNew){
         history.push(`/user/quiz/${JSON.parse(localStorage.getItem('user'))._id}`);
@@ -54,7 +57,7 @@ const informParent = response => {
       else {
         history.push(`/clientDashboard/${JSON.parse(localStorage.getItem('user'))._id}`);
       }
-    else if(isClient == "false")
+    else{
       if(response.data.isNew)
       {
         history.push(`/professional/quiz/${JSON.parse(localStorage.getItem('user'))._id}`);
@@ -63,6 +66,7 @@ const informParent = response => {
       {
         history.push(`/professionalDashboard/${JSON.parse(localStorage.getItem('user'))._id}`);
       }
+    }
   });
 };
 
