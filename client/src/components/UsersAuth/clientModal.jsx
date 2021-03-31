@@ -19,7 +19,7 @@ function PopUpLogin(){
   const checkClient = "true";
   return(
     <>
-    <Button className="landingButton1" onClick={handleShow}>
+    <Button className="landingButton1" data-testid="basicUsersButton" onClick={handleShow}>
       Basic Users
     </Button>
     <div className = "modal-dialog">

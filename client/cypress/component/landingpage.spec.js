@@ -5,6 +5,6 @@ import LandingPage from '../../src/LandingPage';
 describe('LandingPage', () => {
   it('basic_user_button', () => {
     mount(<LandingPage />);
-    cy.contains('Basic User').should('be.visible');
+    cy.contains('Basic Users').should('be.visible');
   });
 });
