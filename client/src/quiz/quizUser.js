@@ -183,7 +183,7 @@ export default class Quiz extends Component{
         }
 
         // process input into tags if such answer has been selected and input was provided
-        if((isClient && questions[currentQuestion].questionId === 10) || (!isClient && questions[currentQuestion].questionId === 6)){
+        if(isClient && questions[currentQuestion].questionId === 10){
             const answerWithInput = answers.find(answer => answer.requireInput === true);
             if(answerWithInput.input) {
                 answerWithInput.tags = answerWithInput.input[0].replace(/,|#|;|_/g, " ").toLowerCase().replace(/\./g, ' ').replace(/\s+/g, ' ').trim().split(' ');
