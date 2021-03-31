@@ -13,7 +13,9 @@ import axios from 'axios';
 import Google from './googleLogin.jsx';
 import Facebook from './facebookLogin.jsx';
 
-const Login = () => {
+const Login = (client) => {
+
+const isClient = client.checkClient;
 
 const history = useHistory();
     
@@ -46,7 +48,7 @@ const schema = Yup.object().shape({
         email: values.email,
         password: values.password,
       }
-      if(location.pathname.includes("users")){
+      if(isClient == "true"){
         axios.post(`http://localhost:5000/basicUsers/login`, newData)
             .then(res => {
               authenticate(res, () => {
@@ -65,7 +67,7 @@ const schema = Yup.object().shape({
               }
             })
       }
-      else if(location.pathname.includes("professionals")){
+      else if(isClient == "false"){
         axios.post(`http://localhost:5000/professionalUsers/login`, newData)
             .then(res => {
               authenticate(res, () => {
@@ -124,7 +126,7 @@ return (
     {formik.errors.password && formik.touched.password && (
     <div className="input-feedback">{formik.errors.password}</div>
     )}
-    { location.pathname.includes("users") ?
+    { isClient == "true" ?
     <Link to="/user/password/forget">Forgot Password?</Link>
     :
     <Link to="/professional/password/forget">Forgot Password?</Link>
@@ -135,9 +137,9 @@ return (
     </Button>
     <p style={{'marginLeft': '140px', 'fontWeight': 'bold'}}> OR </p>
   </Form>
-  <Google/>
+  <Google isClient = {isClient}/>
   <p/>
-  <Facebook/>
+  <Facebook isClient = {isClient}/>
 </div>
 );
 };
