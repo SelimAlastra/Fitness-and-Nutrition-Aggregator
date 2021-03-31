@@ -23,14 +23,15 @@ const EditGoals = (props) => {
     return (
         <div className = 'editGoalsDiv'>
         <NavbarUser/>
-        <Grid container>
+        <h2 className="EditGoalsText"> Goals Edition </h2>
+        <Button type="button" variant="dark" className="goalEditButton" onClick={() => window.location.href = `/homePage/${userID}`}>Go to home page</Button>
+        <Grid container justify="center">
             {myGoals.map((goal) => (
                 <Grid item xs= {4}>
                     <EditGoal key={goal._id} goal={goal}/>
                 </Grid>           
             ))}
         </Grid>
-        <Button type="button" variant="outline-warning" className="goalEditButton" onClick={() => window.location.href = `/homePage/${userID}`}>Go to Home Page</Button>
         </div>
     );
 

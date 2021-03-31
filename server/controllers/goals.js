@@ -20,12 +20,6 @@ export const createGoal = async (req, res) => {
     .catch(err => res.status(400).json('Error: Failed to add Goal' + err));
 };
 
-export const getGoal = async (req, res) => {
-  Goal.findById(req.params.id)
-    .then(goal => res.json(goal))
-    .catch(err => res.status(400).json('Error: Cannot find this goal' + err));
-};
-
 export const getGoalByUserID = async (req, res) => {
   Goal.find({ userID: req.params.id}).exec()
     .then(goal => res.json(goal))
@@ -33,13 +27,11 @@ export const getGoalByUserID = async (req, res) => {
 };
 
 
-
 export const deleteGoal = async (req, res) => {
   Goal.findByIdAndDelete(req.params.id)
     .then(() => res.json('goal deleted.'))
     .catch(err => res.status(400).json('Error: Cannot delete this goal' + err));
 };
-
 
 export const updateGoal = async (req, res) => {
   Goal.findById(req.params.id)
