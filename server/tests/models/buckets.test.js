@@ -47,4 +47,9 @@ describe('Testing Buckets model', function() {
 		});
 	});
 
+	after((done) => {
+        Bucket.collection.deleteMany({});
+        done();
+    });
+
 });

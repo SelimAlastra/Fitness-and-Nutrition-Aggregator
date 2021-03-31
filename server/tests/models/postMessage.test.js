@@ -46,4 +46,9 @@ describe('', function() {
 		expect(newPostMessage.likes.length).to.equal(0);
 		done();
 	});
+
+	after((done) => {
+        PostMessage.collection.deleteMany({});
+        done();
+    });
 });

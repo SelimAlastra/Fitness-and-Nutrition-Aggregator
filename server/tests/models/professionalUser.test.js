@@ -111,4 +111,9 @@ describe('Testing ProfessionalUser model', function() {
         });
         done();
     });
+
+    after((done) => {
+        ProfessionalUser.collection.deleteMany({});
+        done();
+    });
 });

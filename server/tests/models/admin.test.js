@@ -3,12 +3,13 @@ import Admin from '../../models/admin.model.js';
 
 describe('Testing Admin model', function() {
     let newAdminUser;
-    beforeEach(() => {
+    beforeEach((done) => {
         const adminUserBody = {
             username: "user123",
             password: "password123"
         };
         newAdminUser = new Admin(adminUserBody);
+        done();
     });
 
     it('is valid when all of the fields are valid', function(done) {
@@ -57,6 +58,11 @@ describe('Testing Admin model', function() {
         newAdminUser.save(function(error) {
             expect(error).to.exist;
         });
+        done();
+    });
+
+    after((done) => {
+        Admin.collection.deleteMany({});
         done();
     });
 });
