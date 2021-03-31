@@ -16,12 +16,12 @@ export const getProfessionalUsers = async (req, res) => {
 export const createProfessionalUser = async (req, res) => {
 
   const user = req.body;
-
+  console.log(user);
   const newProfessionalUser = new ProfessionalUser(user);
   
   newProfessionalUser.save()
     .then(() => res.json('Professional user added!'))
-    .catch(error => res.status(400).json("Error: " + error));
+    .catch(error => {console.log(error); res.status(400).json("Error: " + error)});
 }
 
 export const updateProfessionalUser = async (req, res) => {

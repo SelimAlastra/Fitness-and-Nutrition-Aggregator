@@ -31,8 +31,8 @@ describe('Testing Report model', function() {
 		newReport.postId = null;
 		newReport.validate(function(error) {
 			expect(error).to.exist;
+            done();
 		});
-		done();
 	});
 
 	after((done) => {

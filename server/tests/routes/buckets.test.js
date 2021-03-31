@@ -9,10 +9,9 @@ import mongoose  from 'mongoose';
 describe('buckets routes', function() {
     let basicUser, basicUserId, bucket, bucketId, editBucket, editBucketId,
     deleteBucket, deleteBucketId;
+
     before((done) => {
-        basicUserId = mongoose.mongo.ObjectId();
-        basicUser = BasicUser.create({
-            _id: basicUserId,
+        basicUser = new BasicUser({
             username: "232",
             name: "Bob Smith",
             email: "bobsmith@fakesite.com",
@@ -20,29 +19,36 @@ describe('buckets routes', function() {
             buckets: ["bucket1"],
             bundles: ["bundle1"]
         });
-        bucketId = mongoose.mongo.ObjectId();
-        bucket = Bucket.create({
+        basicUser.save();
+        basicUserId = basicUser._id;
+        bucket = new Bucket({
             _id: bucketId,
             title: "New Bucket",
             postsId: ["", ""],
             userId: basicUserId,
         });
-        editBucketId = mongoose.mongo.ObjectId();
-        editBucket = Bucket.create({
+        bucket.save();
+        bucketId = bucket._id;
+        editBucket = Bucket({
             _id: editBucketId,
             title: "New Bucket",
             postsId: ["", ""],
             userId: basicUserId,
         });
-        deleteBucketId = mongoose.mongo.ObjectId();
-        deleteBucket = Bucket.create({
+        editBucket.save();
+        editBucketId = editBucket._id;
+        deleteBucket = Bucket({
             _id: deleteBucketId,
             title: "New Bucket",
             postsId: ["", ""],
             userId: basicUserId,
         });
+        deleteBucket.save();
+        deleteBucketId = deleteBucket._id;
+        console.log("started");
         done();
     });
+
     describe('post /buckets', function() {
 
         it('should make a new bucket', function(done) {
@@ -59,8 +65,8 @@ describe('buckets routes', function() {
                 expect(res.body.postsId[0]).to.equal("123");
                 expect(res.body.postsId[1]).to.equal("456");
                 expect(res.body.userId).to.equal("" + basicUserId);
+                done();
             });
-            done();
         });
 
         it('should return a 400 if the bucket could not be added', function(done) {
@@ -72,8 +78,8 @@ describe('buckets routes', function() {
             })
             .end((err, res) => {
                 expect(res.status).to.equal(409);
+                done();
             });
-            done();
         });
     });
 
@@ -84,9 +90,10 @@ describe('buckets routes', function() {
             .get('/buckets')
             .send()
             .end((err, res) => {
+                expect(res.body).to.be.not.null;
                 expect(res.status).to.equal(200);
+                done();
             });
-            done();
         });
     });
 
@@ -100,8 +107,8 @@ describe('buckets routes', function() {
                 expect(res.status).to.equal(200);
                 expect(res.body._id).to.equal("" + bucketId);
                 expect(res.body.title).to.equal("New Bucket");
+                done();
             });
-            done();
         });
 
         it('should return a 400 status code as an invalid id is supplied', function(done) {
@@ -110,8 +117,8 @@ describe('buckets routes', function() {
             .send()
             .end((err, res) => {
                 expect(res.status).to.equal(400);
+                done();
             });
-            done();
         });
     });
 
@@ -130,8 +137,8 @@ describe('buckets routes', function() {
                 expect(res.body._id).to.equal("" + editBucketId);
                 expect(res.body.title).to.equal("Updated Bucket");
                 expect(res.status).to.equal(200);
+                done();
             });
-            done();
         });
 
         it('should return a 400 status code as the id does not link to a bucket', function(done) {
@@ -145,8 +152,8 @@ describe('buckets routes', function() {
             })
             .end((err, res) => {
                 expect(res.status).to.equal(404);
+                done();
             });
-            done();
         });
     });
 
@@ -159,8 +166,8 @@ describe('buckets routes', function() {
             .end((err, res) => {
                 expect(res.body.message).to.equal("Bucket deleted successfully");
                 expect(res.status).to.equal(200);
+                done();
             });
-            done();
         });
         
         it('should return 400 status code as the uri is not associated with a bucket', function(done) {
@@ -170,12 +177,12 @@ describe('buckets routes', function() {
             .end((err, res) => {
                 expect(res.body).to.not.equal("bucket deleted.");
                 expect(res.status).to.equal(404);
+                done();
             });
-            done();
         });
     });
 
-    after((done) => {
+    after(async (done) => {
         Bucket.collection.deleteMany({});
         BasicUser.collection.deleteMany({});
         done();

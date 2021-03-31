@@ -51,10 +51,11 @@ describe('services routes', function() {
                 urls: ["http://youtube.com"]
             })
             .end((err, res) => {
+                console.log(res.body);
                 expect(res.status).to.equal(200);
                 expect(res.body).to.equal("service added");
+                done();
             });
-            done();
         });
 
         it('should return a 400 if the service could not be added', function(done) {
@@ -68,8 +69,8 @@ describe('services routes', function() {
             .end((err, res) => {
                 expect(res.status).to.equal(400);
                 expect(res.body).to.equal('Error: Failed to add a service ValidationError: userID: Path `userID` is required.');
+                done();
             });
-            done();
         });
     });
 
@@ -81,8 +82,8 @@ describe('services routes', function() {
             .send()
             .end((err, res) => {
                 expect(res.status).to.equal(200);
+                done();
             });
-            done();
         });
     });
 
@@ -117,8 +118,8 @@ describe('services routes', function() {
             })
             .end((err, res) => {
                 expect(res.status).to.equal(400);
+                done();
             });
-            done();
         });
     });
 
@@ -131,8 +132,8 @@ describe('services routes', function() {
             .end((err, res) => {
                 expect(res.body).to.equal("Service deleted!");
                 expect(res.status).to.equal(200);
+                done();
             });
-            done();
         });
         
         it('should return 400 status code as the uri is not associated with a service', function(done) {
@@ -142,8 +143,8 @@ describe('services routes', function() {
             .end((err, res) => {
                 expect(res.body).to.not.equal("Service deleted!");
                 expect(res.status).to.equal(400);
+                done();
             });
-            done();
         });
     });
 
