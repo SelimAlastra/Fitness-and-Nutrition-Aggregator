@@ -19,7 +19,7 @@ export const createReport = async (req, res) => {
     try {
         await newReport.save();
 
-        res.status(201).json(newReport);
+        res.status(200).json(newReport);
     } catch(error) {
         res.status(409).json( {message: error.message });
     }
