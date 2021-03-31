@@ -8,8 +8,10 @@ import ProfessionalUser from '../../models/professionalUser.model.js'
 import PostMessage from '../../models/postMessage.js'
 
 
-describe('report routes', () => {
+describe('report routes', function() {
+
     let reporter, reported, reportedPost, report;
+    
     before((done) => {
         reporter = new BasicUser({
             username: 'Bob_123',
@@ -31,7 +33,8 @@ describe('report routes', () => {
         done();
     });
 
-    describe('post /reports', () => {
+    describe('post /reports', function() {
+
         it('should make a new report', function(done) {
             request(app)
             .post('/reports')
@@ -72,6 +75,7 @@ describe('report routes', () => {
     });
 
     describe('get /reports/:id', function() {
+
         it('should retrieve a specific report', function(done) {
             request(app)
             .get(`/reports/${report._id}`)
@@ -86,6 +90,7 @@ describe('report routes', () => {
     });
 
     describe('get /reports', function() {
+
         it('should get all reports and return a 200 status code', function(done) {
             request(app)
             .get('/reports')
@@ -101,6 +106,7 @@ describe('report routes', () => {
     });
 
     describe('delete /reports/:id', function() {
+
         it('should delete the report associated with the uri', function(done) {
             request(app)
             .delete(`/reports/${report._id}`)
@@ -117,8 +123,8 @@ describe('report routes', () => {
             .delete(`/reports/${1234}`)
             .send()
             .end((err, res) => {
-                expect(res.body).to.not.equal("Report deleted successfully");
                 expect(res.status).to.equal(404);
+                expect(res.body).to.not.equal("Report deleted successfully");
                 done();
             });
         });
