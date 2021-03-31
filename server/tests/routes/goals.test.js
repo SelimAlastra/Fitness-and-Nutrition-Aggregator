@@ -175,5 +175,5 @@ describe('goals routes', function() {
         Goal.deleteMany({});
         BasicUser.deleteMany({});
         done();
-      })
+      });
 });
