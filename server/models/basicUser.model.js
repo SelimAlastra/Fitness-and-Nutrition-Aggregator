@@ -43,8 +43,6 @@ const basicUserSchema = new Schema({
   bundles: [{type: String, required: true}],
 
   buckets: [{type: String, required: true}]
-
-
 }, {
   timestamps: true,
 });

@@ -3,8 +3,8 @@ const questionsProfessional = [
         questionText: "What gender do you identify with?",
         questionId: 1,
         answerOptions: [
-            { answerText: "Woman", selected:false, requireInput: false, tags:[""] },
-            { answerText: "Man", selected:false, requireInput: false, tags:[""] },
+            { answerText: "Female", selected:false, requireInput: false, tags:[""] },
+            { answerText: "Male", selected:false, requireInput: false, tags:[""] },
             { answerText: "Other", selected:false, requireInput: false, tags:[""] },
         ],
     },{

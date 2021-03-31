@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { fade, makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -22,6 +22,9 @@ import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import { signOut } from '../../actions/userAuth.js';
 import { Link, useHistory } from 'react-router-dom';
 import "./Navbar.css"
+import { details } from '../../quiz/quizUser';
+import { useDispatch, useSelector } from 'react-redux';
+import { getProfessional, getProfessionalUsers, updateProfessional } from '../../actions/professionals';
 
 /**
  * style the Navbar
@@ -103,6 +106,47 @@ export default function NavbarProfessional({updatedPosts, setUpdatedPosts}) {
 
   const classes = useStyles();
   const history = useHistory();
+
+  const InitialSearch = () => {
+    const associatedTags = details.associatedTags;
+    var tags, profile2, profile;
+    const dispatch = useDispatch();
+    
+    dispatch(getProfessional(JSON.parse(localStorage.getItem('user'))._id));
+
+    profile2 = useSelector((state) => state.professional); 
+
+    if(JSON.parse(localStorage.getItem('user')).type === 'professional'){
+      if(profile2.tags){
+        tags = profile2.tags;
+      }
+      profile = profile2;
+    }
+
+    if(associatedTags.length>0){ 
+      tags = associatedTags;
+      const newProfessional = {
+        username: profile.username,
+        name: profile.name,
+        email: profile.email,
+        password: profile.password,
+        profession: profile.profession,
+        gender: details.gender,
+        dob: profile.dob,
+        address: profile.address,
+        isBanned: profile.isBanned,
+        tags: associatedTags,
+        yearsOfExperience: details.yearsOfExperience,
+        bio: profile.bio,
+        instagramLink: profile.instagramLink,
+        youtubeLink: profile.youtubeLink,
+        resetPasswordLink: profile.resetPasswordLink
+      }
+      dispatch(updateProfessional(JSON.parse(localStorage.getItem('user'))._id, newProfessional));
+    }
+  }
+  InitialSearch();
+  
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 
@@ -126,6 +170,9 @@ export default function NavbarProfessional({updatedPosts, setUpdatedPosts}) {
     setMobileMoreAnchorEl(event.currentTarget);
   };
 
+  /**
+   * render the usual dropdown menu
+   */
   const menuId = 'primary-search-account-menu';
   const renderMenu = (
     <Menu
@@ -172,6 +219,9 @@ export default function NavbarProfessional({updatedPosts, setUpdatedPosts}) {
     </Menu>
   );
 
+  /**
+   * render the more  dropdown menu
+   */
   const mobileMenuId = 'primary-search-account-menu-mobile';
   const renderMobileMenu = (
     <Menu

@@ -1,12 +1,12 @@
-import React,{useEffect} from 'react';
+import React, {useEffect} from 'react';
 import './Navbar.css';
 import { fade } from '@material-ui/core/styles';
 import { makeStyles } from '@material-ui/core/styles';
 import InputBase from '@material-ui/core/InputBase';
 import { details } from '../../quiz/quizUser';
 import { useDispatch, useSelector } from 'react-redux';
-import { getBasicUser, getBasicUsers, updateBasicUser } from '../../actions/basicUsers';
-import { getProfessional, getProfessionalUsers } from '../../actions/professionals';
+import { getBasicUser, updateBasicUser } from '../../actions/basicUsers';
+import { getProfessional } from '../../actions/professionals';
 import { createGoal } from '../../actions/goals';
 
 /**
@@ -50,7 +50,8 @@ var newArray=[];
 const initialFilteredPosts = new Set();
 
 /**
- * 
+ * search posts and professional profiles based on input value
+ * update the database with quiz answers upon account creation
  */
 const SearchBox = ({updatePosts,setUpdatedPosts}) => {
   const classes = useStyles();
@@ -58,14 +59,18 @@ const SearchBox = ({updatePosts,setUpdatedPosts}) => {
   filteredPosts = useSelector((state) => state.posts);
   filteredProfiles = useSelector((state) => state.professional);
 
-  const findTag =(array,searchString)=>{
-    for(var i=0; i<array.length;i++)
-    {
-        if(array[i].trim().toLowerCase()===searchString)
-         return true
-    } 
-    return false
+  const findTag = (array,searchString)=>{
+    for(var i=0; i<array.length;i++){
+      if(array[i].trim().toLowerCase()===searchString){
+        return true;
+      }
+    }
+    return false;
   }
+
+  /**
+   * filter posts according to input value
+   */
   const filterPosts=(searchString)=>{
     var newFilteredPosts;
     var newFilteredProfiles;
@@ -86,15 +91,12 @@ const SearchBox = ({updatePosts,setUpdatedPosts}) => {
               );
       finalFilteredProfiles = newFilteredProfiles;
     } 
+   }
   }
-  }
-  const InitialSearch = () =>{
 
+  const InitialSearch = () =>{
     const associatedTags = details.associatedTags;
-    var tags;
-    var profile1;
-    var profile2;
-    var profile;
+    var tags, profile1, profile2, profile;
     const goals = details.goals;
 
     let newGoal = {
@@ -105,68 +107,67 @@ const SearchBox = ({updatePosts,setUpdatedPosts}) => {
     }
 
     const dispatch = useDispatch();
-      dispatch(getBasicUser(JSON.parse(localStorage.getItem('user'))._id));
-      dispatch(getProfessional(JSON.parse(localStorage.getItem('user'))._id));
+    dispatch(getBasicUser(JSON.parse(localStorage.getItem('user'))._id));
+    dispatch(getProfessional(JSON.parse(localStorage.getItem('user'))._id));
 
-      useEffect(() => {
-        console.log(details);
-        if(details.isNew) {
-          goals.forEach((g) => {
-            newGoal.description = g;
-              dispatch(createGoal(newGoal));
-            })
-        }
-      }, [])
+    useEffect(() => {
+      console.log(details);
+      if(details.isNew) {
+        goals.forEach((g) => {
+          newGoal.description = g;
+            dispatch(createGoal(newGoal));
+          })
+      }
+    }, []);
 
     profile1 = useSelector((state) => state.basicUsers);
     profile2 = useSelector((state) => state.professional); 
 
-      if(JSON.parse(localStorage.getItem('user')).type == 'client')
-      {
+    if(JSON.parse(localStorage.getItem('user')).type == 'client'){
         tags=profile1.tags;
         profile=profile1;
-      }
-      else
-      {
-        if(profile2.tags)
-      tags=profile2.tags;
+    } else {
+        if(profile2.tags){
+          tags=profile2.tags;
+        }
       profile=profile2;
     }
-    if(associatedTags.length>0)
-    { 
+
+    if(associatedTags.length>0){ 
       tags=associatedTags;
       const newBasicUser = {
-        name:profile.name,
         username: profile.username,
+        name: profile.name,
         email: profile.email,
         password: profile.password,
-        address: profile.address,
         gender: details.gender,
+        dob: profile.dob,
+        address: profile.address,
+        isBanned: profile.isBanned,
         bodyType: profile.bodyType,
         weight: details.weight,
-        bio: profile.bio,
-        tags: associatedTags,
+        height: details.height,
         goals: details.goals,
-        isBanned: profile.isBanned,
-        dob: profile.dob,
+        tags: associatedTags,
+        bio: profile.bio,
+        resetPasswordLink: profile.resetPasswordLink,
         bundles: profile.bundles,
-        height: details.height
+        buckets: profile.buckets
       }
       dispatch(updateBasicUser(JSON.parse(localStorage.getItem('user'))._id, newBasicUser));
-    
     }
 
     var tags = details.associatedTags;
-
     if(tags !== undefined){
-      for(var i=0;i<tags.length;i++)
-    {
+      for(var i=0;i<tags.length;i++){
         filterPosts(tags[i]);
+      } 
     } 
-  } 
+
     newArray=[];
     initialFilteredPosts.forEach(v => newArray.push(v));
   }
+
    InitialSearch();
   //loadCharacters();
   
