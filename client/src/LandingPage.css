@@ -22,15 +22,35 @@
     margin: 10px;
 }
 
-.landingButton{
+.landingButton1{
+    top: 40%;
+    left: 33%;
+    position: absolute;
     font-size: 20px;
-    margin: 30px;
     width: 200px;
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif !important;
     background-color: #D7C5B4 !important;
+    color: black;
+    border-color: #8a5853;
 }
 
-.landingButton:hover{
+.landingButton2{
+    top: 40%;
+    left: 53%;
+    position: absolute;
+    font-size: 20px;
+    width: 200px;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif !important;
+    background-color: #D7C5B4 !important;
+    color: black;
+    border-color: #8a5853;
+}
+
+.landingButton1:hover{
+    background-color: #8a5853 !important;
+}
+
+.landingButton2:hover{
     background-color: #8a5853 !important;
 }
 
