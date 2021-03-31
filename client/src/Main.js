@@ -11,9 +11,6 @@ import {questionsProfessional,questionsReqInputProfessional,questionsMultipleCho
 import HomePage from './components/HomePage/HomePage';
 import EditGoals from './components/HomePage/EditGoals';
 
-import UserPage from './LoginRegisterPage';
-import Login from './components/UsersAuth/userLogin';
-import Register from './components/UsersAuth/userRegister';
 import ForgetPassword from './components/UsersAuth/forgetPassword.jsx';
 import ResetPassword from './components/UsersAuth/resetPassword.jsx';
 import NavbarUser from './components/Navbar/NavbarUser.js';
@@ -61,9 +58,6 @@ const Main = () => (
         <Route exact path='/user/myBuckets/:id' component={BucketPage}></Route>
         <Route exact path='/user/myBuckets/:id/:title' component={BucketContent}></Route>
 
-        <Route exact path='/launch/users' exact render={props => <UserPage {...props} />} /> 
-
-        <Route exact path='/launch/professionals' exact render={props => <UserPage {...props} />} />
         <Route exact path='/user/password/forget' exact render={props => <ForgetPassword {...props} />} />
         <Route exact path='/user/password/reset/:token' exact render={props => <ResetPassword {...props} />} />
         <Route exact path='/professional/password/forget' exact render={props => <ForgetPassword {...props} />} />
