@@ -21,7 +21,7 @@ const Services = ({userID}) => {
 
     
 
-    if (myServices === undefined || myServices.legnth === 0) {
+    if (!myServices.length) {
         return (
             <div>
                 <h2 className="servicesText">Services</h2>
