@@ -17,9 +17,6 @@ function PopUpLogin(){
   const handleShow = () => setShow(true);
 
   const checkClient = "true";
-
-  console.log(checkClient);
-
   return(
     <>
     <Button className="landingButton1" onClick={handleShow}>
