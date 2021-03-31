@@ -2,20 +2,21 @@ import React from 'react';
 import {GoogleLogin} from 'react-google-login';
 import axios from 'axios';
 import { authenticate, isAuth } from '../../actions/userAuth.js';
-import { useHistory, useLocation } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faGoogle } from '@fortawesome/free-brands-svg-icons' 
 import './googleLogin.css';
 
-const Google = () => {
-    const history = useHistory()
+const Google = (client) => {
 
-    const location = useLocation();
+  const isClient = client.isClient
+
+    const history = useHistory()
 
     const icon = <FontAwesomeIcon icon={faGoogle} />
 
 const sendGoogleToken = tokenId => {
-  if(location.pathname.includes("users")){
+  if(isClient == "true"){
   axios
     .post(`http://localhost:5000/basicUsers/googlelogin`, {
       idToken: tokenId
@@ -28,7 +29,7 @@ const sendGoogleToken = tokenId => {
       console.log('GOOGLE SIGN IN ERROR', error.response);
     });
   }
-  else if(location.pathname.includes("professionals")){
+  else if(isClient == "false"){
     axios
     .post(`http://localhost:5000/professionalUsers/googlelogin`, {
       idToken: tokenId
@@ -46,14 +47,14 @@ const sendGoogleToken = tokenId => {
 const informParent = response => {
   authenticate(response, () => {
     isAuth() 
-    if(location.pathname.includes("users"))
+    if(isClient == "true")
       if(response.data.isNew){
         history.push(`/user/quiz/${JSON.parse(localStorage.getItem('user'))._id}`);
       }
       else {
         history.push(`/clientDashboard/${JSON.parse(localStorage.getItem('user'))._id}`);
       }
-    else if(location.pathname.includes("professionals"))
+    else if(isClient == "false")
       if(response.data.isNew)
       {
         history.push(`/professional/quiz/${JSON.parse(localStorage.getItem('user'))._id}`);
@@ -64,6 +65,7 @@ const informParent = response => {
       }
   });
 };
+
 
 const responseGoogle = response => {
   console.log(response);

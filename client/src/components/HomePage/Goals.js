@@ -35,11 +35,14 @@ const Goals = ({userID}) => {
         window.location.href = `/homePage/${userID}`;
     }
 
+    console.log(myGoals);
+
     function generateGoals() {
-    if (myGoals === undefined || myGoals.legnth === 0) {
+    if (!myGoals.length) {
         return (
             <div>
                 <h2 className="goalsPageText"> You currently have no goals !</h2>
+                <h1 className="goalsPageText2" > You can add one by clicking the button above ! </h1>
             </div>
         )
     } else {
@@ -47,40 +50,64 @@ const Goals = ({userID}) => {
             <Grid container justify="center">
                 {myGoals.map((goal) => (
                     <Grid item xs= {3}>
+                    <Container>
                     <Goal key={goal._id} goal={goal}/>
                                 <FontAwesomeIcon 
                                     icon={faTrashAlt}
+                                    size= "lg"
                                     style={{ cursor:"pointer", color: "white"}}
                                     value={goal}
                                     onClick={() => removeGoal(goal)}
                                 />
-
+                    </Container>
                     </Grid>           
                 ))}
             </Grid>
         );
     }
     }
+    
+    if(!myGoals.length){
     return (
             <div>
                 <h2 className="goalsPageText"> Goals</h2>
-                <Button className = "goalsButton" variant="outline-warning" onClick={() => window.location.href = `/homePage/edit/${userID}`}> Edit Goals </Button>
-                <Button className = "goalsButton" variant="outline-warning" onClick={() => setModalIsOpen(true)}> Add Goal </Button>
-                <Modal isOpen={modalIsOpen} onRequestClose={() => setModalIsOpen(false)}>
+                <Button className = "goalsButton" variant="outline-dark" onClick={() => setModalIsOpen(true)}> Add Goal </Button>
+                <Modal className ='addGoalModal' isOpen={modalIsOpen} onRequestClose={() => setModalIsOpen(false)}>
                 <div className ='center'>
-                    <h2>Add goal</h2>
-                    <AddGoal userID = {userID}/>
-                    <Container className = 'center'>
-                    <Button className = "goalsButton" variant="outline-warning" onClick={() => window.location.href = `/homePage/${userID}`}> Close </Button>
-                    </Container>
-                </div>
+                <h2 className="goalsPageText">Add goal</h2>
+                <AddGoal userID = {userID}/>
+                <Container className = 'center'>
+                <Button className = "goalActionButton2" variant="outline-danger" onClick={() => window.location.href = `/homePage/${userID}`}> Close </Button>
+                </Container>
+                 </div>
                 </Modal>
                 <div className="goalsContainer">
                     {generateGoals()}
                 </div>
-                
             </div>
         );
+    }
+    else{
+        return(
+            <div className ="fullGoalsContainer">
+            <h2 className="goalsPageText"> Goals</h2>
+            <Button className = "goalsButton" variant="outline-dark" onClick={() => setModalIsOpen(true)}> Add Goal </Button>
+            <Button className = "goalsButton" variant="outline-dark" onClick={() => window.location.href = `/homePage/edit/${userID}`}> Edit Goals </Button>
+            <Modal className ='addGoalModal' isOpen={modalIsOpen} onRequestClose={() => setModalIsOpen(false)}>
+            <div className ='center'>
+                <h2 className="goalsPageText">Add goal</h2>
+                <AddGoal userID = {userID}/>
+                <Container className = 'center'>
+                <Button className = "goalActionButton2" variant="outline-danger" onClick={() => setModalIsOpen(false)}> Close </Button>
+                </Container>
+            </div>
+            </Modal>
+            <div className="goalsContainer">
+                {generateGoals()}
+            </div>
+            </div>
+        )
+    }
     }
 
 

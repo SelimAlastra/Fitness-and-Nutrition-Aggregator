@@ -139,7 +139,6 @@ describe('services routes', function() {
             .delete(`/services/${1234}`)
             .send()
             .end((err, res) => {
-                console.log(res.status);
                 expect(res.body).to.not.equal("Service deleted!");
                 expect(res.status).to.equal(400);
             });
@@ -147,7 +146,7 @@ describe('services routes', function() {
         });
     });
 
-    afterEach((done) => {
+    after((done) => {
         Service.deleteMany({});
         BasicUser.deleteMany({});
         done();
