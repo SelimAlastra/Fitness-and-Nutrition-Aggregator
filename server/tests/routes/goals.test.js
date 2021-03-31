@@ -10,9 +10,7 @@ import mongoose  from 'mongoose';
 describe('goals routes', function() {
     let basicUser, basicUserId, goal, goalId, deleteGoal, deleteGoalId;
     before((done) => {
-        basicUserId = mongoose.mongo.ObjectId();
-        basicUser = BasicUser.create({
-            _id: basicUserId,
+        basicUser = new BasicUser({
             username: "232",
             name: "Bob Smith",
             email: "bobsmith@fakesite.com",
@@ -20,22 +18,24 @@ describe('goals routes', function() {
             buckets: ["bucket1"],
             bundles: ["bundle1"]
         });
-        goalId = mongoose.mongo.ObjectId();
-        goal = Goal.create({
-            _id: goalId,
+        basicUser.save();
+        basicUserId = basicUser._id;
+        goal = new Goal({
             description: "Goal Description",
             tags: ["nutrition", "health"],
             userID: basicUserId,
             deadline: "Tuesday 6th May"
         });
-        deleteGoalId = mongoose.mongo.ObjectId();
-        deleteGoal = Goal.create({
-            _id: deleteGoalId,
+        goal.save();
+        goalId = goal._id;
+        deleteGoal = new Goal({
             description: "Goal Description",
             tags: ["nutrition", "health"],
             userID: basicUserId,
             deadline: "Tuesday 6th May"
         });
+        deleteGoal.save();
+        deleteGoalId = deleteGoal._id;
         done();
     });
 
