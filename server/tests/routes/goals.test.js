@@ -41,21 +41,21 @@ describe('goals routes', function() {
 
 
     describe('post /goals', function() {
-
+        let postUserId = mongoose.mongo.ObjectId();
         it('should make a new goal', function(done) {
             request(app)
             .post('/goals')
             .send({
-                description: "Service description",
-                userID: basicUserId,
+                description: "Goal Description",
+                userID: postUserId,
                 deadline: "Monday 6th April",
                 tags: ["tag1", "tag2"]
             })
             .end((err, res) => {
                 expect(res.status).to.equal(200);
                 expect(res.body).to.equal("Goal added!");
+                done();
             });
-            done();
         });
 
         it('should return a 400 if the goal could not be added', function(done) {
@@ -67,8 +67,8 @@ describe('goals routes', function() {
             })
             .end((err, res) => {
                 expect(res.status).to.equal(400);
+                done();
             });
-            done();
         });
     });
 
@@ -80,8 +80,8 @@ describe('goals routes', function() {
             .send()
             .end((err, res) => {
                 expect(res.status).to.equal(200);
+                done();
             });
-            done();
         });
     });
 
@@ -97,8 +97,8 @@ describe('goals routes', function() {
                 expect(goal.userID).to.equal("" + basicUserId);
                 expect(goal.description).to.equal("Goal Description");
                 expect(goal.deadline).to.equal("Tuesday 6th May");
+                done();
             });
-            done();
         });
 
         it('should return a 400 status code as an invalid id is supplied', function(done) {
@@ -107,8 +107,8 @@ describe('goals routes', function() {
             .send()
             .end((err, res) => {
                 expect(res.status).to.equal(400);
+                done();
             });
-            done();
         });
     });
 
@@ -126,8 +126,8 @@ describe('goals routes', function() {
             .end((err, res) => {
                 expect(res.body).to.equal("goal updated!");
                 expect(res.status).to.equal(200);
+                done();
             });
-            done();
         });
 
         it('should return a 400 status code as the id does not link to a goal', function(done) {
@@ -141,8 +141,8 @@ describe('goals routes', function() {
             })
             .end((err, res) => {
                 expect(res.status).to.equal(400);
+                done();
             });
-            done();
         });
     });
 
@@ -155,8 +155,8 @@ describe('goals routes', function() {
             .end((err, res) => {
                 expect(res.body).to.equal("goal deleted.");
                 expect(res.status).to.equal(200);
+                done();
             });
-            done();
         });
         
         it('should return 400 status code as the uri is not associated with a goal', function(done) {
@@ -166,8 +166,8 @@ describe('goals routes', function() {
             .end((err, res) => {
                 expect(res.body).to.not.equal("goal deleted.");
                 expect(res.status).to.equal(400);
+                done();
             });
-            done();
         });
     });
 
