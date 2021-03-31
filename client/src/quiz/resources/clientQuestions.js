@@ -78,35 +78,17 @@ const questionsClient = [
             { answerText: "build strength and ability", selected:false, tags:["calisthenics", "bodyweight", "bodybuilding", "crossfit", "strength", "athlete", "core"], requireInput: false },
             { answerText: "build mad muscle mass", selected:false, tags:["beastmode", "bodybuilding", "strength", "powerlifting", "weightlifting", "strongman"], requireInput: false }
         ],
-    },{
-        questionText: "During the average week, how much time are you able to devote to your fitness regimen?",
-        questionId: 9,
-        answerOptions: [
-            { answerText: "barely 15-30 min on any given day", selected:false, tags:[""], requireInput: false },
-            { answerText: "between 30 min and one hour per day, 3 days a week", selected:false, tags:[""], requireInput: false },
-            { answerText: "around one hour per day, 3 days a week", selected:false, tags:[""], requireInput: false },
-            { answerText: "around one hour per day on most days", selected:false, tags:[""], requireInput: false },
-            { answerText: "more than one hour per day on most days", selected:false, tags:[""], requireInput: false },
-        ],
     },{ 
         questionText: "Where is your favorite place to exercise?",
-        questionId: 10,
+        questionId: 9,
         answerOptions: [
             { answerText: "gym", selected:false, tags:[""], requireInput: false },
             { answerText: "outdoors", selected:false, tags:["outdoor", "outdoortraining", "outdoorworkout", "nature"], requireInput: false },
             { answerText: "home", selected:false, tags:["home", "homeworkout", "homegym", "quarantine", "nogymnoproblem"], requireInput: false },
         ],
     },{ 
-        questionText: "How much are you willing to spend? (gym membership, gear & equipment)",
-        questionId: 11,
-        answerOptions: [
-            { answerText: "not much", selected:false, tags:["nocost"], requireInput: false },
-            { answerText: "a fair amount", selected:false, tags:[""], requireInput: false },
-            { answerText: "no budget limit", selected:false, tags:["expensive"], requireInput: false },
-        ],
-    },{ 
         questionText: "Lastly, which of the following are you interested in?",
-        questionId: 12,
+        questionId: 10,
         answerOptions: [
             { answerText: "#mindset", selected:false, tags:["mindset", "motivation", "goals"], requireInput: false },
             { answerText: "#nutrition", selected:false, tags:["nutrition", "diet"], requireInput: false },
@@ -120,6 +102,6 @@ const questionsClient = [
 ];
 
 const questionsReqInputClient = [3,4];
-const questionsMultipleChoicesClient = [8,12];
+const questionsMultipleChoicesClient = [8,11];
 
 export {questionsClient,questionsReqInputClient,questionsMultipleChoicesClient}

@@ -63,16 +63,22 @@ const Answer = (props) => {
                     }
                     return false;
                 }
-            } else if(questionId === 5 || questionId === 7 || questionId === 8 || questionId === 9 || questionId === 11){
+            } else if(questionId === 5 || questionId === 7){
                 if((letters+digits+" ,.?!';").search(query.charAt(query.length-1)) > -1){
                     return true;
                 }
                 return false;
-            } /*else if(){
+            } else if(questionId === 10){
+                if((letters+digits+" #,.';").search(query.charAt(query.length-1)) > -1){
+                    return true;
+                }
+                return false;
+            }/*else if(){
             }*/
+
         } else {
             if(questionId === 3 || questionId === 6){
-                if((letters+digits+" ,.?!';").search(query.charAt(query.length-1)) > -1){
+                if((letters+digits+" #,.?!';").search(query.charAt(query.length-1)) > -1){
                     return true;
                 }
                 return false;
@@ -184,6 +190,19 @@ const Answer = (props) => {
         }
         return ""
     }
+
+    /**
+     * @return input value for question with general answer input box
+     */
+    // function inputValueGeneral() {
+        // question = props.questions[props.currentQuestion]
+    //     if(props.questionsReqInput.find === question.questionId){
+    //         if(question.input){
+    //              return question.input[0];
+    //         }
+    //     }
+    //     return "";
+    // }
 
     /**
      * check if question requires input unrelated to selected answer

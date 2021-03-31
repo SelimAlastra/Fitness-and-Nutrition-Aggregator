@@ -3,7 +3,7 @@ import Question from './components/question';
 import Answer from './components/answer';
 import './styling/quizUser.css';
 
-
+// stored values that will be passed to the databse
 var details = {
     associatedTags: [],
     goals: [],
@@ -11,8 +11,8 @@ var details = {
     height: '',
     gender: '',
     isNew: false,
+    yearsOfExperience: '',
 }
-
 
 export default class Quiz extends Component{
     
@@ -182,9 +182,13 @@ export default class Quiz extends Component{
             }
         }
 
-        // process input from client's quiz, question number 12 into tags.
-        if(isClient && questions[currentQuestion].questionId === 12){
-
+        // process input into tags if such answer has been selected and input was provided
+        if((isClient && questions[currentQuestion].questionId === 10) || (!isClient && questions[currentQuestion].questionId === 6)){
+            const answerWithInput = answers.find(answer => answer.requireInput === true);
+            if(answerWithInput.input) {
+                answerWithInput.tags = answerWithInput.input[0].replace(/,|#|;|_/g, " ").toLowerCase().replace(/\./g, ' ').replace(/\s+/g, ' ').trim().split(' ');
+            }
+            console.log(answerWithInput.tags);
         }
     }
 
@@ -265,9 +269,8 @@ export default class Quiz extends Component{
     }
 
     /**
-     * updating client account, and details:
+     * update selected goals
      */
-
     addGoals = () => {
         const {questions} = this.state;
         const answers = questions[7].answerOptions;
@@ -282,6 +285,9 @@ export default class Quiz extends Component{
         });
     }
 
+    /**
+     * update selected gender
+     */
     updateGender = () => {
         const {questions} = this.state;
         const answers = questions[0].answerOptions;
@@ -296,10 +302,13 @@ export default class Quiz extends Component{
         });
     }
 
+    /**
+     * 
+     */
     updateClientDetails = () => {
         const {questions} = this.state;
+        
         let answer = questions[2];
-
         const answerHeight = answer.input[0];
         if(answerHeight !== ""){
             details.height = answerHeight;
@@ -316,13 +325,38 @@ export default class Quiz extends Component{
         details.isNew = true;
     }
     
+    /**
+     * 
+     */
+    updateYearsOfExperience = () => {
+        const {questions} = this.state;
+        const answers = questions[1].answerOptions;
+
+        answers.forEach(answer => {
+            if(answer.selected === true){
+                const yearsOfExperience = answer.answerText;
+                if(yearsOfExperience !== ""){
+                    details.yearsOfExperience = yearsOfExperience;
+                }
+            }
+        });
+    }
+
+    /**
+     * 
+     */
+    updateProfessionalDetails = () => {
+        this.updateGender();
+        this.updateYearsOfExperience();
+        details.isNew = true;
+    }
 
     /**
      * change @questions completion status
      */
     HandleFinishButtonClick = () => {
         const {isClient} = this.state;
-
+        this.processInput();
         if(this.isCompleted() === true){
             this.addTags();
             this.setState({
@@ -331,11 +365,10 @@ export default class Quiz extends Component{
             if(isClient) {
                 // update the db
                 this.updateClientDetails();
-                
                 this.props.history.push(`/clientDashboard/${JSON.parse(localStorage.getItem('user'))._id}`);
             } else {
                 // update the db 
-
+                this.updateProfessionalDetails();
                 this.props.history.push(`/professionalDashboard/${JSON.parse(localStorage.getItem('user'))._id}`);
             }
         } else {
