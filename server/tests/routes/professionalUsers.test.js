@@ -8,7 +8,8 @@ import mongoose  from 'mongoose';
 
 describe('professional user routes', function() {
     let professionalUser, professionalUserId,
-     deleteProfessionalUser, deleteProfessionalUserId;
+        deleteProfessionalUser, deleteProfessionalUserId,
+        bannedProfessionalUser;
     before((done) => {
         professionalUser = new ProfessionalUser({
             username: Math.random()*10,
@@ -28,6 +29,15 @@ describe('professional user routes', function() {
         });
         deleteProfessionalUser.save();
         deleteProfessionalUserId = deleteProfessionalUser._id;
+        bannedProfessionalUser = new ProfessionalUser({
+            username: "56550493",
+            name: "Bob Banned",
+            email: "bobbanned@yahoo.co.uk",
+            password: "password123",
+            profession: "Personal Trainer",
+            isBanned: true,
+        });
+        bannedProfessionalUser.save();
         done();
     });
 
@@ -160,6 +170,139 @@ describe('professional user routes', function() {
                 expect(res.status).to.equal(404);
             });
             done();
+        });
+    });
+
+    describe('post /register', function() {
+
+        it('should register a new professional and returns a web token and user', function(done) {
+            request(app)
+            .post('/professionalUsers/register')
+            .send({
+                username: "prof121",
+                name: "Register Professional User",
+                email: "johnsmith@yahoo.com",
+                password: "password123",
+                profession: "Nutrition Expert",
+            })
+            .end((err, res) => {
+                expect(res.status).to.equal(200);
+                expect(res.body.user.username).to.equal("prof121");
+                expect(res.body.user.name).to.equal("Register Professional User");
+                expect(res.body.user.email).to.equal("johnsmith@yahoo.com");
+                expect(res.body.user.type).to.equal("professional");
+                expect(res.body.token).to.exist;
+                done();
+            });
+        });
+
+        it('should return error as username is already in use', function(done) {
+            request(app)
+            .post('/professionalUsers/register')
+            .send({
+                username: "Professional User",
+                name: "Register Professional User",
+                email: "johnsmith@yahoo.com",
+                password: "password123",
+                profession: "Nutrition Expert",
+            })
+            .end((err, res) => {
+                expect(res.status).to.equal(400);
+                expect(res.body.errors).to.equal("Email already in use.");
+                done();
+            });
+        });
+    }); 
+
+    describe('post /login', function() {
+
+        it('should return a token and user object on successful login', function(done) {
+            request(app)
+            .post('/professionalUsers/login')
+            .send({
+                email: "johnsmith@yahoo.com",
+                password: "password123"
+            })
+            .end((err, res) => {
+                expect(res.status).to.equal(200);
+                expect(res.body.user.username).to.equal("prof121");
+                expect(res.body.user.name).to.equal("Register Professional User");
+                expect(res.body.user.email).to.equal("johnsmith@yahoo.com");
+                expect(res.body.user.type).to.equal("professional");
+                expect(res.body.token).to.exist;
+                done();
+            });
+        });
+
+        it('should return an error if no user exists with the email provided', function(done) {
+            request(app)
+            .post('/professionalUsers/login')
+            .send({
+                email: "cows@yahoo.com",
+                password: "password123"
+            })
+            .end((err, res) => {
+                expect(res.status).to.equal(400);
+                expect(res.body.errors).to.equal("User with that email does not exist. Please signup");
+                done();
+            });
+        });
+
+        it('should return an error if the email and password do not match', function(done) {
+            request(app)
+            .post('/professionalUsers/login')
+            .send({
+                email: "johnsmith@yahoo.com",
+                password: "notmatchpassword"
+            })
+            .end((err, res) => {
+                expect(res.status).to.equal(400);
+                expect(res.body.errors).to.equal("Email and password do not match");
+                done();
+            });
+        });
+
+        it('should return an error if the professional is banned', function(done) {
+            request(app)
+            .post('/professionalUsers/login')
+            .send({
+                email: "bobbanned@yahoo.co.uk",
+                password: "password123"
+            })
+            .end((err, res) => {
+                expect(res.status).to.equal(400);
+                expect(res.body.errors).to.equal("You cannot login, as you are banned.");
+                done();
+            });
+        });  
+    });
+
+    describe('put /forgotpassword', function() {
+
+        it('should return a sent message on successful delivery on reset email', function(done) {
+            request(app)
+            .put('/professionalUsers/forgotpassword')
+            .send({
+                email: "johnsmith@yahoo.com"
+            })
+            .end((err, res) => {
+                expect(res.status).to.equal(200);
+                expect(res.body.message).to.equal("Email has been sent to johnsmith@yahoo.com. Follow the instruction to reset your password.");
+                done();
+            });
+        });
+
+        it('should return an error message as no user with the email address supplied', function(done) {
+            request(app)
+            .put('/professionalUsers/forgotpassword')
+            .send({
+                email: "cows@yahoo.com"
+            })
+            .end((err, res) => {
+                expect(res.status).to.equal(400);
+                expect(res.body.error).to.equal("User with that email does not exist");
+                done();
+            });
         });
     });
 
