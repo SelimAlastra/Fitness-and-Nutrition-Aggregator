@@ -176,8 +176,8 @@ describe('buckets routes', function() {
     });
 
     after((done) => {
-        Bucket.deleteMany({});
-        BasicUser.deleteMany({});
+        Bucket.collection.deleteMany({});
+        BasicUser.collection.deleteMany({});
         done();
       });
 });

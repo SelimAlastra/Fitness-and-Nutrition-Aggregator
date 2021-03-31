@@ -43,4 +43,9 @@ describe('Testing Goal Model', function() {
             done();
         });
     });
+
+    after((done) => {
+        Goal.collection.deleteMany({});
+        done();
+    });
 });

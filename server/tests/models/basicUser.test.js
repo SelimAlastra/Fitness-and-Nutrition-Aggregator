@@ -106,5 +106,11 @@ describe('Testing BasicUser model', function() {
         expect(newBasicUser.username.length).to.equal(3);
         done();
     });
+
+
+    after((done) => {
+        BasicUser.collection.deleteMany({});
+        done();
+    });
     
 });

@@ -172,8 +172,8 @@ describe('goals routes', function() {
     });
 
     after((done) => {
-        Goal.deleteMany({});
-        BasicUser.deleteMany({});
+        Goal.collection.deleteMany({});
+        BasicUser.collection.deleteMany({});
         done();
       });
 });

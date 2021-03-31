@@ -112,4 +112,9 @@ describe('Testing Service model', function() {
             done();
         })
     });
+
+    after((done) => {
+        Service.collection.deleteMany({});
+        done();
+    });
 });

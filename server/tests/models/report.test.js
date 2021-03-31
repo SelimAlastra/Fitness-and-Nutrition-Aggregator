@@ -35,4 +35,9 @@ describe('Testing Report model', function() {
 		done();
 	});
 
+	after((done) => {
+        Report.collection.deleteMany({});
+        done();
+    });
+
 });

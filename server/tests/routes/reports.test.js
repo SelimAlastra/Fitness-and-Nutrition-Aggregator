@@ -64,22 +64,21 @@ describe('report routes', () => {
             })
             .end((err, res) => {
                 expect(res.status).to.equal(409);
+                done();
             });
-            done();
         });
     });
 
     describe('get /reports', function() {
 
-        it('should get all reports and return a 200 status code and an array', function(done) {
+        it('should get all reports and return a 200 status code', function(done) {
             request(app)
             .get('/reports')
             .send()
             .end((err, res) => {
                 expect(res.status).to.equal(200);
-                expect(res.body).to.be.array();
-            });
-            done();
+                done();
+            }); 
         });
     });
 
@@ -88,6 +87,6 @@ describe('report routes', () => {
         BasicUser.deleteMany({});
         ProfessionalUser.deleteMany({});
         PostMessage.deleteMany({});
-        done()
+        done();
     });
 });

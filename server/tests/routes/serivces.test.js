@@ -101,8 +101,9 @@ describe('services routes', function() {
             .end((err, res) => {
                 expect(res.body).to.equal("service updated!");
                 expect(res.status).to.equal(200);
+                done();
             });
-            done();
+            
         });
 
         it('should return a 400 status code as the id does not link to a service', function(done) {
@@ -147,8 +148,8 @@ describe('services routes', function() {
     });
 
     after((done) => {
-        Service.deleteMany({});
-        BasicUser.deleteMany({});
+        Service.collection.deleteMany({});
+        BasicUser.collection.deleteMany({});
         done();
       })
 });
