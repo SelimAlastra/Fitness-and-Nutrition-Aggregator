@@ -16,12 +16,12 @@ export const getProfessionalUsers = async (req, res) => {
 export const createProfessionalUser = async (req, res) => {
 
   const user = req.body;
-  console.log(user);
+
   const newProfessionalUser = new ProfessionalUser(user);
   
   newProfessionalUser.save()
     .then(() => res.json('Professional user added!'))
-    .catch(error => {console.log(error); res.status(400).json("Error: " + error)});
+    .catch(error => res.status(400).json("Error: " + error));
 }
 
 export const updateProfessionalUser = async (req, res) => {
@@ -39,5 +39,5 @@ export const updateProfessionalUser = async (req, res) => {
 export const deleteProfessionalUser = async (req, res) => {
   ProfessionalUser.findByIdAndDelete(req.params.id)
     .then(() => res.json("Professional user deleted"))
-    .catch(error => res.json("Error: " + error));
+    .catch(error => res.status(404).json("Error: " + error));
 }; 
