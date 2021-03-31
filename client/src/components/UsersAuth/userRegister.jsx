@@ -69,8 +69,10 @@ const formik = useFormik({
             })
           })
           .catch(err => {
-                console.log(err);
-                        if(err.response.data.errors){
+                if(err.response == undefined){
+                  window.location.reload();
+                }
+                else if(err.response.data.errors){
                           console.log(err.response.data.errors)
                           if(err.response.data.errors.includes('Email'))
                             actions.setFieldError('email', 'Email already in use')
@@ -79,7 +81,7 @@ const formik = useFormik({
                         }  
                       })
         }
-        else if(isClient == "false"){
+        else{
         const newData2 = {
             email: values.email,
             username: values.username,
@@ -95,8 +97,10 @@ const formik = useFormik({
             })
           })
             .catch(err => {
-                console.log(err);
-                        if(err.response.data.errors){
+                if(err.response == undefined){
+                  window.location.reload();
+                }
+                else if(err.response.data.errors){
                           console.log(err.response.data.errors)
                           if(err.response.data.errors.includes('Email'))
                             actions.setFieldError('email', 'Email already in use')
@@ -164,7 +168,7 @@ const formik = useFormik({
       )}
       <p/>
       
-    {isClient == "false" ? 
+    {isClient != "true" ? 
       <div>
       <Form.Label hidden = {true} htmlFor="profession">Profession</Form.Label>
         <Form.Control

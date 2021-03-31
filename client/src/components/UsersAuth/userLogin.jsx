@@ -44,6 +44,7 @@ const schema = Yup.object().shape({
   onSubmit: (values, actions) => {
     if(values.email && values.password){
       console.log("Logging in", values);
+      console.log(isClient);
       const newData = {
         email: values.email,
         password: values.password,
@@ -56,8 +57,10 @@ const schema = Yup.object().shape({
               })
             })
             .catch(err => {
-              console.log(err)
-              if(err.response.data.errors){
+              if(err.response == undefined){
+                window.location.reload();
+              }
+              else if(err.response.data.errors){
                   if(err.response.data.errors.includes('User'))
                     actions.setFieldError('email', 'User with that email does not exist. Please register.')
                   else if(err.response.data.errors.includes('banned'))
@@ -67,7 +70,7 @@ const schema = Yup.object().shape({
               }
             })
       }
-      else if(isClient == "false"){
+      else{
         axios.post(`http://localhost:5000/professionalUsers/login`, newData)
             .then(res => {
               authenticate(res, () => {
@@ -75,7 +78,10 @@ const schema = Yup.object().shape({
               })
             })
             .catch(err => {
-              if(err.response.data.errors){
+              if(err.response == undefined){
+                window.location.reload();
+              }
+              else if(err.response.data.errors){
                 console.log(err.response.data.errors)
                 if(err.response.data.errors.includes('User'))
                   actions.setFieldError('email', 'User with that email does not exist. Please register.')

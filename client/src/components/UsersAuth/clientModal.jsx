@@ -18,6 +18,8 @@ function PopUpLogin(){
 
   const checkClient = "true";
 
+  console.log(checkClient);
+
   return(
     <>
     <Button className="landingButton1" onClick={handleShow}>
@@ -34,7 +36,7 @@ function PopUpLogin(){
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        { login === true ?
+        { login == true ?
         <Login checkClient = {checkClient}/>
         :
         <Register checkClient = {checkClient}/>

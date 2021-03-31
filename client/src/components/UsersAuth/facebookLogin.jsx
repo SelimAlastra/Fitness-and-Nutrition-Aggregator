@@ -27,10 +27,11 @@ const Facebook = (client) => {
           informParent(res);
         })
         .catch(error => {
+          window.location.reload();
           console.log('FACEBOOK SIGN IN ERROR', error.response);
         });
     }
-    else if(isClient == "false"){
+    else{
       axios
       .post(`http://localhost:5000/professionalUsers/facebooklogin`, {
         userID,
@@ -41,6 +42,7 @@ const Facebook = (client) => {
         informParent(res);
       })
       .catch(error => {
+        window.location.reload();
         console.log('FACEBOOK SIGN IN ERROR', error.response);
       });
     }
@@ -57,7 +59,7 @@ const Facebook = (client) => {
           history.push(`/clientDashboard/${JSON.parse(localStorage.getItem('user'))._id}`);
         }
       }
-      else if(isClient == "false"){
+      else{
         if(response.data.isNew){
           history.push(`/professional/quiz/${JSON.parse(localStorage.getItem('user'))._id}`)
         }
