@@ -52,8 +52,8 @@ describe('report routes', () => {
                 expect(res.body.reportedUsername).to.eq(reported.username)
                 expect(res.body).to.have.property('postId')
                 expect(res.body.postId).to.eq("" +reportedPost._id)
-                done();
             })
+            
         })
 
         it('should return a 409 if the report could not be added', function(done) {
@@ -64,8 +64,8 @@ describe('report routes', () => {
             })
             .end((err, res) => {
                 expect(res.status).to.equal(409);
-                done();
             });
+            done();
         });
     });
 
@@ -77,8 +77,8 @@ describe('report routes', () => {
             .send()
             .end((err, res) => {
                 expect(res.status).to.equal(200);
-                done();
             }); 
+            done();
         });
     });
 
