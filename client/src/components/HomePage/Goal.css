@@ -6,14 +6,14 @@
 }
 
 .goal {
-    background-color: #8300FF;
+    background-color: #db9b0f;
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-    min-width: 100px;
+    min-width: 200px;
     max-width: 80%;
     border-radius: 10px;
     padding: 1%;
     margin: 19px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    display: inline-block;
+
 }
 

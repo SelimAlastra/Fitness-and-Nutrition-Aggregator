@@ -4,9 +4,7 @@ import { LinkContainer } from 'react-router-bootstrap';
 import { useSelector, useDispatch } from 'react-redux';
 import {deleteBucket, updateBucket} from '../../actions/buckets';
 import UpdateBucket from './UpdateBucket';
-import Modal from 'react-bootstrap/Modal';
-//import { deletePost, likePost, toggleFavAction } from '../../../actions/posts';
-// removePost
+
 const Bucket = ({ bucket }) => {
 
     const user = JSON.parse(localStorage.getItem('user'));

@@ -47,6 +47,7 @@ const Post = ({ post, setCurrentId }) => {
   require('dotenv').config({ path: '/.env' });
 
   function PopUpBuckets() {
+
     const postToAdd = {
       postId: post._id
     }
