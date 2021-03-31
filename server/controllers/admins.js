@@ -20,7 +20,7 @@ export const createAdmin = async (req, res) => {
   const newAdmin = new Admin({username,password});
 
   newAdmin.save()
-    .then(() => res.json('admin added!'))
+    .then(() => res.json(newAdmin))
     .catch(err => res.status(400).json('Error: Failed to add admin' + err));
 };
 

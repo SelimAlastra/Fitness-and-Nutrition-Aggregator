@@ -14,7 +14,7 @@ export const createBasicUser = async (req, res) => {
   const newBasicUser = new BasicUser(user);
 
   newBasicUser.save()
-    .then(() => res.json('BasicUser added!'))
+    .then(() => res.json(newBasicUser))
     .catch(err => res.status(400).json('Error: Failed to add BasicUser' + err));
 };
 
