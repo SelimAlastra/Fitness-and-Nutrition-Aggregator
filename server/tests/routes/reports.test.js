@@ -29,7 +29,7 @@ describe('report routes', () => {
             userFrom: reported._id,
             title: 'Test Post'
         })
-        done()
+        done();
     });
 
     describe('post /reports', () => {
@@ -83,10 +83,10 @@ describe('report routes', () => {
     });
 
     after((done) => {
-        Report.deleteMany({});
-        BasicUser.deleteMany({});
-        ProfessionalUser.deleteMany({});
-        PostMessage.deleteMany({});
+        Report.collection.deleteMany({});
+        BasicUser.collection.deleteMany({});
+        ProfessionalUser.collection.deleteMany({});
+        PostMessage.collection.deleteMany({});
         done();
     });
 });
