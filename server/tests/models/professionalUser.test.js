@@ -104,14 +104,6 @@ describe('Testing ProfessionalUser model', function() {
         });
     });
 
-    it('is invalid as the username and email are not unique', function(done) {
-        duplicateUser.save();
-        newFullUser.save(function(error){
-            expect(error).to.exist;
-        });
-        done();
-    });
-
     after((done) => {
         ProfessionalUser.collection.deleteMany({});
         done();

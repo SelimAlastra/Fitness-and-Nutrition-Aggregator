@@ -9,7 +9,7 @@ import mongoose  from 'mongoose';
 describe('services routes', function() {
     let basicUser, editService, deleteService, id, deleteId;
     before((done) => {
-        basicUser = BasicUser.create({
+        basicUser = new BasicUser({
             username: "232",
             name: "Bob Smith",
             email: "bobsmith@fakesite.com",
@@ -17,17 +17,17 @@ describe('services routes', function() {
             buckets: ["bucket1"],
             bundles: ["bundle1"]
         });
-        id = mongoose.mongo.ObjectId();
-        editService = Service.create({
-            _id: id,
+        basicUser.save();
+        editService = new Service({
             title: "Edit Service",
             description: "Service description",
             price: "23.23",
             userID: mongoose.mongo.ObjectId(),
             urls: ["http://youtube.com"]
         });
-        deleteId = mongoose.mongo.ObjectId();
-        deleteService = Service.create({
+        editService.save();
+        id = editService._id;
+        deleteService = new Service({
             _id: deleteId,
             title: "Delete Service",
             description: "Service description",
@@ -35,6 +35,8 @@ describe('services routes', function() {
             userID: mongoose.mongo.ObjectId(),
             urls: ["http://youtube.com"]
         });
+        deleteService.save();
+        deleteId = deleteService._id;
         done();
     });
 
