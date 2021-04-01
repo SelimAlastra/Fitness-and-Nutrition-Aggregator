@@ -16,18 +16,20 @@ describe('admins routes', function() {
         done();
     });
 
-    describe('get /admins', function() {
+    //route removed for safety.
 
-        it('should get all admins and return a 200 status code', function(done) {
-            request(app)
-            .get('/admins')
-            .send()
-            .end((err, res) => {
-                expect(res.status).to.equal(200);
-                done();
-            }); 
-        });
-    });
+    // describe('get /admins', function() {
+
+    //     it('should get all admins and return a 200 status code', function(done) {
+    //         request(app)
+    //         .get('/admins')
+    //         .send()
+    //         .end((err, res) => {
+    //             expect(res.status).to.equal(200);
+    //             done();
+    //         }); 
+    //     });
+    // });
 
     describe('post /admins/login', function() {
 
