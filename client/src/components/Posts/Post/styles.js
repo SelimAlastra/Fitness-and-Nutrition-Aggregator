@@ -25,15 +25,20 @@ export default makeStyles((theme) => ({
     margin: '10px 10px 10px 10px',
   },
   overlay: {
+    //marginLeft: '10px',
     top: '10px',
     position: 'absolute',
     left: '20px',
     alignContent: 'left',
     fontFamily: 'Helvetica',
   },
+  creator:{
+    position: 'absolute'
+  },
   time:{
-    position: 'absolute',
+    marginTop: '20px',
     fontSize: 'small',
+    textAlign: 'inherit',
   },
   overlay2: {
     position: 'absolute',
@@ -70,7 +75,6 @@ export default makeStyles((theme) => ({
     display: 'inline-flex',
     padding: '5px 5px 5px 5px',
   },
-  button:{
-    
-  }
+  
+ 
 }));
