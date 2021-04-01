@@ -4,22 +4,21 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getPostsFromArray } from "../../actions/posts";
 import { useParams } from "react-router-dom";
 import Post from "../Posts/Post/Post";
-import { getBucket, removeFromBucket, updateBucket } from '../../actions/buckets';
+import { updateBucket, getBuckets } from '../../actions/buckets';
 import NavbarUser from '../Navbar/NavbarUser';
 
-const BucketView = () => {
-
-    const dispatch = useDispatch();
-
-    const { id } = useParams();
-
-    const bucket = useSelector((state) => state.buckets);
+const BucketView = (params) => {
+    const bucket = params.location.state;
+    console.log(params.location.state);
     const loading = true;
     const posts = useSelector((state) => state.posts);
 
+    const dispatch = useDispatch();
+
     useEffect(() => {
-            dispatch(getBucket(id));
+        dispatch(getBuckets());
     }, []);
+
 
     useEffect(() => {
         if (bucket) {
