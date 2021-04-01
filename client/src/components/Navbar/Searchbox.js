@@ -78,12 +78,16 @@ const SearchBox = ({updatePosts,setUpdatedPosts}) => {
               );
    newFilteredPosts.forEach(post => initialFilteredPosts.add(post));
    if(JSON.parse(localStorage.getItem('user')).type == 'client'){
-    if(filteredProfiles!=null && filteredProfiles !== []){
+    if(filteredProfiles!==null && filteredProfiles !== []){
       newFilteredProfiles = filteredProfiles.filter((profile) => 
               profile.username.toLowerCase().includes(searchString)
               );
       finalFilteredProfiles = newFilteredProfiles;
     } 
+    else
+    {
+      finalFilteredProfiles = [];
+    }
   }
   }
   const InitialSearch =() =>{
