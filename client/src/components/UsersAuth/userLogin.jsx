@@ -139,7 +139,7 @@ return (
     }
     <p/>
     <Button className="loginButtonModal" variant="outline-success" type="submit" name="loginBtn" disabled={formik.isSubmitting}>
-        Log In
+        Log in
     </Button>
     <p style={{'marginLeft': '140px', 'fontWeight': 'bold'}}> OR </p>
   </Form>
