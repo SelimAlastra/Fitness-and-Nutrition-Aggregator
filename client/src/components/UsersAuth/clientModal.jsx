@@ -5,7 +5,7 @@ import React, { useState } from 'react';
 import Login from './userLogin';
 import Register from './userRegister';
 import { Container } from 'react-bootstrap';
-import './clientModal.css';
+import './usersModal.css';
 
 function PopUpLogin(){
   
@@ -21,7 +21,7 @@ function PopUpLogin(){
   return(
     <>
     <Button className="landingButton1" onClick={handleShow}>
-      Basic Users
+      Looking for a change?
     </Button>
     <div className = "modal-dialog">
     <Modal className="logIn" show={show} onHide={handleClose}>
@@ -37,7 +37,7 @@ function PopUpLogin(){
         }
       </Modal.Body>
       <Modal.Footer>
-        <Button onClick={handleClose}>
+        <Button className="closeButtonModal" onClick={handleClose}>
           Close
         </Button>
       </Modal.Footer>

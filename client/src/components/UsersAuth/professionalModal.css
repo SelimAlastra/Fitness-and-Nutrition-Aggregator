@@ -1,0 +1,97 @@
+.modal-dialog{
+    align-items: center;
+    justify-content: center;
+    width: 600px;
+    padding: 10px 10px;
+    margin-top: 200px;
+    margin-bottom: 200px;
+    
+}
+
+.loginButtonModal2:hover{
+    border-color: black !important;
+    border-bottom: none !important;
+    border-top: none !important;
+}
+.loginButtonModal2:focus {
+    border-bottom-color: transparent !important;
+}
+
+.loginButtonModal2{
+    font-weight: bold !important;
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width:50%;
+    left: 0;
+    background-color: rgb(113, 150, 66) !important;
+    border-top: none !important;
+    border-bottom-width: 2px !important;
+    border-left: none !important;
+    border-right-width: 2px !important;
+    border-color: black !important;
+    box-shadow: none !important;
+}
+
+.registerButtonModal2:hover{
+    border-bottom-color: transparent !important;
+    border-color: black !important;
+}
+
+.registerButtonModal2:focus {
+    border-bottom-color: transparent !important;
+}
+
+.registerButtonModal2{
+    font-weight: bold;
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 50%;
+    right: 0;
+    background-color: rgb(204, 141, 141) !important;
+    border-bottom-width: 2px !important;
+    border-top: none !important;
+    border-right: none !important;
+    border-color: black !important;
+    box-shadow: none !important;
+
+}
+
+.closeButtonModal{
+    background-color: rgb(113, 150, 66) !important;
+    box-shadow: none !important;
+    border-color: black !important;
+}
+
+.closeButton:hover{
+    
+    border-color: black !important;
+}
+.closeButton:focus {
+    border-color: transparent !important;
+}
+
+
+.modal-header {
+    border-radius: 0%;
+    border-bottom: none;
+    position: relative;
+    height: 60px!important;
+}
+
+.logIn .modal-title {
+    align-self: center;
+    margin-left: 140px;
+    font-family: 'Helvetica', serif !important;
+    font-weight: bold;
+}
+
+.logIn .modal-content {
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-color: black;
+    font-size: large;
+    font-family: 'Helvetica', serif !important;
+    min-height: 500px !important;
+}
