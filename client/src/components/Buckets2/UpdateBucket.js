@@ -5,22 +5,11 @@ import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 
-function UpdateBucketForm(bucket) {
+function UpdateBucketForm({bucket}) {
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
     const dispatch = useDispatch();
-
-    let bucketId = bucket.bucketToEdit.bucketId;
-    const editBucket = {
-        bucketID: bucketId
-    }
-
-    const bucketToEdit = useSelector((state) => state.bucketToEdit);
-
-    useEffect(() => {
-        dispatch(getBucket(bucketId));
-    }, [dispatch])
 
     return (< >
         < Button class="bucket button"
@@ -34,7 +23,7 @@ function UpdateBucketForm(bucket) {
                     < Modal.Title> Edit bucket</Modal.Title >
                 </ Modal.Header >
                 < Modal.Body >
-                    < UpdateFormBucket bucketToEdit={bucketToEdit}/>
+                    < UpdateFormBucket bucketToEdit={bucket}/>
                 </Modal.Body>
             </Modal >
         </div>
@@ -43,25 +32,15 @@ function UpdateBucketForm(bucket) {
 };
 
 const UpdateFormBucket = ({bucketToEdit}) => {
+    console.log(bucketToEdit);
     const dispatch = useDispatch();
-
-    //let bucketId = bucket.editBucket.bucketID;
         
-    const [postData, setPostData] = useState("");
-    const userId = JSON.parse(localStorage.getItem('user'))._id;
-
-    useEffect(() => {
-        setPostData(bucketToEdit.title);
-    }, [bucketToEdit])
+    const [postData, setPostData] = useState({title: ''});
 
     const handleSubmit = (e) => {
+        console.log(bucketToEdit._id);
         e.preventDefault();
-        const newData = {
-            title: postData.title,
-            postId: postData.postId,
-            userId: userId
-        }
-        dispatch(updateBucket(bucketToEdit._id, newData));
+        dispatch(updateBucket(bucketToEdit._id, postData));
         window.location.reload();
     }
 

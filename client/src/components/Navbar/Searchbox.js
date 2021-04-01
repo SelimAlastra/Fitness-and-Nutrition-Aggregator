@@ -107,10 +107,10 @@ const SearchBox = ({updatePosts,setUpdatedPosts}) => {
     }
 
     const dispatch = useDispatch();
-    dispatch(getBasicUser(JSON.parse(localStorage.getItem('user'))._id));
-    dispatch(getProfessional(JSON.parse(localStorage.getItem('user'))._id));
 
     useEffect(() => {
+      dispatch(getBasicUser(JSON.parse(localStorage.getItem('user'))._id));
+      dispatch(getProfessional(JSON.parse(localStorage.getItem('user'))._id));
       console.log(details);
       if(details.isNew) {
         goals.forEach((g) => {
