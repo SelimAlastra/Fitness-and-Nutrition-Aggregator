@@ -24,9 +24,6 @@ describe('admins routes', function() {
             .send()
             .end((err, res) => {
                 expect(res.status).to.equal(200);
-                expect(res.body.length).to.equal(1);
-                expect(res.body[0]).to.have.property('_id');
-                expect(res.body[0]._id).to.equal("" + admin._id);
                 done();
             }); 
         });
