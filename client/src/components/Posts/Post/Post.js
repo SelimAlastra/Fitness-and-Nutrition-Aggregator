@@ -26,7 +26,7 @@ import { deletePost, likePost, toggleFavAction, updatePost } from '../../../acti
 const Post = ({ post, setCurrentId }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
-  
+
   const [open, setOpen] = React.useState(false);
   const user = JSON.parse(localStorage.getItem('user'));
 
@@ -34,9 +34,6 @@ const Post = ({ post, setCurrentId }) => {
   const handleClick = (event) => setAnchorEl(event.currentTarget);
   const handleClose = () => setAnchorEl(null);
 
-  const [showReport, setShowReport] = useState(false);
-  const handleCloseReport = () => setShowReport(false);
-  const handleShowReport = () => setShowReport(true);
 
   const [showBucket, setShowBucket] = useState(false);
   const handleCloseBucket = () => setShowBucket(false);
@@ -52,25 +49,29 @@ const Post = ({ post, setCurrentId }) => {
       postId: post._id
     }
 
-    return (<> 
-  <Button size="small" onClick={() =>handleShowBucket()}
-  >
-    <FaFolderPlus/>
-  </Button> 
-        < Modal className="bucket" className="bucket" show={showBucket} onHide={handleCloseBucket}>
-          < Modal.Header closeButton > < Modal.Title > Add this post to a bucket </Modal.Title >
-          </ Modal.Header >
-          < Modal.Body >
-            < BucketsGrid postToAdd={postToAdd} />
-          </Modal.Body>
-          < Modal.Footer >
-            < Buckets2 />
-          </Modal.Footer>
-        </ Modal > </>);
+    return (<>
+      <Button size="small" onClick={handleShowBucket}
+      >
+        <FaFolderPlus />
+      </Button>
+      < Modal className="bucket" className="bucket" show={showBucket} onHide={handleCloseBucket}>
+        < Modal.Header closeButton > < Modal.Title > Add this post to a bucket </Modal.Title >
+        </ Modal.Header >
+        < Modal.Body >
+          < BucketsGrid postToAdd={postToAdd} />
+        </Modal.Body>
+        < Modal.Footer >
+          < Buckets2 />
+        </Modal.Footer>
+      </ Modal > </>);
   };
 
   const ReportPopUp = () => {
-
+    
+  const [showReport, setShowReport] = useState(false);
+  const handleCloseReport = () => setShowReport(false);
+  const handleShowReport = () => setShowReport(true);
+  
     const reportData = {
       reporterUsername: user.username,
       reportedUsername: post.creator,
@@ -80,8 +81,10 @@ const Post = ({ post, setCurrentId }) => {
 
     return (
       <>
-        <Button size="small" onClick={() => {handleShowReport(); handleClose();}}> Report </Button>
-        <Modal show={showReport} onHide={handleCloseReport} backdrop="static">
+        {/* <Button size="small" onClick={() => {handleShowReport(); handleClose();}}> Report </Button>
+        <Modal show={showReport} onHide={handleCloseReport} backdrop="static"> */}
+        <Button className={classes.hideButton} size="small" onClick={handleShowReport}>Report</Button>
+        <Modal class={classes.reportModal} style={{"top": "5.2%"}} show={showReport} onHide={handleCloseReport} backdrop="static">
           <Modal.Header closeButton>
             <Modal.Title>Report</Modal.Title>
           </Modal.Header>
@@ -120,7 +123,7 @@ const Post = ({ post, setCurrentId }) => {
   const Edit = () => {
     if (String(JSON.parse(localStorage.getItem('user'))._id) == post.userFrom) {
       return (
-      <Button size="small" onClick={() => setCurrentId(post._id)}>Edit</Button>
+        <Button size="small" onClick={() => setCurrentId(post._id)}>Edit</Button>
       )
     }
     else
@@ -135,7 +138,7 @@ const Post = ({ post, setCurrentId }) => {
   return (
     <Card className={classes.card}>
       <div className={classes.overlay}>
-        <Typography> <Link onClick={() => window.location.href = `/user/professional/profile/${post.userFrom}/${JSON.parse(localStorage.getItem('user'))._id}`} style={{ "color": "black", "fontWeight": "bold", "cursor" : "pointer" }}>{post.creator}</Link></Typography>
+        <Typography className={classes.creator}> <Link onClick={() => window.location.href = `/user/professional/profile/${post.userFrom}/${JSON.parse(localStorage.getItem('user'))._id}`} style={{ "color": "black", "fontWeight": "bold", "cursor": "pointer" }}>{post.creator}</Link></Typography>
         <Typography className={classes.time} style={{ "color": "black" }}>{moment(post.createdAt).fromNow()}</Typography>
       </div>
       <div className={classes.overlay2}>
@@ -154,7 +157,7 @@ const Post = ({ post, setCurrentId }) => {
           onClose={handleClose}
         >
           {JSON.parse(localStorage.getItem('user')).type == 'client' ?
-            <ReportPopUp/>
+            <ReportPopUp />
             : <Edit />
           }
         </Menu>
@@ -179,23 +182,23 @@ const Post = ({ post, setCurrentId }) => {
         }
       </div>
       {   post.audioFile ?
-            <CardContent> 
-             <Audio setSrc = {post.audioFile} />
-            </CardContent>
-               : <div></div> 
-             }
-             {   post.embeddedLink ?
-            <CardContent> 
-             <EmbeddedLinks setLink = {post.embeddedLink} />
-            </CardContent>
-               : <div></div> 
-             }
-             {   post.facebookLink ?
-            <CardContent> 
-             <FacebookLinks setLink = {post.facebookLink} />
-            </CardContent>
-               : <div></div> 
-             }
+        <CardContent>
+          <Audio setSrc={post.audioFile} />
+        </CardContent>
+        : <div></div>
+      }
+      {   post.embeddedLink ?
+        <CardContent>
+          <EmbeddedLinks setLink={post.embeddedLink} />
+        </CardContent>
+        : <div></div>
+      }
+      {   post.facebookLink ?
+        <CardContent>
+          <FacebookLinks setLink={post.facebookLink} />
+        </CardContent>
+        : <div></div>
+      }
       { post.tags ?
         <div className={classes.details}>
           <Typography variant="body2" color="textSecondary" component="h2">{post.tags.map((tag) => `#${tag} `)}</Typography>
@@ -207,13 +210,13 @@ const Post = ({ post, setCurrentId }) => {
           <div className={classes.button}>
             {post.likes ?
               <Button size="small" onClick={() => dispatch(likePost(post._id, JSON.parse(localStorage.getItem('user'))._id))}>
-                <Likes/>
+                <Likes />
               </Button>
               : <> </>
             }
           </div>
           {JSON.parse(localStorage.getItem('user')).type == 'client' ?
-             <PopUpBuckets />
+            <PopUpBuckets />
 
             : <Delete />
           }
