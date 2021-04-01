@@ -270,11 +270,11 @@ export default function NavbarProfessional({updatedPosts, setUpdatedPosts}) {
             <IconButton component={Link} to={`/professional/services/add/${JSON.parse(localStorage.getItem('user'))._id}`} style={{width: '50px'}} color="inherit">
                 <AddCircleIcon className={classes.iconButton}/>
             </IconButton>
-            <IconButton style={{width: '50px'}} aria-label="show 17 new notifications" color="inherit">
+            {/* <IconButton style={{width: '50px'}} aria-label="show 17 new notifications" color="inherit">
               <Badge badgeContent={17} color="secondary">
                 <NotificationsIcon className={classes.iconButton}/>
               </Badge>
-            </IconButton>
+            </IconButton> */}
             <IconButton style={{width: '50px'}}
               edge="end"
               aria-label="account of current user"

@@ -1,6 +1,6 @@
 import React, { useState , useEffect} from 'react';
-import { useDispatch } from 'react-redux';
-import { updateBucket} from '../../actions/buckets';
+import { useDispatch, useSelector } from 'react-redux';
+import { getBucket, updateBucket} from '../../actions/buckets';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
@@ -9,22 +9,32 @@ function UpdateBucketForm(bucket) {
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+    const dispatch = useDispatch();
 
     let bucketId = bucket.bucketToEdit.bucketId;
     const editBucket = {
         bucketID: bucketId
     }
-    return (< > < Button class="bucket button"
-        size="medium"
-        onClick={handleShow} >
-        Edit bucket </Button>
+
+    const bucketToEdit = useSelector((state) => state.bucketToEdit);
+
+    useEffect(() => {
+        dispatch(getBucket(bucketId));
+    }, [dispatch])
+
+    return (< >
+        < Button class="bucket button"
+            size="medium"
+            onClick={handleShow} >
+            EDIT
+        </Button>
         < div className="modal-dialog" >
             < Modal className="editBucket" show={show} onHide={handleClose} >
                 < Modal.Header closeButton >
-                    < Modal.Title> Edit bucket </Modal.Title >
+                    < Modal.Title> Edit bucket</Modal.Title >
                 </ Modal.Header >
                 < Modal.Body >
-                    < UpdateFormBucket editBucket={editBucket}/>
+                    < UpdateFormBucket bucketToEdit={bucketToEdit}/>
                 </Modal.Body>
             </Modal >
         </div>
@@ -32,15 +42,17 @@ function UpdateBucketForm(bucket) {
     );
 };
 
-const UpdateFormBucket = (bucket) => {
-
+const UpdateFormBucket = ({bucketToEdit}) => {
     const dispatch = useDispatch();
-    const [postData, setPostData] = useState({ title: '' });
-   
+
+    //let bucketId = bucket.editBucket.bucketID;
+        
+    const [postData, setPostData] = useState("");
     const userId = JSON.parse(localStorage.getItem('user'))._id;
 
-    let bucketId = bucket.editBucket.bucketID;
-
+    useEffect(() => {
+        setPostData(bucketToEdit.title);
+    }, [bucketToEdit])
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -49,7 +61,7 @@ const UpdateFormBucket = (bucket) => {
             postId: postData.postId,
             userId: userId
         }
-        dispatch(updateBucket(bucketId, newData));
+        dispatch(updateBucket(bucketToEdit._id, newData));
         window.location.reload();
     }
 

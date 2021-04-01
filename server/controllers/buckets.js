@@ -2,13 +2,9 @@ import mongoose from 'mongoose';
 import Bucket from '../models/buckets.js';
 
 export const getBuckets = async (req, res) => { 
-    try {
-        const buckets = await Bucket.find();
-                
-        res.status(200).json(buckets);
-    } catch (error) {
-        res.status(404).json({ message: error.message });
-    }
+   Bucket.find()
+   .then(buckets => res.json(buckets))
+   .catch(error => res.status(400).json("Error: Failed to get the goals " + error));
 }
 
 export const createBucket = async (req, res) => {

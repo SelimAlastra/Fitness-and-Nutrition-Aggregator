@@ -18,6 +18,7 @@ import EmbeddedLinks from '../EmbeddedLinks/EmbeddedLinks';
 import FacebookLinks from '../FacebookLinks/FacebookLinks';
 import { FaFolderPlus } from "react-icons/fa";
 import BucketsGrid from '../../Buckets2/BucketsGrid.js';
+import PopUpPost from './PopUpPost';
 
 import { deletePost, likePost, toggleFavAction, updatePost } from '../../../actions/posts';
 
@@ -34,12 +35,9 @@ const Post = ({ post, setCurrentId }) => {
   const handleClick = (event) => setAnchorEl(event.currentTarget);
   const handleClose = () => setAnchorEl(null);
 
-
   const [showBucket, setShowBucket] = useState(false);
   const handleCloseBucket = () => setShowBucket(false);
   const handleShowBucket = () => setShowBucket(true);
-
-
 
   require('dotenv').config({ path: '/.env' });
 
@@ -54,16 +52,18 @@ const Post = ({ post, setCurrentId }) => {
       >
         <FaFolderPlus />
       </Button>
-      < Modal className="bucket" className="bucket" show={showBucket} onHide={handleCloseBucket}>
+      < Modal className = "bucket" show={showBucket} onHide={handleCloseBucket}>
         < Modal.Header closeButton > < Modal.Title > Add this post to a bucket </Modal.Title >
         </ Modal.Header >
-        < Modal.Body >
+        < Modal.Body>
           < BucketsGrid postToAdd={postToAdd} />
         </Modal.Body>
         < Modal.Footer >
           < Buckets2 />
         </Modal.Footer>
-      </ Modal > </>);
+      </ Modal >
+       </>
+      );
   };
 
   const ReportPopUp = () => {
@@ -81,8 +81,6 @@ const Post = ({ post, setCurrentId }) => {
 
     return (
       <>
-        {/* <Button size="small" onClick={() => {handleShowReport(); handleClose();}}> Report </Button>
-        <Modal show={showReport} onHide={handleCloseReport} backdrop="static"> */}
         <Button className={classes.hideButton} size="small" onClick={handleShowReport}>Report</Button>
         <Modal class={classes.reportModal} style={{"top": "5.2%"}} show={showReport} onHide={handleCloseReport} backdrop="static">
           <Modal.Header closeButton>
@@ -216,9 +214,15 @@ const Post = ({ post, setCurrentId }) => {
             }
           </div>
           {JSON.parse(localStorage.getItem('user')).type == 'client' ?
+            <div>
             <PopUpBuckets />
-
-            : <Delete />
+            <PopUpPost post = {post}/>
+            </div>
+            : 
+            <div>
+            <Delete />
+            <PopUpPost post = {post}/>
+            </div>
           }
         </Container>
       </CardActions>
