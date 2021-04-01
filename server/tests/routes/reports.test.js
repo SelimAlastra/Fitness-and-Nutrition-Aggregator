@@ -87,6 +87,16 @@ describe('report routes', function() {
                 done();
             }); 
         });
+
+        it('should return a 400 status code as an invalid id is supplied', function(done) {
+            request(app)
+            .get(`/reports/${1233}`)
+            .send()
+            .end((err, res) => {
+                expect(res.status).to.equal(400);
+                done();
+            });
+        });
     });
 
     describe('get /reports', function() {
