@@ -44,7 +44,7 @@ export const updateAdmin = async (req, res) => {
       admin.password = req.body.password;
 
       admin.save()
-        .then(() => res.json('admin updated!'))
+        .then(() => res.json(admin))
         .catch(err => res.status(400).json('Error: ' + err));
     })
     .catch(err => res.status(400).json('Error: ' + err));
