@@ -8,13 +8,7 @@ import './Bucket.css';
 
 const Bucket = ({ bucket }) => {
 
-    //const user = JSON.parse(localStorage.getItem('user'));
-
     const dispatch = useDispatch();
-
-    const bucketToEdit = {
-        bucketId: bucket._id
-    }
 
     const handleDelete = (bucketId) => {
         if (window.confirm("Are you sure you want to delete this bucket?"))
@@ -34,7 +28,7 @@ const Bucket = ({ bucket }) => {
                     <Button onClick= {() => handleDelete(bucket._id)}>
                         Delete
                     </Button>
-                    <UpdateBucket bucketToEdit={bucketToEdit}/>
+                    <UpdateBucket bucket={bucket}/>
                 </div>
             </div>
         </div>
