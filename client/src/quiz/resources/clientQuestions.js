@@ -3,22 +3,23 @@ const questionsClient = [
         questionText: "What gender do you identify with?",
         questionId: 1,
         answerOptions: [
-            { answerText: "Woman", selected:false, requireInput: false, tags:["womensfitness"] },
-            { answerText: "Man", selected:false, requireInput: false, tags:["menfitness"] },
+            { answerText: "Female", selected:false, requireInput: false, tags:["womensfitness"] },
+            { answerText: "Male", selected:false, requireInput: false, tags:["menfitness"] },
             { answerText: "Other", selected:false,requireInput: false, tags:[""] },
         ],
-    },{
-        questionText: "What is your age range?",
-        questionId: 2,
-        answerOptions: [
-            { answerText: "Teens", selected:false, requireInput: false, tags:[""] },
-            { answerText: "20's", selected:false, requireInput: false, tags:[""] },
-            { answerText: "30's", selected:false, requireInput: false, tags:[""] },
-            { answerText: "40's", selected:false, requireInput: false, tags:[""] },
-            { answerText: "50's", selected:false, requireInput: false, tags:[""] },
-            { answerText: "60+", selected:false, requireInput: false, tags:[""] },
-        ],
-    },{
+    }, //{
+    //     questionText: "What is your age range?",
+    //     questionId: 2,
+    //     answerOptions: [
+    //         { answerText: "Teens", selected:false, requireInput: false, tags:[""] },
+    //         { answerText: "20's", selected:false, requireInput: false, tags:[""] },
+    //         { answerText: "30's", selected:false, requireInput: false, tags:[""] },
+    //         { answerText: "40's", selected:false, requireInput: false, tags:[""] },
+    //         { answerText: "50's", selected:false, requireInput: false, tags:[""] },
+    //         { answerText: "60+", selected:false, requireInput: false, tags:[""] },
+    //     ],
+    // },
+    {
         questionText: "What is your height?",
         questionId: 3,
         answerOptions: [
@@ -65,7 +66,6 @@ const questionsClient = [
             { answerText: "healthy and balanced diet", selected:false, tags:["healthylifestyle"], requireInput: false },
             { answerText: "Other:", selected: false, tags:[""], requireInput: true, placeholder: "e.g.: Vegetarian", alert: ["Answer using letters only."], input: [] }
         ],
-        // input:[]
     },{
         questionText: "What's your primary fitness goal? (multiple selections allowed)",
         questionId: 8,
@@ -73,47 +73,23 @@ const questionsClient = [
             { answerText: "lose fat", selected:false, tags:["losefat", "weightloss", "fatlosstips", "diet", "weightlossjourney", "sweat"], requireInput: false },
             { answerText: "get fit/look great at the beach", selected:false, tags:["getfit", "cardio", "fitnessmodel", "crossfit"], requireInput: false },
             { answerText: "recover from an injury", selected:false, tags:[""], requireInput: false },
-            { answerText: "get some nice legs and booty", selected:false, tags:[""], requireInput: false },
             { answerText: "build endurance/run a marathon", selected:false, tags:[""], requireInput: false },
             { answerText: "fitness as a social activity", selected:false, tags:[""], requireInput: false },
             { answerText: "train discipline and focus", selected:false, tags:[""], requireInput: false },
             { answerText: "build strength and ability", selected:false, tags:["calisthenics", "bodyweight", "bodybuilding", "crossfit", "strength", "athlete", "core"], requireInput: false },
-            { answerText: "build mad muscle mass", selected:false, tags:["beastmode", "bodybuilding", "strength", "powerlifting", "weightlifting", "strongman"], requireInput: false },
-            // { answerText: "Other:", selected: false, tags:[""], requireInput: true, placeholder: "e.g.: do 100 pushups in one set", alert: ["Answer using letters and numbers only."] }
+            { answerText: "build mad muscle mass", selected:false, tags:["beastmode", "bodybuilding", "strength", "powerlifting", "weightlifting", "strongman"], requireInput: false }
         ],
-        // input:[]
-    },{
-        questionText: "During the average week, how much time are you able to devote to your fitness regimen?",
-        questionId: 9,
-        answerOptions: [
-            { answerText: "barely 15-30 min on any given day", selected:false, tags:[""], requireInput: false },
-            { answerText: "between 30 min and one hour per day, 3 days a week", selected:false, tags:[""], requireInput: false },
-            { answerText: "around one hour per day, 3 days a week", selected:false, tags:[""], requireInput: false },
-            { answerText: "around one hour per day on most days", selected:false, tags:[""], requireInput: false },
-            { answerText: "more than one hour per day on most days", selected:false, tags:[""], requireInput: false },
-        ],
-        // input:[]
     },{ 
         questionText: "Where is your favorite place to exercise?",
-        questionId: 10,
+        questionId: 9,
         answerOptions: [
             { answerText: "gym", selected:false, tags:[""], requireInput: false },
             { answerText: "outdoors", selected:false, tags:["outdoor", "outdoortraining", "outdoorworkout", "nature"], requireInput: false },
             { answerText: "home", selected:false, tags:["home", "homeworkout", "homegym", "quarantine", "nogymnoproblem"], requireInput: false },
         ],
     },{ 
-        questionText: "How much are you willing to spend? (gym membership, gear & equipment)",
-        questionId: 11,
-        answerOptions: [
-            { answerText: "not much", selected:false, tags:["nocost"], requireInput: false },
-            { answerText: "a fair amount", selected:false, tags:[""], requireInput: false },
-            { answerText: "no budget limit", selected:false, tags:["expensive"], requireInput: false },
-            // { answerText: "Other(per month):", selected: false, tags:[""], requireInput: true, placeholder: "e.g.: 100 pounds", alert: ["Answer using letters and numbers only."] }
-        ],
-        // input:[]
-    },{ 
         questionText: "Lastly, which of the following are you interested in?",
-        questionId: 12,
+        questionId: 10,
         answerOptions: [
             { answerText: "#mindset", selected:false, tags:["mindset", "motivation", "goals"], requireInput: false },
             { answerText: "#nutrition", selected:false, tags:["nutrition", "diet"], requireInput: false },
@@ -121,13 +97,12 @@ const questionsClient = [
             { answerText: "#bodyweightworkout", selected:false, tags:["bodyweightworkou", "calisthenics"], requireInput: false },
             { answerText: "#bodybuilding", selected:false, tags:["bodybuilding", "gains", "muscle"], requireInput: false },
             { answerText: "#powerlifting", selected:false, tags:["powerlifting", "deadlifting"], requireInput: false },
-            // { answerText: "Add your own:", selected: false, tags:[""], requireInput: true, placeholder: "e.g.: crossfit, boxing", alert: ["Answer using letters and numbers only."] }
+            { answerText: "Add your own:", selected: false, tags:[""], requireInput: true, placeholder: "e.g.: crossfit, boxing", alert: ["Answer using letters and numbers only."], input: [] }
         ],
-        // input:[]
     }
 ];
 
 const questionsReqInputClient = [3,4];
-const questionsMultipleChoicesClient = [8,12];
+const questionsMultipleChoicesClient = [8,10];
 
 export {questionsClient,questionsReqInputClient,questionsMultipleChoicesClient}
