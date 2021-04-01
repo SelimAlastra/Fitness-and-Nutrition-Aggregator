@@ -80,7 +80,7 @@ const Post = ({ post, setCurrentId }) => {
 
     return (
       <>
-        <Button size="small" onClick={() => handleShowReport()}> Report </Button>
+        <Button size="small" onClick={() => {handleShowReport(); handleClose();}}> Report </Button>
         <Modal show={showReport} onHide={handleCloseReport} backdrop="static">
           <Modal.Header closeButton>
             <Modal.Title>Report</Modal.Title>
