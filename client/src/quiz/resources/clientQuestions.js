@@ -102,6 +102,6 @@ const questionsClient = [
 ];
 
 const questionsReqInputClient = [3,4];
-const questionsMultipleChoicesClient = [8,11];
+const questionsMultipleChoicesClient = [8,10];
 
 export {questionsClient,questionsReqInputClient,questionsMultipleChoicesClient}
