@@ -114,7 +114,7 @@ describe('professional user routes', function() {
         });
     });
 
-    describe('patch /professionalUsers/:id', function() {
+    describe('patch /professionalUsers/update/:id', function() {
 
         it('should update the professional user', function(done) {
             request(app)
@@ -173,7 +173,7 @@ describe('professional user routes', function() {
         });
     });
 
-    describe('post /register', function() {
+    describe('post /professionalUsers/register', function() {
 
         it('should register a new professional and returns a web token and user', function(done) {
             request(app)
