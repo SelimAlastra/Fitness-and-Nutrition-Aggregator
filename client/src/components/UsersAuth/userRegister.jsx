@@ -34,7 +34,7 @@ const schema = Yup.object().shape({
     username: Yup.string()
         .min(3, "Username is too short - should be 3 chars minimum.")
         .max(30, "Username is too long - should be 30 chars maximum.")
-        .matches(/^[a-zA-Z0-9]*$/, "Username should not contain space or special characters.")
+        .matches(/^[a-zA-Z0-9._]*$/, "Username should not contain space or special characters.")
         .required("No username provided."),
     name: Yup.string()
         .required("No name provided."),
