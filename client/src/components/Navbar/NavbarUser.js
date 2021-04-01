@@ -145,7 +145,7 @@ export default function NavbarUser({updatedPosts, setUpdatedPosts}) {
           </div>
         </IconButton>
       </MenuItem>
-      <MenuItem onClick={handleMenuClose}>
+      {/* <MenuItem onClick={handleMenuClose}>
         <IconButton component={Link} onClick={
               () => window.location.href = `/user/myBuckets/${JSON.parse(localStorage.getItem('user'))._id}`
             } > 
@@ -154,7 +154,7 @@ export default function NavbarUser({updatedPosts, setUpdatedPosts}) {
             <text style={{fontSize:"1.2rem"}}>Buckets</text>
           </div>
         </IconButton>
-      </MenuItem>
+      </MenuItem> */}
       <MenuItem onClick={handleMenuClose}>
         <IconButton component={Link} to={`/user/edit/${JSON.parse(localStorage.getItem('user'))._id}`}> 
           <div>
@@ -202,14 +202,12 @@ export default function NavbarUser({updatedPosts, setUpdatedPosts}) {
         </IconButton>
       </MenuItem>
       <MenuItem>
-        <IconButton component={Link} onClick={
-              () => window.location.href = `/user/myBuckets/${JSON.parse(localStorage.getItem('user'))._id}`
-            } > 
-          <div>
-            <LayersIcon/> 
-            <text style={{fontSize:"1.2rem"}}>Buckets</text>
-          </div>
-        </IconButton>
+      <IconButton component={Link} to = {`/user/myBuckets/${JSON.parse(localStorage.getItem('user'))._id}`}>
+              <div>
+                <LayersIcon className={classes.iconButton}/> 
+                <text style={{fontSize:"1.2rem"}}>Buckets</text>
+              </div>
+            </IconButton>
       </MenuItem>
       <MenuItem>
         <IconButton component={Link} to={`/user/profile/${JSON.parse(localStorage.getItem('user'))._id}`} > 
@@ -274,14 +272,21 @@ export default function NavbarUser({updatedPosts, setUpdatedPosts}) {
               <HomeIcon className={classes.iconButton} />
             </IconButton>
             <IconButton component={Link} to={`/user/myservices/${JSON.parse(localStorage.getItem('user'))._id}`} style={{width: '50px'}} color="inherit">
-              <Badge badgeContent={2} color="secondary">
+              {/* <Badge badgeContent={2} color="secondary"> */}
                 <CollectionsBookmarkIcon className={classes.iconButton}/>
-              </Badge>
+              {/* </Badge> */}
             </IconButton>
-            <IconButton style={{width: '50px'}} color="inherit">
+            {/* <IconButton style={{width: '50px'}} color="inherit">
               <Badge badgeContent={13} color="secondary">
                 <NotificationsIcon className={classes.iconButton}/>
               </Badge>
+            </IconButton> */}
+            <IconButton component={Link} to= {`/user/myBuckets/${JSON.parse(localStorage.getItem('user'))._id}`} 
+                style={{width: '50px'}} 
+                color="inherit">
+              <div>
+                <LayersIcon className={classes.iconButton}/> 
+              </div>
             </IconButton>
             <IconButton style={{width: '50px'}}
               edge="end"

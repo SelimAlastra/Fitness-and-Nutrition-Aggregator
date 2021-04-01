@@ -60,10 +60,11 @@ export const fetchBasicUsers = () => axios.get(basicUserUrl);
 export const createBasicUser = (newUser) => axios.post(basicUserUrl, newUser);
 export const deleteBasicUser = (id) => axios.delete(`${basicUserUrl}/${id}`);
 
-export const fetchBuckets = () => axios.get(bucketUrl);
+export const getBuckets = () => axios.get(bucketUrl);
 export const createBucket = (newBucket) => axios.post(bucketUrl, newBucket);
 export const updateBucket = (id, updatedBucket) => axios.patch(`${bucketUrl}/${id}`, updatedBucket);
 export const getBucket = (id) => axios.get(`${bucketUrl}/${id}`);
 export const deleteBucket = (id) => axios.delete(`${bucketUrl}/${id}`);
+
 
 

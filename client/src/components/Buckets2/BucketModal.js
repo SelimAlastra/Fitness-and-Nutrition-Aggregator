@@ -33,7 +33,7 @@ function PopUpNewBuckets() {
         onClick={handleShow} >
         Create a new bucket 
     </Button>
-        <div className="modal-dialog" >
+        <div className="modal-dialog2" >
             <Modal className="newBucket" show={show} onHide={handleClose}>
                 <Modal.Header closeButton >
                     < Modal.Title> Create a new bucket </Modal.Title>

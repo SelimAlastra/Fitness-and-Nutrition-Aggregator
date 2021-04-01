@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { Button } from '@material-ui/core';
+import { Button, Card, CardActions, CardContent } from '@material-ui/core';
 import { useDispatch } from 'react-redux';
 import { updateBucket, getBuckets } from '../../actions/buckets';
-import { ListGroup } from 'react-bootstrap';
+import { Form, FormCheck, ListGroup, Col } from 'react-bootstrap';
+import "./BucketsGrid.css";
 
 const Buckets = (post) => {
 
@@ -33,18 +34,23 @@ const Buckets = (post) => {
     }
     else {
         return (
-            <ListGroup>
+            <div className = "bucketGroup">
                 {myBuckets.map((bucket) => (
-                    <ListGroup.Item action key={bucket._id} item="true" xs={12} sm={6}>
-                        <Button bucket={bucket}
-                            currentBucketId={currentBucketId}
-                            setCurrentBucketId={setCurrentBucketId}
-                            onClick={() => addToBucket(postID, bucket._id)}
-                            >
-                            {bucket.title}</Button>
-                    </ListGroup.Item>
+                    <Col xs={4} key={bucket._id}>
+                        <Card className = "bucketCard">
+                            <Button className = "bucketButton"
+                                bucket={bucket}
+                                currentBucketId={currentBucketId}
+                                setCurrentBucketId={setCurrentBucketId}
+                                onClick={() => addToBucket(postID, bucket._id)}
+                                style ={{ "width" : "100%", "height" : "100%"}}
+                                >
+                                {bucket.title}
+                            </Button>
+                        </Card>
+                    </Col>
                 ))}
-            </ListGroup>
+        </div>
         );
     }
 }

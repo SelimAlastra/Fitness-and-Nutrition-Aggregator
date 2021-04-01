@@ -4,10 +4,11 @@ import { LinkContainer } from 'react-router-bootstrap';
 import { useSelector, useDispatch } from 'react-redux';
 import {deleteBucket, updateBucket} from '../../actions/buckets';
 import UpdateBucket from './UpdateBucket';
+import './Bucket.css';
 
 const Bucket = ({ bucket }) => {
 
-    const user = JSON.parse(localStorage.getItem('user'));
+    //const user = JSON.parse(localStorage.getItem('user'));
 
     const dispatch = useDispatch();
 
@@ -22,18 +23,20 @@ const Bucket = ({ bucket }) => {
     
     return (
         <div>
-        <CardContent style={{"alignContent" : "center"}}>
-        <LinkContainer style={{"fontWeight" : "bold"}} to={{pathname:`/user/myBuckets/${bucket._id}/${bucket.title}`}}>
-            <Button>
-                {bucket.title}
-            </Button>
-        </LinkContainer>
-        <div>{bucket.postsId.length} Posts</div>
-        </CardContent>
-        <Button onClick= {() => handleDelete(bucket._id)}>
-            Delete
-        </Button>
-        <UpdateBucket bucketToEdit={bucketToEdit}/>
+            <div style={{"alignContent" : "center", marginTop : "5%", justifyContent : "center", alignItems : "center"}}>
+                <LinkContainer to={{pathname:`/user/myBuckets/${bucket._id}/${bucket.title}`}}>
+                    <Button>
+                        <h5 style={{"fontWeight" : "bold", alignSelf: "center"}}>{bucket.title}</h5>
+                    </Button>
+                </LinkContainer>
+                <p style={{marginBottom: "30%"}}>{bucket.postsId.length} Posts</p>
+                <div style={{marginBottom: "10%"}}>
+                    <Button onClick= {() => handleDelete(bucket._id)}>
+                        Delete
+                    </Button>
+                    <UpdateBucket bucketToEdit={bucketToEdit}/>
+                </div>
+            </div>
         </div>
     );
 }

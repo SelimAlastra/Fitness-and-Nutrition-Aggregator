@@ -1,11 +1,12 @@
 .card:not(:last-child) {
     margin-right: 10%;
-
 }
 .card {
+    width: 200px;
     height: 200px;
-    width: 200px ;
-    margin-bottom: 10%;
+    margin-top: 15% !important;
+    margin-left: 10% !important;
+    margin-bottom: 10% !important;
     text-align: center;
     border-radius: 15px;
     font-family: Arial, Helvetica, sans-serif !important;
@@ -17,11 +18,8 @@
 .container {
     overflow: hidden;
 }
-.row{
-    padding-left: 15%;
-    padding-right: 15%;
-    padding-top: 3%;
-    padding-bottom: 3%;
-}
 
+.bucketText{
+    margin-top: 5%;
+}
 

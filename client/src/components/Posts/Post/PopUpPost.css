@@ -1,0 +1,22 @@
+.postModal {
+    height: max-content;
+    background-color: white;
+    margin: 5%;
+    padding: 1%;
+    text-align: center;
+    height: 100%;
+    border-radius: 10px;
+    padding: 1%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    overflow: scroll;
+}
+
+.closeButton {
+    text-align: right;
+    cursor: pointer;
+}
+
+.postDisplay {
+    justify-content: center;
+    align-items: center;
+}

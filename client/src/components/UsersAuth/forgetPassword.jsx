@@ -27,18 +27,19 @@ const ForgetPassword = () => {
           const newData = {
             email: values.email,
           }
-          if(location.pathname.includes("users")){
+          if(location.pathname.includes("user")){
           axios.put(`http://localhost:5000/basicUsers/forgotpassword`, newData)
               .then(() => {
                 actions.setFieldValue('general', `Email has been sent to ${values.email}. Please follow the instructions to reset your password.`)
               })
               .catch(err => {
+                    console.log(values.email);
                     actions.setFieldError('email', 'User with that email does not exist. Please register.')
                     console.log(err.response);   
                     actions.setSubmitting(false);
               })
           }
-          else if(location.pathname.includes("professionals"))
+          else if(location.pathname.includes("professional"))
           {
           axios.put(`http://localhost:5000/professionalUsers/forgotpassword`, newData)
               .then(() => {
