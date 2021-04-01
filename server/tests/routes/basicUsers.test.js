@@ -2,16 +2,11 @@ import request from 'supertest';
 import chai from 'chai';
 const expect = chai.expect;
 import app from '../../index.js';
-import ProfessionalUser from '../../models/basicUser.model.js'
-import mongoose  from 'mongoose';
 import BasicUser from '../../models/basicUser.model.js';
 
 
 describe('Basic users routes', function() {
     let basicUser;
-    before((done) => {
-        done();
-    });
 
     describe('post /basicUsers', function() {
 
@@ -97,7 +92,6 @@ describe('Basic users routes', function() {
     describe('patch /basicUsers/update/:id', function() {
 
         it('should update the basic user', function(done) {
-            basicUser.username = 'NOT_Bob_123';
             request(app)
             .patch(`/basicUsers/update/${basicUser._id}`)
             .send({
