@@ -32,6 +32,8 @@ const basicUserSchema = new Schema({
 
   weight :{type: String,  required: false, default: null},
 
+  height :{type: String,  required: false, default: null},
+
   goals :[{type: String,  required: false}],
 
   tags : [String],
@@ -44,8 +46,6 @@ const basicUserSchema = new Schema({
   bundles: [{type: String, required: true}],
 
   buckets: [{type: String, required: true}]
-
-
 }, {
   timestamps: true,
 });

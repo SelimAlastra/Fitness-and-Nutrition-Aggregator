@@ -1,12 +1,14 @@
-import React,{useEffect} from 'react';
+import React, {useEffect} from 'react';
 import './Navbar.css';
 import { fade } from '@material-ui/core/styles';
 import { makeStyles } from '@material-ui/core/styles';
 import InputBase from '@material-ui/core/InputBase';
-import {associatedTags} from '../../quiz/quizUser';
+import { details } from '../../quiz/quizUser';
 import { useDispatch, useSelector } from 'react-redux';
-import { getBasicUser, getBasicUsers, updateBasicUser } from '../../actions/basicUsers';
-import { getProfessional, getProfessionalUsers } from '../../actions/professionals';
+import { getBasicUser, updateBasicUser } from '../../actions/basicUsers';
+import { getProfessional, getProfessionalUsers, updateProfessional } from '../../actions/professionals';
+import { createGoal } from '../../actions/goals';
+
 /**
  * styles for the searchbox
  */
@@ -48,7 +50,8 @@ var newArray=[];
 const initialFilteredPosts = new Set();
 
 /**
- * 
+ * search posts and professional profiles based on input value
+ * update the database with quiz answers upon account creation
  */
 const SearchBox = ({updatePosts,setUpdatedPosts}) => {
   const classes = useStyles();
@@ -56,14 +59,18 @@ const SearchBox = ({updatePosts,setUpdatedPosts}) => {
   filteredPosts = useSelector((state) => state.posts);
   filteredProfiles = useSelector((state) => state.professional);
 
-  const findTag =(array,searchString)=>{
-    for(var i=0; i<array.length;i++)
-    {
-        if(array[i].trim().toLowerCase()===searchString)
-         return true
-    } 
-    return false
+  const findTag = (array,searchString)=>{
+    for(var i=0; i<array.length;i++){
+      if(array[i].trim().toLowerCase()===searchString){
+        return true;
+      }
+    }
+    return false;
   }
+
+  /**
+   * filter posts according to input value
+   */
   const filterPosts=(searchString)=>{
     var newFilteredPosts;
     var newFilteredProfiles;
@@ -84,62 +91,108 @@ const SearchBox = ({updatePosts,setUpdatedPosts}) => {
               );
       finalFilteredProfiles = newFilteredProfiles;
     } 
+   }
   }
-  }
-  const InitialSearch =() =>{
-    var tags;
-    var profile1;
-    var profile2;
-    var profile;
-    const dispatch = useDispatch();
-    useEffect(() => {
-     dispatch(getBasicUser(JSON.parse(localStorage.getItem('user'))._id));
-     dispatch(getProfessional(JSON.parse(localStorage.getItem('user'))._id));
-    }, [dispatch]);
-    profile1 = useSelector((state) => state.basicUsers);
-     profile2 = useSelector((state) => state.professional); 
-     if(JSON.parse(localStorage.getItem('user')).type == 'client')
-      {
-        tags=profile1.tags;
-        profile=profile1;
-      }
-     else
-     {
-       if(profile2.tags)
-      tags=profile2.tags;
-      profile=profile2;
+
+  const InitialSearch = () =>{
+    const associatedTags = details.associatedTags;
+    var tags, profile1, profile2, profile;
+    const goals = details.goals;
+
+    let newGoal = {
+      userID : JSON.parse(localStorage.getItem('user'))._id,
+      description: '',
+      deadline: '',
+      tags : []
     }
-    if(associatedTags.length>0)
-    { 
-      tags=associatedTags;
+
+    const dispatch = useDispatch();
+    dispatch(getBasicUser(JSON.parse(localStorage.getItem('user'))._id));
+    dispatch(getProfessional(JSON.parse(localStorage.getItem('user'))._id));
+
+    useEffect(() => {
+      console.log(details);
+      if(details.isNew) {
+        goals.forEach((g) => {
+          newGoal.description = g;
+            dispatch(createGoal(newGoal));
+          })
+      }
+    }, []);
+
+    profile1 = useSelector((state) => state.basicUsers);
+    profile2 = useSelector((state) => state.professional); 
+
+    // set the correct profile
+    if(JSON.parse(localStorage.getItem('user')).type == 'client'){
+        tags = profile1.tags;
+        profile = profile1;
+    } else {
+        if(profile2.tags){
+          tags = profile2.tags;
+        }
+      profile = profile2;
+    }
+
+    // update the client profile
+    if(associatedTags.length>0 && JSON.parse(localStorage.getItem('user')).type == 'client'){ 
+      tags = associatedTags;
       const newBasicUser = {
-        name:profile.name,
         username: profile.username,
+        name: profile.name,
         email: profile.email,
         password: profile.password,
-        address: profile.address,
-        gender: profile.gender,
-        bodyType: profile.bodyType,
-        weight: profile.weight,
-        bio: profile.bio,
-        tags:associatedTags,
-        goals: profile.goals,
-        isBanned: profile.isBanned,
+        gender: details.gender,
         dob: profile.dob,
-        bundles: profile.bundles
-    }
-   dispatch(updateBasicUser(JSON.parse(localStorage.getItem('user'))._id, newBasicUser));
-    }
-    if(tags !== undefined){
-      for(var i=0;i<tags.length;i++)
-    {
-        filterPosts(tags[i]);
+        address: profile.address,
+        isBanned: profile.isBanned,
+        bodyType: profile.bodyType,
+        weight: details.weight,
+        height: details.height,
+        goals: details.goals,
+        tags: associatedTags,
+        bio: profile.bio,
+        resetPasswordLink: profile.resetPasswordLink,
+        bundles: profile.bundles,
+        buckets: profile.buckets
+      }
+      dispatch(updateBasicUser(JSON.parse(localStorage.getItem('user'))._id, newBasicUser));
     } 
-  } 
+    // update the client profile
+    else {
+      tags = associatedTags;
+      const newProfessional = {
+        username: profile.username,
+        name: profile.name,
+        email: profile.email,
+        password: profile.password,
+        profession: profile.profession,
+        gender: details.gender,
+        dob: profile.dob,
+        address: profile.address,
+        isBanned: profile.isBanned,
+        tags: associatedTags,
+        yearsOfExperience: details.yearsOfExperience,
+        bio: profile.bio,
+        instagramLink: profile.instagramLink,
+        youtubeLink: profile.youtubeLink,
+        resetPasswordLink: profile.resetPasswordLink
+      }
+      dispatch(updateProfessional(JSON.parse(localStorage.getItem('user'))._id, newProfessional));
+    }
+
+    var tags = details.associatedTags;
+    if(tags !== undefined){
+      for(var i=0;i<tags.length;i++){
+        filterPosts(tags[i]);
+      } 
+    } 
+
     newArray=[];
     initialFilteredPosts.forEach(v => newArray.push(v));
   }
-   InitialSearch();
+
+  InitialSearch();
   //loadCharacters();
   
   const keyup = (e) => {
