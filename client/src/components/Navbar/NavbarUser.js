@@ -243,15 +243,15 @@ export default function NavbarUser({updatedPosts, setUpdatedPosts}) {
     <div className={classes.grow, "navbar-top"}>
       <AppBar position="static" color="transparent">
         <Toolbar>
-          <IconButton 
+          {/* <IconButton 
             edge="start"
             className={classes.menuButton}
             color="inherit"
             aria-label="open drawer"
           >
             <MenuIcon />
-          </IconButton>
-          <Typography onClick={() => window.location.href = `/clientDashboard/${JSON.parse(localStorage.getItem('user'))._id}`} className={classes.title, "logo"} style = {{"cursor" : "pointer"}} variant="h6" noWrap>
+          </IconButton> */}
+          <Typography onClick={() => window.location.href = `/homePage/${JSON.parse(localStorage.getItem('user'))._id}`} className={classes.title, "logo"} style = {{"cursor" : "pointer"}} variant="h6" noWrap>
             LOGO
           </Typography>
 
@@ -262,8 +262,15 @@ export default function NavbarUser({updatedPosts, setUpdatedPosts}) {
             </div>
             <Searchbox updatedPosts={updatedPosts} setUpdatedPosts={setUpdatedPosts}/>
           </div>
-          ) : (<div></div>)
-          }
+          ) : (
+            <IconButton
+              onClick={() => window.location.href = `/clientDashboard/${JSON.parse(localStorage.getItem('user'))._id}`}
+              style={{width: '50px', left:'0.5rem'}}
+              color="inherit">
+                
+              <SearchIcon />
+            </IconButton>
+          )}
 
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
