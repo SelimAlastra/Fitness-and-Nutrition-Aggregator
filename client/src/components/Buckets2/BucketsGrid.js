@@ -22,7 +22,8 @@ const Buckets = (post) => {
             bucket.postsId.push(postId);
             dispatch(updateBucket(bucket._id, bucket));
         }
-        window.location.reload();
+        console.log('asljkhaskjdkjsadjkashjksahk');
+        //window.location.reload();
     }
 
     if (myBuckets === undefined || myBuckets.length === 0) {

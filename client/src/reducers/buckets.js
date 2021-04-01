@@ -9,7 +9,7 @@ export default (buckets = [],action) => {
         case CREATE:
             return [ ...buckets, action.payload];
         case UPDATE:
-            return action.payload;
+            return buckets.map((bucket) => bucket._id === action.payload._id ? action.payload : bucket);
         case DELETE:
             return buckets.filter((bucket) => bucket._id !== action.payload);
         default:

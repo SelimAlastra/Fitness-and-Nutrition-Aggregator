@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import {deleteBucket, updateBucket} from '../../actions/buckets';
 import UpdateBucket from './UpdateBucket';
 import './Bucket.css';
+import { Link } from 'react-router-dom';
 
 const Bucket = ({ bucket }) => {
 
@@ -18,11 +19,11 @@ const Bucket = ({ bucket }) => {
     return (
         <div>
             <div style={{"alignContent" : "center", marginTop : "5%", justifyContent : "center", alignItems : "center"}}>
-                <LinkContainer to={{pathname:`/user/myBuckets/${bucket._id}/${bucket.title}`}}>
+                <Link to={{pathname:`/user/myBuckets/${bucket._id}/${bucket.title}`, state: bucket}}>
                     <Button>
                         <h5 style={{"fontWeight" : "bold", alignSelf: "center"}}>{bucket.title}</h5>
                     </Button>
-                </LinkContainer>
+                </Link>
                 <p style={{marginBottom: "30%"}}>{bucket.postsId.length} Posts</p>
                 <div style={{marginBottom: "10%"}}>
                     <Button onClick= {() => handleDelete(bucket._id)}>

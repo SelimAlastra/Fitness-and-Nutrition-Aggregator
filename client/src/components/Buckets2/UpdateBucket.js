@@ -41,7 +41,7 @@ const UpdateFormBucket = ({bucketToEdit}) => {
         console.log(bucketToEdit._id);
         e.preventDefault();
         dispatch(updateBucket(bucketToEdit._id, postData));
-        window.location.reload();
+        //window.location.reload();
     }
 
     return (
