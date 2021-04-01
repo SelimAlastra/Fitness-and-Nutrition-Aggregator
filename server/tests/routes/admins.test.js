@@ -16,21 +16,6 @@ describe('admins routes', function() {
         done();
     });
 
-    //route removed for safety.
-
-    // describe('get /admins', function() {
-
-    //     it('should get all admins and return a 200 status code', function(done) {
-    //         request(app)
-    //         .get('/admins')
-    //         .send()
-    //         .end((err, res) => {
-    //             expect(res.status).to.equal(200);
-    //             done();
-    //         }); 
-    //     });
-    // });
-
     describe('post /admins/login', function() {
 
         it('should login an admin', function(done) {
