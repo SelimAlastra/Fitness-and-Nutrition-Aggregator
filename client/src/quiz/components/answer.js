@@ -104,9 +104,6 @@ const Answer = (props) => {
      */
     const autoSelect = (answerOption) => {
         if(answerOption){
-            if(props.answer.find(element => element.selected === true)){
-                props.answer.find(element => element.selected === true).selected = false;
-            }
             answerOption.selected = true;
             props.refresh(props.questions);
         }

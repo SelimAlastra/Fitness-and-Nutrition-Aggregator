@@ -6,7 +6,7 @@ import InputBase from '@material-ui/core/InputBase';
 import { details } from '../../quiz/quizUser';
 import { useDispatch, useSelector } from 'react-redux';
 import { getBasicUser, updateBasicUser } from '../../actions/basicUsers';
-import { getProfessional } from '../../actions/professionals';
+import { getProfessional, getProfessionalUsers, updateProfessional } from '../../actions/professionals';
 import { createGoal } from '../../actions/goals';
 
 /**
@@ -123,18 +123,20 @@ const SearchBox = ({updatePosts,setUpdatedPosts}) => {
     profile1 = useSelector((state) => state.basicUsers);
     profile2 = useSelector((state) => state.professional); 
 
+    // set the correct profile
     if(JSON.parse(localStorage.getItem('user')).type == 'client'){
-        tags=profile1.tags;
-        profile=profile1;
+        tags = profile1.tags;
+        profile = profile1;
     } else {
         if(profile2.tags){
-          tags=profile2.tags;
+          tags = profile2.tags;
         }
-      profile=profile2;
+      profile = profile2;
     }
 
-    if(associatedTags.length>0){ 
-      tags=associatedTags;
+    // update the client profile
+    if(associatedTags.length>0 && JSON.parse(localStorage.getItem('user')).type == 'client'){ 
+      tags = associatedTags;
       const newBasicUser = {
         username: profile.username,
         name: profile.name,
@@ -155,6 +157,28 @@ const SearchBox = ({updatePosts,setUpdatedPosts}) => {
         buckets: profile.buckets
       }
       dispatch(updateBasicUser(JSON.parse(localStorage.getItem('user'))._id, newBasicUser));
+    } 
+    // update the client profile
+    else {
+      tags = associatedTags;
+      const newProfessional = {
+        username: profile.username,
+        name: profile.name,
+        email: profile.email,
+        password: profile.password,
+        profession: profile.profession,
+        gender: details.gender,
+        dob: profile.dob,
+        address: profile.address,
+        isBanned: profile.isBanned,
+        tags: associatedTags,
+        yearsOfExperience: details.yearsOfExperience,
+        bio: profile.bio,
+        instagramLink: profile.instagramLink,
+        youtubeLink: profile.youtubeLink,
+        resetPasswordLink: profile.resetPasswordLink
+      }
+      dispatch(updateProfessional(JSON.parse(localStorage.getItem('user'))._id, newProfessional));
     }
 
     var tags = details.associatedTags;
@@ -168,7 +192,7 @@ const SearchBox = ({updatePosts,setUpdatedPosts}) => {
     initialFilteredPosts.forEach(v => newArray.push(v));
   }
 
-   InitialSearch();
+  InitialSearch();
   //loadCharacters();
   
   const keyup = (e) => {

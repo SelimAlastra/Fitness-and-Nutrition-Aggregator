@@ -21,35 +21,35 @@ const questionsProfessional = [
         questionId: 3,
         answerOptions: [
             { answerText: "Nutrition advice", selected:false, requireInput: false, tags:[""] },
-            { answerText: "Yoga, pilates", selected:false, requireInput: false, tags:[""] },
-            { answerText: "Cardio and weight loss", selected:false, requireInput: false, tags:[""] },
-            { answerText: "Weight training and strength focused", selected:false, requireInput: false, tags:[""] },
-            { answerText: "All-around and complex", selected:false, requireInput: false, tags:[""] },
+            { answerText: "Yoga, pilates", selected:false, requireInput: false, tags:["yoga", "pilates"] },
+            { answerText: "Cardio and weight loss", selected:false, requireInput: false, tags:["cardio", "weightloss", "fatloss"] },
+            { answerText: "Weight training and strength focused", selected:false, requireInput: false, tags:["weighttraining", "weightlifting", "strength", "gains"] },
+            { answerText: "All-around and complex", selected:false, requireInput: false, tags:["complex"] },
             { answerText: "Other:", selected: false, tags:[""], requireInput: true, placeholder: "", alert: ["Answer using letters only."], input: [] }
         ],
     },{
         questionText: "Do you offer diet advice?",
         questionId: 4,
         answerOptions: [
-            { answerText: "Yes", selected:false, requireInput: false, tags:[""] },
+            { answerText: "Yes", selected:false, requireInput: false, tags:["diet", "nutrition"] },
             { answerText: "No", selected:false, requireInput: false, tags:[""] },
         ],
     },{
         questionText: "Do you preffer online/in person sessions?",
         questionId: 5,
         answerOptions: [
-            { answerText: "Online", selected:false, requireInput: false, tags:[""] },
-            { answerText: "In person", selected:false, requireInput: false, tags:[""] },
-            { answerText: "Both", selected:false, requireInput: false, tags:[""] },
+            { answerText: "Online", selected:false, requireInput: false, tags:["online"] },
+            { answerText: "In person", selected:false, requireInput: false, tags:["inperson"] },
+            { answerText: "Both", selected:false, requireInput: false, tags:["online", "inperson"] },
         ],
     },{
         questionText: "Select or add tags associated with your content:",
         questionId: 6,
         answerOptions: [
-            { answerText: "crossfit", selected:false, requireInput: false, tags:[""] },
-            { answerText: "weightlifting", selected:false, requireInput: false, tags:[""] },
-            { answerText: "bodyweight", selected:false, requireInput: false, tags:[""] },
-            { answerText: "functionaltraining", selected:false, requireInput: false, tags:[""] },
+            { answerText: "crossfit", selected:false, requireInput: false, tags:["crossfit"] },
+            { answerText: "weightlifting", selected:false, requireInput: false, tags:["weightlifting"] },
+            { answerText: "bodyweight", selected:false, requireInput: false, tags:["bodyweight"] },
+            { answerText: "functionaltraining", selected:false, requireInput: false, tags:["functionaltraining"] },
             { answerText: "Other:", selected: false, tags:[""], requireInput: true, placeholder: "e.g.: aerobic, plyometric, boxing", alert: ["Answer using letters only."], input: [] }
         ],
     },

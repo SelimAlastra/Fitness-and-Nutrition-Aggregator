@@ -1,4 +1,9 @@
 import React, { Component } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getBasicUser, updateBasicUser } from '../actions/basicUsers';
+import { getProfessional, getProfessionalUsers, updateProfessional } from '../actions/professionals';
+//import {} from '../components/Navbar/Searchbox'
+
 import Question from './components/question';
 import Answer from './components/answer';
 import './styling/quizUser.css';
@@ -127,7 +132,7 @@ export default class Quiz extends Component{
         return !isNaN(value) && 
                parseInt(Number(value)) == value && 
                !isNaN(parseInt(value, 10));
-      }
+    }
 
     /**
      * @return index of selected answer (type: INT)
@@ -183,11 +188,24 @@ export default class Quiz extends Component{
         }
 
         // process input into tags if such answer has been selected and input was provided
-        if(isClient && questions[currentQuestion].questionId === 10){
+        if((isClient && questions[currentQuestion].questionId === 10) || !isClient && questions[currentQuestion].questionId === 6){
             const answerWithInput = answers.find(answer => answer.requireInput === true);
-            if(answerWithInput.input) {
+
+            if(answerWithInput.input[0]) {
                 answerWithInput.tags = answerWithInput.input[0].replace(/,|#|;|_/g, " ").toLowerCase().replace(/\./g, ' ').replace(/\s+/g, ' ').trim().split(' ');
             }
+
+            // add selected answers' tags
+            answers.forEach(answer => {
+                if(answer.selected){
+                    answer.tags.forEach(tag => {
+                        if(answerWithInput.tags.find(existingTag => existingTag === tag) === undefined && tag !== ""){
+                            answerWithInput.tags.push(tag)
+                        }
+                    });
+                }
+            });
+
             console.log(answerWithInput.tags);
         }
     }
@@ -217,7 +235,7 @@ export default class Quiz extends Component{
 
             this.processInput();
             // this.processAnswerInput();
-
+            console.log(JSON.parse(localStorage.getItem('user')));
             this.setState({
                 currentQuestion: currentQuestion+1
             });
