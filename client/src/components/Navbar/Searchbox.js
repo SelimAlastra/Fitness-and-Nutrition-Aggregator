@@ -100,7 +100,10 @@ const SearchBox = ({updatePosts,setUpdatedPosts}) => {
      profile2 = useSelector((state) => state.professional); 
      if(JSON.parse(localStorage.getItem('user')).type == 'client')
       {
+        if(profile1.tags)
+        {
         tags=profile1.tags;
+        }
         profile=profile1;
       }
      else
