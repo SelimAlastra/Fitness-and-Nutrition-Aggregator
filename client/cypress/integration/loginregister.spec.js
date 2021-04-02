@@ -18,7 +18,7 @@ describe('Test', function() {
     });
 
   it('Searchbox functionality Test', function() {
-        cy.get('input[placeholder="Search…"]').focus().click().type('{enter}abs');
+        cy.get('input[placeholder="Search…"]').click().type('{enter}abs');
         cy.contains('10 minute ABS WORKOUT').should('exist');
     }); 
 
@@ -35,12 +35,12 @@ describe('Test', function() {
         cy.url().should('include', '/professionalDashboard/6063969add5a59ea908e4cb9'); 
     });
 
-    /* it('Form functionality Test', function() {
+     it('Form functionality Test', function() {
             cy.get('input[name="title"]').type('Fitness plan');
-            cy.get('#form').get('input[name="message"]').type('Visit my profile for more information');
+            cy.get('input[name="message"]').type('Visit my profile for more information');
             cy.get('input[name="tags"]').type('fitness,plan,healthy');
             cy.get('button').contains('Submit').click();
             cy.get('input[placeholder="Searching…"]').type('fitness');
             cy.get('Fitness plan').should('exist');
-    });  */
+    });  
 });
