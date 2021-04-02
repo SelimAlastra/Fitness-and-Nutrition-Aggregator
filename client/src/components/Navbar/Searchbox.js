@@ -78,12 +78,16 @@ const SearchBox = ({updatePosts,setUpdatedPosts}) => {
               );
    newFilteredPosts.forEach(post => initialFilteredPosts.add(post));
    if(JSON.parse(localStorage.getItem('user')).type == 'client'){
-    if(filteredProfiles!=null && filteredProfiles !== []){
+    if(filteredProfiles!==null && filteredProfiles !== []){
       newFilteredProfiles = filteredProfiles.filter((profile) => 
               profile.username.toLowerCase().includes(searchString)
               );
       finalFilteredProfiles = newFilteredProfiles;
     } 
+    else
+    {
+      finalFilteredProfiles = [];
+    }
   }
   }
   const InitialSearch =() =>{
@@ -100,7 +104,10 @@ const SearchBox = ({updatePosts,setUpdatedPosts}) => {
      profile2 = useSelector((state) => state.professional); 
      if(JSON.parse(localStorage.getItem('user')).type == 'client')
       {
+        if(profile1.tags)
+        {
         tags=profile1.tags;
+        }
         profile=profile1;
       }
      else
@@ -168,6 +175,7 @@ const SearchBox = ({updatePosts,setUpdatedPosts}) => {
             name="query"
             id="search-input"
             placeholder="Search…" 
+            data-testid="searchBox"
             onKeyUp={(e)=>keyup(e)}
             classes={{root: classes.inputRoot, input: classes.inputInput}}
             inputProps={{ 'aria-label': 'search' }}
