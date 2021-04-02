@@ -61,30 +61,24 @@
 
 }
 
-.closeButtonModal{
-    background-color: darkseagreen !important;
-    box-shadow: none !important;
-    border-color: black !important;
-    color: black !important;
-    height: fit-content;
-    font-size: 15px;
-    font-weight: bold !important;
+.redirectLinkLogin{
+    margin-left: 25%;
 }
 
+.redirectLinkRegister{
+    margin-left: 32%;
+}
 
-
-.modal-header {
+.modalHeaderUserRegisterLogin {
     border-radius: 0%;
     border-bottom: none;
     position: relative;
-    height: 60px!important;
-    background-color: black;
+    max-height: 40px !important;
 }
 
 
 .logIn .modal-title {
-    align-self: center;
-    margin-left: 140px;
+    margin-left: 10%;
     font-family: 'Helvetica', serif !important;
     font-weight: bold;
 }

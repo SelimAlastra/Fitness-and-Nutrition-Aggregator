@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import Modal from 'react-bootstrap/Modal';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { authenticate, isAuth } from '../../actions/userAuth.js';
@@ -12,6 +14,7 @@ import './userLogin.css';
 import axios from 'axios';
 import Google from './googleLogin.jsx';
 import Facebook from './facebookLogin.jsx';
+import Register from './userRegister';
 
 const Login = (client) => {
 
