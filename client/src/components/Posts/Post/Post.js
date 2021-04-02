@@ -219,10 +219,7 @@ const Post = ({ post, setCurrentId }) => {
             <PopUpPost post = {post}/>
             </div>
             : 
-            <div>
             <Delete />
-            <PopUpPost post = {post}/>
-            </div>
           }
         </Container>
       </CardActions>

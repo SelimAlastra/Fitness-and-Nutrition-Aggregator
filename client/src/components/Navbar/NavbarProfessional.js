@@ -256,8 +256,14 @@ export default function NavbarProfessional({updatedPosts, setUpdatedPosts}) {
             </div>
             <Searchbox updatedPosts={updatedPosts} setUpdatedPosts={setUpdatedPosts}/>
           </div>
-          ) : (<div></div>)
-          }
+          ) : (
+            <IconButton
+            onClick={() => window.location.href = `/professionalDashboard/${JSON.parse(localStorage.getItem('user'))._id}`}
+            style={{width: '50px', left: "0.5rem"}} 
+            color="inherit">
+              <SearchIcon />
+            </IconButton>
+          )}
 
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>

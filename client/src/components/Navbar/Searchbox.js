@@ -83,7 +83,9 @@ const SearchBox = ({updatePosts,setUpdatedPosts}) => {
               post.creator.toLowerCase().includes(searchString) ||
               findTag(post.tags,searchString) 
               );
+
    newFilteredPosts.forEach(post => initialFilteredPosts.add(post));
+   
    if(JSON.parse(localStorage.getItem('user')).type == 'client'){
     if(filteredProfiles!=null && filteredProfiles !== []){
       newFilteredProfiles = filteredProfiles.filter((profile) => 
