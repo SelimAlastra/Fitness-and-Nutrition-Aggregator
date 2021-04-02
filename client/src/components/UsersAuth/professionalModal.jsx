@@ -18,7 +18,7 @@ function PopUpProfessional(){
 
   return(
     <>
-    <Button className="landingButton2" onClick={handleShow}>
+    <Button className="landingButton2" data-testid="professionalUsersButton" onClick={handleShow}>
       Professionals
     </Button>
     <div className = "modal-dialog">

@@ -1,6 +1,6 @@
 describe('Test', function() {
 
-    it('Basic User Login/Register Test', function() {
+    it('Basic User Login Test', function() {
         cy.visit('http://localhost:3000/');
         cy.contains('Basic Users').should('be.visible');
         cy.findByTestId('basicUsersButton').click();
@@ -12,4 +12,10 @@ describe('Test', function() {
         cy.get('button').contains('Log In').click();
         cy.url().should('include', '/clientDashboard/60639559dd5a59ea908e4cb7'); 
     });
+
+    it('Basic User Dashboard Test', function() {
+        cy.visit('http://localhost:3000/clientDashboard/60639559dd5a59ea908e4cb7');
+        cy.contains('LOGO');
+    });
+
 });
