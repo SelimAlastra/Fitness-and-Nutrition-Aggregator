@@ -57,7 +57,7 @@ const ResetPassword = ({match}) => {
                 if(location.pathname.includes("user")){
                     axios.put(`http://localhost:5000/basicUsers/resetpassword`, newData)
                             .then(res => {
-                                history.push('/launch/users')
+                                history.push('/')
                             })
                         .catch(err => {
                                 console.log(err.response);
@@ -65,10 +65,10 @@ const ResetPassword = ({match}) => {
                                     actions.setFieldError('general', err.response.data.error);   
                         })
                 }
-                else if(location.pathname.includes("user")){
+                else if(location.pathname.includes("professional")){
                     axios.put(`http://localhost:5000/professionalUsers/resetpassword`, newData)
                         .then(res => {
-                            history.push('/launch/professionals')
+                            history.push('/')
                           })
                       .catch(err => {
                             console.log(err.response);
