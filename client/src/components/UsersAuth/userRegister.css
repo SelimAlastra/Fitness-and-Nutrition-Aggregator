@@ -9,38 +9,6 @@
     right: 3%;
 }
 
-.modal-dialog{
-    align-items: center;
-    justify-content: center;
-    width: 600px;
-    padding: 10px 10px;
-    margin-top: 60px !important;
-    margin-bottom: 200px;
-}
-
-.modal-header {
-    border-top-left-radius: 25px;
-    border-top-right-radius: 25px;
-    border-bottom: none;
-    height: 100px;
-    
-}
-
-.signUp .modal-title {
-    align-self: center;
-    margin-left: 90px;
-    font-family: 'Helvetica', serif !important;
-    font-weight: bold;
-}
-
-.signUp .modal-content {
-    border-radius: 10px;
-    border-color: black;
-    font-size: large;
-    font-family: 'Helvetica', serif !important;
-    min-height: 600px;
-}
-
 Form {
     margin-left: 15%;
     margin-right: 15%;
@@ -53,8 +21,6 @@ Form {
     font-family: 'Helvetica', serif !important;
     border-radius: 15px;
 }
-
-
 
 .registerButtonModal{
     background-color: black !important;

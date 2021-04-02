@@ -5,7 +5,6 @@
     padding: 10px 10px;
     margin-top: 200px;
     margin-bottom: 200px;
-    
 }
 
 .loginButtonModal2:hover{
@@ -61,30 +60,25 @@
 
 }
 
-.closeButtonModal{
-    background-color: darkseagreen !important;
-    box-shadow: none !important;
-    border-color: black !important;
-    color: black !important;
-    height: fit-content;
-    font-size: 15px;
-    font-weight: bold !important;
+.redirectLinkLogin{
+    margin-left: 25%;
 }
 
+.redirectLinkRegister{
+    margin-left: 32%;
+}
 
-
-.modal-header {
-    border-radius: 0%;
+.modalHeaderLoginRegister {
+    border-top-left-radius: 25px !important;
+    border-top-right-radius: 25px !important;
     border-bottom: none;
     position: relative;
-    height: 60px!important;
-    background-color: black;
+    height: 80px !important;
 }
 
 
 .logIn .modal-title {
-    align-self: center;
-    margin-left: 140px;
+    margin-left: 10%;
     font-family: 'Helvetica', serif !important;
     font-weight: bold;
 }
