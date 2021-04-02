@@ -84,6 +84,7 @@ const SearchBox = ({updatePosts,setUpdatedPosts}) => {
               findTag(post.tags,searchString) 
               );
    newFilteredPosts.forEach(post => initialFilteredPosts.add(post));
+   
    if(JSON.parse(localStorage.getItem('user')).type == 'client'){
     if(filteredProfiles!=null && filteredProfiles !== []){
       newFilteredProfiles = filteredProfiles.filter((profile) => 
@@ -207,7 +208,7 @@ const SearchBox = ({updatePosts,setUpdatedPosts}) => {
     setUpdatedPosts(newArray);
 
     //if input is empty, reset the filtered profiles
-    if ( e.target.value === ""){
+    if (e.target.value === ""){
       finalFilteredProfiles = [];
     }
   };
