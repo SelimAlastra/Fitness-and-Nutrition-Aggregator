@@ -120,7 +120,7 @@ const SearchBox = ({updatePosts,setUpdatedPosts}) => {
             dispatch(createGoal(newGoal));
           })
       }
-    }, []);
+    }, [dispatch]);
 
     profile1 = useSelector((state) => state.basicUsers);
     profile2 = useSelector((state) => state.professional); 
