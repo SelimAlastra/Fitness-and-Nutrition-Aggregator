@@ -118,8 +118,7 @@ describe('Posts routes', function() {
                 postsId: [post._id],
                 userId: basicUser._id,
             });
-            bucket.save();
-            done();
+            bucket.save().then(() => done());
         });
 
         it('should get all posts froma bucket, and return a 200 status code', function(done) {

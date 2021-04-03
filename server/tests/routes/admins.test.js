@@ -12,8 +12,7 @@ describe('admins routes', function() {
             username: 'admin123',
             password: 'admin123',
         });
-        admin.save();
-        done();
+        admin.save().then(() => done());
     });
 
     describe('post /admins/login', function() {
