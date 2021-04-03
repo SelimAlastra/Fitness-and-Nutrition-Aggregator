@@ -8,6 +8,8 @@ import Question from './components/question';
 import Answer from './components/answer';
 import './styling/quizUser.css';
 
+var associatedTags = [];
+
 // stored values that will be passed to the databse
 var details = {
     associatedTags: [],
@@ -278,6 +280,7 @@ export default class Quiz extends Component{
                 if(answer.selected === true){
                     answer.tags.forEach(tag => {
                         if(tag !== ""){
+                            associatedTags.push(tag);
                             details.associatedTags.push(tag);
                         }
                     });
@@ -395,7 +398,7 @@ export default class Quiz extends Component{
     }
     
     render(){
-        let {questions, currentQuestion, complete, questionsReqInput, isClient} = this.state;
+        let {questions, currentQuestion, complete, questionsReqInput, isClient, associatedTags} = this.state;
 
 
         return(
@@ -441,5 +444,5 @@ export default class Quiz extends Component{
         );
     }
 }
-
+export {associatedTags}
 export {details}

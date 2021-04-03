@@ -7,7 +7,6 @@ const { OAuth2Client } = pkg;
 import fetch from 'node-fetch';
 
 import jwt from 'jsonwebtoken';
-import bcrypt from 'bcryptjs';
 import dotenv from 'dotenv';
 import sgMail from '@sendgrid/mail';
 
@@ -285,7 +284,7 @@ export const forgotPasswordController = (req, res) => {
           subject: `Password Reset link`,
           html: `
                     <h1>Please use the following link to reset your password</h1>
-                    <p>${process.env.CLIENT_URL}/user/password/reset/${token}</p>
+                    <p>${process.env.CLIENT_URL}/professional/password/reset/${token}</p>
                     <hr />
                     <p>This email may contain sensitive information</p>
                     <p>${process.env.CLIENT_URL}</p>
@@ -348,11 +347,14 @@ export const resetPasswordController = (req, res) => {
               });
             }
 
-              user.updateOne({
-                password: newPassword,
-                resetPasswordLink: ""
-              },
-              (err, result) => {
+            const updatedFields = {
+              password: newPassword,
+              resetPasswordLink: ''
+            };
+
+            user = _.extend(user, updatedFields);
+
+            user.save((err, result) => {
               if (err) {
                 return res.status(400).json({
                   error: 'An error has occurred while resetting your password.'
