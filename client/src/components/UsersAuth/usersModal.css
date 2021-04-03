@@ -3,8 +3,17 @@
     justify-content: center;
     width: 600px;
     padding: 10px 10px;
-    margin-top: 200px;
+    margin-top: 4%;
     margin-bottom: 200px;
+}
+
+.hrModal{
+    border: 0;
+    clear: both;
+    display: block;
+    width: 96%;               
+    background-color: black;
+    height: 0.5px;
 }
 
 .loginButtonModal2:hover{
@@ -12,6 +21,7 @@
     border-bottom: none !important;
     border-top: none !important;
 }
+
 .loginButtonModal2:focus {
     border-bottom-color: transparent !important;
 }
@@ -69,13 +79,13 @@
 }
 
 .modalHeaderLoginRegister {
-    border-top-left-radius: 25px !important;
-    border-top-right-radius: 25px !important;
     border-bottom: none;
     position: relative;
-    height: 80px !important;
+    height: 60px !important;
 }
 
+.modal-header{
+}
 
 .logIn .modal-title {
     margin-left: 10%;
@@ -84,10 +94,15 @@
 }
 
 .logIn .modal-content {
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
+    
     border-color: black;
     font-size: large;
     font-family: 'Helvetica', serif !important;
     min-height: 500px !important;
 }
+
+.logIn .modal-header{
+    border-top-left-radius: 30px !important;
+    border-top-right-radius: 30px !important;
+}
+
