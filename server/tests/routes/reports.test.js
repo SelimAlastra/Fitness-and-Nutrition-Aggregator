@@ -46,7 +46,7 @@ describe('report routes', function() {
             })
             .end((err, res) => {
                 report = res.body;
-                expect(res.status).to.equal(200);
+                expect(res.status).to.equal(201);
                 expect(report).to.have.property("reason");
                 expect(report.reason).to.equal('Test Report');
                 expect(report).to.have.property("reporterUsername");
@@ -68,7 +68,7 @@ describe('report routes', function() {
                 reason: 'Test Report'
             })
             .end((err, res) => {
-                expect(res.status).to.equal(409);
+                expect(res.status).to.equal(400);
             });
             done();
         });
@@ -88,12 +88,12 @@ describe('report routes', function() {
             }); 
         });
 
-        it('should return a 400 status code as an invalid id is supplied', function(done) {
+        it('should return a 404 status code as an invalid id is supplied', function(done) {
             request(app)
             .get(`/reports/${1233}`)
             .send()
             .end((err, res) => {
-                expect(res.status).to.equal(400);
+                expect(res.status).to.equal(404);
                 done();
             });
         });
@@ -128,7 +128,7 @@ describe('report routes', function() {
             }); 
         });
 
-        it('should return 400 status code as the uri is not associated with a report', function(done) {
+        it('should return 404 status code as the uri is not associated with a report', function(done) {
             request(app)
             .delete(`/reports/${1234}`)
             .send()

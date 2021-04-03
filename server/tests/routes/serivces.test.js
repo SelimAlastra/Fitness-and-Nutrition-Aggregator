@@ -53,9 +53,8 @@ describe('services routes', function() {
                 urls: ["http://youtube.com"]
             })
             .end((err, res) => {
-                console.log(res.body);
-                expect(res.status).to.equal(200);
-                expect(res.body).to.equal("service added");
+                expect(res.status).to.equal(201);
+                expect(res.body.title).to.equal("Fitness Service");
                 done();
             });
         });
@@ -102,14 +101,14 @@ describe('services routes', function() {
                 urls: ["http://newurl.co.uk"]
             })
             .end((err, res) => {
-                expect(res.body).to.equal("service updated!");
                 expect(res.status).to.equal(200);
+                expect(res.body.title).to.equal("Updated Service");
                 done();
             });
             
         });
 
-        it('should return a 400 status code as the id does not link to a service', function(done) {
+        it('should return a 404 status code as the id does not link to a service', function(done) {
             request(app)
             .patch(`/services/update/${1232}`)
             .send({
@@ -119,7 +118,7 @@ describe('services routes', function() {
                 urls: ["http://newurl.co.uk"]
             })
             .end((err, res) => {
-                expect(res.status).to.equal(400);
+                expect(res.status).to.equal(404);
                 done();
             });
         });
@@ -132,19 +131,19 @@ describe('services routes', function() {
             .delete(`/services/${deleteId}`)
             .send()
             .end((err, res) => {
-                expect(res.body).to.equal("Service deleted!");
                 expect(res.status).to.equal(200);
+                expect(res.body).to.equal("Service deleted!");
                 done();
             });
         });
         
-        it('should return 400 status code as the uri is not associated with a service', function(done) {
+        it('should return 404 status code as the uri is not associated with a service', function(done) {
             request(app)
             .delete(`/services/${1234}`)
             .send()
             .end((err, res) => {
                 expect(res.body).to.not.equal("Service deleted!");
-                expect(res.status).to.equal(400);
+                expect(res.status).to.equal(404);
                 done();
             });
         });

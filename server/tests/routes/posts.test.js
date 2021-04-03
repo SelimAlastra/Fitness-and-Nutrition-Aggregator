@@ -66,7 +66,7 @@ describe('Posts routes', function() {
                 name: professional.name,
             })
             .end((err, res) => {
-                expect(res.status).to.equal(409);
+                expect(res.status).to.equal(400);
                 done();
             });
         });
@@ -86,12 +86,12 @@ describe('Posts routes', function() {
             }); 
         });
 
-        it('should return a 400 status code as an invalid id is supplied', function(done) {
+        it('should return a 404 status code as an invalid id is supplied', function(done) {
             request(app)
             .get(`/posts/${1233}`)
             .send()
             .end((err, res) => {
-                expect(res.status).to.equal(400);
+                expect(res.status).to.equal(404);
                 done();
             });
         });
@@ -159,7 +159,7 @@ describe('Posts routes', function() {
             });
         });
 
-        it('should return a 400 status code as the id does not link to a post', function(done) {
+        it('should return a 404 status code as the id does not link to a post', function(done) {
             request(app)
             .patch(`/posts/${1232}`)
             .send({
@@ -187,7 +187,7 @@ describe('Posts routes', function() {
             });
         });
 
-        it('should return a 400 status code as the id does not link to a post', function(done) {
+        it('should return a 404 status code as the id does not link to a post', function(done) {
             request(app)
             .patch(`/posts/${1232}/${basicUser._id}/likePost`)
             .send()

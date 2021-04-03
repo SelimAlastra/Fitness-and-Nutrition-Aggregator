@@ -77,7 +77,7 @@ describe('buckets routes', function() {
                 postsId: [],
             })
             .end((err, res) => {
-                expect(res.status).to.equal(409);
+                expect(res.status).to.equal(400);
                 done();
             });
         });
@@ -90,8 +90,8 @@ describe('buckets routes', function() {
             .get('/buckets')
             .send()
             .end((err, res) => {
-                expect(res.body).to.be.not.null;
                 expect(res.status).to.equal(200);
+                expect(res.body).to.be.not.null;
                 done();
             });
         });
@@ -111,12 +111,12 @@ describe('buckets routes', function() {
             });
         });
 
-        it('should return a 400 status code as an invalid id is supplied', function(done) {
+        it('should return a 404 status code as an invalid id is supplied', function(done) {
             request(app)
             .get(`/buckets/${1233}`)
             .send()
             .end((err, res) => {
-                expect(res.status).to.equal(400);
+                expect(res.status).to.equal(404);
                 done();
             });
         });
@@ -141,7 +141,7 @@ describe('buckets routes', function() {
             });
         });
 
-        it('should return a 400 status code as the id does not link to a bucket', function(done) {
+        it('should return a 404 status code as the id does not link to a bucket', function(done) {
             request(app)
             .patch(`/buckets/${1232}`)
             .send({
