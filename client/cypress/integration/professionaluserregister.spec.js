@@ -6,7 +6,7 @@ describe('Test', function() {
         })
     })
 
-    it('Basic User Register Test', function() {
+    it('Professional User Register Test', function() {
         cy.visit('http://localhost:3000/');
         cy.contains('Professionals').should('be.visible');
         cy.findByTestId('professionalUsersButton').click();
@@ -20,5 +20,7 @@ describe('Test', function() {
         cy.get('input[placeholder="Enter your password"]').type(this.professionalUser.password);
         cy.get('input[placeholder="Re-enter your password"]').type(this.professionalUser.password);  
         cy.get('button').contains('Register').click();
+        // Professional users are redirected to the professionalDashboard
+        //cy.contains('Creating a Post');
     });
 });
