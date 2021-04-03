@@ -58,6 +58,8 @@ const SearchBox = ({updatePosts,setUpdatedPosts}) => {
  
   filteredPosts = useSelector((state) => state.posts);
   filteredProfiles = useSelector((state) => state.professional);
+  console.log(filteredPosts);
+  console.log(filteredProfiles);
 
   const findTag = (array,searchString)=>{
     for(var i=0; i<array.length;i++){
@@ -73,9 +75,6 @@ const SearchBox = ({updatePosts,setUpdatedPosts}) => {
    */
   const filterPosts=(searchString)=>{
     var newFilteredPosts;
-    var newFilteredProfiles;
-
-    searchString = searchString.toLowerCase();
     
     newFilteredPosts=filteredPosts.filter((post) => 
               post.title.toLowerCase().includes(searchString) ||
@@ -83,17 +82,20 @@ const SearchBox = ({updatePosts,setUpdatedPosts}) => {
               post.creator.toLowerCase().includes(searchString) ||
               findTag(post.tags,searchString) 
               );
+    newFilteredPosts.forEach(post => initialFilteredPosts.add(post));
+  }
 
-   newFilteredPosts.forEach(post => initialFilteredPosts.add(post));
-   
-   if(JSON.parse(localStorage.getItem('user')).type == 'client'){
+  /**
+   * filter profiles according to input value
+   */
+  const filterProfiles = (searchString) => {
+    var newFilteredProfiles;
+
     if(filteredProfiles!=null && filteredProfiles !== []){
-      newFilteredProfiles = filteredProfiles.filter((profile) => 
-              profile.username.toLowerCase().includes(searchString)
-              );
+      newFilteredProfiles = filteredProfiles.filter((profile) => profile.username.toLowerCase().includes(searchString));
       finalFilteredProfiles = newFilteredProfiles;
-    } 
-   }
+    }
+    //console.log(finalFilteredProfiles);
   }
 
   const InitialSearch = () =>{
@@ -208,9 +210,13 @@ const SearchBox = ({updatePosts,setUpdatedPosts}) => {
     initialFilteredPosts.forEach(v => newArray.push(v));
     setUpdatedPosts(newArray);
 
+    //filter profiles accordingly
+    filterProfiles(searchString);
+
     //if input is empty, reset the filtered profiles
     if (e.target.value === ""){
       finalFilteredProfiles = [];
+      //console.log(finalFilteredProfiles);
     }
   };
 
