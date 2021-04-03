@@ -14,20 +14,20 @@ export const createBasicUser = async (req, res) => {
   const newBasicUser = new BasicUser(user);
 
   newBasicUser.save()
-    .then(() => res.json(newBasicUser))
+    .then(() => res.status(201).json(newBasicUser))
     .catch(err => res.status(400).json('Error: Failed to add BasicUser' + err));
 };
 
 export const getBasicUser = async (req, res) => {
   BasicUser.findById(req.params.id)
     .then(basicUser => res.json(basicUser))
-    .catch(err => res.status(400).json('Error: Cannot find this BasicUser' + err));
+    .catch(err => res.status(404).json('Error: Cannot find this BasicUser' + err));
 };
 
 export const deleteBasicUser = async (req, res) => {
   BasicUser.findByIdAndDelete(req.params.id)
     .then(() => res.json('BasicUser deleted.'))
-    .catch(err => res.status(400).json('Error: Cannot delete this basicUser' + err));
+    .catch(err => res.status(404).json('Error: Cannot delete this basicUser' + err));
 };
 
 

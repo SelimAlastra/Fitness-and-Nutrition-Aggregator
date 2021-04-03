@@ -21,7 +21,7 @@ export const createPost = async (req, res) => {
 
         res.status(201).json(newPostMessage );
     } catch (error) {
-        res.status(409).json({ message: error.message });
+        res.status(400).json({ message: error.message });
     }
 }
 
@@ -83,7 +83,7 @@ export const toggleFavAction = async  (req, res) =>{
   export const getPost = async (req, res) => {
     PostMessage.findById(req.params.id)
       .then(post => res.json(post))
-      .catch(err => res.status(400).json('Error: Cannot find this post' + err));
+      .catch(err => res.status(404).json('Error: Cannot find this post' + err));
   };
 
   export const getPostsFromArray = async  (req, res) =>{
