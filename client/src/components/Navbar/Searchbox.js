@@ -175,6 +175,7 @@ const SearchBox = ({updatePosts,setUpdatedPosts}) => {
             name="query"
             id="search-input"
             placeholder="Search…" 
+            data-testid="searchBox"
             onKeyUp={(e)=>keyup(e)}
             classes={{root: classes.inputRoot, input: classes.inputInput}}
             inputProps={{ 'aria-label': 'search' }}
