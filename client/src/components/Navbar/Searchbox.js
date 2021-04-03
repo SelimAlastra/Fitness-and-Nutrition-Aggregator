@@ -64,11 +64,12 @@ const SearchBox = ({updatePosts,setUpdatedPosts}) => {
     } 
     return false
   }
+
+  /**
+   * filter posts according to input value
+   */
   const filterPosts=(searchString)=>{
     var newFilteredPosts;
-    var newFilteredProfiles;
-
-    searchString = searchString.toLowerCase();
     
     newFilteredPosts=filteredPosts.filter((post) => 
               post.title.toLowerCase().includes(searchString) ||
@@ -77,19 +78,22 @@ const SearchBox = ({updatePosts,setUpdatedPosts}) => {
               findTag(post.tags,searchString) 
               );
    newFilteredPosts.forEach(post => initialFilteredPosts.add(post));
-   if(JSON.parse(localStorage.getItem('user')).type == 'client'){
-    if(filteredProfiles!==null && filteredProfiles.length>1 &&  filteredProfiles !== []){
-      newFilteredProfiles = filteredProfiles.filter((profile) => 
-              profile.username.toLowerCase().includes(searchString)
-              );
+  }
+
+  /**
+   * filter profiles according to input value
+   */
+  const filterProfiles = (searchString) => {
+    var newFilteredProfiles;
+
+    if(filteredProfiles!=null && filteredProfiles !== []){
+      newFilteredProfiles = filteredProfiles.filter((profile) => profile.username.toLowerCase().includes(searchString));
       finalFilteredProfiles = newFilteredProfiles;
-    } 
-    else
-    {
+    } else {
       finalFilteredProfiles = [];
     }
   }
-  }
+
   const InitialSearch =() =>{
     var tags;
     var profile1;
@@ -101,23 +105,20 @@ const SearchBox = ({updatePosts,setUpdatedPosts}) => {
      dispatch(getProfessional(JSON.parse(localStorage.getItem('user'))._id));
     }, [dispatch]);
     profile1 = useSelector((state) => state.basicUsers);
-     profile2 = useSelector((state) => state.professional); 
-     if(JSON.parse(localStorage.getItem('user')).type == 'client')
-      {
-        if(profile1.tags)
-        {
+    profile2 = useSelector((state) => state.professional); 
+    if(JSON.parse(localStorage.getItem('user')).type == 'client'){
+      if(profile1.tags){
         tags=profile1.tags;
-        }
-        profile=profile1;
       }
-     else
-     {
-       if(profile2.tags)
-      tags=profile2.tags;
+      
+      profile=profile1;
+    } else {
+      if(profile2.tags)
+        tags=profile2.tags;
       profile=profile2;
     }
-    if(associatedTags.length>0)
-    { 
+    
+    if(associatedTags.length>0) { 
       tags=associatedTags;
       const newBasicUser = {
         name:profile.name,
@@ -138,8 +139,7 @@ const SearchBox = ({updatePosts,setUpdatedPosts}) => {
    dispatch(updateBasicUser(JSON.parse(localStorage.getItem('user'))._id, newBasicUser));
     }
     if(tags !== undefined){
-      for(var i=0;i<tags.length;i++)
-    {
+      for(var i=0;i<tags.length;i++) {
         filterPosts(tags[i]);
     } 
   } 
@@ -150,17 +150,20 @@ const SearchBox = ({updatePosts,setUpdatedPosts}) => {
   //loadCharacters();
   
   const keyup = (e) => {
-    //the user input
+    // the user input
     const searchString = e.target.value.toLowerCase();
     initialFilteredPosts.clear();
 
-    //filter posts accordingly
+    // filter posts
     filterPosts(searchString);
     var newArray=[];
     initialFilteredPosts.forEach(v => newArray.push(v));
     setUpdatedPosts(newArray);
 
-    //if input is empty, reset the filtered profiles
+    // filter profiles
+    filterProfiles(searchString);
+
+    // if input is empty, reset the filtered profiles
     if ( e.target.value === ""){
       finalFilteredProfiles = [];
     }
