@@ -33,6 +33,7 @@ function PopUpLogin(){
       <Modal.Header className="modalHeaderLoginRegister" login={login} closeButton>
         <Modal.Title>Welcome to Fitness Aggregator</Modal.Title>
       </Modal.Header>
+      <hr className="hrModal"/>
       <Modal.Body>
         { login == true ?
         <div>
@@ -46,11 +47,6 @@ function PopUpLogin(){
         </div>
         }
       </Modal.Body>
-      {/* <Modal.Footer>
-        <Button className="closeButtonModal" onClick={handleClose}>
-          Close
-        </Button>
-      </Modal.Footer> */}
     </Modal>
     </div>
   </>
