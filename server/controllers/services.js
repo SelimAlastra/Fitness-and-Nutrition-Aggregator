@@ -17,7 +17,7 @@ export const createService = async (req, res) => {
   const newService = new Service({description, price, userID, urls, title});
 
   newService.save()
-    .then(() => res.json('service added'))
+    .then(() => res.status(201).json(newService))
     .catch(error => res.status(400).json("Error: Failed to add a service " + error ));
 };
 
@@ -30,14 +30,14 @@ export const updateService = async (req, res) => {
       service.urls = req.body.urls;
       service.title = req.body.title;
       service.save()
-        .then(() => res.json('service updated!'))
-        .catch(error => res.status(400).json('Error: ' + error))
+        .then(() => res.json(service))
+        .catch(error => res.status(404).json('Error: ' + error))
     })
-    .catch(error => res.status(400).json('Error: ' + error));
+    .catch(error => res.status(404).json('Error: ' + error));
 };
 
 export const deleteService = async (req, res) => {
   Service.findByIdAndDelete(req.params.id)
     .then(() => res.json('Service deleted!'))
-    .catch(error => res.status(400).json('Error: ' + error));
+    .catch(error => res.status(404).json('Error: ' + error));
 };

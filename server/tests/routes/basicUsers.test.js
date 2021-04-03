@@ -261,7 +261,9 @@ describe('Basic users routes', function() {
         });
     });
 
-    describe('put /basicUsers/forgotpassword', function() {
+    //Skipped as there is a limit on the daily emails sent.
+
+    describe.skip('put /basicUsers/forgotpassword', function() {
 
 
         it('should return a sent message on successful delivery on reset email', function(done) {

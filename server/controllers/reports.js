@@ -7,7 +7,7 @@ export const getReports = async (req, res) => {
 
         res.status(200).json(reports);
     } catch (error) {
-        res.status(404).json({ message: error.message });
+        res.status(400).json({ message: error.message });
     }
 };
 
@@ -19,9 +19,9 @@ export const createReport = async (req, res) => {
     try {
         await newReport.save();
 
-        res.status(200).json(newReport);
+        res.status(201).json(newReport);
     } catch(error) {
-        res.status(409).json( {message: error.message });
+        res.status(400).json( {message: error.message });
     }
 };
 
@@ -38,5 +38,5 @@ export const deleteReport = async (req, res) => {
 export const getReport = async (req, res) => {
     Report.findById(req.params.id)
       .then(report => res.json(report))
-      .catch(err => res.status(400).json('Error: Cannot find this Report' + err));
+      .catch(err => res.status(404).json('Error: Cannot find this Report' + err));
   };

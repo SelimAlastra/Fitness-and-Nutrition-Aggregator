@@ -277,7 +277,9 @@ describe('professional user routes', function() {
         });  
     });
 
-    describe('put /forgotpassword', function() {
+    //Skipped as there is a limit on the daily emails sent.
+
+    describe.skip('put /forgotpassword', function() {
 
         it('should return a sent message on successful delivery on reset email', function(done) {
             request(app)
