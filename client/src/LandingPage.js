@@ -36,7 +36,7 @@ function LandingPage() {
                             src="https://console.kr-asia.com/wp-content/uploads/2019/12/meghan-holmes-buWcS7G1_28-unsplash.jpg"
                             alt="First slide"
                         />
-                        <Carousel.Caption className="caption"  class="carousel-caption">
+                        <Carousel.Caption className="caption" class="carousel-caption">
                             <h3 className="carouselText">Fitness</h3>
                             <p className="carouselTextDescription">Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
                         </Carousel.Caption>
@@ -64,14 +64,16 @@ function LandingPage() {
                         </Carousel.Caption>
                     </Carousel.Item>
                 </Carousel>
-                <div className="aboutUs">
-                    <h2 className="websiteName">NAME...</h2>
-                    <hr/>
-                    <p className="aboutUsText">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa. Vestibulum lacinia arcu eget nulla. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur sodales ligula in libero. </p>
-                </div>
-                <div className="landingButtons">
+                <div className="afterC">
+                    <div className="aboutUs">
+                        <h2 className="websiteName">NAME...</h2>
+                        <hr />
+                        <p className="aboutUsText">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa. Vestibulum lacinia arcu eget nulla. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur sodales ligula in libero. </p>
+                    </div>
+                    <div className="landingButtons">
                         <BasicUsers className="landingButton1" variant="outline-success" />
                         <Professional className="landingButton2" variant="outline-succes" />
+                    </div>
                 </div>
             </body>
         </div>
