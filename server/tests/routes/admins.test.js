@@ -43,7 +43,7 @@ describe('admins routes', function() {
                 password: 'admin123',
             })
             .end((err, res) => {
-                expect(res.status).to.equal(400);
+                expect(res.status).to.equal(401);
                 expect(res.body.errors).to.equal('Error');
                 done();
             });
@@ -57,7 +57,7 @@ describe('admins routes', function() {
                 password: 'admin',
             })
             .end((err, res) => {
-                expect(res.status).to.equal(400);
+                expect(res.status).to.equal(401);
                 expect(res.body.errors).to.equal('Error');
                 done();
             });

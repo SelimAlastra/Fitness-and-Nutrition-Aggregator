@@ -21,7 +21,7 @@ describe('Basic users routes', function() {
             })
             .end((err, res) => {
                 basicUser = res.body;
-                expect(res.status).to.equal(200);
+                expect(res.status).to.equal(201);
                 expect(basicUser).to.have.property('username');
                 expect(basicUser.username).to.equal('Bob_123');
                 expect(basicUser).to.have.property('email');
@@ -62,12 +62,12 @@ describe('Basic users routes', function() {
             }); 
         });
 
-        it('should return a 400 status code as an invalid id is supplied', function(done) {
+        it('should return a 404 status code as an invalid id is supplied', function(done) {
             request(app)
             .get(`/basicUsers/${1233}`)
             .send()
             .end((err, res) => {
-                expect(res.status).to.equal(400);
+                expect(res.status).to.equal(404);
                 done();
             });
         });
@@ -107,7 +107,7 @@ describe('Basic users routes', function() {
             });
         });
 
-        it('should return a 400 status code as the id does not link to a basic user', function(done) {
+        it('should return a 404 status code as the id does not link to a basic user', function(done) {
             request(app)
             .patch(`/basicUsers/update/${1232}`)
             .send({
@@ -133,12 +133,12 @@ describe('Basic users routes', function() {
             }); 
         });
 
-        it('should return 400 status code as the uri is not associated with a basic user', function(done) {
+        it('should return 404 status code as the uri is not associated with a basic user', function(done) {
             request(app)
             .delete(`/basicUsers/${1234}`)
             .send()
             .end((err, res) => {
-                expect(res.status).to.equal(400);
+                expect(res.status).to.equal(404);
                 expect(res.body).to.not.equal("BasicUser deleted.");
                 done();
             });
@@ -158,7 +158,7 @@ describe('Basic users routes', function() {
             })
             .end((err, res) => {
                 basicUser = res.body.user;
-                expect(res.status).to.equal(200);
+                expect(res.status).to.equal(201);
                 expect(basicUser.username).to.equal("Alice_123");
                 expect(basicUser.name).to.equal("Alice");
                 expect(basicUser.email).to.equal("Alice@hotmail.com");
@@ -226,7 +226,7 @@ describe('Basic users routes', function() {
                 password: 'Alice@1231234',
             })
             .end((err, res) => {
-                expect(res.status).to.equal(400);
+                expect(res.status).to.equal(401);
                 expect(res.body.errors).to.equal('User with that email does not exist. Please signup');
                 done();
             });
@@ -240,7 +240,7 @@ describe('Basic users routes', function() {
                 password: 'NOT_Alice@1231234',
             })
             .end((err, res) => {
-                expect(res.status).to.equal(400);
+                expect(res.status).to.equal(401);
                 expect(res.body.errors).to.equal('Email and password do not match');
                 done();
             });
@@ -254,7 +254,7 @@ describe('Basic users routes', function() {
                 password: 'banned@1231234'
             })
             .end((err, res) => {
-                expect(res.status).to.equal(400);
+                expect(res.status).to.equal(401);
                 expect(res.body.errors).to.equal("You cannot login, as you are banned.");
                 done();
             });
@@ -263,9 +263,6 @@ describe('Basic users routes', function() {
 
     describe('put /basicUsers/forgotpassword', function() {
 
-        //For some reason res.body.message = 'Unauthorized'
-        //BasicUserAuth controller line 313
-        //${process.env.CLIENT_URL}/user/password/reset/${token}
 
         it('should return a sent message on successful delivery on reset email', function(done) {
             request(app)
@@ -287,7 +284,7 @@ describe('Basic users routes', function() {
                 email: "NoUser@hotmail.com"
             })
             .end((err, res) => {
-                expect(res.status).to.equal(400);
+                expect(res.status).to.equal(404);
                 expect(res.body.error).to.equal("User with that email does not exist");
                 done();
             });

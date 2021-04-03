@@ -55,7 +55,7 @@ describe('professional user routes', function() {
             profession: "Nutrition Expert",
             })
             .end((err, res) => {
-                expect(res.status).to.equal(200);
+                expect(res.status).to.equal(201);
                 expect(res.body).to.equal("Professional user added!");
                 done();
             });
@@ -103,12 +103,12 @@ describe('professional user routes', function() {
             });
         });
 
-        it('should return a 400 status code as an invalid id is supplied', function(done) {
+        it('should return a 404 status code as an invalid id is supplied', function(done) {
             request(app)
             .get(`/professionalUsers/${1233}`)
             .send()
             .end((err, res) => {
-                expect(res.status).to.equal(400);
+                expect(res.status).to.equal(404);
                 done();
             });
         });
@@ -127,13 +127,13 @@ describe('professional user routes', function() {
                 profession: "Health Expert",
             })
             .end((err, res) => {
-                expect(res.body.name).to.equal("Professional User");
                 expect(res.status).to.equal(200);
+                expect(res.body.name).to.equal("Professional User");
                 done();
             });
         });
 
-        it('should return a 400 status code as the id does not link to a professional', function(done) {
+        it('should return a 404 status code as the id does not link to a professional', function(done) {
             request(app)
             .patch(`/professionalUsers/update/${1232}`)
             .send({
@@ -155,19 +155,19 @@ describe('professional user routes', function() {
             .delete(`/professionalUsers/${deleteProfessionalUserId}`)
             .send()
             .end((err, res) => {
-                expect(res.body).to.equal("Professional user deleted");
                 expect(res.status).to.equal(200);
+                expect(res.body).to.equal("Professional user deleted");
             });
             done();
         });
         
-        it('should return 400 status code as the uri is not associated with a professional', function(done) {
+        it('should return 404 status code as the uri is not associated with a professional', function(done) {
             request(app)
             .delete(`/professionalUsers/${1234}`)
             .send()
             .end((err, res) => {
-                expect(res.body).to.not.equal("Professional user deleted");
                 expect(res.status).to.equal(404);
+                expect(res.body).to.not.equal("Professional user deleted");
             });
             done();
         });
@@ -186,7 +186,7 @@ describe('professional user routes', function() {
                 profession: "Nutrition Expert",
             })
             .end((err, res) => {
-                expect(res.status).to.equal(200);
+                expect(res.status).to.equal(201);
                 expect(res.body.user.username).to.equal("prof121");
                 expect(res.body.user.name).to.equal("Register Professional User");
                 expect(res.body.user.email).to.equal("johnsmith@yahoo.com");
@@ -242,7 +242,7 @@ describe('professional user routes', function() {
                 password: "password123"
             })
             .end((err, res) => {
-                expect(res.status).to.equal(400);
+                expect(res.status).to.equal(401);
                 expect(res.body.errors).to.equal("User with that email does not exist. Please signup");
                 done();
             });
@@ -256,7 +256,7 @@ describe('professional user routes', function() {
                 password: "notmatchpassword"
             })
             .end((err, res) => {
-                expect(res.status).to.equal(400);
+                expect(res.status).to.equal(401);
                 expect(res.body.errors).to.equal("Email and password do not match");
                 done();
             });
@@ -270,7 +270,7 @@ describe('professional user routes', function() {
                 password: "password123"
             })
             .end((err, res) => {
-                expect(res.status).to.equal(400);
+                expect(res.status).to.equal(401);
                 expect(res.body.errors).to.equal("You cannot login, as you are banned.");
                 done();
             });
@@ -299,7 +299,7 @@ describe('professional user routes', function() {
                 email: "cows@yahoo.com"
             })
             .end((err, res) => {
-                expect(res.status).to.equal(400);
+                expect(res.status).to.equal(404);
                 expect(res.body.error).to.equal("User with that email does not exist");
                 done();
             });

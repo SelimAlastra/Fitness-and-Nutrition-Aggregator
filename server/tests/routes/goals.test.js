@@ -52,8 +52,8 @@ describe('goals routes', function() {
                 tags: ["tag1", "tag2"]
             })
             .end((err, res) => {
-                expect(res.status).to.equal(200);
-                expect(res.body).to.equal("Goal added!");
+                expect(res.status).to.equal(201);
+                expect(res.body.userID).to.equal("" +  postUserId);
                 done();
             });
         });
@@ -124,13 +124,13 @@ describe('goals routes', function() {
                 deadline: "New Deadline"
             })
             .end((err, res) => {
-                expect(res.body).to.equal("goal updated!");
                 expect(res.status).to.equal(200);
+                expect(res.body.description).to.equal("Update Description");
                 done();
             });
         });
 
-        it('should return a 400 status code as the id does not link to a goal', function(done) {
+        it('should return a 404 status code as the id does not link to a goal', function(done) {
             request(app)
             .patch(`/goals/${1232}`)
             .send({
@@ -140,7 +140,7 @@ describe('goals routes', function() {
                 deadline: "New Deadline"
             })
             .end((err, res) => {
-                expect(res.status).to.equal(400);
+                expect(res.status).to.equal(404);
                 done();
             });
         });
@@ -153,8 +153,8 @@ describe('goals routes', function() {
             .delete(`/goals/${deleteGoalId}`)
             .send()
             .end((err, res) => {
-                expect(res.body).to.equal("goal deleted.");
                 expect(res.status).to.equal(200);
+                expect(res.body).to.equal("goal deleted.");
                 done();
             });
         });
@@ -164,8 +164,8 @@ describe('goals routes', function() {
             .delete(`/goals/${1234}`)
             .send()
             .end((err, res) => {
+                expect(res.status).to.equal(404);
                 expect(res.body).to.not.equal("goal deleted.");
-                expect(res.status).to.equal(400);
                 done();
             });
         });
