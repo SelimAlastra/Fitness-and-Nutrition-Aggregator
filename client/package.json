@@ -19,6 +19,7 @@
     "classnames": "^2.2.6",
     "core-js": "^3.8.3",
     "cors": "^2.8.5",
+    "cypress-react-unit-test": "^4.17.2",
     "debug": "^2.6.9",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
@@ -52,8 +53,11 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "cypress": "cypress open",
+    "cypress:headless": "cypress run --browser chrome --headless",
+    "test:e2e": "start-server-and-test start 3000 cypress",
+    "test:e2e:ci": "start-server-and-test start 3000 cypress:headless"
   },
   "eslintConfig": {
     "extends": [
@@ -74,6 +78,11 @@
     ]
   },
   "devDependencies": {
-    "redux-devtools-extension": "^2.13.9"
+    "redux-devtools-extension": "^2.13.9",
+    "@testing-library/cypress": "^7.0.5",
+    "cypress": "^6.8.0",
+    "mocha": "^8.3.2",
+    "mochawesome": "^6.2.2",
+    "start-server-and-test": "^1.12.1"
   }
 }
