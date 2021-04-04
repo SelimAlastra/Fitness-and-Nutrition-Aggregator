@@ -7,7 +7,7 @@ export default (reports = [], action) => {
         case DELETE:
             return reports.filter((report) => report._id !== action.payload);
         case UPDATE: 
-        return reports.map((report) => report._id === action.payload._id ? action.payload : report);
+            return reports.map((report) => report._id === action.payload._id ? action.payload : report);
         case FETCH_ALL:
             return action.payload;
         case CREATE:
