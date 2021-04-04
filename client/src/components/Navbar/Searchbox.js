@@ -43,6 +43,7 @@ const useStyles = makeStyles((theme) => ({
 
 var filteredPosts=[];
 var filteredProfiles=[];
+var profiles = [];
 var finalFilteredProfiles=[];
 var newArray=[];
 const initialFilteredPosts = new Set();
@@ -53,8 +54,14 @@ const initialFilteredPosts = new Set();
 const SearchBox = ({updatePosts,setUpdatedPosts}) => {
   const classes = useStyles();
  
+  // const dispatch = useDispatch();
+  // useEffect(() => {
+  //   dispatch(getProfessionalUsers());
+  //  }, []);
+
   filteredPosts = useSelector((state) => state.posts);
-  filteredProfiles = useSelector((state) => state.professional);
+  profiles = useSelector((state) => state.professional);
+  // console.log(profiles);
 
   const findTag =(array,searchString)=>{
     for(var i=0; i<array.length;i++)
@@ -86,8 +93,9 @@ const SearchBox = ({updatePosts,setUpdatedPosts}) => {
   const filterProfiles = (searchString) => {
     var newFilteredProfiles;
 
-    if(filteredProfiles!=null && filteredProfiles !== []){
-      newFilteredProfiles = filteredProfiles.filter((profile) => profile.username.toLowerCase().includes(searchString));
+    if(searchString !==""){
+      newFilteredProfiles = profiles.filter((profile) => profile.username.toLowerCase().includes(searchString));
+      // console.log("filtered profiles: " + newFilteredProfiles);
       finalFilteredProfiles = newFilteredProfiles;
     } else {
       finalFilteredProfiles = [];
@@ -149,6 +157,10 @@ const SearchBox = ({updatePosts,setUpdatedPosts}) => {
    InitialSearch();
   //loadCharacters();
   
+  /**
+   * 
+   * 
+   */
   const keyup = (e) => {
     // the user input
     const searchString = e.target.value.toLowerCase();
@@ -161,10 +173,10 @@ const SearchBox = ({updatePosts,setUpdatedPosts}) => {
     setUpdatedPosts(newArray);
 
     // filter profiles
-    filterProfiles(searchString);
+    // filterProfiles(searchString);
 
     // if input is empty, reset the filtered profiles
-    if ( e.target.value === ""){
+    if (e.target.value === ""){
       finalFilteredProfiles = [];
     }
   };
