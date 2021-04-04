@@ -274,15 +274,16 @@ export default function NavbarUser({updatedPosts, setUpdatedPosts}) {
             <IconButton 
               onClick={() => window.location.href = `/homePage/${JSON.parse(localStorage.getItem('user'))._id}`}
               style={{width: '50px'}} 
+              data-testid="homeButton"
               color="inherit">
               <HomeIcon className={classes.iconButton} />
             </IconButton>
-            <IconButton component={Link} to={`/user/myservices/${JSON.parse(localStorage.getItem('user'))._id}`} style={{width: '50px'}} color="inherit">
-              {/* <Badge badgeContent={2} color="secondary"> */}
+            <IconButton component={Link} to={`/user/myservices/${JSON.parse(localStorage.getItem('user'))._id}`} style={{width: '50px'}} data-testid="myServicesButton" color="inherit">
+              <Badge badgeContent={2} color="secondary">
                 <CollectionsBookmarkIcon className={classes.iconButton}/>
-              {/* </Badge> */}
+               </Badge>
             </IconButton>
-            {/* <IconButton style={{width: '50px'}} color="inherit">
+           {/*  <IconButton style={{width: '50px'}} color="inherit">
               <Badge badgeContent={13} color="secondary">
                 <NotificationsIcon className={classes.iconButton}/>
               </Badge>
@@ -300,6 +301,7 @@ export default function NavbarUser({updatedPosts, setUpdatedPosts}) {
               aria-controls={menuId}
               aria-haspopup="true"
               onClick={handleProfileMenuOpen}
+              data-testid="ToggleButton"
               color="inherit"
             >
               <AccountCircle className={classes.iconButton}/>
