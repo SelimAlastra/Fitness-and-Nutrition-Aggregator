@@ -178,6 +178,7 @@ $RECYCLE.BIN/
 *.lnk
 
 # cypress
-cypress/videos cypress/screenshots
+client/cypress/videos/
+client/cypress/screenshots/
 
 # End of https://www.toptal.com/developers/gitignore/api/vscode,node,react,windows,linux
