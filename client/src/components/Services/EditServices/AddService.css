@@ -1,0 +1,12 @@
+.serviceText{
+    margin-top: 30px !important;
+}
+
+.form-label{
+    margin-top: 40px;
+    font-weight: bold !important;
+}
+
+.form-control .formContainer{
+    width: fit-content;
+}
