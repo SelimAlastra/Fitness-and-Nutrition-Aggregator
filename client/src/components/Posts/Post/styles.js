@@ -69,6 +69,20 @@ export default makeStyles((theme) => ({
     marginLeft: -16,
     marginBottom: -15,
   },
+  embeddedLink: {
+    marginTop: 15,
+    marginLeft: -18,
+    marginBottom: -12,
+  },
+  facebookLink: {
+    marginTop: 15,
+    marginLeft: -18,
+    marginBottom: -12,
+  },
+  audio: {
+    marginTop: 45,
+    marginBottom: 102,
+  },
   buttons:{
     width: '100%',
     textAlign: 'center',

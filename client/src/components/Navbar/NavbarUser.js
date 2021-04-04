@@ -279,9 +279,9 @@ export default function NavbarUser({updatedPosts, setUpdatedPosts}) {
               <HomeIcon className={classes.iconButton} />
             </IconButton>
             <IconButton component={Link} to={`/user/myservices/${JSON.parse(localStorage.getItem('user'))._id}`} style={{width: '50px'}} data-testid="myServicesButton" color="inherit">
-              <Badge badgeContent={2} color="secondary">
+              {/* <Badge badgeContent={2} color="secondary"> */}
                 <CollectionsBookmarkIcon className={classes.iconButton}/>
-               </Badge>
+               {/* </Badge> */}
             </IconButton>
            {/*  <IconButton style={{width: '50px'}} color="inherit">
               <Badge badgeContent={13} color="secondary">
