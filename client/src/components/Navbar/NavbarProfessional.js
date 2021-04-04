@@ -269,11 +269,12 @@ export default function NavbarProfessional({updatedPosts, setUpdatedPosts}) {
           <div className={classes.sectionDesktop}>
             <IconButton 
               onClick={() => window.location.href = `/professionalDashboard/${JSON.parse(localStorage.getItem('user'))._id}`}
-              style={{width: '50px'}} 
+              style={{width: '50px'}}
+              data-testid="proHomeButton" 
               color="inherit">
               <HomeIcon className={classes.iconButton} />
             </IconButton>
-            <IconButton component={Link} to={`/professional/services/add/${JSON.parse(localStorage.getItem('user'))._id}`} style={{width: '50px'}} color="inherit">
+            <IconButton component={Link} to={`/professional/services/add/${JSON.parse(localStorage.getItem('user'))._id}`} style={{width: '50px'}} data-testid="addBundlesButton" color="inherit">
                 <AddCircleIcon className={classes.iconButton}/>
             </IconButton>
             {/* <IconButton style={{width: '50px'}} aria-label="show 17 new notifications" color="inherit">
@@ -287,6 +288,7 @@ export default function NavbarProfessional({updatedPosts, setUpdatedPosts}) {
               aria-controls={menuId}
               aria-haspopup="true"
               onClick={handleProfileMenuOpen}
+              data-testid="proToggleButton" 
               color="inherit"
             >
               <AccountCircle className={classes.iconButton}/>

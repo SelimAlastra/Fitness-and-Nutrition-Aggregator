@@ -5,6 +5,7 @@ import PersonalInfo from '../ClientProfile/PersonalInfo';
 import Goals from '../ClientProfile/Goals';
 import { useDispatch, useSelector } from "react-redux";
 import { getBasicUser } from "../../actions/basicUsers";
+import { getGoals } from '../../actions/goals';
 import NavbarUser from "../Navbar/NavbarUser";
 
 const ClientProfile = (props) => {
@@ -14,6 +15,7 @@ const ClientProfile = (props) => {
 
     useEffect(() => {
         dispatch(getBasicUser(userID));
+        dispatch(getGoals());
  
      }, [dispatch]);
 
@@ -43,7 +45,7 @@ function formatDate(toFormat) {
     function generateGoals() {
         if (user !== undefined && user !== null) {
             const goals = user.goals;
-            return <Goals goals={goals}/>;
+            return <Goals userID={userID}/>;
         }
     }
     

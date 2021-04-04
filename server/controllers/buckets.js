@@ -16,7 +16,7 @@ export const createBucket = async (req, res) => {
 
         res.status(201).json(newBucket );
     } catch (error) {
-        res.status(409).json({ message: error.message });
+        res.status(400).json({ message: error.message });
     }
 }
 
@@ -34,7 +34,7 @@ export const updateBucket = async (req, res) => {
 export const getBucket = async (req, res) => {
     Bucket.findById(req.params.id)
       .then(bucket => res.json(bucket))
-      .catch(err => res.status(400).json('Error: Cannot find this Bucket' + err));
+      .catch(err => res.status(404).json('Error: Cannot find this Bucket' + err));
   };
 
 export const deleteBucket = async (req, res) => {

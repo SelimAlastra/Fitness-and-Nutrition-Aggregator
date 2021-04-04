@@ -23,8 +23,8 @@ function PopUpProfessional(){
 
   return(
     <>
-    <Button className="landingButton2" onClick={handleShow}>
-      Providing the change?
+    <Button className="landingButton2" data-testid="professionalUsersButton" onClick={handleShow}>
+    Providing the change?
     </Button>
     <div className = "modal-dialog">
     <Modal className="logIn" show={show} onHide={handleClose}>

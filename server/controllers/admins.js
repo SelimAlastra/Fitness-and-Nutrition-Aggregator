@@ -20,20 +20,20 @@ export const createAdmin = async (req, res) => {
   const newAdmin = new Admin({username,password});
 
   newAdmin.save()
-    .then(() => res.json('admin added!'))
+    .then(() => res.json(newAdmin))
     .catch(err => res.status(400).json('Error: Failed to add admin' + err));
 };
 
 export const getAdmin = async (req, res) => {
   Admin.findById(req.params.id)
     .then(professionalUser => res.json(professionalUser))
-    .catch(err => res.status(400).json('Error: Cannot find this admin' + err));
+    .catch(err => res.status(404).json('Error: Cannot find this admin' + err));
 };
 
 export const deleteAdmin = async (req, res) => {
   Admin.findByIdAndDelete(req.params.id)
     .then(() => res.json('admin deleted.'))
-    .catch(err => res.status(400).json('Error: Cannot delete this admin' + err));
+    .catch(err => res.status(404).json('Error: Cannot delete this admin' + err));
 };
 
 
@@ -44,10 +44,10 @@ export const updateAdmin = async (req, res) => {
       admin.password = req.body.password;
 
       admin.save()
-        .then(() => res.json('admin updated!'))
-        .catch(err => res.status(400).json('Error: ' + err));
+        .then(() => res.json(admin))
+        .catch(err => res.status(440).json('Error: ' + err));
     })
-    .catch(err => res.status(400).json('Error: ' + err));
+    .catch(err => res.status(404).json('Error: ' + err));
 };
 
 
@@ -58,13 +58,13 @@ export const loginController = (req, res) => {
     username
   }).exec((err, user) => {
     if (err || !user) {
-      return res.status(400).json({
+      return res.status(401).json({
         errors: 'Error'
       });
     }
     // authenticate
     else if (!user.authenticate(password)) {
-      return res.status(400).json({
+      return res.status(401).json({
         errors: 'Error'
       });
     }

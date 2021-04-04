@@ -2,10 +2,10 @@ import mongoose from 'mongoose';
 
 const reportSchema = mongoose.Schema({
 
-    reporterUsername: String,
-    reportedUsername: String,
-    reason: String,
-    postId: String
+    reporterUsername: {type: String, required: true},
+    reportedUsername: {type: String, required: true},
+    reason: {type: String, required: false},
+    postId: {type: String, required: true}
 
 }, {
     timestamps: true,
@@ -14,3 +14,4 @@ const reportSchema = mongoose.Schema({
 const Report = mongoose.model('Reports', reportSchema);
 
 export default Report;
+ 
