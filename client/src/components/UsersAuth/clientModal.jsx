@@ -5,7 +5,8 @@ import React, { useState } from 'react';
 import Login from './userLogin';
 import Register from './userRegister';
 import { Container } from 'react-bootstrap';
-import './clientModal.css';
+import './usersModal.css';
+import { Link } from 'react-router-dom';
 
 function PopUpLogin(){
   
@@ -14,7 +15,11 @@ function PopUpLogin(){
   const handleRegister = () => setLogin(false);
 
   const [show, setShow] = useState(false);
-  const handleClose = () => setShow(false);
+  const handleClose = () => 
+  {
+    setLogin(true);
+    setShow(false);
+  }
   const handleShow = () => setShow(true);
 
   const checkClient = "true";
@@ -25,22 +30,23 @@ function PopUpLogin(){
     </Button>
     <div className = "modal-dialog">
     <Modal className="logIn" show={show} onHide={handleClose}>
-      <Modal.Header className="modalHeaderLoginRegister" login={login}>
-            <Button className="loginButtonModal2"onClick={handleLogin}>LOG IN</Button>
-            <Button className="registerButtonModal2"onClick={handleRegister}>SIGN UP</Button>
+      <Modal.Header className="modalHeaderLoginRegister" login={login} closeButton>
+        <Modal.Title>Welcome to Fitness Aggregator</Modal.Title>
       </Modal.Header>
+      <hr className="hrModal"/>
       <Modal.Body>
         { login == true ?
-        <Login checkClient = {checkClient}/>
+        <div>
+        <Login checkClient={checkClient}/>
+        <Link className="redirectLinkLogin" onClick={()=>{handleRegister()}}>Don't have an account? Sign up!</Link>
+        </div>
         :
-        <Register checkClient = {checkClient}/>
+        <div>
+        <Register checkClient={checkClient}/>
+        <Link className="redirectLinkRegister" onClick={()=>{handleLogin()}}>Already a user? Log in!</Link>
+        </div>
         }
       </Modal.Body>
-      <Modal.Footer>
-        <Button onClick={handleClose}>
-          Close
-        </Button>
-      </Modal.Footer>
     </Modal>
     </div>
   </>

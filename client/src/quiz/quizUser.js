@@ -1,16 +1,28 @@
 import React, { Component } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getBasicUser, updateBasicUser } from '../actions/basicUsers';
+import { getProfessional, getProfessionalUsers, updateProfessional } from '../actions/professionals';
+//import {} from '../components/Navbar/Searchbox'
+
 import Question from './components/question';
 import Answer from './components/answer';
 import './styling/quizUser.css';
-import { useDispatch, useSelector } from 'react-redux';
-import { getBasicUser, updateBasicUser } from './../actions/basicUsers';
-import { getProfessional } from './../actions/professionals';
-import { useEffect, useState } from 'react';
 
 var associatedTags = [];
 
-export default class Quiz extends Component{
+// stored values that will be passed to the databse
+var details = {
+    associatedTags: [],
+    goals: [],
+    weight: '',
+    height: '',
+    gender: '',
+    isNew: false,
+    yearsOfExperience: '',
+}
 
+export default class Quiz extends Component{
+    
     state = {
         questions: this.props.questions,
 
@@ -22,7 +34,7 @@ export default class Quiz extends Component{
         isClient: this.props.isClient,
 
         currentQuestion: 0,
-        complete: false
+        complete: false,
     }
 
     /** 
@@ -122,7 +134,7 @@ export default class Quiz extends Component{
         return !isNaN(value) && 
                parseInt(Number(value)) == value && 
                !isNaN(parseInt(value, 10));
-      }
+    }
 
     /**
      * @return index of selected answer (type: INT)
@@ -159,7 +171,7 @@ export default class Quiz extends Component{
      * if there is already an input value, pop it and add new value
      */
     processInput = () => {
-        const{questions, currentQuestion, questionsReqInput} = this.state;
+        const{questions, currentQuestion, questionsReqInput, isClient} = this.state;
         const answers = questions[currentQuestion].answerOptions;
 
         // check for question that requires input
@@ -175,6 +187,28 @@ export default class Quiz extends Component{
                     this.addInput(document.getElementById("inputBox").value);
                 }
             }
+        }
+
+        // process input into tags if such answer has been selected and input was provided
+        if((isClient && questions[currentQuestion].questionId === 10) || !isClient && questions[currentQuestion].questionId === 6){
+            const answerWithInput = answers.find(answer => answer.requireInput === true);
+
+            if(answerWithInput.input[0]) {
+                answerWithInput.tags = answerWithInput.input[0].replace(/,|#|;|_/g, " ").toLowerCase().replace(/\./g, ' ').replace(/\s+/g, ' ').trim().split(' ');
+            }
+
+            // add selected answers' tags
+            answers.forEach(answer => {
+                if(answer.selected){
+                    answer.tags.forEach(tag => {
+                        if(answerWithInput.tags.find(existingTag => existingTag === tag) === undefined && tag !== ""){
+                            answerWithInput.tags.push(tag)
+                        }
+                    });
+                }
+            });
+
+            console.log(answerWithInput.tags);
         }
     }
 
@@ -203,7 +237,7 @@ export default class Quiz extends Component{
 
             this.processInput();
             // this.processAnswerInput();
-
+            console.log(JSON.parse(localStorage.getItem('user')));
             this.setState({
                 currentQuestion: currentQuestion+1
             });
@@ -239,7 +273,6 @@ export default class Quiz extends Component{
      */
     addTags = () => {
         const {questions} = this.state;
-        // let {associatedTags} = this.state;
         questions.forEach(question => {
             const answers = question.answerOptions;
 
@@ -248,6 +281,7 @@ export default class Quiz extends Component{
                     answer.tags.forEach(tag => {
                         if(tag !== ""){
                             associatedTags.push(tag);
+                            details.associatedTags.push(tag);
                         }
                     });
                 }
@@ -256,19 +290,106 @@ export default class Quiz extends Component{
     }
 
     /**
+     * update selected goals
+     */
+    addGoals = () => {
+        const {questions} = this.state;
+        const answers = questions[7].answerOptions;
+
+        answers.forEach(answer => {
+            if(answer.selected === true){
+                const goal = answer.answerText;
+                if(goal !== ""){
+                    details.goals.push(goal);
+                }
+            }
+        });
+    }
+
+    /**
+     * update selected gender
+     */
+    updateGender = () => {
+        const {questions} = this.state;
+        const answers = questions[0].answerOptions;
+
+        answers.forEach(answer => {
+            if(answer.selected === true){
+                const answerGender = answer.answerText;
+                if(answerGender !== ""){
+                    details.gender = answerGender;
+                }
+            }
+        });
+    }
+
+    /**
+     * 
+     */
+    updateClientDetails = () => {
+        const {questions} = this.state;
+        
+        let answer = questions[2];
+        const answerHeight = answer.input[0];
+        if(answerHeight !== ""){
+            details.height = answerHeight;
+        }
+
+        answer = questions[3];
+        const answerWeight = answer.input[0];
+        if(answerWeight !== ""){
+            details.weight = answerWeight;
+        }
+
+        this.updateGender();
+        this.addGoals();
+        details.isNew = true;
+    }
+    
+    /**
+     * 
+     */
+    updateYearsOfExperience = () => {
+        const {questions} = this.state;
+        const answers = questions[1].answerOptions;
+
+        answers.forEach(answer => {
+            if(answer.selected === true){
+                const yearsOfExperience = answer.answerText;
+                if(yearsOfExperience !== ""){
+                    details.yearsOfExperience = yearsOfExperience;
+                }
+            }
+        });
+    }
+
+    /**
+     * 
+     */
+    updateProfessionalDetails = () => {
+        this.updateGender();
+        this.updateYearsOfExperience();
+        details.isNew = true;
+    }
+
+    /**
      * change @questions completion status
      */
     HandleFinishButtonClick = () => {
         const {isClient} = this.state;
-
+        this.processInput();
         if(this.isCompleted() === true){
             this.addTags();
             this.setState({
                 complete: true
             });
             if(isClient) {
+                // update the db
+                this.updateClientDetails();
                 this.props.history.push(`/clientDashboard/${JSON.parse(localStorage.getItem('user'))._id}`);
             } else {
+                // update the db 
+                this.updateProfessionalDetails();
                 this.props.history.push(`/professionalDashboard/${JSON.parse(localStorage.getItem('user'))._id}`);
             }
         } else {
@@ -277,7 +398,8 @@ export default class Quiz extends Component{
     }
     
     render(){
-        let {questions, currentQuestion, complete, questionsReqInput, associatedTags} = this.state;
+        let {questions, currentQuestion, complete, questionsReqInput, isClient, associatedTags} = this.state;
+
 
         return(
             <div>
@@ -305,6 +427,7 @@ export default class Quiz extends Component{
                                     questionsReqInput = {questionsReqInput}
                                     handleAnswerButtonClick = {this.handleAnswerButtonClick}
                                     refresh = {this.refresh}
+                                    isClient = {isClient}
                                 />
                             </div>
 
@@ -321,5 +444,5 @@ export default class Quiz extends Component{
         );
     }
 }
-
 export {associatedTags}
+export {details}

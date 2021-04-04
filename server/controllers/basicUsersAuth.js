@@ -7,7 +7,6 @@ const { OAuth2Client } = pkg;
 import fetch from 'node-fetch';
 
 import jwt from 'jsonwebtoken';
-import bcrypt from 'bcryptjs';
 import dotenv from 'dotenv';
 import sgMail from '@sendgrid/mail';
 
@@ -345,11 +344,14 @@ export const resetPasswordController = (req, res) => {
             });
           }
 
-          user.updateOne({
+          const updatedFields = {
             password: newPassword,
-            resetPasswordLink: ""
-          },
-            (err, result) => {
+            resetPasswordLink: ''
+          };
+
+          user = _.extend(user, updatedFields);
+
+          user.save((err, result) => {
               if (err) {
                 return res.status(400).json({
                   error: 'An error has occurred while resetting your password.'

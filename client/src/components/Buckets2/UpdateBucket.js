@@ -1,65 +1,54 @@
 import React, { useState , useEffect} from 'react';
-import { useDispatch } from 'react-redux';
-import { updateBucket} from '../../actions/buckets';
+import { useDispatch, useSelector } from 'react-redux';
+import { getBucket, updateBucket} from '../../actions/buckets';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 
-function UpdateBucketForm(bucket) {
+function UpdateBucketForm({bucket}) {
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+    const dispatch = useDispatch();
 
-    let bucketId = bucket.bucketToEdit.bucketId;
-    const editBucket = {
-        bucketID: bucketId
+    const [title, setTitle] = useState("");
+
+    useEffect(() => {
+        setTitle(bucket.title);
+    }, [bucket])
+
+    function handleSubmit(e) {
+        e.preventDefault();
+        const newTitle = {
+            title : title
+        }
+        console.log(newTitle)
+        dispatch(updateBucket(bucket._id, newTitle));
+        handleClose();
     }
-    return (< > < Button class="bucket button"
-        size="medium"
-        onClick={handleShow} >
-        Edit bucket </Button>
+
+    return (< >
+        < Button class="bucket button"
+            size="medium"
+            onClick={handleShow} >
+            EDIT
+        </Button>
         < div className="modal-dialog" >
             < Modal className="editBucket" show={show} onHide={handleClose} >
                 < Modal.Header closeButton >
-                    < Modal.Title> Edit bucket </Modal.Title >
+                    < Modal.Title> Edit bucket</Modal.Title >
                 </ Modal.Header >
                 < Modal.Body >
-                    < UpdateFormBucket editBucket={editBucket}/>
+                    <Form autoComplete="off" onSubmit={handleSubmit}>
+                        <Form.Label htmlFor="title">Bucket Name</Form.Label>
+                        <Form.Control id="title" name="title" variant="outlined" value={title} placeholder="title" onChange={(e) => setTitle(e.target.value)} />
+                        <Button variant="contained" color="primary" size="large" type="submit">Save</Button>
+                    </Form>
                 </Modal.Body>
             </Modal >
         </div>
     </>
     );
 };
-
-const UpdateFormBucket = (bucket) => {
-
-    const dispatch = useDispatch();
-    const [postData, setPostData] = useState({ title: '' });
-   
-    const userId = JSON.parse(localStorage.getItem('user'))._id;
-
-    let bucketId = bucket.editBucket.bucketID;
-
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        const newData = {
-            title: postData.title,
-            postId: postData.postId,
-            userId: userId
-        }
-        dispatch(updateBucket(bucketId, newData));
-        window.location.reload();
-    }
-
-    return (
-        <Form autoComplete="off" onSubmit={handleSubmit}>
-            <Form.Label htmlFor="title">Bucket Name</Form.Label>
-            <Form.Control id="title" name="title" variant="outlined" onChange={(e) => setPostData({ ...postData, title: e.target.value })} />
-            <Button variant="contained" color="primary" size="large" type="submit">Save</Button>
-        </Form>
-    );
-}
 
 export default UpdateBucketForm;

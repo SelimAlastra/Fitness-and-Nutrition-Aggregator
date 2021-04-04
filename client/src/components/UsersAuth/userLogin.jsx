@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import Modal from 'react-bootstrap/Modal';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { authenticate, isAuth } from '../../actions/userAuth.js';
@@ -12,6 +14,7 @@ import './userLogin.css';
 import axios from 'axios';
 import Google from './googleLogin.jsx';
 import Facebook from './facebookLogin.jsx';
+import Register from './userRegister';
 
 const Login = (client) => {
 
@@ -139,7 +142,7 @@ return (
     }
     <p/>
     <Button className="loginButtonModal" variant="outline-success" type="submit" name="loginBtn" disabled={formik.isSubmitting}>
-        Log In
+        Log in
     </Button>
     <p style={{'marginLeft': '140px', 'fontWeight': 'bold'}}> OR </p>
   </Form>

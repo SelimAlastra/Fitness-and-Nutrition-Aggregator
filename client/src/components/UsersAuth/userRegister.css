@@ -9,38 +9,6 @@
     right: 3%;
 }
 
-.modal-dialog{
-    align-items: center;
-    justify-content: center;
-    width: 600px;
-    padding: 10px 10px;
-    margin-top: 60px !important;
-    margin-bottom: 200px;
-}
-
-.modal-header {
-    border-top-left-radius: 25px;
-    border-top-right-radius: 25px;
-    border-bottom: none;
-    height: 100px;
-    
-}
-
-.signUp .modal-title {
-    align-self: center;
-    margin-left: 90px;
-    font-family: 'Helvetica', serif !important;
-    font-weight: bold;
-}
-
-.signUp .modal-content {
-    border-radius: 10px;
-    border-color: black;
-    font-size: large;
-    font-family: 'Helvetica', serif !important;
-    min-height: 600px;
-}
-
 Form {
     margin-left: 15%;
     margin-right: 15%;
@@ -54,22 +22,8 @@ Form {
     border-radius: 15px;
 }
 
-.registerButton {
-    background-color: #8a5853!important;
-    border-color: black !important;
-    box-shadow: none !important;
-    font-size: medium;
-    font-weight: bold;
-    font-family: 'Helvetica', serif;
-    border-radius: 25px;
-    width: 200px !important;
-    text-align: center;
-    margin-left: 55px;
-}
-
-
 .registerButtonModal{
-    background-color: #8a5853;
+    background-color: black !important;
     color: white !important;
     box-shadow: none !important;
     font-size: medium;
@@ -80,12 +34,12 @@ Form {
     text-align: center;
     margin-left: 55px;
     font-weight: bold;
-    border-color: #6e2d16;
+    border-color: black;
 }
 
 .registerButtonModal:hover{
-    background-color: #6e2d16!important;
-    border-color: #6e2d16 !important;
+    background-color: black !important;
+    border-color: black !important;
 }
 
 .input-feedback {

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { fade, makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -103,6 +103,7 @@ export default function NavbarProfessional({updatedPosts, setUpdatedPosts}) {
 
   const classes = useStyles();
   const history = useHistory();
+  
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 
@@ -126,6 +127,9 @@ export default function NavbarProfessional({updatedPosts, setUpdatedPosts}) {
     setMobileMoreAnchorEl(event.currentTarget);
   };
 
+  /**
+   * render the usual dropdown menu
+   */
   const menuId = 'primary-search-account-menu';
   const renderMenu = (
     <Menu
@@ -172,6 +176,9 @@ export default function NavbarProfessional({updatedPosts, setUpdatedPosts}) {
     </Menu>
   );
 
+  /**
+   * render the more  dropdown menu
+   */
   const mobileMenuId = 'primary-search-account-menu-mobile';
   const renderMobileMenu = (
     <Menu
@@ -249,8 +256,14 @@ export default function NavbarProfessional({updatedPosts, setUpdatedPosts}) {
             </div>
             <Searchbox updatedPosts={updatedPosts} setUpdatedPosts={setUpdatedPosts}/>
           </div>
-          ) : (<div></div>)
-          }
+          ) : (
+            <IconButton
+            onClick={() => window.location.href = `/professionalDashboard/${JSON.parse(localStorage.getItem('user'))._id}`}
+            style={{width: '50px', left: "0.5rem"}} 
+            color="inherit">
+              <SearchIcon />
+            </IconButton>
+          )}
 
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
