@@ -3,24 +3,36 @@ import { useDispatch } from 'react-redux';
 import { useState } from 'react';
 import { addService } from '../../../actions/services';
 import NavbarProfessional from "../../Navbar/NavbarProfessional";
+import Modal from 'react-modal';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faWindowClose } from '@fortawesome/free-regular-svg-icons';
 import './AddService.css';
 
 const AddService = (props) => {
+
     const dispatch = useDispatch();
+
+    const [show, setShow] = useState(false);
+
+    const handleClose = () => {
+        setShow(false);
+    }
+    const handleShow = () => setShow(true);
+
     const [newService, setNewService] = useState({
         description: "",
         price: ""
     });
 
+    const user = JSON.parse(localStorage.getItem('user'));
 
-    const userID = props.match.params.id;
 
     function addNewService(event) {
         if (validateFields()) {
             const toAdd = {
                 description: newService.description,
                 price: newService.price,
-                userID: userID,
+                userID: user._id,
                 title: newService.title,
                 urls: newService.urls
             };
@@ -31,95 +43,100 @@ const AddService = (props) => {
                 title: "",
                 urls: []
             });
-            window.alert("New Bundle added successfull!");
+            handleClose();
+
         }
 
     }
 
     return (
-        <div>
-            <NavbarProfessional />
-            <div className="formContainer" class="container">
+        <>
+            <Button className="addServiceButton" onClick={handleShow}>Add New Bundle</Button>
+            <Modal className="serviceModalAdd" isOpen={show} onHide={handleClose}>
+                <div className="closeButton">
+                    <FontAwesomeIcon
+                        icon={faWindowClose}
+                        size="2x"
+                        onClick={handleClose}
+                    >
+                    </FontAwesomeIcon>
+                </div>
                 <h4 className="serviceText">Add Bundle</h4>
                 <hr className="separator" />
-                <div class="row justify-content-center align-items-center">
-                    <div class="col col-sm-6 col-md-6 col-lg-4 col-xl-3">
-                        <Form>
-                            <div>All Fields are mandatory</div>
-                            <br />
-                            <Form.Group>
-                                <Form.Label>Title</Form.Label>
-                                <Form.Control
-                                    value={newService.title}
-                                    id="titleInput"
-                                    name="title"
-                                    placeholder="Title"
-                                    className="inputItem"
-                                    onChange={(e) => setNewService({
-                                        ...newService,
-                                        title: e.target.value
-                                    })}
-                                >
-                                </Form.Control>
-                            </Form.Group>
-                            <Form.Group>
-                                <Form.Label>Description</Form.Label>
-                                <Form.Control
-                                    value={newService.description}
-                                    id="descriptionInput"
-                                    name="description"
-                                    placeholder="Description"
-                                    className="inputItem"
-                                    onChange={(e) => setNewService({
-                                        ...newService,
-                                        description: e.target.value
-                                    })}
-                                >
-                                </Form.Control>
-                            </Form.Group>
-                            <Form.Group>
-                                <Form.Label>Price</Form.Label>
-                                <Form.Control
-                                    value={newService.price}
-                                    id="priceInput"
-                                    name="price"
-                                    placeholder="Price"
-                                    className="inputItem"
-                                    onChange={(e) => setNewService({
-                                        ...newService,
-                                        price: e.target.value
-                                    })}
-                                >
-                                </Form.Control>
-                            </Form.Group>
-                        </Form>
-                    </div>
-                </div>
-                <div>
-                <Button
-                    className="actionButton"
-                    type="submit"
-                    onClick={(event) => addNewService(event)}
-                >
-                            Save
-                            </Button>
-                        <Button
-                            className="actionButton"
-                            type="button"
-                            onClick={(event) => window.location.href = `/professional/profile/${userID}`}
-                        >
-                            Close
-                            </Button>
-                    </div>
 
+                <Form className="addServiceForm">
+                    <div className="mandatory" style={{"marginBottom":"10px"}}>All fields are mandatory.</div>
+                    <Form.Group class="addServiceGroup">
+                        <Form.Label>Title</Form.Label>
+                        <Form.Control
+                            value={newService.title}
+                            id="titleInput"
+                            name="title"
+                            placeholder="Title"
+                            className="inputItem"
+                            onChange={(e) => setNewService({
+                                ...newService,
+                                title: e.target.value
+                            })}
+                        >
+                        </Form.Control>
+                    </Form.Group>
+                    <Form.Group>
+                        <Form.Label>Description</Form.Label>
+                        <Form.Control
+                            value={newService.description}
+                            id="descriptionInput"
+                            name="description"
+                            placeholder="Description"
+                            className="inputItem"
+                            onChange={(e) => setNewService({
+                                ...newService,
+                                description: e.target.value
+                            })}
+                        >
+                        </Form.Control>
+                    </Form.Group>
+                    <Form.Group>
+                        <Form.Label>Price</Form.Label>
+                        <Form.Control
+                            value={newService.price}
+                            id="priceInput"
+                            name="price"
+                            placeholder="Price"
+                            className="inputItem"
+                            onChange={(e) => setNewService({
+                                ...newService,
+                                price: e.target.value
+                            })}
+                        >
+                        </Form.Control>
+                    </Form.Group>
+                </Form>
+                <div className="saveClose">
+                    <Button
+                        className="actionButton"
+                        type="submit"
+                        onClick={(event) => addNewService(event)}
+                    >
+                        Save
+                            </Button>
+                    <Button
+                        className="actionButton"
+                        type="button"
+                        onClick={(event) => window.location.href = `/professional/services/edit/${user._id}`}
+                    >
+                        Close
+                            </Button>
                 </div>
-            </div>
+            </Modal>
+        </>
+
 
     );
 
     function validateFields() {
         if (newService.description === "" ||
-        newService.title === "" || newService.price === "") {
+            newService.title === "" || newService.price === "") {
             return false;
         }
         return true;

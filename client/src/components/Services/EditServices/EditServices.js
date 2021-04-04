@@ -11,6 +11,7 @@ import NavbarProfessional from "../../Navbar/NavbarProfessional";
 import Modal from 'react-modal';
 import './EditServices.css';
 import ReactPlayer from 'react-player';
+import AddService from './AddService.js';
 
 
 const EditServices = (props) => {
@@ -66,6 +67,7 @@ const EditServices = (props) => {
         }
         setUrl("");
         setServiceID("");
+        closeModal();
     }
 
     function addVideo(service) {
@@ -141,7 +143,7 @@ const EditServices = (props) => {
                                     <tr className="tableRow" key={index}>
                                         <td width="23%" className="servicesContainer">
                                             <h4 className="serviceText" style={{ textAlign: "centre" }}>{service.title}</h4>
-                                            <p className="serviceText" style={{ textAlign: "centre" }}>{service.description}</p>
+                                            <p className="serviceText" style={{ textAlign: "centre", fontSize: "18px"}}>{service.description}</p>
                                             {/* <p className="subText" style={{ textAlign: "left" }}>Service ID: {service._id}</p> */}
                                         </td>
                                         <td width="70%" className="videoContainer">
@@ -162,7 +164,7 @@ const EditServices = (props) => {
                                                 <FontAwesomeIcon
                                                     icon={faTrashAlt}
                                                     size="lg"
-                                                    style={{ textAlign: "right", cursor: "pointer", color: "black" }}
+                                                    style={{ textAlign: "right", cursor: "pointer", color: "black", marginTop: "10px" }}
                                                     value={service}
                                                     onClick={() => removeService(service)}
                                                 />
@@ -184,14 +186,10 @@ const EditServices = (props) => {
             <NavbarProfessional />
             <div class="container">
 
-                <h3 className="serviceText">Bundles</h3>
+                <h3 style={{marginTop: "20px"}}className="serviceText">Bundles</h3>
                 <hr className="seperator" style={{"background-color": "#Dc8f66"}} />
-                <Button
-                    className="actionButtonEdit"
-                    onClick={() => window.location.href = `/professional/services/add/${userID}`}
-                >
-                    Add New Bundle
-                        </Button>
+
+                <AddService/>
                 <div>
                     {generateTable()}
                 </div>

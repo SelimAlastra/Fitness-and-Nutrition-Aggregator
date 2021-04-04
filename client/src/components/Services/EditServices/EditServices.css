@@ -3,10 +3,6 @@ td.videoContainer{
     display: flex;
 }
 
-td.servicesContainer{
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-}
-
 tr.tableRow{
     align-items: center;
     border-radius: 15px;
@@ -23,23 +19,18 @@ td.videoContainer{
     margin-left: 15% !important;
 }
 
-
 .actionButtonEdit{
     margin-bottom: 30px;
     background-color: #A8D5C5 !important;
     border-color: #A8D5C5 !important;
     box-shadow: none !important;
     color: black !important;
-
-    
 }
 
 .actionButtonEdit:hover{
     background-color: #7ec0a9 !important;
     color: white !important;
 }
-
-
 
 .serviceModalEdit{
     text-align: center;
