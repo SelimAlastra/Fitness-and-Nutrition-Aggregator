@@ -60,4 +60,19 @@ describe('Test', function() {
         cy.contains('#plan').should('exist');
     }); 
 
+    it('should log out', function() {
+        cy.findByTestId('proToggleButton').focus().click().focus().get('span').contains('Log out').click({force: true});
+        // cy.url().should('include', '/');
+        cy.url().should('include', '/', ()=> {
+            expect(localStorage.getItem('user')).to.be.null
+        })
+       /*  cy.clearLocalStorage().then((ls) => {
+            expect(ls.getItem('_id')).to.be.null
+            expect(ls.getItem('email')).to.be.null
+            expect(ls.getItem('name')).to.be.null
+            expect(ls.getItem('username')).to.be.null
+            expect(ls.getItem('type')).to.be.null
+          }) */
+    })   
+
 });

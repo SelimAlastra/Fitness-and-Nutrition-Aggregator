@@ -25,4 +25,5 @@ describe('Test', function() {
         cy.contains('Man').should('exist');
         cy.contains('Other').should('exist'); */
     });
+
 });
