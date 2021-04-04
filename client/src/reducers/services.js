@@ -9,7 +9,7 @@ export default (services = [], action) => {
         case CREATE:
             return [...services, action.payload];
         case UPDATE:
-            return services.filter((service) => service._id != action.payload);
+            return services.map((services) => services._id === action.payload._id ? action.payload : services);
         default:
             return services;
     }
