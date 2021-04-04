@@ -1,4 +1,4 @@
-import { Form, Button } from 'react-bootstrap';
+import { Form, Button, FormCheck } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
 import { useState } from 'react';
 import { addService } from '../../../actions/services';
@@ -12,90 +12,95 @@ const AddService = (props) => {
         price: ""
     });
 
+
     const userID = props.match.params.id;
 
     function addNewService(event) {
-        const toAdd = {
-            description: newService.description,
-            price: newService.price,
-            userID: userID,
-            title: newService.title,
-            urls: newService.urls
-        };
+        if (validateFields()) {
+            const toAdd = {
+                description: newService.description,
+                price: newService.price,
+                userID: userID,
+                title: newService.title,
+                urls: newService.urls
+            };
+            dispatch(addService(toAdd));
+            setNewService({
+                description: "",
+                price: "",
+                title: "",
+                urls: []
+            });
+            window.alert("New Bundle added successfull!");
+        }
 
-        dispatch(addService(toAdd));
-        setNewService({
-            description: "",
-            price: "",
-            title: "",
-            urls: []
-        });
-        window.location.href = `/professional/services/edit/${userID}`;
     }
 
     return (
         <div>
             <NavbarProfessional />
             <div className="formContainer" class="container">
-                    <h4 className="serviceText">Add Bundle</h4>
-                    <hr className="separator" />
-                    <div class="row justify-content-center align-items-center">
-                        <div class="col col-sm-6 col-md-6 col-lg-4 col-xl-3">
-                            <Form>
-                                <Form.Group>
-                                    <Form.Label>Title</Form.Label>
-                                    <Form.Control 
-                                        value={newService.title}
-                                        id="titleInput"
-                                        name="title"
-                                        placeholder="Title"
-                                        className="inputItem"
-                                        onChange={(e) => setNewService({
-                                            ...newService,
-                                            title: e.target.value
-                                        })}
-                                    >
-                                    </Form.Control>
-                                </Form.Group>
-                                <Form.Group>
-                                    <Form.Label>Description</Form.Label>
-                                    <Form.Control
-                                        value={newService.description}
-                                        id="descriptionInput"
-                                        name="description"
-                                        placeholder="Description"
-                                        className="inputItem"
-                                        onChange={(e) => setNewService({
-                                            ...newService,
-                                            description: e.target.value
-                                        })}
-                                    >
-                                    </Form.Control>
-                                </Form.Group>
-                                <Form.Group>
-                                    <Form.Label>Price</Form.Label>
-                                    <Form.Control
-                                        value={newService.price}
-                                        id="priceInput"
-                                        name="price"
-                                        placeholder="Price"
-                                        className="inputItem"
-                                        onChange={(e) => setNewService({
-                                            ...newService,
-                                            price: e.target.value
-                                        })}
-                                    >
-                                    </Form.Control>
-                                </Form.Group>
-                            </Form>
-                        </div>
+                <h4 className="serviceText">Add Bundle</h4>
+                <hr className="separator" />
+                <div class="row justify-content-center align-items-center">
+                    <div class="col col-sm-6 col-md-6 col-lg-4 col-xl-3">
+                        <Form>
+                            <div>All Fields are mandatory</div>
+                            <br />
+                            <Form.Group>
+                                <Form.Label>Title</Form.Label>
+                                <Form.Control
+                                    value={newService.title}
+                                    id="titleInput"
+                                    name="title"
+                                    placeholder="Title"
+                                    className="inputItem"
+                                    onChange={(e) => setNewService({
+                                        ...newService,
+                                        title: e.target.value
+                                    })}
+                                >
+                                </Form.Control>
+                            </Form.Group>
+                            <Form.Group>
+                                <Form.Label>Description</Form.Label>
+                                <Form.Control
+                                    value={newService.description}
+                                    id="descriptionInput"
+                                    name="description"
+                                    placeholder="Description"
+                                    className="inputItem"
+                                    onChange={(e) => setNewService({
+                                        ...newService,
+                                        description: e.target.value
+                                    })}
+                                >
+                                </Form.Control>
+                            </Form.Group>
+                            <Form.Group>
+                                <Form.Label>Price</Form.Label>
+                                <Form.Control
+                                    value={newService.price}
+                                    id="priceInput"
+                                    name="price"
+                                    placeholder="Price"
+                                    className="inputItem"
+                                    onChange={(e) => setNewService({
+                                        ...newService,
+                                        price: e.target.value
+                                    })}
+                                >
+                                </Form.Control>
+                            </Form.Group>
+                        </Form>
                     </div>
-                    <div>
-                        <Button
-                            className="actionButton"
-                            type="submit"
-                            onClick={(event) => addNewService(event)}
-                        >
+                </div>
+                <div>
+                <Button
+                    className="actionButton"
+                    type="submit"
+                    onClick={(event) => addNewService(event)}
+                >
                             Save
                             </Button>
                         <Button
@@ -111,6 +116,14 @@ const AddService = (props) => {
             </div>
 
     );
+
+    function validateFields() {
+        if (newService.description === "" ||
+        newService.title === "" || newService.price === "") {
+            return false;
+        }
+        return true;
+    }
 }
 
 export default AddService;

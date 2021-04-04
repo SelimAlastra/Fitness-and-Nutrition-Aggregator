@@ -5,8 +5,10 @@ import { makeStyles } from '@material-ui/core/styles';
 import InputBase from '@material-ui/core/InputBase';
 import {associatedTags} from '../../quiz/quizUser';
 import { useDispatch, useSelector } from 'react-redux';
-import { getBasicUser, getBasicUsers, updateBasicUser } from '../../actions/basicUsers';
-import { getProfessional, getProfessionalUsers } from '../../actions/professionals';
+import { getBasicUser, updateBasicUser } from '../../actions/basicUsers';
+import { getProfessionalUsers, updateProfessional } from '../../actions/professionals';
+import { details } from '../../quiz/quizUser';
+
 /**
  * styles for the searchbox
  */
@@ -42,7 +44,7 @@ const useStyles = makeStyles((theme) => ({
   }));
 
 var filteredPosts=[];
-var filteredProfiles=[];
+var profiles = [];
 var finalFilteredProfiles=[];
 var newArray=[];
 const initialFilteredPosts = new Set();
@@ -53,8 +55,17 @@ const initialFilteredPosts = new Set();
 const SearchBox = ({updatePosts,setUpdatedPosts}) => {
   const classes = useStyles();
  
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getProfessionalUsers());
+    if (JSON.parse(localStorage.getItem('user')).type === 'client') {
+      dispatch(getBasicUser(JSON.parse(localStorage.getItem('user'))._id));
+    }
+   }, [dispatch]);
+
   filteredPosts = useSelector((state) => state.posts);
-  filteredProfiles = useSelector((state) => state.professional);
+  profiles = useSelector((state) => state.professional);
+  // console.log(profiles);
 
   const findTag =(array,searchString)=>{
     for(var i=0; i<array.length;i++)
@@ -86,8 +97,9 @@ const SearchBox = ({updatePosts,setUpdatedPosts}) => {
   const filterProfiles = (searchString) => {
     var newFilteredProfiles;
 
-    if(filteredProfiles!=null && filteredProfiles !== []){
-      newFilteredProfiles = filteredProfiles.filter((profile) => profile.username.toLowerCase().includes(searchString));
+    if(searchString !== ""){
+      newFilteredProfiles = profiles.filter((profile) => profile.username.toLowerCase().includes(searchString));
+      //console.log("filtered profiles: " + newFilteredProfiles);
       finalFilteredProfiles = newFilteredProfiles;
     } else {
       finalFilteredProfiles = [];
@@ -95,60 +107,87 @@ const SearchBox = ({updatePosts,setUpdatedPosts}) => {
   }
 
   const InitialSearch =() =>{
-    var tags;
-    var profile1;
-    var profile2;
-    var profile;
     const dispatch = useDispatch();
-    useEffect(() => {
-     dispatch(getBasicUser(JSON.parse(localStorage.getItem('user'))._id));
-     dispatch(getProfessional(JSON.parse(localStorage.getItem('user'))._id));
-    }, [dispatch]);
-    profile1 = useSelector((state) => state.basicUsers);
-    profile2 = useSelector((state) => state.professional); 
-    if(JSON.parse(localStorage.getItem('user')).type == 'client'){
-      if(profile1.tags){
-        tags=profile1.tags;
-      }
-      
-      profile=profile1;
-    } else {
-      if(profile2.tags)
-        tags=profile2.tags;
-      profile=profile2;
+
+    var profile;
+    var tags;
+
+    var clientx = useSelector((state) => state.basicUsers);
+    var professionalx = useSelector((state) => JSON.parse(localStorage.getItem('user')).type === 'professional' ? state.professional.filter((p) => p._id === JSON.parse(localStorage.getItem('user'))._id) : null);
+    
+
+    if(JSON.parse(localStorage.getItem('user')).type === 'client'){
+      profile = clientx;
+    } else if(JSON.parse(localStorage.getItem('user')).type === 'professional') {
+      profile = professionalx;
+    }
+
+    if(profile.tags){
+      tags=profile.tags;
     }
     
-    if(associatedTags.length>0) { 
-      tags=associatedTags;
-      const newBasicUser = {
-        name:profile.name,
+    // update the client profile
+    if(associatedTags.length>0 && JSON.parse(localStorage.getItem('user')).type === 'client'){ 
+        tags = associatedTags;
+        const newBasicUser = {
         username: profile.username,
+        name: profile.name,
         email: profile.email,
         password: profile.password,
-        address: profile.address,
-        gender: profile.gender,
-        bodyType: profile.bodyType,
-        weight: profile.weight,
-        bio: profile.bio,
-        tags:associatedTags,
-        goals: profile.goals,
-        isBanned: profile.isBanned,
+        gender: details.gender,
         dob: profile.dob,
-        bundles: profile.bundles
-    }
-   dispatch(updateBasicUser(JSON.parse(localStorage.getItem('user'))._id, newBasicUser));
-    }
-    if(tags !== undefined){
-      for(var i=0;i<tags.length;i++) {
-        filterPosts(tags[i]);
-    } 
-  } 
-    newArray=[];
-    initialFilteredPosts.forEach(v => newArray.push(v));
+        address: profile.address,
+        isBanned: profile.isBanned,
+        bodyType: profile.bodyType,
+        weight: details.weight,
+        height: details.height,
+        goals: details.goals,
+        tags: associatedTags,
+        bio: profile.bio,
+        resetPasswordLink: profile.resetPasswordLink,
+        bundles: profile.bundles,
+        buckets: profile.buckets
+        }
+        dispatch(updateBasicUser(JSON.parse(localStorage.getItem('user'))._id, newBasicUser));
+      } 
+      // update the professional profile
+      else if(associatedTags.length>0 && JSON.parse(localStorage.getItem('user')).type === 'professional') {
+        tags = associatedTags;
+        const newProfessional = {
+        username: profile.username,
+        name: profile.name,
+        email: profile.email,
+        password: profile.password,
+        profession: profile.profession,
+        gender: details.gender,
+        dob: profile.dob,
+        address: profile.address,
+        isBanned: profile.isBanned,
+        tags: associatedTags,
+        yearsOfExperience: details.yearsOfExperience,
+        bio: profile.bio,
+        instagramLink: profile.instagramLink,
+        youtubeLink: profile.youtubeLink,
+        resetPasswordLink: profile.resetPasswordLink
+        }
+        dispatch(updateProfessional(JSON.parse(localStorage.getItem('user'))._id, newProfessional));
+      }
+    
+      if(tags !== undefined){
+        for(var i=0;i<tags.length;i++) {
+          filterPosts(tags[i]);
+        } 
+      } 
+      newArray=[];
+      initialFilteredPosts.forEach(v => newArray.push(v));
   }
    InitialSearch();
   //loadCharacters();
   
+  /**
+   * 
+   * 
+   */
   const keyup = (e) => {
     // the user input
     const searchString = e.target.value.toLowerCase();
@@ -156,6 +195,7 @@ const SearchBox = ({updatePosts,setUpdatedPosts}) => {
 
     // filter posts
     filterPosts(searchString);
+    console.log(finalFilteredProfiles);
     var newArray=[];
     initialFilteredPosts.forEach(v => newArray.push(v));
     setUpdatedPosts(newArray);
@@ -164,7 +204,7 @@ const SearchBox = ({updatePosts,setUpdatedPosts}) => {
     filterProfiles(searchString);
 
     // if input is empty, reset the filtered profiles
-    if ( e.target.value === ""){
+    if (e.target.value === ""){
       finalFilteredProfiles = [];
     }
   };

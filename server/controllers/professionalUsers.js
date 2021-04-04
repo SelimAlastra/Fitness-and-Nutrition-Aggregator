@@ -4,7 +4,7 @@ import mongoose from 'mongoose';
 export const getProfessionalUser = async (req, res) => {
   ProfessionalUser.findById(req.params.id)
     .then(professionalUser => res.json(professionalUser))
-    .catch(error => res.status(400).json("Error: Failed to get professional user"));
+    .catch(error => res.status(404).json("Error: Failed to get professional user"));
 }
 
 export const getProfessionalUsers = async (req, res) => {
@@ -20,7 +20,7 @@ export const createProfessionalUser = async (req, res) => {
   const newProfessionalUser = new ProfessionalUser(user);
   
   newProfessionalUser.save()
-    .then(() => res.json('Professional user added!'))
+    .then(() => res.status(201).json('Professional user added!'))
     .catch(error => res.status(400).json("Error: " + error));
 }
 
@@ -39,5 +39,5 @@ export const updateProfessionalUser = async (req, res) => {
 export const deleteProfessionalUser = async (req, res) => {
   ProfessionalUser.findByIdAndDelete(req.params.id)
     .then(() => res.json("Professional user deleted"))
-    .catch(error => res.json("Error: " + error));
+    .catch(error => res.status(404).json("Error: " + error));
 }; 

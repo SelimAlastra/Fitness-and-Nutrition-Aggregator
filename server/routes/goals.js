@@ -1,5 +1,5 @@
 import express from 'express';
-import { getGoals, createGoal, updateGoal, deleteGoal, getGoal , getGoalByUserID} from "../controllers/goals.js";
+import { getGoals, createGoal, updateGoal, deleteGoal, getGoalByUserID} from "../controllers/goals.js";
 
 const router = express.Router();
 

@@ -16,16 +16,9 @@ import { Col, ListGroup, ListGroupItem, Row } from 'react-bootstrap';
 import { getPost } from '../../../api';
 
 const PopUpPost = (post) => {
-    const dispatch = useDispatch();
 
     const [modalOpen, setModalOpen] = useState(false);
     Modal.setAppElement('body');
-
-    useEffect(() => {
-        dispatch(getProfessional(post.post.userFrom))
-    }, [dispatch])
-
-    const professional = useSelector((state) => state.professional)
 
     function openModal() {
         setModalOpen(true);
@@ -34,7 +27,6 @@ const PopUpPost = (post) => {
     function closeModal() {
         setModalOpen(false);
     }
-
 
  return (
      <>

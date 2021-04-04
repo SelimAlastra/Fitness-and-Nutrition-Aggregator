@@ -7,7 +7,7 @@ export default (basicUsers = [], action) => {
         case FETCH:
             return action.payload;
         case UPDATE:
-            return action.payload;
+            return basicUsers.map((basicUsers) => basicUsers._id === action.payload._id ? action.payload : basicUsers);
         case CREATE:
             return [ ...basicUsers, action.payload ]
         case DELETE:

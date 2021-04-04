@@ -7,18 +7,18 @@ const questionsClient = [
             { answerText: "Male", selected:false, requireInput: false, tags:["menfitness"] },
             { answerText: "Other", selected:false,requireInput: false, tags:[""] },
         ],
-    }, //{
-    //     questionText: "What is your age range?",
-    //     questionId: 2,
-    //     answerOptions: [
-    //         { answerText: "Teens", selected:false, requireInput: false, tags:[""] },
-    //         { answerText: "20's", selected:false, requireInput: false, tags:[""] },
-    //         { answerText: "30's", selected:false, requireInput: false, tags:[""] },
-    //         { answerText: "40's", selected:false, requireInput: false, tags:[""] },
-    //         { answerText: "50's", selected:false, requireInput: false, tags:[""] },
-    //         { answerText: "60+", selected:false, requireInput: false, tags:[""] },
-    //     ],
-    // },
+    }, {
+        questionText: "What is your age range?",
+        questionId: 2,
+        answerOptions: [
+            { answerText: "Teens", selected:false, requireInput: false, tags:[""] },
+            { answerText: "20's", selected:false, requireInput: false, tags:[""] },
+            { answerText: "30's", selected:false, requireInput: false, tags:[""] },
+            { answerText: "40's", selected:false, requireInput: false, tags:[""] },
+            { answerText: "50's", selected:false, requireInput: false, tags:[""] },
+            { answerText: "60+", selected:false, requireInput: false, tags:[""] },
+        ],
+    },
     {
         questionText: "What is your height?",
         questionId: 3,
