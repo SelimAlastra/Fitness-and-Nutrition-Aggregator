@@ -241,12 +241,12 @@ export default function NavbarUser({updatedPosts, setUpdatedPosts}) {
     <div className={classes.grow, "navbar-top"}>
       <AppBar position="static" color="transparent">
         <Toolbar>
-          {/* <IconButton 
+          {/* // uncomment this if detailed menu is to be implemented
+          <IconButton 
             edge="start"
             className={classes.menuButton}
             color="inherit"
-            aria-label="open drawer"
-          >
+            aria-label="open drawer">
             <MenuIcon />
           </IconButton> */}
           <Typography onClick={() => window.location.href = `/clientDashboard/${JSON.parse(localStorage.getItem('user'))._id}`} className={classes.title, "logo"} style = {{"cursor" : "pointer"}} variant="h6" noWrap>
