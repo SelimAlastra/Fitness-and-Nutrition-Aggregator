@@ -1,14 +1,12 @@
-import React, {useEffect} from 'react';
+import React,{useEffect} from 'react';
 import './Navbar.css';
 import { fade } from '@material-ui/core/styles';
 import { makeStyles } from '@material-ui/core/styles';
 import InputBase from '@material-ui/core/InputBase';
-import { details } from '../../quiz/quizUser';
+import {associatedTags} from '../../quiz/quizUser';
 import { useDispatch, useSelector } from 'react-redux';
-import { getBasicUser, updateBasicUser } from '../../actions/basicUsers';
-import { getProfessional, getProfessionalUsers, updateProfessional } from '../../actions/professionals';
-import { createGoal } from '../../actions/goals';
-
+import { getBasicUser, getBasicUsers, updateBasicUser } from '../../actions/basicUsers';
+import { getProfessional, getProfessionalUsers } from '../../actions/professionals';
 /**
  * styles for the searchbox
  */
@@ -50,24 +48,21 @@ var newArray=[];
 const initialFilteredPosts = new Set();
 
 /**
- * search posts and professional profiles based on input value
- * update the database with quiz answers upon account creation
+ * 
  */
 const SearchBox = ({updatePosts,setUpdatedPosts}) => {
   const classes = useStyles();
  
   filteredPosts = useSelector((state) => state.posts);
   filteredProfiles = useSelector((state) => state.professional);
-  console.log(filteredPosts);
-  console.log(filteredProfiles);
 
-  const findTag = (array,searchString)=>{
-    for(var i=0; i<array.length;i++){
-      if(array[i].trim().toLowerCase()===searchString){
-        return true;
-      }
-    }
-    return false;
+  const findTag =(array,searchString)=>{
+    for(var i=0; i<array.length;i++)
+    {
+        if(array[i].trim().toLowerCase()===searchString)
+         return true
+    } 
+    return false
   }
 
   /**
@@ -82,7 +77,7 @@ const SearchBox = ({updatePosts,setUpdatedPosts}) => {
               post.creator.toLowerCase().includes(searchString) ||
               findTag(post.tags,searchString) 
               );
-    newFilteredPosts.forEach(post => initialFilteredPosts.add(post));
+   newFilteredPosts.forEach(post => initialFilteredPosts.add(post));
   }
 
   /**
@@ -94,129 +89,83 @@ const SearchBox = ({updatePosts,setUpdatedPosts}) => {
     if(filteredProfiles!=null && filteredProfiles !== []){
       newFilteredProfiles = filteredProfiles.filter((profile) => profile.username.toLowerCase().includes(searchString));
       finalFilteredProfiles = newFilteredProfiles;
+    } else {
+      finalFilteredProfiles = [];
     }
-    //console.log(finalFilteredProfiles);
   }
 
-  const InitialSearch = () =>{
-    const associatedTags = details.associatedTags;
-    var tags, profile1, profile2, profile;
-    const goals = details.goals;
-
-    let newGoal = {
-      userID : JSON.parse(localStorage.getItem('user'))._id,
-      description: '',
-      deadline: '',
-      tags : []
-    }
-
+  const InitialSearch =() =>{
+    var tags;
+    var profile1;
+    var profile2;
+    var profile;
     const dispatch = useDispatch();
-
     useEffect(() => {
-      dispatch(getBasicUser(JSON.parse(localStorage.getItem('user'))._id));
-      dispatch(getProfessional(JSON.parse(localStorage.getItem('user'))._id));
-      console.log(details);
-      if(details.isNew) {
-        goals.forEach((g) => {
-          newGoal.description = g;
-            dispatch(createGoal(newGoal));
-          })
-      }
-    }, []);
-
+     dispatch(getBasicUser(JSON.parse(localStorage.getItem('user'))._id));
+     dispatch(getProfessional(JSON.parse(localStorage.getItem('user'))._id));
+    }, [dispatch]);
     profile1 = useSelector((state) => state.basicUsers);
     profile2 = useSelector((state) => state.professional); 
-
-    // set the correct profile
     if(JSON.parse(localStorage.getItem('user')).type == 'client'){
-        tags = profile1.tags;
-        profile = profile1;
+      if(profile1.tags){
+        tags=profile1.tags;
+      }
+      
+      profile=profile1;
     } else {
-        if(profile2.tags){
-          tags = profile2.tags;
-        }
-      profile = profile2;
+      if(profile2.tags)
+        tags=profile2.tags;
+      profile=profile2;
     }
-
-    // update the client profile
-    if(associatedTags.length>0 && JSON.parse(localStorage.getItem('user')).type == 'client'){ 
-      tags = associatedTags;
+    
+    if(associatedTags.length>0) { 
+      tags=associatedTags;
       const newBasicUser = {
+        name:profile.name,
         username: profile.username,
-        name: profile.name,
         email: profile.email,
         password: profile.password,
-        gender: details.gender,
-        dob: profile.dob,
         address: profile.address,
-        isBanned: profile.isBanned,
+        gender: profile.gender,
         bodyType: profile.bodyType,
-        weight: details.weight,
-        height: details.height,
-        goals: details.goals,
-        tags: associatedTags,
+        weight: profile.weight,
         bio: profile.bio,
-        resetPasswordLink: profile.resetPasswordLink,
-        bundles: profile.bundles,
-        buckets: profile.buckets
-      }
-      dispatch(updateBasicUser(JSON.parse(localStorage.getItem('user'))._id, newBasicUser));
-    } 
-    // update the client profile
-    else {
-      tags = associatedTags;
-      const newProfessional = {
-        username: profile.username,
-        name: profile.name,
-        email: profile.email,
-        password: profile.password,
-        profession: profile.profession,
-        gender: details.gender,
-        dob: profile.dob,
-        address: profile.address,
+        tags:associatedTags,
+        goals: profile.goals,
         isBanned: profile.isBanned,
-        tags: associatedTags,
-        yearsOfExperience: details.yearsOfExperience,
-        bio: profile.bio,
-        instagramLink: profile.instagramLink,
-        youtubeLink: profile.youtubeLink,
-        resetPasswordLink: profile.resetPasswordLink
-      }
-      dispatch(updateProfessional(JSON.parse(localStorage.getItem('user'))._id, newProfessional));
+        dob: profile.dob,
+        bundles: profile.bundles
     }
-
-    var tags = details.associatedTags;
+   dispatch(updateBasicUser(JSON.parse(localStorage.getItem('user'))._id, newBasicUser));
+    }
     if(tags !== undefined){
-      for(var i=0;i<tags.length;i++){
+      for(var i=0;i<tags.length;i++) {
         filterPosts(tags[i]);
-      } 
     } 
-
+  } 
     newArray=[];
     initialFilteredPosts.forEach(v => newArray.push(v));
   }
-
-  InitialSearch();
+   InitialSearch();
   //loadCharacters();
   
   const keyup = (e) => {
-    //the user input
+    // the user input
     const searchString = e.target.value.toLowerCase();
     initialFilteredPosts.clear();
 
-    //filter posts accordingly
+    // filter posts
     filterPosts(searchString);
     var newArray=[];
     initialFilteredPosts.forEach(v => newArray.push(v));
     setUpdatedPosts(newArray);
 
-    //filter profiles accordingly
+    // filter profiles
     filterProfiles(searchString);
 
-    //if input is empty, reset the filtered profiles
-    if (e.target.value === ""){
+    // if input is empty, reset the filtered profiles
+    if ( e.target.value === ""){
       finalFilteredProfiles = [];
-      //console.log(finalFilteredProfiles);
     }
   };
 
@@ -229,6 +178,7 @@ const SearchBox = ({updatePosts,setUpdatedPosts}) => {
             name="query"
             id="search-input"
             placeholder="Search…" 
+            data-testid="searchBox"
             onKeyUp={(e)=>keyup(e)}
             classes={{root: classes.inputRoot, input: classes.inputInput}}
             inputProps={{ 'aria-label': 'search' }}
