@@ -56,10 +56,13 @@ const initialFilteredPosts = new Set();
 const SearchBox = ({updatePosts,setUpdatedPosts}) => {
   const classes = useStyles();
  
-  // const dispatch = useDispatch();
-  // useEffect(() => {
-  //   dispatch(getProfessionalUsers());
-  //  }, []);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getProfessionalUsers());
+    if (JSON.parse(localStorage.getItem('user')).type === 'client') {
+      dispatch(getBasicUser(JSON.parse(localStorage.getItem('user'))._id));
+    }
+   }, [dispatch]);
 
   filteredPosts = useSelector((state) => state.posts);
   profiles = useSelector((state) => state.professional);
@@ -107,20 +110,12 @@ const SearchBox = ({updatePosts,setUpdatedPosts}) => {
   const InitialSearch =() =>{
     const dispatch = useDispatch();
 
-    useEffect(() => {
-        if (JSON.parse(localStorage.getItem('user')).type === 'client') {
-          dispatch(getBasicUser(JSON.parse(localStorage.getItem('user'))._id));
-        }
-        else if (JSON.parse(localStorage.getItem('user')).type === "professional") {
-          dispatch(getProfessional(JSON.parse(localStorage.getItem('user'))._id));
-        }
-    }, [])
-
     var profile;
     var tags;
 
     var clientx = useSelector((state) => state.basicUsers);
-    var professionalx = useSelector((state) => state.professional); 
+    var professionalx = useSelector((state) => JSON.parse(localStorage.getItem('user')).type === 'professional' ? state.professional.filter((p) => p._id === JSON.parse(localStorage.getItem('user'))._id) : null);
+    
 
     if(JSON.parse(localStorage.getItem('user')).type === 'client'){
       profile = clientx;
