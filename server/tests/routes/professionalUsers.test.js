@@ -18,7 +18,6 @@ describe('professional user routes', function() {
             password: "password123",
             profession: "Health Expert",
         });
-        professionalUser.save();
         professionalUserId = professionalUser._id;
         deleteProfessionalUser = new ProfessionalUser({
             username: "232111",
@@ -27,7 +26,6 @@ describe('professional user routes', function() {
             password: "password123",
             profession: "Personal Trainer",
         });
-        deleteProfessionalUser.save();
         deleteProfessionalUserId = deleteProfessionalUser._id;
         bannedProfessionalUser = new ProfessionalUser({
             username: "56550493",
@@ -37,8 +35,12 @@ describe('professional user routes', function() {
             profession: "Personal Trainer",
             isBanned: true,
         });
-        bannedProfessionalUser.save();
-        done();
+        professionalUser.save()
+        .then(() => {
+            deleteProfessionalUser.save();
+            bannedProfessionalUser.save();
+        })
+        .then(() => done());
     });
 
 
