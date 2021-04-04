@@ -1,5 +1,6 @@
-import React, {useEffect} from 'react';
+import React, { useEffect, useState } from 'react';
 import { fade, makeStyles } from '@material-ui/core/styles';
+import Modal from 'react-bootstrap/Modal';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
@@ -15,12 +16,14 @@ import NotificationsIcon from '@material-ui/icons/Notifications';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
 import HomeIcon from '@material-ui/icons/Home';
 import MoreIcon from '@material-ui/icons/MoreVert';
+import CloseIcon from '@material-ui/icons/Close';
 import AccountBoxIcon from '@material-ui/icons/AccountBox';
 import CollectionsBookmarkIcon from '@material-ui/icons/CollectionsBookmark';
 import SettingsIcon from '@material-ui/icons/Settings';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import { signOut } from '../../actions/userAuth.js';
 import { Link, useHistory } from 'react-router-dom';
+import Form from '../Form/Form';
 import "./Navbar.css"
 
 /**
@@ -126,6 +129,12 @@ export default function NavbarProfessional({updatedPosts, setUpdatedPosts}) {
   const handleMobileMenuOpen = (event) => {
     setMobileMoreAnchorEl(event.currentTarget);
   };
+
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
+  const [currentId, setCurrentId] = useState(null);
 
   /**
    * render the usual dropdown menu
@@ -274,7 +283,7 @@ export default function NavbarProfessional({updatedPosts, setUpdatedPosts}) {
               color="inherit">
               <HomeIcon className={classes.iconButton} />
             </IconButton>
-            <IconButton component={Link} to={`/professional/services/add/${JSON.parse(localStorage.getItem('user'))._id}`} style={{width: '50px'}} color="inherit">
+            <IconButton style={{width: '50px'}} color="inherit" onClick={handleShow}>
                 <AddCircleIcon className={classes.iconButton}/>
             </IconButton>
             {/* <IconButton style={{width: '50px'}} aria-label="show 17 new notifications" color="inherit">
@@ -308,6 +317,15 @@ export default function NavbarProfessional({updatedPosts, setUpdatedPosts}) {
       </AppBar>
       {renderMobileMenu}
       {renderMenu}
+      <Modal show={show} onHide={handleClose}>
+        <div>
+        <text className="modalHeaderText">CREATE POST</text>
+          <IconButton className="closeModal" onClick={handleClose}>
+            <CloseIcon />
+          </IconButton>
+        </div>
+        <Modal.Body><Form currentId={currentId} setCurrentId={setCurrentId} /></Modal.Body>
+      </Modal>
     </div>
   );
 }

@@ -51,15 +51,16 @@ const Form = ({currentId, setCurrentId}) => {
     }
     return (
             <form autoComplete="off" noValidate className={`${classes.root} ${classes.form}`} method="post" action="#" onSubmit={handleSubmit}>
-                <Typography variant="h6">{currentId ? 'Editing' : 'Creating' } a Post</Typography>
-                <TextField fullWidth value={JSON.parse(localStorage.getItem('user')).username}/>
+                {/* <Typography variant="h6">{currentId ? 'Editing' : 'Creating' } a Post</Typography> */}
+                {/* <TextField fullWidth value={JSON.parse(localStorage.getItem('user')).username}/> */}
                 <TextField name="title" variant="outlined" label="Title" fullWidth value={postData.title} onChange={(e) => setPostData({ ...postData, title: e.target.value })} />
                 <TextField name="message" variant="outlined" label="Message" fullWidth value={postData.message} onChange={(e) => setPostData({ ...postData, message: e.target.value })} />
                 <TextField name="tags" variant="outlined" label="Tags (coma separated)" fullWidth value={postData.tags} onChange={(e) => setPostData({ ...postData, tags: e.target.value.split(',') })} />
-                <Typography>Which post do you want?</Typography>
+                <Typography style={{fontWeight: "bold", alignItems: "center"}}>POST TYPE</Typography>
+                <div style={{width: "100%", alignItems: "center"}}>
                 <div>
                     <input type="radio" name="choice-post" value="photo" onChange={(e) => setValue(e.target.value)} required />
-                    <label>Photo Post</label>
+                    <label>Photo</label>
                         <div className="reveal-if-active" >
                         <label>Upload Photo</label>
                             <FileBase type="file" multiple={false} onDone={({ base64 }) => setPostData({ ...postData, selectedFile: base64 })} />
@@ -67,7 +68,7 @@ const Form = ({currentId, setCurrentId}) => {
                 </div>
                 <div>
                     <input type="radio" name="choice-post" value="video" onChange={(e) => setValue(e.target.value)} required />
-                    <label>Video Post</label>
+                    <label>Video</label>
                         <div className="reveal-if-active" >
                         <label>Upload Video</label>
                         <TextField name="url" variant="outlined" label="URL" fullWidth value={postData.url} onChange={(e) => setPostData({ ...postData, url: e.target.value })} />
@@ -75,7 +76,7 @@ const Form = ({currentId, setCurrentId}) => {
                 </div>
                 <div>
                     <input type="radio" name="choice-post" value="audio" onChange={(e) => setValue(e.target.value)} required />
-                    <label>Audio Post</label>
+                    <label>Audio</label>
                         <div className="reveal-if-active" >
                         <label>Upload Audio</label>
                         <TextField name="src" variant="outlined" label="URL/File" fullWidth value={postData.audioFile} onChange={(e) => setPostData({ ...postData, audioFile: e.target.value })} />
@@ -84,7 +85,7 @@ const Form = ({currentId, setCurrentId}) => {
                 </div>
                 <div>
                     <input type="radio" name="choice-post" value="embeddedlink" onChange={(e) => setValue(e.target.value)} required />
-                    <label>Embedded Link Post</label>
+                    <label>Embedded Link</label>
                         <div className="reveal-if-active" >
                         <label>Upload Link</label>
                         <TextField name="src" variant="outlined" label="URL" fullWidth value={postData.embeddedLink} onChange={(e) => setPostData({ ...postData, embeddedLink: e.target.value })} />
@@ -92,12 +93,13 @@ const Form = ({currentId, setCurrentId}) => {
                 </div>   
                 <div>
                     <input type="radio" name="choice-post" value="facebooklink" onChange={(e) => setValue(e.target.value)} required />
-                    <label>Facebook Post</label>
+                    <label>Facebook</label>
                         <div className="reveal-if-active" >
                         <label>Upload Link</label>
                         <TextField name="src" variant="outlined" label="URL" fullWidth value={postData.facebookLink} onChange={(e) => setPostData({ ...postData, facebookLink: e.target.value })} />
                         </div>
-                </div>         
+                </div>     
+                </div>    
                 
                 <Button className={classes.buttonSubmit} variant="contained" color="primary" size="large" type="submit" fullWidth>Submit</Button>
                 <Button variant="contained" color="secondary" size="small" onClick={clear} fullWidth>Clear</Button>

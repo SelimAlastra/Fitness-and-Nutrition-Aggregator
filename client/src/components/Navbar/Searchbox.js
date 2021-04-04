@@ -55,11 +55,11 @@ const initialFilteredPosts = new Set();
  */
 const SearchBox = ({updatePosts,setUpdatedPosts}) => {
   const classes = useStyles();
- 
+  
   filteredPosts = useSelector((state) => state.posts);
   filteredProfiles = useSelector((state) => state.professional);
   // console.log(filteredPosts);
-  // console.log("filtered profiles: " + filteredProfiles);
+  console.log("filtered profiles: " + filteredProfiles);
 
   const findTag = (array,searchString)=>{
     for(var i=0; i<array.length;i++){
@@ -211,7 +211,7 @@ const SearchBox = ({updatePosts,setUpdatedPosts}) => {
     setUpdatedPosts(newArray);
 
     //filter profiles accordingly
-    filterProfiles(searchString);
+    // filterProfiles(searchString);
 
     //if input is empty, reset the filtered profiles
     if (e.target.value === ""){

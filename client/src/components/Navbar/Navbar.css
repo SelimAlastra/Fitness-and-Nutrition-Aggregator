@@ -19,3 +19,19 @@
 .logo {
   font-family: "Paytone One", sans-serif;
 }
+
+.closeModal {
+  display: flex;
+  width: 50px;
+  float: right;
+}
+
+.modalHeaderText {
+  font-family: "Paytone One", sans-serif;
+  font-size: 1.8rem;
+  align-self: center;
+}
+
+.modalFooter {
+  max-height: 50px;
+}

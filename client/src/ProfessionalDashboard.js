@@ -1,5 +1,6 @@
 
 import React, { useEffect ,useState } from 'react';
+import Modal from 'react-bootstrap/Modal';
 import { Container, AppBar, Typography, Grow, Grid } from '@material-ui/core';
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Toolbar from "@material-ui/core/Toolbar";
@@ -48,6 +49,10 @@ const ProfessionalDashboard = () => {
       dispatch(getBuckets());
     }, [currentBucketId,dispatch]); */
 
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
 return (
   <>
   <NavbarProfessional updatedPosts={updatedPosts} setUpdatedPosts={setUpdatedPosts}/>
@@ -84,13 +89,15 @@ return (
             <Grid item xs={12} sm={5}>
               <Posts setCurrentId={setCurrentId} updatedPosts={updatedPosts} setUpdatedPosts={setUpdatedPosts}/>
             </Grid>
-            <Grid item xs={12} sm={4}>
+            {/* <Grid item xs={12} sm={4}>
               <Form currentId={currentId} setCurrentId={setCurrentId} />
-            </Grid> 
+            </Grid>  */}
           </Grid>
         </Container>
       </Grow>
-
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Body><Form currentId={currentId} setCurrentId={setCurrentId} /></Modal.Body>
+      </Modal>
     </Container>
     </>
   );
