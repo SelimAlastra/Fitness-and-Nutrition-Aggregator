@@ -6,7 +6,7 @@ import * as api from '../api/index';
 
 export const getBuckets = () => async (dispatch) => {
     try {
-      const { data } = await api.fetchBuckets();
+      const { data } = await api.getBuckets();
   
       dispatch({ type: FETCH_ALL, payload: data });
     } catch (error) {

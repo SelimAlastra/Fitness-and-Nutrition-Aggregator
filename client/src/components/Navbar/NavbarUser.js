@@ -145,7 +145,7 @@ export default function NavbarUser({updatedPosts, setUpdatedPosts}) {
           </div>
         </IconButton>
       </MenuItem>
-      <MenuItem onClick={handleMenuClose}>
+      {/* <MenuItem onClick={handleMenuClose}>
         <IconButton component={Link} onClick={
               () => window.location.href = `/user/myBuckets/${JSON.parse(localStorage.getItem('user'))._id}`
             } > 
@@ -154,7 +154,7 @@ export default function NavbarUser({updatedPosts, setUpdatedPosts}) {
             <text style={{fontSize:"1.2rem"}}>Buckets</text>
           </div>
         </IconButton>
-      </MenuItem>
+      </MenuItem> */}
       <MenuItem onClick={handleMenuClose}>
         <IconButton component={Link} to={`/user/edit/${JSON.parse(localStorage.getItem('user'))._id}`}> 
           <div>
@@ -202,14 +202,12 @@ export default function NavbarUser({updatedPosts, setUpdatedPosts}) {
         </IconButton>
       </MenuItem>
       <MenuItem>
-        <IconButton component={Link} onClick={
-              () => window.location.href = `/user/myBuckets/${JSON.parse(localStorage.getItem('user'))._id}`
-            } > 
-          <div>
-            <LayersIcon/> 
-            <text style={{fontSize:"1.2rem"}}>Buckets</text>
-          </div>
-        </IconButton>
+      <IconButton component={Link} to = {`/user/myBuckets/${JSON.parse(localStorage.getItem('user'))._id}`}>
+              <div>
+                <LayersIcon className={classes.iconButton}/> 
+                <text style={{fontSize:"1.2rem"}}>Buckets</text>
+              </div>
+            </IconButton>
       </MenuItem>
       <MenuItem>
         <IconButton component={Link} to={`/user/profile/${JSON.parse(localStorage.getItem('user'))._id}`} > 
@@ -243,14 +241,14 @@ export default function NavbarUser({updatedPosts, setUpdatedPosts}) {
     <div className={classes.grow, "navbar-top"}>
       <AppBar position="static" color="transparent">
         <Toolbar>
-          <IconButton 
+          {/* <IconButton 
             edge="start"
             className={classes.menuButton}
             color="inherit"
             aria-label="open drawer"
           >
             <MenuIcon />
-          </IconButton>
+          </IconButton> */}
           <Typography onClick={() => window.location.href = `/clientDashboard/${JSON.parse(localStorage.getItem('user'))._id}`} className={classes.title, "logo"} style = {{"cursor" : "pointer"}} variant="h6" noWrap>
             LOGO
           </Typography>
@@ -262,8 +260,14 @@ export default function NavbarUser({updatedPosts, setUpdatedPosts}) {
             </div>
             <Searchbox updatedPosts={updatedPosts} setUpdatedPosts={setUpdatedPosts}/>
           </div>
-          ) : (<div></div>)
-          }
+          ) : (
+          <IconButton
+          onClick={() => window.location.href = `/clientDashboard/${JSON.parse(localStorage.getItem('user'))._id}`}
+          style={{width: '50px', left: "0.5rem"}} 
+          color="inherit">
+            <SearchIcon />
+          </IconButton>
+          )}
 
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
@@ -277,13 +281,20 @@ export default function NavbarUser({updatedPosts, setUpdatedPosts}) {
             <IconButton component={Link} to={`/user/myservices/${JSON.parse(localStorage.getItem('user'))._id}`} style={{width: '50px'}} data-testid="myServicesButton" color="inherit">
               <Badge badgeContent={2} color="secondary">
                 <CollectionsBookmarkIcon className={classes.iconButton}/>
-              </Badge>
+               </Badge>
             </IconButton>
            {/*  <IconButton style={{width: '50px'}} color="inherit">
               <Badge badgeContent={13} color="secondary">
                 <NotificationsIcon className={classes.iconButton}/>
               </Badge>
             </IconButton> */}
+            <IconButton component={Link} to= {`/user/myBuckets/${JSON.parse(localStorage.getItem('user'))._id}`} 
+                style={{width: '50px'}} 
+                color="inherit">
+              <div>
+                <LayersIcon className={classes.iconButton}/> 
+              </div>
+            </IconButton>
             <IconButton style={{width: '50px'}}
               edge="end"
               aria-label="account of current user"

@@ -4,7 +4,8 @@ import Button from 'react-bootstrap/Button';
 import React, { useState } from 'react';
 import Login from './userLogin';
 import Register from './userRegister';
-import { Container } from 'react-bootstrap';
+import './usersModal.css';
+import { Link } from 'react-router-dom';
 
 function PopUpProfessional(){
   
@@ -13,36 +14,36 @@ function PopUpProfessional(){
   const handleRegister = () => setLogin(false);
 
   const [show, setShow] = useState(false);
-  const handleClose = () => setShow(false);
+  const handleClose = () => 
+  {
+    setLogin(true);
+    setShow(false);
+  }
   const handleShow = () => setShow(true);
 
   return(
     <>
     <Button className="landingButton2" data-testid="professionalUsersButton" onClick={handleShow}>
-      Professionals
+    Providing the change?
     </Button>
     <div className = "modal-dialog">
     <Modal className="logIn" show={show} onHide={handleClose}>
-      <Modal.Header>
-        <Modal.Title>
-          <Container login={login}>
-            <Button onClick={handleLogin}>LOG IN</Button>
-            <Button onClick={handleRegister}>SIGN UP</Button>
-          </Container>
-        </Modal.Title>
+      <Modal.Header className="modalHeaderLoginRegister" login={login} closeButton>
+          <Modal.Title>Welcome to Fitness Aggregator</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         { login == true ?
+        <div>
         <Login/>
+        <Link className="redirectLinkLogin" onClick={()=>{handleRegister()}}>Don't have an account? Sign up!</Link>
+        </div>
         :
+        <div>
         <Register/>
+        <Link className="redirectLinkRegister" onClick={()=>{handleLogin()}}>Already a user? Log in!</Link>
+        </div>
         }
       </Modal.Body>
-      <Modal.Footer>
-        <Button onClick={handleClose}>
-          Close
-        </Button>
-      </Modal.Footer>
     </Modal>
     </div>
   </>

@@ -90,8 +90,7 @@ const MyServices = (props) => {
             );
         }
     }
-
-
+    
     if (myServices === undefined || myServices.length === 0 ) {
         return (
             <div>

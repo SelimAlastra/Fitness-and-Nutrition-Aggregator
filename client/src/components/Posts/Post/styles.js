@@ -74,7 +74,6 @@ export default makeStyles((theme) => ({
     textAlign: 'center',
     display: 'inline-flex',
     padding: '5px 5px 5px 5px',
+    marginBottom: 15
   },
-  
- 
 }));
