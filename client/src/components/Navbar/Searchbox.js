@@ -58,8 +58,8 @@ const SearchBox = ({updatePosts,setUpdatedPosts}) => {
  
   filteredPosts = useSelector((state) => state.posts);
   filteredProfiles = useSelector((state) => state.professional);
-  console.log(filteredPosts);
-  console.log(filteredProfiles);
+  // console.log(filteredPosts);
+  // console.log("filtered profiles: " + filteredProfiles);
 
   const findTag = (array,searchString)=>{
     for(var i=0; i<array.length;i++){
@@ -92,7 +92,7 @@ const SearchBox = ({updatePosts,setUpdatedPosts}) => {
     var newFilteredProfiles;
 
     if(filteredProfiles!=null && filteredProfiles !== []){
-      newFilteredProfiles = filteredProfiles.filter((profile) => profile.username.toLowerCase().includes(searchString));
+      newFilteredProfiles = filteredProfiles.filter(profile => profile.username.toLowerCase().includes(searchString));
       finalFilteredProfiles = newFilteredProfiles;
     }
     //console.log(finalFilteredProfiles);
@@ -115,7 +115,7 @@ const SearchBox = ({updatePosts,setUpdatedPosts}) => {
     useEffect(() => {
       dispatch(getBasicUser(JSON.parse(localStorage.getItem('user'))._id));
       dispatch(getProfessional(JSON.parse(localStorage.getItem('user'))._id));
-      console.log(details);
+      // console.log(details);
       if(details.isNew) {
         goals.forEach((g) => {
           newGoal.description = g;
