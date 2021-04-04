@@ -33,6 +33,7 @@ const ForgetPassword = () => {
                 actions.setFieldValue('general', `Email has been sent to ${values.email}. Please follow the instructions to reset your password.`)
               })
               .catch(err => {
+                    console.log(values.email);
                     actions.setFieldError('email', 'User with that email does not exist. Please register.')
                     console.log(err.response);   
                     actions.setSubmitting(false);
