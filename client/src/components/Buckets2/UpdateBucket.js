@@ -11,22 +11,6 @@ function UpdateBucketForm({bucket}) {
     const handleShow = () => setShow(true);
     const dispatch = useDispatch();
 
-    const [title, setTitle] = useState("");
-
-    useEffect(() => {
-        setTitle(bucket.title);
-    }, [bucket])
-
-    function handleSubmit(e) {
-        e.preventDefault();
-        const newTitle = {
-            title : title
-        }
-        console.log(newTitle)
-        dispatch(updateBucket(bucket._id, newTitle));
-        handleClose();
-    }
-
     return (< >
         < Button class="bucket button"
             size="medium"
@@ -39,16 +23,34 @@ function UpdateBucketForm({bucket}) {
                     < Modal.Title> Edit bucket</Modal.Title >
                 </ Modal.Header >
                 < Modal.Body >
-                    <Form autoComplete="off" onSubmit={handleSubmit}>
-                        <Form.Label htmlFor="title">Bucket Name</Form.Label>
-                        <Form.Control id="title" name="title" variant="outlined" value={title} placeholder="title" onChange={(e) => setTitle(e.target.value)} />
-                        <Button variant="contained" color="primary" size="large" type="submit">Save</Button>
-                    </Form>
+                    < UpdateFormBucket bucketToEdit={bucket}/>
                 </Modal.Body>
             </Modal >
         </div>
     </>
     );
 };
+
+const UpdateFormBucket = ({bucketToEdit}) => {
+    console.log(bucketToEdit);
+    const dispatch = useDispatch();
+        
+    const [postData, setPostData] = useState({title: ''});
+
+    const handleSubmit = (e) => {
+        console.log(bucketToEdit._id);
+        e.preventDefault();
+        dispatch(updateBucket(bucketToEdit._id, postData));
+        //window.location.reload();
+    }
+
+    return (
+        <Form autoComplete="off" onSubmit={handleSubmit}>
+            <Form.Label htmlFor="title">Bucket Name</Form.Label>
+            <Form.Control id="title" name="title" variant="outlined" onChange={(e) => setPostData({ ...postData, title: e.target.value })} />
+            <Button variant="contained" color="primary" size="large" type="submit">Save</Button>
+        </Form>
+    );
+}
 
 export default UpdateBucketForm;
