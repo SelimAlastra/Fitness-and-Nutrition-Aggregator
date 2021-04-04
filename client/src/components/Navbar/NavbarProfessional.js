@@ -268,7 +268,7 @@ export default function NavbarProfessional({updatedPosts, setUpdatedPosts}) {
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
             <IconButton 
-              onClick={() => window.location.href = `/professionalDashboard/${JSON.parse(localStorage.getItem('user')).username}-${JSON.parse(localStorage.getItem('user'))._id}`}
+              onClick={() => window.location.href = `/professionalDashboard/${JSON.parse(localStorage.getItem('user'))._id}`}
               style={{width: '50px'}}
               data-testid="proHomeButton" 
               color="inherit">
