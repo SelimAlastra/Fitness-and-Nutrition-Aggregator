@@ -8,7 +8,7 @@ const Audio = ({setSrc}) => {
 
 
     return (
-         <ReactAudioPlayer width = '300px' height = '250px' src = {setSrc} autoPlay controls/> 
+         <ReactAudioPlayer width = '382px' minHeight = '200px' src = {setSrc} autoPlay controls/> 
     );
 }
 

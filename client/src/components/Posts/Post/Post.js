@@ -22,51 +22,10 @@ import PopUpPost from './PopUpPost';
 
 import { deletePost, likePost, toggleFavAction, updatePost } from '../../../actions/posts';
 
+export const ReportPopUp = ({post}) => {
 
-
-const Post = ({ post, setCurrentId }) => {
   const classes = useStyles();
-  const dispatch = useDispatch();
-
-  const [open, setOpen] = React.useState(false);
   const user = JSON.parse(localStorage.getItem('user'));
-
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const handleClick = (event) => setAnchorEl(event.currentTarget);
-  const handleClose = () => setAnchorEl(null);
-
-  const [showBucket, setShowBucket] = useState(false);
-  const handleCloseBucket = () => setShowBucket(false);
-  const handleShowBucket = () => setShowBucket(true);
-
-  require('dotenv').config({ path: '/.env' });
-
-  function PopUpBuckets() {
-
-    const postToAdd = {
-      postId: post._id
-    }
-
-    return (<>
-      <Button size="small" onClick={handleShowBucket}
-      >
-        <FaFolderPlus />
-      </Button>
-      < Modal className = "bucket" show={showBucket} onHide={handleCloseBucket}>
-        < Modal.Header closeButton > < Modal.Title > Add this post to a bucket </Modal.Title >
-        </ Modal.Header >
-        < Modal.Body>
-          < BucketsGrid postToAdd={postToAdd} />
-        </Modal.Body>
-        < Modal.Footer >
-          < Buckets2 />
-        </Modal.Footer>
-      </ Modal >
-       </>
-      );
-  };
-
-  const ReportPopUp = () => {
     
   const [showReport, setShowReport] = useState(false);
   const handleCloseReport = () => setShowReport(false);
@@ -94,8 +53,10 @@ const Post = ({ post, setCurrentId }) => {
     );
   }
 
+  export const Likes = ({post}) => {
 
-  const Likes = () => {
+    const user = JSON.parse(localStorage.getItem('user'));
+
     if (post.likes.length > 0) {
       return post.likes.find((like) => like === (user?.result?._id))
         ? (
@@ -107,6 +68,50 @@ const Post = ({ post, setCurrentId }) => {
 
     return <><FavoriteBorderIcon fontSize="small" /></>;
   };
+
+  export const PopUpBuckets = ({post}) => {
+
+    const [showBucket, setShowBucket] = useState(false);
+    const handleCloseBucket = () => setShowBucket(false);
+    const handleShowBucket = () => setShowBucket(true);
+
+    const postToAdd = {
+      postId: post._id
+    }
+
+    return (<>
+      <Button size="small" onClick={handleShowBucket}
+      >
+        <FaFolderPlus />
+      </Button>
+      < Modal className = "bucket" show={showBucket} onHide={handleCloseBucket}>
+        < Modal.Header closeButton > < Modal.Title > Add this post to a bucket </Modal.Title >
+        </ Modal.Header >
+        < Modal.Body>
+          < BucketsGrid postToAdd={postToAdd} />
+        </Modal.Body>
+        < Modal.Footer >
+          < Buckets2 />
+        </Modal.Footer>
+      </ Modal >
+       </>
+      );
+  };
+
+
+const Post = ({ post, setCurrentId }) => {
+  const classes = useStyles();
+  const dispatch = useDispatch();
+
+  const [open, setOpen] = React.useState(false);
+  const user = JSON.parse(localStorage.getItem('user'));
+
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const handleClick = (event) => setAnchorEl(event.currentTarget);
+  const handleClose = () => setAnchorEl(null);
+
+  require('dotenv').config({ path: '/.env' });
+
 
   const Delete = () => {
     if (String(JSON.parse(localStorage.getItem('user'))._id) == post.userFrom) {
@@ -128,7 +133,6 @@ const Post = ({ post, setCurrentId }) => {
       return (
         <ReportPopUp/>
       )
-    return <div></div>
   }
 
 
@@ -155,7 +159,7 @@ const Post = ({ post, setCurrentId }) => {
           onClose={handleClose}
         >
           {JSON.parse(localStorage.getItem('user')).type == 'client' ?
-            <ReportPopUp />
+            <ReportPopUp post = {post}/>
             : <Edit />
           }
         </Menu>
@@ -170,7 +174,6 @@ const Post = ({ post, setCurrentId }) => {
         </div>
         : <div></div>
       }
-
       <div className={classes.video}>
         {post.url ?
           <CardContent>
@@ -180,22 +183,23 @@ const Post = ({ post, setCurrentId }) => {
         }
       </div>
       {   post.audioFile ?
-        <CardContent>
+        <CardContent className={classes.audio}>
           <Audio setSrc={post.audioFile} />
         </CardContent>
         : <div></div>
       }
       {   post.embeddedLink ?
-        <CardContent>
-          <EmbeddedLinks setLink={post.embeddedLink} />
+        <CardContent className={classes.embeddedLink}>
+          <EmbeddedLinks  setLink={post.embeddedLink} />
         </CardContent>
         : <div></div>
       }
       {   post.facebookLink ?
-        <CardContent>
+        <CardContent className={classes.facebookLink}>
           <FacebookLinks setLink={post.facebookLink} />
         </CardContent>
-        : <div></div>
+        : <div>
+        </div>
       }
       { post.tags ?
         <div className={classes.details}>
@@ -208,14 +212,14 @@ const Post = ({ post, setCurrentId }) => {
           <div className={classes.button}>
             {post.likes ?
               <Button size="small" onClick={() => dispatch(likePost(post._id, JSON.parse(localStorage.getItem('user'))._id))}>
-                <Likes />
+                <Likes post = {post}/>
               </Button>
               : <> </>
             }
           </div>
           {JSON.parse(localStorage.getItem('user')).type == 'client' ?
             <div>
-            <PopUpBuckets />
+            <PopUpBuckets post = {post}/>
             <PopUpPost post = {post}/>
             </div>
             : 
