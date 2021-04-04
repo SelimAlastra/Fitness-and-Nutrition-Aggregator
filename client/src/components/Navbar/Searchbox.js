@@ -5,8 +5,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import InputBase from '@material-ui/core/InputBase';
 import {associatedTags} from '../../quiz/quizUser';
 import { useDispatch, useSelector } from 'react-redux';
-import { getBasicUser, getBasicUsers, updateBasicUser } from '../../actions/basicUsers';
-import { getProfessional, getProfessionalUsers, updateProfessional } from '../../actions/professionals';
+import { getBasicUser, updateBasicUser } from '../../actions/basicUsers';
+import { getProfessionalUsers, updateProfessional } from '../../actions/professionals';
 import { details } from '../../quiz/quizUser';
 
 /**
@@ -44,7 +44,6 @@ const useStyles = makeStyles((theme) => ({
   }));
 
 var filteredPosts=[];
-var filteredProfiles=[];
 var profiles = [];
 var finalFilteredProfiles=[];
 var newArray=[];
@@ -98,9 +97,9 @@ const SearchBox = ({updatePosts,setUpdatedPosts}) => {
   const filterProfiles = (searchString) => {
     var newFilteredProfiles;
 
-    if(searchString !==""){
+    if(searchString !== ""){
       newFilteredProfiles = profiles.filter((profile) => profile.username.toLowerCase().includes(searchString));
-      // console.log("filtered profiles: " + newFilteredProfiles);
+      //console.log("filtered profiles: " + newFilteredProfiles);
       finalFilteredProfiles = newFilteredProfiles;
     } else {
       finalFilteredProfiles = [];
@@ -196,6 +195,7 @@ const SearchBox = ({updatePosts,setUpdatedPosts}) => {
 
     // filter posts
     filterPosts(searchString);
+    console.log(finalFilteredProfiles);
     var newArray=[];
     initialFilteredPosts.forEach(v => newArray.push(v));
     setUpdatedPosts(newArray);
