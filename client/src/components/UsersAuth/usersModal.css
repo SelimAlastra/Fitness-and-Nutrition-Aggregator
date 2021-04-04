@@ -16,57 +16,58 @@
     height: 0.5px;
 }
 
-.loginButtonModal2:hover {
-  border-color: black !important;
-  border-bottom: none !important;
-  border-top: none !important;
+.loginButtonModal2:hover{
+    border-color: black !important;
+    border-bottom: none !important;
+    border-top: none !important;
 }
 
 .loginButtonModal2:focus {
-  border-bottom-color: transparent !important;
+    border-bottom-color: transparent !important;
 }
 
-.loginButtonModal2 {
-  color: black !important;
-  font-weight: bold !important;
-  position: absolute;
-  top: 0;
-  height: 100%;
-  width: 50.5%;
-  left: 0;
-  background-color: darkseagreen !important;
-  border-top: none !important;
-  border-bottom-width: 1px !important;
-  border-left: none !important;
-  border-right-width: 2px !important;
-  border-color: black !important;
-  box-shadow: none !important;
+.loginButtonModal2{
+    color: black !important;
+    font-weight: bold !important;
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 50.5%;
+    left: 0;
+    background-color: darkseagreen !important;
+    border-top: none !important;
+    border-bottom-width: 1px !important;
+    border-left: none !important;
+    border-right-width: 2px !important;
+    border-color: black !important;
+    box-shadow: none !important;
 }
 
-.registerButtonModal2:hover {
-  border-bottom-color: transparent !important;
-  border-color: black !important;
+.registerButtonModal2:hover{
+    border-bottom-color: transparent !important;
+    border-color: black !important;
 }
 
 .registerButtonModal2:focus {
-  border-bottom-color: transparent !important;
+    border-bottom-color: transparent !important;
 }
 
-.registerButtonModal2 {
-  color: black !important;
-  font-weight: bold;
-  position: absolute;
-  top: 0;
-  height: 100%;
-  width: 50%;
-  right: 0;
-  background-color: darkseagreen !important;
-  border-bottom-width: 1px !important;
-  border-left-width: 2px !important;
-  border-top: none !important;
-  border-right: none !important;
-  border-color: black !important;
-  box-shadow: none !important;
+.registerButtonModal2{
+    color: black !important;
+    font-weight: bold;
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 50%;
+    right: 0;
+    background-color: darkseagreen !important;
+    border-bottom-width: 1px !important;
+    border-left-width: 2px !important;
+    border-top: none !important;
+    border-right: none !important;
+    border-color: black !important;
+    box-shadow: none !important;
+
 }
 
 .redirectLinkLogin{
@@ -104,3 +105,4 @@
     border-top-left-radius: 30px !important;
     border-top-right-radius: 30px !important;
 }
+
