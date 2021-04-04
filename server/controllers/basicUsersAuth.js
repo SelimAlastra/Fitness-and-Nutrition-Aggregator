@@ -73,7 +73,7 @@ export const registerController = (req, res) => {
                         { expiresIn: '7d' }
                       );
                       const { _id, email, name, username } = data;
-                      return res.json({
+                      return res.status(201).json({
                         token,
                         user: { _id, email, name, username, type: 'client' }
                       });
@@ -96,19 +96,19 @@ export const loginController = (req, res) => {
     email
   }).exec((err, user) => {
     if (err || !user) {
-      return res.status(400).json({
+      return res.status(401).json({
         errors: 'User with that email does not exist. Please signup'
       });
     }
     // authenticate
     else if (!user.authenticate(password)) {
-      return res.status(400).json({
+      return res.status(401).json({
         errors: 'Email and password do not match'
       });
     }
     // check if banned
     else if (user.isBanned) {
-      return res.status(400).json({
+      return res.status(401).json({
         errors: 'You cannot login, as you are banned.'
       });
     }
@@ -124,7 +124,7 @@ export const loginController = (req, res) => {
     );
     const { _id, username, email, name,  type } = user;
 
-    return res.json({
+    return res.status(200).json({
       token,
       user: {
         _id,
@@ -260,7 +260,7 @@ export const forgotPasswordController = (req, res) => {
     },
     (err, user) => {
       if (err || !user) {
-        return res.status(400).json({
+        return res.status(404).json({
           error: 'User with that email does not exist'
         });
       }
@@ -295,7 +295,7 @@ export const forgotPasswordController = (req, res) => {
         (err, success) => {
           if (err) {
             console.log('RESET PASSWORD LINK ERROR', err);
-            return res.status(400).json({
+            return res.status(404).json({
               error:
                 'Database connection error on user password forgot request'
             });
