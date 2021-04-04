@@ -1,12 +1,38 @@
-.serviceText{
-    margin-top: 30px !important;
+.serviceModalAdd{
+    text-align: center;
+    background-color: white;
+    margin: 5%;
+    padding: 1%;
+    margin-left: 36% !important;
+    margin-right: 36% !important;
+    height: fit-content !important;
+    overflow: hidden !important;
+    border-radius: 25px !important;
+    border: none !important;
+    box-shadow: 0px 0px 9px 0px rgba(220, 143, 102, 1 ) !important;
 }
 
-.form-label{
-    margin-top: 40px;
-    font-weight: bold !important;
+.saveClose .actionButton{
+    margin-bottom: 30px;
+    background-color: #A8D5C5 !important;
+    border-color: #A8D5C5 !important;
+    box-shadow: none !important;
+    color: black !important;
 }
 
-.form-control .formContainer{
-    width: fit-content;
+.saveClose .actionButton:hover{
+    background-color: #7ec0a9 !important;
+    color: white !important;
+}
+
+.addServiceForm .form-control:focus{
+    box-shadow: 0px 0px 9px 0px rgba(168, 213, 197, 1)!important;;
+}
+
+.addServiceButton{
+    background-color: #A8D5C5 !important;
+    border-color: #A8D5C5 !important;
+    box-shadow: none !important;
+    color: black !important;
+    margin-bottom: 17px;
 }
