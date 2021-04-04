@@ -1,4 +1,4 @@
-import { Form, Button } from 'react-bootstrap';
+import { Form, Button, FormCheck } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
 import { useState } from 'react';
 import { addService } from '../../../actions/services';
@@ -11,25 +11,28 @@ const AddService = (props) => {
         price: ""
     });
 
+
     const userID = props.match.params.id;
 
     function addNewService(event) {
-        const toAdd = {
-            description: newService.description,
-            price: newService.price,
-            userID: userID,
-            title: newService.title,
-            urls: newService.urls
-        };
-
-        dispatch(addService(toAdd));
-        setNewService({
-            description: "",
-            price: "",
-            title: "",
-            urls: []
-        });
-        window.location.href = `/professional/services/edit/${userID}`;
+        if (validateFields()) {
+            const toAdd = {
+                description: newService.description,
+                price: newService.price,
+                userID: userID,
+                title: newService.title,
+                urls: newService.urls
+            };
+            dispatch(addService(toAdd));
+            setNewService({
+                description: "",
+                price: "",
+                title: "",
+                urls: []
+            });
+            window.alert("New Bundle added successfull!");
+        }
+        
     }
 
     return (
@@ -41,6 +44,8 @@ const AddService = (props) => {
                     <hr className="seperator"/>
                     <div>
                         <Form>
+                            <div>All Fields are mandatory</div>
+                            <br />
                             <Form.Group>
                                 <Form.Label>Title</Form.Label>  
                                 <Form.Control
@@ -49,6 +54,7 @@ const AddService = (props) => {
                                     name="title" 
                                     placeholder="Title"
                                     className="inputItem" 
+                                    required
                                     onChange={(e) => setNewService({
                                         ...newService,
                                         title: e.target.value
@@ -64,6 +70,7 @@ const AddService = (props) => {
                                     name="description" 
                                     placeholder="Description"
                                     className="inputItem" 
+                                    required
                                     onChange={(e) => setNewService({
                                         ...newService,
                                         description: e.target.value
@@ -78,6 +85,7 @@ const AddService = (props) => {
                                     id="priceInput"
                                     name="price" 
                                     placeholder="Price"
+                                    required
                                     className="inputItem" 
                                     onChange={(e) => setNewService({
                                         ...newService,
@@ -109,6 +117,14 @@ const AddService = (props) => {
         </div>
 
     );
+
+    function validateFields() {
+        if (newService.description === "" || 
+        newService.title === "" || newService.price === "") {
+            return false;
+        }
+        return true;
+    }
 }
 
 export default AddService;
