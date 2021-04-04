@@ -26,7 +26,7 @@ function PopUpLogin(){
   return(
     <>
     <Button className="landingButton1" data-testid="basicUsersButton" onClick={handleShow}>
-      Basic Users
+      Looking for a change?
     </Button>
     <div className = "modal-dialog">
     <Modal className="logIn" show={show} onHide={handleClose}>
