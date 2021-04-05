@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import Tags from '../Tags/Tags';
 
 function ProfileInfo({profile}) {
@@ -8,13 +9,20 @@ function ProfileInfo({profile}) {
                     <img src={"https://images.unsplash.com/photo-1588420343618-6141b3784bce?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80"}/>
                 </div>
                 <div>
-                    <h2 className="clientName">{profile.name} <p className="minorText">({profile.username})</p></h2>
+                    <h2 className="clientName">{profile.name}
+                     <p className="minorText" style={{"marginTop": "10px"}}>({profile.username})</p>
+                     <p className="minorText">{profile.email}</p>
+                    </h2>
+                    {profile.bundles !== undefined || profile.buckets !== undefined ?
+                    <div><Link to={`/user/myservices/${profile._id}`}> {profile.bundles.length} bundles</Link> · <Link to={`/user/myBuckets/${profile._id}`}>{profile.buckets.length} buckets</Link></div>
+                    : <div/>
+                    }
                     <hr className="profileSeperator"/>
                     { generateLocationContainer(profile.address) }
                     { generateDescriptionContainer(profile.bio) }
                     { generateTags(profile.tags) } 
-                    <p className="helpText">Contact Info</p> 
-                    <p className="textContainer">{profile.email}</p>
+                    <p className="helpText"></p> 
+                   
                 </div>
                 <div data-testid="socialBar">
                         { generateInstagramLink(profile.instagramLink) }
