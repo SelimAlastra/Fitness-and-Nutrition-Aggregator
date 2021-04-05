@@ -21,7 +21,7 @@ const PopUpPost = (post) => {
 
     let professionals;
 
-    if(professional.length>1 && professional!== null){
+    if(professional!== null && professional.length>1){
         professionals = professional.filter(professional => professional._id == post.post.userFrom)
     }
 
