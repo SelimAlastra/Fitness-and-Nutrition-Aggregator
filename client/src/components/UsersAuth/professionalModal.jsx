@@ -31,6 +31,7 @@ function PopUpProfessional(){
       <Modal.Header className="modalHeaderLoginRegister" login={login} closeButton>
           <Modal.Title>Welcome to Fitness Aggregator</Modal.Title>
       </Modal.Header>
+      <hr className="hrModal"/>
       <Modal.Body>
         { login == true ?
         <div>

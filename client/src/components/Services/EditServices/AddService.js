@@ -5,8 +5,7 @@ import { addService } from '../../../actions/services';
 import NavbarProfessional from "../../Navbar/NavbarProfessional";
 import Modal from 'react-modal';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faWindowClose } from '@fortawesome/free-regular-svg-icons';
-import './AddService.css';
+import CloseIcon from '@material-ui/icons/Close';import './AddService.css';
 
 const AddService = (props) => {
 
@@ -54,12 +53,11 @@ const AddService = (props) => {
             <Button className="addServiceButton" onClick={handleShow}>Add New Bundle</Button>
             <Modal className="serviceModalAdd" isOpen={show} onHide={handleClose}>
                 <div className="closeButton">
-                    <FontAwesomeIcon
-                        icon={faWindowClose}
+                    <CloseIcon
                         size="2x"
                         onClick={handleClose}
                     >
-                    </FontAwesomeIcon>
+                    </CloseIcon>
                 </div>
                 <h4 className="serviceText">Add Bundle</h4>
                 <hr className="separator" />

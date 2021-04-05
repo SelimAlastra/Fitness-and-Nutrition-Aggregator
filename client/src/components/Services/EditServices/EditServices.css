@@ -1,6 +1,8 @@
 td.videoContainer{
     height: 100% !important;
     display: flex;
+    margin-left: 15% !important;
+
 }
 
 tr.tableRow{
@@ -13,10 +15,6 @@ tr.tableRow{
     box-shadow: 0px 0px 9px 0px rgba(220, 143, 102, 1);
     height: 300px;
 
-}
-
-td.videoContainer{
-    margin-left: 15% !important;
 }
 
 .actionButtonEdit{
@@ -39,7 +37,7 @@ td.videoContainer{
     padding: 1%;
     margin-left: 36% !important;
     margin-right: 36% !important;
-    height: 45% !important;
+    height: 47% !important;
     overflow: hidden !important;
     border-radius: 25px !important;
     border: none !important;
