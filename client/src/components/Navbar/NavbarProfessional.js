@@ -318,12 +318,12 @@ export default function NavbarProfessional({updatedPosts, setUpdatedPosts}) {
       {renderMobileMenu}
       {renderMenu}
       <Modal show={show} onHide={handleClose}>
-        <div>
-        <text className="modalHeaderText">CREATE POST</text>
-          <IconButton className="closeModal" onClick={handleClose}>
+        <Modal.Header className="modalHeader">
+          <text className="modalHeaderText">CREATE POST</text>
+          <IconButton style={{float: "right"}} className="closeModal" onClick={handleClose}>
             <CloseIcon />
           </IconButton>
-        </div>
+        </Modal.Header>
         <Modal.Body><Form currentId={currentId} setCurrentId={setCurrentId} /></Modal.Body>
       </Modal>
     </div>

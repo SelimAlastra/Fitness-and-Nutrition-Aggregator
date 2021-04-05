@@ -2,7 +2,6 @@ import React from "react";
 import { Alert, Carousel } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './LandingPage.css';
-import NavbarVisitor from './components/Navbar/NavbarVisitor.js';
 import { useHistory } from 'react-router-dom';
 import BasicUsers from './components/UsersAuth/clientModal';
 import Professional from './components/UsersAuth/professionalModal';
