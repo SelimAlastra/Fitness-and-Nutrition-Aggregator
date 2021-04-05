@@ -22,6 +22,7 @@
     "cypress-react-unit-test": "^4.17.2",
     "debug": "^2.6.9",
     "dotenv": "^8.2.0",
+    "emailjs-com": "^2.6.4",
     "express": "^4.17.1",
     "formik": "^2.2.6",
     "is-number": "^7.0.0",

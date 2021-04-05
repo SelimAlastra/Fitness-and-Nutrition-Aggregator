@@ -7,8 +7,9 @@ import './MyServices.css';
 import ReactPlayer from 'react-player';
 import Modal from 'react-modal';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faWindowClose } from '@fortawesome/free-regular-svg-icons'
+import CloseIcon from '@material-ui/icons/Close';
 import NavbarUser from '../../Navbar/NavbarUser';
+import { getProfessional, getProfessionalUsers } from '../../../actions/professionals';
 
 const MyServices = (props) => {
     const dispatch = useDispatch();
@@ -40,6 +41,7 @@ const MyServices = (props) => {
         setModalOpen(true);
     }
 
+
     function closeModal() {
         setModalOpen(false);
     }
@@ -53,12 +55,11 @@ const MyServices = (props) => {
                     className="serviceModal"
                 >
                     <div className="closeButton">
-                        <FontAwesomeIcon
-                            icon={faWindowClose}
+                        <CloseIcon
                             size="2x"
                             onClick={closeModal}
                         >
-                        </FontAwesomeIcon>
+                        </CloseIcon>
                     </div>
                     <div>
                         <h3>{currentService.title}</h3>
@@ -112,26 +113,27 @@ const MyServices = (props) => {
                         {
                             myServices.map((service, index) => {
                                 return (
-                                    <li key={index}>
-                                        <div className="serviceCard">
+                                    <li className="bundleList" key={index}>
+                                            <div className="serviceDescription">
+                                                <h3>{service.title}</h3>
+                                                <br />
+                                                <p>{service.description}</p>
+                                                {service.urls.length == 1 ?
+                                                <p className="subText">This bundle contains {service.urls.length} video.</p>
+                                                : <p className="subText">This bundle contains {service.urls.length} videos.</p>
+                                                } 
+                                                <br />
+                                                <Button onClick={(e) => openModal(e, service)} className="actionButton">View Videos</Button>
+                                            </div>            
                                             <div className="thumbnailVideo">
                                                 <ReactPlayer
-                                                    width="60%"
+                                                    width="80%"
                                                     height="100%"
                                                     url={service.urls[0]}
                                                     controls={true}
                                                 > 
                                                 </ReactPlayer>
-                                            </div>
-                                            <div>
-                                                <h3>{service.title}</h3>
-                                                <br />
-                                                <p>{service.description}</p>
-                                                <p className="subText">This bundle contains {service.urls.length} videos</p>
-                                                <br />
-                                                <Button onClick={(e) => openModal(e, service)} className="actionButton">View Videos</Button>
-                                            </div>                   
-                                        </div>   
+                                            </div>    
                                     </li>
                                 )
                             })
