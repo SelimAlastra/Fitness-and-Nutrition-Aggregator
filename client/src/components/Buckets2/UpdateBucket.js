@@ -4,6 +4,7 @@ import { getBucket, updateBucket} from '../../actions/buckets';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import './BucketModal.css';
 
 function UpdateBucketForm({bucket}) {
     const [show, setShow] = useState(false);
@@ -12,18 +13,21 @@ function UpdateBucketForm({bucket}) {
     const dispatch = useDispatch();
 
     const [title, setTitle] = useState("");
+    const [description, setDescription] = useState("");
 
     useEffect(() => {
         setTitle(bucket.title);
+        setDescription(bucket.description);
     }, [bucket])
 
     function handleSubmit(e) {
         e.preventDefault();
-        const newTitle = {
-            title : title
+        const newData = {
+            title : title,
+            description : description
         }
-        console.log(newTitle)
-        dispatch(updateBucket(bucket._id, newTitle));
+        console.log(newData)
+        dispatch(updateBucket(bucket._id, newData));
         handleClose();
     }
 
@@ -41,8 +45,11 @@ function UpdateBucketForm({bucket}) {
                 < Modal.Body >
                     <Form autoComplete="off" onSubmit={handleSubmit}>
                         <Form.Label htmlFor="title">Bucket Name</Form.Label>
-                        <Form.Control id="title" name="title" variant="outlined" value={title} placeholder="title" onChange={(e) => setTitle(e.target.value)} />
-                        <Button variant="contained" color="primary" size="large" type="submit">Save</Button>
+                        <Form.Control className="bucketTitle" id="title" name="title" variant="outlined" value={title} placeholder="title" onChange={(e) => setTitle(e.target.value)} />
+                        <p/>
+                        <Form.Label htmlFor="description">Description (optional)</Form.Label>
+                        <textarea className = "editText" rows={3} id="description" value={description} onChange={(e) => setDescription(e.target.value)}/>
+                        <Button className="bucketSave" variant="primary" size="large" type="submit">Save</Button>
                     </Form>
                 </Modal.Body>
             </Modal >
