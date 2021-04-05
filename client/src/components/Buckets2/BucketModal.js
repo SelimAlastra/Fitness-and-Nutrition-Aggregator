@@ -25,7 +25,6 @@ function PopUpNewBuckets() {
             userId: userId
         }
         dispatch(createBucket(newData));
-        dispatch(updateBasicUser())
         handleClose();
     }
     
