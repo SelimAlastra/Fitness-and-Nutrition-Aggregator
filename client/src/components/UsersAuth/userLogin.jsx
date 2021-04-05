@@ -101,7 +101,7 @@ const schema = Yup.object().shape({
 });
 
 return (
-<div className="Form">
+<div className="LoginInComponent">
     {/* {isAuth() ? <Redirect to='/' /> : null} */}
 <Form onSubmit={formik.handleSubmit} autoComplete="Off">
   <Form.Label hidden = {true} htmlFor="email">Email</Form.Label>
@@ -136,15 +136,15 @@ return (
     <div className="input-feedback">{formik.errors.password}</div>
     )}
     { isClient == "true" ?
-    <Link to="/user/password/forget">Forgot Password?</Link>
+    <Link className="UserAUTHLINK" to="/user/password/forget">Forgot Password?</Link>
     :
-    <Link to="/professional/password/forget">Forgot Password?</Link>
+    <Link className="UserAUTHLINK" to="/professional/password/forget" >Forgot Password?</Link>
     }
     <p/>
     <Button className="loginButtonModal" variant="outline-success" type="submit" name="loginBtn" disabled={formik.isSubmitting}>
         Log in
     </Button>
-    <p style={{'marginLeft': '140px', 'fontWeight': 'bold'}}> OR </p>
+    <p style={{'marginLeft': '140px', 'fontWeight': 'bold' }}> OR </p>
   </Form>
   <Google isClient = {isClient}/>
   <p/>

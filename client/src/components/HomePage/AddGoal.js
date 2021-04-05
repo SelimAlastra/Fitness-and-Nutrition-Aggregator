@@ -31,7 +31,7 @@ const AddGoal = ({userID}) => {
                     tags : tags
                 }
                 dispatch(createGoal(newGoal));
-                window.alert("Details Saved!");
+                window.alert(" Goal added !");
             }
         redirectHomePage();
 

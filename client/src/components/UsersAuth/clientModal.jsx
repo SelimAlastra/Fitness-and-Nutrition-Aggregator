@@ -4,7 +4,6 @@ import Button from 'react-bootstrap/Button';
 import React, { useState } from 'react';
 import Login from './userLogin';
 import Register from './userRegister';
-import { Container } from 'react-bootstrap';
 import './usersModal.css';
 import { Link } from 'react-router-dom';
 
@@ -25,8 +24,8 @@ function PopUpLogin(){
   const checkClient = "true";
   return(
     <>
-    <Button className="landingButton1" data-testid="basicUsersButton" onClick={handleShow}>
-      Looking for a change?
+    <Button className="landingButton1" variant="outline-success" data-testid="basicUsersButton" onClick={handleShow}>
+      Basic User
     </Button>
     <div className = "modal-dialog">
     <Modal className="logIn" show={show} onHide={handleClose}>

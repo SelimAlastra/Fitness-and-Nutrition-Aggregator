@@ -1,11 +1,12 @@
 import React from "react";
-import { Alert, Carousel } from 'react-bootstrap';
+import { Alert, Carousel, Container} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './LandingPage.css';
 import NavbarVisitor from './components/Navbar/NavbarVisitor.js';
 import { useHistory } from 'react-router-dom';
 import BasicUsers from './components/UsersAuth/clientModal';
 import Professional from './components/UsersAuth/professionalModal';
+import { Grow, Grid} from '@material-ui/core';
 
 function LandingPage() {
 
@@ -64,16 +65,20 @@ function LandingPage() {
                         </Carousel.Caption>
                     </Carousel.Item>
                 </Carousel>
-                <div className="afterC">
+                <div>
                     <div className="aboutUs">
-                        <h2 className="websiteName">NAME...</h2>
+                        <h2 className="websiteName"> About us ... </h2>
                         <hr />
                         <p className="aboutUsText">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa. Vestibulum lacinia arcu eget nulla. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur sodales ligula in libero. </p>
                     </div>
-                    <div className="landingButtons">
+                    <Grid container justify="center">
+                        <Grid item xs= {3}>
                         <BasicUsers className="landingButton1" variant="outline-success" />
+                        </Grid>
+                        <Grid item xs= {3}>
                         <Professional className="landingButton2" variant="outline-succes" />
-                    </div>
+                        </Grid>
+                    </Grid>
                 </div>
             </body>
         </div>

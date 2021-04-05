@@ -91,7 +91,7 @@ const Facebook = (client) => {
          <div className=' p-2 rounded-full '>
           <i style={{'marginLeft': '5px'}}>{icon}</i>
          </div>
-          <span style={{'marginTop': '8px', 'marginLeft': '8px' }}>Sign In with Facebook</span>
+          <span style={{'marginTop': '8px', 'marginLeft': '8px'}}>Sign In with Facebook</span>
         </button>
       )}
     />

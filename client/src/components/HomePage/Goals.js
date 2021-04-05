@@ -55,9 +55,10 @@ const Goals = ({userID}) => {
                                 <FontAwesomeIcon 
                                     icon={faTrashAlt}
                                     size= "lg"
-                                    style={{ cursor:"pointer", color: "white"}}
+                                    style={{ cursor:"pointer", color: "black"}}
                                     value={goal}
-                                    onClick={() => removeGoal(goal)}
+                                    onClick={() => removeGoal(goal)
+                                    }
                                 />
                     </Container>
                     </Grid>           
@@ -77,7 +78,7 @@ const Goals = ({userID}) => {
                 <h2 className="goalsPageText">Add goal</h2>
                 <AddGoal userID = {userID}/>
                 <Container className = 'center'>
-                <Button className = "goalActionButton2" variant="outline-danger" onClick={() => window.location.href = `/homePage/${userID}`}> Close </Button>
+                <Button className = "goalActionButton2" variant="outline-success" onClick={() => window.location.href = `/homePage/${userID}`}> Close </Button>
                 </Container>
                  </div>
                 </Modal>
@@ -91,8 +92,8 @@ const Goals = ({userID}) => {
         return(
             <div className ="fullGoalsContainer">
             <h2 className="goalsPageText"> Goals</h2>
-            <Button className = "goalsButton" variant="outline-dark" onClick={() => setModalIsOpen(true)}> Add Goal </Button>
-            <Button className = "goalsButton" variant="outline-dark" onClick={() => window.location.href = `/homePage/edit/${userID}`}> Edit Goals </Button>
+            <Button className = "goalsButton" variant="outline-success" onClick={() => setModalIsOpen(true)}> Add Goal </Button>
+            <Button className = "goalsButton" variant="outline-success" onClick={() => window.location.href = `/homePage/edit/${userID}`}> Edit Goals </Button>
             <Modal className ='addGoalModal' isOpen={modalIsOpen} onRequestClose={() => setModalIsOpen(false)}>
             <div className ='center'>
                 <h2 className="goalsPageText">Add goal</h2>
