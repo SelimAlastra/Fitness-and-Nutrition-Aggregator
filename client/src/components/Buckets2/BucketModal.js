@@ -27,13 +27,10 @@ function PopUpNewBuckets() {
     }
     
     return (<> 
-    <Button class="bucket button"
-        size="medium"
-        color="primary"
+    <Button className="createButton"
         onClick={handleShow} >
         Create a new bucket 
     </Button>
-        <div className="modal-dialog2" >
             <Modal className="newBucket" show={show} onHide={handleClose}>
                 <Modal.Header closeButton >
                     < Modal.Title> Create a new bucket </Modal.Title>
@@ -43,11 +40,14 @@ function PopUpNewBuckets() {
                         {/* <Typography variant="h6">{currentBucketId ? 'Editing' : 'Creating' } a Bucket</Typography> */}
                         <Form.Label htmlFor="title">Bucket Name</Form.Label>
                         <Form.Control id="title" name="title" variant="outlined" onChange={(e) => setPostData({ ...postData, title: e.target.value })} />
-                        <Button variant="primary" size="large" type="submit">Save</Button>
+                        <Form.Label htmlFor="description">Description (optional)</Form.Label>
+                        <textarea className="bucketText" id="description" placeholder ="Write the description here" name="description"/>
                     </Form>
                 </Modal.Body>
-            </Modal >
-        </div>
+                <Modal.Footer>
+                    <Button className="bucketSave" variant="primary" size="large" type="submit">Save</Button>
+                </Modal.Footer>
+            </Modal>
     </>
     );
 };
