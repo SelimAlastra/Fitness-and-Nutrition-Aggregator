@@ -1,6 +1,6 @@
 import { FETCH_ALL, CREATE, UPDATE, FETCH, DELETE } from '../constants/bucketsActionTypes';
 
-export default (buckets = [],action) => {
+export default (buckets = [], action) => {
     switch (action.type) {
         case FETCH:
             return action.payload;
