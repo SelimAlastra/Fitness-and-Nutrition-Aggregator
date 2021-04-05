@@ -41,7 +41,9 @@ describe('Test', function() {
         cy.get('svg[class="MuiSvgIcon-root MuiSvgIcon-fontSizeLarge"]').click();
         cy.get('div[role="dialog"]').contains('Add Video to Bundle').should('exist');
         cy.get('div[role="dialog"]').get('input[placeholder="Video URL"]').type('https://www.youtube.com/watch?v=aWJo_Fe20aE&ab_channel=TheBodyCoachTV');
-        cy.get('button').contains('Add').click();
+        cy.findByTestId("addVideotoBundle").click();
+        cy.get('td[class="videoContainer"]').should('exist');
+        cy.get('h4').contains('Get fit in 2 months bundle').get('svg[data-icon="trash-alt"]').click();
         
 
     })  
