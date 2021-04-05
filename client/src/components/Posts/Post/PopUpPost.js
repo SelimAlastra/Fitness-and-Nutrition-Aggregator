@@ -1,16 +1,11 @@
 import Modal from 'react-modal';
-import Audio from '../Audio/Audio';
 import {useEffect, useState } from 'react';
-import EmbeddedLinks from '../EmbeddedLinks/EmbeddedLinks';
-import FacebookLinks from '../FacebookLinks/FacebookLinks';
-import Videos from '../Videos/Videos';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faWindowClose } from '@fortawesome/free-regular-svg-icons';
-import moment from 'moment';
+import CloseIcon from '@material-ui/icons/Close';
 import { CardContent, CardMedia, Button, Typography, Link } from '@material-ui/core/';
 import ReactPlayer from 'react-player';
 import ReactAudioPlayer from 'react-audio-player';
 import Iframe from 'react-iframe';
+import HelpOutlineIcon from '@material-ui/icons/HelpOutline';
 import './PopUpPost.css';
 import { useDispatch, useSelector } from 'react-redux';
 import {Likes, ReportPopUp, PopUpBuckets} from './Post';
@@ -40,19 +35,17 @@ const PopUpPost = (post) => {
 
  return (
      <>
-    <Button onClick={(e) => openModal()}>Details</Button>
+    <Button onClick={(e) => openModal()}><HelpOutlineIcon/></Button>
             <Modal
                     isOpen={modalOpen}
                     onRequestClose={closeModal}
                     className="postModal"
                 >
                     <div className="closeButton">
-                        <FontAwesomeIcon
-                            icon={faWindowClose}
-                            size="2x"
+                        <CloseIcon
                             onClick={closeModal}
                         >
-                        </FontAwesomeIcon>
+                        </CloseIcon>
                     </div>
                             <h4>{post.post.title}</h4>
                             { (professional !== null && professionals !== undefined) ?
@@ -68,7 +61,7 @@ const PopUpPost = (post) => {
                             }
                             <PopUpBuckets post = {post.post}/>
                             <ReportPopUp post = {post.post}/>
-                        <hr style = {{backgroundColor : "#A8D5C5", width: "800px"}}/>
+                        <hr style = {{backgroundColor : "#Dc8f66" , width: "800px"}}/>
                         
                         <div className = "content">
                             {   post.post.selectedFile ?

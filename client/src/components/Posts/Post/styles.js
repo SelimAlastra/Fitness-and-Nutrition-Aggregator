@@ -87,7 +87,6 @@ export default makeStyles((theme) => ({
     width: '100%',
     textAlign: 'center',
     display: 'inline-flex',
-    padding: '5px 5px 5px 5px',
-    marginBottom: 15
+    padding: '3px 5px',
   },
 }));

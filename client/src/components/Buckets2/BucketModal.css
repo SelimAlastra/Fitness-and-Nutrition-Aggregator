@@ -1,22 +1,63 @@
-.bucket .modal-body {
+.bucketModal .modal-body {
     overflow: scroll !important;
-    max-height: 350px;
+    max-height: 300px;
+}
+.bucketModal .modal-title{
+    font-family: Georgia, Times, 'Times New Roman', serif;
 }
 
-.modal-footer {
+.bucketModal .modal-footer {
     height: 80px !important;
 }
 
-.bucket .modal-content {
+.bucketModal .modal-content {
     width: 140%;
     overflow: hidden;
 }
 
-.bucket .button {
+.createButton {
     height: 50px;
-    width: fit-content
+    background-color: whitesmoke;
+    border-color: #Dc8f66;
+    color: black;
+    width: fit-content;
 }
 
-.bucket .modal {
-    position: absolute;
+.createButton:hover {
+    background-color: #Dc8f66;
+    border-color:#Dc8f66;
+    box-shadow: none;
+    color: white;
+    width: fit-content;
+}
+
+.createButton:active {
+    background-color: #Dc8f66 !important;
+    box-shadow: none !important;
+    border-color:#Dc8f66 !important;
+    color: white !important;
+    width: fit-content;
+}
+
+.createButton:focus {
+    background-color: #Dc8f66 !important;
+    box-shadow: none !important;
+    border-color:#Dc8f66 !important;
+    color: white !important;
+    width: fit-content;
+}
+
+.newBucket .modal-body{
+    height: 380px;
+}
+.newBucket .modal-content{
+    width: 140% !important;
+}
+
+.newBucket .modal-title{
+    font-family: Georgia, Times, 'Times New Roman', serif;
+}
+
+.newBucket .bucket-save{
+    margin-top: 50px;
 }

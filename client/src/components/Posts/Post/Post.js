@@ -10,15 +10,17 @@ import useStyles from './styles';
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import Videos from '../Videos/Videos';
-import Buckets2 from "../../Buckets2/BucketModal";
+import BucketsModal from "../../Buckets2/BucketModal";
 import ReportForm from "../../Reports/ReportForm"
 import Modal from 'react-bootstrap/Modal';
 import Audio from '../Audio/Audio';
 import EmbeddedLinks from '../EmbeddedLinks/EmbeddedLinks';
 import FacebookLinks from '../FacebookLinks/FacebookLinks';
+import CreateNewFolderIcon from '@material-ui/icons/CreateNewFolder';
 import { FaFolderPlus } from "react-icons/fa";
 import BucketsGrid from '../../Buckets2/BucketsGrid.js';
 import PopUpPost from './PopUpPost';
+import '../../Buckets2/BucketModal.css';
 
 import { deletePost, likePost, toggleFavAction, updatePost } from '../../../actions/posts';
 
@@ -71,6 +73,7 @@ export const ReportPopUp = ({post}) => {
 
   export const PopUpBuckets = ({post}) => {
 
+    const classes = useStyles();
     const [showBucket, setShowBucket] = useState(false);
     const handleCloseBucket = () => setShowBucket(false);
     const handleShowBucket = () => setShowBucket(true);
@@ -80,18 +83,17 @@ export const ReportPopUp = ({post}) => {
     }
 
     return (<>
-      <Button size="small" onClick={handleShowBucket}
-      >
-        <FaFolderPlus />
+      <Button size="small" onClick={handleShowBucket}>
+        <CreateNewFolderIcon/>
       </Button>
-      < Modal className = "bucket" show={showBucket} onHide={handleCloseBucket}>
+      < Modal className="bucketModal" show={showBucket} onHide={handleCloseBucket}>
         < Modal.Header closeButton > < Modal.Title > Add this post to a bucket </Modal.Title >
         </ Modal.Header >
         < Modal.Body>
           < BucketsGrid postToAdd={postToAdd} />
         </Modal.Body>
         < Modal.Footer >
-          < Buckets2 />
+          < BucketsModal />
         </Modal.Footer>
       </ Modal >
        </>
@@ -209,14 +211,12 @@ const Post = ({ post, setCurrentId }) => {
       }
       <CardActions className={classes.cardActions}>
         <Container className={classes.buttons}>
-          <div className={classes.button}>
             {post.likes ?
               <Button size="small" onClick={() => dispatch(likePost(post._id, JSON.parse(localStorage.getItem('user'))._id))}>
                 <Likes post = {post}/>
               </Button>
               : <> </>
             }
-          </div>
           {JSON.parse(localStorage.getItem('user')).type == 'client' ?
             <div>
             <PopUpBuckets post = {post}/>
