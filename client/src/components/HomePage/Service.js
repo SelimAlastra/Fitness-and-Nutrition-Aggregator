@@ -14,7 +14,7 @@ const Service = ({service, userID}) => {
             <p className="homePageServiceText">{service.description}</p>
             </Container>
             <p className="homePageServiceText">£{service.price}</p>
-            <Button onClick = {() => link()} variant="outline-dark" > Check profile </Button>
+            <Button onClick = {() => link()} variant="outline-dark"> Check profile </Button>
         </div>
     );
 }

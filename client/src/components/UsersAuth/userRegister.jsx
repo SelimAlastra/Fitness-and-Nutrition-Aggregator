@@ -115,7 +115,7 @@ const formik = useFormik({
 });
 
   return (
-      <div>
+    <div className ="RegisterComponent">
         {isAuth() ? <Redirect to='/' /> : null}
       
     <Form autoComplete="off" onSubmit={formik.handleSubmit}>

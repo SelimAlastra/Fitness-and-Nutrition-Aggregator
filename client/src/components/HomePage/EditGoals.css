@@ -5,13 +5,36 @@
 
 
 .editGoalsDiv{
-    background-color: #D7C5B4;
+    background-color: whitesmoke;
+    height: 100vh;
 }
 
 .EditGoalsText{
         margin-top : 60px;
-        color : rgb(9, 30, 41);
+        color : #8CC152;
         font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
         text-align: center;
         padding: none;
 }
+
+.editGoalsButton {
+    padding: 15px;
+    background-color: transparent;
+    border-radius: 4%;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #A0d468;
+    font-weight: 500;
+    font-size: 17px;
+    color: #8CC152;
+    cursor: pointer;
+    transition: 0.2s ease-in-out;
+    margin: 15px;
+    min-width: 100px;
+  }
+  
+  .editGoalsButton:hover {
+    background-color: #8CC152;
+    border-width: 1px;
+    color : white;
+  }

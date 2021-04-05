@@ -6,6 +6,8 @@ import EditGoal from './EditGoal';
 import { Form, Button, Col } from 'react-bootstrap';
 import './EditGoals.css'
 import NavbarUser from '../Navbar/NavbarUser';
+import BasicUsers from '../UsersAuth/clientModal';
+import Professional from '../UsersAuth/professionalModal';
 
 const EditGoals = (props) => {
 
@@ -24,7 +26,7 @@ const EditGoals = (props) => {
         <div className = 'editGoalsDiv'>
         <NavbarUser/>
         <h2 className="EditGoalsText"> Goals Edition </h2>
-        <Button type="button" variant="dark" className="goalEditButton" onClick={() => window.location.href = `/homePage/${userID}`}>Go to home page</Button>
+        <Button type="button" variant="success" className="editGoalsButton" onClick={() => window.location.href = `/homePage/${userID}`}>Go to home page</Button>
         <Grid container justify="center">
             {myGoals.map((goal) => (
                 <Grid item xs= {4}>

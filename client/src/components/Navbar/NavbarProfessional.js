@@ -66,7 +66,7 @@ const useStyles = makeStyles((theme) => ({
   },
   iconButton: {
     '&:hover': {
-      color: "rgb(61, 128, 184)",
+      color: "#8CC152",
     },
   },
   inputRoot: {

@@ -33,7 +33,7 @@ const EditGoal = ({goal}) => {
                     tags : tags
                 }
                 dispatch(updateGoal(ID, newGoal));
-                window.alert("Details Saved!");
+                window.alert(" Goal edited !");
             }
 
     }
@@ -86,7 +86,7 @@ const EditGoal = ({goal}) => {
                      </Form.Group>
                     </Col>
                 </Form.Row>
-                <Button type="submit"  variant="outline-dark" className="goalActionButton">Save</Button>
+                <Button type="submit"  variant="success" className="editGoalsButton2">Save</Button>
             </Form>
         </div>
     );

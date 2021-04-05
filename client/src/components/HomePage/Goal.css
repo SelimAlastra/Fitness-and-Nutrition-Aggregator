@@ -1,12 +1,12 @@
 .goalText {
     text-align: center;
     justify-content: center;
-    color: whitesmoke;
+    color: white;
     padding: 1%;
 }
 
 .goal {
-    background-color: #db9b0f;
+    background-color: #A0d468;
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     min-width: 200px;
     max-width: 80%;
