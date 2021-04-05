@@ -6,7 +6,7 @@ const Goals = ({userID}) => {
     const myGoals = allGoals.filter((goal) => goal.userID === userID);
     return (
         <div>
-            <h3>Goals</h3>
+            <h3 style={{"marginTop":"10px"}}>Goals</h3>
             <hr className="lineSeperator"/>
             { generateGoals() }
         </div>
