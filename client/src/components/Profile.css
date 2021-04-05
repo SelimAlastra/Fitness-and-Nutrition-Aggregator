@@ -67,7 +67,7 @@
     margin-bottom: 1%;
     color: white;
     border-radius: 12px;
-    min-width:min-content;
+    min-width: min-content;
 }
 
 .purchaseButton {
@@ -94,28 +94,27 @@
 }
 
 .profileInfo{
-    margin-top: 50px;
+    margin-top: 20px;
     margin-left: 8.5%;
     margin-right: 8.5%;
-    
 }
 
 .personalInfo{
     margin-left: 11.75%;
     margin-right: 10%;
-    margin-top: 30px;
+    margin-top: 10px;
     border-radius: 25px !important;
     box-shadow: 0px 0px 9px 0px rgba(220, 143, 102, 1 ) !important;
-    height: 40vh;
+    height: fit-content;
+    margin-bottom: 1%;
 }
 
 .goals{
-    margin-top:30px;
+    margin-top: 10px;
     margin-right: 10%;
     border-radius: 25px !important;
     box-shadow: 0px 0px 9px 0px rgba(220, 143, 102, 1 ) !important;
-    height: 40vh;
-
+    margin-bottom: 1%;
 }
 
 
