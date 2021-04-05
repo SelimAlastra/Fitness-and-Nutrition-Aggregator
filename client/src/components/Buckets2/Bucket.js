@@ -8,6 +8,7 @@ import './Bucket.css';
 import { Link } from 'react-router-dom';
 import ReactPhotoGrid from 'react-image-gallery';
 import {getPosts, getPostsFromArray } from '../../actions/posts';
+import { getBasicUser } from '../../actions/basicUsers';
 
 const Bucket = ({ bucket }) => {
 

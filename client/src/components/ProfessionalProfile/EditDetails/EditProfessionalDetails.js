@@ -129,7 +129,9 @@ const EditProfessionalDetails = (props) => {
                         
                         <Form.Group>
                             <Form.Label className="label">Email</Form.Label>
-                            <Form.Control 
+                            <Form.Control
+                                style={{backgroundColor: "white"}}
+                                disabled 
                                 className="inputItem"
                                 id="email" 
                                 name="email" 
