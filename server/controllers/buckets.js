@@ -14,7 +14,7 @@ export const createBucket = async (req, res) => {
 
     try {
         await newBucket.save();
-    await BasicUser.findByIdAndUpdate(userId, { $push: { buckets: newBucket._id } });
+        await BasicUser.findByIdAndUpdate(userId, { $push: { buckets: newBucket._id } });
 
         res.status(201).json(newBucket);
     } catch (error) {
@@ -44,6 +44,7 @@ export const deleteBucket = async (req, res) => {
 
     if(!mongoose.Types.ObjectId.isValid(_id)) return (res.status(404).send('No bucket with that id'));
 
+    await Bucket.findById(_id).then(bucket => BasicUser.findByIdAndUpdate(bucket.userId, { $pull: { buckets: _id } }));
     await Bucket.findByIdAndRemove(_id);
 
     res.json({ message: 'Bucket deleted successfully' });
