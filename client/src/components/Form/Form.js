@@ -26,8 +26,10 @@ const Form = ({currentId, setCurrentId}) => {
       if(Value=='video'){
         setPostData({ ...postData, selectedFile: ''});
       }
-        e.preventDefault();
-        if(currentId){
+      
+      e.preventDefault();
+        
+      if(currentId){
             dispatch(updatePost(currentId, postData));
         }else
         {

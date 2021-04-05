@@ -131,7 +131,7 @@ const Post = ({ post, setCurrentId }) => {
     }
     else
       return (
-        <ReportPopUp/>
+        <ReportPopUp post = {post}/>
       )
   }
 

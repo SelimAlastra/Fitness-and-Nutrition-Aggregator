@@ -6,27 +6,25 @@ describe('Test', function() {
 
     beforeEach(() => {
         cy.visit('/');
-        cy.contains('Basic Users').should('be.visible');
+        cy.contains('Basic User').should('be.visible');
         cy.findByTestId('basicUsersButton').click();
         cy.focused();
-        cy.contains('Log In').should('exist');
-        cy.contains('Log In').click();
+        cy.contains('Log in').should('exist');
         cy.get('input[placeholder="Enter your email"]').type('johnthompson@yahoo.com');
         cy.get('input[placeholder="Enter your password"]').type('john1234'); 
-        cy.get('button').contains('Log In').click();
+        cy.get('button').contains('Log in').click();
         cy.url().should('include', '/clientDashboard/60639559dd5a59ea908e4cb7');
       });
 
     it('Basic User Login Test', function() {
         cy.visit('/');
-        cy.contains('Basic Users').should('be.visible');
+        cy.contains('Basic User').should('be.visible');
         cy.findByTestId('basicUsersButton').click();
         cy.focused();
-        cy.contains('Log In').should('exist');
-        cy.contains('Log In').click();
+        cy.contains('Log in').should('exist');
         cy.get('input[placeholder="Enter your email"]').type('johnthompson@yahoo.com');
         cy.get('input[placeholder="Enter your password"]').type('john1234'); 
-        cy.get('button').contains('Log In').click();
+        cy.get('button').contains('Log in').click();
         // should be redirected to the clientDashboard
         cy.url().should('include', '/clientDashboard/60639559dd5a59ea908e4cb7'); 
         // auth cookie should be present
