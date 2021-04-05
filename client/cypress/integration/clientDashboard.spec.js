@@ -40,7 +40,7 @@ describe('Test', function() {
     */
     it('Searchbox functionality Test', function() { 
         cy.get('input[placeholder="Search…"]').focus().click().type('{enter}abs');
-        cy.contains('10 minute ABS WORKOUT').should('exist');
+        cy.contains('10 Minute Home Ab Workout').should('exist');
     }); 
 
     it('should have home icon button', function() {
