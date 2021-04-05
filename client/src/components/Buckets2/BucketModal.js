@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { createBucket } from '../../actions/buckets';
 import Form from 'react-bootstrap/Form';
 import './BucketModal.css';
+import { updateBasicUser } from '../../actions/basicUsers.js';
 
 function PopUpNewBuckets() {
     const [show, setShow] = useState(false);
@@ -24,6 +25,7 @@ function PopUpNewBuckets() {
             userId: userId
         }
         dispatch(createBucket(newData));
+        dispatch(updateBasicUser())
         handleClose();
     }
     
