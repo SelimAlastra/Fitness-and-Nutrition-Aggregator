@@ -11,8 +11,8 @@ describe('Test', function() {
         cy.contains('Professionals').should('be.visible');
         cy.findByTestId('professionalUsersButton').click();
         cy.focused();
-        cy.contains('SIGN UP').should('exist');
-        cy.contains('SIGN UP').click();
+        cy.contains("Don't have an account? Sign up!").should('exist');
+        cy.contains("Don't have an account? Sign up!").click();
         cy.get('input[placeholder="Enter your email"]').type(this.professionalUser.email);
         cy.get('input[placeholder="Insert your name here"]').type(this.professionalUser.name);
         cy.get('input[placeholder="Create your username"]').type(this.professionalUser.username);
