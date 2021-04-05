@@ -8,11 +8,11 @@ describe('Test', function() {
 
     it('Basic User Register Test', function() {
         cy.visit('http://localhost:3000/');
-        cy.contains('Basic Users').should('be.visible');
+        cy.contains('Basic User').should('be.visible');
         cy.findByTestId('basicUsersButton').click();
         cy.focused();
-        cy.contains('SIGN UP').should('exist');
-        cy.contains('SIGN UP').click();
+        cy.contains("Don't have an account? Sign up!").should('exist');
+        cy.contains("Don't have an account? Sign up!").click();
         cy.get('input[placeholder="Enter your email"]').type(this.basicUser.email);
         cy.get('input[placeholder="Insert your name here"]').type(this.basicUser.name);
         cy.get('input[placeholder="Create your username"]').type(this.basicUser.username);
