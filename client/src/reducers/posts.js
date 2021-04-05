@@ -1,6 +1,6 @@
 import { FETCH_ALL, CREATE, UPDATE, DELETE, ADD_TO_FAV, FETCH_FROM_ARRAY, FETCH } from '../constants/postsActionTypes';
 
-export default (posts = [],action) => {
+export default (posts = [], action) => {
     switch (action.type) {
         case FETCH_FROM_ARRAY:
             return action.payload
