@@ -52,9 +52,9 @@ const ClientProfile = (props) => {
 
     if (user !== undefined) {
         return (
-            <div>
+            <div style={{"overflow-x": "hidden"}}>
                 <NavbarUser />
-                <div class="row">
+                <div class="row" >
                     <div class="col-sm-10 profileInfo"><ProfileInfo profile={user} /></div>
                 </div>
                 <div class="row">
