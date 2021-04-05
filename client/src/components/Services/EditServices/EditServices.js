@@ -118,6 +118,7 @@ const EditServices = (props) => {
                         </Form.Text>
                         <br />
                         <Button
+                            data-testid="addVideotoBundle" 
                             className="actionButtonEdit"
                             onClick={(e) => addUrl(e)}
                         >
