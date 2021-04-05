@@ -8,8 +8,8 @@ export const getBuckets = async (req, res) => {
 }
 
 export const createBucket = async (req, res) => {
-    const {  title, postsId, userId } = req.body;
-    const newBucket = new Bucket({ title, postsId, userId});
+    const { title, description, postsId, userId } = req.body;
+    const newBucket = new Bucket({ title, description, postsId, userId});
 
     try {
         await newBucket.save();

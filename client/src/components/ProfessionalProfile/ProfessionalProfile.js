@@ -141,7 +141,7 @@ const ProfessionalProfile = (props) => {
             <div className="sectionContainer">
                 <div className="section">
                     <div>
-                        { generateEditDetailsLink(isProfessional)  }
+                        { generateEditDetailsLink(isProfessional)}
                     </div>
                     <ProfileInfo profile={professionalUser} />
                 </div>
