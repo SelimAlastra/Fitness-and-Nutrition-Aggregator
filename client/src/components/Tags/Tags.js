@@ -14,7 +14,7 @@ function Tags(props) {
                 tagString += " | ";
             }
         }
-        return (<div data-testid="tags" className="textContainer">{tagString}</div>);
+        return (<div data-testid="tags" className="textContainer" style={{"box-shadow": "0px 0px 9px 0px rgba(220, 143, 102, 1 )"}}>{tagString}</div>);
     }
 }
 
