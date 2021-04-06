@@ -34,7 +34,7 @@ const basicUserSchema = new Schema({
 
   height :{type: String,  required: false, default: null},
 
-  goals :[{type: String,  required: false}],
+  goals: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Goal', required: true }],
 
   tags : [String],
   //I used an array here cause an user may have multiple tags
@@ -43,9 +43,11 @@ const basicUserSchema = new Schema({
 
   resetPasswordLink :{type: String, default: '', required: false},
 
-  bundles: [{type: String, required: true}],
+  bundles: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Service', required: true }],
 
-  buckets: [{type: String, required: true}]
+  buckets: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Bucket', required: true }],
+
+  picture: {type: String, required: false},
 }, {
   timestamps: true,
 });

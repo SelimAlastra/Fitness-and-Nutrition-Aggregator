@@ -54,11 +54,13 @@ export const registerController = (req, res) => {
                     });
                   }
                   else {
+                    const picture = 'https://www.google.com/search?rlz=1C5CHFA_enRO895RO898&sxsrf=ALeKk002QKXi81lPlpSg4BuV14hjcqcqiQ:1617673227874&source=univ&tbm=isch&q=free+avatar+images&sa=X&ved=2ahUKEwiDm_CwvujvAhVy_7sIHcqECDcQjJkEegQICRAB&biw=1440&bih=821#imgrc=IfWReGMYsHBi5M';
                     const user = new User({
                       username,
                       email,
                       password,
-                      name
+                      name,
+                      picture
                     });
                     user.save((err, data) => {
                       if (err) {
@@ -144,14 +146,14 @@ export const googleController = (req, res) => {
   client
     .verifyIdToken({ idToken, audience: process.env.REACT_APP_GOOGLE_CLIENT })
     .then(response => {
-      const { email_verified, name, email } = response.payload;
+      const { email_verified, name, email, picture } = response.payload;
       if (email_verified) {
         User.findOne({ email }).exec((err, user) => {
           if (user) {
             const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET, {
               expiresIn: '7d'
             });
-            const { _id, email, name, username, type } = user;
+            const { _id, email, name, username } = user;
             return res.json({
               token,
               user: { _id, email, name, username, type:'client'}
@@ -159,7 +161,7 @@ export const googleController = (req, res) => {
           } else {
             let password = email + process.env.JWT_SECRET;
             let username = name.replace(/\s/g, "").toLowerCase() + Math.floor(Math.random() * 10000); //implement random number generator later
-            user = new User({ username, email, password, name });
+            user = new User({ username, email, password, name, picture });
             user.save((err, data) => {
               if (err) {
                 console.log('ERROR GOOGLE LOGIN ON USER SAVE', err);
@@ -174,7 +176,7 @@ export const googleController = (req, res) => {
               );
               const isNew = "true";
               
-              const { _id, email, name, username, type } = data;
+              const { _id, email, name, username } = data;
               return res.json({
                 token,
                 isNew : isNew,
@@ -203,13 +205,13 @@ export const facebookController = (req, res) => {
     })
       .then(response => response.json())
       .then(response => {
-        const { email, name } = response;
+        const { email, name, picture } = response;
         User.findOne({ email }).exec((err, user) => {
           if (user) {
             const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET, {
               expiresIn: '7d'
             });
-            const { _id, email, name, username, type } = user;
+            const { _id, email, name, username } = user;
             return res.json({
               token,
               user: { _id, email, name, username, type:'client' }
@@ -217,7 +219,7 @@ export const facebookController = (req, res) => {
           } else {
             let username = name.replace(/\s/g, "").toLowerCase() + Math.floor(Math.random() * 10000);
             let password = email + process.env.JWT_SECRET;
-            user = new User({ username, email, password, name });
+            user = new User({ username, email, password, name, picture });
             user.save((err, data) => {
               if (err) {
                 console.log('ERROR FACEBOOK LOGIN ON USER SAVE', err);
@@ -233,7 +235,7 @@ export const facebookController = (req, res) => {
 
               const isNew = "true";
 
-              const { _id, email, name, username , type} = data;
+              const { _id, email, name, username } = data;
               return res.json({
                 token,
                 isNew : isNew,
