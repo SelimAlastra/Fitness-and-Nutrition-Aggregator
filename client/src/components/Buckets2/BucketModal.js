@@ -30,6 +30,7 @@ function PopUpNewBuckets() {
     <Button class="bucket button"
         size="medium"
         color="primary"
+        data-testid="createNewbucket"
         onClick={handleShow} >
         Create a new bucket 
     </Button>
