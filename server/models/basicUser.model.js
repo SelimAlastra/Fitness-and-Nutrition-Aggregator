@@ -1,5 +1,7 @@
 import mongoose from 'mongoose';
 import crypto from 'crypto';
+import Bucket from './buckets.js'
+import Goal from './goal.model.js'
 
 const Schema = mongoose.Schema;
 
@@ -82,6 +84,21 @@ basicUserSchema.methods = {
     return this.encryptPassword(plainPassword) === this.hashed_password
   }
 };
+
+basicUserSchema.post("findOneAndDelete", (document, next) => {
+  const id = document._id;
+  Goal.find({ userID: id }).then(objs => {
+      Promise.all(
+          objs.map(obj => Goal.findOneAndDelete({_id : obj._id}))
+      );
+  });
+  Bucket.find({ userId: id }).then(objs => {
+    Promise.all(
+        objs.map(obj => Bucket.findOneAndDelete({_id : obj._id}))
+    );
+  });
+  next();
+});
 
 const BasicUser = mongoose.model('BasicUser', basicUserSchema);
 

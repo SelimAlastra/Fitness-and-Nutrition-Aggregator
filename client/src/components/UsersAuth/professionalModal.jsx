@@ -24,7 +24,7 @@ function PopUpProfessional(){
   return(
     <>
     <Button className="landingButton2" data-testid="professionalUsersButton" variant="outline-success" onClick={handleShow}>
-    Professional User
+    Service Providers
     </Button>
     <div className = "modal-dialog">
     <Modal className="logIn" show={show} onHide={handleClose}>
