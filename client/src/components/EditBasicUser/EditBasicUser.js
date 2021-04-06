@@ -6,6 +6,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import '../EditFormsStyles.css';
 import NavbarUser from '../Navbar/NavbarUser';
 import { Grid } from '@material-ui/core';
+import axios from 'axios';
 
 const EditBasicUser = (props) => {
     const dispatch = useDispatch();
@@ -55,10 +56,9 @@ const EditBasicUser = (props) => {
         const editForm = event.currentTarget;
         if (editForm.checkValidity()) {
             if (checkEmail(email)) {
-                setValidated(true);
                 const newBasicUser = {
                     name: name,
-                    username: username,
+                    username: username.toLowerCase(),
                     email: email,
                     password: profile.password,
                     address: address,
@@ -72,8 +72,17 @@ const EditBasicUser = (props) => {
                     dob: constructDate(day, month, year),
                     bundles: profile.bundles
                 }
-                dispatch(updateBasicUser(ID, newBasicUser));
-                window.alert("Details Saved!");
+                axios
+                .patch(`http://localhost:5000/basicUsers/update/${props.match.params.id}`, newBasicUser)
+                .then(res => {
+                    setValidated(true);
+                    window.alert("Details Saved!")
+                })
+                .catch(err => {
+                    if(err.response.data.errors){
+                        window.alert(err.response.data.errors)
+                    }
+                })
             } 
         }
     }
@@ -155,6 +164,8 @@ const EditBasicUser = (props) => {
                     <Form.Group>
                         <Form.Label className="label">Email</Form.Label>
                         <Form.Control
+                            style={{backgroundColor: "white"}}
+                            disabled
                             className="inputItem"
                             id="email"
                             value={email}

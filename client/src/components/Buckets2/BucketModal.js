@@ -1,31 +1,32 @@
 import Modal from 'react-bootstrap/Modal';
 import React, { useState, useEffect } from 'react';
 import Button from 'react-bootstrap/Button';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { createBucket } from '../../actions/buckets';
 import Form from 'react-bootstrap/Form';
 import './BucketModal.css';
-import { updateBasicUser } from '../../actions/basicUsers.js';
 
 function PopUpNewBuckets() {
+    const dispatch = useDispatch();
+
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
     const [postData, setPostData] = useState({ title: '', description: '' });
-    const dispatch = useDispatch();
     const userId = JSON.parse(localStorage.getItem('user'))._id;
 
     const handleSubmit = (e) => {
-        e.preventDefault();
-        const newData = {
-            title: postData.title,
-            description: postData.description,
-            postId: postData.postId,
-            userId: userId
-        }
-        dispatch(createBucket(newData));
-        handleClose();
+            e.preventDefault();
+            const newData = {
+                title: postData.title,
+                description: postData.description,
+                postId: postData.postId,
+                userId: userId
+            }
+            setPostData({...postData, title: "", description: ""})
+            dispatch(createBucket(newData));
+            handleClose();
     }
     
     return (<> 
