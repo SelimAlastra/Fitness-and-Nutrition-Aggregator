@@ -43,6 +43,7 @@ export const updateGoal = (id, newGoal) => async (dispatch) => {
 }
 
 export const deleteGoal = (id) => async (dispatch) => {
+    
     try {
         const { data } = await api.deleteGoal(id);
 

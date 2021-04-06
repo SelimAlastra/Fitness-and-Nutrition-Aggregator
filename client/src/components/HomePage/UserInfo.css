@@ -5,6 +5,8 @@
 
 .homePageClientName {
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-    color:  rgb(9, 30, 41);
-    padding: 50px;
+    color:  rgb(94, 93, 93);
+    padding-top: 50px;
+    padding-bottom: 20px;
+    margin: 20px;
 }

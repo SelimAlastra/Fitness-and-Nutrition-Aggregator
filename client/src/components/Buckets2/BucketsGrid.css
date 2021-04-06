@@ -14,6 +14,10 @@
     background-color:#Dc8f66 !important;
 }
 
+.bucketButton:hover{
+    background-color:#ffe0cf !important;
+}
+
 .bucketCheckbox:hover{
     background-color:#ffe0cf !important;
 }
