@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { Button, Card, CardActions, CardContent } from '@material-ui/core';
+import { Button, Card, CardActions, CardContent, Checkbox } from '@material-ui/core';
 import { useDispatch } from 'react-redux';
 import { updateBucket, getBuckets } from '../../actions/buckets';
 import { Form, FormCheck, ListGroup, Col } from 'react-bootstrap';
@@ -22,9 +22,17 @@ const Buckets = (post) => {
             bucket.postsId.push(postId);
             dispatch(updateBucket(bucket._id, bucket));
         }
-        console.log('asljkhaskjdkjsadjkashjksahk');
-        //window.location.reload();
     }
+
+    // const removeFromBucket = (postId, bucketId) => {
+    //     const bucket = myBuckets.find((bucket) => bucket._id === bucketId);
+    //     const post = bucket.postsId.indexOf(postId);
+    //     if(post > - 1)
+    //     {
+    //         bucket.postsId.splice(post, 1);
+    //         dispatch(updateBucket(bucket._id, bucket));
+    //     }
+    // }
 
     if (myBuckets === undefined || myBuckets.length === 0) {
         return (
@@ -35,9 +43,9 @@ const Buckets = (post) => {
     }
     else {
         return (
-            <div className = "bucketGroup">
+            <div className = "row">
                 {myBuckets.map((bucket) => (
-                    <Col xs={4} key={bucket._id}>
+                    <Col xs={6} md={4} lg={3} key={bucket._id}>
                         <Card className = "bucketCard">
                             <Button className = "bucketButton"
                                 bucket={bucket}

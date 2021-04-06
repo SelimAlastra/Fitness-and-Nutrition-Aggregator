@@ -2,11 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { getServices, deleteService, updateService } from '../../../actions/services';
 import { faTrashAlt } from "@fortawesome/free-regular-svg-icons";
-import { faCaretSquareUp } from "@fortawesome/free-regular-svg-icons";
-import '../../EditFormsStyles.css';
+import VideoCallIcon from '@material-ui/icons/VideoCall'; import '../../EditFormsStyles.css';
 import { Form, Button, Col } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faWindowClose } from '@fortawesome/free-regular-svg-icons';
+import CloseIcon from '@material-ui/icons/Close';
 import NavbarProfessional from "../../Navbar/NavbarProfessional";
 import Modal from 'react-modal';
 import './EditServices.css';
@@ -73,21 +72,27 @@ const EditServices = (props) => {
     function addVideo(service) {
         return (
             <>
-                <FontAwesomeIcon
-                    icon={faCaretSquareUp}
-                    size="lg"
+                <VideoCallIcon
+                    fontSize="large"
                     style={{ textAlign: "right", cursor: "pointer", color: "black", marginTop: "40%" }}
                     value={service}
                     onClick={(e) => openModal(e, service)}
                 />
-                
+
                 <Modal
                     isOpen={modalOpen}
                     onRequestClose={closeModal}
                     className="serviceModalEdit"
                 >
+                    <div className="closeButton">
+                        <CloseIcon
+                            size="2x"
+                            onClick={closeModal}
+                        >
+                        </CloseIcon>
+                    </div>
                     <h4>Add Video to Bundle</h4>
-                    <hr className="seperator" style={{"background-color":"#Dc8f66"}} />
+                    <hr className="seperator" style={{ "background-color": "#Dc8f66" }} />
                     <br />
                     <Form>
                         <Form.Control class="form-control-static"
@@ -113,6 +118,7 @@ const EditServices = (props) => {
                         </Form.Text>
                         <br />
                         <Button
+                            data-testid="addVideotoBundle" 
                             className="actionButtonEdit"
                             onClick={(e) => addUrl(e)}
                         >
@@ -130,7 +136,7 @@ const EditServices = (props) => {
         if (myServices === undefined || myServices.length === 0) {
             return (
                 <div>
-                    <p style={{ "font-size": "30px"}} className="serviceText">You don't provide any services right now. Create your first one!</p>
+                    <p style={{ "font-size": "30px" }} className="serviceText">You don't provide any services right now. Create your first one!</p>
                 </div>
             );
         } else {
@@ -143,7 +149,7 @@ const EditServices = (props) => {
                                     <tr className="tableRow" key={index}>
                                         <td width="23%" className="servicesContainer">
                                             <h4 className="serviceText" style={{ textAlign: "centre" }}>{service.title}</h4>
-                                            <p className="serviceText" style={{ textAlign: "centre", fontSize: "18px"}}>{service.description}</p>
+                                            <p className="serviceText" style={{ textAlign: "centre", fontSize: "18px" }}>{service.description}</p>
                                             {/* <p className="subText" style={{ textAlign: "left" }}>Service ID: {service._id}</p> */}
                                         </td>
                                         <td width="70%" className="videoContainer">
@@ -155,7 +161,7 @@ const EditServices = (props) => {
                                             >
                                             </ReactPlayer>
                                         </td>
-                                        <td  className="iconsContainer">
+                                        <td className="iconsContainer">
                                             <div>
                                                 {addVideo(service)}
                                             </div>
@@ -186,10 +192,10 @@ const EditServices = (props) => {
             <NavbarProfessional />
             <div class="container">
 
-                <h3 style={{marginTop: "20px"}}className="serviceText">Bundles</h3>
-                <hr className="seperator" style={{"background-color": "#Dc8f66"}} />
+                <h3 style={{ marginTop: "20px" }} className="serviceText">Bundles</h3>
+                <hr className="seperator" style={{ "background-color": "#Dc8f66" }} />
 
-                <AddService/>
+                <AddService />
                 <div>
                     {generateTable()}
                 </div>

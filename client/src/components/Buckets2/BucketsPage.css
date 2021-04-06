@@ -23,3 +23,35 @@
     margin-top: 5%;
 }
 
+.removePost{
+    background-color: #Dc8f66;
+    height: 40px;
+    border-color: #Dc8f66;
+    color: white;
+    width: fit-content;
+}
+
+.removePost:hover{
+    background-color: white;
+    border-color:#Dc8f66;
+    box-shadow: none;
+    color: black;
+    width: fit-content;
+}
+
+.removePost:active{
+    background-color: white !important;
+    box-shadow: none !important;
+    border-color:#Dc8f66 !important;
+    color: black !important;
+    width: fit-content;
+}
+
+.removePost:focus{
+    background-color: white !important;
+    box-shadow: none !important;
+    border-color:#Dc8f66 !important;
+    color: black !important;
+    width: fit-content;
+}
+

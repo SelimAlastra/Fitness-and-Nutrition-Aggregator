@@ -5,6 +5,7 @@ import { useDispatch, useSelector  } from 'react-redux';
 import "../../EditFormsStyles.css";
 import { updateProfessional, getProfessional } from '../../../actions/professionals';
 import NavbarProfessional from "../../Navbar/NavbarProfessional";
+import axios from 'axios';
 
 
 const EditProfessionalDetails = (props) => {
@@ -54,7 +55,7 @@ const EditProfessionalDetails = (props) => {
         if (editForm.checkValidity()) {
             const updatedProfile = {
                 name: name,
-                username: username,
+                username: username.toLowerCase(),
                 address: address,
                 email: email,
                 bio: bio,
@@ -67,11 +68,21 @@ const EditProfessionalDetails = (props) => {
                 tags: tags,
                 profession: profession,
             }
-            setValidated(true);
-            dispatch(updateProfessional(ID, updatedProfile));
-            window.alert("Details Saved!");
+            axios
+            .patch(`http://localhost:5000/professionalUsers/update/${props.match.params.id}`, updatedProfile)
+            .then(res => {
+                window.alert("Details Saved!");
+                setValidated(true);
+            })
+            .catch(err => {
+                console.log(err)
+                if(err.response.data.errors){
+                    window.alert(err.response.data.errors)
+                }
+            })
             //window.location.href = `/professional/profile/${ID}`
-        } else {
+        } 
+        else {
             event.stopPropagation();
         }
     }
@@ -129,7 +140,9 @@ const EditProfessionalDetails = (props) => {
                         
                         <Form.Group>
                             <Form.Label className="label">Email</Form.Label>
-                            <Form.Control 
+                            <Form.Control
+                                style={{backgroundColor: "white"}}
+                                disabled 
                                 className="inputItem"
                                 id="email" 
                                 name="email" 
@@ -208,8 +221,8 @@ const EditProfessionalDetails = (props) => {
                             </Col>
                         </Form.Row>
                         <Form.Group>
-                            <Button type="submit" className="actionButton">Save</Button>
-                            <Button type="button" className="actionButton" onClick={() => window.location.href=`/professional/profile/${ID}`}>Close</Button>
+                            <Button type="submit" variant="outline-success" className="actionButton">Save</Button>
+                            <Button type="button" variant="outline-success" className="actionButton" onClick={() => window.location.href=`/professional/profile/${ID}`}>Close</Button>
                         </Form.Group>
                     </Form>
                 </div>

@@ -31,8 +31,9 @@ function PopUpProfessional(){
       <Modal.Header className="modalHeaderLoginRegister" login={login} closeButton>
           <Modal.Title>Welcome to Fitness Aggregator</Modal.Title>
       </Modal.Header>
+      <hr className="hrModal"/>
       <Modal.Body>
-        { login == true ?
+        { login === true ?
         <div>
         <Login/>
         <Link className="redirectLinkLogin" onClick={()=>{handleRegister()}}>Don't have an account? Sign up!</Link>
