@@ -26,7 +26,7 @@ export const getBasicUser = async (req, res) => {
 };
 
 export const deleteBasicUser = async (req, res) => {
-  BasicUser.findByIdAndDelete(req.params.id)
+  BasicUser.findOneAndDelete(req.params.id)
     .then(() => res.json('BasicUser deleted.'))
     .catch(err => res.status(404).json('Error: Cannot delete this basicUser' + err));
 };

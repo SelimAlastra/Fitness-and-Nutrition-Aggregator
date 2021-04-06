@@ -12,21 +12,22 @@ tr.tableRow{
     display: flex;
     margin-bottom: 25px;
     background-color: #ffffff;
-    box-shadow: 0px 0px 9px 0px rgba(220, 143, 102, 1);
+    box-shadow: 0px 0px 9px 0px rgba(155, 218, 142, 1);
     height: 300px;
 
 }
 
 .actionButtonEdit{
+    width: 100px;
     margin-bottom: 30px;
-    background-color: #A8D5C5 !important;
-    border-color: #A8D5C5 !important;
+    background-color: #9bda8e!important;
+    border-color: #9cbe95 !important;
     box-shadow: none !important;
     color: black !important;
 }
 
 .actionButtonEdit:hover{
-    background-color: #7ec0a9 !important;
+    background-color: black !important;
     color: white !important;
 }
 
@@ -40,6 +41,5 @@ tr.tableRow{
     height: 47% !important;
     overflow: hidden !important;
     border-radius: 25px !important;
-    border: none !important;
-    box-shadow: 0px 0px 9px 0px rgba(220, 143, 102, 1 ) !important;
+    border: 2px solid #9cbe95;
 }

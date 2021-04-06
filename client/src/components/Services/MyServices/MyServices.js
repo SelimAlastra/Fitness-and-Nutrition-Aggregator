@@ -96,7 +96,7 @@ const MyServices = (props) => {
         return (
             <div>
                 <NavbarUser/>
-                <p>Sorry, no services can be found!</p>
+                <p style={{"marginTop": "10%", "fontSize":"25px"}}>You currently have no services.</p>
             </div>
         );
     } else {
@@ -106,7 +106,6 @@ const MyServices = (props) => {
                 <div className="titleText">
                     <h1>My Bundles</h1>
                     <p>These are the bundles you have purchased.</p>
-                    <hr  className="serviceSeperator"/>
                 </div>
                 <div>
                     <ul className="serviceList">
@@ -117,7 +116,7 @@ const MyServices = (props) => {
                                             <div className="serviceDescription">
                                                 <h3>{service.title}</h3>
                                                 <br />
-                                                <p>{service.description}</p>
+                                                <p className="subText">{service.description}</p>
                                                 {service.urls.length == 1 ?
                                                 <p className="subText">This bundle contains {service.urls.length} video.</p>
                                                 : <p className="subText">This bundle contains {service.urls.length} videos.</p>
