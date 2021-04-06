@@ -39,11 +39,11 @@
 
 /* BUTTONS */
 
-.quizz button {
+.quizBtn button {
   width: 100%;
   font-size: 16px;
   color: #ffffff;
-  background-color: rgb(9, 30, 41); /*#252d4a;*/
+  background-color: rgb(9, 30, 41); 
   border-radius: 15px;
   display: flex;
   padding: 5px;
@@ -51,6 +51,10 @@
   align-items: center;
   border: 5px solid #234668;
   cursor: pointer;
+}
+
+.dobPicker button {
+  all: initial;
 }
 
 #backward-btn {
@@ -111,6 +115,10 @@
 
 .quizz button svg {
   margin-right: 5px;
+}
+
+DatePicker button{
+  background-color: red;
 }
 
 /* INPUT */
