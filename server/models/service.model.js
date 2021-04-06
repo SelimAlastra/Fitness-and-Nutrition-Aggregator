@@ -15,7 +15,6 @@ const serviceSchema = new Schema({
 });
 
 serviceSchema.post("findOneAndDelete", (document, next) => {
-  console.log('kjashf');
   const bundleId = document._id;
   BasicUser.find({ bundles: { $in: [bundleId] } }).then(users => {
       Promise.all(

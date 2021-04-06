@@ -6,7 +6,7 @@ import BasicUser from '../../models/basicUser.model.js'
 import Service from '../../models/service.model.js'
 import mongoose  from 'mongoose';
 
-describe('services routes', function() {
+describe.only('services routes', function() {
     let basicUser, editService, deleteService, id, deleteId;
     before((done) => {
         basicUser = new BasicUser({

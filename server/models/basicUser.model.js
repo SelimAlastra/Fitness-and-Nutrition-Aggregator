@@ -34,7 +34,7 @@ const basicUserSchema = new Schema({
 
   height :{type: String,  required: false, default: null},
 
-  goals :[{type: String,  required: false}],
+  goals: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Goal', required: true }],
 
   tags : [String],
   //I used an array here cause an user may have multiple tags
