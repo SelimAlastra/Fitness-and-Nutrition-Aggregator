@@ -1,9 +1,4 @@
 import React, { Component } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { getBasicUser, updateBasicUser } from '../actions/basicUsers';
-import { getProfessional, getProfessionalUsers, updateProfessional } from '../actions/professionals';
-//import {} from '../components/Navbar/Searchbox'
-
 import Question from './components/question';
 import Answer from './components/answer';
 import './styling/quizUser.css';
@@ -392,13 +387,13 @@ export default class Quiz extends Component{
     
     render(){
         let {questions, currentQuestion, complete, questionsReqInput, isClient, associatedTags} = this.state;
-
+        
         return(
-            <div>
+            <div className="quizz">
             <img className="backgroundJPG"
             src="https://static.onecms.io/wp-content/uploads/sites/35/2010/07/28170650/fb-interval-training-workouts.jpg" />
             
-            <div className="quizz"> 
+            <div> 
                 { complete ? (
                     <div></div>
                 ) : ( 
@@ -423,7 +418,7 @@ export default class Quiz extends Component{
                                 />
                             </div>
 
-                            <div>
+                            <div className="quizBtn">
                                 <button id="backward-btn" disabled={currentQuestion===0 ? true: false} onClick={() => this.handleBackButtonClick()}>ᐊ</button>
                                 <button id="forward-btn" disabled={currentQuestion===questions.length-1 ? true: false} style={{ display: currentQuestion===questions.length-1 ? 'none' : null }} onClick={() => this.handleForwardButtonClick()}>ᐅ</button>
                                 {/* ERROR display still in progress <div id="inputAlert" className="input-alert disabled">ERROR! Invalid input.</div> */}
