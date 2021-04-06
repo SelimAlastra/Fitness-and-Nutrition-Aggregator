@@ -42,4 +42,5 @@ tr.tableRow{
     overflow: hidden !important;
     border-radius: 25px !important;
     border: 2px solid #9cbe95;
+    min-width: 200px;
 }
