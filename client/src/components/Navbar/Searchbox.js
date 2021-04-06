@@ -6,8 +6,9 @@ import InputBase from '@material-ui/core/InputBase';
 import {associatedTags} from '../../quiz/quizUser';
 import { useDispatch, useSelector } from 'react-redux';
 import { getBasicUser, updateBasicUser } from '../../actions/basicUsers';
-import { getProfessionalUsers, updateProfessional } from '../../actions/professionals';
+import { getProfessionalUsers, updateProfessional, getProfessional } from '../../actions/professionals';
 import { details } from '../../quiz/quizUser';
+import { createGoal } from '../../actions/goals';
 
 /**
  * styles for the searchbox
@@ -53,6 +54,7 @@ const initialFilteredPosts = new Set();
  * 
  */
 const SearchBox = ({updatePosts,setUpdatedPosts}) => {
+
   const classes = useStyles();
  
   const dispatch = useDispatch();
@@ -82,6 +84,7 @@ const SearchBox = ({updatePosts,setUpdatedPosts}) => {
   const filterPosts=(searchString)=>{
     var newFilteredPosts;
     
+    
     newFilteredPosts=filteredPosts.filter((post) => 
               post.title.toLowerCase().includes(searchString) ||
               post.message.toLowerCase().includes(searchString) ||
@@ -97,7 +100,7 @@ const SearchBox = ({updatePosts,setUpdatedPosts}) => {
   const filterProfiles = (searchString) => {
     var newFilteredProfiles;
 
-    if(searchString !== ""){
+    if(searchString !== "" && profiles.length>1){
       newFilteredProfiles = profiles.filter((profile) => profile.username.toLowerCase().includes(searchString));
       //console.log("filtered profiles: " + newFilteredProfiles);
       finalFilteredProfiles = newFilteredProfiles;
@@ -111,10 +114,16 @@ const SearchBox = ({updatePosts,setUpdatedPosts}) => {
 
     var profile;
     var tags;
+    var clientx;
+    var professionalx;
 
-    var clientx = useSelector((state) => state.basicUsers);
-    var professionalx = useSelector((state) => JSON.parse(localStorage.getItem('user')).type === 'professional' ? state.professional.filter((p) => p._id === JSON.parse(localStorage.getItem('user'))._id) : null);
+    useEffect(() => {
+        dispatch(getBasicUser(JSON.parse(localStorage.getItem('user'))._id));
+        dispatch(getProfessional(JSON.parse(localStorage.getItem('user'))._id));
+      }, [dispatch]);
     
+    clientx = useSelector((state) => state.basicUsers);
+    professionalx = useSelector((state) => state.professional);
 
     if(JSON.parse(localStorage.getItem('user')).type === 'client'){
       profile = clientx;
@@ -122,7 +131,7 @@ const SearchBox = ({updatePosts,setUpdatedPosts}) => {
       profile = professionalx;
     }
 
-    if(profile.tags){
+   if(profile.tags){
       tags=profile.tags;
     }
     
@@ -141,7 +150,6 @@ const SearchBox = ({updatePosts,setUpdatedPosts}) => {
         bodyType: profile.bodyType,
         weight: details.weight,
         height: details.height,
-        goals: details.goals,
         tags: associatedTags,
         bio: profile.bio,
         resetPasswordLink: profile.resetPasswordLink,

@@ -1,5 +1,6 @@
 import ProfessionalUser from '../models/professionalUser.model.js';
 import mongoose from 'mongoose';
+import BasicUser from '../models/basicUser.model.js';
 
 export const getProfessionalUser = async (req, res) => {
   ProfessionalUser.findById(req.params.id)
@@ -27,8 +28,32 @@ export const createProfessionalUser = async (req, res) => {
 export const updateProfessionalUser = async (req, res) => {
   const { id: _id } = req.params;
   const user = req.body;
+  const username = user.username;
 
   if(!mongoose.Types.ObjectId.isValid(_id)) return (res.status(404).send('No user with that id'));
+
+  if(ProfessionalUser.findOne({username})){
+    ProfessionalUser.findOne({
+      username
+    }).exec((err, userF) => {
+      if(userF && userF._id != _id){
+        return res.status(400).json({
+          errors: 'Username already in use.'
+        });
+      }
+    });
+  }
+  if(BasicUser.findOne({username})){
+    BasicUser.findOne({
+      username
+    }).exec((err, userF) => {
+      if(userF){
+        return res.status(400).json({
+          errors: 'Username already in use.'
+        });
+      }
+    });
+  }
 
   const updatedUser = await ProfessionalUser.findByIdAndUpdate(_id, { ...user, _id }, { new: true });
 

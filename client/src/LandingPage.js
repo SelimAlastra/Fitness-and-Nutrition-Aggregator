@@ -2,7 +2,6 @@ import React from "react";
 import { Alert, Carousel, Container} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './LandingPage.css';
-import NavbarVisitor from './components/Navbar/NavbarVisitor.js';
 import { useHistory } from 'react-router-dom';
 import BasicUsers from './components/UsersAuth/clientModal';
 import Professional from './components/UsersAuth/professionalModal';
@@ -39,7 +38,7 @@ function LandingPage() {
                         />
                         <Carousel.Caption className="caption" class="carousel-caption">
                             <h3 className="carouselText">Fitness</h3>
-                            <p className="carouselTextDescription">Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+                            <p className="carouselTextDescription"> Achieve your dream body thanks to our online platform </p>
                         </Carousel.Caption>
                     </Carousel.Item>
                     <Carousel.Item class="d-none d-md-block">
@@ -50,7 +49,7 @@ function LandingPage() {
                         />
                         <Carousel.Caption className="caption" class="carousel-caption">
                             <h3 className="carouselText">Nutrition</h3>
-                            <p className="carouselTextDescription"> Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                            <p className="carouselTextDescription"> Find a wide variety of healthy cooking recipes  </p>
                         </Carousel.Caption>
                     </Carousel.Item>
                     <Carousel.Item>
@@ -61,7 +60,7 @@ function LandingPage() {
                         />
                         <Carousel.Caption className="caption" class="carousel-caption">
                             <h3 className="carouselText">Goals</h3>
-                            <p className="carouselTextDescription">Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+                            <p className="carouselTextDescription"> Find professionals to help you reach your fitness and nutrition goals </p>
                         </Carousel.Caption>
                     </Carousel.Item>
                 </Carousel>
@@ -69,7 +68,7 @@ function LandingPage() {
                     <div className="aboutUs">
                         <h2 className="websiteName"> About us ... </h2>
                         <hr />
-                        <p className="aboutUsText">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa. Vestibulum lacinia arcu eget nulla. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur sodales ligula in libero. </p>
+                        <p className="aboutUsText"> Join an amazing community through our fitness and nutrition platform. By registering on our website, you will have access to a wide variety of services offered by professionals and a lot more !  Rediscover a new way of exercising sport and never miss again any of your fitness or nutrition goals.    </p>
                     </div>
                     <Grid container justify="center">
                         <Grid item xs= {3}>

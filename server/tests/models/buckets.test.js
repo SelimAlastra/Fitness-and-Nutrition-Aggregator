@@ -18,6 +18,7 @@ describe('Testing Buckets model', function() {
         basicUser = new BasicUser(basicUser);
         const bucketBody = {
 			title: "Nutrition",
+			description: "Description for nutrition",
 			postsId: [],
 			userId: basicUser._id
 		};

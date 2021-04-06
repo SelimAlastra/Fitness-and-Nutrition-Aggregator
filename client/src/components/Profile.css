@@ -27,16 +27,15 @@
 }
 
 .textContainer {
-    background-color: #D7C5B4;
+    color: black !important;
     border-radius: 10px;
     padding: 1%;
-    color: #EFEAE4;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     font-size: medium;
 }
 
 .seperator {
-    background-color: #D7C5B4;
+    color: black !important;
     margin-left: 10%;
     margin-right: 10%;
 }
@@ -53,7 +52,6 @@
 }
 
 .service {
-    background-color: #D7C5B4;
     border-radius: 10px;
     margin-left: 1%;
     margin-right: 1%;
@@ -64,13 +62,12 @@
 }
 
 .serviceColumn {
-    background-color:  #D7C5B4;
     padding: 2%;
     margin-top: 1%;
     margin-bottom: 1%;
     color: white;
     border-radius: 12px;
-    min-width:min-content;
+    min-width: min-content;
 }
 
 .purchaseButton {
@@ -93,5 +90,53 @@
     text-align: left;
     font: small;
     margin: 1%;
-    color: #808080;
+    
+}
+
+.profileInfo{
+    margin-top: 20px;
+    margin-left: 8.5%;
+    margin-right: 8.5%;
+}
+
+.personalInfo{
+    margin-left: 11.75%;
+    margin-right: 10%;
+    margin-top: 4%;
+    border-radius: 25px !important;
+    box-shadow: 0px 0px 9px 0px rgba(220, 143, 102, 1 ) !important;
+    height: 200px;
+    margin-bottom: 1%;
+}
+
+.goals{
+    height: 200px;
+    overflow-y: scroll;
+    margin-top: 4%;
+    margin-right: 10%;
+    border-radius: 25px !important;
+    box-shadow: 0px 0px 9px 0px rgba(220, 143, 102, 1 ) !important;
+    margin-bottom: 1%;
+}
+
+.serviceContainerProfile{
+    min-width: 300px;
+    max-width: 300px;
+    border-radius: 20px;
+    padding: 1%;
+    margin: 1%;
+    box-shadow: 0px 0px 9px 0px rgba(220, 143, 102, 1 );
+    display: inline-block;
+    align-items: center;
+    height: 200px;
+}
+
+.purchaseButton{
+    background-color: #7ec0a9 !important;
+    box-shadow: none !important;
+}
+
+.serviceColumnProfile{
+    margin-right: 10%;
+    margin-left: 10%;
 }

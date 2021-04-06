@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import BasicUser from './basicUser.model.js'
 
 const Schema = mongoose.Schema;
 
@@ -12,6 +13,22 @@ const serviceSchema = new Schema({
 
 }, {
   timestamps: true,
+});
+
+serviceSchema.post("findOneAndDelete", (document, next) => {
+  const bundleId = document._id;
+  BasicUser.find({ bundles: { $in: [bundleId] } }).then(users => {
+      Promise.all(
+          users.map(user => 
+              BasicUser.findOneAndUpdate(
+                  {_id : user._id},
+                  { $pull: {bundles: bundleId} },
+                  { new: true }
+              )
+          )
+      );
+  });
+  next();
 });
 
 const Service = mongoose.model('Service', serviceSchema);
