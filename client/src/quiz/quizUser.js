@@ -255,18 +255,21 @@ export default class Quiz extends Component{
         const{questions, questionsReqInput} = this.state;
         let isComplete = true;
         questions.forEach(question => {
-            //check for empty input
-            if(questionsReqInput.find(element => element === question.questionId)){
-                //it seems the input length will always be 1
-                if(question.input.length > 0){
-                    if(question.input[0] === ""){
-                        isComplete = false;
+            if(question.questionId !== 2){
+
+                //check for empty input
+                if(questionsReqInput.find(element => element === question.questionId)){
+                    //it seems the input length will always be 1
+                    if(question.input.length > 0){
+                        if(question.input[0] === ""){
+                            isComplete = false;
+                        }
+                    } else if(/*!question.input || !question.input.length || */!question.answerOptions.find(element => element.selected === true)){
+                    isComplete = false;
                     }
-                } else if(/*!question.input || !question.input.length || */!question.answerOptions.find(element => element.selected === true)){
+                } else if(question.answerOptions.find(element => element.selected === true) === undefined){
                     isComplete = false;
                 }
-            } else if(question.answerOptions.find(element => element.selected === true) === undefined){
-                isComplete = false;
             }
         });
         return isComplete;

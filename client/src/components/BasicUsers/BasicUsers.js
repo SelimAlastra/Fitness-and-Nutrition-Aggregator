@@ -2,7 +2,6 @@ import { React, useEffect } from "react";
 import { Table } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
 import BasicUser from "./BasicUser/BasicUser";
-import UserForm from './BasicUserForm'
 import { getBasicUsers } from "../../actions/basicUsers";
 
 const BasicUsers = () => {

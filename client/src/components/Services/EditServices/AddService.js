@@ -42,6 +42,7 @@ const AddService = (props) => {
                 title: "",
                 urls: []
             });
+
             handleClose();
 
         }
@@ -110,20 +111,13 @@ const AddService = (props) => {
                         </Form.Control>
                     </Form.Group>
                 </Form>
-                <div className="saveClose">
+                <div className="save">
                     <Button
                         className="actionButton"
                         type="submit"
                         onClick={(event) => addNewService(event)}
                     >
                         Save
-                            </Button>
-                    <Button
-                        className="actionButton"
-                        type="button"
-                        onClick={(event) => window.location.href = `/professional/services/edit/${user._id}`}
-                    >
-                        Close
                             </Button>
                 </div>
             </Modal>

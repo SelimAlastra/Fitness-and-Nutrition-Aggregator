@@ -3,7 +3,7 @@ import mongoose from 'mongoose';
 const postSchema = mongoose.Schema({
     title: {type: String, required: true},
     message: {type:String, required: true},
-    userFrom: {type: String, required: true},
+    userFrom: {type: mongoose.Schema.Types.ObjectId, required : true, ref: 'ProfessionalUser'},
     creator: {type: String, required: true},
     tags: [{type: String, required: false}],
     selectedFile: {type: String, required: false},
