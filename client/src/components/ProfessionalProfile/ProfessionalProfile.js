@@ -87,22 +87,43 @@ const ProfessionalProfile = (props) => {
             return (
                 <div>
                     { generateEditServicesLink(isProfessional)}
-                    <h2 className="pageText">Services</h2>
-                    <ul>
-                        {
+                    <h2  style={{ "marginBottom": "30px" }} className="pageText">Services</h2>
+                    <div class="row" style={{ "width": "60%", marginLeft: "20%" }}>
+                        {myServices.length === 1 ?
                             myServices.map((service, index) => {
                                 return (
-                                    <li key={index} className="serviceList">
-                                        <div className="serviceColumn">
-                                            <h4>{service.title}</h4>
-                                            <p>{service.description}</p>
-                                        </div>
-                                    </li>
+                                    <div key={index} class="col sm-6" className="serviceColumnProfile">
+                                        <Container className="serviceContainerProfile">
+                                            <h4 style={{ "style": "black", "marginBottom": "10%", "marginTop": "2%" }}>{service.title}</h4>
+                                            <p style={{ "style": "black", "marginBottom": "15%" }}>{service.description}</p>
+                                        </Container>
+                                    </div>
                                 )
                             })
+                            :
+                            myServices.map((service, index) => {
+                                return (
+                                    <div key={index} class="col sm-6" >
+                                        <Container className="serviceContainerProfile">
+                                            <h4 style={{ "style": "black", "marginBottom": "10%", "marginTop": "2%" }}>{service.title}</h4>
+                                            <p style={{ "style": "black", "marginBottom": "15%" }}>{service.description}</p>
+                                        </Container>
+                                    </div>
+                                )
+                                // myServices.map((service, index) => {
+                                //     return (
+                                //         <li key={index} className="serviceList">
+                                //             <div className="serviceColumn">
+                                //                 <h4>{service.title}</h4>
+                                //                 <p>{service.description}</p>
+                                //             </div>
+                                //         </li>
+                                //     )
+                                // })
+                            })
                         }
-                    </ul>
-                </div>
+                    </div>
+                </div >
             );
         } else {
             return (
@@ -112,9 +133,9 @@ const ProfessionalProfile = (props) => {
                         {myServices.length !== 1 ?
                             myServices.map((service, index) => {
                                 return (
-                                    <div key={index} class="col sm-6" className="serviceColumnProfile">
+                                    <div key={index} class="col sm-6" >
                                         <Container className="serviceContainerProfile">
-                                            <h4 style={{ "style": "black", "marginBottom": "10%" }}>{service.title}</h4>
+                                            <h4 style={{ "style": "black", "marginBottom": "10%", "marginTop": "2%" }}>{service.title}</h4>
                                             <p style={{ "style": "black", "marginBottom": "15%" }}>{service.description}</p>
                                             <Button
                                                 value={service._id}
@@ -130,7 +151,7 @@ const ProfessionalProfile = (props) => {
                             :
                             myServices.map((service, index) => {
                                 return (
-                                    <div key={index} class="col" className="serviceColumnProfile">
+                                    <div key={index} class="col sm" className="serviceColumnProfile">
                                         <Container className="serviceContainerProfile">
                                             <h4 style={{ "style": "black", "marginBottom": "10%" }}>{service.title}</h4>
                                             <p style={{ "style": "black", "marginBottom": "15%" }}>{service.description}</p>
@@ -164,6 +185,7 @@ const ProfessionalProfile = (props) => {
                     <ProfileInfo profile={professionalUser} />
                 </div>
                 {!professionalUser.isBanned ?
+
                     <div className="section">
                         {
                             generateServices()
