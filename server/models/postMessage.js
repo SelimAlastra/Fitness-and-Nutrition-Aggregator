@@ -11,6 +11,7 @@ const postSchema = mongoose.Schema({
     audioFile: {type: String, required: false},
     embeddedLink: {type: String, required: false},
     facebookLink: {type: String, required: false},
+    photo: {type: String, required: false},
     likes: {
         type: [String],
         default: [],

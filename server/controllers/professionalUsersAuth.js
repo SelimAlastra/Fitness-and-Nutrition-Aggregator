@@ -53,12 +53,14 @@ export const registerController = (req, res) => {
                     });
                   }
                   else {
+                    const picture = 'https://www.google.com/search?rlz=1C5CHFA_enRO895RO898&sxsrf=ALeKk002QKXi81lPlpSg4BuV14hjcqcqiQ:1617673227874&source=univ&tbm=isch&q=free+avatar+images&sa=X&ved=2ahUKEwiDm_CwvujvAhVy_7sIHcqECDcQjJkEegQICRAB&biw=1440&bih=821#imgrc=IfWReGMYsHBi5M';
                     const user = new ProfUser({
                       username,
                       email,
                       password,
                       name,
-                      profession
+                      profession,
+                      picture
                     });
                     user.save((err, data) => {
                       if (err) {
@@ -144,23 +146,23 @@ export const googleController = (req, res) => {
   client
     .verifyIdToken({ idToken, audience: process.env.REACT_APP_GOOGLE_CLIENT })
     .then(response => {
-      const { email_verified, name, email } = response.payload;
+      const { email_verified, name, email, picture } = response.payload;
       if (email_verified) {
         ProfUser.findOne({ email }).exec((err, user) => {
           if (user) {
             const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET, {
               expiresIn: '7d'
             });
-            const { _id, email, name, username, type } = user;
+            const { _id, email, name, username, picture } = user;
             return res.json({
               token,
-              user: { _id, email, name, username ,type:'professional' }
+              user: { _id, email, name, username , picture, type:'professional' }
             });
           } else {
             let password = email + process.env.JWT_SECRET;
             let username = name.replace(/\s/g, "").toLowerCase() + Math.floor(Math.random() * 10000); //implement random number generator later
             let profession = 'Fitness professional';
-            user = new ProfUser({ username, email, password, name, profession });
+            user = new ProfUser({ username, email, password, name, profession, picture });
             user.save((err, data) => {
               if (err) {
                 console.log('ERROR GOOGLE LOGIN ON USER SAVE', err);
@@ -176,11 +178,11 @@ export const googleController = (req, res) => {
               
               const isNew = "true";
 
-              const { _id, email, name, username, type} = data;
+              const { _id, email, name, username, picture} = data;
               return res.json({
                 token,
                 isNew : isNew,
-                user: { _id, email, name, username, type: 'professional'}
+                user: { _id, email, name, username, picture, type: 'professional'}
               });
             });
           }
@@ -195,7 +197,7 @@ export const googleController = (req, res) => {
 
 export const facebookController = (req, res) => {
   console.log('FACEBOOK LOGIN REQ BODY', req.body);
-  const { userID, accessToken } = req.body;
+  const { userID, accessToken, picture } = req.body;
 
   const url = `https://graph.facebook.com/v2.11/${userID}/?fields=id,name,email&access_token=${accessToken}`;
 
@@ -205,22 +207,22 @@ export const facebookController = (req, res) => {
     })
       .then(response => response.json())
       .then(response => {
-        const { email, name } = response;
+        const { email, name, picture } = response;
         ProfUser.findOne({ email }).exec((err, user) => {
           if (user) {
             const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET, {
               expiresIn: '7d'
             });
-            const { _id, email, name, username, type} = user;
+            const { _id, email, name, username, picture} = user;
             return res.json({
               token,
-              user: { _id, email, name, username, type:'professional'}
+              user: { _id, email, name, username, picture, type:'professional'}
             });
           } else {
             let username = name.replace(/\s/g, "").toLowerCase() + Math.floor(Math.random() * 10000);
             let password = email + process.env.JWT_SECRET;
             let profession = 'Fitness professional';
-            user = new ProfUser({ username, email, password, name, profession });
+            user = new ProfUser({ username, email, password, name, profession, picture });
             user.save((err, data) => {
               if (err) {
                 console.log('ERROR FACEBOOK LOGIN ON USER SAVE', err);
@@ -236,11 +238,11 @@ export const facebookController = (req, res) => {
 
               const isNew = "true";
 
-              const { _id, email, name, username ,type} = data;
+              const { _id, email, name, username, picture} = data;
               return res.json({
                 token,
                 isNew : isNew,
-                user: { _id, email, name, username , type:'professional'}
+                user: { _id, email, name, username, picture , type:'professional'}
               });
             });
           }
