@@ -14,7 +14,7 @@ const Goals = ({userID}) => {
     
     function generateGoals() {
         if (myGoals !== undefined && myGoals.length > 0) {
-            return myGoals.map((goal, index) => {console.log(goal);return (<p className="textContainer" key={index}>{goal.description}</p>)});
+            return myGoals.map((goal, index) => {console.log(goal);return (<p key={index}>{goal.description}</p>)});
         } else {
             return (<div><h3 className="notFound" data-testid="noGoalsMessage">Sorry, you currently have no goals!</h3></div>);
         }
