@@ -92,7 +92,7 @@ const EditServices = (props) => {
                         </CloseIcon>
                     </div>
                     <h4>Add Video to Bundle</h4>
-                    <hr className="seperator" style={{ "background-color": "#Dc8f66" }} />
+                    <hr className="seperator"/>
                     <br />
                     <Form>
                         <Form.Control class="form-control-static"
@@ -193,7 +193,7 @@ const EditServices = (props) => {
             <div class="container">
 
                 <h3 style={{ marginTop: "20px" }} className="serviceText">Bundles</h3>
-                <hr className="seperator" style={{ "background-color": "#Dc8f66" }} />
+                <hr className="seperator" />
 
                 <AddService />
                 <div>

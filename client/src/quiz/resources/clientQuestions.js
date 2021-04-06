@@ -10,6 +10,7 @@ const questionsClient = [
     }, {
         questionText: "What is the date of your birth?",
         questionId: 2,
+        answerOptions: [{ answerText: "date of birth", selected:true, requireInput: false, tags:[""] },],
         dob: "",
     },{
         questionText: "What is your weight?",
