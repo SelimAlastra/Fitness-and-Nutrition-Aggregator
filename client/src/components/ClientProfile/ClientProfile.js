@@ -7,7 +7,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { getBasicUser, getBasicUsers } from "../../actions/basicUsers";
 import { getGoals } from '../../actions/goals';
 import NavbarUser from "../Navbar/NavbarUser";
-import { useRadioGroup } from "@material-ui/core";
 
 const ClientProfile = (props) => {
     const dispatch = useDispatch();

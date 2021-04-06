@@ -71,7 +71,7 @@ const EditProfessionalDetails = (props) => {
             axios
             .patch(`http://localhost:5000/professionalUsers/update/${props.match.params.id}`, updatedProfile)
             .then(res => {
-                window.location.href=`/professional/profile/${ID}`
+                window.location.href=`/professional/profile/${props.match.params.id}`
                 setValidated(true);
             })
             .catch(err => {
