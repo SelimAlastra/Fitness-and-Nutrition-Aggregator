@@ -206,8 +206,6 @@ export default class Quiz extends Component{
                     });
                 }
             });
-
-            console.log(answerWithInput.tags);
         }
     }
 
@@ -379,7 +377,9 @@ export default class Quiz extends Component{
             if(isClient) {
                 // update the db
                 this.updateClientDetails();
-                this.props.history.push(`/clientDashboard/${JSON.parse(localStorage.getItem('user'))._id}`);
+                this.props.history.push({
+                    pathname: `/clientDashboard/${JSON.parse(localStorage.getItem('user'))._id}`,
+                    state: {fromQuiz: true}});
             } else {
                 // update the db 
                 this.updateProfessionalDetails();

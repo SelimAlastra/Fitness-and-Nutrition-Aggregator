@@ -54,6 +54,7 @@ const initialFilteredPosts = new Set();
  * 
  */
 const SearchBox = ({updatePosts,setUpdatedPosts}) => {
+
   const classes = useStyles();
  
   const dispatch = useDispatch();
