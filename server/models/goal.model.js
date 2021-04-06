@@ -34,6 +34,22 @@ goalSchema.post("findOneAndDelete", (document, next) => {
   next();
 });
 
+goalSchema.post("save", (document, next) => {
+  const goalId = document._id;
+  BasicUser.find({ _id: document.userID }).then(users => {
+      Promise.all(
+          users.map(user => 
+              BasicUser.findOneAndUpdate(
+                  {_id : user._id},
+                  { $push: {goals: goalId} },
+                  { new: true }
+              )
+          )
+      );
+  });
+  next();
+});
+
 const Goal = mongoose.model('Goal', goalSchema);
 
 export default Goal;
