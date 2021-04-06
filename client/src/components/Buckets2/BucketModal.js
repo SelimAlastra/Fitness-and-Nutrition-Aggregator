@@ -31,6 +31,7 @@ function PopUpNewBuckets() {
     
     return (<> 
     <Button className="createButton"
+        data-testid="createNewbucket"
         onClick={handleShow} >
         Create a new bucket 
     </Button>
