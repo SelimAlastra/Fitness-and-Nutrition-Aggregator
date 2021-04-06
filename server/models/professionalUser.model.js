@@ -42,8 +42,7 @@ const professionalUserSchema = new Schema({
   youtubeLink: {type: String, required: false},
 
   resetPasswordLink :{type: String, default: '', required: false},
-
-  picture: {type: String, required: false},
+  
 }, {
   timestamps: true,
 });
