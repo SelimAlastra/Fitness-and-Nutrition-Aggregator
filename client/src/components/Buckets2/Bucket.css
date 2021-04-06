@@ -1,0 +1,53 @@
+.titleButton{
+    background-color: white;
+    color: black;
+    border: none;
+    margin-bottom: -7%;
+}
+
+.titleButton:hover{
+    background-color: rgb(245, 245, 245);
+    color: black;
+    border: none;
+}
+
+.titleButton:active{
+    background-color: rgb(245, 245, 245) !important;
+    color: black !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+.titleButton:focus{
+    background-color: rgb(245, 245, 245) !important;
+    color: black !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+.deleteBucketBP, .editBucketBP{
+    background-color: white;
+    color: black;
+    border: none
+}
+
+.deleteBucketBP:focus, .editBucketBP:focus{
+    background-color: rgb(245, 245, 245) !important;
+    color: black !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+.deleteBucketBP:hover, .editBucketBP:hover{
+    background-color: rgb(245, 245, 245) !important;
+    color: black !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+.deleteBucketBP:active, .editBucketBP:active{
+    background-color: white !important;
+    color: black !important;
+    border: none !important;
+    box-shadow: none !important;
+}

@@ -12,7 +12,7 @@
     font-family: Arial, Helvetica, sans-serif !important;
     font-weight:bold;
     max-width: 100%;
-    border-color: black;
+    border: 2px solid #9cbe95;
     overflow: hidden;
 }
 .container {
@@ -24,33 +24,33 @@
 }
 
 .removePost{
-    background-color: #Dc8f66;
+    background-color: black;
     height: 40px;
-    border-color: #Dc8f66;
+    border-color: #9cbe95;
     color: white;
     width: fit-content;
 }
 
 .removePost:hover{
-    background-color: white;
-    border-color:#Dc8f66;
+    background-color: #9bda8e;
+    border-color:#9cbe95;
     box-shadow: none;
     color: black;
     width: fit-content;
 }
 
 .removePost:active{
-    background-color: white !important;
+    background-color: #9bda8e !important;
     box-shadow: none !important;
-    border-color:#Dc8f66 !important;
+    border-color:#9cbe95 !important;
     color: black !important;
     width: fit-content;
 }
 
 .removePost:focus{
-    background-color: white !important;
+    background-color: #9bda8e !important;
     box-shadow: none !important;
-    border-color:#Dc8f66 !important;
+    border-color:#9cbe95 !important;
     color: black !important;
     width: fit-content;
 }
