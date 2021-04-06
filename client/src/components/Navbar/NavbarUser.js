@@ -248,7 +248,10 @@ export default function NavbarUser({updatedPosts, setUpdatedPosts}) {
     <div className={classes.grow, "navbar-top"}>
       <AppBar position="static" color="transparent">
         <Toolbar>
-          <FitnessCenterIcon onClick={() => window.location.href = `/clientDashboard/${JSON.parse(localStorage.getItem('user'))._id}`} className={classes.title, "logo"} style = {{"cursor" : "pointer"}} variant="h6" noWrap/>
+          {/* <FitnessCenterIcon onClick={() => window.location.href = `/clientDashboard/${JSON.parse(localStorage.getItem('user'))._id}`} className={classes.title, "logo"} style = {{"cursor" : "pointer"}} variant="h6" noWrap/> */}
+          <Typography onClick={() => window.location.href = `/homePage/${JSON.parse(localStorage.getItem('user'))._id}`} className={classes.title, "logo", "landing"} style = {{"cursor" : "pointer"}} variant="h6" noWrap>
+            LOGO
+          </Typography>
           { document.URL.includes("clientDashboard/") ? (
           <div className={classes.search}>
             <div className={classes.searchIcon}>
