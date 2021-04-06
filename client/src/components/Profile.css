@@ -4,17 +4,18 @@
 }
 
 .section {
+    width: 88%;
+    margin-left: 6%;
+    margin-bottom: 1%;
     border-radius: 10px;
     padding: 1%;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    width: 100%;
-    min-width: 100%;
     margin: auto;
     text-align: center;
     font-family: arial;
     justify-content: center;
     background-color:white;
-    margin-bottom: 1%;
+    height: fit-content;
 }
 
 .editLink {
@@ -71,14 +72,16 @@
 }
 
 .purchaseButton {
-    background-color: white;
-    color: black;
+    background-color: black;
+    color: white;
     border: none;
-
+    box-shadow: none !important;
+    border-color: #9cbe95;
 }
 
 .purchaseButton:hover {
-    background-color: lightgray;
+    background-color: #9bda8e !important;
+    color: black !important;
     
 }
 
@@ -104,7 +107,7 @@
     margin-right: 10%;
     margin-top: 4%;
     border-radius: 25px !important;
-    box-shadow: 0px 0px 9px 0px rgba(220, 143, 102, 1 ) !important;
+    box-shadow: 0px 0px 9px 0px rgba(155, 218, 142, 1) !important;
     height: 200px;
     margin-bottom: 1%;
 }
@@ -115,7 +118,7 @@
     margin-top: 4%;
     margin-right: 10%;
     border-radius: 25px !important;
-    box-shadow: 0px 0px 9px 0px rgba(220, 143, 102, 1 ) !important;
+    box-shadow: 0px 0px 9px 0px rgba(155, 218, 142, 1) !important;
     margin-bottom: 1%;
 }
 
@@ -125,18 +128,15 @@
     border-radius: 20px;
     padding: 1%;
     margin: 1%;
-    box-shadow: 0px 0px 9px 0px rgba(220, 143, 102, 1 );
+    box-shadow: 0px 0px 9px 0px rgba(155, 218, 142, 1);
     display: inline-block;
     align-items: center;
     height: 200px;
 }
 
-.purchaseButton{
-    background-color: #7ec0a9 !important;
-    box-shadow: none !important;
-}
 
 .serviceColumnProfile{
-    margin-right: 10%;
-    margin-left: 10%;
+    margin-right: 8%;
+    margin-left: 8%;
+    margin-bottom: 2%;
 }
