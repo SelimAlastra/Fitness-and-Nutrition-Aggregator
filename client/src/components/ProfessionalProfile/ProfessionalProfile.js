@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getProfessional } from '../../actions/professionals';
 import { getServices } from '../../actions/services';
 import { updateBasicUser, getBasicUser } from '../../actions/basicUsers';
-import { Button } from 'react-bootstrap';
+import { Button, Container } from 'react-bootstrap';
 import NavbarUser from "../Navbar/NavbarUser";
 import NavbarProfessional from "../Navbar/NavbarProfessional";
 
@@ -32,26 +32,26 @@ const ProfessionalProfile = (props) => {
     // Get Professional & basic User if a basicUser is viewing the profile
     useEffect(() => {
         dispatch(getProfessional(professionalUserID));
-        if(!isProfessional)
+        if (!isProfessional)
             dispatch(getBasicUser(basicUserID));
 
     }, [isProfessional, professionalUserID]);
 
     let professionalUser = useSelector((state) => state.professional);
     let basicUserProfile = useSelector((state) => state.basicUsers);
-     useEffect(() => {
-         setBasicUser(basicUserProfile);
-         
-     }, [basicUserProfile]);
+    useEffect(() => {
+        setBasicUser(basicUserProfile);
 
-     // Get Services
-     useEffect(() => {
-         dispatch(getServices());
-     }, [dispatch]);
+    }, [basicUserProfile]);
+
+    // Get Services
+    useEffect(() => {
+        dispatch(getServices());
+    }, [dispatch]);
 
     const services = useSelector((state) => state.services);
     const myServices = services.filter(service => service.userID === professionalUserID);
-  
+
     function generateEditDetailsLink(isProfessional) {
         if (isProfessional) {
             return (<h5 className="editLink" onClick={() => window.location.href = `/professional/edit/${professionalUser._id}`}>Edit my details</h5>);
@@ -61,7 +61,7 @@ const ProfessionalProfile = (props) => {
     function generateEditServicesLink(isProfessional) {
         if (isProfessional) {
             return (<h5 className="editLink" onClick={() => window.location.href = `/professional/services/edit/${professionalUserID}`}>Edit my services</h5>);
-        } 
+        }
     }
 
     function purchaseBundle(event) {
@@ -86,17 +86,17 @@ const ProfessionalProfile = (props) => {
         if (isProfessional) {
             return (
                 <div>
-                     { generateEditServicesLink(isProfessional) }
-                     <h2 className="pageText">Services</h2>
+                    { generateEditServicesLink(isProfessional)}
+                    <h2 className="pageText">Services</h2>
                     <ul>
                         {
                             myServices.map((service, index) => {
                                 return (
-                                     <li key={index} className="serviceList">
-                                         <div className="serviceColumn">
-                                             <h4>{service.title}</h4>
-                                             <p>{service.description}</p>
-                                         </div>
+                                    <li key={index} className="serviceList">
+                                        <div className="serviceColumn">
+                                            <h4>{service.title}</h4>
+                                            <p>{service.description}</p>
+                                        </div>
                                     </li>
                                 )
                             })
@@ -106,51 +106,69 @@ const ProfessionalProfile = (props) => {
             );
         } else {
             return (
-                <div>
-                     <h2 className="pageText">Services</h2>
-                    <ul>
-                        {
+                <>
+                    <h2 style={{ "marginBottom": "50px" }} className="pageText">Services</h2>
+                    <div class="row" style={{ "width": "60%", marginLeft: "20%" }}>
+                        {myServices.length !== 1 ?
                             myServices.map((service, index) => {
                                 return (
-                                     <li key={index} className="serviceList">
-                                         <div className="serviceColumn">
-                                            <h4>{service.title}</h4>
-                                            <p>{service.description}</p>
-                                            <Button 
+                                    <div key={index} class="col sm-6" className="serviceColumnProfile">
+                                        <Container className="serviceContainerProfile">
+                                            <h4 style={{ "style": "black", "marginBottom": "10%" }}>{service.title}</h4>
+                                            <p style={{ "style": "black", "marginBottom": "15%" }}>{service.description}</p>
+                                            <Button
                                                 value={service._id}
                                                 className="purchaseButton"
                                                 onClick={purchaseBundle}
-                                             >
+                                            >
                                                 Purchase
                                             </Button>
-                                        </div>
-                                    </li>
+                                        </Container>
+                                    </div>
+                                )
+                            })
+                            :
+                            myServices.map((service, index) => {
+                                return (
+                                    <div key={index} class="col" className="serviceColumnProfile">
+                                        <Container className="serviceContainerProfile">
+                                            <h4 style={{ "style": "black", "marginBottom": "10%" }}>{service.title}</h4>
+                                            <p style={{ "style": "black", "marginBottom": "15%" }}>{service.description}</p>
+                                            <Button
+                                                value={service._id}
+                                                className="purchaseButton"
+                                                onClick={purchaseBundle}
+                                            >
+                                                Purchase
+                                            </Button>
+                                        </Container>
+                                    </div>
                                 )
                             })
                         }
-                    </ul>
-                </div>
+                    </div>
+                </>
             );
         }
     }
 
     return (
         <div>
-            { generateNavbar() }
-            
+            {generateNavbar()}
+
             <div className="sectionContainer">
-                <div className="section">
-                    <div>
-                        { generateEditDetailsLink(isProfessional)}
+                <div style={{ "width": "88%", "marginLeft": "6%" }}>
+                    <div >
+                        {generateEditDetailsLink(isProfessional)}
                     </div>
                     <ProfileInfo profile={professionalUser} />
                 </div>
-                { !professionalUser.isBanned ?
-                <div className="section">
-                    {
-                        generateServices()
-                    }
-                </div>
+                {!professionalUser.isBanned ?
+                    <div className="section">
+                        {
+                            generateServices()
+                        }
+                    </div>
                     : <></>
                 }
             </div>

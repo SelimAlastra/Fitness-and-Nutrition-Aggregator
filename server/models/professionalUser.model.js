@@ -43,6 +43,7 @@ const professionalUserSchema = new Schema({
 
   resetPasswordLink :{type: String, default: '', required: false},
 
+  picture: {type: String, required: false},
 }, {
   timestamps: true,
 });
