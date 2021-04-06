@@ -274,7 +274,7 @@ export default function NavbarProfessional({updatedPosts, setUpdatedPosts}) {
               color="inherit">
               <HomeIcon className={classes.iconButton} />
             </IconButton>
-            <IconButton component={Link} to={`/professional/services/add/${JSON.parse(localStorage.getItem('user'))._id}`} style={{width: '50px'}} data-testid="addBundlesButton" color="inherit">
+            <IconButton component={Link} to={`/professional/services/edit/${JSON.parse(localStorage.getItem('user'))._id}`} style={{width: '50px'}} data-testid="addBundlesButton" color="inherit">
                 <AddCircleIcon className={classes.iconButton}/>
             </IconButton>
             {/* <IconButton style={{width: '50px'}} aria-label="show 17 new notifications" color="inherit">

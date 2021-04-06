@@ -87,7 +87,7 @@ const Navbar = () => {
           </Button>
           <Button
             component={Link}
-            to={`/professional/services/add/${JSON.parse(localStorage.getItem('user'))._id}`}
+            to={`/professional/services/edit/${JSON.parse(localStorage.getItem('user'))._id}`}
             variant="contained" 
             color="primary"
           >
