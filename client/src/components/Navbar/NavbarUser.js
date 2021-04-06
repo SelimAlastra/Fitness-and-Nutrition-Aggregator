@@ -8,7 +8,6 @@ import Searchbox from './Searchbox';
 import Badge from '@material-ui/core/Badge';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
-import MenuIcon from '@material-ui/icons/Menu';
 import FitnessCenterIcon from '@material-ui/icons/FitnessCenter';
 import SearchIcon from '@material-ui/icons/Search';
 import AccountCircle from '@material-ui/icons/AccountCircle';
@@ -147,21 +146,11 @@ export default function NavbarUser({updatedPosts, setUpdatedPosts}) {
           </div>
         </IconButton>
       </MenuItem>
-      {/* <MenuItem onClick={handleMenuClose}>
-        <IconButton component={Link} onClick={
-              () => window.location.href = `/user/myBuckets/${JSON.parse(localStorage.getItem('user'))._id}`
-            } > 
-          <div>
-            <LayersIcon/> 
-            <text style={{fontSize:"1.2rem"}}>Buckets</text>
-          </div>
-        </IconButton>
-      </MenuItem> */}
       <MenuItem onClick={handleMenuClose}>
         <IconButton component={Link} to={`/user/edit/${JSON.parse(localStorage.getItem('user'))._id}`}> 
           <div>
             <SettingsIcon/> 
-            <text style={{fontSize:"1.2rem"}}> Settings</text>
+            <text style={{fontSize:"1.2rem"}}> Settings </text>
           </div>
         </IconButton>
       </MenuItem>
@@ -223,7 +212,7 @@ export default function NavbarUser({updatedPosts, setUpdatedPosts}) {
         <IconButton component={Link} to={`/user/profile/${JSON.parse(localStorage.getItem('user'))._id}`} > 
           <div>
             <AccountBoxIcon/> 
-            <text style={{fontSize:"1.2rem"}}> Profile</text>
+            <text style={{fontSize:"1.2rem"}}> Profile </text>
           </div>
         </IconButton>
       </MenuItem>
@@ -231,7 +220,7 @@ export default function NavbarUser({updatedPosts, setUpdatedPosts}) {
       <IconButton component={Link} to={`/user/edit/${JSON.parse(localStorage.getItem('user'))._id}`}> 
           <div>
             <SettingsIcon/> 
-            <text style={{fontSize:"1.2rem"}}> Settings</text>
+            <text style={{fontSize:"1.2rem"}}> Settings </text>
           </div>
         </IconButton>
         {/* <p>Settings</p> */}
@@ -248,7 +237,7 @@ export default function NavbarUser({updatedPosts, setUpdatedPosts}) {
       <IconButton onClick={() => { signOut(() => { history.push('/'); });}}> 
           <div>
             <ExitToAppIcon/> 
-            <text style={{fontSize:"1.2rem"}}> Log out</text>
+            <text style={{fontSize:"1.2rem"}}> Log out </text>
           </div>
         </IconButton>
       </MenuItem>
@@ -259,17 +248,7 @@ export default function NavbarUser({updatedPosts, setUpdatedPosts}) {
     <div className={classes.grow, "navbar-top"}>
       <AppBar position="static" color="transparent">
         <Toolbar>
-          {/* <IconButton 
-            edge="start"
-            className={classes.menuButton}
-            color="inherit"
-            aria-label="open drawer"
-          >
-            <MenuIcon />
-          </IconButton> */}
           <FitnessCenterIcon onClick={() => window.location.href = `/clientDashboard/${JSON.parse(localStorage.getItem('user'))._id}`} className={classes.title, "logo"} style = {{"cursor" : "pointer"}} variant="h6" noWrap/>
-
-
           { document.URL.includes("clientDashboard/") ? (
           <div className={classes.search}>
             <div className={classes.searchIcon}>
