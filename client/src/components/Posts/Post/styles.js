@@ -54,6 +54,8 @@ export default makeStyles((theme) => ({
     color: 'black',
   },
   title: {
+    marginTop: 20,
+    textAlign: "left",
     padding: '0 16px',
   },
   cardActions: {
