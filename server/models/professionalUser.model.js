@@ -1,5 +1,7 @@
 import mongoose from 'mongoose';
 import crypto from 'crypto';
+import PostMessage from './postMessage.js'
+import Service from './service.model.js'
 
 const Schema = mongoose.Schema;
 
@@ -80,6 +82,22 @@ professionalUserSchema.methods = {
     return this.encryptPassword(plainPassword) === this.hashed_password
   }
 };
+
+professionalUserSchema.post("findOneAndDelete", (document, next) => {
+  const id = document._id;
+  PostMessage.find({ userFrom: id }).then(objs => {
+      Promise.all(
+          objs.map(obj => PostMessage.findOneAndDelete({_id : obj._id}))
+      );
+  });
+  Service.find({ userID: id }).then(objs => {
+    Promise.all(
+        objs.map(obj => Service.findOneAndDelete({_id : obj._id}))
+    );
+  });
+  next();
+});
+
 
 const ProfessionalUser = mongoose.model('ProfessionalUser', professionalUserSchema);
 

@@ -2,7 +2,6 @@ import { React, useEffect } from "react";
 import { Table } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
 import ProfessionalUser from "./ProfessionalUser/ProfessionalUser";
-import UserForm from './ProfessionalUserForm'
 import { getProfessionalUsers } from "../../actions/professionals";
 
 const ProfessionalUsers = () => {
