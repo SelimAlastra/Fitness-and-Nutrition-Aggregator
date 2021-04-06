@@ -6,7 +6,7 @@ const Schema = mongoose.Schema;
 const goalSchema = new Schema({
 
 
-  userID :{type: Schema.Types.ObjectId, required : true, ref: 'BasicUser'},
+  userID: {type: Schema.Types.ObjectId, required : true, ref: 'BasicUser'},
 
   description :{type: String, required: false},
 
