@@ -14,16 +14,33 @@ const AddGoal = ({userID}) => {
     const [tags, setTags]= useState("");
     const [ID, setID] = useState({});
 
+    const [ errors, setErrors ] = useState({})
+
+    const findFormErrors = () => {
+
+        const newErrors = {}
+        if ( !deadline || deadline === '' ) newErrors.deadline = 'Name is required!'
+        
+        if( !description || description === '' ) newErrors.description = 'Description is required!'
+
+        if( !tags || tags === '') newErrors.tags = "Tags are required!"
+    
+        return newErrors
+    }
+
     function redirectHomePage() {
         window.location.href = `/homePage/${userID}`;
+        setErrors({});
     }
 
 
     function handleSubmit(event) {
         event.preventDefault();
         const addGoal = event.currentTarget;
-        if (addGoal.checkValidity()) {
-                setValidated(true);
+        const newErrors = findFormErrors()
+        if ( Object.keys(newErrors).length > 0 ) {
+            setErrors(newErrors)
+        } else {
                 const newGoal = {
                     userID : userID,
                     description: description,
@@ -31,10 +48,8 @@ const AddGoal = ({userID}) => {
                     tags : tags
                 }
                 dispatch(createGoal(newGoal));
-                window.alert(" Goal added !");
+                redirectHomePage();
             }
-        redirectHomePage();
-
     }
 
 
@@ -52,8 +67,11 @@ const AddGoal = ({userID}) => {
                                     value={description}
                                     placeholder="Description" 
                                     onChange={(e) => setDescription(e.target.value)}
-                                    required
+                                    isInvalid={ !!errors.description }
                         ></Form.Control>
+                        <Form.Control.Feedback type='invalid'>
+                            { errors.description }
+                        </Form.Control.Feedback>
                      </Form.Group>
                     </Col>
                 </Form.Row>
@@ -67,8 +85,11 @@ const AddGoal = ({userID}) => {
                                     value={deadline}
                                     placeholder="Deadline" 
                                     onChange={(e) => setDeadline(e.target.value)}
-                                    required
+                                    isInvalid={ !!errors.deadline }
                         ></Form.Control>
+                        <Form.Control.Feedback type='invalid'>
+                            { errors.deadline }
+                        </Form.Control.Feedback>
                      </Form.Group>
                     </Col>
                 </Form.Row>
@@ -82,8 +103,11 @@ const AddGoal = ({userID}) => {
                                     value={tags}
                                     placeholder="Tags" 
                                     onChange={(e) => setTags(e.target.value)}
-                                    required
+                                    isInvalid={ !!errors.tags }
                         ></Form.Control>
+                        <Form.Control.Feedback type='invalid'>
+                            { errors.tags }
+                        </Form.Control.Feedback>
                      </Form.Group>
                     </Col>
                 </Form.Row>

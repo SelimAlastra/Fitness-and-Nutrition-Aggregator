@@ -31,7 +31,7 @@ const ContactUs = (props) =>  {
                 <h1 className = "contactUsText"> Contact Us</h1>
                 <label> Subject </label>
                 <textarea placeholder ="Write the subject here" name="subject"/>
-                <label> Your message</label>
+                <label> Your message </label>
                 <textarea placeholder = "Write your message here" name="message"/>
 
                 <input type="submit" value="Send" />
