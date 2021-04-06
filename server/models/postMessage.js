@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import Report from './reports.js'
 
 const postSchema = mongoose.Schema({
     title: {type: String, required: true},
@@ -22,7 +23,15 @@ const postSchema = mongoose.Schema({
     },
 });
 
-
+postSchema.post("findOneAndDelete", (document, next) => {
+    const id = document._id;
+    Report.find({ postId: id }).then(objs => {
+        Promise.all(
+            objs.map(obj => Report.findOneAndDelete({_id : obj._id}))
+        );
+    });
+    next();
+});
 
 const PostMessage = mongoose.model('PostMessage', postSchema);
 
