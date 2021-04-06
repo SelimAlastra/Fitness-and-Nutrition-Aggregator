@@ -154,7 +154,7 @@ describe('goals routes', function() {
             .send()
             .end((err, res) => {
                 expect(res.status).to.equal(200);
-                expect(res.body).to.equal("goal deleted.");
+                expect(res.body.message).to.equal("goal deleted.");
                 done();
             });
         });
@@ -165,7 +165,7 @@ describe('goals routes', function() {
             .send()
             .end((err, res) => {
                 expect(res.status).to.equal(404);
-                expect(res.body).to.not.equal("goal deleted.");
+                expect(res.body.message).to.not.equal("goal deleted.");
                 done();
             });
         });
