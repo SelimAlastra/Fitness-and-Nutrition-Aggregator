@@ -3,7 +3,7 @@ const PersonalInfo = ({profile}) => {
         return (
             <div>
                 <div>
-                    <h3>Body Data</h3>
+                    <h3 style={{"marginTop":"10px"}}>Body Data</h3>
                     <hr className="lineSeperator"/>
                     { generateInfoSection(profile.gender, profile.bodyType, profile.weight) }
                     <br />
@@ -47,19 +47,17 @@ const PersonalInfo = ({profile}) => {
         let parts = [weightComponent, genderComponent, bodyTypeComponent];
         let filtered = parts.filter(part => part !== undefined);
         return (
-
-            <div className="textContainer">
+                <>
                 {
                     filtered.map((item, index) => {
                         return (
                             <div key={index}>
                                 {item}
-        
                             </div>
                         )
                     })
                 }
-            </div>
+                </>
         );
     }
     

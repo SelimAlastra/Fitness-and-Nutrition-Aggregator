@@ -9,6 +9,8 @@ import { Container, ListGroup, Row, Col } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
 import { getBuckets } from '../../actions/buckets';
 import './BucketsPage.css';
+import { getPosts } from '../../actions/posts';
+import { getProfessionalUsers } from '../../actions/professionals';
 
 const Buckets = () => {
     const user = JSON.parse(localStorage.getItem('user'));
@@ -16,7 +18,9 @@ const Buckets = () => {
     const dispatch = useDispatch();
 
     useEffect(() => {
+        dispatch(getPosts());
         dispatch(getBuckets());
+        dispatch(getProfessionalUsers());
     }, [dispatch]);
 
     const myBuckets = useSelector((state) => user._id ? state.buckets.filter((b) => b.userId === user._id) : null);
@@ -26,8 +30,12 @@ const Buckets = () => {
         return (
             <div>
             <NavbarUser/>
-            <BucketModal/>
-                You have no buckets.
+            <div className="bucketText">
+                    <h1>My Buckets</h1>
+                    <hr className="serviceSeperator"/>
+                </div>
+                <div style = {{marginLeft:"-60%", marginTop: "2%"}}><BucketModal/></div>
+                <div>You have no buckets.</div>
             </div>
         );
     }

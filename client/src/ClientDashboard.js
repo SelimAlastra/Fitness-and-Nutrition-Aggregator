@@ -91,7 +91,7 @@ return (
     <Grow in>
         <Container>
           <Grid className={classes.mainContainer} container justify="space-between" alignItems="stretch" spacing={6}>
-            <Grid item xs={12} sm={7}>
+            <Grid item xs={12} lg={12}>
             <Posts setCurrentId={setCurrentId} updatedPosts={updatedPosts} setUpdatedPosts={setUpdatedPosts}/>
             </Grid>
           </Grid>

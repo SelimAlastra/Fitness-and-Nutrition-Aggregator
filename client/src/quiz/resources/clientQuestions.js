@@ -18,15 +18,6 @@ const questionsClient = [
             { answerText: "50's", selected:false, requireInput: false, tags:[""] },
             { answerText: "60+", selected:false, requireInput: false, tags:[""] },
         ],
-    },
-    {
-        questionText: "What is your height?",
-        questionId: 3,
-        answerOptions: [
-            { answerText: "metric", selected:true, requireInput: false, tags:[""]  },
-            { answerText: "imperial", selected:false, requireInput: false, tags:[""] },
-        ],
-        input:[], placeholder: ["cm", "feet, inches"], alert: ["Type only numeric values. (e.g.: 177)", "Type numeric values. (e.g.: 5 8, 6 2)"]
     },{
         questionText: "What is your weight?",
         questionId: 4,
@@ -40,9 +31,9 @@ const questionsClient = [
         questionId: 5,
         answerOptions: [
             { answerText: "Short and sturdy", selected:false, tags:["short", "shortperson"], requireInput: false },
-            { answerText: "Lean and long", selected:false, tags:["tall", "ectomorph"], requireInput: false },
-            { answerText: "Tall and heavy", selected:false, tags:["tall", "endomorph", "bodybuilding"], requireInput: false },
-            { answerText: "Athletic, with a high metabolism", selected:false, tags:["athletic", "mesomorph"], requireInput: false },
+            { answerText: "Lean and long", selected:false, tags:["ectomorph", "tall"], requireInput: false },
+            { answerText: "Tall and heavy", selected:false, tags:["endomorph", "tall", "bodybuilding"], requireInput: false },
+            { answerText: "Athletic, with a high metabolism", selected:false, tags:["mesomorph", "athletic"], requireInput: false },
             { answerText: "Soft and with a tendency to store body fat", selected:false, tags:["endomorph", "fatloss"], requireInput: false },
             { answerText: "Average", selected:false, tags:["average"], requireInput: false },
             { answerText: "Other:", selected:false, tags:[""], requireInput: true, placeholder: "e.g.: Fragile", alert: ["Answer using letters only."], input: [] }
@@ -102,7 +93,7 @@ const questionsClient = [
     }
 ];
 
-const questionsReqInputClient = [3,4];
+const questionsReqInputClient = [4];
 const questionsMultipleChoicesClient = [8,10];
 
 export {questionsClient,questionsReqInputClient,questionsMultipleChoicesClient}

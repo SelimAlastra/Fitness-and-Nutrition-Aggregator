@@ -1,5 +1,6 @@
 import mongoose from 'mongoose';
 import Bucket from '../models/buckets.js';
+import BasicUser from '../models/basicUser.model.js';
 
 export const getBuckets = async (req, res) => { 
    Bucket.find()
@@ -8,13 +9,14 @@ export const getBuckets = async (req, res) => {
 }
 
 export const createBucket = async (req, res) => {
-    const {  title, postsId, userId } = req.body;
-    const newBucket = new Bucket({ title, postsId, userId});
+    const { title, description, postsId, userId } = req.body;
+    const newBucket = new Bucket({ title, description, postsId, userId});
 
     try {
         await newBucket.save();
+        await BasicUser.findByIdAndUpdate(userId, { $push: { buckets: newBucket._id } });
 
-        res.status(201).json(newBucket );
+        res.status(201).json(newBucket);
     } catch (error) {
         res.status(400).json({ message: error.message });
     }
@@ -42,6 +44,7 @@ export const deleteBucket = async (req, res) => {
 
     if(!mongoose.Types.ObjectId.isValid(_id)) return (res.status(404).send('No bucket with that id'));
 
+    await Bucket.findById(_id).then(bucket => BasicUser.findByIdAndUpdate(bucket.userId, { $pull: { buckets: _id } }));
     await Bucket.findByIdAndRemove(_id);
 
     res.json({ message: 'Bucket deleted successfully' });
