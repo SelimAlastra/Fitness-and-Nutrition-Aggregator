@@ -21,3 +21,28 @@
   z-index: 999;
   font-family: "Paytone One", sans-serif;
 }
+
+
+.closeModal {
+  position: absolute;
+  left: 400px;
+  width: 50px;
+  float: right;
+}
+
+.modalHeader {
+  background-color: white;
+  /* align-items: flex-start;
+  justify-content: flex-start; */
+}
+
+.modalHeaderText {
+  position: absolute;
+  left: 145px;
+  font-family: "Paytone One", sans-serif;
+  font-size: 1.8rem;
+}
+
+.modalFooter {
+  max-height: 50px;
+}

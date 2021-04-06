@@ -183,7 +183,7 @@ const Answer = (props) => {
         //display answers and check for specific selections that require further input
         return (
             <>
-            { props.questions[props.currentQuestion].questionId === 2 ? (
+            { props.questions[props.currentQuestion].questionId === 2 && props.isClient ? (
                     <div>
                         <DobPicker />
                     </div>
