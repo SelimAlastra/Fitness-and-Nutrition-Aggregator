@@ -31,11 +31,11 @@
 table {
     width: 100%;
 }
-
+/* 
 .subText {
     opacity: 70%;
     font-size: small;
-}
+} */
 
 .columnContainer {
     display: flex;
@@ -53,11 +53,14 @@ table {
 }
 
 .actionButton {
+    background-color: #9bda8e!important;
+    border-color: #9cbe95 !important;
     color: black;
-    background-color: #D7C5B4 !important;
     border-radius: 10px;
+    box-shadow: none !important;
 }
 
 .actionButton:hover{
-    background-color: #8a5853 !important;
+    background-color: black !important;
+    color: white !important;
 }

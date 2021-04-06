@@ -61,7 +61,7 @@ const BucketView = (params) => {
                 {posts.map((post)=> (
                     <Col xs={6} lg={4} key={post._id}>
                         <Post post={post} />
-                        <Button className="removePost" style={{marginLeft: "-10%", marginBottom: "4%"}} onClick = {() => (removeFromBucket(post._id))}>Remove</Button>
+                        <Button className="removePost" style={{marginLeft: "-10%", marginBottom: "4%"}} onClick = {() => (removeFromBucket(post._id))}>REMOVE</Button>
                     </Col>
                 ))}
             </div>

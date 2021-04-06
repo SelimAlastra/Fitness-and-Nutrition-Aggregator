@@ -3,12 +3,17 @@
     background-color: whitesmoke;
     margin-left: 10%;
     margin-right: 10%;
-    margin-top: 5%;
+    margin-top: 7%;
     text-align: center;
     border-radius: 10px;
+    max-height: 670px;
     padding: 1%;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    border: 2px solid #Dc8f66 !important;
+    border: 2px solid #9cbe95 !important;
+}
+
+.postModal .modal-content{
+    overflow: hidden;
 }
 
 .closeButton {

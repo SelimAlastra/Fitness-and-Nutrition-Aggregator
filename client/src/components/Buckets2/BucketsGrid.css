@@ -6,18 +6,28 @@
     border-radius: 15px;
     font-family: Arial, Helvetica, sans-serif !important;
     max-width: 100%;
-    border: 2px solid hsl(21, 63%, 63%);
+    border: 2px solid #9cbe95;
     border-radius: 15px !important;
 }
 
+.bucketButton{
+    border:none;
+    background-color: white;
+    color: black;
+    font-weight: bold;
+}
+
 .bucketButton:focus{
-    background-color:#Dc8f66 !important;
+    background-color:#9bda8e !important;
+    color:black;
 }
 
 .bucketButton:hover{
-    background-color:#ffe0cf !important;
+    background-color:#cbf0c4 !important;
+    color: black;
 }
 
 .bucketCheckbox:hover{
-    background-color:#ffe0cf !important;
+    background-color:#cbf0c4 !important;
+    color: black;
 }

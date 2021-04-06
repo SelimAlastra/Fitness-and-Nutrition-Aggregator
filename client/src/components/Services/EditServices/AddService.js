@@ -15,36 +15,55 @@ const AddService = (props) => {
 
     const handleClose = () => {
         setShow(false);
+        setNewService({
+            description: "",
+            price: "",
+            title: "",
+            urls: []
+        });
+        setErrors({});
     }
     const handleShow = () => setShow(true);
 
     const [newService, setNewService] = useState({
+        title: "",
         description: "",
         price: ""
     });
+
+    const [ errors, setErrors ] = useState({})
+
+    const findFormErrors = () => {
+        const { title, description, price } = newService
+        const newErrors = {}
+        if ( !title || title === '' ) newErrors.title = 'Name is required!'
+        
+        if( !description || description === '' ) newErrors.description = 'Description is required!'
+
+        if( !price || price === '') newErrors.price = "Price is required!"
+        else if(!(/^\d+(,\d{1,2})?$/).test(price)) newErrors.price = "Price must be a number!"
+    
+        return newErrors
+    }
 
     const user = JSON.parse(localStorage.getItem('user'));
 
 
     function addNewService(event) {
-        if (validateFields()) {
-            const toAdd = {
-                description: newService.description,
-                price: newService.price,
-                userID: user._id,
-                title: newService.title,
-                urls: newService.urls
-            };
-            dispatch(addService(toAdd));
-            setNewService({
-                description: "",
-                price: "",
-                title: "",
-                urls: []
-            });
-            handleClose();
-
-        }
+        const newErrors = findFormErrors()
+        if ( Object.keys(newErrors).length > 0 ) {
+            setErrors(newErrors)
+        } else {
+                const toAdd = {
+                    description: newService.description,
+                    price: newService.price,
+                    userID: user._id,
+                    title: newService.title,
+                    urls: newService.urls
+                };
+                dispatch(addService(toAdd));
+                handleClose();
+            }
 
     }
 
@@ -72,12 +91,16 @@ const AddService = (props) => {
                             name="title"
                             placeholder="Title"
                             className="inputItem"
+                            isInvalid={ !!errors.title }
                             onChange={(e) => setNewService({
                                 ...newService,
                                 title: e.target.value
                             })}
                         >
                         </Form.Control>
+                        <Form.Control.Feedback type='invalid'>
+                            { errors.title }
+                        </Form.Control.Feedback>
                     </Form.Group>
                     <Form.Group>
                         <Form.Label>Description</Form.Label>
@@ -87,12 +110,16 @@ const AddService = (props) => {
                             name="description"
                             placeholder="Description"
                             className="inputItem"
+                            isInvalid={ !!errors.description }
                             onChange={(e) => setNewService({
                                 ...newService,
                                 description: e.target.value
                             })}
                         >
                         </Form.Control>
+                        <Form.Control.Feedback type='invalid'>
+                            { errors.description }
+                        </Form.Control.Feedback>
                     </Form.Group>
                     <Form.Group>
                         <Form.Label>Price</Form.Label>
@@ -102,28 +129,25 @@ const AddService = (props) => {
                             name="price"
                             placeholder="Price"
                             className="inputItem"
+                            isInvalid={ !!errors.price }
                             onChange={(e) => setNewService({
                                 ...newService,
                                 price: e.target.value
                             })}
                         >
                         </Form.Control>
+                        <Form.Control.Feedback type='invalid'>
+                            { errors.price }
+                        </Form.Control.Feedback>
                     </Form.Group>
                 </Form>
-                <div className="saveClose">
+                <div className="save">
                     <Button
                         className="actionButton"
                         type="submit"
                         onClick={(event) => addNewService(event)}
                     >
                         Save
-                            </Button>
-                    <Button
-                        className="actionButton"
-                        type="button"
-                        onClick={(event) => window.location.href = `/professional/services/edit/${user._id}`}
-                    >
-                        Close
                             </Button>
                 </div>
             </Modal>
