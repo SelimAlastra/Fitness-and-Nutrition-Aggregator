@@ -15,8 +15,10 @@ import ExpandLessIcon from '@material-ui/icons/ExpandLess';
 import { getBuckets } from "./actions/buckets";
 import { Link } from 'react-router-dom';
 import "./App.css"
+import { createGoal } from './actions/goals';
+import { details } from './quiz/quizUser';
 
-const ClientDashboard = () => {
+const ClientDashboard = (params) => {
     const [currentId, setCurrentId] = useState(null);
     const [updatedPosts,setUpdatedPosts]= useState([]);
     const classes = useStyles();
@@ -28,7 +30,18 @@ const ClientDashboard = () => {
       dispatch(getBuckets());
     }, [dispatch]);
 
-    // var showConstrained = false;
+
+    useEffect(() => {
+      if (params.location.state && params.location.state.fromQuiz) {
+        details.goals.forEach((g) => {
+          let newG = {
+            description: g,
+            userID: JSON.parse(localStorage.getItem('user'))._id
+          }
+          dispatch(createGoal(newG));
+        })
+      }
+    }, [])
 
     const showProfiles = (event) => {
       var profiles = document.getElementById("profiles-full");

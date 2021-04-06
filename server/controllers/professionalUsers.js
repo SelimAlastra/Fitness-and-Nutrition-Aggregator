@@ -62,7 +62,7 @@ export const updateProfessionalUser = async (req, res) => {
 
 
 export const deleteProfessionalUser = async (req, res) => {
-  ProfessionalUser.findByIdAndDelete(req.params.id)
+  ProfessionalUser.findOneAndDelete(req.params.id)
     .then(() => res.json("Professional user deleted"))
     .catch(error => res.status(404).json("Error: " + error));
 }; 
