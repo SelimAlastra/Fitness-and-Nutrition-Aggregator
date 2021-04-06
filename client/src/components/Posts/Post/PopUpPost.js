@@ -48,7 +48,7 @@ const PopUpPost = (post) => {
                         </CloseIcon>
                     </div>
                             <h4>{post.post.title}</h4>
-                            { professionals !== null && professionals[0] !== undefined ?
+                            { (professional !== null && professionals[0] !== undefined) ?
                             <Link onClick={() => window.location.href = `/user/professional/profile/${post.post.userFrom}/${JSON.parse(localStorage.getItem('user'))._id}`} style={{ "color": "black", "cursor": "pointer" }}><h6>{post.post.creator} - {professionals[0].profession}</h6></Link>
                             :
                             null

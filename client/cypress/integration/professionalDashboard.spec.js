@@ -26,10 +26,10 @@ describe('Test', function() {
         //check for auth and cookies
     });
 
-    it('should have home icon button', function() {
+    /* it('should have home icon button', function() {
         cy.findByTestId('proHomeButton').focus().should('exist');
         //currently home button redirects to landing page
-    })
+    }) */
 
     it('should have add bundles button', function() {
         cy.findByTestId('addBundlesButton').focus().click();
