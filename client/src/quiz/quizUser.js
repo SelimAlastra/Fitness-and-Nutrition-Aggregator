@@ -265,7 +265,7 @@ export default class Quiz extends Component{
                 } else if(/*!question.input || !question.input.length || */!question.answerOptions.find(element => element.selected === true)){
                     isComplete = false;
                 }
-            } else if(! question.answerOptions.find(element => element.selected === true)){
+            } else if(question.answerOptions.find(element => element.selected === true) === undefined){
                 isComplete = false;
             }
         });
