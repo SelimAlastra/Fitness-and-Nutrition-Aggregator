@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import '../styling/quizUser.css';
 import Button from './ToggleButton';
+import DobPicker from './dobPicker';
 
 const Answer = (props) => {
 
@@ -142,7 +143,6 @@ const Answer = (props) => {
         }
     }
 
-
     /**
      * @return input value for individual answer input boxes
      */
@@ -156,19 +156,6 @@ const Answer = (props) => {
     }
 
     /**
-     * @return input value for question with general answer input box
-     */
-    // function inputValueGeneral() {
-        // question = props.questions[props.currentQuestion]
-    //     if(props.questionsReqInput.find === question.questionId){
-    //         if(question.input){
-    //              return question.input[0];
-    //         }
-    //     }
-    //     return "";
-    // }
-
-    /**
      * check if question requires input unrelated to selected answer
      */
     if(props.questionsReqInput.find(element => element === props.questions[props.currentQuestion].questionId)){
@@ -176,7 +163,8 @@ const Answer = (props) => {
         //display answers followed by input box
         return (
             <>
-            <div>
+
+            <div className="quizBtn">
                 {props.answer.map((answerOption) => (
                     <Button 
                         key={answerOption.answerText} 
@@ -195,9 +183,14 @@ const Answer = (props) => {
         //display answers and check for specific selections that require further input
         return (
             <>
+            { props.questions[props.currentQuestion].questionId === 2 ? (
+                    <div>
+                        <DobPicker />
+                    </div>
+                ) : ( 
             <div>
                 {props.answer.map((answerOption) => (
-                <>
+                <div className="quizBtn">
                     <Button 
                         key={answerOption.answerText} 
                         answerOption = {answerOption}
@@ -206,9 +199,10 @@ const Answer = (props) => {
                         questions = {props.questions}
                     />
                     <input value={inputValue(answerOption)} style = {{ display: answerOption.requireInput ? 'block' : 'none'}} className="inputBox" id="inputBox" type="text" name="name" placeholder={answerOption.placeholder} key={"key_" + props.currentQuestion} onChange={e => handleOnInputChange(e, answerOption)}/>
-                </>
+                </div>
                 ))}
             </div>
+                )}
             </>
         );
     }
