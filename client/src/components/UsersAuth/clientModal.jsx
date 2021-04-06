@@ -34,7 +34,7 @@ function PopUpLogin(){
       </Modal.Header>
       <hr className="hrModal"/>
       <Modal.Body>
-        { login == true ?
+        { login === true ?
         <div>
         <Login checkClient={checkClient}/>
         <Link className="redirectLinkLogin" onClick={()=>{handleRegister()}}>Don't have an account? Sign up!</Link>
