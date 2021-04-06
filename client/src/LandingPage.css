@@ -1,7 +1,7 @@
 .landingPage{
     background-color: whitesmoke;
     min-width: 1100px;
-    height: 80vh;
+    height: 100vh;
 }
 
 .alert1{
@@ -31,7 +31,7 @@
     color: #8CC152;
     cursor: pointer;
     transition: 0.2s ease-in-out;
-    margin: 15px;
+    margin: 5px;
     min-width: 250px;
   }
   
@@ -53,7 +53,7 @@
     color: #8CC152;
     cursor: pointer;
     transition: 0.2s ease-in-out;
-    margin: 15px;
+    margin: 5px;
     min-width: 250px;
 }
 
