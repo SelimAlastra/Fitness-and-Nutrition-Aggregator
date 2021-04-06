@@ -54,21 +54,30 @@ describe('Test', function() {
         cy.get('button').contains('Submit').click();
         cy.get('input[placeholder="Search…').focus().type('fitness');
         cy.contains('#fitness').should('exist');
-        cy.get('div[class="MuiPaper-root MuiCard-root makeStyles-card-38 MuiPaper-elevation1 MuiPaper-rounded"]').contains('#plan').get('span').contains('Delete').click;
+        cy.get('div[class="MuiPaper-root MuiCard-root makeStyles-card-38 MuiPaper-elevation1 MuiPaper-rounded"]').contains('#fitness #plan').get('span').contains('Delete').click;
 
     }); 
      
     it('Form functionality edit post', function() {
         cy.get('div[class="MuiPaper-root MuiCard-root makeStyles-card-38 MuiPaper-elevation1 MuiPaper-rounded"]').contains('kane').get('button[class="MuiButtonBase-root MuiButton-root MuiButton-text"]');
         cy.get('button').contains('Edit').click({force: true});
+        cy.get('input[name="tags"]').clear();
         cy.get('input[name="tags"]').type('modifytag');
         cy.get('button').contains('Submit').click();
         cy.get('input[placeholder="Search…').focus().type('modifytag');
-        cy.contains('#modifytag').should('exist');
+        cy.get('div[class="MuiPaper-root MuiCard-root makeStyles-card-38 MuiPaper-elevation1 MuiPaper-rounded"]').contains('#modifytag').should('exist');
     }); 
-
+    /* it('Form functionality like post', function() {
+        cy.get('input[placeholder="Search…').focus().type('modifytag');
+        cy.get('div[class="MuiPaper-root MuiCard-root makeStyles-card-38 MuiPaper-elevation1 MuiPaper-rounded"]').contains('#modifytag');
+        cy.contains('#modifytag').get('button[class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textSizeSmall MuiButton-sizeSmall"]').click();
+        cy.get('div[class="MuiPaper-root MuiCard-root makeStyles-card-38 MuiPaper-elevation1 MuiPaper-rounded"]').contains('#modifytag').get('button[class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textSizeSmall MuiButton-sizeSmall"]').contains('1').should('exist');
+        cy.contains('#modifytag').get('button[class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textSizeSmall MuiButton-sizeSmall"]').click();
+    }); 
+ */
     it('should log out', function() {
         cy.findByTestId('proToggleButton').focus().click().focus().get('span').contains('Log out').click({force: true});
+        
         // cy.url().should('include', '/');
         cy.url().should('include', '/', ()=> {
             expect(localStorage.getItem('user')).to.be.null
