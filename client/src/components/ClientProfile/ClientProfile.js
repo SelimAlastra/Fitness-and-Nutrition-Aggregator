@@ -4,9 +4,10 @@ import ProfileInfo from "../ProfileInfo/ProfileInfo";
 import PersonalInfo from '../ClientProfile/PersonalInfo';
 import Goals from '../ClientProfile/Goals';
 import { useDispatch, useSelector } from "react-redux";
-import { getBasicUser } from "../../actions/basicUsers";
+import { getBasicUser, getBasicUsers } from "../../actions/basicUsers";
 import { getGoals } from '../../actions/goals';
 import NavbarUser from "../Navbar/NavbarUser";
+import { useRadioGroup } from "@material-ui/core";
 
 const ClientProfile = (props) => {
     const dispatch = useDispatch();
@@ -16,51 +17,49 @@ const ClientProfile = (props) => {
     useEffect(() => {
         dispatch(getBasicUser(userID));
         dispatch(getGoals());
- 
-     }, [dispatch]);
+
+    }, [dispatch]);
 
     user = useSelector((state) => state.basicUsers);
     const [ID, setID] = useState("");
-    
-function formatDate(toFormat) {
-    if (toFormat !== undefined) {
-        const splitDate = toFormat.split("-");
-        const year = parseInt(splitDate[0]);
-        const month = parseInt(splitDate[1]);
-        const day = parseInt(splitDate[2].substring(0,2));
-        return {
-           day: day,
-           month: month,
-           year: year 
-        }
-    } else {
-        return {
-            day: 1,
-            month: 1,
-            year: 2021 
+
+    function formatDate(toFormat) {
+        if (toFormat !== undefined) {
+            const splitDate = toFormat.split("-");
+            const year = parseInt(splitDate[0]);
+            const month = parseInt(splitDate[1]);
+            const day = parseInt(splitDate[2].substring(0, 2));
+            return {
+                day: day,
+                month: month,
+                year: year
+            }
+        } else {
+            return {
+                day: 1,
+                month: 1,
+                year: 2021
+            }
         }
     }
-}
 
     function generateGoals() {
         if (user !== undefined && user !== null) {
             const goals = user.goals;
-            return <Goals userID={userID}/>;
+            return <Goals userID={userID} />;
         }
     }
-    
+
     if (user !== undefined) {
         return (
-            <div>
-                <NavbarUser/>
-                <div className="columnContainer">
-                    <div className="column">
-                        <ProfileInfo profile={user} />
-                    </div>
-                    <div className="column">
-                        <PersonalInfo profile={user}/>
-                        { generateGoals() }
-                    </div>
+            <div style={{"overflow-x": "hidden"}}>
+                <NavbarUser />
+                <div class="row" >
+                    <div class="col-sm-10 profileInfo"><ProfileInfo profile={user} /></div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4 personalInfo"><PersonalInfo profile={user} /></div>
+                    <div class="col-sm-4 goals">{generateGoals()}</div>
                 </div>
             </div>
         );
@@ -81,6 +80,6 @@ function generateProfilePhoto() {
 
 function generateTags(tags) {
     if (tags !== undefined && tags.length !== 0) {
-        return <Tags tags={tags}/>;
+        return <Tags tags={tags} />;
     }
 }

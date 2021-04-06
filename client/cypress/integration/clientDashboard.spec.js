@@ -40,7 +40,7 @@ describe('Test', function() {
     */
     it('Searchbox functionality Test', function() { 
         cy.get('input[placeholder="Search…"]').focus().click().type('{enter}abs');
-        cy.contains('10 minute ABS WORKOUT').should('exist');
+        cy.contains('10 Minute Home Ab Workout').should('exist');
     }); 
 
     it('should have home icon button', function() {
@@ -69,7 +69,6 @@ describe('Test', function() {
         cy.findByTestId('ToggleButton').focus().click().focus().get('span').contains('Profile').click({force: true});
          cy.url().should('include', '/profile/60639559dd5a59ea908e4cb7');
          cy.contains('Bio').should('exist');
-         cy.contains('Contact Info').should('exist');
     })    
 
     it('should have profile settings', function() {

@@ -19,6 +19,7 @@ const Answer = (props) => {
          */
         function checkZero() {
             if("0".search(query[0]) > -1){
+                console.log(query);
                 alert("Value can't start with '0'.");
                 return false;
             } else {
@@ -28,33 +29,12 @@ const Answer = (props) => {
 
         // validate depending on client/professional user
         if(props.isClient === true){
-            if(questionId === 3){
-                //for metric value selected, allow only number inputs
-                if(answers[0].selected === true){
-                    if(digits.search(query.charAt(query.length-1)) > -1){
-                        return checkZero();
-                    } else {
-                        alert(props.questions[props.currentQuestion].alert[0]);
-                        return false;
-                    }
-                //for imperial value selected, allow " " and ","
-                } else {
-                    if((digits + ", ").search(query.charAt(query.length-1)) > -1){
-                        if("0".search(query[0]) > -1){
-                            alert(props.questions[props.currentQuestion].alert[2]);
-                            return false;
-                        } else {
-                            return true;
-                        }
-                    } else {
-                        alert(props.questions[props.currentQuestion].alert[1]);
-                        return false;
-                    }
-    
-                }
-            } else if(questionId === 4){
+            if(questionId === 4){
                 if(digits.search(query.charAt(query.length-1)) > -1){
-                    return checkZero();
+                    if(query != ""){
+                        return checkZero();
+                    }
+                    return true;
                 } else {
                     if(answers[0].selected === true){
                         alert(props.questions[props.currentQuestion].alert[0]);
@@ -77,7 +57,7 @@ const Answer = (props) => {
             }*/
 
         } else {
-            if(questionId === 3 || questionId === 6){
+            if(questionId === 6){
                 if((letters+digits+" #,.?!';").search(query.charAt(query.length-1)) > -1){
                     return true;
                 }
@@ -132,22 +112,9 @@ const Answer = (props) => {
 
     /**
      * change input placeholder for question in a desired way
+     * (no special placeholders for now)
      */
     function customPlaceholder(i, options, questionId) {
-
-        //for height input display the input value followed by the selected system 
-        if(questionId === 3){
-            if(i===1){
-                if(input[0] === ""){
-                    return "feet, inches";
-                } else {
-                    const feet = input[0].match(/\b(\w+)\b/g)[0];
-                    const inches = input[0].match(/\b(\w+)\b/g)[1];
-                    return feet + "'" + inches + '"';
-                }
-            } 
-        }
-            
         return input[0] + " " + options[i];
     }
 

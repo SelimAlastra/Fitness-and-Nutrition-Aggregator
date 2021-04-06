@@ -24,15 +24,15 @@ const Buckets = (post) => {
         }
     }
 
-    const removeFromBucket = (postId, bucketId) => {
-        const bucket = myBuckets.find((bucket) => bucket._id === bucketId);
-        const post = bucket.postsId.indexOf(postId);
-        if(post > - 1)
-        {
-            bucket.postsId.splice(post, 1);
-            dispatch(updateBucket(bucket._id, bucket));
-        }
-    }
+    // const removeFromBucket = (postId, bucketId) => {
+    //     const bucket = myBuckets.find((bucket) => bucket._id === bucketId);
+    //     const post = bucket.postsId.indexOf(postId);
+    //     if(post > - 1)
+    //     {
+    //         bucket.postsId.splice(post, 1);
+    //         dispatch(updateBucket(bucket._id, bucket));
+    //     }
+    // }
 
     if (myBuckets === undefined || myBuckets.length === 0) {
         return (
@@ -52,7 +52,6 @@ const Buckets = (post) => {
                                 currentBucketId={currentBucketId}
                                 setCurrentBucketId={setCurrentBucketId}
                                 onClick={() => addToBucket(postID, bucket._id)}
-                                onSecondClick={() => removeFromBucket(postID, bucket._id)}
                                 style ={{ "width" : "100%", "height" : "100%"}}
                                 >
                                 {bucket.title}

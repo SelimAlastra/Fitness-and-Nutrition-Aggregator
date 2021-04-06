@@ -1,13 +1,19 @@
 .bucketModal .modal-body {
     overflow: scroll !important;
     max-height: 300px;
+    background-color: whitesmoke
 }
 .bucketModal .modal-title{
     font-family: Georgia, Times, 'Times New Roman', serif;
 }
 
 .bucketModal .modal-footer {
-    height: 80px !important;
+    height: 70px !important;
+    background-color: whitesmoke;
+}
+
+.bucketModal .modal-header {
+    background-color: whitesmoke;
 }
 
 .bucketModal .modal-content {
@@ -15,15 +21,15 @@
     overflow: hidden;
 }
 
-.createButton {
-    height: 50px;
-    background-color: whitesmoke;
+.createButton, .bucketSave{
+    background-color: white;
+    height: 40px;
     border-color: #Dc8f66;
     color: black;
     width: fit-content;
 }
 
-.createButton:hover {
+.createButton:hover, .bucketSave:hover{
     background-color: #Dc8f66;
     border-color:#Dc8f66;
     box-shadow: none;
@@ -31,7 +37,7 @@
     width: fit-content;
 }
 
-.createButton:active {
+.createButton:active, .bucketSave:active{
     background-color: #Dc8f66 !important;
     box-shadow: none !important;
     border-color:#Dc8f66 !important;
@@ -39,7 +45,7 @@
     width: fit-content;
 }
 
-.createButton:focus {
+.createButton:focus, .bucketSave:focus{
     background-color: #Dc8f66 !important;
     box-shadow: none !important;
     border-color:#Dc8f66 !important;
@@ -48,16 +54,51 @@
 }
 
 .newBucket .modal-body{
-    height: 380px;
+    height: 370px;
+    background-color: whitesmoke;
 }
 .newBucket .modal-content{
     width: 140% !important;
+}
+
+.newBucket .modal-header{
+    background-color: whitesmoke;
 }
 
 .newBucket .modal-title{
     font-family: Georgia, Times, 'Times New Roman', serif;
 }
 
-.newBucket .bucket-save{
-    margin-top: 50px;
+
+.bucketTitle{
+    border: 1px solid lightgrey !important;
+}
+
+.bucketTitle:focus{
+    border: 1px solid #Dc8f66 !important;
+}
+
+.editBucket .modal-body{
+    height: 370px;
+    background-color: whitesmoke;
+}
+.editBucket .modal-content{
+    width: 140% !important;
+}
+
+.editBucket .modal-header{
+    background-color: whitesmoke;
+}
+
+.editBucket .modal-title{
+    font-family: Georgia, Times, 'Times New Roman', serif;
+}
+
+.editText {
+    min-width: 100%;
+    border: 1px solid lightgray;
+}
+
+.editText:focus {
+    border: 1px solid #Dc8f66;
 }

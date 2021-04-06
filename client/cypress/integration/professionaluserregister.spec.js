@@ -8,7 +8,7 @@ describe('Test', function() {
 
     it('Professional User Register Test', function() {
         cy.visit('http://localhost:3000/');
-        cy.contains('Professionals').should('be.visible');
+        cy.contains('Professional').should('be.visible');
         cy.findByTestId('professionalUsersButton').click();
         cy.focused();
         cy.contains("Don't have an account? Sign up!").should('exist');

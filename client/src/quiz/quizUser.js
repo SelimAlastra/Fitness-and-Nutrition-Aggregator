@@ -15,7 +15,6 @@ var details = {
     associatedTags: [],
     goals: [],
     weight: '',
-    height: '',
     gender: '',
     isNew: false,
     yearsOfExperience: '',
@@ -294,7 +293,7 @@ export default class Quiz extends Component{
      */
     addGoals = () => {
         const {questions} = this.state;
-        const answers = questions[7].answerOptions;
+        const answers = questions[6].answerOptions;
 
         answers.forEach(answer => {
             if(answer.selected === true){
@@ -330,12 +329,6 @@ export default class Quiz extends Component{
         const {questions} = this.state;
         
         let answer = questions[2];
-        const answerHeight = answer.input[0];
-        if(answerHeight !== ""){
-            details.height = answerHeight;
-        }
-
-        answer = questions[3];
         const answerWeight = answer.input[0];
         if(answerWeight !== ""){
             details.weight = answerWeight;
@@ -399,7 +392,6 @@ export default class Quiz extends Component{
     
     render(){
         let {questions, currentQuestion, complete, questionsReqInput, isClient, associatedTags} = this.state;
-
 
         return(
             <div>

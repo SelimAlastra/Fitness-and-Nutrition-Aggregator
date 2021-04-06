@@ -6,6 +6,7 @@ import Post from './Post/Post';
 import useStyles from './styles';
 import { getPosts, updatePost } from '../../actions/posts';
 import {newArray} from '../Navbar/Searchbox';
+import { Col } from 'react-bootstrap';
 var newPosts=[];
 const Posts = ({setCurrentId,updatedPosts,setUpdatedPosts}) => {
     if(updatedPosts.length>0)
@@ -28,14 +29,14 @@ const Posts = ({setCurrentId,updatedPosts,setUpdatedPosts}) => {
     const dispatch = useDispatch();
   
     return (
-            <Grid className={classes.mainContainer} container spacing={3}> 
-                {posts.map((post) => (
-                    <Grid key={post._id} item xs={12} md={6}>
-                            <Post post={post} setCurrentId={setCurrentId} />
-                    </Grid> 
-                ))}
-            </Grid>
-    );
+                <div class="row">
+                    {posts.map((post) => (
+                        <Col key={post._id} item xs={6} md={4}>
+                                <Post post={post} setCurrentId={setCurrentId} />
+                        </Col> 
+                    ))}
+                </div>
+            );
 }
 
 export default Posts;

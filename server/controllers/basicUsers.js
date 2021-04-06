@@ -34,7 +34,7 @@ export const deleteBasicUser = async (req, res) => {
 export const updateBasicUser = async (req, res) => {
     const { id: _id } = req.params;
     const user = req.body;
-  
+
     if(!mongoose.Types.ObjectId.isValid(_id)) return (res.status(404).send('No user with that id'));
   
     const updatedUser = await BasicUser.findByIdAndUpdate(_id, { ...user, _id }, { new: true });

@@ -155,6 +155,8 @@ const EditBasicUser = (props) => {
                     <Form.Group>
                         <Form.Label className="label">Email</Form.Label>
                         <Form.Control
+                            style={{backgroundColor: "white"}}
+                            disabled
                             className="inputItem"
                             id="email"
                             value={email}
