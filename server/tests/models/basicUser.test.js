@@ -16,11 +16,8 @@ describe('Testing BasicUser model', function() {
             isBanned: false,
             bodyType: "Average",
             weight: "68kg",
-            goals: ["goal1", "goal2"],
             tags: ["tag1", "tag2"],
             bio: "This is my bio!",
-            bundles: ["bundle1", "bundle2"],
-            buckets: ["bucket1", "bucket2"]
         };
         newBasicUser = new BasicUser(basicUserBody);
         duplicateUser = new BasicUser(basicUserBody);
@@ -40,11 +37,8 @@ describe('Testing BasicUser model', function() {
         expect(newBasicUser.isBanned).to.be.false;
         expect(newBasicUser.bodyType).to.equal("Average");
         expect(newBasicUser.weight).to.equal("68kg");
-        expect(newBasicUser.goals.length).to.equal(2);
         expect(newBasicUser.tags.length).to.equal(2);
-        expect(newBasicUser.bio).to.equal("This is my bio!");
-        expect(newBasicUser.bundles.length).to.equal(2);
-        expect(newBasicUser.buckets.length).to.equal(2);        
+        expect(newBasicUser.bio).to.equal("This is my bio!"); 
         done();
     });
 

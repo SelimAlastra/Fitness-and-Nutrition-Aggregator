@@ -37,7 +37,11 @@ export const updateService = async (req, res) => {
 };
 
 export const deleteService = async (req, res) => {
-  Service.findOneAndDelete(req.params.id)
-    .then(() => res.json('Service deleted!'))
-    .catch(error => res.status(404).json('Error: ' + error));
+  const { id: _id } = req.params;
+
+  if(!mongoose.Types.ObjectId.isValid(_id)) return (res.status(404).send('Error: ' + err));
+
+  await Service.findOneAndDelete(_id);
+
+  res.json({ message: 'Service deleted!' });
 };
