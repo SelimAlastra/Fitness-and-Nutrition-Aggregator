@@ -148,6 +148,11 @@ export const googleController = (req, res) => {
       if (email_verified) {
         User.findOne({ email }).exec((err, user) => {
           if (user) {
+            if (user.isBanned) {
+              return res.status(401).json({
+                errors: 'You cannot login, as you are banned.'
+              });
+            }
             const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET, {
               expiresIn: '7d'
             });
@@ -206,6 +211,11 @@ export const facebookController = (req, res) => {
         const { email, name } = response;
         User.findOne({ email }).exec((err, user) => {
           if (user) {
+            if (user.isBanned) {
+              return res.status(401).json({
+                errors: 'You cannot login, as you are banned.'
+              });
+            }
             const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET, {
               expiresIn: '7d'
             });
