@@ -165,11 +165,19 @@ export default function NavbarUser({updatedPosts, setUpdatedPosts}) {
           </div>
         </IconButton>
       </MenuItem>
+      <MenuItem>
+        <IconButton onClick={() => window.location.href = `/contactUs/${JSON.parse(localStorage.getItem('user'))._id}`} > 
+          <div>
+            <LiveHelpIcon/> 
+            <text style={{fontSize:"1.2rem"}}> Contact </text>
+          </div>
+        </IconButton>
+      </MenuItem>
       <MenuItem onClick={handleMenuClose}>
         <IconButton onClick={() => { signOut(() => { history.push('/'); });}}> 
           <div>
             <ExitToAppIcon/> 
-            <text style={{fontSize:"1.2rem"}}> Log out</text>
+            <text style={{fontSize:"1.2rem"}}> Log out </text>
           </div>
         </IconButton>
       </MenuItem>
@@ -187,14 +195,6 @@ export default function NavbarUser({updatedPosts, setUpdatedPosts}) {
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
     >
-        <MenuItem>
-        <IconButton onClick={() => window.location.href = `/contactUs/${JSON.parse(localStorage.getItem('user'))._id}`} > 
-          <div>
-            <LiveHelpIcon/> 
-            <text style={{fontSize:"1.2rem"}}> Contact Us </text>
-          </div>
-        </IconButton>
-      </MenuItem>
       <MenuItem>
         <IconButton onClick={() => window.location.href = `/homePage/${JSON.parse(localStorage.getItem('user'))._id}`} > 
           <div>
@@ -235,6 +235,14 @@ export default function NavbarUser({updatedPosts, setUpdatedPosts}) {
           </div>
         </IconButton>
         {/* <p>Settings</p> */}
+      </MenuItem>
+      <MenuItem>
+        <IconButton onClick={() => window.location.href = `/contactUs/${JSON.parse(localStorage.getItem('user'))._id}`} > 
+          <div>
+            <LiveHelpIcon />
+            <text style={{fontSize:"1.2rem"}}> Contact </text>
+          </div>
+        </IconButton>
       </MenuItem>
       <MenuItem onClick={handleProfileMenuOpen}>
       <IconButton onClick={() => { signOut(() => { history.push('/'); });}}> 
@@ -280,13 +288,6 @@ export default function NavbarUser({updatedPosts, setUpdatedPosts}) {
 
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
-            <IconButton 
-              onClick={() => window.location.href = `/contactUs/${JSON.parse(localStorage.getItem('user'))._id}`}
-              style={{width: '50px'}} 
-              data-testid="contactButton"
-              color="inherit">
-              <LiveHelpIcon className={classes.iconButton} />
-            </IconButton>
             <IconButton 
               onClick={() => window.location.href = `/homePage/${JSON.parse(localStorage.getItem('user'))._id}`}
               style={{width: '50px'}} 
