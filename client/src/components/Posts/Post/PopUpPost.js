@@ -21,8 +21,8 @@ const PopUpPost = (post) => {
 
     let professionals;
 
-    if(professional!== null && professional.length>1){
-        professionals = professional.filter(professional => professional._id == post.post.userFrom)
+    if(professional !== null && professional !== undefined){
+        professionals = professional.filter(professional => professional._id === post.post.userFrom)
     }
 
     function openModal() {
@@ -48,7 +48,7 @@ const PopUpPost = (post) => {
                         </CloseIcon>
                     </div>
                             <h4>{post.post.title}</h4>
-                            { (professional !== null && professionals !== undefined) ?
+                            { professionals !== null && professionals[0] !== undefined ?
                             <Link onClick={() => window.location.href = `/user/professional/profile/${post.post.userFrom}/${JSON.parse(localStorage.getItem('user'))._id}`} style={{ "color": "black", "cursor": "pointer" }}><h6>{post.post.creator} - {professionals[0].profession}</h6></Link>
                             :
                             null
