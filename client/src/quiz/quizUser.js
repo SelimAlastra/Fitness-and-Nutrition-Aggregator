@@ -13,7 +13,8 @@ var details = {
     gender: '',
     isNew: false,
     yearsOfExperience: '',
-    date: ''
+    date: new Date(),
+    bodyType: '',
 }
 
 export default class Quiz extends Component{
@@ -207,11 +208,13 @@ export default class Quiz extends Component{
 
     /**
      * process the date of birth
+     * note: the received date of birth is in the format DD/MM/YYYY
      */
     processDOB = (dob) => {
         const {questions} = this.state;
         if(dob!== undefined) {
-            details.date = dob;
+            const date = dob.split("/");
+            details.date = new Date(`${date[2]}-${date[1]}-${date[0]}`);
             questions.find(question => question.questionId === 2).dob = dob;
         }
     }
@@ -346,7 +349,18 @@ export default class Quiz extends Component{
         this.addGoals();
         details.isNew = true;
     }
-    
+
+    /**
+     * 
+     */
+    updateBodyType = () => {
+        const {questions} = this.state;
+        const answers = questions[3].answerOptions;
+        answers.forEach(answer => {
+
+        })
+    }
+
     /**
      * 
      */
