@@ -265,6 +265,13 @@ export default function NavbarProfessional({updatedPosts, setUpdatedPosts}) {
             </IconButton>
           )}
 
+          <Typography
+          onClick={() => window.location.href = `/myPosts/${JSON.parse(localStorage.getItem('user'))._id}`}
+          style={{cursor: "pointer"}}
+          >
+          POSTS
+          </Typography>
+
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
             <IconButton 

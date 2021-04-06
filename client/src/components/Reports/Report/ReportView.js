@@ -35,8 +35,7 @@ const ReportView = () => {
     }
 
     const handleDelete2 = () => {
-        dispatch(deleteReport(report._id));
-        dispatch(deletePost(post._id));
+        dispatch(deletePost(report.postId));
         window.location.href="/admin/reports";
     }
 
