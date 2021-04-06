@@ -172,49 +172,68 @@ const Post = ({ post, setCurrentId }) => {
           }
         </Menu>
       </div>
-      <Typography hidden={true} className={classes.title} variant="h5" gutterBottom>{post.title}</Typography>
-      <CardContent hidden={true}>
-        <Typography variant="body2" color="textSecondary" component="p" >{post.message}</Typography>
-      </CardContent>
-      {   post.selectedFile ?
-        <div className={classes.photo}>
-          <CardMedia className={classes.media} image={post.selectedFile} title={post.title} />
+      { post.selectedFile || post.url || post.audioFile || post.embeddedLink || post.facebookLink ?
+      <div>
+        <Typography hidden={true} className={classes.title} variant="h5" gutterBottom>{post.title}</Typography>
+        <CardContent hidden={true}>
+          <Typography variant="body2" color="textSecondary" component="p" >{post.message}</Typography>
+        </CardContent>
+        {   post.selectedFile ?
+          <div className={classes.photo}>
+            <CardMedia className={classes.media} image={post.selectedFile} title={post.title} />
+          </div>
+          : <div></div>
+        }
+
+        <div className={classes.video}>
+          {post.url ?
+            <CardContent>
+              <Videos setUrl={post.url} />
+            </CardContent>
+            : <div></div>
+          }
         </div>
-        : <div></div>
-      }
-      <div className={classes.video}>
-        {post.url ?
-          <CardContent>
-            <Videos setUrl={post.url} />
+
+        {   post.audioFile ?
+          <CardContent className={classes.audio}>
+            <Audio setSrc={post.audioFile} />
           </CardContent>
           : <div></div>
         }
-      </div>
-      {   post.audioFile ?
-        <CardContent className={classes.audio}>
-          <Audio setSrc={post.audioFile} />
+
+        {   post.embeddedLink ?
+          <CardContent className={classes.embeddedLink}>
+            <EmbeddedLinks  setLink={post.embeddedLink} />
+          </CardContent>
+          : <div></div>
+        }
+
+        {   post.facebookLink ?
+          <CardContent className={classes.facebookLink}>
+            <FacebookLinks setLink={post.facebookLink} />
+          </CardContent>
+          : <div>
+          </div>
+        }
+        </div>
+        :
+        <div>
+        <Typography hidden={true} className={classes.title} variant="h6">{post.title}</Typography>
+        <CardContent style={{height:"200px", overflow:"scroll", marginTop:"62px", marginBottom:"8px", borderTop: "1px solid gray", borderBottom: "1px solid gray"}}>
+            <Typography style={{fontFamily:"Georgia, Times, 'Times New Roman', serif"}} variant="body2" color="textSecondary" component="p">{post.message}</Typography>
         </CardContent>
-        : <div></div>
-      }
-      {   post.embeddedLink ?
-        <CardContent className={classes.embeddedLink}>
-          <EmbeddedLinks  setLink={post.embeddedLink} />
-        </CardContent>
-        : <div></div>
-      }
-      {   post.facebookLink ?
-        <CardContent className={classes.facebookLink}>
-          <FacebookLinks setLink={post.facebookLink} />
-        </CardContent>
-        : <div>
         </div>
       }
+
       { post.tags ?
         <div className={classes.details}>
-          <Typography variant="body2" color="textSecondary" component="h2">{post.tags.map((tag) => `#${tag} `)}</Typography>
+          <Container style={{height:"44px", overflow:"scroll"}}>
+            <Typography variant="body2" color="textSecondary" component="h2">{post.tags.map((tag) => `#${tag} `)}</Typography>
+          </Container>
         </div>
         : <> </>
       }
+      
       <CardActions className={classes.cardActions}>
         <Container className={classes.buttons}>
             {post.likes ?

@@ -20,19 +20,19 @@ const ProfessionalPosts = () => {
 
     if (myPosts === undefined || myPosts.length === 0) {
         return (
-            <div>
+        <div style={{overflowX:"hidden"}}>
             <NavbarProfessional/>
             <div className="bucketText">
                     <h1>My Posts</h1>
                     <hr className="serviceSeperator"/>
                 </div>
                 <div>You have no posts.</div>
-            </div>
+        </div>
         );
     }
     else {
         return (
-            <div>
+            <div style={{overflowX:"hidden"}}>
                 <NavbarProfessional/>
                 <div className="bucketText">
                     <h1>My Posts</h1>
