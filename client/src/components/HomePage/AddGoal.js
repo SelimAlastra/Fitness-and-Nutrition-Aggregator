@@ -12,7 +12,7 @@ const AddGoal = ({userID}) => {
     const [description, setDescription] = useState("");
     const [deadline, setDeadline]= useState("");
     const [tags, setTags]= useState("");
-    const [ID, setID] = useState("");
+    const [ID, setID] = useState({});
 
     function redirectHomePage() {
         window.location.href = `/homePage/${userID}`;
