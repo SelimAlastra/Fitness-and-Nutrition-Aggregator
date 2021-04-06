@@ -57,7 +57,7 @@ const formik = useFormik({
       if(isClient == "true"){
         const newData = {
           email: values.email,
-          username: values.username,
+          username: values.username.toLowerCase(),
           password: values.password,
           name: values.name,
         }
@@ -84,7 +84,7 @@ const formik = useFormik({
         else{
         const newData2 = {
             email: values.email,
-            username: values.username,
+            username: values.username.toLowerCase(),
             password: values.password,
             name: values.name,
             profession: values.profession,
