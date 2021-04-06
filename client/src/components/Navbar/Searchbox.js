@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getBasicUser, updateBasicUser } from '../../actions/basicUsers';
 import { getProfessionalUsers, updateProfessional, getProfessional } from '../../actions/professionals';
 import { details } from '../../quiz/quizUser';
-import { createGoal } from '../../api';
+import { createGoal } from '../../actions/goals';
 
 /**
  * styles for the searchbox
@@ -133,18 +133,6 @@ const SearchBox = ({updatePosts,setUpdatedPosts}) => {
    if(profile.tags){
       tags=profile.tags;
     }
-
-    let goalIds = []
-    useEffect(() => {
-      details.goals.forEach(g => {
-        let newG = {
-          describtion: g,
-          userID: profile._id
-        }
-        dispatch(createGoal(g));
-
-      })
-    }, [])
     
     // update the client profile
     if(associatedTags.length>0 && JSON.parse(localStorage.getItem('user')).type === 'client'){ 
@@ -161,7 +149,6 @@ const SearchBox = ({updatePosts,setUpdatedPosts}) => {
         bodyType: profile.bodyType,
         weight: details.weight,
         height: details.height,
-        goals: details.goals,
         tags: associatedTags,
         bio: profile.bio,
         resetPasswordLink: profile.resetPasswordLink,
