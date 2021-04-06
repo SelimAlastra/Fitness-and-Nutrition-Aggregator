@@ -132,7 +132,7 @@ describe('services routes', function() {
             .send()
             .end((err, res) => {
                 expect(res.status).to.equal(200);
-                expect(res.body).to.equal("Service deleted!");
+                expect(res.body.message).to.equal("Service deleted!");
                 done();
             });
         });
