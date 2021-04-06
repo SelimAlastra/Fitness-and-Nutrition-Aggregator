@@ -17,14 +17,6 @@ const PopUpPost = (post) => {
     const [modalOpen, setModalOpen] = useState(false);
     Modal.setAppElement('body');
 
-    const professional = useSelector((state) => state.professional)
-
-    let professionals;
-
-    if(professional !== null && professional !== undefined){
-        professionals = professional.filter(professional => professional._id === post.post.userFrom)
-    }
-
     function openModal() {
         setModalOpen(true);
     }
@@ -48,11 +40,7 @@ const PopUpPost = (post) => {
                         </CloseIcon>
                     </div>
                             <h4>{post.post.title}</h4>
-                            { (professional !== null && professionals[0] !== undefined) ?
-                            <Link onClick={() => window.location.href = `/user/professional/profile/${post.post.userFrom}/${JSON.parse(localStorage.getItem('user'))._id}`} style={{ "color": "black", "cursor": "pointer" }}><h6>{post.post.creator} - {professionals[0].profession}</h6></Link>
-                            :
-                            null
-                            }   
+                            <Link onClick={() => window.location.href = `/user/professional/profile/${post.post.userFrom}/${JSON.parse(localStorage.getItem('user'))._id}`} style={{ "color": "black", "cursor": "pointer" }}><h6>{post.post.creator}</h6></Link>
                             {post.post.likes ?
                                 <Button size="small" onClick={() => dispatch(likePost(post.post._id, JSON.parse(localStorage.getItem('user'))._id))}>
                                     <Likes post = {post.post}/>
