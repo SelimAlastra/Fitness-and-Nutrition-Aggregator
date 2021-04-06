@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { Button, Card, CardActions, CardContent, Checkbox } from '@material-ui/core';
+import { Card } from '@material-ui/core';
+import Button from 'react-bootstrap/Button';
 import { useDispatch } from 'react-redux';
 import { updateBucket, getBuckets } from '../../actions/buckets';
 import { Form, FormCheck, ListGroup, Col } from 'react-bootstrap';
@@ -36,9 +37,14 @@ const Buckets = (post) => {
 
     if (myBuckets === undefined || myBuckets.length === 0) {
         return (
+            <>
             <div>
                 You have no buckets.
             </div>
+            <div>
+                Create buckets and save your preferred posts for later.
+            </div>
+        </>
         )
     }
     else {

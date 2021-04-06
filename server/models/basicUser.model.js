@@ -46,8 +46,7 @@ const basicUserSchema = new Schema({
   bundles: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Service', required: true }],
 
   buckets: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Bucket', required: true }],
-
-  picture: {type: String, required: false},
+  
 }, {
   timestamps: true,
 });

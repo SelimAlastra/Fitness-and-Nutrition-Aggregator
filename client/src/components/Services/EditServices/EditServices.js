@@ -23,6 +23,16 @@ const EditServices = (props) => {
     const [serviceID, setServiceID] = useState("");
     const [url, setUrl] = useState("");
 
+    const [ errors, setErrors ] = useState({})
+
+    const findFormErrors = () => {
+        const newErrors = {}
+        if ( !url || url === '') newErrors.url = 'URL is required!'
+        else if(!(/^((https?|ftp|smtp):\/\/)?(www.)?[a-z0-9]+\.[a-z]+(\/[a-zA-Z0-9#]+\/?)*$/).test(url)) newErrors.url = 'URL must be valid!'
+
+        return newErrors
+    }
+
     function openModal(event, service) {
         setCurrentService(service);
         setServiceID(service._id);
@@ -31,6 +41,7 @@ const EditServices = (props) => {
 
     function closeModal() {
         setModalOpen(false);
+        setErrors({});
     }
 
     useEffect(() => {
@@ -52,21 +63,28 @@ const EditServices = (props) => {
     function addUrl(e) {
         e.preventDefault();
         const toUpdate = myServices.filter(sev => sev._id === serviceID)[0];
-        if (toUpdate !== undefined && serviceID !== "error" && url !== "") {
-            const currentUrls = toUpdate.urls;
-            currentUrls.push(url);
-            const updatedService = {
-                userID: toUpdate.userID,
-                description: toUpdate.description,
-                title: toUpdate.title,
-                price: toUpdate.price,
-                urls: currentUrls
+        if (toUpdate !== undefined && serviceID !== "error") {
+            const newErrors = findFormErrors();
+            if(Object.keys(newErrors).length > 0) {
+                console.log(newErrors);
+                setErrors(newErrors);
             }
-            dispatch(updateService(serviceID, updatedService));
+            else{
+                const currentUrls = toUpdate.urls;
+                currentUrls.push(url);
+                const updatedService = {
+                    userID: toUpdate.userID,
+                    description: toUpdate.description,
+                    title: toUpdate.title,
+                    price: toUpdate.price,
+                    urls: currentUrls
+                }
+                setUrl("");
+                setServiceID("");
+                dispatch(updateService(serviceID, updatedService));
+                closeModal();
+            }
         }
-        setUrl("");
-        setServiceID("");
-        closeModal();
     }
 
     function addVideo(service) {
@@ -111,8 +129,12 @@ const EditServices = (props) => {
                             placeholder="Video URL"
                             className="inputItem"
                             onChange={(e) => setUrl(e.target.value)}
+                            isInvalid={ !!errors.url }
                         >
                         </Form.Control>
+                        <Form.Control.Feedback type='invalid'>
+                            {errors.url}
+                        </Form.Control.Feedback>
                         <Form.Text className="text-muted">
                             Enter the url of the video you wish to add to the selected bundle.
                         </Form.Text>
