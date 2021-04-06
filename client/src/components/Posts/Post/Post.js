@@ -142,12 +142,10 @@ const Post = ({ post, setCurrentId }) => {
       <div className={classes.overlay}>
         { JSON.parse(localStorage.getItem('user')).type == 'client' ?
           <div>
-          <img src={post.photo}/>
           <Typography className={classes.creator}><Link onClick={() => window.location.href = `/user/professional/profile/${post.userFrom}/${JSON.parse(localStorage.getItem('user'))._id}`} style={{ "color": "black", "fontWeight": "bold", "cursor": "pointer" }}>{post.creator}</Link></Typography>
           </div>
           :
           <div>
-          <img src={post.photo}/>
           <Typography style={{color: "black", fontWeight: "bold"}} className={classes.creator}>{post.creator}</Typography>
           </div>
         }

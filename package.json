@@ -1,0 +1,25 @@
+{
+  "name": "MajorGroupProject",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server/index.js",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install npm && run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SelimAlastra/MajorGroupProject.git"
+  },
+
+  "engines" : {
+    "node": "10.16.0"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SelimAlastra/MajorGroupProject/issues"
+  },
+  "homepage": "https://github.com/SelimAlastra/MajorGroupProject#readme"
+}
