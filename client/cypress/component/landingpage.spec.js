@@ -1,11 +1,11 @@
-import React from "react";
-import { mount } from '@cypress/react';
-import ClientDashboard from '../../src/ClientDashboard';
+import React from 'react';
+import { mount } from 'cypress-react-unit-test';
+import LandingPage from '../../src/LandingPage';
 
-describe('Landing Page',() =>{
-    it('test_button',() =>{
-     //mount(<ClientDashboard/>);
-     // cy.contains('Basic User').click()
-      //cy.contains('Basic User').should('exist')
-    })
+describe('LandingPage', () => {
+
+  it('basic_user_button', () => {
+    mount(<LandingPage />);
+    cy.contains('Basic User').should('be.visible');
+  });
 });
