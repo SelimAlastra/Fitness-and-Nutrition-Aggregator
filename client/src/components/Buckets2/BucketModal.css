@@ -1,22 +1,104 @@
-.bucket .modal-body {
+.bucketModal .modal-body {
     overflow: scroll !important;
-    max-height: 350px;
+    max-height: 300px;
+    background-color: whitesmoke
+}
+.bucketModal .modal-title{
+    font-family: Georgia, Times, 'Times New Roman', serif;
 }
 
-.modal-footer {
-    height: 80px !important;
+.bucketModal .modal-footer {
+    height: 70px !important;
+    background-color: whitesmoke;
 }
 
-.bucket .modal-content {
+.bucketModal .modal-header {
+    background-color: whitesmoke;
+}
+
+.bucketModal .modal-content {
     width: 140%;
     overflow: hidden;
 }
 
-.bucket .button {
-    height: 50px;
-    width: fit-content
+.createButton, .bucketSave{
+    background-color: white;
+    height: 40px;
+    border-color: #Dc8f66;
+    color: black;
+    width: fit-content;
 }
 
-.bucket .modal {
-    position: absolute;
+.createButton:hover, .bucketSave:hover{
+    background-color: #Dc8f66;
+    border-color:#Dc8f66;
+    box-shadow: none;
+    color: white;
+    width: fit-content;
+}
+
+.createButton:active, .bucketSave:active{
+    background-color: #Dc8f66 !important;
+    box-shadow: none !important;
+    border-color:#Dc8f66 !important;
+    color: white !important;
+    width: fit-content;
+}
+
+.createButton:focus, .bucketSave:focus{
+    background-color: #Dc8f66 !important;
+    box-shadow: none !important;
+    border-color:#Dc8f66 !important;
+    color: white !important;
+    width: fit-content;
+}
+
+.newBucket .modal-body{
+    height: 370px;
+    background-color: whitesmoke;
+}
+.newBucket .modal-content{
+    width: 140% !important;
+}
+
+.newBucket .modal-header{
+    background-color: whitesmoke;
+}
+
+.newBucket .modal-title{
+    font-family: Georgia, Times, 'Times New Roman', serif;
+}
+
+
+.bucketTitle{
+    border: 1px solid lightgrey !important;
+}
+
+.bucketTitle:focus{
+    border: 1px solid #Dc8f66 !important;
+}
+
+.editBucket .modal-body{
+    height: 370px;
+    background-color: whitesmoke;
+}
+.editBucket .modal-content{
+    width: 140% !important;
+}
+
+.editBucket .modal-header{
+    background-color: whitesmoke;
+}
+
+.editBucket .modal-title{
+    font-family: Georgia, Times, 'Times New Roman', serif;
+}
+
+.editText {
+    min-width: 100%;
+    border: 1px solid lightgray;
+}
+
+.editText:focus {
+    border: 1px solid #Dc8f66;
 }

@@ -31,11 +31,8 @@ const Goals = ({userID}) => {
 
     function removeGoal(toDelete) {
         dispatch(deleteGoal(toDelete._id));
-        myGoals.filter(goal => goal === toDelete);
         window.location.href = `/homePage/${userID}`;
     }
-
-    console.log(myGoals);
 
     function generateGoals() {
     if (!myGoals.length) {

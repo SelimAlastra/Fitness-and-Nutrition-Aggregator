@@ -6,10 +6,27 @@ import {deleteBucket, updateBucket} from '../../actions/buckets';
 import UpdateBucket from './UpdateBucket';
 import './Bucket.css';
 import { Link } from 'react-router-dom';
+import ReactPhotoGrid from 'react-image-gallery';
+import {getPosts, getPostsFromArray } from '../../actions/posts';
+import { getBasicUser } from '../../actions/basicUsers';
 
 const Bucket = ({ bucket }) => {
 
     const dispatch = useDispatch();
+
+    // const posts = useSelector((state) => state.posts);
+
+    // useEffect(() => {
+    //     if (bucket) {
+    //         dispatch(getPostsFromArray(bucket._id)) 
+    //     }
+    // }, [bucket]);
+
+    // console.log(posts); 
+
+    // var imageData = [
+    //     posts
+    // ]
 
     const handleDelete = (bucketId) => {
         if (window.confirm("Are you sure you want to delete this bucket?"))
@@ -32,6 +49,9 @@ const Bucket = ({ bucket }) => {
                     <UpdateBucket bucket={bucket}/>
                 </div>
             </div>
+            {/* <ReactPhotoGrid
+                // data={imageData} 
+            /> */}
         </div>
     );
 }

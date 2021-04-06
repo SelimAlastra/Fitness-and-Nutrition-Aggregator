@@ -1,24 +1,27 @@
 import React, { useEffect, useState } from 'react';
-import { Button, ListGroup } from "react-bootstrap";
+import { Button, Col, ListGroup } from "react-bootstrap";
 import { useSelector, useDispatch } from 'react-redux';
 import { getPostsFromArray } from "../../actions/posts";
 import { useParams } from "react-router-dom";
 import Post from "../Posts/Post/Post";
 import { updateBucket, getBuckets } from '../../actions/buckets';
 import NavbarUser from '../Navbar/NavbarUser';
+import { getProfessional } from '../../api';
+import { getProfessionalUsers } from '../../actions/professionals';
 
 const BucketView = (params) => {
     const bucket = params.location.state;
     console.log(params.location.state);
     const loading = true;
+
     const posts = useSelector((state) => state.posts);
 
     const dispatch = useDispatch();
 
     useEffect(() => {
         dispatch(getBuckets());
+        dispatch(getProfessionalUsers());
     }, []);
-
 
     useEffect(() => {
         if (bucket) {
@@ -46,19 +49,24 @@ const BucketView = (params) => {
             </>
         )
     }
-    else {
+    else
+    {
         return(
-            <>
+            <div style={{backgroundColor: "whitesmoke", overflowX: "hidden"}}>
             <NavbarUser/>
             <h1>{bucket.title}</h1>
-            {posts.map((post)=> (
-                <ListGroup>
-                 <Post post={post} />
-                 <Button onClick = {() => (removeFromBucket(post._id))}>Remove</Button>
-                </ListGroup>
-            ))}
-            </> 
-        );
+            <h5>{bucket.description}</h5>
+            <hr/>
+            <div style={{marginLeft: "2%"}} class="row">
+                {posts.map((post)=> (
+                    <Col xs={6} lg={4} key={post._id}>
+                        <Post post={post} />
+                        <Button className="removePost" style={{marginLeft: "-10%", marginBottom: "4%"}} onClick = {() => (removeFromBucket(post._id))}>Remove</Button>
+                    </Col>
+                ))}
+            </div>
+            </div>
+        );        
     }
 }
 
