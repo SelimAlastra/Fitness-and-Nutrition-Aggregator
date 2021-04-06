@@ -49,7 +49,6 @@ const sendGoogleToken = tokenId => {
 const informParent = response => {
   authenticate(response, () => {
     isAuth()
-    console.log(isClient);
     if(isClient == "true")
       if(response.data.isNew){
         history.push(`/user/quiz/${JSON.parse(localStorage.getItem('user'))._id}`);
