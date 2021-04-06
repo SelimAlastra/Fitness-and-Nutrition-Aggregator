@@ -8,7 +8,7 @@ import './styles.css';
 import { createPost, updatePost} from '../../actions/posts';
 
 const Form = ({currentId, setCurrentId}) => {
-    const [postData, setPostData] = useState({ photo: JSON.parse(localStorage.getItem('user')).picture, creator: JSON.parse(localStorage.getItem('user')).username, userFrom: JSON.parse(localStorage.getItem('user'))._id, title: '', message: '', tags: '', selectedFile: '', url: '', audioFile: '', embeddedLink: '', facebookLink: '' });
+    const [postData, setPostData] = useState({ creator: JSON.parse(localStorage.getItem('user')).username, userFrom: JSON.parse(localStorage.getItem('user'))._id, title: '', message: '', tags: '', selectedFile: '', url: '', audioFile: '', embeddedLink: '', facebookLink: '' });
     const [option, setOption] = useState('option1')
     let Value = 'photo';
     const post = useSelector((state) => currentId ? state.posts.find((p)=> p._id === currentId ) : null);
@@ -49,17 +49,16 @@ const Form = ({currentId, setCurrentId}) => {
    }
     const clear = () => {
         setCurrentId(null);
-        setPostData({ photo: JSON.parse(localStorage.getItem('user')).picture, creator: JSON.parse(localStorage.getItem('user')).username ,userFrom: JSON.parse(localStorage.getItem('user'))._id, title: '', message: '', tags: '', selectedFile: '', url: '' , audioFile: '', embeddedLink: '', facebookLink: ''});
+        setPostData({ creator: JSON.parse(localStorage.getItem('user')).username ,userFrom: JSON.parse(localStorage.getItem('user'))._id, title: '', message: '', tags: '', selectedFile: '', url: '' , audioFile: '', embeddedLink: '', facebookLink: ''});
     }
     return (
             <form autoComplete="off" noValidate className={`${classes.root} ${classes.form}`} method="post" action="#" onSubmit={handleSubmit}>
-                <Typography variant="h6">{currentId ? 'Editing' : 'Creating' } a Post</Typography>
-                <img src={JSON.parse(localStorage.getItem('user')).picture}/> 
-                <TextField fullWidth value={JSON.parse(localStorage.getItem('user')).username}/>
+                {/* <TextField fullWidth value={JSON.parse(localStorage.getItem('user')).username}/> */}
                 <TextField name="title" variant="outlined" label="Title" fullWidth value={postData.title} onChange={(e) => setPostData({ ...postData, title: e.target.value })} />
                 <TextField name="message" variant="outlined" label="Message" fullWidth value={postData.message} onChange={(e) => setPostData({ ...postData, message: e.target.value })} />
                 <TextField name="tags" variant="outlined" label="Tags (coma separated)" fullWidth value={postData.tags} onChange={(e) => setPostData({ ...postData, tags: e.target.value.split(',') })} />
-                <Typography>Which post do you want?</Typography>
+                <Typography>POST TYPE</Typography>
+                <div style={{width: "100%", alignItems: "center"}}>
                 <div>
                     <input type="radio" name="choice-post" value="photo" onChange={(e) => setValue(e.target.value)} required />
                     <label>Photo Post</label>
@@ -101,7 +100,7 @@ const Form = ({currentId, setCurrentId}) => {
                         <TextField name="src" variant="outlined" label="URL" fullWidth value={postData.facebookLink} onChange={(e) => setPostData({ ...postData, facebookLink: e.target.value })} />
                         </div>
                 </div>         
-                
+                </div>
                 <Button className={classes.buttonSubmit} variant="contained" color="primary" size="large" type="submit" fullWidth>Submit</Button>
                 <Button variant="contained" color="secondary" size="small" onClick={clear} fullWidth>Clear</Button>
             </form>

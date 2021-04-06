@@ -10,23 +10,44 @@ function PopUpNewBuckets() {
     const dispatch = useDispatch();
 
     const [show, setShow] = useState(false);
-    const handleClose = () => setShow(false);
+    const handleClose = () => 
+    {
+        setShow(false);
+        setErrors({});
+    }
     const handleShow = () => setShow(true);
 
     const [postData, setPostData] = useState({ title: '', description: '' });
     const userId = JSON.parse(localStorage.getItem('user'))._id;
 
+    const [ errors, setErrors ] = useState({})
+
+    const findFormErrors = () => {
+        const { title } = postData
+        const newErrors = {}
+        if ( !title || title === '' ) newErrors.title = 'Name is required!'
+        else if ( title.length > 20 ) newErrors.title = 'Name must be maximum 20 characters long!'
+    
+        return newErrors
+    }
+
     const handleSubmit = (e) => {
             e.preventDefault();
-            const newData = {
-                title: postData.title,
-                description: postData.description,
-                postId: postData.postId,
-                userId: userId
+            console.log(postData);
+            const newErrors = findFormErrors()
+            if ( Object.keys(newErrors).length > 0 ) {
+                    setErrors(newErrors)
+            } else {
+                const newData = {
+                    title: postData.title,
+                    description: postData.description,
+                    postId: postData.postId,
+                    userId: userId
+                }
+                setPostData({...postData, title:"", description:""})
+                dispatch(createBucket(newData));
+                handleClose();
             }
-            setPostData({...postData, title: "", description: ""})
-            dispatch(createBucket(newData));
-            handleClose();
     }
     
     return (<> 
@@ -41,8 +62,11 @@ function PopUpNewBuckets() {
                 </Modal.Header>
                 <Modal.Body>
                     <Form className="createForm" autoComplete="off" onSubmit={handleSubmit}>
-                        <Form.Label htmlFor="title">Bucket Name</Form.Label>
-                        <Form.Control className="bucketTitle" id="title" name="title" variant="outlined" onChange={(e) => setPostData({ ...postData, title: e.target.value })} />
+                        <Form.Label htmlFor="title">Bucket Name (maximum 20 characters)</Form.Label>
+                        <Form.Control className="bucketTitle" id="title" name="title" variant="outlined" isInvalid={ !!errors.title } onChange={(e) => setPostData({ ...postData, title: e.target.value })} />
+                        <Form.Control.Feedback type='invalid'>
+                            { errors.title }
+                        </Form.Control.Feedback>
                         <p/>
                         <Form.Label style={{marginBottom: "-10%"}} htmlFor="description">Description (optional)</Form.Label>
                         <textarea className="editText" rows={3} id="description" name="description" onChange={(e) => setPostData({ ...postData, description: e.target.value })}/>

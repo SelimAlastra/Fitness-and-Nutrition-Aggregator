@@ -83,13 +83,9 @@ return (
             <Grid item xs={12} sm={12}>
               <Posts setCurrentId={setCurrentId} updatedPosts={updatedPosts} setUpdatedPosts={setUpdatedPosts}/>
             </Grid>
-            <Grid item xs={12} sm={4}>
-              <Form currentId={currentId} setCurrentId={setCurrentId} />
-            </Grid> 
           </Grid>
         </Container>
       </Grow>
-
     </Container>
     </>
   );
