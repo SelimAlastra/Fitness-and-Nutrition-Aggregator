@@ -28,13 +28,13 @@ const Buckets = () => {
 
     if (myBuckets === undefined || myBuckets.length === 0) {
         return (
-            <div>
+            <div style={{backgroundColor: "whitesmoke", height :"100vh"}}>
             <NavbarUser/>
             <div className="bucketText">
                     <h1>My Buckets</h1>
                     <hr className="serviceSeperator"/>
                 </div>
-                <div style = {{marginLeft:"-60%", marginTop: "2%"}}><BucketModal/></div>
+                <div style = {{margin: "20px"}}><BucketModal/></div>
                 <div>You have no buckets.</div>
                 <div>Create buckets and save your preferred posts for later.</div>
             </div>
@@ -42,13 +42,13 @@ const Buckets = () => {
     }
     else {
         return (
-            <div style={{backgroundColor: "whitesmoke"}}>
+            <div style={{backgroundColor: "whitesmoke", height :"100vh"}}>
                 <NavbarUser/>
                 <div className="bucketText">
                     <h1>My Buckets</h1>
                     <hr className="serviceSeperator"/>
                 </div>
-                <div style = {{marginTop: "2%"}}><BucketModal/></div>
+                <div style = {{margin: "20px"}}><BucketModal/></div>
                 <div class="container" style={{justifyContent: "center"}}>
                 <div class="row">
                         {myBuckets.map((bucket) => (
