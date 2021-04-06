@@ -47,14 +47,20 @@ const HomePage = (props) => {
             <NavbarUser/>
             <div className="homepage">
                 <UserInfo user={user} />
+                <hr className ="homePageSep"/>
                 <div>
                     <Services userID = {user._id} />
                 </div>
+                <hr className ="homePageSep"/>
                 <div>
                     <Goals userID={user._id}/>
                 </div>
+                <hr className ="homePageSep"/>
+                <div className = "homePageAlertDiv">
+                    <Alert className = 'homePageAlert '> What are smart fitness goals ? </Alert>
+                </div>
                 <div>
-                    <Image className ="GoalsImage" src="https://www.verywellmind.com/thmb/Fu42J0v7zBzVwquGqf89B0S13Ts=/1500x1000/filters:fill(ABEAC3,1)/smart-goals-for-lifestyle-change-2224097_final-1e7ebd33b46948959ca5d106f18241ee.png" fluid />
+                    <Image className ="GoalsImage" src="https://www.mileiq.com/en-ca/wp-content/uploads/sites/2/2018/05/SMART-goal-setting-1300x867.jpg" fluid />
                 </div>
             </div>
             </div>
