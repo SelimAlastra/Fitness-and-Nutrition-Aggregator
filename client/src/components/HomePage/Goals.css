@@ -15,7 +15,7 @@
 
 .goalsPageText {
     margin : 20px;
-    color :   rgb(9, 30, 41);
+    color :   rgb(94, 93, 93);
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     text-align: center;
     padding: none;
@@ -23,7 +23,7 @@
 
 .goalsPageText2 {
     font-size: medium;
-    color :  rgb(9, 30, 41);
+    color :  rgb(94, 93, 93);
     padding: none;
 }
 
@@ -39,7 +39,7 @@
   }
 
 .addGoalModal{
-    border-radius: 2%;
+    border-radius: 15px;
     border-width: 2px;
     border-color: black;
     border-style: bold;
@@ -58,7 +58,7 @@
 .goalsButton {
     padding: 20px;
     background-color: transparent;
-    border-radius: 4%;
+    border-radius: 15px;
     border-style: solid;
     border-width: 1px;
     border-color: #A0d468;
