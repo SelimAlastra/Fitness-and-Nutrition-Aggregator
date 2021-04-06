@@ -16,7 +16,7 @@ const ProfessionalUserEdit = () => {
         dispatch(getProfessional(id));
      }, [dispatch]);
 
-    const user = useSelector((state) => state.basicUsers);
+    const user = useSelector((state) => state.professional);
 
     const handleSubmit = (e) => {
         e.preventDefault();
