@@ -43,9 +43,9 @@ const basicUserSchema = new Schema({
 
   resetPasswordLink :{type: String, default: '', required: false},
 
-  bundles: [{type: String, required: true}],
+  bundles: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Service', required: true }],
 
-  buckets: [{type: String, required: true}]
+  buckets: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Bucket', required: true }]
 }, {
   timestamps: true,
 });
