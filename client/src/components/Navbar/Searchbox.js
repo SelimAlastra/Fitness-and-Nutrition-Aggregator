@@ -144,7 +144,7 @@ const SearchBox = ({updatePosts,setUpdatedPosts}) => {
         email: profile.email,
         password: profile.password,
         gender: details.gender,
-        dob: profile.dob,
+        dob: details.date,
         address: profile.address,
         isBanned: profile.isBanned,
         bodyType: profile.bodyType,
