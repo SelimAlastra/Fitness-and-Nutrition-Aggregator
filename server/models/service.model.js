@@ -14,6 +14,23 @@ const serviceSchema = new Schema({
   timestamps: true,
 });
 
+serviceSchema.post("findOneAndDelete", (document, next) => {
+  console.log('kjashf');
+  const bundleId = document._id;
+  BasicUser.find({ bundles: { $in: [bundleId] } }).then(users => {
+      Promise.all(
+          users.map(user => 
+              BasicUser.findOneAndUpdate(
+                  {_id : user._id},
+                  { $pull: {bundles: bundleId} },
+                  { new: true }
+              )
+          )
+      );
+  });
+  next();
+});
+
 const Service = mongoose.model('Service', serviceSchema);
 
 export default Service;

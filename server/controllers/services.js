@@ -37,7 +37,7 @@ export const updateService = async (req, res) => {
 };
 
 export const deleteService = async (req, res) => {
-  Service.findByIdAndDelete(req.params.id)
+  Service.findOneAndDelete(req.params.id)
     .then(() => res.json('Service deleted!'))
     .catch(error => res.status(404).json('Error: ' + error));
 };
