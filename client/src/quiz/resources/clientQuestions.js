@@ -8,9 +8,9 @@ const questionsClient = [
             { answerText: "Other", selected:false,requireInput: false, tags:[""] },
         ],
     }, {
-        questionText: "What is your date of birth?",
+        questionText: "What is the date of your birth?",
         questionId: 2,
-        dob: {day: "", month: "", year: ""},
+        dob: "",
     },{
         questionText: "What is your weight?",
         questionId: 4,
@@ -23,11 +23,11 @@ const questionsClient = [
         questionText: "What best describes your body?",
         questionId: 5,
         answerOptions: [
-            { answerText: "Short and sturdy", selected:false, tags:["short", "shortperson"], requireInput: false },
-            { answerText: "Lean and long", selected:false, tags:["ectomorph", "tall"], requireInput: false },
-            { answerText: "Tall and heavy", selected:false, tags:["endomorph", "tall", "bodybuilding"], requireInput: false },
+            { answerText: "Short and sturdy", selected:false, tags:["mesomorph", "short", "shortperson"], requireInput: false },
             { answerText: "Athletic, with a high metabolism", selected:false, tags:["mesomorph", "athletic"], requireInput: false },
             { answerText: "Soft and with a tendency to store body fat", selected:false, tags:["endomorph", "fatloss"], requireInput: false },
+            { answerText: "Lean and long", selected:false, tags:["ectomorph", "tall"], requireInput: false },
+            { answerText: "Tall and heavy", selected:false, tags:["endomorph", "tall", "bodybuilding"], requireInput: false },
             { answerText: "Average", selected:false, tags:["average"], requireInput: false },
             { answerText: "Other:", selected:false, tags:[""], requireInput: true, placeholder: "e.g.: Fragile", alert: ["Answer using letters only."], input: [] }
         ],

@@ -54,7 +54,7 @@
 }
 
 .dobPicker button {
-  all: initial;
+  
 }
 
 #backward-btn {
@@ -115,10 +115,6 @@
 
 .quizz button svg {
   margin-right: 5px;
-}
-
-DatePicker button{
-  background-color: red;
 }
 
 /* INPUT */

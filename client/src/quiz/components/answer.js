@@ -164,7 +164,7 @@ const Answer = (props) => {
         return (
             <>
 
-            <div>
+            <div className="quizBtn">
                 {props.answer.map((answerOption) => (
                     <Button 
                         key={answerOption.answerText} 
@@ -184,7 +184,7 @@ const Answer = (props) => {
         return (
             <>
             { props.questions[props.currentQuestion].questionId === 2 ? (
-                    <div style={{height: "500px"}}>
+                    <div>
                         <DobPicker />
                     </div>
                 ) : ( 

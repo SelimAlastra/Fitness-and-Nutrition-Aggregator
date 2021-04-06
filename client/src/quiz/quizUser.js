@@ -13,6 +13,7 @@ var details = {
     gender: '',
     isNew: false,
     yearsOfExperience: '',
+    date: ''
 }
 
 export default class Quiz extends Component{
@@ -207,15 +208,26 @@ export default class Quiz extends Component{
     }
 
     /**
+     * process the date of birth
+     */
+    processDOB = (dob) => {
+        const {questions} = this.state;
+        if(dob!== undefined) {
+            details.date = dob;
+            questions.find(question => question.questionId === 2).dob = dob;
+        }
+    }
+
+    /**
      * move to the previous question, only if there are previos questions
      */
     handleBackButtonClick = () => {
         const{currentQuestion} = this.state
         if(currentQuestion > 0){
-
+            if(document.getElementById("DatePicker")) {
+                this.processDOB(document.getElementById("DatePicker").value);
+            }
             this.processInput();
-            // this.processAnswerInput();
-
             this.setState({
                 currentQuestion: currentQuestion-1
             });
@@ -228,10 +240,10 @@ export default class Quiz extends Component{
     handleForwardButtonClick = () => {
         const{questions, currentQuestion, questionsReqInput} = this.state
         if(currentQuestion < questions.length){
-
+            if(document.getElementById("DatePicker")) {
+                this.processDOB(document.getElementById("DatePicker").value);
+            }
             this.processInput();
-            // this.processAnswerInput();
-            console.log(JSON.parse(localStorage.getItem('user')));
             this.setState({
                 currentQuestion: currentQuestion+1
             });
