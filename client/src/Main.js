@@ -11,6 +11,8 @@ import ContactUs from './components/ContactUsPage/ContactUs'
 import HomePage from './components/HomePage/HomePage';
 import EditGoals from './components/HomePage/EditGoals';
 
+import ProfessionalPosts from './components/Posts/ProfessionalPosts';
+
 import ForgetPassword from './components/UsersAuth/forgetPassword.jsx';
 import ResetPassword from './components/UsersAuth/resetPassword.jsx';
 import NavbarUser from './components/Navbar/NavbarUser.js';
@@ -57,6 +59,8 @@ const Main = () => (
 
         <PrivateRoute exact path='/clientDashboard/:id' component={Wrapper} componentToRender={ClientDashboard} userType={'client'}/>
         <PrivateRoute exact path='/professionalDashboard/:id' component={Wrapper} componentToRender={ProfessionalDashboard} userType={'professional'}/>
+
+        <Route exact path='/myPosts/:id' component={ProfessionalPosts}></Route>
   
         <Route exact path='/user/myBuckets/:id' component={BucketPage}></Route>
         <Route exact path='/user/myBuckets/:id/:title' component={BucketContent}></Route>

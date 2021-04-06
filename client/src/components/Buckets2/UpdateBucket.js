@@ -4,6 +4,7 @@ import { getBucket, updateBucket} from '../../actions/buckets';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import EditIcon from '@material-ui/icons/Edit';
 import './BucketModal.css';
 
 function UpdateBucketForm({bucket}) {
@@ -32,10 +33,10 @@ function UpdateBucketForm({bucket}) {
     }
 
     return (< >
-        < Button class="bucket button"
+        < Button className="editBucketBP"
             size="medium"
             onClick={handleShow} >
-            EDIT
+            <EditIcon/>
         </Button>
         < div className="modal-dialog" >
             < Modal className="editBucket" show={show} onHide={handleClose} >
