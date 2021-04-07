@@ -32,7 +32,7 @@ export const deleteGoal = async (req, res) => {
 
   if(!mongoose.Types.ObjectId.isValid(_id)) return (res.status(404).send('Error: Cannot delete this goal'));
 
-  await Goal.findOneAndDelete(_id);
+  await Goal.findOneAndDelete({_id : _id});
 
   res.json({ message: 'goal deleted.' });
 

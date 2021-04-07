@@ -28,7 +28,7 @@ const EditServices = (props) => {
     const findFormErrors = () => {
         const newErrors = {}
         if ( !url || url === '') newErrors.url = 'URL is required!'
-        else if(!(/^((https?|ftp|smtp):\/\/)?(www.)?[a-z0-9]+\.[a-z]+(\/[a-zA-Z0-9#]+\/?)*$/).test(url)) newErrors.url = 'URL must be valid!'
+        else if(!(/http(?:s?):\/\/(?:www\.)?youtu(?:be\.com\/watch\?v=|\.be\/)([\w\-\_]*)(&(amp;)?‌​[\w\?‌​=]*)?/).test(url)) newErrors.url = 'URL must be valid!'
 
         return newErrors
     }
@@ -102,14 +102,14 @@ const EditServices = (props) => {
                     onRequestClose={closeModal}
                     className="serviceModalEdit"
                 >
-                    <div className="closeButton">
+                    <div style={{marginTop: "1%", marginRight: "1%"}} className="closeButton">
                         <CloseIcon
                             size="2x"
                             onClick={closeModal}
                         >
                         </CloseIcon>
                     </div>
-                    <h4>Add Video to Bundle</h4>
+                    <h4 style={{marginTop: "2%"}}>Add Video to Bundle</h4>
                     <hr className="seperator"/>
                     <br />
                     <Form>
@@ -172,7 +172,6 @@ const EditServices = (props) => {
                                         <td width="23%" className="servicesContainer">
                                             <h4 className="serviceText" style={{ textAlign: "centre" }}>{service.title}</h4>
                                             <p className="serviceText" style={{ textAlign: "centre", fontSize: "18px" }}>{service.description}</p>
-                                            {/* <p className="subText" style={{ textAlign: "left" }}>Service ID: {service._id}</p> */}
                                         </td>
                                         <td width="70%" className="videoContainer">
                                             <ReactPlayer

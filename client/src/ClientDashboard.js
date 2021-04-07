@@ -104,7 +104,7 @@ return (
     </div>
     <Grow in>
         <Container>
-          <Grid className={classes.mainContainer} container justify="space-between" alignItems="stretch" spacing={6}>
+          <Grid className={classes.mainContainer} container justify="space-between" alignItems="stretch" spacing={3}>
             <Grid item xs={12} lg={12}>
             <Posts setCurrentId={setCurrentId} updatedPosts={updatedPosts} setUpdatedPosts={setUpdatedPosts}/>
             </Grid>
