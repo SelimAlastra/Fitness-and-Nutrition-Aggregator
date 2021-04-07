@@ -1,0 +1,15 @@
+th {
+    position: sticky;
+    top: 55px;
+    background-color: whitesmoke;
+}
+.admin{
+    margin-top: 55px;
+}
+
+.adminB {
+    margin: 20px;
+    min-width: 200px;
+  }
+  
+  
