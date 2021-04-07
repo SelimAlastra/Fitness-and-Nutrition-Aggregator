@@ -100,7 +100,7 @@ const useStyles = makeStyles((theme) => ({
 /**
  * @return Navbar element
  */
-export default function NavbarUser({updatedPosts, setUpdatedPosts}) {
+export default function NavbarUser({ updatedPosts, setUpdatedPosts }) {
 
   const classes = useStyles();
   const history = useHistory();
@@ -139,34 +139,26 @@ export default function NavbarUser({updatedPosts, setUpdatedPosts}) {
       onClose={handleMenuClose}
     >
       <MenuItem onClick={handleMenuClose}>
-        <IconButton component={Link} to={`/user/profile/${JSON.parse(localStorage.getItem('user'))._id}`}> 
+        <IconButton component={Link} to={`/user/profile/${JSON.parse(localStorage.getItem('user'))._id}`}>
           <div>
-            <AccountBoxIcon/> 
-            <text style={{fontSize:"1.2rem"}}> Profile</text>
-          </div>
-        </IconButton>
-      </MenuItem>
-      <MenuItem onClick={handleMenuClose}>
-        <IconButton component={Link} to={`/user/edit/${JSON.parse(localStorage.getItem('user'))._id}`}> 
-          <div>
-            <SettingsIcon/> 
-            <text style={{fontSize:"1.2rem"}}> Settings </text>
+            <AccountBoxIcon />
+            <text style={{ fontSize: "1.2rem" }}> Profile</text>
           </div>
         </IconButton>
       </MenuItem>
       <MenuItem>
-        <IconButton onClick={() => window.location.href = `/user/contactUs/${JSON.parse(localStorage.getItem('user'))._id}`} > 
+        <IconButton component={Link} onClick={() => window.location.href = `/user/contactUs/${JSON.parse(localStorage.getItem('user'))._id}`} >
           <div>
-            <LiveHelpIcon/> 
-            <text style={{fontSize:"1.2rem"}}> Contact </text>
+            <LiveHelpIcon />
+            <text style={{ fontSize: "1.2rem" }}> Contact </text>
           </div>
         </IconButton>
       </MenuItem>
       <MenuItem onClick={handleMenuClose}>
-        <IconButton onClick={() => { signOut(() => { history.push('/'); });}}> 
+        <IconButton component={Link} onClick={() => { signOut(() => { history.push('/'); }); }}>
           <div>
-            <ExitToAppIcon/> 
-            <text style={{fontSize:"1.2rem"}}> Log out </text>
+            <ExitToAppIcon />
+            <text style={{ fontSize: "1.2rem" }}> Log out </text>
           </div>
         </IconButton>
       </MenuItem>
@@ -185,59 +177,50 @@ export default function NavbarUser({updatedPosts, setUpdatedPosts}) {
       onClose={handleMobileMenuClose}
     >
       <MenuItem>
-        <IconButton component={Link} onClick={() => window.location.href = `/homePage/${JSON.parse(localStorage.getItem('user'))._id}`} > 
+        <IconButton component={Link} onClick={() => window.location.href = `/homePage/${JSON.parse(localStorage.getItem('user'))._id}`} >
           <div>
-            <HomeIcon/> 
-            <text style={{fontSize:"1.2rem"}}> Home </text>
+            <HomeIcon />
+            <text style={{ fontSize: "1.2rem" }}> Home </text>
           </div>
         </IconButton>
       </MenuItem>
       <MenuItem>
-        <IconButton component={Link} to={`/user/myservices/${JSON.parse(localStorage.getItem('user'))._id}`} > 
+        <IconButton component={Link} to={`/user/myservices/${JSON.parse(localStorage.getItem('user'))._id}`} >
           <div>
-            <CollectionsBookmarkIcon/> 
-            <text style={{fontSize:"1.2rem"}}> Bundles</text>
+            <CollectionsBookmarkIcon />
+            <text style={{ fontSize: "1.2rem" }}> Bundles</text>
           </div>
         </IconButton>
       </MenuItem>
       <MenuItem>
-      <IconButton component={Link} to = {`/user/myBuckets/${JSON.parse(localStorage.getItem('user'))._id}`}>
-              <div>
-                <LayersIcon className={classes.iconButton}/> 
-                <text style={{fontSize:"1.2rem"}}> Buckets</text>
-              </div>
-            </IconButton>
-      </MenuItem>
-      <MenuItem>
-        <IconButton component={Link} to={`/user/profile/${JSON.parse(localStorage.getItem('user'))._id}`} > 
+        <IconButton component={Link} to={`/user/myBuckets/${JSON.parse(localStorage.getItem('user'))._id}`}>
           <div>
-            <AccountBoxIcon/> 
-            <text style={{fontSize:"1.2rem"}}> Profile </text>
+            <LayersIcon className={classes.iconButton} />
+            <text style={{ fontSize: "1.2rem" }}> Buckets</text>
           </div>
         </IconButton>
       </MenuItem>
       <MenuItem>
-      <IconButton component={Link} to={`/user/edit/${JSON.parse(localStorage.getItem('user'))._id}`}> 
+        <IconButton component={Link} to={`/user/profile/${JSON.parse(localStorage.getItem('user'))._id}`} >
           <div>
-            <SettingsIcon/> 
-            <text style={{fontSize:"1.2rem"}}> Settings </text>
+            <AccountBoxIcon />
+            <text style={{ fontSize: "1.2rem" }}> Profile </text>
           </div>
         </IconButton>
-        {/* <p>Settings</p> */}
       </MenuItem>
       <MenuItem>
-        <IconButton component={Link} onClick={() => window.location.href = `/user/contactUs/${JSON.parse(localStorage.getItem('user'))._id}`} > 
+        <IconButton component={Link} onClick={() => window.location.href = `/user/contactUs/${JSON.parse(localStorage.getItem('user'))._id}`} >
           <div>
             <LiveHelpIcon />
-            <text style={{fontSize:"1.2rem"}}> Contact </text>
+            <text style={{ fontSize: "1.2rem" }}> Contact </text>
           </div>
         </IconButton>
       </MenuItem>
       <MenuItem onClick={handleProfileMenuOpen}>
-      <IconButton component={Link} onClick={() => { signOut(() => { history.push('/'); });}}> 
+        <IconButton component={Link} onClick={() => { signOut(() => { history.push('/'); }); }}>
           <div>
-            <ExitToAppIcon/> 
-            <text style={{fontSize:"1.2rem"}}> Log out </text>
+            <ExitToAppIcon />
+            <text style={{ fontSize: "1.2rem" }}> Log out </text>
           </div>
         </IconButton>
       </MenuItem>
@@ -249,46 +232,46 @@ export default function NavbarUser({updatedPosts, setUpdatedPosts}) {
       <AppBar position="static" color="transparent">
         <Toolbar>
           {/* <FitnessCenterIcon onClick={() => window.location.href = `/clientDashboard/${JSON.parse(localStorage.getItem('user'))._id}`} className={classes.title, "logo"} style = {{"cursor" : "pointer"}} variant="h6" noWrap/> */}
-          <Typography onClick={() => window.location.href = `/homePage/${JSON.parse(localStorage.getItem('user'))._id}`} className={classes.title, "logo", "landing"} style = {{"cursor" : "pointer"}} variant="h6" noWrap>
+          <Typography onClick={() => window.location.href = `/clientDashboard/${JSON.parse(localStorage.getItem('user'))._id}`} className={classes.title, "logo", "landing"} style={{ "cursor": "pointer" }} variant="h6" noWrap>
             LOGO
           </Typography>
-          { document.URL.includes("clientDashboard/") ? (
-          <div className={classes.search}>
-            <div className={classes.searchIcon}>
-              <SearchIcon />
+          {document.URL.includes("clientDashboard/") ? (
+            <div className={classes.search}>
+              <div className={classes.searchIcon}>
+                <SearchIcon />
+              </div>
+              <Searchbox updatedPosts={updatedPosts} setUpdatedPosts={setUpdatedPosts} />
             </div>
-            <Searchbox updatedPosts={updatedPosts} setUpdatedPosts={setUpdatedPosts}/>
-          </div>
           ) : (
-          <IconButton
-          onClick={() => window.location.href = `/clientDashboard/${JSON.parse(localStorage.getItem('user'))._id}`}
-          style={{width: '50px', left: "0.5rem"}} 
-          color="inherit">
-            <SearchIcon className={classes.iconButton}/>
-          </IconButton>
+            <IconButton
+              onClick={() => window.location.href = `/clientDashboard/${JSON.parse(localStorage.getItem('user'))._id}`}
+              style={{ width: '50px', left: "0.5rem" }}
+              color="inherit">
+              <SearchIcon className={classes.iconButton} />
+            </IconButton>
           )}
 
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
-            <IconButton 
+            <IconButton
               onClick={() => window.location.href = `/homePage/${JSON.parse(localStorage.getItem('user'))._id}`}
-              style={{width: '50px'}} 
+              style={{ width: '50px' }}
               data-testid="homeButton"
               color="inherit">
               <HomeIcon className={classes.iconButton} />
             </IconButton>
-            <IconButton  onClick={() => window.location.href = `/user/myservices/${JSON.parse(localStorage.getItem('user'))._id}`} style={{width: '50px'}} data-testid="myServicesButton" color="inherit">
-              <CollectionsBookmarkIcon className={classes.iconButton}/>
+            <IconButton onClick={() => window.location.href = `/user/myservices/${JSON.parse(localStorage.getItem('user'))._id}`} style={{ width: '50px' }} data-testid="myServicesButton" color="inherit">
+              <CollectionsBookmarkIcon className={classes.iconButton} />
             </IconButton>
-            <IconButton onClick={() => window.location.href = `/user/myBuckets/${JSON.parse(localStorage.getItem('user'))._id}`} 
-                style={{width: '50px'}} 
-                data-testid="bucketsButton"
-                color="inherit">
+            <IconButton onClick={() => window.location.href = `/user/myBuckets/${JSON.parse(localStorage.getItem('user'))._id}`}
+              style={{ width: '50px' }}
+              data-testid="bucketsButton"
+              color="inherit">
               <div>
-                <LayersIcon className={classes.iconButton}/> 
+                <LayersIcon className={classes.iconButton} />
               </div>
             </IconButton>
-            <IconButton style={{width: '50px'}}
+            <IconButton style={{ width: '50px' }}
               edge="end"
               aria-label="account of current user"
               aria-controls={menuId}
@@ -297,18 +280,18 @@ export default function NavbarUser({updatedPosts, setUpdatedPosts}) {
               data-testid="ToggleButton"
               color="inherit"
             >
-              <AccountCircle className={classes.iconButton}/>
+              <AccountCircle className={classes.iconButton} />
             </IconButton>
           </div>
           <div className={classes.sectionMobile}>
-            <IconButton style={{width: '50px'}}
+            <IconButton style={{ width: '50px' }}
               aria-label="show more"
               aria-controls={mobileMenuId}
               aria-haspopup="true"
               onClick={handleMobileMenuOpen}
               color="inherit"
             >
-              <MoreIcon style={{width: '50px'}} className={classes.iconButton}/>
+              <MoreIcon style={{ width: '50px' }} className={classes.iconButton} />
             </IconButton>
           </div>
         </Toolbar>
