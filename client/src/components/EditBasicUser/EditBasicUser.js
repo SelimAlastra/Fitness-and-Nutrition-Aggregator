@@ -76,7 +76,7 @@ const EditBasicUser = (props) => {
                 .patch(`http://localhost:5000/basicUsers/update/${props.match.params.id}`, newBasicUser)
                 .then(res => {
                     setValidated(true);
-                    window.alert("Details Saved!")
+                    window.location.href = `/user/profile/${props.match.params.id}`;
                 })
                 .catch(err => {
                     if(err.response.data.errors){

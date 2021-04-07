@@ -40,7 +40,8 @@
     width: 200px !important;
     border-radius: 25px;
     text-align: center;
-    margin-left: 55px;
+    margin-left: 17%;
+    margin-right: 17%;
     margin-top: 8px;
     margin-bottom: 14px;
     font-weight: bold;
@@ -71,4 +72,8 @@ a:hover {
 
 .error{
     border-color: red !important;
+}
+
+Google{
+    margin-left: 2%;
 }

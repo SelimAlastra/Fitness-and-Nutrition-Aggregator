@@ -21,3 +21,32 @@
   z-index: 999;
   font-family: "Paytone One", sans-serif;
 }
+
+.modalNavbar .modal-content{
+  border-radius: 10px;
+}
+
+.closeModal {
+  position: absolute;
+  left: 400px;
+  width: 50px;
+  float: right;
+}
+
+.modalHeader {
+  background-color: white;
+  /* align-items: flex-start;
+  justify-content: flex-start; */
+}
+
+.modalHeaderText {
+  position: absolute;
+  left: 145px;
+  font-weight: bold;
+  font-size: 1.8rem;
+  margin-left : 12px;
+}
+
+.modalFooter {
+  max-height: 50px;
+}

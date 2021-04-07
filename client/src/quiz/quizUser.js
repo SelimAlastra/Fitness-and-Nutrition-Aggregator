@@ -1,11 +1,7 @@
 import React, { Component } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { getBasicUser, updateBasicUser } from '../actions/basicUsers';
-import { getProfessional, getProfessionalUsers, updateProfessional } from '../actions/professionals';
-//import {} from '../components/Navbar/Searchbox'
-
 import Question from './components/question';
 import Answer from './components/answer';
+import { Carousel } from 'react-bootstrap';
 import './styling/quizUser.css';
 
 var associatedTags = [];
@@ -18,6 +14,8 @@ var details = {
     gender: '',
     isNew: false,
     yearsOfExperience: '',
+    date: new Date(),
+    bodyType: '',
 }
 
 export default class Quiz extends Component{
@@ -210,15 +208,28 @@ export default class Quiz extends Component{
     }
 
     /**
+     * process the date of birth
+     * note: the received date of birth is in the format DD/MM/YYYY
+     */
+    processDOB = (dob) => {
+        const {questions} = this.state;
+        if(dob!== undefined) {
+            const date = dob.split("/");
+            details.date = new Date(`${date[2]}-${date[1]}-${date[0]}`);
+            questions.find(question => question.questionId === 2).dob = dob;
+        }
+    }
+
+    /**
      * move to the previous question, only if there are previos questions
      */
     handleBackButtonClick = () => {
         const{currentQuestion} = this.state
         if(currentQuestion > 0){
-
+            if(document.getElementById("DatePicker")) {
+                this.processDOB(document.getElementById("DatePicker").value);
+            }
             this.processInput();
-            // this.processAnswerInput();
-
             this.setState({
                 currentQuestion: currentQuestion-1
             });
@@ -231,10 +242,10 @@ export default class Quiz extends Component{
     handleForwardButtonClick = () => {
         const{questions, currentQuestion, questionsReqInput} = this.state
         if(currentQuestion < questions.length){
-
+            if(document.getElementById("DatePicker")) {
+                this.processDOB(document.getElementById("DatePicker").value);
+            }
             this.processInput();
-            // this.processAnswerInput();
-            console.log(JSON.parse(localStorage.getItem('user')));
             this.setState({
                 currentQuestion: currentQuestion+1
             });
@@ -248,18 +259,21 @@ export default class Quiz extends Component{
         const{questions, questionsReqInput} = this.state;
         let isComplete = true;
         questions.forEach(question => {
-            //check for empty input
-            if(questionsReqInput.find(element => element === question.questionId)){
-                //it seems the input length will always be 1
-                if(question.input.length > 0){
-                    if(question.input[0] === ""){
-                        isComplete = false;
+            if(question.questionId !== 2){
+
+                //check for empty input
+                if(questionsReqInput.find(element => element === question.questionId)){
+                    //it seems the input length will always be 1
+                    if(question.input.length > 0){
+                        if(question.input[0] === ""){
+                            isComplete = false;
+                        }
+                    } else if(/*!question.input || !question.input.length || */!question.answerOptions.find(element => element.selected === true)){
+                    isComplete = false;
                     }
-                } else if(/*!question.input || !question.input.length || */!question.answerOptions.find(element => element.selected === true)){
+                } else if(question.answerOptions.find(element => element.selected === true) === undefined){
                     isComplete = false;
                 }
-            } else if(! question.answerOptions.find(element => element.selected === true)){
-                isComplete = false;
             }
         });
         return isComplete;
@@ -284,6 +298,7 @@ export default class Quiz extends Component{
                 }
             });
         });
+        associatedTags = associatedTags.reverse();
     }
 
     /**
@@ -321,6 +336,22 @@ export default class Quiz extends Component{
     }
 
     /**
+     * if the user has input text about his/her bodytype, it is saved in the input answer and must be retrieved from input[]
+     * otherwise, select the first tag of the selected answer 
+     */
+     updateBodyType = () => {
+        const {questions} = this.state;
+        const answers = questions[3].answerOptions;
+        answers.forEach(answer => {
+            if(answer.selected === true && answer.requireInput === false){
+                details.bodyType = answer.tags[0];
+            } else if(answer.selected === true && answer.requireInput === true){
+                if(answer.input[0] !== undefined) details.bodyType = answer.input[0];
+            }
+        })
+    }
+
+    /**
      * 
      */
     updateClientDetails = () => {
@@ -333,10 +364,13 @@ export default class Quiz extends Component{
         }
 
         this.updateGender();
+        this.updateBodyType();
         this.addGoals();
         details.isNew = true;
     }
+
     
+
     /**
      * 
      */
@@ -392,13 +426,61 @@ export default class Quiz extends Component{
     
     render(){
         let {questions, currentQuestion, complete, questionsReqInput, isClient, associatedTags} = this.state;
-
+        
         return(
-            <div>
-            <img className="backgroundJPG"
-            src="https://static.onecms.io/wp-content/uploads/sites/35/2010/07/28170650/fb-interval-training-workouts.jpg" />
-            
-            <div className="quizz"> 
+            <div className="quizz">
+            <Carousel className="carousel" nextIcon="" nextLabel="" prevIcon="" prevLabel="">
+                    <Carousel.Item class="d-none d-md-block">
+                        <img
+                            className="d-block w-100 fixedimg"
+                            src="https://console.kr-asia.com/wp-content/uploads/2019/12/meghan-holmes-buWcS7G1_28-unsplash.jpg"
+                            alt="First slide"
+                        />
+                    </Carousel.Item>
+                    <Carousel.Item class="d-none d-md-block">
+                        <img
+                            className="d-block w-100 fixedimg"
+                            src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1650&q=80"
+                            alt="First slide"
+                        />
+                    </Carousel.Item>
+                    <Carousel.Item class="d-none d-md-block">
+                        <img
+                            className="d-block w-100 fixedimg"
+                            src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1635&q=80"
+                            alt="First slide"
+                        />
+                    </Carousel.Item>
+                    <Carousel.Item class="d-none d-md-block">
+                        <img
+                            className="d-block w-100 fixedimg"
+                            src="https://images.unsplash.com/photo-1510027580951-31747e2371a9?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1650&q=80"
+                            alt="First slide"
+                        />
+                    </Carousel.Item>
+                    <Carousel.Item class="d-none d-md-block">
+                        <img
+                            className="d-block w-100 fixedimg"
+                            src="https://images.unsplash.com/photo-1517363898874-737b62a7db91?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1558&q=80"
+                            alt="First slide"
+                        />
+                    </Carousel.Item>
+                    <Carousel.Item class="d-none d-md-block">
+                        <img
+                            className="d-block w-100 fixedimg"
+                            src="https://images.unsplash.com/photo-1490474418585-ba9bad8fd0ea?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1650&q=80"
+                            alt="First slide"
+                        />
+                    </Carousel.Item>
+                    <Carousel.Item class="d-none d-md-block">
+                        <img
+                            className="d-block w-100 fixedimg"
+                            src="https://images.unsplash.com/photo-1580086319619-3ed498161c77?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=2850&q=80"
+                            alt="First slide"
+                        />
+                    </Carousel.Item>
+            </Carousel>
+            <div> 
                 { complete ? (
                     <div></div>
                 ) : ( 
@@ -423,7 +505,7 @@ export default class Quiz extends Component{
                                 />
                             </div>
 
-                            <div>
+                            <div className="quizBtn">
                                 <button id="backward-btn" disabled={currentQuestion===0 ? true: false} onClick={() => this.handleBackButtonClick()}>ᐊ</button>
                                 <button id="forward-btn" disabled={currentQuestion===questions.length-1 ? true: false} style={{ display: currentQuestion===questions.length-1 ? 'none' : null }} onClick={() => this.handleForwardButtonClick()}>ᐅ</button>
                                 {/* ERROR display still in progress <div id="inputAlert" className="input-alert disabled">ERROR! Invalid input.</div> */}

@@ -67,7 +67,6 @@ const SearchBox = ({updatePosts,setUpdatedPosts}) => {
 
   filteredPosts = useSelector((state) => state.posts);
   profiles = useSelector((state) => state.professional);
-  // console.log(profiles);
 
   const findTag =(array,searchString)=>{
     for(var i=0; i<array.length;i++)
@@ -102,14 +101,16 @@ const SearchBox = ({updatePosts,setUpdatedPosts}) => {
 
     if(searchString !== "" && profiles.length>1){
       newFilteredProfiles = profiles.filter((profile) => profile.username.toLowerCase().includes(searchString));
-      //console.log("filtered profiles: " + newFilteredProfiles);
       finalFilteredProfiles = newFilteredProfiles;
     } else {
       finalFilteredProfiles = [];
     }
   }
 
-  const InitialSearch =() =>{
+  /**
+   * 
+   */
+  const InitialSearch = () => {
     const dispatch = useDispatch();
 
     var profile;
@@ -144,10 +145,10 @@ const SearchBox = ({updatePosts,setUpdatedPosts}) => {
         email: profile.email,
         password: profile.password,
         gender: details.gender,
-        dob: profile.dob,
+        dob: details.date,
         address: profile.address,
         isBanned: profile.isBanned,
-        bodyType: profile.bodyType,
+        bodyType: details.bodyType,
         weight: details.weight,
         height: details.height,
         tags: associatedTags,
@@ -203,7 +204,6 @@ const SearchBox = ({updatePosts,setUpdatedPosts}) => {
 
     // filter posts
     filterPosts(searchString);
-    console.log(finalFilteredProfiles);
     var newArray=[];
     initialFilteredPosts.forEach(v => newArray.push(v));
     setUpdatedPosts(newArray);

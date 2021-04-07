@@ -72,6 +72,7 @@ return (
      <img className={classes.image} src={memories} alt="memories" height="60" />
     </AppBar> */}
 
+    <div class="displayProfiles">
     { finalFilteredProfiles !== [] ? (
       finalFilteredProfiles.length < 6 ? (
         <div class="profile-search">
@@ -100,7 +101,7 @@ return (
           </>
       )) : (<div></div>)
     }
-
+    </div>
     <Grow in>
         <Container>
           <Grid className={classes.mainContainer} container justify="space-between" alignItems="stretch" spacing={6}>
