@@ -44,7 +44,7 @@ export const deleteBucket = async (req, res) => {
 
     if(!mongoose.Types.ObjectId.isValid(_id)) return (res.status(404).send('No bucket with that id'));
 
-    await Bucket.findOneAndDelete(_id);
+    await Bucket.findOneAndDelete({_id : _id});
 
     res.json({ message: 'Bucket deleted successfully' });
 };
