@@ -38,8 +38,8 @@ const Goals = ({userID}) => {
     if (!myGoals.length) {
         return (
             <div>
-                <h2 className="goalsPageText"> You currently have no goals!</h2>
-                <p > You can add one by clicking the button above! </p>
+                <h2 className="goalsPageText"> You currently have no goals !</h2>
+                <h1 className="goalsPageText2" > You can add one by clicking the button above ! </h1>
             </div>
         )
     } else {
@@ -68,11 +68,11 @@ const Goals = ({userID}) => {
     if(!myGoals.length){
     return (
             <div>
-                <h2 className="goalsPageText">Goals</h2>
-                <Button className = "goalsButton" onClick={() => setModalIsOpen(true)}> Add Goal </Button>
+                <h2 className="goalsPageText"> Goals</h2>
+                <Button className = "goalsButton" variant="outline-dark" onClick={() => setModalIsOpen(true)}> Add Goal </Button>
                 <Modal className ='addGoalModal' isOpen={modalIsOpen} onRequestClose={() => setModalIsOpen(false)}>
                 <div className ="closeDiv">
-                <button className = "closeButton" onClick={() => setModalIsOpen(false)}>x</button>
+                <button className = "closeButtonGoal" onClick={() => setModalIsOpen(false)}>x</button>
                 </div>
                 <div className ='center'>
                     <h2 className="goalsPageText3">Add goal</h2>
@@ -95,7 +95,7 @@ const Goals = ({userID}) => {
             <Button className = "goalsButton" variant="outline-success" onClick={() => window.location.href = `/homePage/edit/${userID}`}> Edit Goals </Button>
             <Modal className ='addGoalModal' isOpen={modalIsOpen} onRequestClose={() => setModalIsOpen(false)}>
             <div className ="closeDiv">
-            <button className = "closeButton" onClick={() => setModalIsOpen(false)}>x</button>
+            <button className = "closeButtonGoal" onClick={() => setModalIsOpen(false)}>x</button>
             </div>
             <div className ='center'>
                 <h2 className="goalsPageText3">Add goal</h2>
