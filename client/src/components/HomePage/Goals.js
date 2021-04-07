@@ -73,7 +73,7 @@ const Goals = ({userID}) => {
                 <Button className = "goalsButton" variant="outline-dark" onClick={() => setModalIsOpen(true)}> Add Goal </Button>
                 <Modal className ='addGoalModal' isOpen={modalIsOpen} onRequestClose={() => setModalIsOpen(false)}>
                 <div className ="closeDiv">
-                <button className = "closeButton" onClick={() => setModalIsOpen(false)}>
+                <button className = "closeButtonGoal" onClick={() => setModalIsOpen(false)}>
                     <CloseIcon/>
                 </button>
                 </div>
@@ -98,7 +98,7 @@ const Goals = ({userID}) => {
             <Button className = "goalsButton" variant="outline-success" onClick={() => window.location.href = `/homePage/edit/${userID}`}> Edit Goals </Button>
             <Modal className ='addGoalModal' isOpen={modalIsOpen} onRequestClose={() => setModalIsOpen(false)}>
             <div className ="closeDiv">
-            <button className = "closeButton" onClick={() => setModalIsOpen(false)}>
+            <button className = "closeButtonGoal" onClick={() => setModalIsOpen(false)}>
                 <CloseIcon/>
             </button>
             </div>
