@@ -6,6 +6,7 @@ import { useHistory} from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFacebookF } from '@fortawesome/free-brands-svg-icons' 
 import './facebookLogin.css';
+import { baseUrl } from '../../api/index';
 
 const Facebook = (client) => {
 
@@ -18,7 +19,7 @@ const Facebook = (client) => {
   const sendFacebookToken = (userID, accessToken) => {
     if(isClient == "true"){
       axios
-        .post(`http://localhost:5000/basicUsers/facebooklogin`, {
+        .post(`${baseUrl}/basicUsers/facebooklogin`, {
           userID,
           accessToken
         })
@@ -33,7 +34,7 @@ const Facebook = (client) => {
     }
     else{
       axios
-      .post(`http://localhost:5000/professionalUsers/facebooklogin`, {
+      .post(`${baseUrl}/professionalUsers/facebooklogin`, {
         userID,
         accessToken
       })

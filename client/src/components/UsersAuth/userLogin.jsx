@@ -15,6 +15,7 @@ import axios from 'axios';
 import Google from './googleLogin.jsx';
 import Facebook from './facebookLogin.jsx';
 import Register from './userRegister';
+import { baseUrl } from '../../api/index.js';
 
 const Login = (client) => {
 
@@ -53,7 +54,7 @@ const Login = (client) => {
           password: values.password,
         }
         if (isClient == "true") {
-          axios.post(`http://localhost:5000/basicUsers/login`, newData)
+          axios.post(`${baseUrl}/basicUsers/login`, newData)
             .then(res => {
               authenticate(res, () => {
                 history.push(`/clientDashboard/${JSON.parse(localStorage.getItem('user'))._id}`)
@@ -74,7 +75,7 @@ const Login = (client) => {
             })
         }
         else {
-          axios.post(`http://localhost:5000/professionalUsers/login`, newData)
+          axios.post(`${baseUrl}/professionalUsers/login`, newData)
             .then(res => {
               authenticate(res, () => {
                 history.push(`/professionalDashboard/${JSON.parse(localStorage.getItem('user'))._id}`)
