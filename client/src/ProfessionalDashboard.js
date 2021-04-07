@@ -49,7 +49,7 @@ const ProfessionalDashboard = () => {
 
 return (
   <>
-  <NavbarProfessional updatedPosts={updatedPosts} setUpdatedPosts={setUpdatedPosts}/>
+  <NavbarProfessional updatedPosts={updatedPosts} setUpdatedPosts={setUpdatedPosts} setCurrentId={setCurrentId} currentId={currentId} />
   <Container maxWidth="lg">
     <Grow in>
         <Container>

@@ -4,8 +4,10 @@ export default makeStyles((theme) => ({
   root: {
     '& .MuiTextField-root': {
       margin: theme.spacing(1),
-    },
+    }
   },
+  focused: {},
+  notchedOutline: {},
   paper: {
     padding: theme.spacing(2),
   },
@@ -18,7 +20,26 @@ export default makeStyles((theme) => ({
     width: '97%',
     margin: '10px 0',
   },
-  buttonSubmit: {
-    marginBottom: 10,
+  outline: {
+    borderColor: 'black'
   },
+  cssLabel: {
+    '&$cssFocused': {
+      color: 'black !important',
+    }
+  },
+
+  cssOutlinedInput: {
+    '&$cssFocused $notchedOutline': {
+      borderColor: 'black !important',
+    }
+  },
+
+  cssFocused: {},
+
+  notchedOutline: {
+    borderWidth: '1px',
+    borderColor: 'black !important'
+  },
+
 }));

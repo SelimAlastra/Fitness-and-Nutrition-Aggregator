@@ -15,37 +15,34 @@
 
 .goalsPageText {
     margin : 20px;
-    color :   rgb(94, 93, 93);
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    color :black;
+    font-family: Georgia, Times, 'Times New Roman', serif;
     text-align: center;
     padding: none;
 }
 
 .goalsPageText2 {
     font-size: medium;
-    color :  rgb(94, 93, 93);
+    color : black;
     padding: none;
+    font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
 .goalsPageText3{
     margin-top: 4px;
     margin-bottom: 30px;
     margin-left: 50px;
-    color :   rgb(94, 93, 93);
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    color:   rgb(94, 93, 93);
+    font-family: Arial, Helvetica, sans-serif;
     text-align: center;
     padding: none;
 }
 
-.goalsButton {
-    margin : 5px;
-    padding : 1%;
-    width: 300px;
-    max-width: 200px;
-}
+
 
 .center {
     text-align: center; 
+    min-width: 500px;
   }
 
 .addGoalModal{
@@ -64,29 +61,38 @@
     margin-top:-250px;   /* negative half of height above */
 }
 
+
 .goalsButton {
-    padding: 20px;
-    background-color: transparent;
+    padding: 10px;
+    background-color: #9bda8e;
     border-radius: 15px;
     border-style: solid;
     border-width: 1px;
-    border-color: #A0d468;
+    border-color: black;
     font-weight: 500;
     font-size: 20px;
-    color: #8CC152;
+    color: white;
     cursor: pointer;
     transition: 0.2s ease-in-out;
     margin: 15px;
     min-width: 100px;
+    box-shadow: none !important;
   }
   
   .goalsButton:hover {
-    background-color: #8CC152;
+    border-color: black !important;
+    background-color: black;
     border-width: 1px;
     color : white;
   }
 
-  .closeButton{
+  .goalsButton:focus{
+    background-color: black !important;
+    border-width: 1px;
+    color : white; 
+  }
+
+  .closeButtonGoal{
     max-width: 40px;
     min-width: 40px;
     background-color: white;
@@ -100,31 +106,4 @@
       min-height: 41px;
       margin-top: 0px;
       margin-right: 10px;
-  }
-
-  .closeBtn {
-    position: absolute;
-    right: 32px;
-    top: 32px;
-    width: 32px;
-    height: 32px;
-    opacity: 0.3;
-  }
-  .closeBtn:hover {
-    opacity: 1;
-    background-color: white;
-  }
-  .closeBtn:before, .closeBtn:after {
-    position: absolute;
-    left: 15px;
-    content: ' ';
-    height: 33px;
-    width: 2px;
-    background-color: #333;
-  }
-  .closeBtn:before {
-    transform: rotate(45deg);
-  }
-  .closeBtn:after {
-    transform: rotate(-45deg);
   }

@@ -22,21 +22,24 @@
   font-family: "Paytone One", sans-serif;
 }
 
+.modalNavbar{
+    margin-top: 50px;
+}
+
 .modalNavbar .modal-content{
   border-radius: 10px;
 }
 
 .closeModal {
   position: absolute;
-  left: 400px;
+  left: 360px;
   width: 50px;
   float: right;
+  left: 85%;
 }
 
 .modalHeader {
   background-color: white;
-  /* align-items: flex-start;
-  justify-content: flex-start; */
 }
 
 .modalHeaderText {
@@ -45,6 +48,7 @@
   font-weight: bold;
   font-size: 1.8rem;
   margin-left : 12px;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .modalFooter {
