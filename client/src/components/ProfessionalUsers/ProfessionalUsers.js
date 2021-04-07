@@ -3,6 +3,8 @@ import { Table } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
 import ProfessionalUser from "./ProfessionalUser/ProfessionalUser";
 import { getProfessionalUsers } from "../../actions/professionals";
+import '../admin.css';
+
 
 const ProfessionalUsers = () => {
 
@@ -15,7 +17,7 @@ const ProfessionalUsers = () => {
     const users = useSelector((state) => state.professional);
 
     return (
-        <Table>
+        <Table className="admin">
                 <thead>
                     <tr>
                         <th>ID</th>

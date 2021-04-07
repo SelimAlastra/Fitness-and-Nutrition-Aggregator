@@ -7,6 +7,7 @@ import '../EditFormsStyles.css';
 import NavbarUser from '../Navbar/NavbarUser';
 import { Grid } from '@material-ui/core';
 import axios from 'axios';
+import {baseUrl} from '../../api/index'
 
 const EditBasicUser = (props) => {
     const dispatch = useDispatch();
@@ -73,7 +74,7 @@ const EditBasicUser = (props) => {
                     bundles: profile.bundles
                 }
                 axios
-                .patch(`http://localhost:5000/basicUsers/update/${props.match.params.id}`, newBasicUser)
+                .patch(`${baseUrl}/basicUsers/update/${props.match.params.id}`, newBasicUser)
                 .then(res => {
                     setValidated(true);
                     window.location.href = `/user/profile/${props.match.params.id}`;

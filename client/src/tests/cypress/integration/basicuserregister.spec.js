@@ -1,4 +1,4 @@
-describe('Test', function() {
+/* describe('Test', function() {
 
    /*  before(function () {
         cy.fixture('basicUser.json').then(function(basicUser){
@@ -21,4 +21,4 @@ describe('Test', function() {
         cy.get('button').contains('Register').click();
     });
 
-});
+//}); 

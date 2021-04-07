@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import { Form, Container, Button } from "react-bootstrap";
 import { useDispatch } from 'react-redux';
 import {  createReport } from "../../actions/reports";
+import './ReportForm.css'
 
 const ReportForm = (report) => {
 
@@ -18,7 +19,7 @@ const ReportForm = (report) => {
     }
     
     return(
-    <Form onSubmit={handleSubmit} >
+    <Form className ="reportForm1" onSubmit={handleSubmit} >
         <Form.Group>
         <Form.Label>Reason</Form.Label>
         <Form.Control
@@ -30,8 +31,9 @@ const ReportForm = (report) => {
             onChange={(e) => setReportData( { ...ReportData, reason: e.target.value } )}
         />
         </Form.Group>
-
-        <Button variant="primary" type="submit">Submit</Button>
+        <Container className ="reportCont">
+        <Button className = "reportFormBtn" variant="primary" type="submit">Submit</Button>
+        </Container>
     </Form>
     );
 }
