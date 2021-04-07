@@ -1,8 +1,9 @@
 import React, { useState , useEffect} from 'react';
-import { TextField, Button, Typography, Paper } from '@material-ui/core';
+import { TextField, Button, Typography, Grid } from '@material-ui/core';
 import FileBase from 'react-file-base64';
 import { useDispatch , useSelector} from 'react-redux';
 
+ 
 import useStyles from './styles';
 import './styles.css';
 import { createPost, updatePost} from '../../actions/posts';
@@ -101,8 +102,14 @@ const Form = ({currentId, setCurrentId}) => {
                         </div>
                 </div>         
                 </div>
-                <Button className={classes.buttonSubmit} variant="contained" color="primary" size="large" type="submit" fullWidth>Submit</Button>
-                <Button variant="contained" color="secondary" size="small" onClick={clear} fullWidth>Clear</Button>
+                <Grid container justify="center" spacing={3}>
+                <Grid item xs= {6}>
+                <Button className = "postFormBtn" variant="contained" color="primary" size="large" type="submit" fullWidth>Submit</Button>
+                </Grid>
+                <Grid item xs ={6}>
+                <Button className = "postFormBtn" variant="contained" color="secondary" size="small" onClick={clear} fullWidth>Clear</Button>
+                </Grid>
+                </Grid>
             </form>
     );
 }
