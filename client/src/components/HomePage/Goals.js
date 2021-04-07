@@ -38,8 +38,8 @@ const Goals = ({userID}) => {
     if (!myGoals.length) {
         return (
             <div>
-                <h2 className="goalsPageText"> You currently have no goals !</h2>
-                <h1 className="goalsPageText2" > You can add one by clicking the button above ! </h1>
+                <h2 className="goalsPageText"> You currently have no goals!</h2>
+                <p > You can add one by clicking the button above! </p>
             </div>
         )
     } else {
@@ -68,8 +68,8 @@ const Goals = ({userID}) => {
     if(!myGoals.length){
     return (
             <div>
-                <h2 className="goalsPageText"> Goals</h2>
-                <Button className = "goalsButton" variant="outline-dark" onClick={() => setModalIsOpen(true)}> Add Goal </Button>
+                <h2 className="goalsPageText">Goals</h2>
+                <Button className = "goalsButton" onClick={() => setModalIsOpen(true)}> Add Goal </Button>
                 <Modal className ='addGoalModal' isOpen={modalIsOpen} onRequestClose={() => setModalIsOpen(false)}>
                 <div className ='center'>
                 <h2 className="goalsPageText">Add goal</h2>
