@@ -38,8 +38,6 @@ let uri = process.env.ATLAS_URI;
 
 const env = process.env.NODE_ENV || 'development';
 
-//const env = process.env.CLIENT_TEST_PORT;
-
 if (env !== 'test') {
 
     mongoose.connect(`${uri}`, { useNewUrlParser: true, useUnifiedTopology: true })

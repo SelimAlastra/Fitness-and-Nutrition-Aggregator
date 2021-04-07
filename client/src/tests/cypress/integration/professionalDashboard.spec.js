@@ -2,51 +2,53 @@ describe('Test', function() {
 
     beforeEach(() => {
         cy.visit('/');
-        cy.contains('Professional User').should('be.visible');
+        cy.contains('Service Providers').should('be.visible');
         cy.findByTestId('professionalUsersButton').click();
         cy.focused();
         cy.contains('Log in').should('exist');
         cy.get('input[placeholder="Enter your email"]').type('markkane@yahoo.com');
         cy.get('input[placeholder="Enter your password"]').type('kane1234'); 
         cy.get('button').contains('Log in').click();
-        cy.url().should('include', '/professionalDashboard/6063969add5a59ea908e4cb9'); 
+        cy.url().should('include', '/professionalDashboard/606df969e4e6e1191ef7700a'); 
       });
 
 
     it('Professional User Login Test', function() {
         cy.visit('/');
-        cy.contains('Professional User').should('be.visible');
+        cy.contains('Service Providers').should('be.visible');
         cy.findByTestId('professionalUsersButton').click();
         cy.focused();
         cy.contains('Log in').should('exist');
         cy.get('input[placeholder="Enter your email"]').type('markkane@yahoo.com');
         cy.get('input[placeholder="Enter your password"]').type('kane1234'); 
         cy.get('button').contains('Log in').click();
-        cy.url().should('include', '/professionalDashboard/6063969add5a59ea908e4cb9');  
+        cy.url().should('include', '/professionalDashboard/606df969e4e6e1191ef7700a'); 
         //check for auth and cookies
     });
 
-    /* it('should have home icon button', function() {
+    it('should have home icon button', function() {
         cy.findByTestId('proHomeButton').focus().should('exist');
-        //currently home button redirects to landing page
-    }) */
+        cy.url().should('include', '/myPosts/606e1976b98e8e01929206da');
+    })
 
     it('should have add bundles button', function() {
         cy.findByTestId('addBundlesButton').focus().click();
         cy.url().should('include', '/professional/services/add/6063969add5a59ea908e4cb9');
+        cy.contains('My Posts').should('exist');
     })
     
     it('should have profile page', function() {
         cy.findByTestId('proToggleButton').focus().click().focus().get('span').contains('Profile').click({force: true});
-         cy.url().should('include', 'profile/6063969add5a59ea908e4cb9');
+         cy.url().should('include', '/professional/profile/606df969e4e6e1191ef7700a');
          cy.contains('Services').should('exist');
     })    
 
-    it('should have profile settings', function() {
+    /* it('should have profile settings', function() {
         cy.findByTestId('proToggleButton').focus().click().focus().get('span').contains('Settings').click({force: true});
          cy.url().should('include', 'edit/6063969add5a59ea908e4cb9');
          cy.contains('Edit Details').should('exist');
-    })    
+    })   */  
+
     it('Form functionality create post', function() {
         cy.get('input[name="title"]').type('Fitness plan');
         cy.get('input[name="message"]').type('Visit my profile for more information');
