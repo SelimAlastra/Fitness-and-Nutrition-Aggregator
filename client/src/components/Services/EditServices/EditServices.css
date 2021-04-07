@@ -12,6 +12,7 @@ tr.tableRow{
     display: flex;
     margin-bottom: 25px;
     background-color: #ffffff;
+    border: 2px solid #9cbe95;
     box-shadow: 0px 0px 9px 0px rgba(155, 218, 142, 1);
     height: 300px;
 
@@ -32,15 +33,18 @@ tr.tableRow{
 }
 
 .serviceModalEdit{
-    text-align: center;
     background-color: white;
-    margin: 5%;
-    padding: 1%;
-    margin-left: 36% !important;
-    margin-right: 36% !important;
-    height: 47% !important;
-    overflow: hidden !important;
-    border-radius: 25px !important;
-    border: 2px solid #9cbe95;
-    min-width: 200px;
+    border-style: solid;
+    border-radius: 10px;
+    border-color: #9bda8e;
+    position:absolute;
+    top:55%;
+    left:50%;
+    min-width: 500px;
+    min-height: 400px;
+    width:500px;  /* adjust as per your needs */
+    height:400px;   /* adjust as per your needs */
+    margin-left:-250px;   /* negative half of width above */
+    margin-top:-200px;   /* negative half of height above */
+    text-align: center;
 }

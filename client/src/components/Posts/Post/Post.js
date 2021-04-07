@@ -21,6 +21,7 @@ import { FaFolderPlus } from "react-icons/fa";
 import BucketsGrid from '../../Buckets2/BucketsGrid.js';
 import PopUpPost from './PopUpPost';
 import '../../Buckets2/BucketModal.css';
+import Form from '../../Form/Form'
 
 import { deletePost, likePost, toggleFavAction, updatePost } from '../../../actions/posts';
 
@@ -32,7 +33,8 @@ export const ReportPopUp = ({post}) => {
   const [showReport, setShowReport] = useState(false);
   const handleCloseReport = () => setShowReport(false);
   const handleShowReport = () => setShowReport(true);
-  
+
+   
     const reportData = {
       reporterUsername: user.username,
       reportedUsername: post.creator,
@@ -112,6 +114,10 @@ const Post = ({ post, setCurrentId }) => {
   const handleClick = (event) => setAnchorEl(event.currentTarget);
   const handleClose = () => setAnchorEl(null);
 
+  const [showEditForm, setEditForm] = useState(false);
+  const handleCloseEditForm = () => setEditForm(false);
+  const handleShowEditForm = () => setEditForm(true);
+
   require('dotenv').config({ path: '/.env' });
 
 
@@ -128,7 +134,20 @@ const Post = ({ post, setCurrentId }) => {
   const Edit = () => {
     if (String(JSON.parse(localStorage.getItem('user'))._id) == post.userFrom) {
       return (
-        <Button size="small" onClick={() => setCurrentId(post._id)}>Edit</Button>
+        //<Button size="small" onClick={() => setCurrentId(post._id)}>Edit</Button>
+      <>
+      <Button className={classes.hideButton} size="small" onClick={handleShowEditForm}>Edit</Button>
+      <Modal class={classes.reportModal} style={{"top": "5.2%"}} show={showEditForm} onHide={handleCloseEditForm} backdrop="static">
+        <Modal.Header closeButton>
+          <Modal.Title>Edit</Modal.Title>
+        </Modal.Header>
+        <Modal.Body closeButton>
+          <Form currentId={post._id} setCurrentId={setCurrentId}/>
+        </Modal.Body>
+      </Modal>
+      </>
+
+
       )
     }
     else
