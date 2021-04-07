@@ -6,6 +6,7 @@ import "../../EditFormsStyles.css";
 import { updateProfessional, getProfessional } from '../../../actions/professionals';
 import NavbarProfessional from "../../Navbar/NavbarProfessional";
 import axios from 'axios';
+import {baseUrl} from '../../../api/index'
 
 
 const EditProfessionalDetails = (props) => {
@@ -69,7 +70,7 @@ const EditProfessionalDetails = (props) => {
                 profession: profession,
             }
             axios
-            .patch(`http://localhost:5000/professionalUsers/update/${props.match.params.id}`, updatedProfile)
+            .patch(`${baseUrl}/professionalUsers/update/${props.match.params.id}`, updatedProfile)
             .then(res => {
                 window.location.href=`/professional/profile/${props.match.params.id}`
                 setValidated(true);

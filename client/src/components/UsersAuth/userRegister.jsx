@@ -13,6 +13,7 @@ import './userRegister.css';
 import Google from './googleLogin.jsx';
 import Facebook from './facebookLogin.jsx';
 import { useHistory } from 'react-router-dom';
+import { baseUrl } from '../../api/index.js';
 
 const Register = (client) => {
 
@@ -62,7 +63,7 @@ const formik = useFormik({
           name: values.name,
         }
         axios
-          .post(`http://localhost:5000/basicUsers/register`, newData)
+          .post(`${baseUrl}/basicUsers/register`, newData)
           .then(res => {
             authenticate(res, () => {
             history.push(`/user/quiz/${JSON.parse(localStorage.getItem('user'))._id}`)
@@ -90,7 +91,7 @@ const formik = useFormik({
             profession: values.profession,
         }
         axios
-          .post(`http://localhost:5000/professionalUsers/register`, newData2)
+          .post(`${baseUrl}/professionalUsers/register`, newData2)
           .then(res => {
             authenticate(res, () => {
             history.push(`/professional/quiz/${JSON.parse(localStorage.getItem('user'))._id}`)
