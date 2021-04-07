@@ -231,7 +231,7 @@ const formik = useFormik({
       <Button className="registerButtonModal" variant="outline-success" type="submit" disabled={formik.isSubmitting}>
           Register
       </Button>
-      <p style={{'marginLeft': '140px', 'fontWeight': 'bold'}}> OR </p>
+      <p style={{ 'marginLeft': '45%',"marginRight":"45%", 'fontWeight': 'bold' }}> OR </p>
     </Form>
     <Google isClient = {isClient}/>
     <p/>
