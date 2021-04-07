@@ -4,15 +4,17 @@ import { useDispatch, useSelector } from 'react-redux';
 import NavbarProfessional from "../Navbar/NavbarProfessional";
 import Post from './Post/Post';
 import { Container, ListGroup, Row, Col } from 'react-bootstrap';
+import Form from './../Form/Form';
 
 const ProfessionalPosts = () => {
     const user = JSON.parse(localStorage.getItem('user'));
+    const [currentId, setCurrentId] = useState(null);
 
     const dispatch = useDispatch();
 
     useEffect(() => {
         dispatch(getPosts());
-    }, [dispatch]);
+    }, [dispatch, currentId]);
 
     const posts = useSelector((state) => state.posts);
     const myPosts = posts.filter((post) => post.userFrom == user._id);
@@ -41,7 +43,7 @@ const ProfessionalPosts = () => {
                 <div style={{marginLeft: "2%"}} class="row">
                     {myPosts.map((post)=> (
                         <Col xs={6} lg={4} key={post._id}>
-                            <Post post={post} />
+                            <Post post={post} setCurrentId={setCurrentId}/>
                         </Col>
                     ))}
                </div>

@@ -67,7 +67,7 @@ const useStyles = makeStyles((theme) => ({
   },
   iconButton: {
     '&:hover': {
-      color: "#8CC152",
+      color: "#9bda8e",
     },
   },
   inputRoot: {
@@ -100,7 +100,7 @@ const useStyles = makeStyles((theme) => ({
 /**
  * @return Navbar element
  */
-export default function NavbarProfessional({updatedPosts, setUpdatedPosts}) {
+export default function NavbarProfessional({updatedPosts, setUpdatedPosts, currentId, setCurrentId}) {
 
   const classes = useStyles();
   const history = useHistory();
@@ -114,7 +114,7 @@ export default function NavbarProfessional({updatedPosts, setUpdatedPosts}) {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  const [currentId, setCurrentId] = useState(null);
+  //const [currentId, setCurrentId] = useState(null);
 
   const handleProfileMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
@@ -319,7 +319,7 @@ export default function NavbarProfessional({updatedPosts, setUpdatedPosts}) {
       {renderMenu}
       <Modal className = "modalNavbar" show={show} onHide={handleClose}>
         <Modal.Header className="">
-          <text className="modalHeaderText">CREATE POST</text>
+          <text className="modalHeaderText">Create Post</text>
           <IconButton style={{float: "right"}} className="closeModal" onClick={handleClose}>
             <CloseIcon />
           </IconButton>

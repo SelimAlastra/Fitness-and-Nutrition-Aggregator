@@ -58,8 +58,8 @@
     height:500px;   /* adjust as per your needs */
     margin-left:-250px;   /* negative half of width above */
     margin-top:-250px;   /* negative half of height above */
+    height:fit-content;
 }
-
 
 .goalsButton {
     padding: 10px;
@@ -91,7 +91,7 @@
     color : white; 
   }
 
-  .closeButton{
+  .closeButtonGoal{
     max-width: 40px;
     min-width: 40px;
     background-color: white;
@@ -105,31 +105,4 @@
       min-height: 41px;
       margin-top: 0px;
       margin-right: 10px;
-  }
-
-  .closeBtn {
-    position: absolute;
-    right: 32px;
-    top: 32px;
-    width: 32px;
-    height: 32px;
-    opacity: 0.3;
-  }
-  .closeBtn:hover {
-    opacity: 1;
-    background-color: white;
-  }
-  .closeBtn:before, .closeBtn:after {
-    position: absolute;
-    left: 15px;
-    content: ' ';
-    height: 33px;
-    width: 2px;
-    background-color: #333;
-  }
-  .closeBtn:before {
-    transform: rotate(45deg);
-  }
-  .closeBtn:after {
-    transform: rotate(-45deg);
   }

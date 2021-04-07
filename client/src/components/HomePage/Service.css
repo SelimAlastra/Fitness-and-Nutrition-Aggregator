@@ -12,7 +12,7 @@
 }
 
 .homePageService {
-    background-color: transparent  ;
+    background-color: white;
     min-width: 300px;
     max-width: 300px;
     border-radius: 10px;
@@ -41,6 +41,7 @@
     transition: 0.2s ease-in-out;
     margin: 15px;
     min-width: 100px;
+    box-shadow: none !important;
   }
   
   .goalsServiceButton:hover {
