@@ -102,14 +102,14 @@ const EditServices = (props) => {
                     onRequestClose={closeModal}
                     className="serviceModalEdit"
                 >
-                    <div className="closeButton">
+                    <div style={{marginTop: "-7%"}} className="closeButton">
                         <CloseIcon
                             size="2x"
                             onClick={closeModal}
                         >
                         </CloseIcon>
                     </div>
-                    <h4>Add Video to Bundle</h4>
+                    <h4 style={{marginTop: "5%"}}>Add Video to Bundle</h4>
                     <hr className="seperator"/>
                     <br />
                     <Form>
