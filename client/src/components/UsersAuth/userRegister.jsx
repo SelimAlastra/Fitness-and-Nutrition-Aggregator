@@ -57,7 +57,7 @@ const formik = useFormik({
       if(isClient == "true"){
         const newData = {
           email: values.email,
-          username: values.username,
+          username: values.username.toLowerCase(),
           password: values.password,
           name: values.name,
         }
@@ -84,7 +84,7 @@ const formik = useFormik({
         else{
         const newData2 = {
             email: values.email,
-            username: values.username,
+            username: values.username.toLowerCase(),
             password: values.password,
             name: values.name,
             profession: values.profession,
@@ -231,7 +231,7 @@ const formik = useFormik({
       <Button className="registerButtonModal" variant="outline-success" type="submit" disabled={formik.isSubmitting}>
           Register
       </Button>
-      <p style={{'marginLeft': '140px', 'fontWeight': 'bold'}}> OR </p>
+      <p style={{ 'marginLeft': '45%',"marginRight":"45%", 'fontWeight': 'bold' }}> OR </p>
     </Form>
     <Google isClient = {isClient}/>
     <p/>

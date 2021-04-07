@@ -42,7 +42,7 @@ const HomePage = (props) => {
 
     
         return (
-            <div>
+            <div className="homepage">
             <NavbarUser/>
             <div className="homepage">
                 <UserInfo user={user} />

@@ -49,7 +49,7 @@ const PopUpPost = (post) => {
                             }
                             <PopUpBuckets post = {post.post}/>
                             <ReportPopUp post = {post.post}/>
-                        <hr style = {{backgroundColor : "#Dc8f66" , width: "800px"}}/>
+                        <hr style = {{backgroundColor : "#9bda8e" , width: "800px"}}/>
                         
                         <div className = "content">
                             {   post.post.selectedFile ?

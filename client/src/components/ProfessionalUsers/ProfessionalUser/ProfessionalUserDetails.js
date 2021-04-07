@@ -46,7 +46,11 @@ const ProfessionalUserDetails = () => {
             <br />
             <Button variant="primary" onClick={() => {window.location.href=`/admin/ProfessionalUsers/edit/${user._id}`}}>Edit</Button>
             &nbsp; &nbsp;
-            <Button variant="primary" onClick={ () => { handleBan() }}>Ban</Button>
+            { user.isBanned === false ?
+                <Button variant="primary" onClick={ () => { handleBan() }}>Ban</Button>
+            :
+                <Button variant="primary" onClick={ () => { handleBan() }}>Unban</Button>
+            }
             &nbsp; &nbsp;
             <Button variant="primary" onClick={ () => { handleDelete() }}>Delete</Button>
         </>

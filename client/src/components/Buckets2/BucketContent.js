@@ -52,16 +52,16 @@ const BucketView = (params) => {
     else
     {
         return(
-            <div style={{backgroundColor: "whitesmoke", overflowX: "hidden"}}>
+            <div style={{backgroundColor: "whitesmoke", overflowX: "hidden", height:'100%', minHeight:'100vh'}}>
             <NavbarUser/>
-            <h1>{bucket.title}</h1>
+            <h1 style={{margin : '30px'}}>{bucket.title}</h1>
             <h5>{bucket.description}</h5>
             <hr/>
             <div style={{marginLeft: "2%"}} class="row">
                 {posts.map((post)=> (
                     <Col xs={6} lg={4} key={post._id}>
                         <Post post={post} />
-                        <Button className="removePost" style={{marginLeft: "-10%", marginBottom: "4%"}} onClick = {() => (removeFromBucket(post._id))}>Remove</Button>
+                        <Button className="removePost" style={{marginLeft: "-10%", marginBottom: "4%"}} onClick = {() => (removeFromBucket(post._id))}>REMOVE</Button>
                     </Col>
                 ))}
             </div>

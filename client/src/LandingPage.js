@@ -71,10 +71,10 @@ function LandingPage() {
                         <p className="aboutUsText"> Join an amazing community through our fitness and nutrition platform. By registering on our website, you will have access to a wide variety of services offered by professionals and a lot more !  Rediscover a new way of exercising sport and never miss again any of your fitness or nutrition goals.    </p>
                     </div>
                     <Grid container justify="center">
-                        <Grid item xs= {3}>
+                        <Grid item xs= {0}>
                         <BasicUsers className="landingButton1" variant="outline-success" />
                         </Grid>
-                        <Grid item xs= {3}>
+                        <Grid item xs= {0}>
                         <Professional className="landingButton2" variant="outline-succes" />
                         </Grid>
                     </Grid>
