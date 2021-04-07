@@ -7,6 +7,7 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
+
 export const getAdmins = async (req, res) => {
   Admin.find()
     .then(admins => res.json(admins))

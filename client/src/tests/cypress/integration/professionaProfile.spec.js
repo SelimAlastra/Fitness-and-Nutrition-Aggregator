@@ -11,15 +11,15 @@ describe('Test', function() {
         cy.get('button').contains('Log in').click();
         cy.url().should('include', '/professionalDashboard/606df969e4e6e1191ef7700a');  
         cy.findByTestId('proToggleButton').focus().click().focus().get('span').contains('Profile').click({force: true});
-        cy.url().should('include', 'profile/6063969add5a59ea908e4cb9');
+        cy.url().should('include', 'professional/profile/606df969e4e6e1191ef7700a');
       });
 
       it('should go to edit my details', function() {
-        cy.get('h5').contains('Edit my details').click();
-        cy.url().should('include', 'edit/6063969add5a59ea908e4cb9');
+        cy.get('h5').contains('Edit my details').click({force: true});
+        cy.url().should('include', 'edit/606df969e4e6e1191ef7700a');
     })  
     it('should go to edit my services', function() {
-        cy.get('h5').contains('Edit my services').click();
-        cy.url().should('include', 'services/edit/6063969add5a59ea908e4cb9');
+        cy.get('h5').contains('Edit my services').click({force: true});
+        cy.url().should('include', 'services/edit/606df969e4e6e1191ef7700a');
     })     
 });

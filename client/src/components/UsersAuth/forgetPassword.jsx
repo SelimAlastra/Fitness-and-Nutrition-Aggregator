@@ -7,6 +7,7 @@ import Form from 'react-bootstrap/Form';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './forgotPassword.css';
 import { useLocation } from 'react-router-dom';
+import { baseUrl } from '../../api/index';
 
 const ForgetPassword = () => {
     
@@ -28,7 +29,7 @@ const ForgetPassword = () => {
             email: values.email,
           }
           if(location.pathname.includes("user")){
-          axios.put(`http://localhost:5000/basicUsers/forgotpassword`, newData)
+          axios.put(`${baseUrl}/basicUsers/forgotpassword`, newData)
               .then(() => {
                 actions.setFieldValue('general', `Email has been sent to ${values.email}. Please follow the instructions to reset your password.`)
               })
@@ -40,7 +41,7 @@ const ForgetPassword = () => {
           }
           else if(location.pathname.includes("professional"))
           {
-          axios.put(`http://localhost:5000/professionalUsers/forgotpassword`, newData)
+          axios.put(`${baseUrl}/professionalUsers/forgotpassword`, newData)
               .then(() => {
                 actions.setFieldValue('general', `Email has been sent to ${values.email}. Please follow the instructions to reset your password.`)
               })

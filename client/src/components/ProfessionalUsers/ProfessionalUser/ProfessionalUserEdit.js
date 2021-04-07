@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from "react-router-dom";
 import { updateProfessional, getProfessional } from '../../../actions/professionals';
 import axios from 'axios';
+import { baseUrl } from '../../../api/index';
 
 const ProfessionalUserEdit = () => {
 
@@ -22,7 +23,7 @@ const ProfessionalUserEdit = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         axios
-        .patch(`http://localhost:5000/professionalUsers/update/${user._id}`, userData)
+        .patch(`${baseUrl}/professionalUsers/update/${user._id}`, userData)
         .then(res => {
                 window.location.href=`/admin/ProfessionalUsers/${user._id}`;
         })

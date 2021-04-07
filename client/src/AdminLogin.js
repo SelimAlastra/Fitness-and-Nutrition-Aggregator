@@ -6,6 +6,7 @@ import { Form, Container, Button } from "react-bootstrap";
 import axios from 'axios';
 import { authenticate } from './actions/userAuth.js';
 import * as Yup from "yup";
+import { baseUrl } from "./api/index.js";
 
 
 //This is the style of the login box
@@ -50,7 +51,7 @@ const Login = () => {
                 username: values.username,
                 password: values.password,
             }
-            axios.post(`http://localhost:5000/admins/login`, newData)
+            axios.post(`${baseUrl}/admins/login`, newData)
                 .then(res => {
                   authenticate(res, () => {
                   history.push(`/admin/basicusers`) 

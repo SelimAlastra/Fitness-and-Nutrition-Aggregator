@@ -1,8 +1,8 @@
-describe('Test', function() {
+// describe('Test', function() {
 
-    Cypress.on('uncaught:exception', (err, runnable) => {
-        return false;
-       });
+//     Cypress.on('uncaught:exception', (err, runnable) => {
+//         return false;
+//        });
 
     beforeEach(() => {
         cy.visit('/');
@@ -117,6 +117,5 @@ describe('Test', function() {
             expect(ls.getItem('name')).to.be.null
             expect(ls.getItem('username')).to.be.null
             expect(ls.getItem('type')).to.be.null
-          }) */
-    })    
+          }) */  
 });

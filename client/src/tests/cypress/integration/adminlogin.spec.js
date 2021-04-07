@@ -1,4 +1,4 @@
-describe('Test', function() {
+/* describe('Test', function() {
 
     
     beforeEach(() => {
@@ -94,6 +94,4 @@ describe('Test', function() {
         cy.contains('Name: John Thompson1').should('exist');       
     }); */
 
-
-
-});
+//}); 
