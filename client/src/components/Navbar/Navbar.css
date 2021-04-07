@@ -32,15 +32,14 @@
 
 .closeModal {
   position: absolute;
-  left: 391px;
+  left: 360px;
   width: 50px;
   float: right;
+  left: 85%;
 }
 
 .modalHeader {
   background-color: white;
-  /* align-items: flex-start;
-  justify-content: flex-start; */
 }
 
 .modalHeaderText {
