@@ -42,6 +42,7 @@
 
 .center {
     text-align: center; 
+    min-width: 500px;
   }
 
 .addGoalModal{
@@ -58,8 +59,8 @@
     height:500px;   /* adjust as per your needs */
     margin-left:-250px;   /* negative half of width above */
     margin-top:-250px;   /* negative half of height above */
-    height:fit-content;
 }
+
 
 .goalsButton {
     padding: 10px;
