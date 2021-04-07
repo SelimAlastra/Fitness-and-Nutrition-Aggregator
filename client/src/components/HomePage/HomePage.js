@@ -11,6 +11,7 @@ import UserInfo from "./UserInfo"
 import { getServices } from '../../actions/services';
 import { getGoals } from '../../actions/goals';
 import { set } from "mongoose";
+import smartgoals from './smartgoals.png';
 import NavbarUser from '../Navbar/NavbarUser';
 
 
@@ -55,11 +56,8 @@ const HomePage = (props) => {
                     <Goals userID={user._id}/>
                 </div>
                 <hr className ="homePageSep"/>
-                <div className = "homePageAlertDiv">
-                    <h2 className='homePageAlert '> What are smart fitness goals? </h2>
-                </div>
                 <div>
-                    <Image className ="GoalsImage" src="https://www.mileiq.com/en-ca/wp-content/uploads/sites/2/2018/05/SMART-goal-setting-1300x867.jpg" fluid />
+                    <Image className ="GoalsImage" src={smartgoals} fluid />
                 </div>
             </div>
             </div>
