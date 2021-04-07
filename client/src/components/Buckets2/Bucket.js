@@ -35,6 +35,7 @@ const Bucket = ({ bucket }) => {
                 </Button>
                 <UpdateBucket bucket={bucket}/>
             </div>
+
         </div>
     );
 }

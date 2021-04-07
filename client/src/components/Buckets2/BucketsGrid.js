@@ -51,9 +51,9 @@ const Buckets = (post) => {
     else {
         return (
             <Container className = "row">
-                <Grid container justify="center" className ="bucketGrid">
+                <Grid container className ="bucketGrid">
                 {myBuckets.map((bucket) => (
-                    <Grid item xs={6} key={bucket._id} >
+                    <Grid item xs={4} key={bucket._id} >
                         <Card className = "bucketCard">
                             <Button className = "bucketButton"
                                 bucket={bucket}

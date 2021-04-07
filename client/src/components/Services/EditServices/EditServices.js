@@ -28,7 +28,7 @@ const EditServices = (props) => {
     const findFormErrors = () => {
         const newErrors = {}
         if ( !url || url === '') newErrors.url = 'URL is required!'
-        else if(!(/^((https?|ftp|smtp):\/\/)?(www.)?[a-z0-9]+\.[a-z]+(\/[a-zA-Z0-9#]+\/?)*$/).test(url)) newErrors.url = 'URL must be valid!'
+        else if(!(/http(?:s?):\/\/(?:www\.)?youtu(?:be\.com\/watch\?v=|\.be\/)([\w\-\_]*)(&(amp;)?‌​[\w\?‌​=]*)?/).test(url)) newErrors.url = 'URL must be valid!'
 
         return newErrors
     }
