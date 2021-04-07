@@ -39,11 +39,7 @@
   }
 
 .addGoalModal{
-    border-radius: 15px;
-    border-width: 2px;
-    border-color: black;
-    border-style: bold;
-    background-color: white;
+    background-color: whitesmoke;
     position:absolute;
     top:50%;
     left:50%;

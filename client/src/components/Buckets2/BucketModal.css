@@ -1,6 +1,20 @@
+.bucketModal{
+    background-color: transparent;
+    position:absolute;
+    top:50%;
+    left:50%;
+    min-width: 800px;
+    min-height: 400px;
+    width:500px;  /* adjust as per your needs */
+    height:600px;   /* adjust as per your needs */
+    margin-left:-400px;   /* negative half of width above */
+    margin-top:-200px;   /* negative half of height above */
+}
+
 .bucketModal .modal-body {
     overflow: scroll !important;
     max-height: 300px;
+    min-width: 400px;
     background-color: whitesmoke
 }
 .bucketModal .modal-title{
@@ -17,9 +31,6 @@
 }
 
 .bucketModal .modal-content {
-    margin-top: 15%;
-    margin-left: -20%;
-    width: 140%;
     overflow: hidden;
 }
 
@@ -45,6 +56,7 @@
     border-color:#9bda8e !important;
     color: black !important;
     width: fit-content;
+    align-self: center;
 }
 
 .createButton:focus, .bucketSave:focus{
@@ -55,12 +67,33 @@
     width: fit-content;
 }
 
+.createForm{
+    align-items: center;
+    justify-content: center;
+    
+}
+
+.newBucket{
+
+    background-color: transparent;
+    position:absolute;
+    top:50%;
+    left:50%;
+    min-width: 800px;
+    min-height: 400px;
+    width:500px;  /* adjust as per your needs */
+    height:600px;   /* adjust as per your needs */
+    margin-left:-400px;   /* negative half of width above */
+    margin-top:-200px;   /* negative half of height above */
+
+}
+
 .newBucket .modal-body{
     height: 370px;
     background-color: whitesmoke;
 }
 .newBucket .modal-content{
-    width: 140% !important;
+    min-width: 0px !important;
 }
 
 .newBucket .modal-header{
@@ -85,7 +118,7 @@
     background-color: whitesmoke;
 }
 .editBucket .modal-content{
-    width: 140% !important;
+    width: 500px !important;
 }
 
 .editBucket .modal-header{

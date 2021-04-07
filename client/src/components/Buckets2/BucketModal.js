@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import Button from 'react-bootstrap/Button';
 import { useDispatch } from 'react-redux';
 import { createBucket } from '../../actions/buckets';
-import Form from 'react-bootstrap/Form';
+import {Form , Container} from 'react-bootstrap';
 import './BucketModal.css';
 
 function PopUpNewBuckets() {
@@ -70,7 +70,9 @@ function PopUpNewBuckets() {
                         <p/>
                         <Form.Label style={{marginBottom: "-10%"}} htmlFor="description">Description (optional)</Form.Label>
                         <textarea className="editText" rows={3} id="description" name="description" onChange={(e) => setPostData({ ...postData, description: e.target.value })}/>
+                        <Container className ='center'>
                         <Button className="bucketSave" variant="primary" size="large" type="submit">Save</Button>
+                        </Container>
                     </Form>
                 </Modal.Body>
             </Modal>
