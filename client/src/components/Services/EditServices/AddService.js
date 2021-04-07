@@ -73,14 +73,14 @@ const AddService = (props) => {
         <>
             <Button className="addServiceButton" onClick={handleShow}>Add New Bundle</Button>
             <Modal className="serviceModalAdd" isOpen={show} onHide={handleClose}>
-                <div className="closeButton">
+                <div style={{marginTop: "-7%"}} className="closeButton">
                     <CloseIcon
                         size="2x"
                         onClick={handleClose}
                     >
                     </CloseIcon>
                 </div>
-                <h4 className="serviceText">Add Bundle</h4>
+                <h4 style={{marginTop: "5%"}} className="serviceText">Add Bundle</h4>
                 <hr className="separator" />
 
                 <Form className="addServiceForm">

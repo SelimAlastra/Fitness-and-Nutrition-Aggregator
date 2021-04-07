@@ -42,6 +42,10 @@ const ClientProfile = (props) => {
         }
     }
 
+    function generateEditDetailsLink() {
+            return (<h2 className="editLink" onClick={() => window.location.href = `/user/edit/${user._id}`}>Edit my details</h2>);
+    }
+
     function generateGoals() {
         if (user !== undefined && user !== null) {
             const goals = user.goals;
@@ -53,10 +57,11 @@ const ClientProfile = (props) => {
         return (
             <div style={{"overflow-x": "hidden"}}>
                 <NavbarUser />
+                <div style={{"marginTop":"20px", "marginRight": "9%", "font-size": "large"}}>{generateEditDetailsLink()}</div>
                 <div class="row" >
                     <div class="col-sm-10 profileInfo"><ProfileInfo profile={user} /></div>
                 </div>
-                <div class="row">
+                <div class="row" style={{"marginTop":"-30px"}}>
                     <div class="col-sm-4 personalInfo"><PersonalInfo profile={user} /></div>
                     <div class="col-sm-4 goals">{generateGoals()}</div>
                 </div>

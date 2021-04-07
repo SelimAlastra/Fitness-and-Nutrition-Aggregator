@@ -67,7 +67,7 @@ const useStyles = makeStyles((theme) => ({
   },
   iconButton: {
     '&:hover': {
-      color: "#8CC152",
+      color: "#9bda8e",
     },
   },
   inputRoot: {
@@ -319,7 +319,7 @@ export default function NavbarProfessional({updatedPosts, setUpdatedPosts, curre
       {renderMenu}
       <Modal className = "modalNavbar" show={show} onHide={handleClose}>
         <Modal.Header className="">
-          <text className="modalHeaderText">CREATE POST</text>
+          <text className="modalHeaderText">Create Post</text>
           <IconButton style={{float: "right"}} className="closeModal" onClick={handleClose}>
             <CloseIcon />
           </IconButton>
