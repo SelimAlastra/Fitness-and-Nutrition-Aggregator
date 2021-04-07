@@ -264,7 +264,7 @@ export default function NavbarUser({updatedPosts, setUpdatedPosts}) {
           onClick={() => window.location.href = `/clientDashboard/${JSON.parse(localStorage.getItem('user'))._id}`}
           style={{width: '50px', left: "0.5rem"}} 
           color="inherit">
-            <SearchIcon />
+            <SearchIcon className={classes.iconButton}/>
           </IconButton>
           )}
 
@@ -278,15 +278,8 @@ export default function NavbarUser({updatedPosts, setUpdatedPosts}) {
               <HomeIcon className={classes.iconButton} />
             </IconButton>
             <IconButton  onClick={() => window.location.href = `/user/myservices/${JSON.parse(localStorage.getItem('user'))._id}`} style={{width: '50px'}} data-testid="myServicesButton" color="inherit">
-              {/* <Badge badgeContent={2} color="secondary"> */}
-                <CollectionsBookmarkIcon className={classes.iconButton}/>
-               {/* </Badge> */}
+              <CollectionsBookmarkIcon className={classes.iconButton}/>
             </IconButton>
-           {/*  <IconButton style={{width: '50px'}} color="inherit">
-              <Badge badgeContent={13} color="secondary">
-                <NotificationsIcon className={classes.iconButton}/>
-              </Badge>
-            </IconButton> */}
             <IconButton onClick={() => window.location.href = `/user/myBuckets/${JSON.parse(localStorage.getItem('user'))._id}`} 
                 style={{width: '50px'}} 
                 data-testid="bucketsButton"
