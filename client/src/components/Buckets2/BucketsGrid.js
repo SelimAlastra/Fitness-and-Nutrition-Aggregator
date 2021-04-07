@@ -5,6 +5,7 @@ import Button from 'react-bootstrap/Button';
 import { useDispatch } from 'react-redux';
 import { updateBucket, getBuckets } from '../../actions/buckets';
 import { Form, FormCheck, ListGroup, Col } from 'react-bootstrap';
+import { Grow, Grid, Container} from '@material-ui/core';
 import "./BucketsGrid.css";
 
 const Buckets = (post) => {
@@ -49,9 +50,10 @@ const Buckets = (post) => {
     }
     else {
         return (
-            <div className = "row">
+            <Container className = "row">
+                <Grid container justify="center" className ="bucketGrid">
                 {myBuckets.map((bucket) => (
-                    <Col xs={6} md={4} lg={3} key={bucket._id}>
+                    <Grid item xs={6} key={bucket._id} >
                         <Card className = "bucketCard">
                             <Button className = "bucketButton"
                                 bucket={bucket}
@@ -63,9 +65,10 @@ const Buckets = (post) => {
                                 {bucket.title}
                             </Button>
                         </Card>
-                    </Col>
+                    </Grid>
                 ))}
-        </div>
+                </Grid>
+        </Container>
         );
     }
 }

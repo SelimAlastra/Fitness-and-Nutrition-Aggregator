@@ -28,7 +28,7 @@ const Buckets = () => {
 
     if (myBuckets === undefined || myBuckets.length === 0) {
         return (
-            <div style={{backgroundColor: "whitesmoke", height :"100vh"}}>
+            <div style={{backgroundColor: "whitesmoke", height :"100%" ,minHeight:"100vh"}}>
             <NavbarUser/>
             <div className="bucketText">
                     <h1>My Buckets</h1>
@@ -42,7 +42,7 @@ const Buckets = () => {
     }
     else {
         return (
-            <div style={{backgroundColor: "whitesmoke", height :"100vh"}}>
+            <div style={{backgroundColor: "whitesmoke", height :"100%" , minHeight:"100vh"}}>
                 <NavbarUser/>
                 <div className="bucketText">
                     <h1>My Buckets</h1>
