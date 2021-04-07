@@ -320,8 +320,8 @@ export default function NavbarProfessional({updatedPosts, setUpdatedPosts, curre
       <Modal className = "modalNavbar" show={show} onHide={handleClose}>
         <Modal.Header className="">
           <text className="modalHeaderText">Create Post</text>
-          <IconButton style={{float: "right"}} className="closeModal" onClick={handleClose}>
-            <CloseIcon />
+          <IconButton style={{"marginTop":"-5%", "marginLeft":"8%"}} className="closeModal" onClick={handleClose}>
+            <CloseIcon/>
           </IconButton>
         </Modal.Header>
         <Modal.Body><Form currentId={currentId} setCurrentId={setCurrentId} /></Modal.Body>
