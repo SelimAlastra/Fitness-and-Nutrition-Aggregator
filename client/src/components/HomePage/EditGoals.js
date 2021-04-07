@@ -29,7 +29,7 @@ const EditGoals = (props) => {
         <Button type="button" variant="success" className="editGoalsButton" onClick={() => window.location.href = `/homePage/${userID}`}> Go back to home page</Button>
         <Grid container justify="center">
             {myGoals.map((goal) => (
-                <Grid item xs= {6}>
+                <Grid item xs= {4}>
                     <EditGoal key={goal._id} goal={goal}/>
                 </Grid>           
             ))}

@@ -155,7 +155,7 @@ export default function NavbarUser({updatedPosts, setUpdatedPosts}) {
         </IconButton>
       </MenuItem>
       <MenuItem>
-        <IconButton onClick={() => window.location.href = `/contactUs/${JSON.parse(localStorage.getItem('user'))._id}`} > 
+        <IconButton onClick={() => window.location.href = `/user/contactUs/${JSON.parse(localStorage.getItem('user'))._id}`} > 
           <div>
             <LiveHelpIcon/> 
             <text style={{fontSize:"1.2rem"}}> Contact </text>
@@ -226,7 +226,7 @@ export default function NavbarUser({updatedPosts, setUpdatedPosts}) {
         {/* <p>Settings</p> */}
       </MenuItem>
       <MenuItem>
-        <IconButton onClick={() => window.location.href = `/contactUs/${JSON.parse(localStorage.getItem('user'))._id}`} > 
+        <IconButton onClick={() => window.location.href = `/user/contactUs/${JSON.parse(localStorage.getItem('user'))._id}`} > 
           <div>
             <LiveHelpIcon />
             <text style={{fontSize:"1.2rem"}}> Contact </text>
