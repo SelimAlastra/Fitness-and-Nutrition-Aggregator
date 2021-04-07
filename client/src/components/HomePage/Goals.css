@@ -54,14 +54,14 @@
     border-radius: 10px;
     border-color: #9bda8e;
     position:absolute;
-    top:50%;
+    top:55%;
     left:50%;
     min-width: 500px;
     min-height: 500px;
     width:500px;  /* adjust as per your needs */
     height:500px;   /* adjust as per your needs */
     margin-left:-250px;   /* negative half of width above */
-    margin-top:-275px;   /* negative half of height above */
+    margin-top:-250px;   /* negative half of height above */
 }
 
 .goalsButton {
