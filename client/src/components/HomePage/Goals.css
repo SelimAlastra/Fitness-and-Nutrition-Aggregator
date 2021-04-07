@@ -27,6 +27,16 @@
     padding: none;
 }
 
+.goalsPageText3{
+    margin-top: 4px;
+    margin-bottom: 30px;
+    margin-left: 50px;
+    color :   rgb(94, 93, 93);
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    text-align: center;
+    padding: none;
+}
+
 .goalsButton {
     margin : 5px;
     padding : 1%;
@@ -40,6 +50,9 @@
 
 .addGoalModal{
     background-color: white;
+    border-style: solid;
+    border-radius: 10px;
+    border-color: #9bda8e;
     position:absolute;
     top:50%;
     left:50%;
@@ -85,7 +98,7 @@
 
   .closeDiv{
       min-height: 41px;
-      margin: 5px;
+      margin-top: 0px;
       margin-right: 10px;
   }
 

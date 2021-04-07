@@ -96,7 +96,7 @@ const Goals = ({userID}) => {
             <button className = "closeButton" onClick={() => setModalIsOpen(false)}>x</button>
             </div>
             <div className ='center'>
-                <h2 className="goalsPageText">Add goal</h2>
+                <h2 className="goalsPageText3">Add goal</h2>
                 <AddGoal userID = {userID}/>
                 <Container className = 'center'>
                 </Container>
