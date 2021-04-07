@@ -8,6 +8,7 @@ import Quiz from './quiz/quizUser.js';
 import {questionsClient,questionsReqInputClient,questionsMultipleChoicesClient} from './quiz/resources/clientQuestions';
 import {questionsProfessional,questionsReqInputProfessional,questionsMultipleChoicesProfessional} from './quiz/resources/professionalQuestions';
 import ContactUs from './components/ContactUsPage/ContactUs'
+import ContactUsPro from './components/ContactUsPage/ContactUsPro'
 import HomePage from './components/HomePage/HomePage';
 import EditGoals from './components/HomePage/EditGoals';
 
@@ -55,7 +56,9 @@ const Main = () => (
         <PrivateRoute exact path='/homePage/:id' component={Wrapper} componentToRender={HomePage} userType={'client'}/>
         <PrivateRoute exact path='/homePage/edit/:id' component={Wrapper} componentToRender={EditGoals} userType={'client'}/>
 
-        <PrivateRoute exact path='/contactUs/:id' component={Wrapper} componentToRender={ContactUs} userType={'client'}/>
+        <PrivateRoute exact path='/user/contactUs/:id' component={Wrapper} componentToRender={ContactUs} userType={'client'}/>
+        <PrivateRoute exact path='/professional/contactUs/:id' component={Wrapper} componentToRender={ContactUsPro} userType={'professional'}/>
+
 
         <PrivateRoute exact path='/clientDashboard/:id' component={Wrapper} componentToRender={ClientDashboard} userType={'client'}/>
         <PrivateRoute exact path='/professionalDashboard/:id' component={Wrapper} componentToRender={ProfessionalDashboard} userType={'professional'}/>

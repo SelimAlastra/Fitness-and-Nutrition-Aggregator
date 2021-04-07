@@ -52,9 +52,9 @@ const BucketView = (params) => {
     else
     {
         return(
-            <div style={{backgroundColor: "whitesmoke", overflowX: "hidden"}}>
+            <div style={{backgroundColor: "whitesmoke", overflowX: "hidden", height:'100%', minHeight:'100vh'}}>
             <NavbarUser/>
-            <h1>{bucket.title}</h1>
+            <h1 style={{margin : '30px'}}>{bucket.title}</h1>
             <h5>{bucket.description}</h5>
             <hr/>
             <div style={{marginLeft: "2%"}} class="row">

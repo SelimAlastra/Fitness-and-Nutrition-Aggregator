@@ -16,7 +16,7 @@
 .goalsPageText {
     margin : 20px;
     color :   rgb(94, 93, 93);
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     text-align: center;
     padding: none;
 }
@@ -39,7 +39,7 @@
   }
 
 .addGoalModal{
-    background-color: whitesmoke;
+    background-color: white;
     position:absolute;
     top:50%;
     left:50%;

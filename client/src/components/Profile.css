@@ -26,12 +26,15 @@
     color: black;
     font-size: small;
 }
+.profileInfoDivT{
+    max-width: 600px;
+}
 
 .textContainer {
-    color: black !important;
+    color:#9bda8e !important;
     border-radius: 10px;
     padding: 1%;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 8px 0 #9bda8e;
     font-size: medium;
 }
 
