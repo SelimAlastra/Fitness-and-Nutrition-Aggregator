@@ -17,7 +17,7 @@
 
 .basic-wrap {
   border-radius: 40px;
-  background: rgba(0, 0, 0, 0.658);
+  background: rgba(0, 0, 0, 0.74);
   position: absolute;
   left: 50%;
   top: 50%;
@@ -149,7 +149,7 @@
   border-radius: 7.5px;
   font-size: 1rem;
   height: 2.4rem;
-  color: #9cbe95;
+  color: #1b1d1b;
   width: 100%;
   position: relative;
   transition: 0.3s all;
