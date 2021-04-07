@@ -1,4 +1,4 @@
-describe('Test', function() {
+/* describe('Test', function() {
 
     before(function () {
         cy.fixture('basicUser').then(function(basicUser){
@@ -24,6 +24,6 @@ describe('Test', function() {
        /*  cy.contains('Woman').should('exist');
         cy.contains('Man').should('exist');
         cy.contains('Other').should('exist'); */
-    });
+ //   });
 
-});
+//}); 
