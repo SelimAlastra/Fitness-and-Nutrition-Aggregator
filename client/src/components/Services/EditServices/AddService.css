@@ -9,9 +9,9 @@
     min-width: 500px;
     min-height: 500px;
     width:500px;  /* adjust as per your needs */
-    height:500px;   /* adjust as per your needs */
+    height:550px;   /* adjust as per your needs */
     margin-left:-250px;   /* negative half of width above */
-    margin-top:-250px;   /* negative half of height above */
+    margin-top:-275px;   /* negative half of height above */
     text-align: center;
 }
 
