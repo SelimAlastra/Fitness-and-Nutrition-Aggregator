@@ -315,8 +315,8 @@ export default function NavbarProfessional({updatedPosts, setUpdatedPosts}) {
       </AppBar>
       {renderMobileMenu}
       {renderMenu}
-      <Modal show={show} onHide={handleClose}>
-        <Modal.Header className="modalHeader">
+      <Modal className = "modalNavbar" show={show} onHide={handleClose}>
+        <Modal.Header className="">
           <text className="modalHeaderText">CREATE POST</text>
           <IconButton style={{float: "right"}} className="closeModal" onClick={handleClose}>
             <CloseIcon />
