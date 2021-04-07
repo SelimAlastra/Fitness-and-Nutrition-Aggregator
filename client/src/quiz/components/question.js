@@ -3,7 +3,7 @@ import '../styling/quizUser.css';
 
 const Question = (props) => {
     return(
-        <h1>{props.currentQuestion + 1}/{props.questionsLength} {props.question.questionText}</h1>
+        <h1 className="question-count">{props.currentQuestion + 1}/{props.questionsLength} {props.question.questionText}</h1>
     );
 }
 
