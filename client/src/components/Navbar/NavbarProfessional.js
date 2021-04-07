@@ -213,6 +213,14 @@ export default function NavbarProfessional({updatedPosts, setUpdatedPosts, curre
         </IconButton>
       </MenuItem>
       <MenuItem>
+        <IconButton onClick={handleShow}>
+            <div>
+              <AddCircleIcon/>
+              <text style={{fontSize:"1.2rem"}}>Add Post</text>
+            </div>
+        </IconButton>
+      </MenuItem>
+      <MenuItem>
         <IconButton component={Link} to={`/professional/services/edit/${JSON.parse(localStorage.getItem('user'))._id}`}> 
           <div>
             <CollectionsBookmarkIcon/> 

@@ -111,7 +111,7 @@ const ProfessionalProfile = (props) => {
                     <div class="row" style={{ "width": "60%", marginLeft: "20%" }}>
                             {myServices.map((service, index) => {
                                 return (
-                                    <div key={index} class="col sm-6" className="serviceColumnProfile">
+                                    <div key={index} class="col sm-6">
                                         <Container className="serviceContainerProfile">
                                             <h4 style={{ "style": "black", "marginBottom": "5%", "marginTop": "5%" }}>{service.title}</h4>
                                             <p style={{ "style": "black", "marginBottom": "5%" }}>{service.description}</p>
