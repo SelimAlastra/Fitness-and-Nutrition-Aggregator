@@ -9,6 +9,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye } from "@fortawesome/free-solid-svg-icons";
 import { useHistory, useLocation } from 'react-router-dom';
 import './resetPassword.css';
+import { baseUrl } from '../../api/index';
 
 const ResetPassword = ({ match }) => {
     const eye = <FontAwesomeIcon icon={faEye} />;
@@ -56,7 +57,7 @@ const ResetPassword = ({ match }) => {
                 resetPasswordLink: token,
             }
             if (location.pathname.includes("user")) {
-                axios.put(`http://localhost:5000/basicUsers/resetpassword`, newData)
+                axios.put(`${baseUrl}/basicUsers/resetpassword`, newData)
                     .then(res => {
                         history.push('/')
                     })
@@ -67,7 +68,7 @@ const ResetPassword = ({ match }) => {
                     })
             }
             else if (location.pathname.includes("professional")) {
-                axios.put(`http://localhost:5000/professionalUsers/resetpassword`, newData)
+                axios.put(`${baseUrl}/professionalUsers/resetpassword`, newData)
                     .then(res => {
                         history.push('/')
                     })
