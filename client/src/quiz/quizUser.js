@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Question from './components/question';
 import Answer from './components/answer';
+import { Carousel } from 'react-bootstrap';
 import './styling/quizUser.css';
 
 var associatedTags = [];
@@ -419,9 +420,73 @@ export default class Quiz extends Component{
         
         return(
             <div className="quizz">
-            <img className="backgroundJPG"
-            src="https://static.onecms.io/wp-content/uploads/sites/35/2010/07/28170650/fb-interval-training-workouts.jpg" />
-            
+            {/* <img className="backgroundJPG"
+            src="https://static.onecms.io/wp-content/uploads/sites/35/2010/07/28170650/fb-interval-training-workouts.jpg" /> */}
+            <Carousel className="carousel">
+                    <Carousel.Item class="d-none d-md-block">
+                        <img
+                            className="d-block w-100 fixedimg"
+                            src="https://console.kr-asia.com/wp-content/uploads/2019/12/meghan-holmes-buWcS7G1_28-unsplash.jpg"
+                            alt="First slide"
+                        />
+                    </Carousel.Item>
+                    <Carousel.Item class="d-none d-md-block">
+                        <img
+                            className="d-block w-100 fixedimg"
+                            src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1650&q=80"
+                            alt="First slide"
+                        />
+                    </Carousel.Item>
+                    <Carousel.Item class="d-none d-md-block">
+                        <img
+                            className="d-block w-100 fixedimg"
+                            src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1635&q=80"
+                            alt="First slide"
+                        />
+                    </Carousel.Item>
+                    <Carousel.Item class="d-none d-md-block">
+                        <img
+                            className="d-block w-100 fixedimg"
+                            src="https://images.unsplash.com/photo-1510027580951-31747e2371a9?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1650&q=80"
+                            alt="First slide"
+                        />
+                    </Carousel.Item>
+                    <Carousel.Item class="d-none d-md-block">
+                        <img
+                            className="d-block w-100 fixedimg"
+                            src="https://images.unsplash.com/photo-1517363898874-737b62a7db91?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1558&q=80"
+                            alt="First slide"
+                        />
+                    </Carousel.Item>
+                    <Carousel.Item class="d-none d-md-block">
+                        <img
+                            className="d-block w-100 fixedimg"
+                            src="https://images.unsplash.com/photo-1490474418585-ba9bad8fd0ea?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1650&q=80"
+                            alt="First slide"
+                        />
+                    </Carousel.Item>
+                    <Carousel.Item class="d-none d-md-block">
+                        <img
+                            className="d-block w-100 fixedimg"
+                            src=""
+                            alt="First slide"
+                        />
+                    </Carousel.Item>
+                    <Carousel.Item class="d-none d-md-block">
+                        <img
+                            className="d-block w-100 fixedimg"
+                            src=""
+                            alt="First slide"
+                        />
+                    </Carousel.Item>
+                    <Carousel.Item class="d-none d-md-block">
+                        <img
+                            className="d-block w-100 fixedimg"
+                            src="https://images.unsplash.com/photo-1580086319619-3ed498161c77?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=2850&q=80"
+                            alt="First slide"
+                        />
+                    </Carousel.Item>
+            </Carousel>
             <div> 
                 { complete ? (
                     <div></div>

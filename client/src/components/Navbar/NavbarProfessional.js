@@ -1,17 +1,15 @@
-import React, {useEffect} from 'react';
+import React, { useEffect, useState } from 'react';
 import { fade, makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import Searchbox from './Searchbox';
-import Badge from '@material-ui/core/Badge';
+import CloseIcon from '@material-ui/icons/Close';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
-import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
 import AccountCircle from '@material-ui/icons/AccountCircle';
-import NotificationsIcon from '@material-ui/icons/Notifications';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
 import HomeIcon from '@material-ui/icons/Home';
 import MoreIcon from '@material-ui/icons/MoreVert';
@@ -21,6 +19,8 @@ import SettingsIcon from '@material-ui/icons/Settings';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import { signOut } from '../../actions/userAuth.js';
 import { Link, useHistory } from 'react-router-dom';
+import Form from '../Form/Form';
+import Modal from 'react-bootstrap/Modal';
 import "./Navbar.css"
 
 /**
@@ -110,6 +110,11 @@ export default function NavbarProfessional({updatedPosts, setUpdatedPosts}) {
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+  const [currentId, setCurrentId] = useState(null);
+
   const handleProfileMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -191,7 +196,7 @@ export default function NavbarProfessional({updatedPosts, setUpdatedPosts}) {
       onClose={handleMobileMenuClose}
     >
       <MenuItem>
-        <IconButton onClick={() => window.location.href = `/professionalDashboard/${JSON.parse(localStorage.getItem('user'))._id}`} > 
+        <IconButton onClick={() => window.location.href = `/myPosts/${JSON.parse(localStorage.getItem('user'))._id}`} > 
           <div>
             <HomeIcon/> 
             <text style={{fontSize:"1.2rem"}}>Home</text>
@@ -237,15 +242,7 @@ export default function NavbarProfessional({updatedPosts, setUpdatedPosts}) {
     <div className={classes.grow, "navbar-top"}>
       <AppBar position="static" color="transparent">
         <Toolbar>
-          <IconButton 
-            edge="start"
-            className={classes.menuButton}
-            color="inherit"
-            aria-label="open drawer"
-          >
-            <MenuIcon />
-          </IconButton>
-          <Typography onClick={() => window.location.href = `/professionalDashboard/${JSON.parse(localStorage.getItem('user'))._id}`} className={classes.title, "logo", "landing"} style = {{"cursor" : "pointer"}} variant="h6" noWrap>
+          <Typography onClick={() => window.location.href = `/myPosts/${JSON.parse(localStorage.getItem('user'))._id}`} className={classes.title, "logo", "landing"} style = {{"cursor" : "pointer"}} variant="h6" noWrap>
             LOGO
           </Typography>
 
@@ -264,31 +261,18 @@ export default function NavbarProfessional({updatedPosts, setUpdatedPosts}) {
               <SearchIcon />
             </IconButton>
           )}
-
-          <Typography
-          onClick={() => window.location.href = `/myPosts/${JSON.parse(localStorage.getItem('user'))._id}`}
-          style={{cursor: "pointer"}}
-          >
-          POSTS
-          </Typography>
-
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
             <IconButton 
-              onClick={() => window.location.href = `/professionalDashboard/${JSON.parse(localStorage.getItem('user'))._id}`}
+              onClick={() => window.location.href = `/myPosts/${JSON.parse(localStorage.getItem('user'))._id}`}
               style={{width: '50px'}}
               data-testid="proHomeButton" 
               color="inherit">
               <HomeIcon className={classes.iconButton} />
             </IconButton>
-            <IconButton component={Link} to={`/professional/services/edit/${JSON.parse(localStorage.getItem('user'))._id}`} style={{width: '50px'}} data-testid="addBundlesButton" color="inherit">
+            <IconButton onClick={handleShow} style={{width: '50px'}} data-testid="addBundlesButton" color="inherit">
                 <AddCircleIcon className={classes.iconButton}/>
             </IconButton>
-            {/* <IconButton style={{width: '50px'}} aria-label="show 17 new notifications" color="inherit">
-              <Badge badgeContent={17} color="secondary">
-                <NotificationsIcon className={classes.iconButton}/>
-              </Badge>
-            </IconButton> */}
             <IconButton style={{width: '50px'}}
               edge="end"
               aria-label="account of current user"
@@ -316,6 +300,15 @@ export default function NavbarProfessional({updatedPosts, setUpdatedPosts}) {
       </AppBar>
       {renderMobileMenu}
       {renderMenu}
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header className="modalHeader">
+          <text className="modalHeaderText">CREATE POST</text>
+          <IconButton style={{float: "right"}} className="closeModal" onClick={handleClose}>
+            <CloseIcon />
+          </IconButton>
+        </Modal.Header>
+        <Modal.Body><Form currentId={currentId} setCurrentId={setCurrentId} /></Modal.Body>
+      </Modal>
     </div>
   );
 }

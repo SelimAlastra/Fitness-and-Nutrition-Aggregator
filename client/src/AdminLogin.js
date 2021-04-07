@@ -10,8 +10,8 @@ import * as Yup from "yup";
 
 //This is the style of the login box
 const loginStyle = {
-    margin: "33px auto 36px",
-    maxWidth: "550px",
+    marginTop: "18%",
+    maxWidth: "40%",
     padding: "35px",
 };
 
@@ -25,10 +25,10 @@ const AdminLogin = () => (
 //A schema to make sure that all entered details' requirements are met
 const adminSchema = Yup.object().shape({
     username: Yup.string()
-        .required(),
+        .required("Username is required."),
     
     password: Yup.string()
-        .required()
+        .required("Password is required.")
 });
 
 // The login form. It controls how the data is managed, and it returns the form
@@ -78,6 +78,9 @@ const Login = () => {
                 value={Formik.values.username}
                 onChange={Formik.handleChange}
             />
+            {Formik.errors.username && Formik.touched.username && (
+            <div style={{color: "red"}} className="input-feedback">{Formik.errors.username}</div>
+            ) }
             </Form.Group>
 
             <Form.Group>
@@ -90,6 +93,9 @@ const Login = () => {
                 value={Formik.values.password}
                 onChange={Formik.handleChange}
             />
+            {Formik.errors.password && Formik.touched.password && (
+            <div style={{color: "red"}} className="input-feedback">{Formik.errors.password}</div>
+            )}
             </Form.Group>
 
             <Button variant="primary" type="submit">Login</Button>

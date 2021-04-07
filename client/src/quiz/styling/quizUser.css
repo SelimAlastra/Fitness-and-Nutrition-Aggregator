@@ -37,6 +37,15 @@
   padding-right: 0.5rem;
 }
 
+.quizz .carousel{
+  width: 100%;
+  height: auto;
+}
+
+.quizz .carousel-inner{
+  height: 100vh;
+}
+
 /* BUTTONS */
 
 .quizBtn button {

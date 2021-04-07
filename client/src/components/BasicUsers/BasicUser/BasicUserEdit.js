@@ -4,6 +4,7 @@ import { LinkContainer } from 'react-router-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from "react-router-dom";
 import { getBasicUser, updateBasicUser } from '../../../actions/basicUsers';
+import axios from 'axios';
 
 const BasicUserEdit = () => {
 
@@ -20,9 +21,16 @@ const BasicUserEdit = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-
-        dispatch(updateBasicUser(id, userData));
-        window.location.href=`/admin/BasicUsers/${user._id}`;
+        axios
+            .patch(`http://localhost:5000/basicUsers/update/${user._id}`, userData)
+            .then(res => {
+                    window.location.href=`/admin/BasicUsers/${user._id}`;
+            })
+            .catch(err => {
+                if(err.response.data.errors){
+                    window.alert(err.response.data.errors)
+                }
+            })
     }
 
     useEffect(() => {
