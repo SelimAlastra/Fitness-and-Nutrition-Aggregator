@@ -22,6 +22,10 @@
   font-family: "Paytone One", sans-serif;
 }
 
+.modalNavbar{
+    margin-top: 50px;
+}
+
 .modalNavbar .modal-content{
   border-radius: 10px;
 }

@@ -1,7 +1,8 @@
 .homePageServiceText {
     text-align: center;
     justify-content: center;
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
     color: rgb(94, 93, 93);
     padding: 1%;
 }
@@ -28,14 +29,14 @@
 
 .goalsServiceButton {
     padding: 10px;
-    background-color: transparent;
+    background-color: #9bda8e!important;
     border-radius: 15px;
     border-style: solid;
     border-width: 1px;
-    border-color: #A0d468;
+    border-color: black;
     font-weight: 500;
     font-size: 17px;
-    color: #8CC152;
+    color: white;
     cursor: pointer;
     transition: 0.2s ease-in-out;
     margin: 15px;
@@ -43,7 +44,7 @@
   }
   
   .goalsServiceButton:hover {
-    background-color: #8CC152;
+    background-color: black!important;
     border-width: 1px;
     color : white;
   }
