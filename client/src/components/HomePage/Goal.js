@@ -9,8 +9,8 @@ const Goal = ({goal}) => {
     if(tags === undefined) {
         return (
         <div className="goal">
-        <p className="goalText">Description : {goal.description}</p>
-        <p className="goalText">Deadline : {goal.deadline}</p>
+        <p className="goalText">Description: {goal.description}</p>
+        <p className="goalText">Deadline: {goal.deadline}</p>
         </div>
         );
     } else {
