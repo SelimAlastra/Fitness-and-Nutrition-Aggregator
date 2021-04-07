@@ -41,6 +41,7 @@
     transition: 0.2s ease-in-out;
     margin: 15px;
     min-width: 100px;
+    box-shadow: none !important;
   }
   
   .goalsServiceButton:hover {

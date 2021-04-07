@@ -24,7 +24,7 @@ function ProfileInfo({profile}) {
                     <p className="helpText"></p> 
                    
                 </div>
-                <div data-testid="socialBar">
+                <div data-testid="socialBar" style={{"margin":"10px"}} >
                         { generateInstagramLink(profile.instagramLink) }
                         { generateYoutubeLink(profile.youtubeLink) }
                 </div>
@@ -71,7 +71,7 @@ function generateLocationContainer(location) {
         return (
         <div>
             <p className="helpText"></p>
-            <div className="outerContainer"><p className="textContainer">{location}</p></div>
+            <div className="outerContainer"><p className="textContainer">Location: {location}</p></div>
         </div>
         );
     }
@@ -81,8 +81,8 @@ function generateDescriptionContainer(description) {
     if (description !== undefined && description.length > 0) {
         return (
             <div>
-                <p className="helpText">Bio</p>
-                <p className="textContainer">{description}</p>
+                <p className="helpText"></p>
+                <p className="textContainer">Bio: {description}</p>
             </div>
         );  
     }
