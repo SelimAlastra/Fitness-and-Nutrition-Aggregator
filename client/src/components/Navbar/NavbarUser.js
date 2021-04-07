@@ -67,7 +67,7 @@ const useStyles = makeStyles((theme) => ({
   },
   iconButton: {
     '&:hover': {
-      color: "#8CC152",
+      color: "#9bda8e",
     },
   },
   inputRoot: {
@@ -185,7 +185,7 @@ export default function NavbarUser({updatedPosts, setUpdatedPosts}) {
       onClose={handleMobileMenuClose}
     >
       <MenuItem>
-        <IconButton onClick={() => window.location.href = `/homePage/${JSON.parse(localStorage.getItem('user'))._id}`} > 
+        <IconButton component={Link} onClick={() => window.location.href = `/homePage/${JSON.parse(localStorage.getItem('user'))._id}`} > 
           <div>
             <HomeIcon/> 
             <text style={{fontSize:"1.2rem"}}> Home </text>
@@ -226,7 +226,7 @@ export default function NavbarUser({updatedPosts, setUpdatedPosts}) {
         {/* <p>Settings</p> */}
       </MenuItem>
       <MenuItem>
-        <IconButton onClick={() => window.location.href = `/user/contactUs/${JSON.parse(localStorage.getItem('user'))._id}`} > 
+        <IconButton component={Link} onClick={() => window.location.href = `/user/contactUs/${JSON.parse(localStorage.getItem('user'))._id}`} > 
           <div>
             <LiveHelpIcon />
             <text style={{fontSize:"1.2rem"}}> Contact </text>
@@ -234,7 +234,7 @@ export default function NavbarUser({updatedPosts, setUpdatedPosts}) {
         </IconButton>
       </MenuItem>
       <MenuItem onClick={handleProfileMenuOpen}>
-      <IconButton onClick={() => { signOut(() => { history.push('/'); });}}> 
+      <IconButton component={Link} onClick={() => { signOut(() => { history.push('/'); });}}> 
           <div>
             <ExitToAppIcon/> 
             <text style={{fontSize:"1.2rem"}}> Log out </text>

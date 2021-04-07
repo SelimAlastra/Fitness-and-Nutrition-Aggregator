@@ -4,42 +4,52 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getPostsFromArray } from "../../actions/posts";
 import { useParams } from "react-router-dom";
 import Post from "../Posts/Post/Post";
-import { updateBucket, getBuckets } from '../../actions/buckets';
+import { updateBucket, getBuckets, getBucket } from '../../actions/buckets';
 import NavbarUser from '../Navbar/NavbarUser';
 import { getProfessional } from '../../api';
 import { getProfessionalUsers } from '../../actions/professionals';
 
-const BucketView = (params) => {
-    const bucket = params.location.state;
-    console.log(params.location.state);
-    const loading = true;
+const BucketView = () => {
+
+    const { id } = useParams();
+
+    let bucket = useSelector((state) => id ? state.buckets.find((bucket) => bucket._id === id) : null);
 
     const posts = useSelector((state) => state.posts);
+
+    const loading = true;
+
+    console.log(posts);
 
     const dispatch = useDispatch();
 
     useEffect(() => {
+        dispatch(getPostsFromArray(id));
         dispatch(getBuckets());
         dispatch(getProfessionalUsers());
-    }, []);
+    }, [dispatch]);
 
-    useEffect(() => {
-        if (bucket) {
-            dispatch(getPostsFromArray(bucket._id)) 
-        }
-    }, [bucket]);
     
     const removeFromBucket = (postId) => {
         const post = bucket.postsId.indexOf(postId);
         if(post > - 1)
         {
             bucket.postsId.splice(post, 1);
-            dispatch(updateBucket(bucket._id, bucket))
+            dispatch(updateBucket(id, bucket))
             window.location.reload();
         }
     }
 
-    if ((posts === undefined || posts.length === 0) && !loading) {
+    if(!bucket) {
+        return (
+            <>
+            <NavbarUser/>
+                <>
+                    Loading....
+                </>
+            </>
+        )
+    } else if ((posts === undefined || posts.length === 0) && !loading) {
         return (
             <>
             <NavbarUser/>

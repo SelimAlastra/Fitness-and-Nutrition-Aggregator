@@ -87,39 +87,18 @@ const ProfessionalProfile = (props) => {
             return (
                 <div>
                     { generateEditServicesLink(isProfessional)}
-                    <h2  style={{ "marginBottom": "30px" }} className="pageText">Services</h2>
+                    <h2 style={{ "marginBottom": "30px" }} className="pageText">Services</h2>
                     <div class="row" style={{ "width": "60%", marginLeft: "20%" }}>
-                        {myServices.length === 1 ?
-                            myServices.map((service, index) => {
-                                return (
-                                    <div key={index} class="col sm-6" className="serviceColumnProfile">
-                                        <Container className="serviceContainerProfile">
-                                            <h4 style={{ "style": "black", "marginBottom": "10%", "marginTop": "2%" }}>{service.title}</h4>
-                                            <p style={{ "style": "black", "marginBottom": "15%" }}>{service.description}</p>
-                                        </Container>
-                                    </div>
-                                )
-                            })
-                            :
-                            myServices.map((service, index) => {
+                            {myServices.map((service, index) => {
                                 return (
                                     <div key={index} class="col sm-6" >
                                         <Container className="serviceContainerProfile">
-                                            <h4 style={{ "style": "black", "marginBottom": "10%", "marginTop": "2%" }}>{service.title}</h4>
-                                            <p style={{ "style": "black", "marginBottom": "15%" }}>{service.description}</p>
+                                            <h4 style={{ "style": "black", "marginBottom": "10%", "marginTop": "5%" }}>{service.title}</h4>
+                                            <p style={{ "style": "black", "marginBottom": "10%" }}>{service.description}</p>
+                                            <p style={{ "color": "black", "marginBottom": "20%" }}>£{service.price}</p>
                                         </Container>
                                     </div>
                                 )
-                                // myServices.map((service, index) => {
-                                //     return (
-                                //         <li key={index} className="serviceList">
-                                //             <div className="serviceColumn">
-                                //                 <h4>{service.title}</h4>
-                                //                 <p>{service.description}</p>
-                                //             </div>
-                                //         </li>
-                                //     )
-                                // })
                             })
                         }
                     </div>
@@ -130,31 +109,13 @@ const ProfessionalProfile = (props) => {
                 <>
                     <h2 style={{ "marginBottom": "50px" }} className="pageText">Services</h2>
                     <div class="row" style={{ "width": "60%", marginLeft: "20%" }}>
-                        {myServices.length !== 1 ?
-                            myServices.map((service, index) => {
+                            {myServices.map((service, index) => {
                                 return (
-                                    <div key={index} class="col sm-6" >
+                                    <div key={index} class="col sm-6">
                                         <Container className="serviceContainerProfile">
-                                            <h4 style={{ "style": "black", "marginBottom": "10%", "marginTop": "2%" }}>{service.title}</h4>
-                                            <p style={{ "style": "black", "marginBottom": "15%" }}>{service.description}</p>
-                                            <Button
-                                                value={service._id}
-                                                className="purchaseButton"
-                                                onClick={purchaseBundle}
-                                            >
-                                                Purchase
-                                            </Button>
-                                        </Container>
-                                    </div>
-                                )
-                            })
-                            :
-                            myServices.map((service, index) => {
-                                return (
-                                    <div key={index} class="col sm" className="serviceColumnProfile">
-                                        <Container className="serviceContainerProfile">
-                                            <h4 style={{ "style": "black", "marginBottom": "10%" }}>{service.title}</h4>
-                                            <p style={{ "style": "black", "marginBottom": "15%" }}>{service.description}</p>
+                                            <h4 style={{ "style": "black", "marginBottom": "5%", "marginTop": "5%" }}>{service.title}</h4>
+                                            <p style={{ "style": "black", "marginBottom": "5%" }}>{service.description}</p>
+                                            <p style={{ "color": "black" }}>£{service.price}</p>
                                             <Button
                                                 value={service._id}
                                                 className="purchaseButton"
@@ -169,6 +130,7 @@ const ProfessionalProfile = (props) => {
                         }
                     </div>
                 </>
+
             );
         }
     }

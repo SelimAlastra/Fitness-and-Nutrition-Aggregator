@@ -1,14 +1,18 @@
 .serviceModalAdd{
-    text-align: center;
     background-color: white;
-    margin: 5%;
-    padding: 1%;
-    margin-left: 36% !important;
-    margin-right: 36% !important;
-    height: fit-content !important;
-    overflow: hidden !important;
-    border-radius: 25px !important;
-    border: 2px solid #9cbe95  !important
+    border-style: solid;
+    border-radius: 10px;
+    border-color: #9bda8e;
+    position:absolute;
+    top:55%;
+    left:50%;
+    min-width: 500px;
+    min-height: 500px;
+    width:500px;  /* adjust as per your needs */
+    height:550px;   /* adjust as per your needs */
+    margin-left:-250px;   /* negative half of width above */
+    margin-top:-275px;   /* negative half of height above */
+    text-align: center;
 }
 
 .save .actionButton{
@@ -42,3 +46,9 @@
     background-color: black !important;
     color: white !important;
 }
+
+.serviceText{
+    align-self: center;
+    text-align: center;
+}
+

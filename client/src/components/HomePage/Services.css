@@ -11,14 +11,13 @@
     padding-right: 10px;
     text-decoration: underline;
     cursor: pointer;
-    color: #BBA78C;
     font-size: small;
 }
 
 .servicesText {
     margin : 20px;
-    color :  rgb(94, 93, 93);
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    color :  black;
+    font-family: Georgia, Times, 'Times New Roman', serif;
     text-align: center;
     padding: none;
 }
