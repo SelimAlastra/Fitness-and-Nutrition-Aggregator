@@ -37,7 +37,8 @@ Form {
     width: 200px !important;
     margin-bottom: 15px;
     text-align: center;
-    margin-left: 55px;
+    margin-left: 16%;
+    margin-right: 16%;
     font-weight: bold;
     border-color: black;
 }
