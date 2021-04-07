@@ -55,13 +55,48 @@ const Form = ({ currentId, setCurrentId }) => {
     return (
         <form autoComplete="off" noValidate className={`${classes.root} ${classes.form}`} method="post" action="#" onSubmit={handleSubmit}>
 
-            <TextField name="title" variant="outlined" label="Title" fullWidth value={postData.title} required onChange={(e) => setPostData({ ...postData, title: e.target.value })} />
-            <TextField name="message" variant="outlined" label="Message" fullWidth value={postData.message} required onChange={(e) => setPostData({ ...postData, message: e.target.value })} />
-            <TextField name="tags" variant="outlined" label="Tags (coma separated)" fullWidth value={postData.tags} required onChange={(e) => setPostData({ ...postData, tags: e.target.value.split(',') })} />
+            <TextField name="title" variant="outlined" label="Title"
+                InputLabelProps={{
+                    classes: {
+                        root: classes.cssLabel,
+                        focused: classes.cssFocused,
+                    },
+                }}
+                InputProps={{
+                    classes: {
+                        root: classes.root, focused: classes.focused, notchedOutline: classes.notchedOutline
+                    }
+                }}
+                fullWidth value={postData.title} required onChange={(e) => setPostData({ ...postData, title: e.target.value })} />
+            <TextField name="message" variant="outlined" label="Message"
+                InputLabelProps={{
+                    classes: {
+                        root: classes.cssLabel,
+                        focused: classes.cssFocused,
+                    },
+                }}
+                InputProps={{
+                    classes: {
+                        root: classes.root, focused: classes.focused, notchedOutline: classes.notchedOutline
+                    }
+                }}
+                fullWidth value={postData.message} required onChange={(e) => setPostData({ ...postData, message: e.target.value })} />
+            <TextField name="tags" variant="outlined" label="Tags (coma separated)"
+                InputLabelProps={{
+                    classes: {
+                        root: classes.cssLabel,
+                        focused: classes.cssFocused,
+                    },
+                }}
+                InputProps={{
+                    classes: {
+                        root: classes.root, focused: classes.focused, notchedOutline: classes.notchedOutline
+                    }
+                }} fullWidth value={postData.tags} required onChange={(e) => setPostData({ ...postData, tags: e.target.value.split(',') })} />
 
-            <Typography style={{ "font-weight": "bold"}}>Post Type:</Typography>
+            <Typography  style={{ "font-weight": "bold", "fontSize":"large" }}>Post Type:</Typography>
 
-            <div style={{ width: "100%", alignItems: "center"}}>
+            <div style={{ width: "100%", alignItems: "center" }}>
                 <div>
                     <input type="radio" name="choice-post" value="photo" onChange={(e) => setValue(e.target.value)} required />
                     <label>Photo Post</label>
