@@ -172,7 +172,6 @@ const EditServices = (props) => {
                                         <td width="23%" className="servicesContainer">
                                             <h4 className="serviceText" style={{ textAlign: "centre" }}>{service.title}</h4>
                                             <p className="serviceText" style={{ textAlign: "centre", fontSize: "18px" }}>{service.description}</p>
-                                            {/* <p className="subText" style={{ textAlign: "left" }}>Service ID: {service._id}</p> */}
                                         </td>
                                         <td width="70%" className="videoContainer">
                                             <ReactPlayer
