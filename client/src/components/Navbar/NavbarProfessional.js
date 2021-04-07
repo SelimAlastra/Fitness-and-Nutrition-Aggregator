@@ -100,7 +100,7 @@ const useStyles = makeStyles((theme) => ({
 /**
  * @return Navbar element
  */
-export default function NavbarProfessional({updatedPosts, setUpdatedPosts}) {
+export default function NavbarProfessional({updatedPosts, setUpdatedPosts, currentId, setCurrentId}) {
 
   const classes = useStyles();
   const history = useHistory();
@@ -114,7 +114,7 @@ export default function NavbarProfessional({updatedPosts, setUpdatedPosts}) {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  const [currentId, setCurrentId] = useState(null);
+  //const [currentId, setCurrentId] = useState(null);
 
   const handleProfileMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
