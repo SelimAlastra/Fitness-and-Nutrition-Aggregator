@@ -33,7 +33,6 @@ function PopUpNewBuckets() {
 
     const handleSubmit = (e) => {
             e.preventDefault();
-            console.log(postData);
             const newErrors = findFormErrors()
             if ( Object.keys(newErrors).length > 0 ) {
                     setErrors(newErrors)
