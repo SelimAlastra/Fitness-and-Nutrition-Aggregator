@@ -146,8 +146,6 @@ const Post = ({ post, setCurrentId }) => {
         </Modal.Body>
       </Modal>
       </>
-
-
       )
     }
     else
