@@ -36,41 +36,41 @@ const questionsClient = [
         questionText: "Which best describes your current activity level?",
         questionId: 6,
         answerOptions: [
-            { answerText: "minimum physical activity", selected:false, tags:["beginner"], requireInput: false },
-            { answerText: "generally active, but not fitness related", selected:false, tags:["beginner"], requireInput: false },
-            { answerText: "exercise 2-4 times/week", selected:false, tags:["intermediate"], requireInput: false },
-            { answerText: "sweat it out on a daily basis", selected:false, tags:["advanced"], requireInput: false },
+            { answerText: "Minimum physical activity", selected:false, tags:["beginner"], requireInput: false },
+            { answerText: "Generally active, but not fitness related", selected:false, tags:["beginner"], requireInput: false },
+            { answerText: "Exercise 2-4 times/week", selected:false, tags:["intermediate"], requireInput: false },
+            { answerText: "Sweat it out on a daily basis", selected:false, tags:["advanced"], requireInput: false },
         ],
     },{
         questionText: "Which best describes your current diet?",
         questionId: 7,
         answerOptions: [
-            { answerText: "can't seem to find my appetite", selected:false, tags:["anorexic", "nutrition"], requireInput: false },
+            { answerText: "Can't seem to find my appetite", selected:false, tags:["anorexic", "nutrition"], requireInput: false },
             { answerText: "I snack a little too much", selected:false, tags:["dietplan", "nutrition", "fatloss"], requireInput: false },
-            { answerText: "avoid highly processed snacks, but enjoy cheat days", selected:false, tags:["healthylifestyle"], requireInput: false },
-            { answerText: "healthy and balanced diet", selected:false, tags:["healthylifestyle"], requireInput: false },
+            { answerText: "Avoid highly processed snacks, but enjoy cheat days", selected:false, tags:["healthylifestyle"], requireInput: false },
+            { answerText: "Healthy and balanced diet", selected:false, tags:["healthylifestyle"], requireInput: false },
             { answerText: "Other:", selected: false, tags:[""], requireInput: true, placeholder: "e.g.: Vegetarian", alert: ["Answer using letters only."], input: [] }
         ],
     },{
         questionText: "What's your primary fitness goal? (multiple selections allowed)",
         questionId: 8,
         answerOptions: [
-            { answerText: "lose fat", selected:false, tags:["losefat", "weightloss", "fatlosstips", "diet", "weightlossjourney", "sweat"], requireInput: false },
-            { answerText: "get fit/look great at the beach", selected:false, tags:["getfit", "cardio", "fitnessmodel", "crossfit"], requireInput: false },
-            { answerText: "recover from an injury", selected:false, tags:[""], requireInput: false },
-            { answerText: "build endurance/run a marathon", selected:false, tags:[""], requireInput: false },
-            { answerText: "fitness as a social activity", selected:false, tags:[""], requireInput: false },
-            { answerText: "train discipline and focus", selected:false, tags:[""], requireInput: false },
-            { answerText: "build strength and ability", selected:false, tags:["calisthenics", "bodyweight", "bodybuilding", "crossfit", "strength", "athlete", "core"], requireInput: false },
-            { answerText: "build mad muscle mass", selected:false, tags:["beastmode", "bodybuilding", "strength", "powerlifting", "weightlifting", "strongman"], requireInput: false }
+            { answerText: "Lose fat", selected:false, tags:["losefat", "weightloss", "fatlosstips", "diet", "weightlossjourney", "sweat"], requireInput: false },
+            { answerText: "Get fit/Look great at the beach", selected:false, tags:["getfit", "cardio", "fitnessmodel", "crossfit"], requireInput: false },
+            { answerText: "Recover from an injury", selected:false, tags:[""], requireInput: false },
+            { answerText: "Build endurance/run a marathon", selected:false, tags:[""], requireInput: false },
+            { answerText: "Fitness as a social activity", selected:false, tags:[""], requireInput: false },
+            { answerText: "Train discipline and focus", selected:false, tags:[""], requireInput: false },
+            { answerText: "Build strength and ability", selected:false, tags:["calisthenics", "bodyweight", "bodybuilding", "crossfit", "strength", "athlete", "core"], requireInput: false },
+            { answerText: "Build mad muscle mass", selected:false, tags:["beastmode", "bodybuilding", "strength", "powerlifting", "weightlifting", "strongman"], requireInput: false }
         ],
     },{ 
         questionText: "Where is your favorite place to exercise?",
         questionId: 9,
         answerOptions: [
-            { answerText: "gym", selected:false, tags:[""], requireInput: false },
-            { answerText: "outdoors", selected:false, tags:["outdoor", "outdoortraining", "outdoorworkout", "nature"], requireInput: false },
-            { answerText: "home", selected:false, tags:["home", "homeworkout", "homegym", "quarantine", "nogymnoproblem"], requireInput: false },
+            { answerText: "Gym", selected:false, tags:[""], requireInput: false },
+            { answerText: "Outdoors", selected:false, tags:["outdoor", "outdoortraining", "outdoorworkout", "nature"], requireInput: false },
+            { answerText: "Home", selected:false, tags:["home", "homeworkout", "homegym", "quarantine", "nogymnoproblem"], requireInput: false },
         ],
     },{ 
         questionText: "Lastly, which of the following are you interested in?",

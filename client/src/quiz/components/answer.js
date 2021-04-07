@@ -20,7 +20,6 @@ const Answer = (props) => {
          */
         function checkZero() {
             if("0".search(query[0]) > -1){
-                console.log(query);
                 alert("Value can't start with '0'.");
                 return false;
             } else {
@@ -102,12 +101,10 @@ const Answer = (props) => {
             if(answerOption){
                 if(answerOption.requireInput === true){
                     addIndividualInput(answerOption, input);
-                    console.log(answerOption);
                 }
             }
         } else {
             document.getElementById("inputBox").value=input;
-            console.log(answerOption);
         } 
     };
 

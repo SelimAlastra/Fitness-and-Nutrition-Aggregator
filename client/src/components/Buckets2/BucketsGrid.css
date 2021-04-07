@@ -17,6 +17,7 @@
 }
 
 .bucketGrid{
+    margin-left: 3%;
     min-width: 500px;
     max-width: 400px;
 }

@@ -4,14 +4,16 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getPostsFromArray } from "../../actions/posts";
 import { useParams } from "react-router-dom";
 import Post from "../Posts/Post/Post";
-import { updateBucket, getBuckets } from '../../actions/buckets';
+import { updateBucket, getBuckets, getBucket } from '../../actions/buckets';
 import NavbarUser from '../Navbar/NavbarUser';
 import { getProfessional } from '../../api';
 import { getProfessionalUsers } from '../../actions/professionals';
 
 const BucketView = (params) => {
     const bucket = params.location.state;
+
     console.log(params.location.state);
+
     const loading = true;
 
     const posts = useSelector((state) => state.posts);
@@ -19,9 +21,10 @@ const BucketView = (params) => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(getBuckets());
+        dispatch(getBuckets())
         dispatch(getProfessionalUsers());
     }, []);
+
 
     useEffect(() => {
         if (bucket) {
