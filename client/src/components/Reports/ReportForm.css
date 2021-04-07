@@ -1,0 +1,45 @@
+.reportCont{
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
+
+
+
+.reportFormBtn{
+    background-color: white;
+    height: 40px;
+    border-color: #9cbe95;
+    color: black;
+    width: fit-content;
+}
+
+.reportFormBtn:hover{
+    background-color: #9bda8e;
+    border-color:#9cbe95 !important;
+    box-shadow: none;
+    color: black;
+    width: fit-content;
+}
+
+.reportFormBtn:active{
+    background-color: #9bda8e !important;
+    box-shadow: none !important;
+    border-color:#9bda8e !important;
+    color: black !important;
+    width: fit-content;
+    align-self: center;
+}
+
+.reportFormBtn:focus{
+    background-color: #9bda8e !important;
+    box-shadow: none !important;
+    border-color:#9bda8e !important;
+    color: black !important;
+    width: fit-content;
+}
+
+
+.reportForm1{
+    z-index: 1000;
+}
