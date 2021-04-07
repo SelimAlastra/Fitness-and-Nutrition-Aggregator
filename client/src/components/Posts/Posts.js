@@ -29,7 +29,7 @@ const Posts = ({setCurrentId,updatedPosts,setUpdatedPosts}) => {
     const dispatch = useDispatch();
   
     return (
-                <div class="row" style={{marginTop: "2%", marginLeft:"-3%"}}>
+                <div class="row" style={{marginLeft:"-3%"}}>
                     {posts.map((post) => (
                         <Col key={post._id} item xs={12} md={6} lg={4}>
                                 <Post post={post} setCurrentId={setCurrentId} />

@@ -60,16 +60,16 @@ function PopUpNewBuckets() {
                     < Modal.Title> Create a new bucket </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <Form className="createForm" autoComplete="off" onSubmit={handleSubmit}>
+                    <Form style={{marginTop: '5%'}} className="createForm" autoComplete="off" onSubmit={handleSubmit}>
                         <Form.Label htmlFor="title">Bucket Name (maximum 20 characters)</Form.Label>
                         <Form.Control className="bucketTitle" id="title" name="title" variant="outlined" isInvalid={ !!errors.title } onChange={(e) => setPostData({ ...postData, title: e.target.value })} />
                         <Form.Control.Feedback type='invalid'>
                             { errors.title }
                         </Form.Control.Feedback>
                         <p/>
-                        <Form.Label style={{marginBottom: "-10%"}} htmlFor="description">Description (optional)</Form.Label>
+                        <Form.Label htmlFor="description">Description (optional)</Form.Label>
                         <textarea className="editText" rows={3} id="description" name="description" onChange={(e) => setPostData({ ...postData, description: e.target.value })}/>
-                        <Container className ='center'>
+                        <Container className ='centerBundleButton'>
                         <Button className="bucketSave" variant="primary" size="large" type="submit">Save</Button>
                         </Container>
                     </Form>

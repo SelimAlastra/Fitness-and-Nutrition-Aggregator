@@ -9,7 +9,8 @@
     margin-bottom: 1%;
     border-radius: 10px;
     padding: 1%;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 0px 9px 0px rgba(155, 218, 142, 1);
+    border: 2px solid #9cbe95;
     margin: auto;
     text-align: center;
     font-family: arial;
@@ -20,22 +21,22 @@
 
 .editLink {
     text-align: right;
-    padding-right: 10px;
     text-decoration: underline;
     cursor: pointer;
     color: black;
-    font-size: small;
+    font-size: medium;
 }
 .profileInfoDivT{
     max-width: 600px;
 }
 
 .textContainer {
-    color:#9bda8e !important;
+    color:black !important;
     border-radius: 10px;
     padding: 1%;
-    box-shadow: 0 4px 8px 0 #9bda8e;
+    border: 2px solid #9cbe95;
     font-size: medium;
+    box-shadow: none !important;
 }
 
 .seperator {
@@ -45,6 +46,7 @@
 }
 
 .profileImage {
+    margin-top: -20px;
     display: flex;
     justify-content: center;
 }
@@ -83,8 +85,8 @@
 }
 
 .purchaseButton:hover {
-    background-color: #9bda8e !important;
-    color: black !important;
+    background-color: rgb(27, 29, 27)!important;
+    color: white !important;
     
 }
 
@@ -106,21 +108,25 @@
 }
 
 .personalInfo{
+    background-color: white;
     margin-left: 11.75%;
     margin-right: 10%;
     margin-top: 4%;
     border-radius: 25px !important;
+    border: 2px solid #9cbe95;
     box-shadow: 0px 0px 9px 0px rgba(155, 218, 142, 1) !important;
     height: 200px;
     margin-bottom: 1%;
 }
 
 .goals{
+    background-color: white;
     height: 200px;
     overflow-y: scroll;
     margin-top: 4%;
     margin-right: 10%;
     border-radius: 25px !important;
+    border: 2px solid #9cbe95;
     box-shadow: 0px 0px 9px 0px rgba(155, 218, 142, 1) !important;
     margin-bottom: 1%;
 }
@@ -131,10 +137,12 @@
     border-radius: 20px;
     padding: 1%;
     margin: 1%;
-    box-shadow: 0px 0px 9px 0px rgba(155, 218, 142, 1);
+    border: 2px solid black;    
     display: inline-block;
     align-items: center;
     height: 200px;
+    background-color: #cbf0c4;
+
 }
 
 
@@ -143,3 +151,4 @@
     margin-left: 8%;
     margin-bottom: 2%;
 }
+

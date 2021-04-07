@@ -67,7 +67,7 @@ const useStyles = makeStyles((theme) => ({
   },
   iconButton: {
     '&:hover': {
-      color: "#8CC152",
+      color: "#9bda8e",
     },
   },
   inputRoot: {
@@ -205,11 +205,19 @@ export default function NavbarProfessional({updatedPosts, setUpdatedPosts, curre
       onClose={handleMobileMenuClose}
     >
       <MenuItem>
-        <IconButton onClick={() => window.location.href = `/myPosts/${JSON.parse(localStorage.getItem('user'))._id}`} > 
+        <IconButton component={Link} onClick={() => window.location.href = `/myPosts/${JSON.parse(localStorage.getItem('user'))._id}`} > 
           <div>
             <HomeIcon/> 
             <text style={{fontSize:"1.2rem"}}>Home</text>
           </div>
+        </IconButton>
+      </MenuItem>
+      <MenuItem>
+        <IconButton component={Link} onClick={handleShow}>
+            <div>
+              <AddCircleIcon/>
+              <text style={{fontSize:"1.2rem"}}>Add Post</text>
+            </div>
         </IconButton>
       </MenuItem>
       <MenuItem>
@@ -245,7 +253,7 @@ export default function NavbarProfessional({updatedPosts, setUpdatedPosts, curre
       </IconButton>
       </MenuItem>
       <MenuItem onClick={handleProfileMenuOpen}>
-      <IconButton onClick={() => { signOut(() => { history.push('/'); });}}> 
+      <IconButton component={Link} onClick={() => { signOut(() => { history.push('/'); });}}> 
           <div>
             <ExitToAppIcon/> 
             <text style={{fontSize:"1.2rem"}}> Log out</text>
@@ -317,11 +325,12 @@ export default function NavbarProfessional({updatedPosts, setUpdatedPosts, curre
       </AppBar>
       {renderMobileMenu}
       {renderMenu}
+
       <Modal className = "modalNavbar" show={show} onHide={handleClose}>
         <Modal.Header className="">
-          <text className="modalHeaderText">CREATE POST</text>
-          <IconButton style={{float: "right"}} className="closeModal" onClick={handleClose}>
-            <CloseIcon />
+          <text className="modalHeaderText">Create Post</text>
+          <IconButton style={{"marginTop":"-5%", "marginLeft":"8%"}} className="closeModal" onClick={handleClose}>
+            <CloseIcon/>
           </IconButton>
         </Modal.Header>
         <Modal.Body><Form currentId={currentId} setCurrentId={setCurrentId} /></Modal.Body>
