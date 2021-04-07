@@ -22,6 +22,9 @@
   font-family: "Paytone One", sans-serif;
 }
 
+.modalNavbar .modal-content{
+  border-radius: 10px;
+}
 
 .closeModal {
   position: absolute;
@@ -39,8 +42,9 @@
 .modalHeaderText {
   position: absolute;
   left: 145px;
-  font-family: "Paytone One", sans-serif;
+  font-weight: bold;
   font-size: 1.8rem;
+  margin-left : 12px;
 }
 
 .modalFooter {
