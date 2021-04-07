@@ -279,7 +279,7 @@ export default function NavbarProfessional({updatedPosts, setUpdatedPosts, curre
               color="inherit">
               <HomeIcon className={classes.iconButton} />
             </IconButton>
-            <IconButton onClick={handleShow} style={{width: '50px'}} data-testid="addBundlesButton" color="inherit">
+            <IconButton onClick={handleShow} style={{width: '50px'}} data-testid="addPostButton" color="inherit">
                 <AddCircleIcon className={classes.iconButton}/>
             </IconButton>
             <IconButton style={{width: '50px'}}
