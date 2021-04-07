@@ -56,9 +56,6 @@ const HomePage = (props) => {
                     <Goals userID={user._id}/>
                 </div>
                 <hr className ="homePageSep"/>
-                <div className = "homePageAlertDiv">
-                    <h2 className='homePageAlert '> What are smart fitness goals? </h2>
-                </div>
                 <div>
                     <Image className ="GoalsImage" src={smartgoals} fluid />
                 </div>
