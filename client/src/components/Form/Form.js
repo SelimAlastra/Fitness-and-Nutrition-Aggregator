@@ -32,6 +32,7 @@ const Form = ({ currentId, setCurrentId }) => {
 
         if (currentId) {
             dispatch(updatePost(currentId, postData));
+            window.location.reload();
         }
         else {
             dispatch(createPost(postData));
@@ -94,7 +95,7 @@ const Form = ({ currentId, setCurrentId }) => {
                     }
                 }} fullWidth value={postData.tags} required onChange={(e) => setPostData({ ...postData, tags: e.target.value.split(',') })} />
 
-            <Typography  style={{ "font-weight": "bold", "fontSize":"large" }}>Post Type:</Typography>
+            <Typography style={{ "font-weight": "bold", "fontSize": "large" }}>Post Type:</Typography>
 
             <div style={{ width: "100%", alignItems: "center" }}>
                 <div>
@@ -110,7 +111,18 @@ const Form = ({ currentId, setCurrentId }) => {
                     <label>Video Post</label>
                     <div className="reveal-if-active" >
                         <label>Upload Video</label>
-                        <TextField name="url" variant="outlined" label="URL" fullWidth value={postData.url} onChange={(e) => setPostData({ ...postData, url: e.target.value })} />
+                        <TextField
+                            InputLabelProps={{
+                                classes: {
+                                    root: classes.cssLabel,
+                                    focused: classes.cssFocused,
+                                },
+                            }}
+                            InputProps={{
+                                classes: {
+                                    root: classes.root, focused: classes.focused, notchedOutline: classes.notchedOutline
+                                }
+                            }} name="url" variant="outlined" label="URL" fullWidth value={postData.url} onChange={(e) => setPostData({ ...postData, url: e.target.value })} />
                     </div>
                 </div>
                 <div>
@@ -118,7 +130,18 @@ const Form = ({ currentId, setCurrentId }) => {
                     <label>Audio Post</label>
                     <div className="reveal-if-active" >
                         <label>Upload Audio</label>
-                        <TextField name="src" variant="outlined" label="URL/File" fullWidth value={postData.audioFile} onChange={(e) => setPostData({ ...postData, audioFile: e.target.value })} />
+                        <TextField
+                            InputLabelProps={{
+                                classes: {
+                                    root: classes.cssLabel,
+                                    focused: classes.cssFocused,
+                                },
+                            }}
+                            InputProps={{
+                                classes: {
+                                    root: classes.root, focused: classes.focused, notchedOutline: classes.notchedOutline
+                                }
+                            }} name="src" variant="outlined" label="URL/File" fullWidth value={postData.audioFile} onChange={(e) => setPostData({ ...postData, audioFile: e.target.value })} />
                         {/* <FileBase type="file" multiple={false} onDone={({ base64 }) => setPostData({ ...postData, audioFile: base64 })} /> */}
                     </div>
                 </div>
@@ -127,7 +150,18 @@ const Form = ({ currentId, setCurrentId }) => {
                     <label>Embedded Link Post</label>
                     <div className="reveal-if-active" >
                         <label>Upload Link</label>
-                        <TextField name="src" variant="outlined" label="URL" fullWidth value={postData.embeddedLink} onChange={(e) => setPostData({ ...postData, embeddedLink: e.target.value })} />
+                        <TextField
+                            InputLabelProps={{
+                                classes: {
+                                    root: classes.cssLabel,
+                                    focused: classes.cssFocused,
+                                },
+                            }}
+                            InputProps={{
+                                classes: {
+                                    root: classes.root, focused: classes.focused, notchedOutline: classes.notchedOutline
+                                }
+                            }} name="src" variant="outlined" label="URL" fullWidth value={postData.embeddedLink} onChange={(e) => setPostData({ ...postData, embeddedLink: e.target.value })} />
                     </div>
                 </div>
                 <div>
@@ -135,7 +169,19 @@ const Form = ({ currentId, setCurrentId }) => {
                     <label>Facebook Post</label>
                     <div className="reveal-if-active" >
                         <label>Upload Link</label>
-                        <TextField name="src" variant="outlined" label="URL" fullWidth value={postData.facebookLink} onChange={(e) => setPostData({ ...postData, facebookLink: e.target.value })} />
+                        <TextField
+                            InputLabelProps={{
+                                classes: {
+                                    root: classes.cssLabel,
+                                    focused: classes.cssFocused,
+                                },
+                            }}
+                            InputProps={{
+                                classes: {
+                                    root: classes.root, focused: classes.focused, notchedOutline: classes.notchedOutline
+                                }
+                            }}
+                            name="src" variant="outlined" label="URL" fullWidth value={postData.facebookLink} onChange={(e) => setPostData({ ...postData, facebookLink: e.target.value })} />
                     </div>
                 </div>
             </div>

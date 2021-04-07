@@ -97,9 +97,19 @@ professionalUserSchema.post("findOneAndDelete", (document, next) => {
   next();
 });
 
+professionalUserSchema.post("findOneAndUpdate", (document, next) => {
+  const id = document._id;
+  ProfessionalUser.findById({_id : id}).then((user) => {
+    PostMessage.find({ userFrom: id }).then(objs => {
+        Promise.all(
+            objs.map(obj => PostMessage.findOneAndUpdate({_id : obj._id}, {creator: user.username}))
+        );
+    });
+  })
+  next();
+});
+
 
 const ProfessionalUser = mongoose.model('ProfessionalUser', professionalUserSchema);
 
 export default ProfessionalUser;
-
-
