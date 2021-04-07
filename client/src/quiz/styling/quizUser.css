@@ -3,11 +3,12 @@
 @import url("https://fonts.googleapis.com/css2?family=Anton&display=swap");
 
 .quizz {
-  font-family: "Paytone One", sans-serif;
+
+  /* font-family: Arial, Helvetica, sans-serif; */
+  /* font-weight: bold!important; */
 }
 
 .bgImage {
-  background-image: url(luis-vidal.jpg);
   background-attachment: fixed;
   background-position: center;
   background-repeat: no-repeat;
@@ -38,12 +39,26 @@
 }
 
 .quizz .carousel{
-  width: 100%;
-  height: auto;
+  min-width: 1300px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -99;
+}
+
+.quizz .carousel.item{
 }
 
 .quizz .carousel-inner{
   height: 100vh;
+}
+
+.quizz .carousel-indicators li { visibility: hidden; }
+
+.fixedimg {
+  /* position: absolute;
+  top: 0;
+  left: 0;  */
 }
 
 /* BUTTONS */
@@ -52,14 +67,16 @@
   width: 100%;
   font-size: 16px;
   color: #ffffff;
-  background-color: rgb(9, 30, 41); 
+  background-color: #1b1d1b; 
   border-radius: 15px;
   display: flex;
   padding: 5px;
   justify-content: flex-start;
   align-items: center;
-  border: 5px solid #234668;
+  border: 3px solid #9cbe95;
   cursor: pointer;
+  margin-bottom: 8px;
+  /* margin-right: ; */
 }
 
 .dobPicker button {
@@ -103,7 +120,7 @@
 
 .quizz .toggleButton {
   /* background-color: #5e678a; */
-  color: #00e946;
+  color: #8cbe82;
 }
 
 .correct {
@@ -132,15 +149,14 @@
   border-radius: 7.5px;
   font-size: 1rem;
   height: 2.4rem;
-  color: rgb(36, 45, 74);
+  color: #9cbe95;
   width: 100%;
   position: relative;
   transition: 0.3s all;
-
   display: flex;
   padding: 5px;
   align-items: center;
-  border: 5px solid #234668;
+  border: 3px solid #9cbe95;
   margin-top: 0.4rem;
 }
 
@@ -177,8 +193,8 @@
   margin-left: 0.2rem;
 }
 
-.question-count span {
-  font-size: 28px;
+.question-count {
+  font-size: 30px;
 }
 
 /* ANSWERS */
