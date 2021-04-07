@@ -92,11 +92,13 @@ const Goals = ({userID}) => {
             <Button className = "goalsButton" variant="outline-success" onClick={() => setModalIsOpen(true)}> Add Goal </Button>
             <Button className = "goalsButton" variant="outline-success" onClick={() => window.location.href = `/homePage/edit/${userID}`}> Edit Goals </Button>
             <Modal className ='addGoalModal' isOpen={modalIsOpen} onRequestClose={() => setModalIsOpen(false)}>
+            <div className ="closeDiv">
+            <button className = "closeButton" onClick={() => setModalIsOpen(false)}>x</button>
+            </div>
             <div className ='center'>
                 <h2 className="goalsPageText">Add goal</h2>
                 <AddGoal userID = {userID}/>
                 <Container className = 'center'>
-                <Button className = "goalActionButton2" variant="outline-danger" onClick={() => setModalIsOpen(false)}> Close </Button>
                 </Container>
             </div>
             </Modal>

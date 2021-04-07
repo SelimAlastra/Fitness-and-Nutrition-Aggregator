@@ -44,7 +44,7 @@
     top:50%;
     left:50%;
     min-width: 500px;
-    min-height: 550px;
+    min-height: 500px;
     width:500px;  /* adjust as per your needs */
     height:500px;   /* adjust as per your needs */
     margin-left:-250px;   /* negative half of width above */
@@ -71,4 +71,47 @@
     background-color: #8CC152;
     border-width: 1px;
     color : white;
+  }
+
+  .closeButton{
+    max-width: 40px;
+    min-width: 40px;
+    background-color: white;
+    color: grey;
+    border-color: transparent;
+    font-size: 40px;
+    float: right;
+  }
+
+  .closeDiv{
+      min-height: 41px;
+      margin: 5px;
+      margin-right: 10px;
+  }
+
+  .closeBtn {
+    position: absolute;
+    right: 32px;
+    top: 32px;
+    width: 32px;
+    height: 32px;
+    opacity: 0.3;
+  }
+  .closeBtn:hover {
+    opacity: 1;
+    background-color: white;
+  }
+  .closeBtn:before, .closeBtn:after {
+    position: absolute;
+    left: 15px;
+    content: ' ';
+    height: 33px;
+    width: 2px;
+    background-color: #333;
+  }
+  .closeBtn:before {
+    transform: rotate(45deg);
+  }
+  .closeBtn:after {
+    transform: rotate(-45deg);
   }
