@@ -51,45 +51,15 @@ return (
   <>
   <NavbarProfessional updatedPosts={updatedPosts} setUpdatedPosts={setUpdatedPosts}/>
   <Container maxWidth="lg">
-      {/* <AppBar position="static" className={classes.appBar} color="inherit">
-        <Typography className={classes.heading} variant="h2" align="center">Dashboard</Typography>
-        <img className={classes.image} src={memories} alt="memories" height="60" />
-       <Drawer
-        className={classes.drawer}
-        variant="permanent"
-        classes={{
-          paper: classes.drawerPaper
-        }}
-      >
-        <Toolbar />
-        <div className={classes.drawerContainer}>
-          <List>
-            {["", "", ""].map((text, index) => (
-              <ListItem button key={text}>
-                <ListItemIcon>
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                </ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItem>
-            ))}
-          </List>
-        </div>
-      </Drawer> 
-      <ProfessionalNavbar/> 
-      </AppBar> */}
     <Grow in>
         <Container>
           <Grid className={classes.mainContainer} container justify="space-between" alignItems="stretch" spacing={3}>
             <Grid item xs={12} sm={12}>
               <Posts setCurrentId={setCurrentId} updatedPosts={updatedPosts} setUpdatedPosts={setUpdatedPosts}/>
             </Grid>
-            <Grid item xs={12} sm={4}>
-              <Form currentId={currentId} setCurrentId={setCurrentId} />
-            </Grid> 
           </Grid>
         </Container>
       </Grow>
-
     </Container>
     </>
   );

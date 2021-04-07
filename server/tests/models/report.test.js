@@ -1,5 +1,6 @@
 import { expect } from 'chai';
 import Report from '../../models/reports.js';
+import mongoose  from 'mongoose';
 
 describe('Testing Report model', function() {
 	let newReport;
@@ -9,7 +10,7 @@ describe('Testing Report model', function() {
 			reporterUsername: "rep123",
 			reportedUsername: "usr232",
 			reason: "Fake news",
-			postId: "342",
+			postId: mongoose.mongo.ObjectId()
 		};
 		newReport = new Report(reportBody);
 	});
@@ -18,7 +19,7 @@ describe('Testing Report model', function() {
 		expect(newReport.reporterUsername).to.equal("rep123");
 		expect(newReport.reportedUsername).to.equal("usr232");
 		expect(newReport.reason).to.equal("Fake news");
-		expect(newReport.postId).to.equal("342");
+		expect(newReport).to.have.property('postId');
 		newReport.validate(function(error) {
 			expect(error).to.not.exist;
 			done();
