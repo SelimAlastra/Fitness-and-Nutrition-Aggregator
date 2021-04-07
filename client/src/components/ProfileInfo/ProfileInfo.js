@@ -6,7 +6,7 @@ function ProfileInfo({profile}) {
         return (
             <div style={{"box-shadow": "none"}}>
                 <div className="profileImage">
-                    <img src={"https://images.unsplash.com/photo-1588420343618-6141b3784bce?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80"}/>
+                    <img src={"https://images.unsplash.com/photo-1614854262318-831574f15f1f?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=2850&q=80"}/>
                 </div>
                 <div>
                     <h2 className="clientName">{profile.name}
@@ -24,7 +24,7 @@ function ProfileInfo({profile}) {
                     <p className="helpText"></p> 
                    
                 </div>
-                <div data-testid="socialBar">
+                <div data-testid="socialBar" style={{"margin":"10px"}} >
                         { generateInstagramLink(profile.instagramLink) }
                         { generateYoutubeLink(profile.youtubeLink) }
                 </div>
@@ -34,7 +34,7 @@ function ProfileInfo({profile}) {
                 return (
             <div>
                 <div className="profileImage">
-                    <img src={"https://images.unsplash.com/photo-1588420343618-6141b3784bce?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80"}/>
+                    <img src={"https://images.unsplash.com/photo-1614854262318-831574f15f1f?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=2850&q=80"}/>
                 </div>
                 <div className="profileInfoDivT">
                     <h2 className="clientName">{profile.name} <p className="minorText">({profile.username})</p></h2>
@@ -71,7 +71,7 @@ function generateLocationContainer(location) {
         return (
         <div>
             <p className="helpText"></p>
-            <div className="outerContainer"><p className="textContainer">{location}</p></div>
+            <div className="outerContainer"><p className="textContainer">Location: {location}</p></div>
         </div>
         );
     }
@@ -81,8 +81,8 @@ function generateDescriptionContainer(description) {
     if (description !== undefined && description.length > 0) {
         return (
             <div>
-                <p className="helpText">Bio</p>
-                <p className="textContainer">{description}</p>
+                <p className="helpText"></p>
+                <p className="textContainer">Bio: {description}</p>
             </div>
         );  
     }

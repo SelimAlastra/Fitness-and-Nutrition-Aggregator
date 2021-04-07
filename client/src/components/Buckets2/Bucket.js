@@ -22,7 +22,7 @@ const Bucket = ({ bucket }) => {
         <div>
             <div style={{"alignContent" : "center", marginTop : "5%", justifyContent : "center", alignItems : "center"}}>
                 <Container style={{height:"75px", justifyContent: "center"}}>
-                    <Link to={{pathname:`/user/myBuckets/${bucket._id}/${bucket.title}`, state: bucket}}>
+                    <Link to={{pathname:`/user/myBuckets/${bucket._id}/${bucket.title}`}}>
                         <Button className="titleButton">
                             <h5 className="displayedTitle" style={{"fontWeight" : "bold", alignSelf: "center"}}>{bucket.title}</h5>
                         </Button>
@@ -35,6 +35,7 @@ const Bucket = ({ bucket }) => {
                 </Button>
                 <UpdateBucket bucket={bucket}/>
             </div>
+
         </div>
     );
 }

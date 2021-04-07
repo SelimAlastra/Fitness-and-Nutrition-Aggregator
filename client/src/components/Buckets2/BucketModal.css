@@ -3,19 +3,18 @@
     position:absolute;
     top:50%;
     left:50%;
-    min-width: 800px;
+    min-width: 700px;
     min-height: 400px;
     width:500px;  /* adjust as per your needs */
     height:600px;   /* adjust as per your needs */
     margin-left:-400px;   /* negative half of width above */
-    margin-top:-200px;   /* negative half of height above */
+    margin-top:-250px;   /* negative half of height above */
 }
 
 .bucketModal .modal-body {
     overflow: scroll !important;
-    max-height: 300px;
+    max-height: 400px;
     min-width: 400px;
-    background-color: whitesmoke
 }
 .bucketModal .modal-title{
     font-family: Georgia, Times, 'Times New Roman', serif;
@@ -28,10 +27,12 @@
 
 .bucketModal .modal-header {
     background-color: whitesmoke;
+    width: 600px;
 }
 
 .bucketModal .modal-content {
     overflow: hidden;
+    width: 600px;
 }
 
 .createButton, .bucketSave{
@@ -74,26 +75,27 @@
 }
 
 .newBucket{
-
     background-color: transparent;
     position:absolute;
     top:50%;
     left:50%;
-    min-width: 800px;
+    min-width: 700px;
     min-height: 400px;
     width:500px;  /* adjust as per your needs */
     height:600px;   /* adjust as per your needs */
     margin-left:-400px;   /* negative half of width above */
-    margin-top:-200px;   /* negative half of height above */
+    margin-top:-250px;   /* negative half of height above */
 
 }
 
 .newBucket .modal-body{
-    height: 370px;
+    height: 428px;
+    width: 600px;
     background-color: whitesmoke;
 }
-.newBucket .modal-content{
+.newBucket .modal-content{ 
     min-width: 0px !important;
+    width: 605px;
 }
 
 .newBucket .modal-header{
@@ -113,12 +115,16 @@
     border: 1px solid #9bda8e !important;
 }
 
+.editBucket{
+    margin-top: 13%;
+}
+
 .editBucket .modal-body{
     height: 370px;
     background-color: whitesmoke;
 }
 .editBucket .modal-content{
-    width: 500px !important;
+    width: 600px !important;
 }
 
 .editBucket .modal-header{

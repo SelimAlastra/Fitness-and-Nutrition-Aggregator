@@ -67,7 +67,7 @@ const useStyles = makeStyles((theme) => ({
   },
   iconButton: {
     '&:hover': {
-      color: "#8CC152",
+      color: "#9bda8e",
     },
   },
   inputRoot: {
@@ -100,7 +100,7 @@ const useStyles = makeStyles((theme) => ({
 /**
  * @return Navbar element
  */
-export default function NavbarProfessional({updatedPosts, setUpdatedPosts}) {
+export default function NavbarProfessional({updatedPosts, setUpdatedPosts, currentId, setCurrentId}) {
 
   const classes = useStyles();
   const history = useHistory();
@@ -114,7 +114,7 @@ export default function NavbarProfessional({updatedPosts, setUpdatedPosts}) {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  const [currentId, setCurrentId] = useState(null);
+  //const [currentId, setCurrentId] = useState(null);
 
   const handleProfileMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
@@ -175,7 +175,7 @@ export default function NavbarProfessional({updatedPosts, setUpdatedPosts}) {
         <IconButton component={Link} to={`/professional/contactUs/${JSON.parse(localStorage.getItem('user'))._id}`}> 
           <div>
             <LiveHelpIcon/> 
-            <text style={{fontSize:"1.2rem"}}> Contact Us</text>
+            <text style={{fontSize:"1.2rem"}}> Contact</text>
           </div>
         </IconButton>
       </MenuItem>
@@ -216,7 +216,7 @@ export default function NavbarProfessional({updatedPosts, setUpdatedPosts}) {
         <IconButton component={Link} to={`/professional/services/edit/${JSON.parse(localStorage.getItem('user'))._id}`}> 
           <div>
             <CollectionsBookmarkIcon/> 
-            <text style={{fontSize:"1.2rem"}}>Bundles</text>
+            <text style={{fontSize:"1.2rem"}}> Bundles</text>
           </div>
         </IconButton>
       </MenuItem>
@@ -224,7 +224,7 @@ export default function NavbarProfessional({updatedPosts, setUpdatedPosts}) {
         <IconButton component={Link} to={`/professional/profile/${JSON.parse(localStorage.getItem('user'))._id}`} > 
           <div>
             <AccountBoxIcon/> 
-            <text style={{fontSize:"1.2rem"}}>Profile</text>
+            <text style={{fontSize:"1.2rem"}}> Profile</text>
           </div>
         </IconButton>
       </MenuItem>
@@ -232,21 +232,23 @@ export default function NavbarProfessional({updatedPosts, setUpdatedPosts}) {
       <IconButton component={Link} to={`/professional/edit/${JSON.parse(localStorage.getItem('user'))._id}`}> 
           <div>
             <SettingsIcon/> 
-            <text style={{fontSize:"1.2rem"}}>Settings</text>
+            <text style={{fontSize:"1.2rem"}}> Settings</text>
           </div>
         </IconButton>
-        <IconButton component={Link} to={`/professional/contactUs/${JSON.parse(localStorage.getItem('user'))._id}`}> 
+      </MenuItem>
+      <MenuItem>
+      <IconButton component={Link} to={`/professional/contactUs/${JSON.parse(localStorage.getItem('user'))._id}`}> 
           <div>
             <LiveHelpIcon/> 
-            <text style={{fontSize:"1.2rem"}}> Contact Us</text>
+            <text style={{fontSize:"1.2rem"}}> Contact</text>
           </div>
-        </IconButton>
+      </IconButton>
       </MenuItem>
       <MenuItem onClick={handleProfileMenuOpen}>
       <IconButton onClick={() => { signOut(() => { history.push('/'); });}}> 
           <div>
             <ExitToAppIcon/> 
-            <text style={{fontSize:"1.2rem"}}>Log out</text>
+            <text style={{fontSize:"1.2rem"}}> Log out</text>
           </div>
         </IconButton>
       </MenuItem>
@@ -317,7 +319,7 @@ export default function NavbarProfessional({updatedPosts, setUpdatedPosts}) {
       {renderMenu}
       <Modal className = "modalNavbar" show={show} onHide={handleClose}>
         <Modal.Header className="">
-          <text className="modalHeaderText">CREATE POST</text>
+          <text className="modalHeaderText">Create Post</text>
           <IconButton style={{float: "right"}} className="closeModal" onClick={handleClose}>
             <CloseIcon />
           </IconButton>

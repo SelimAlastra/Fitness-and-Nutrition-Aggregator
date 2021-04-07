@@ -24,3 +24,22 @@
     overflow: visible;
   }
 
+  .postFormSubmit{
+    margin:10px;
+    min-height: 50px;
+    min-width: 30px;
+    background-color: #9bda8e !important;
+    color: black !important;
+    border-radius: 15px !important;
+  }
+
+
+  .postFormClear{
+    margin:10px;
+    min-height: 50px;
+    min-width: 30px;
+    background-color: black !important;
+    border-radius: 15px !important;
+  }
+
+

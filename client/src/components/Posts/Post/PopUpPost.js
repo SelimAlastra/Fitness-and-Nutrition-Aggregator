@@ -33,22 +33,24 @@ const PopUpPost = (post) => {
                     onRequestClose={closeModal}
                     className="postModal"
                 >
-                    <div className="closeButton">
+                    <div style={{marginTop: "-1%", marginLeft:"-10%"}} className="closeButton">
                         <CloseIcon
                             onClick={closeModal}
                         >
                         </CloseIcon>
                     </div>
-                            <h4>{post.post.title}</h4>
-                            <Link onClick={() => window.location.href = `/user/professional/profile/${post.post.userFrom}/${JSON.parse(localStorage.getItem('user'))._id}`} style={{ "color": "black", "cursor": "pointer" }}><h6>{post.post.creator}</h6></Link>
-                            {post.post.likes ?
-                                <Button size="small" onClick={() => dispatch(likePost(post.post._id, JSON.parse(localStorage.getItem('user'))._id))}>
-                                    <Likes post = {post.post}/>
-                                </Button>
-                                : <> </>
-                            }
-                            <PopUpBuckets post = {post.post}/>
-                            <ReportPopUp post = {post.post}/>
+                            <div style={{marginRight:"-1%"}}>
+                                <h4 style={{marginTop: "1%"}}>{post.post.title}</h4>
+                                <Link onClick={() => window.location.href = `/user/professional/profile/${post.post.userFrom}/${JSON.parse(localStorage.getItem('user'))._id}`} style={{ "color": "black", "cursor": "pointer" }}><h6>{post.post.creator}</h6></Link>
+                            </div>
+                                {post.post.likes ?
+                                    <Button size="small" onClick={() => dispatch(likePost(post.post._id, JSON.parse(localStorage.getItem('user'))._id))}>
+                                        <Likes post = {post.post}/>
+                                    </Button>
+                                    : <> </>
+                                }
+                                <PopUpBuckets post = {post.post}/>
+                                <ReportPopUp post = {post.post}/>
                         <hr style = {{backgroundColor : "#9bda8e" , width: "800px"}}/>
                         
                         <div className = "content">

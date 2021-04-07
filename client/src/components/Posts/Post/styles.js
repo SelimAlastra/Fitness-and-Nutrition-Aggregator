@@ -6,10 +6,10 @@ export default makeStyles((theme) => ({
     width: 379,
     backgroundColor: 'rgba(0, 0, 0, 0.5)',
     backgroundBlendMode: 'darken',
+    marginBottom: -37,
   },
   photo: {
     marginTop: 62,
-    marginBottom: -22,
   },
   border: {
     border: 'solid',
