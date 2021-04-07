@@ -87,7 +87,7 @@ const ProfessionalProfile = (props) => {
             return (
                 <div>
                     { generateEditServicesLink(isProfessional)}
-                    <h2  style={{ "marginBottom": "30px" }} className="pageText">Services</h2>
+                    <h2 style={{ "marginBottom": "30px" }} className="pageText">Services</h2>
                     <div class="row" style={{ "width": "60%", marginLeft: "20%" }}>
                         {myServices.length === 1 ?
                             myServices.map((service, index) => {
@@ -110,16 +110,6 @@ const ProfessionalProfile = (props) => {
                                         </Container>
                                     </div>
                                 )
-                                // myServices.map((service, index) => {
-                                //     return (
-                                //         <li key={index} className="serviceList">
-                                //             <div className="serviceColumn">
-                                //                 <h4>{service.title}</h4>
-                                //                 <p>{service.description}</p>
-                                //             </div>
-                                //         </li>
-                                //     )
-                                // })
                             })
                         }
                     </div>
@@ -169,6 +159,7 @@ const ProfessionalProfile = (props) => {
                         }
                     </div>
                 </>
+
             );
         }
     }
