@@ -41,7 +41,7 @@ export const deleteService = async (req, res) => {
 
   if(!mongoose.Types.ObjectId.isValid(_id)) return (res.status(404).send('Error cannot delete this service:'));
 
-  await Service.findOneAndDelete(_id);
+  await Service.findOneAndDelete({_id : _id});
 
   res.json({ message: 'Service deleted!' });
 };
