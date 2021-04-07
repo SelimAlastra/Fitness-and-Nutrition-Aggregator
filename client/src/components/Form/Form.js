@@ -1,8 +1,9 @@
 import React, { useState , useEffect} from 'react';
-import { TextField, Button, Typography, Paper } from '@material-ui/core';
+import { TextField, Button, Typography, Grid } from '@material-ui/core';
 import FileBase from 'react-file-base64';
 import { useDispatch , useSelector} from 'react-redux';
 
+ 
 import useStyles from './styles';
 import './styles.css';
 import { createPost, updatePost} from '../../actions/posts';
@@ -31,9 +32,11 @@ const Form = ({currentId, setCurrentId}) => {
         
       if(currentId){
             dispatch(updatePost(currentId, postData));
-        }else
-        {
+        }
+        else
+        {   
             dispatch(createPost(postData));
+            window.location.reload();
         }
         clear();
     }
@@ -54,9 +57,9 @@ const Form = ({currentId, setCurrentId}) => {
     return (
             <form autoComplete="off" noValidate className={`${classes.root} ${classes.form}`} method="post" action="#" onSubmit={handleSubmit}>
                 {/* <TextField fullWidth value={JSON.parse(localStorage.getItem('user')).username}/> */}
-                <TextField name="title" variant="outlined" label="Title" fullWidth value={postData.title} onChange={(e) => setPostData({ ...postData, title: e.target.value })} />
-                <TextField name="message" variant="outlined" label="Message" fullWidth value={postData.message} onChange={(e) => setPostData({ ...postData, message: e.target.value })} />
-                <TextField name="tags" variant="outlined" label="Tags (coma separated)" fullWidth value={postData.tags} onChange={(e) => setPostData({ ...postData, tags: e.target.value.split(',') })} />
+                <TextField name="title" variant="outlined" label="Title" fullWidth value={postData.title} required onChange={(e) => setPostData({ ...postData, title: e.target.value })} />
+                <TextField name="message" variant="outlined" label="Message" fullWidth value={postData.message} required onChange={(e) => setPostData({ ...postData, message: e.target.value })} />
+                <TextField name="tags" variant="outlined" label="Tags (coma separated)" fullWidth value={postData.tags} required onChange={(e) => setPostData({ ...postData, tags: e.target.value.split(',') })} />
                 <Typography>POST TYPE</Typography>
                 <div style={{width: "100%", alignItems: "center"}}>
                 <div>
@@ -101,8 +104,14 @@ const Form = ({currentId, setCurrentId}) => {
                         </div>
                 </div>         
                 </div>
-                <Button className={classes.buttonSubmit} variant="contained" color="primary" size="large" type="submit" fullWidth>Submit</Button>
-                <Button variant="contained" color="secondary" size="small" onClick={clear} fullWidth>Clear</Button>
+                <Grid container justify="center" spacing={3}>
+                <Grid item xs= {6}>
+                <Button className = "postFormBtn" variant="contained" color="primary" size="large" type="submit" fullWidth>Submit</Button>
+                </Grid>
+                <Grid item xs ={6}>
+                <Button className = "postFormBtn" variant="contained" color="secondary" size="small" onClick={clear} fullWidth>Clear</Button>
+                </Grid>
+                </Grid>
             </form>
     );
 }

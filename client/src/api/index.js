@@ -1,18 +1,6 @@
 import axios from 'axios';
 
 const API= axios.create({baseURL:'http://localhost:5000'});
-
-
-/* API.interceptors.request.use((req) => {
-  console.log( localStorage.getItem('user'));
-    if (localStorage.getItem('user')) {
-      req.headers.Authorization = ` ${JSON.parse(localStorage.getItem('user')).token}`;
-    }
-    console.log( req.headers.Authorization);
-    return req;
-  });
- */
-
 const url = 'http://localhost:5000/posts';
 const reportUrl = 'http://localhost:5000/reports';
 const professionalUsersUrl = 'http://localhost:5000/professionalUsers';
@@ -65,6 +53,3 @@ export const createBucket = (newBucket) => axios.post(bucketUrl, newBucket);
 export const updateBucket = (id, updatedBucket) => axios.patch(`${bucketUrl}/${id}`, updatedBucket);
 export const getBucket = (id) => axios.get(`${bucketUrl}/${id}`);
 export const deleteBucket = (id) => axios.delete(`${bucketUrl}/${id}`);
-
-
-

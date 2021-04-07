@@ -56,7 +56,7 @@ const HomePage = (props) => {
                 </div>
                 <hr className ="homePageSep"/>
                 <div className = "homePageAlertDiv">
-                    <Alert className = 'homePageAlert '> What are smart fitness goals ? </Alert>
+                    <h2 className='homePageAlert '> What are smart fitness goals? </h2>
                 </div>
                 <div>
                     <Image className ="GoalsImage" src="https://www.mileiq.com/en-ca/wp-content/uploads/sites/2/2018/05/SMART-goal-setting-1300x867.jpg" fluid />
