@@ -34,7 +34,11 @@ app.use('/buckets', bucketRoutes);
 const PORT = process.env.PORT || 5000;
 let uri = process.env.ATLAS_URI;
 
+//let uri = process.env.CLIENT_TEST_PORT;
+
 const env = process.env.NODE_ENV || 'development';
+
+//const env = process.env.CLIENT_TEST_PORT;
 
 if (env !== 'test') {
 
