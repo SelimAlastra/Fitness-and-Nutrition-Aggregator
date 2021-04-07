@@ -1,6 +1,6 @@
 import React from 'react';
 import { mount } from 'cypress-react-unit-test';
-import LandingPage from '../../src/LandingPage';
+import LandingPage from '../../../LandingPage';
 
 describe('LandingPage', () => {
 
