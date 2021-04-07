@@ -50,7 +50,9 @@ function UpdateBucketForm({bucket}) {
                         <p/>
                         <Form.Label htmlFor="description">Description (optional)</Form.Label>
                         <textarea className = "editText" rows={3} id="description" value={description} onChange={(e) => setDescription(e.target.value)}/>
+                        <div className = 'centerBundleButton'>
                         <Button className="bucketSave" variant="primary" size="large" type="submit">Save</Button>
+                        </div>
                     </Form>
                 </Modal.Body>
             </Modal >

@@ -5,7 +5,7 @@
   position: sticky;
   top: 0;
   color: white;
-  background-color:black;
+  background-color:#1b1d1b; 
 }
 
 .landing {
@@ -32,15 +32,14 @@
 
 .closeModal {
   position: absolute;
-  left: 391px;
+  left: 360px;
   width: 50px;
   float: right;
+  left: 85%;
 }
 
 .modalHeader {
   background-color: white;
-  /* align-items: flex-start;
-  justify-content: flex-start; */
 }
 
 .modalHeaderText {
