@@ -1,6 +1,6 @@
 .postModal {
     overflow: scroll;
-    background-color: whitesmoke;
+    background-color: white;
     margin-left: 10%;
     margin-right: 10%;
     margin-top: 7%;
@@ -14,11 +14,6 @@
 
 .postModal .modal-content{
     overflow: hidden;
-}
-
-.closeButton {
-    text-align: right;
-    cursor: pointer;
 }
 
 .postDisplay {
