@@ -90,6 +90,12 @@
     
 }
 
+.purchaseButton:focus {
+    background-color: white!important;
+    color: black !important;
+    
+}
+
 .minorText {
     font-size: small;
 }
