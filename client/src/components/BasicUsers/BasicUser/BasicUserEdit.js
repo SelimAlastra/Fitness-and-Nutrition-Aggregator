@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from "react-router-dom";
 import { getBasicUser, updateBasicUser } from '../../../actions/basicUsers';
 import axios from 'axios';
+import { baseUrl } from '../../../api/index';
 
 const BasicUserEdit = () => {
 
@@ -22,7 +23,7 @@ const BasicUserEdit = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         axios
-            .patch(`http://localhost:5000/basicUsers/update/${user._id}`, userData)
+            .patch(`${baseUrl}/basicUsers/update/${user._id}`, userData)
             .then(res => {
                     window.location.href=`/admin/BasicUsers/${user._id}`;
             })

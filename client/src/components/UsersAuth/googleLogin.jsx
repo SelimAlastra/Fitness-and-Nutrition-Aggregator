@@ -6,6 +6,7 @@ import { useHistory } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faGoogle } from '@fortawesome/free-brands-svg-icons' 
 import './googleLogin.css';
+import { baseUrl } from '../../api/index';
 
 const Google = (client) => {
 
@@ -18,7 +19,7 @@ const Google = (client) => {
 const sendGoogleToken = tokenId => {
   if(isClient == "true"){
   axios
-    .post(`http://localhost:5000/basicUsers/googlelogin`, {
+    .post(`${baseUrl}/basicUsers/googlelogin`, {
       idToken: tokenId
     })
     .then(res => {
@@ -32,7 +33,7 @@ const sendGoogleToken = tokenId => {
   }
   else{
     axios
-    .post(`http://localhost:5000/professionalUsers/googlelogin`, {
+    .post(`${baseUrl}/professionalUsers/googlelogin`, {
       idToken: tokenId
     })
     .then(res => {
