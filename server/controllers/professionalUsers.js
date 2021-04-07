@@ -55,7 +55,7 @@ export const updateProfessionalUser = async (req, res) => {
     });
   }
 
-  const updatedUser = await ProfessionalUser.findByIdAndUpdate(_id, { ...user, _id }, { new: true });
+  const updatedUser = await ProfessionalUser.findOneAndUpdate({ _id : _id}, { ...user, _id }, { new: true });
 
   res.json(updatedUser);
 };

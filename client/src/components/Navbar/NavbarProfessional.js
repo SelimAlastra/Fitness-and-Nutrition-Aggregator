@@ -164,14 +164,6 @@ export default function NavbarProfessional({updatedPosts, setUpdatedPosts, curre
         </IconButton>
       </MenuItem>
       <MenuItem onClick={handleMenuClose}>
-        <IconButton component={Link} to={`/professional/edit/${JSON.parse(localStorage.getItem('user'))._id}`}> 
-          <div>
-            <SettingsIcon/> 
-            <text style={{fontSize:"1.2rem"}}> Settings</text>
-          </div>
-        </IconButton>
-      </MenuItem>
-      <MenuItem onClick={handleMenuClose}>
         <IconButton component={Link} to={`/professional/contactUs/${JSON.parse(localStorage.getItem('user'))._id}`}> 
           <div>
             <LiveHelpIcon/> 
@@ -179,8 +171,8 @@ export default function NavbarProfessional({updatedPosts, setUpdatedPosts, curre
           </div>
         </IconButton>
       </MenuItem>
-      <MenuItem onClick={handleMenuClose}>
-        <IconButton onClick={() => { signOut(() => { history.push('/'); });}}> 
+      <MenuItem  onClick={handleMenuClose}>
+        <IconButton component={Link} onClick={() => { signOut(() => { history.push('/'); });}}> 
           <div>
             <ExitToAppIcon/> 
             <text style={{fontSize:"1.2rem"}}> Log out</text>
@@ -237,14 +229,6 @@ export default function NavbarProfessional({updatedPosts, setUpdatedPosts, curre
         </IconButton>
       </MenuItem>
       <MenuItem>
-      <IconButton component={Link} to={`/professional/edit/${JSON.parse(localStorage.getItem('user'))._id}`}> 
-          <div>
-            <SettingsIcon/> 
-            <text style={{fontSize:"1.2rem"}}> Settings</text>
-          </div>
-        </IconButton>
-      </MenuItem>
-      <MenuItem>
       <IconButton component={Link} to={`/professional/contactUs/${JSON.parse(localStorage.getItem('user'))._id}`}> 
           <div>
             <LiveHelpIcon/> 
@@ -267,7 +251,7 @@ export default function NavbarProfessional({updatedPosts, setUpdatedPosts, curre
     <div className={classes.grow, "navbar-top"}>
       <AppBar position="static" color="transparent">
         <Toolbar>
-          <Typography onClick={() => window.location.href = `/myPosts/${JSON.parse(localStorage.getItem('user'))._id}`} className={classes.title, "logo", "landing"} style = {{"cursor" : "pointer"}} variant="h6" noWrap>
+          <Typography onClick={() => window.location.href = `/professionalDashboard/${JSON.parse(localStorage.getItem('user'))._id}`} className={classes.title, "logo", "landing"} style = {{"cursor" : "pointer"}} variant="h6" noWrap>
             LOGO
           </Typography>
 

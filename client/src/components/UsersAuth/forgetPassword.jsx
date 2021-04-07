@@ -57,7 +57,7 @@ const ForgetPassword = () => {
 
   return (
     <div className="FormForgotPassword">
-    <Form className="FormForgot"onSubmit={formik.handleSubmit} autoComplete="Off">
+    <Form className="FormForgot" onSubmit={formik.handleSubmit} autoComplete="Off">
        <h2 className = "ForgotPassText"> Please enter your email adress in order to reset your password </h2> 
         <Form.Label hidden = {true} htmlFor="email">Email</Form.Label>
             <Form.Control className="formControlForgetPassword"
@@ -77,7 +77,7 @@ const ForgetPassword = () => {
         <Button className="forgetButton" variant="outline-success" type="submit" name="forgetBtn" disabled={formik.isSubmitting} >
             Submit
         </Button>
-        <Button className="forgetButton" variant="outline-success" href="/">
+        <Button className="forgetButton" variant="outline-success" name="forgetBtn" type="submit" href="/">
             Go back to landing page
         </Button>
         <Form.Text style={{color: "blue"}} className="input-feedback">{formik.values.general}</Form.Text>

@@ -1,9 +1,9 @@
 {
   "experimentalComponentTesting": true,
-  "componentFolder": "./cypress/component",
-  "integrationFolder": "./cypress/integration",
-  "supportFile": "./cypress/support/index.js",
-  "pluginsFile": "./cypress/plugins/index.js",
+  "componentFolder": "./src/tests/cypress/component",
+  "integrationFolder": "./src/tests/cypress/integration",
+  "supportFile": "./src/tests/cypress/support/index.js",
+  "pluginsFile": "./src/tests/cypress/plugins/index.js",
   "baseUrl": "http://localhost:3000",
   "video": false
 }
