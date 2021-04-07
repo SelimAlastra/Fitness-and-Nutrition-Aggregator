@@ -298,6 +298,7 @@ export default class Quiz extends Component{
                 }
             });
         });
+        associatedTags = associatedTags.reverse();
     }
 
     /**
@@ -335,6 +336,22 @@ export default class Quiz extends Component{
     }
 
     /**
+     * if the user has input text about his/her bodytype, it is saved in the input answer and must be retrieved from input[]
+     * otherwise, select the first tag of the selected answer 
+     */
+     updateBodyType = () => {
+        const {questions} = this.state;
+        const answers = questions[3].answerOptions;
+        answers.forEach(answer => {
+            if(answer.selected === true && answer.requireInput === false){
+                details.bodyType = answer.tags[0];
+            } else if(answer.selected === true && answer.requireInput === true){
+                if(answer.input[0] !== undefined) details.bodyType = answer.input[0];
+            }
+        })
+    }
+
+    /**
      * 
      */
     updateClientDetails = () => {
@@ -347,20 +364,12 @@ export default class Quiz extends Component{
         }
 
         this.updateGender();
+        this.updateBodyType();
         this.addGoals();
         details.isNew = true;
     }
 
-    /**
-     * 
-     */
-    updateBodyType = () => {
-        const {questions} = this.state;
-        const answers = questions[3].answerOptions;
-        answers.forEach(answer => {
-
-        })
-    }
+    
 
     /**
      * 
@@ -420,9 +429,7 @@ export default class Quiz extends Component{
         
         return(
             <div className="quizz">
-            {/* <img className="backgroundJPG"
-            src="https://static.onecms.io/wp-content/uploads/sites/35/2010/07/28170650/fb-interval-training-workouts.jpg" /> */}
-            <Carousel className="carousel">
+            <Carousel className="carousel" nextIcon="" nextLabel="" prevIcon="" prevLabel="">
                     <Carousel.Item class="d-none d-md-block">
                         <img
                             className="d-block w-100 fixedimg"
@@ -462,20 +469,6 @@ export default class Quiz extends Component{
                         <img
                             className="d-block w-100 fixedimg"
                             src="https://images.unsplash.com/photo-1490474418585-ba9bad8fd0ea?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1650&q=80"
-                            alt="First slide"
-                        />
-                    </Carousel.Item>
-                    <Carousel.Item class="d-none d-md-block">
-                        <img
-                            className="d-block w-100 fixedimg"
-                            src=""
-                            alt="First slide"
-                        />
-                    </Carousel.Item>
-                    <Carousel.Item class="d-none d-md-block">
-                        <img
-                            className="d-block w-100 fixedimg"
-                            src=""
                             alt="First slide"
                         />
                     </Carousel.Item>
