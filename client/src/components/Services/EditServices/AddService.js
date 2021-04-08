@@ -37,10 +37,10 @@ const AddService = (props) => {
         const { title, description, price } = newService
         const newErrors = {}
         if ( !title || title === '' ) newErrors.title = 'Name is required!'
-        else if( !title || title.length > 15) newErrors.title = 'Name is too long! Maximum 15 characters allowed.'
+        else if( !title || title.length > 30) newErrors.title = 'Name is too long! Maximum 15 characters allowed.'
         
         if( !description || description === '' ) newErrors.description = 'Description is required!'
-        else if( !description || description.length > 30) newErrors.description = 'Description is too long! Maximum 30 characters allowed.'
+        else if( !description || description.length > 50) newErrors.description = 'Description is too long! Maximum 30 characters allowed.'
 
         if( !price || price === '') newErrors.price = "Price is required!"
         else if(!(/^\d+(,\d{1,2})?$/).test(price)) newErrors.price = "Price must be a number!"
