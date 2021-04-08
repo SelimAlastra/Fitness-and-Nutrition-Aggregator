@@ -7,5 +7,6 @@ describe('LandingPage', () => {
   it('basic_user_button', () => {
     mount(<LandingPage />);
     cy.contains('Clients').should('be.visible');
+    cy.contains('Service Providers').should('be.visible');
   });
 });

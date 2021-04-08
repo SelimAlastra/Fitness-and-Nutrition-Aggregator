@@ -1,8 +1,4 @@
-// describe('Test', function() {
-
-//     Cypress.on('uncaught:exception', (err, runnable) => {
-//         return false;
-//        });
+ describe('Test', function() {
 
     beforeEach(() => {
         cy.visit('/');
@@ -86,7 +82,6 @@
     it('should have services icon button', function() {
         cy.findByTestId('myServicesButton').focus().click();
         cy.url().should('include', '/user/myservices/606e1976b98e8e01929206da');
-        //Add more specific tests once test users are populated with data
         cy.contains('You currently have no services.').should('exist');
         //cy.contains('My Bundles').should('exist');
     })
@@ -98,24 +93,11 @@
          cy.contains('Body Data').should('exist');
          cy.contains('Goals').should('exist');
     })    
-
-   /*  it('should have profile settings', function() {
-        cy.findByTestId('ToggleButton').focus().click().focus().get('span').contains('Settings').click({force: true});
-         cy.url().should('include', 'edit/60639559dd5a59ea908e4cb7');
-         cy.contains('Edit Details').should('exist');
-    })   */
     
     it('should log out', function() {
         cy.findByTestId('ToggleButton').focus().click().focus().get('span').contains('Log out').click({force: true});
-        // cy.url().should('include', '/');
         cy.url().should('include', '/', ()=> {
             expect(localStorage.getItem('user')).to.be.null
         })
-       /*  cy.clearLocalStorage().then((ls) => {
-            expect(ls.getItem('_id')).to.be.null
-            expect(ls.getItem('email')).to.be.null
-            expect(ls.getItem('name')).to.be.null
-            expect(ls.getItem('username')).to.be.null
-            expect(ls.getItem('type')).to.be.null
-          }) */  
+    })  
 });
