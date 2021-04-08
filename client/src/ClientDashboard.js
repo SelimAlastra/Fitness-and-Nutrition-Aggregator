@@ -1,19 +1,16 @@
 import React, { useEffect ,useState } from 'react';
-import { Container, AppBar, Typography, Grow, Grid } from '@material-ui/core';
+import { Container, Grow, Grid } from '@material-ui/core';
 import { useDispatch } from 'react-redux';
 import NavbarUser from "./components/Navbar/NavbarUser";
-import { getPosts, updatePost } from './actions/posts';
+import { getPosts } from './actions/posts';
 import Posts from './components/Posts/Posts';
-import memories from './images/memories.png';
 import useStyles from './styles';
 import { getProfessionalUsers } from './actions/professionals';
-import { getBasicUsers ,getBasicUser, updateBasicUser } from './actions/basicUsers';
 import {finalFilteredProfiles} from './components/Navbar/Searchbox';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import ExpandLessIcon from '@material-ui/icons/ExpandLess';
 import { getBuckets } from "./actions/buckets";
-import { Link } from 'react-router-dom';
 import "./App.css"
 import { createGoal } from './actions/goals';
 import { details } from './quiz/quizUser';
