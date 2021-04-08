@@ -132,7 +132,6 @@ const Post = ({ post, setCurrentId }) => {
   }
 
   const Edit = () => {
-    if (String(JSON.parse(localStorage.getItem('user'))._id) == post.userFrom) {
       return (
         //<Button size="small" onClick={() => setCurrentId(post._id)}>Edit</Button>
       <>
@@ -148,11 +147,6 @@ const Post = ({ post, setCurrentId }) => {
       </>
       )
     }
-    else
-      return (
-        <ReportPopUp post = {post}/>
-      )
-  }
 
   return (
     <Card className={classes.card}>
@@ -183,9 +177,10 @@ const Post = ({ post, setCurrentId }) => {
           open={Boolean(anchorEl)}
           onClose={handleClose}
         >
-          {JSON.parse(localStorage.getItem('user')).type == 'client' ?
+          {(JSON.parse(localStorage.getItem('user')).type == 'client' || (String(JSON.parse(localStorage.getItem('user'))._id) != post.userFrom))  ?
             <ReportPopUp post = {post}/>
-            : <Edit />
+            :
+            <Edit /> 
           }
         </Menu>
       </div>
