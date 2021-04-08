@@ -11,7 +11,7 @@ const ContactUsPro = (props) =>  {
     function sendEmail(e){
         e.preventDefault();
 
-        emailjs.sendForm('Gmail', 'template_t7nw5tq', e.target, 'user_YPniCMGLI9OdRN1jeOFtK')
+        emailjs.sendForm('Gmail', 'template_y0d2h2z', e.target, 'user_jMQkwGVAyo12RtnoSuRjY')
           .then((result) => {
               console.log(result.text);
           }, (error) => {
