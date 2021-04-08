@@ -28,9 +28,9 @@ Contrtibuters:
   
 Depolyed in:
 
-    Server: 
+    Server: https://codebrew-api.herokuapp.com/
 
-    Client:
+    Client: https://codebrewfit.netlify.app/
   
   
 Relevant user roles:
