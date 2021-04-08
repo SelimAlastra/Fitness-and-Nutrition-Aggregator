@@ -36,7 +36,7 @@ function ProfileInfo({profile}) {
                 <div className="profileImage">
                     <img src={"https://images.unsplash.com/photo-1614854262318-831574f15f1f?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=2850&q=80"}/>
                 </div>
-                <div className="profileInfoDivT">
+                <div className="profileInfoDiv">
                     <h2 className="clientName">{profile.name} <p className="minorText">({profile.username})</p></h2>
                     <hr className="profileSeperator"/>
                     <h2>Sorry, this account has been banned</h2>
