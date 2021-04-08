@@ -23,18 +23,9 @@ const Buckets = (post) => {
         if (bucket.postsId.indexOf(postId) === -1) {
             bucket.postsId.push(postId);
             dispatch(updateBucket(bucket._id, bucket));
+            window.alert("The post has been added to your bucket!");
         }
     }
-
-    // const removeFromBucket = (postId, bucketId) => {
-    //     const bucket = myBuckets.find((bucket) => bucket._id === bucketId);
-    //     const post = bucket.postsId.indexOf(postId);
-    //     if(post > - 1)
-    //     {
-    //         bucket.postsId.splice(post, 1);
-    //         dispatch(updateBucket(bucket._id, bucket));
-    //     }
-    // }
 
     if (myBuckets === undefined || myBuckets.length === 0) {
         return (
@@ -43,7 +34,7 @@ const Buckets = (post) => {
                 You have no buckets.
             </div>
             <div>
-                Create buckets and save your preferred posts for later.
+                Create buckets and save your favourite posts for later.
             </div>
         </>
         )

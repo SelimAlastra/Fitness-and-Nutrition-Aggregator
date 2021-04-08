@@ -79,6 +79,7 @@ const ProfessionalProfile = (props) => {
             }
             // update basicUser
             dispatch(updateBasicUser(basicUser._id, basicUser))
+            window.alert("You successfully purchased a bundle!");
         }
     }
 

@@ -25,6 +25,7 @@ const Posts = ({setCurrentId,updatedPosts,setUpdatedPosts}) => {
         }
     }
     const posts = useSelector((state) => state.posts.filter((post) => newPosts.includes(post._id)));
+    posts.reverse();
     const classes = useStyles();
     const dispatch = useDispatch();
   

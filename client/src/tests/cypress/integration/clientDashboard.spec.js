@@ -1,8 +1,4 @@
-// describe('Test', function() {
-
-//     Cypress.on('uncaught:exception', (err, runnable) => {
-//         return false;
-//        });
+ describe('Test', function() {
 
     beforeEach(() => {
         cy.visit('/');
@@ -67,7 +63,7 @@
         cy.get('textarea[placeholder="Write your message here"]').focus().type('Test Contact'); 
         cy.contains('Send').should('exist').click();
         cy.on('window:alert',(txt)=>{
-            expect(txt).to.contains('Your message has been sent !');
+            expect(txt).to.contains('Your message has been sent!');
          })
     })   
 
@@ -111,11 +107,5 @@
         cy.url().should('include', '/', ()=> {
             expect(localStorage.getItem('user')).to.be.null
         })
-       /*  cy.clearLocalStorage().then((ls) => {
-            expect(ls.getItem('_id')).to.be.null
-            expect(ls.getItem('email')).to.be.null
-            expect(ls.getItem('name')).to.be.null
-            expect(ls.getItem('username')).to.be.null
-            expect(ls.getItem('type')).to.be.null
-          }) */  
+    })  
 });
