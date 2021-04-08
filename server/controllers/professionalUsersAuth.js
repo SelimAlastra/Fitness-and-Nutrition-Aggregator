@@ -165,7 +165,7 @@ export const googleController = (req, res) => {
             let password = email + process.env.JWT_SECRET;
             let username = name.replace(/\s/g, "").toLowerCase() + Math.floor(Math.random() * 10000); //implement random number generator later
             let profession = 'Fitness professional';
-            user = new ProfUser({ username, email, password, name, profession, picture });
+            user = new ProfUser({ username, email, password, name, profession });
             user.save((err, data) => {
               if (err) {
                 console.log('ERROR GOOGLE LOGIN ON USER SAVE', err);
@@ -200,7 +200,7 @@ export const googleController = (req, res) => {
 
 export const facebookController = (req, res) => {
   console.log('FACEBOOK LOGIN REQ BODY', req.body);
-  const { userID, accessToken, picture } = req.body;
+  const { userID, accessToken } = req.body;
 
   const url = `https://graph.facebook.com/v2.11/${userID}/?fields=id,name,email&access_token=${accessToken}`;
 
@@ -210,7 +210,7 @@ export const facebookController = (req, res) => {
     })
       .then(response => response.json())
       .then(response => {
-        const { email, name, picture } = response;
+        const { email, name } = response;
         ProfUser.findOne({ email }).exec((err, user) => {
           if (user) {
             if (user.isBanned) {

@@ -7,7 +7,7 @@
 
 
 .reportFormBtn{
-    background-color: white;
+    background-color: #9bda8e;
     height: 40px;
     border-color: #9cbe95;
     color: black;
@@ -15,7 +15,7 @@
 }
 
 .reportFormBtn:hover{
-    background-color: #9bda8e;
+    background-color: white;
     border-color:#9cbe95 !important;
     box-shadow: none;
     color: black;
@@ -23,7 +23,7 @@
 }
 
 .reportFormBtn:active{
-    background-color: #9bda8e !important;
+    background-color: white !important;
     box-shadow: none !important;
     border-color:#9bda8e !important;
     color: black !important;
@@ -32,7 +32,7 @@
 }
 
 .reportFormBtn:focus{
-    background-color: #9bda8e !important;
+    background-color: white !important;
     box-shadow: none !important;
     border-color:#9bda8e !important;
     color: black !important;
