@@ -15,8 +15,8 @@ Contrtibuters:
   Tushita Yadav
   
 Depolyed in:
-  server: 
-  client:
+  Server: 
+  Client:
   
 Relevant user roles:
   Admin user: 
@@ -24,9 +24,10 @@ Relevant user roles:
     username: admin123
     password: admin123
     
-  Professional Users:
-    ...
-  
+  Professional User:
+    username: zoeyclark@gmail.com
+    password: zoey1234
+
   Basic Users:
-    ...
-  
+    username: markkane@yahoo.com
+    password: kane1234
