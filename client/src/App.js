@@ -1,4 +1,4 @@
-import './App.css';
+import './components/sharedStyles/App.css';
 import Main from './Main';
 import 'bootstrap/dist/css/bootstrap.min.css';
 

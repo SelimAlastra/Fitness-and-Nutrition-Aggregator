@@ -3,7 +3,7 @@ import { Table } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
 import BasicUser from "./BasicUser/BasicUser";
 import { getBasicUsers } from "../../actions/basicUsers";
-import '../admin.css';
+import '../sharedStyles/admin.css';
 
 const BasicUsers = () => {
 

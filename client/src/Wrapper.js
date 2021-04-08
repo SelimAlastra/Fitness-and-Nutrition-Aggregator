@@ -1,5 +1,4 @@
 import { Redirect } from "react-router";
-import ClientDashboard from "./ClientDashboard";
 
 const Wrapper = (props, {...rest}) => {
     const MyComponent = props.component;

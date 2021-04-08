@@ -3,11 +3,11 @@ import './Navbar.css';
 import { fade } from '@material-ui/core/styles';
 import { makeStyles } from '@material-ui/core/styles';
 import InputBase from '@material-ui/core/InputBase';
-import {associatedTags} from '../../quiz/quizUser';
+import {associatedTags} from '../quiz/quizUser';
 import { useDispatch, useSelector } from 'react-redux';
 import { getBasicUser, updateBasicUser } from '../../actions/basicUsers';
 import { getProfessionalUsers, updateProfessional, getProfessional } from '../../actions/professionals';
-import { details } from '../../quiz/quizUser';
+import { details } from '../quiz/quizUser';
 import { createGoal } from '../../actions/goals';
 
 /**

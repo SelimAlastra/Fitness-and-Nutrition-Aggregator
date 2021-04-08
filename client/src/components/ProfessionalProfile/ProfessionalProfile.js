@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import '../Profile.css';
+import '../sharedStyles/Profile.css';
 import ProfileInfo from '../ProfileInfo/ProfileInfo';
 import { useDispatch, useSelector } from 'react-redux';
 import { getProfessional } from '../../actions/professionals';

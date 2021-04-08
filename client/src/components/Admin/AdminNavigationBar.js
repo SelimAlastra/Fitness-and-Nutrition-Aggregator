@@ -1,7 +1,7 @@
 import { React } from "react";
 import { useHistory } from "react-router-dom";
 import { Navbar, Nav } from "react-bootstrap";
-import { signOut } from './actions/userAuth.js';
+import { signOut } from '../../actions/userAuth.js';
 
 // This is the navigation bar that will be used for the admin's page
 

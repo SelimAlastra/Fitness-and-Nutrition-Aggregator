@@ -2,7 +2,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Form, Button, Option, Col } from "react-bootstrap";
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector  } from 'react-redux';
-import "../../EditFormsStyles.css";
+import "../../sharedStyles/EditFormsStyles.css";
 import { updateProfessional, getProfessional } from '../../../actions/professionals';
 import NavbarProfessional from "../../Navbar/NavbarProfessional";
 import axios from 'axios';

@@ -5,7 +5,7 @@ import { getReport, deleteReport } from "../../../actions/reports";
 import { getPost, deletePost } from "../../../actions/posts";
 import { useParams } from "react-router-dom";
 import Post from "../../Posts/Post/Post";
-import '../../admin.css';
+import '../../sharedStyles/admin.css';
 
 const ReportView = () => {
 

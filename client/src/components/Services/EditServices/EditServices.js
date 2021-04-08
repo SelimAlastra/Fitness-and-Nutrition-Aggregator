@@ -2,13 +2,13 @@ import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { getServices, deleteService, updateService } from '../../../actions/services';
 import { faTrashAlt } from "@fortawesome/free-regular-svg-icons";
-import VideoCallIcon from '@material-ui/icons/VideoCall'; import '../../EditFormsStyles.css';
+import VideoCallIcon from '@material-ui/icons/VideoCall'; import '../../sharedStyles/EditFormsStyles.css';
 import { Form, Button, Col } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import CloseIcon from '@material-ui/icons/Close';
 import NavbarProfessional from "../../Navbar/NavbarProfessional";
 import Modal from 'react-modal';
-import './EditServices.css';
+import '../../sharedStyles/EditFormsStyles.css';
 import ReactPlayer from 'react-player';
 import AddService from './AddService.js';
 

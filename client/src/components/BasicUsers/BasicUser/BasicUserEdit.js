@@ -6,7 +6,7 @@ import { useParams } from "react-router-dom";
 import { getBasicUser, updateBasicUser } from '../../../actions/basicUsers';
 import axios from 'axios';
 import { baseUrl } from '../../../api/index';
-import '../../admin.css';
+import '../../sharedStyles/admin.css';
 
 
 const BasicUserEdit = () => {

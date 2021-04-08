@@ -3,7 +3,7 @@ import { getBasicUser, updateBasicUser } from '../../actions/basicUsers';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import '../EditFormsStyles.css';
+import '../sharedStyles/EditFormsStyles.css';
 import NavbarUser from '../Navbar/NavbarUser';
 import { Grid } from '@material-ui/core';
 import axios from 'axios';

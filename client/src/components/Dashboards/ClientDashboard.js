@@ -1,19 +1,19 @@
 import React, { useEffect ,useState } from 'react';
 import { Container, Grow, Grid } from '@material-ui/core';
 import { useDispatch } from 'react-redux';
-import NavbarUser from "./components/Navbar/NavbarUser";
-import { getPosts } from './actions/posts';
-import Posts from './components/Posts/Posts';
-import useStyles from './styles';
-import { getProfessionalUsers } from './actions/professionals';
-import {finalFilteredProfiles} from './components/Navbar/Searchbox';
+import NavbarUser from "../Navbar/NavbarUser";
+import { getPosts } from '../../actions/posts';
+import Posts from '../Posts/Posts';
+import useStyles from '../../styles';
+import { getProfessionalUsers } from '../../actions/professionals';
+import {finalFilteredProfiles} from '../Navbar/Searchbox';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import ExpandLessIcon from '@material-ui/icons/ExpandLess';
-import { getBuckets } from "./actions/buckets";
-import "./App.css"
-import { createGoal } from './actions/goals';
-import { details } from './quiz/quizUser';
+import { getBuckets } from "../../actions/buckets";
+import "../sharedStyles/App.css"
+import { createGoal } from '../../actions/goals';
+import { details } from '../quiz/quizUser';
 
 const ClientDashboard = (params) => {
     const [currentId, setCurrentId] = useState(null);

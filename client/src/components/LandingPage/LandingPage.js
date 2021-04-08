@@ -3,8 +3,8 @@ import { Alert, Carousel, Container} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './LandingPage.css';
 import { useHistory } from 'react-router-dom';
-import BasicUsers from './components/UsersAuth/clientModal';
-import Professional from './components/UsersAuth/professionalModal';
+import BasicUsers from '../UsersAuth/clientModal';
+import Professional from '../UsersAuth/professionalModal';
 import { Grow, Grid} from '@material-ui/core';
 
 function LandingPage() {

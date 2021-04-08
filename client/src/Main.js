@@ -1,12 +1,12 @@
 import React, { Fragment } from "react";
 import { Switch, Route } from "react-router-dom";
-import AdminLogin from "./AdminLogin";
-import LandingPage from './LandingPage';
-import ClientDashboard from './ClientDashboard';
-import ProfessionalDashboard from './ProfessionalDashboard';
-import Quiz from './quiz/quizUser.js';
-import {questionsClient,questionsReqInputClient,questionsMultipleChoicesClient} from './quiz/resources/clientQuestions';
-import {questionsProfessional,questionsReqInputProfessional,questionsMultipleChoicesProfessional} from './quiz/resources/professionalQuestions';
+import AdminLogin from "./components/Admin/AdminLogin";
+import LandingPage from './components/LandingPage/LandingPage';
+import ClientDashboard from './components/Dashboards/ClientDashboard';
+import ProfessionalDashboard from './components/Dashboards/ProfessionalDashboard';
+import Quiz from './components/quiz/quizUser.js';
+import {questionsClient,questionsReqInputClient,questionsMultipleChoicesClient} from './components/quiz/resources/clientQuestions';
+import {questionsProfessional,questionsReqInputProfessional,questionsMultipleChoicesProfessional} from './components/quiz/resources/professionalQuestions';
 import ContactUs from './components/ContactUsPage/ContactUs'
 import ContactUsPro from './components/ContactUsPage/ContactUsPro'
 import HomePage from './components/HomePage/HomePage';
@@ -38,7 +38,7 @@ import BasicUserEdit from "./components/BasicUsers/BasicUser/BasicUserEdit";
 import ProfessionalUsers from "./components/ProfessionalUsers/ProfessionalUsers";
 import ProfessionalUserEdit from "./components/ProfessionalUsers/ProfessionalUser/ProfessionalUserEdit";
 import ProfessionalUserDetails from "./components/ProfessionalUsers/ProfessionalUser/ProfessionalUserDetails";
-import AdminNavigationBar from "./AdminNavigationBar";
+import AdminNavigationBar from "./components/Admin/AdminNavigationBar";
 import PrivateRoute from "./PrivateRoute";
 import Wrapper from "./Wrapper";
 

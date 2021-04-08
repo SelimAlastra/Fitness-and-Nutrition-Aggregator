@@ -4,9 +4,9 @@ import reactDom from "react-dom";
 import { Link, Redirect, useHistory } from "react-router-dom";
 import { Form, Container, Button } from "react-bootstrap";
 import axios from 'axios';
-import { authenticate } from './actions/userAuth.js';
+import { authenticate } from '../../actions/userAuth.js';
 import * as Yup from "yup";
-import { baseUrl } from "./api/index.js";
+import { baseUrl } from "../../api/index.js";
 
 
 //This is the style of the login box

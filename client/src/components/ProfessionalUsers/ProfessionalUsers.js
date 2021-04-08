@@ -3,7 +3,7 @@ import { Table } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
 import ProfessionalUser from "./ProfessionalUser/ProfessionalUser";
 import { getProfessionalUsers } from "../../actions/professionals";
-import '../admin.css';
+import '../sharedStyles/admin.css';
 
 
 const ProfessionalUsers = () => {

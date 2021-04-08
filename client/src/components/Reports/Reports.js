@@ -7,7 +7,7 @@ import Report from "./Report/Report";
 import ReportForm from './ReportForm'
 import { getReports } from "../../actions/reports";
 import { getPosts } from "../../actions/posts";
-import '../admin.css';
+import '../sharedStyles/admin.css';
 
 
 const Reports = () => {

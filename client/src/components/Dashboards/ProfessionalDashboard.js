@@ -1,11 +1,11 @@
 
 import React, { useEffect ,useState } from 'react';
 import { Container, Grow, Grid } from '@material-ui/core';
-import NavbarProfessional from "./components/Navbar/NavbarProfessional";
+import NavbarProfessional from "../Navbar/NavbarProfessional";
 import { useDispatch } from 'react-redux';
-import { getPosts } from './actions/posts';
-import Posts from './components/Posts/Posts';
-import useStyles from './styles';
+import { getPosts } from '../../actions/posts';
+import Posts from '../Posts/Posts';
+import useStyles from '../../styles';
 
 const ProfessionalDashboard = () => {
     const [currentId, setCurrentId] = useState(null);
