@@ -138,7 +138,6 @@ describe('Basic users routes', function() {
             .delete(`/basicUsers/${1234}`)
             .send()
             .end((err, res) => {
-                console.log(res.body);
                 expect(res.status).to.equal(404);
                 expect(res.body).to.not.equal("BasicUser deleted.");
                 done();

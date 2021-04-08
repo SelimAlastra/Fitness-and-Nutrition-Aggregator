@@ -19,8 +19,6 @@ const BucketView = () => {
 
     const loading = true;
 
-    console.log(posts);
-
     const dispatch = useDispatch();
 
     useEffect(() => {

@@ -27,7 +27,6 @@ function UpdateBucketForm({bucket}) {
             title : title,
             description : description
         }
-        console.log(newData)
         dispatch(updateBucket(bucket._id, newData));
         handleClose();
     }

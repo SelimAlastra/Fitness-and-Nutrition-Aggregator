@@ -12,26 +12,11 @@ const ProfessionalDashboard = () => {
     const [updatedPosts,setUpdatedPosts]= useState([]);
     const classes = useStyles();
     const dispatch = useDispatch();
-    /* const GetModifiedPosts= (filteredPosts) =>{
-      console.log(filteredPosts);
-      var newList=[];
-      for(var j=0;j<filteredPosts.size;j++)
-      for(var i=0;i<updatedPosts.size;i++)
-         if(updatedPosts[i]._id == filteredPosts[j]._id)
-           newList.push(filteredPosts[j]);
-           console.log(newList);
-        setUpdatedPosts(newList);
-    } */
+    
     useEffect(() => {
       dispatch(getPosts());
-      //dispatch(getProfessionalUsers());
-      //GetModifiedPosts(data);
       setUpdatedPosts(updatedPosts);
     }, [currentId,dispatch,setUpdatedPosts]);
-
-    /*useEffect(() => {
-      dispatch(getBuckets());
-    }, [currentBucketId,dispatch]); */
 
 return (
   <>

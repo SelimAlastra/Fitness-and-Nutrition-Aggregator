@@ -45,7 +45,6 @@ describe('buckets routes', function() {
         });
         deleteBucket.save();
         deleteBucketId = deleteBucket._id;
-        console.log("started");
         done();
     });
 
