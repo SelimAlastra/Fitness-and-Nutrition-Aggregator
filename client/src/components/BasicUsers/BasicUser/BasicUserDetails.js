@@ -6,14 +6,14 @@ import { useParams } from "react-router-dom";
 import { deleteBasicUser, getBasicUser, updateBasicUser } from '../../../actions/basicUsers';
 
 const BasicUserDetails = () => {
-    
+
     const dispatch = useDispatch();
 
     const { id } = useParams();
 
     useEffect(() => {
         dispatch(getBasicUser(id));
-     }, [dispatch]);
+    }, [dispatch]);
 
     const user = useSelector((state) => state.basicUsers);
 
@@ -26,12 +26,13 @@ const BasicUserDetails = () => {
 
     const handleDelete = () => {
         dispatch(deleteBasicUser(user._id));
-        window.location.href="/admin/BasicUsers"
+        window.location.href = "/admin/BasicUsers"
     }
-    
-    return(
+
+    return (
         <>
-            <Button variant="primary" onClick={() => {window.location.href="/admin/BasicUsers"}}>Back</Button>
+            <Button style={{"marginTop":"75px"}} variant="primary" onClick={() => { window.location.href = "/admin/BasicUsers" }}>Back</Button>
+
             <br />
             <br />
             <ListGroup>
@@ -39,21 +40,23 @@ const BasicUserDetails = () => {
                 <ListGroupItem>Username: {user.username}</ListGroupItem>
                 <ListGroupItem>Email: {user.email}</ListGroupItem>
                 <ListGroupItem>Name: {user.name}</ListGroupItem>
-                <ListGroupItem>isBanned: {""+user.isBanned}</ListGroupItem>
+                <ListGroupItem>isBanned: {"" + user.isBanned}</ListGroupItem>
                 <ListGroupItem>Gender: {user.gender}</ListGroupItem>
                 <ListGroupItem>DOB: {user.dob}</ListGroupItem>
                 <ListGroupItem>Created at: {user.createdAt}</ListGroupItem>
             </ListGroup>
             <br />
-            <Button variant="primary" onClick={() => {window.location.href="/admin/BasicUsers/edit/" + user._id}}>Edit</Button>
+            <Button variant="primary" onClick={() => { window.location.href = "/admin/BasicUsers/edit/" + user._id }}>Edit</Button>
             &nbsp; &nbsp;
             { user.isBanned === false ?
-                <Button variant="primary" onClick={ () => { handleBan() }}>Ban</Button>
-            :
-                <Button variant="primary" onClick={ () => { handleBan() }}>Unban</Button>
+                <Button variant="primary" onClick={() => { handleBan() }}>Ban</Button>
+                :
+                <Button variant="primary" onClick={() => { handleBan() }}>Unban</Button>
             }
             &nbsp; &nbsp;
-            <Button variant="primary" onClick={ () => { handleDelete() }}>Delete</Button>
+            <Button variant="primary" onClick={() => { handleDelete() }}>Delete</Button>
+            <br />
+            <br />
         </>
     );
 

@@ -30,7 +30,7 @@ const ProfessionalUserDetails = () => {
     
     return(
         <>
-            <Button variant="primary" onClick={() => {window.location.href="/admin/ProfessionalUsers"}}>Back</Button>
+            <Button style={{"marginTop":"75px"}} variant="primary" onClick={() => {window.location.href="/admin/ProfessionalUsers"}}>Back</Button>
             <br />
             <br />
             <ListGroup>
