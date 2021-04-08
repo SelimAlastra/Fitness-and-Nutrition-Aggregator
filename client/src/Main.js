@@ -63,10 +63,10 @@ const Main = () => (
         <PrivateRoute exact path='/clientDashboard/:id' component={Wrapper} componentToRender={ClientDashboard} userType={'client'}/>
         <PrivateRoute exact path='/professionalDashboard/:id' component={Wrapper} componentToRender={ProfessionalDashboard} userType={'professional'}/>
 
-        <Route exact path='/myPosts/:id' component={ProfessionalPosts}></Route>
+        <PrivateRoute exact path='/myPosts/:id' component={Wrapper} componentToRender={ProfessionalPosts} userType={'professional'}/>
   
-        <Route exact path='/user/myBuckets/:id' component={BucketPage}></Route>
-        <Route exact path='/user/myBuckets/:id/:title' component={BucketContent}></Route>
+        <PrivateRoute exact path='/user/myBuckets/:id' component={Wrapper} componentToRender={BucketPage} userType={'client'}/>
+        <Route exact path='/user/myBuckets/:id/:title' component={BucketContent}/>
 
         <Route exact path='/user/password/forget' exact render={props => <ForgetPassword {...props} />} />
         <Route exact path='/user/password/reset/:token' exact render={props => <ResetPassword {...props} />} />
@@ -81,7 +81,7 @@ const Main = () => (
                 
         <PrivateRoute exact path="/professional/edit/:id" component={Wrapper} componentToRender={EditProfessionalDetails} userType={'professional'}/>
 
-        <Route exact path="/user/profile/:id" component={ClientProfile}/>
+        <PrivateRoute exact path="/user/profile/:id" component={Wrapper} componentToRender={ClientProfile} userType={'client'}/>
         <PrivateRoute exact path="/user/edit/:id" component={Wrapper} componentToRender={EditBasicUser} userType={'client'}/>
         <PrivateRoute exact path="/user/myservices/:id" component={Wrapper} componentToRender={MyServices} userType={'client'}/>
 
