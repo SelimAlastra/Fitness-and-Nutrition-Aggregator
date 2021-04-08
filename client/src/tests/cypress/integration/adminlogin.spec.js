@@ -112,7 +112,7 @@
         cy.contains('Name: Mark Kane').should('exist');           
     });
 
-    /* it('should ban a basic user', function() {
+    /*  it('should ban a basic user', function() {
         cy.contains('johnthompson').should('exist');
         cy.contains('johnthompson@yahoo.com').should('exist');
         cy.get('a[href*="admin/BasicUsers/606e1976b98e8e01929206da"]').click();
@@ -121,12 +121,22 @@
         cy.contains('Username: johnthompson').should('exist');
         cy.contains('Email: johnthompson@yahoo.com').should('exist'); 
         cy.contains('Name: John Thompson').should('exist');  
+        cy.wait(500);
         cy.contains('isBanned: true').should('exist');
-
         cy.contains('Unban').should('exist').click();
         cy.contains('Username: johnthompson').should('exist');
         cy.contains('Email: johnthompson@yahoo.com').should('exist'); 
         cy.contains('Name: John Thompson').should('exist');  
         cy.contains('isBanned: false').should('exist');        
     }); */
+
+    it('should redirect to Reports', function() {
+        cy.get('a').contains('Reports').click();
+        cy.url().should('include', '/admin/reports'); 
+       
+        cy.contains('Reporter Username').should('exist');
+        cy.contains('Reported Username').should('exist');
+        cy.contains('Reason').should('exist');
+        cy.contains('Actions').should('exist');
+    });
 }); 

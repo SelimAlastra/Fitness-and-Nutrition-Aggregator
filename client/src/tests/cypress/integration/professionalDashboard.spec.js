@@ -66,13 +66,6 @@ describe('Test', function() {
         cy.url().should('include', '/', ()=> {
             expect(localStorage.getItem('user')).to.be.null
         })
-       /*  cy.clearLocalStorage().then((ls) => {
-            expect(ls.getItem('_id')).to.be.null
-            expect(ls.getItem('email')).to.be.null
-            expect(ls.getItem('name')).to.be.null
-            expect(ls.getItem('username')).to.be.null
-            expect(ls.getItem('type')).to.be.null
-          }) */
     })   
 
 });
