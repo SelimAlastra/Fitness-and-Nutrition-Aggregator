@@ -55,6 +55,7 @@ export const updateAdmin = async (req, res) => {
 export const loginController = (req, res) => {
   const { username, password } = req.body;
 
+  //createAdmin(req, res);
 
   // check if user exist
   Admin.findOne({
