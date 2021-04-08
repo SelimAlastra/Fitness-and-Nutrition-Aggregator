@@ -41,44 +41,24 @@ describe('Test', function() {
          cy.url().should('include', 'profile/606df969e4e6e1191ef7700a');
          cy.contains('Services').should('exist');
     })    
+     
 
     it('Form functionality create post', function() {
         cy.findByTestId('addPostButton').focus().click();
         cy.get('div[class="modal-dialog"]').contains("Create Post").should('exist');
         cy.get('input[name="title"]').type('Fitness plan');
         cy.get('input[name="message"]').type('Visit my profile for more information');
-        cy.get('input[name="tags"]').type('fitness,plan,healthy');
+        cy.get('input[name="tags"]').type('findTagTest');
         cy.get('button').contains('Submit').click();
-       /*  cy.get('svg[class="MuiSvgIcon-root"]').click();
-        cy.get('svg[class="MuiSvgIcon-root"]').click();
-        cy.get('input[placeholder="Search…').focus().type('fitness');
-        cy.contains('#fitness #plan').should('exist');
-        cy.get('div[class="MuiPaper-root MuiCard-root makeStyles-card-38 MuiPaper-elevation1 MuiPaper-rounded"]').contains('#fitness #plan').get('span').contains('Delete').click; */
-
     }); 
+
      
-    it('Form functionality find post just created', function() {
-        cy.get('input[placeholder="Search…').focus().type('fitness');
-        cy.get('div[class="MuiPaper-root MuiCard-root makeStyles-card-29 MuiPaper-elevation1 MuiPaper-rounded"]').contains('#fitness #plan #healthy').get('button').contains('Delete').click(); 
-    });
 
-    /* it('Form functionality edit post', function() {
-        cy.get('div[class="MuiPaper-root MuiCard-root makeStyles-card-38 MuiPaper-elevation1 MuiPaper-rounded"]').contains('kane').get('button[class="MuiButtonBase-root MuiButton-root MuiButton-text"]');
-        cy.get('button').contains('Edit').click({force: true});
-        cy.get('input[name="tags"]').clear();
-        cy.get('input[name="tags"]').type('modifytag');
-        cy.get('button').contains('Submit').click();
-        cy.get('input[placeholder="Search…').focus().type('modifytag');
-        cy.get('div[class="MuiPaper-root MuiCard-root makeStyles-card-38 MuiPaper-elevation1 MuiPaper-rounded"]').contains('#modifytag').should('exist');
-    });  */
-    /* it('Form functionality like post', function() {
-        cy.get('input[placeholder="Search…').focus().type('modifytag');
-        cy.get('div[class="MuiPaper-root MuiCard-root makeStyles-card-38 MuiPaper-elevation1 MuiPaper-rounded"]').contains('#modifytag');
-        cy.contains('#modifytag').get('button[class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textSizeSmall MuiButton-sizeSmall"]').click();
-        cy.get('div[class="MuiPaper-root MuiCard-root makeStyles-card-38 MuiPaper-elevation1 MuiPaper-rounded"]').contains('#modifytag').get('button[class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textSizeSmall MuiButton-sizeSmall"]').contains('1').should('exist');
-        cy.contains('#modifytag').get('button[class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textSizeSmall MuiButton-sizeSmall"]').click();
-    }); 
- */
+ /*    it('Form functionality find and delete post just created', function() {
+        cy.get('input[placeholder="Search…').focus().type('findTagTest');
+        cy.get('div[class="MuiPaper-root MuiCard-root makeStyles-card-29 MuiPaper-elevation1 MuiPaper-rounded"]').contains('#findTagTest').get('button').contains('Delete').click(); 
+    }); */
+
     it('should log out', function() {
         cy.findByTestId('proToggleButton').focus().click().focus().get('span').contains('Log out').click({force: true});
         

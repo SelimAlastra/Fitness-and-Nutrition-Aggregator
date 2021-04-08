@@ -164,7 +164,7 @@ export const googleController = (req, res) => {
           } else {
             let password = email + process.env.JWT_SECRET;
             let username = name.replace(/\s/g, "").toLowerCase() + Math.floor(Math.random() * 10000); //implement random number generator later
-            user = new User({ username, email, password, name, picture });
+            user = new User({ username, email, password, name });
             user.save((err, data) => {
               if (err) {
                 console.log('ERROR GOOGLE LOGIN ON USER SAVE', err);

@@ -6,6 +6,8 @@ import { useParams } from "react-router-dom";
 import { getBasicUser, updateBasicUser } from '../../../actions/basicUsers';
 import axios from 'axios';
 import { baseUrl } from '../../../api/index';
+import '../../admin.css';
+
 
 const BasicUserEdit = () => {
 
@@ -40,10 +42,10 @@ const BasicUserEdit = () => {
     
     return( 
     <>
-        <Button variant="primary" onClick={() => {window.location.href=`/admin/BasicUsers/${user._id}`}}>Back</Button>
+        
         <br />
         <br />
-        <Form onSubmit={handleSubmit} >
+        <Form style={{"marginTop":"60px"}} onSubmit={handleSubmit} >
             <Form.Group>
             <Form.Label>Username</Form.Label>
             <Form.Control
@@ -76,8 +78,8 @@ const BasicUserEdit = () => {
                 onChange={(e) => setUserData( { ...userData, name: e.target.value } )}
             />
             </Form.Group>
-
-            <Button variant="primary" type="submit">Update</Button>
+            <Button className="adminB" variant="primary" onClick={() => {window.location.href=`/admin/BasicUsers/${user._id}`}}>Back</Button>
+            <Button className="adminB" variant="primary" type="submit">Update</Button>
         </Form>
     </>
     );
