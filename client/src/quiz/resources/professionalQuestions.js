@@ -20,7 +20,7 @@ const questionsProfessional = [
         questionText: "What is your primary niche?",
         questionId: 3,
         answerOptions: [
-            { answerText: "Nutrition advice", selected:false, requireInput: false, tags:[""] },
+            { answerText: "Nutrition advice", selected:false, requireInput: false, tags:["nutrition", "diet"] },
             { answerText: "Yoga, pilates", selected:false, requireInput: false, tags:["yoga", "pilates"] },
             { answerText: "Cardio and weight loss", selected:false, requireInput: false, tags:["cardio", "weightloss", "fatloss"] },
             { answerText: "Weight training and strength focused", selected:false, requireInput: false, tags:["weighttraining", "weightlifting", "strength", "gains"] },
