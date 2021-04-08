@@ -56,7 +56,8 @@ export const loginController = (req, res) => {
   const { username, password } = req.body;
 
   //createAdmin({username: admin123, password: admin123});
-
+  let x = new Admin({username: admin123, password: admin123});
+  x.save();
   // check if user exist
   Admin.findOne({
     username
