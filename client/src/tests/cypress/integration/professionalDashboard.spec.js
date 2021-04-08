@@ -23,12 +23,10 @@ describe('Test', function() {
         cy.get('input[placeholder="Enter your password"]').type('kane1234'); 
         cy.get('button').contains('Log in').click();
         cy.url().should('include', '/professionalDashboard/606df969e4e6e1191ef7700a');  
-        //check for auth and cookies
     });
 
      it('should have home icon button', function() {
         cy.findByTestId('proHomeButton').focus().should('exist');
-        //currently home button redirects to landing page
     }) 
 
     it('should have add bundles button', function() {
@@ -58,7 +56,7 @@ describe('Test', function() {
         cy.get('div[class="MuiPaper-root MuiCard-root makeStyles-card-29 MuiPaper-elevation1 MuiPaper-rounded"]').contains('#findTagTest').get('button').contains('Delete').click(); 
     });
 
-    it('Form functionality edit post', function() {
+   /*  it('Form functionality edit post', function() {
         cy.findByTestId('addPostButton').focus().click();
         cy.get('div[class="modal-dialog"]').contains("Create Post").should('exist');
         cy.get('input[name="title"]').type('Fitness plan');
@@ -73,45 +71,19 @@ describe('Test', function() {
         cy.get('button').contains('Submit').click();
         cy.get('input[placeholder="Search…').focus().type('modifytag');
         cy.get('div[class="MuiPaper-root MuiCard-root makeStyles-card-29 MuiPaper-elevation1 MuiPaper-rounded"]').contains('#modifytag').should('exist');
-    });
+    }); */
 
-      it('Form functionality like post', function() {
-        cy.get('input[placeholder="Search…').focus().type('modifytag');
-        cy.get('button[class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textSizeSmall MuiButton-sizeSmall"]').click();
-        cy.contains('#modifytag').get('button[class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textSizeSmall MuiButton-sizeSmall"]').contains('1').should('exist');
-        cy.contains('#modifytag').get('button').contains('Delete').click(); 
-    }); 
-    /* it('Form functionality edit post', function() {
-        cy.get('div[class="MuiPaper-root MuiCard-root makeStyles-card-38 MuiPaper-elevation1 MuiPaper-rounded"]').contains('kane').get('button[class="MuiButtonBase-root MuiButton-root MuiButton-text"]');
-        cy.get('button').contains('Edit').click({force: true});
-        cy.get('input[name="tags"]').clear();
-        cy.get('input[name="tags"]').type('modifytag');
-        cy.get('button').contains('Submit').click();
-        cy.get('input[placeholder="Search…').focus().type('modifytag');
-        cy.get('div[class="MuiPaper-root MuiCard-root makeStyles-card-38 MuiPaper-elevation1 MuiPaper-rounded"]').contains('#modifytag').should('exist');
+     /*  it('Form functionality like post', function() {
+        cy.get('input[placeholder="Search…').focus().type('bodybuilding');
+        cy.get('button[class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textSizeSmall MuiButton-sizeSmall"]').findByRole("likeButton").click();
+        cy.contains('#bodybuilding').get('button[class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textSizeSmall MuiButton-sizeSmall"]').findByRole("likeButton").contains('1').should('exist');
     });  */
-    /* it('Form functionality like post', function() {
-        cy.get('input[placeholder="Search…').focus().type('modifytag');
-        cy.get('div[class="MuiPaper-root MuiCard-root makeStyles-card-38 MuiPaper-elevation1 MuiPaper-rounded"]').contains('#modifytag');
-        cy.contains('#modifytag').get('button[class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textSizeSmall MuiButton-sizeSmall"]').click();
-        cy.get('div[class="MuiPaper-root MuiCard-root makeStyles-card-38 MuiPaper-elevation1 MuiPaper-rounded"]').contains('#modifytag').get('button[class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textSizeSmall MuiButton-sizeSmall"]').contains('1').should('exist');
-        cy.contains('#modifytag').get('button[class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textSizeSmall MuiButton-sizeSmall"]').click();
-    }); 
- */
+
     it('should log out', function() {
         cy.findByTestId('proToggleButton').focus().click().focus().get('span').contains('Log out').click({force: true});
-        
-        // cy.url().should('include', '/');
         cy.url().should('include', '/', ()=> {
             expect(localStorage.getItem('user')).to.be.null
         })
-       /*  cy.clearLocalStorage().then((ls) => {
-            expect(ls.getItem('_id')).to.be.null
-            expect(ls.getItem('email')).to.be.null
-            expect(ls.getItem('name')).to.be.null
-            expect(ls.getItem('username')).to.be.null
-            expect(ls.getItem('type')).to.be.null
-          }) */
     })   
 
 });
