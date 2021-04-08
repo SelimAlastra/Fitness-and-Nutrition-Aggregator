@@ -40,10 +40,10 @@ const ProfessionalUserEdit = () => {
     
     return( 
     <>
-<Button variant="primary" onClick={() => {window.location.href=`/admin/ProfessionalUsers/${user._id}`}}>Back</Button>
+
         <br />
         <br />
-        <Form onSubmit={handleSubmit} >
+        <Form style={{"marginTop":"60px"}} onSubmit={handleSubmit} >
             <Form.Group>
             <Form.Label>Username</Form.Label>
             <Form.Control
@@ -77,7 +77,8 @@ const ProfessionalUserEdit = () => {
             />
             </Form.Group>
 
-            <Button variant="primary" type="submit">Update</Button>
+            <Button className="adminB" variant="primary" type="submit">Update</Button>
+            <Button  className="adminB" variant="primary" onClick={() => {window.location.href=`/admin/ProfessionalUsers/${user._id}`}}>Back</Button>
         </Form>
     </>
     );

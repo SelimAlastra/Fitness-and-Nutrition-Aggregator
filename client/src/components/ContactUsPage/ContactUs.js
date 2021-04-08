@@ -18,7 +18,7 @@ const ContactUs = (props) =>  {
               console.log(error.text);
           });
           e.target.reset();
-          window.alert(" Your message has been sent ! ");
+          window.alert(" Your message has been sent! ");
     }
 
     return(

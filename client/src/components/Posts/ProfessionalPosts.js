@@ -18,7 +18,7 @@ const ProfessionalPosts = () => {
 
     const posts = useSelector((state) => state.posts);
     const myPosts = posts.filter((post) => post.userFrom == user._id);
-    console.log(myPosts);
+    myPosts.reverse();
 
     if (myPosts === undefined || myPosts.length === 0) {
         return (
