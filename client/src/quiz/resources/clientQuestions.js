@@ -57,10 +57,10 @@ const questionsClient = [
         answerOptions: [
             { answerText: "Lose fat", selected:false, tags:["losefat", "weightloss", "fatlosstips", "diet", "weightlossjourney", "sweat"], requireInput: false },
             { answerText: "Get fit/Look great at the beach", selected:false, tags:["getfit", "cardio", "fitnessmodel", "crossfit"], requireInput: false },
-            { answerText: "Recover from an injury", selected:false, tags:[""], requireInput: false },
-            { answerText: "Build endurance/run a marathon", selected:false, tags:[""], requireInput: false },
-            { answerText: "Fitness as a social activity", selected:false, tags:[""], requireInput: false },
-            { answerText: "Train discipline and focus", selected:false, tags:[""], requireInput: false },
+            { answerText: "Recover from an injury", selected:false, tags:["recover"], requireInput: false },
+            { answerText: "Build endurance/run a marathon", selected:false, tags:["endurance"], requireInput: false },
+            { answerText: "Fitness as a social activity", selected:false, tags:["social", "groupworkout"], requireInput: false },
+            { answerText: "Train discipline and focus", selected:false, tags:["discipline", "focus"], requireInput: false },
             { answerText: "Build strength and ability", selected:false, tags:["calisthenics", "bodyweight", "bodybuilding", "crossfit", "strength", "athlete", "core"], requireInput: false },
             { answerText: "Build mad muscle mass", selected:false, tags:["beastmode", "bodybuilding", "strength", "powerlifting", "weightlifting", "strongman"], requireInput: false }
         ],
@@ -68,7 +68,7 @@ const questionsClient = [
         questionText: "Where is your favorite place to exercise?",
         questionId: 9,
         answerOptions: [
-            { answerText: "Gym", selected:false, tags:[""], requireInput: false },
+            { answerText: "Gym", selected:false, tags:["gymworkout", "gym"], requireInput: false },
             { answerText: "Outdoors", selected:false, tags:["outdoor", "outdoortraining", "outdoorworkout", "nature"], requireInput: false },
             { answerText: "Home", selected:false, tags:["home", "homeworkout", "homegym", "quarantine", "nogymnoproblem"], requireInput: false },
         ],
