@@ -42,9 +42,9 @@ const ReportView = () => {
 
     return (
         <>
-            <Button variant="primary" onClick={() => { window.location.href = "/admin/reports" }}>Back</Button>
-            <br />
-            <br />
+            <Button style={{"marginTop":"75px"}} variant="primary" onClick={() => { window.location.href = "/admin/reports" }}>Back</Button>
+            <br/>
+            <br/>
             <ListGroup>
                 <ListGroupItem>Reporter Username: {report.reporterUsername}</ListGroupItem>
                 <ListGroupItem>Reported Username: {report.reportedUsername}</ListGroupItem>
