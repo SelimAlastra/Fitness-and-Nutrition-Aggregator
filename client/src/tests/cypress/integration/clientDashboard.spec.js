@@ -67,7 +67,7 @@
         cy.get('textarea[placeholder="Write your message here"]').focus().type('Test Contact'); 
         cy.contains('Send').should('exist').click();
         cy.on('window:alert',(txt)=>{
-            expect(txt).to.contains('Your message has been sent !');
+            expect(txt).to.contains('Your message has been sent!');
          })
     })   
 

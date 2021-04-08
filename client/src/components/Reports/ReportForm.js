@@ -16,6 +16,7 @@ const ReportForm = (report) => {
         e.preventDefault();
 
         dispatch(createReport(ReportData));
+        window.location.reload();
     }
     
     return(
