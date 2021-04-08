@@ -8,7 +8,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import CloseIcon from '@material-ui/icons/Close';
 import NavbarProfessional from "../../Navbar/NavbarProfessional";
 import Modal from 'react-modal';
-import '../../sharedStyles/EditFormsStyles.css';
+import './EditServices.css';
 import ReactPlayer from 'react-player';
 import AddService from './AddService.js';
 
