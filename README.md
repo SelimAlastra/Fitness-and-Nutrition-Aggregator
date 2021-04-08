@@ -2,7 +2,7 @@
 
 Project name: Fitness and nutrition aggregator
 
-Software name: CB Fit
+Software name: CB-Fit
 
 Contrtibuters: 
   Selim Alastra
@@ -31,5 +31,3 @@ Relevant user roles:
   Basic Users:
     username: markkane@yahoo.com
     password: kane1234
- 
-  
