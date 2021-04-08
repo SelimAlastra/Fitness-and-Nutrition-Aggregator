@@ -25,10 +25,6 @@ function LandingPage() {
         <div className='landingPage'>
             <body className='body'>
 
-                {/* <Alert className='alert1'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa. Vestibulum lacinia arcu eget nulla.
-                </Alert>
-                <Alert className='alert2'> </Alert> */}
-
                 <Carousel className="carousel">
                     <Carousel.Item class="d-none d-md-block">
                         <img

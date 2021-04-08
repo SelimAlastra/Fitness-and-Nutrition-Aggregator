@@ -133,7 +133,6 @@ const Post = ({ post, setCurrentId }) => {
 
   const Edit = () => {
       return (
-        //<Button size="small" onClick={() => setCurrentId(post._id)}>Edit</Button>
       <>
       <Button className={classes.hideButton} size="small" onClick={handleShowEditForm}>Edit</Button>
       <Modal class={classes.reportModal} style={{"top": "5.2%"}} show={showEditForm} onHide={handleCloseEditForm} backdrop="static">

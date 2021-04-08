@@ -10,14 +10,6 @@
 .body{
     background-color: whitesmoke;
 }
-/* 
-.serviceCard {
-    background-color: white;
-    height:auto;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-} */
 
 .serviceList {
     padding-inline-start: none;

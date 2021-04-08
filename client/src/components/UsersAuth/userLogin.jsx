@@ -103,7 +103,6 @@ const Login = (client) => {
 
   return (
     <div className="LoginInComponent">
-      {/* {isAuth() ? <Redirect to='/' /> : null} */}
       <Form onSubmit={formik.handleSubmit} autoComplete="Off">
         <Form.Label hidden={true} htmlFor="email">Email</Form.Label>
         <Form.Control className="loginInput"

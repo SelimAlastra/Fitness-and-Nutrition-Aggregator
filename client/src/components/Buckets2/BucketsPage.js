@@ -18,7 +18,6 @@ const Buckets = () => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        //dispatch(getPosts());
         dispatch(getBuckets());
         dispatch(getProfessionalUsers());
     }, [dispatch]);

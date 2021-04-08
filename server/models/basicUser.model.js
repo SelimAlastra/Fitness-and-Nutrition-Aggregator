@@ -14,7 +14,6 @@ const basicUserSchema = new Schema({
     minlength: 3
   },
   name :{type: String,  required: true},
-  //I still don't know how to divide this in first name/ middle name/ last name
 
   email :{type: String, unique:true, required: true},
 
@@ -39,7 +38,6 @@ const basicUserSchema = new Schema({
   goals: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Goal', required: true }],
 
   tags : [String],
-  //I used an array here cause an user may have multiple tags
 
   bio :{type: String,  required: false},
 

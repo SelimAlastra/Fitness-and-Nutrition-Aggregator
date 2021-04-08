@@ -26,22 +26,6 @@ const HomePage = (props) => {
 
     const user = useSelector((state) => state.basicUsers);
     
-    // const [name, setName] = useState("");
-    // const [address, setAddress] = useState("");
-    // const [gender, setGender] = useState("");
-    // const [weight, setWeight] = useState("");
-    // const [ID, setID] = useState("");
-
-    // useEffect(() => {
-    //     setName(user.name);
-    //     setAddress(user.address);
-    //     setGender(user.gender);
-    //     setWeight(user.weight);
-    //     setID(user._id);
-
-    // }, [user])
-
-    
         return (
             <div className="homepage">
             <NavbarUser/>

@@ -191,7 +191,6 @@ const SearchBox = ({updatePosts,setUpdatedPosts}) => {
       initialFilteredPosts.forEach(v => newArray.push(v));
   }
    InitialSearch();
-  //loadCharacters();
   
   /**
    * 

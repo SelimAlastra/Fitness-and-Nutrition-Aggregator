@@ -25,7 +25,6 @@ export default makeStyles((theme) => ({
     margin: '10px 10px 10px 10px',
   },
   overlay: {
-    //marginLeft: '10px',
     top: '10px',
     position: 'absolute',
     left: '20px',

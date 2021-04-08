@@ -3,9 +3,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Anton&display=swap");
 
 .quizz {
-
-  /* font-family: Arial, Helvetica, sans-serif; */
-  /* font-weight: bold!important; */
 }
 
 .bgImage {
@@ -26,7 +23,6 @@
   padding: 2% 2%;
 
   display: inline-block;
-  /* width: 45rem; */
   box-shadow: 10px 10px 42px 0px rgba(0, 0, 0, 0.75);
 }
 
@@ -56,9 +52,6 @@
 .quizz .carousel-indicators li { visibility: hidden; }
 
 .fixedimg {
-  /* position: absolute;
-  top: 0;
-  left: 0;  */
 }
 
 /* BUTTONS */
@@ -76,11 +69,9 @@
   border: 3px solid #9cbe95;
   cursor: pointer;
   margin-bottom: 8px;
-  /* margin-right: ; */
 }
 
 .dobPicker button {
-  
 }
 
 #backward-btn {
@@ -119,7 +110,6 @@
 }
 
 .quizz .toggleButton {
-  /* background-color: #5e678a; */
   color: #8cbe82;
 }
 

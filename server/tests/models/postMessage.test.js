@@ -21,7 +21,6 @@ describe('Testing Post model', function() {
 		expect(newPostMessage.title).to.equal("mytitle");
 		expect(newPostMessage.message).to.equal("mymessage");
 		expect(newPostMessage).to.have.property('userFrom');
-		//expect(newPostMessage.name).to.equal("bob123");
 		expect(newPostMessage.creator).to.equal("BobSmith");
 		expect(newPostMessage.tags[0]).to.equal("tag1");
 		expect(newPostMessage.tags[1]).to.equal("tag2");

@@ -142,7 +142,6 @@ const Form = ({ currentId, setCurrentId }) => {
                                     root: classes.root, focused: classes.focused, notchedOutline: classes.notchedOutline
                                 }
                             }} name="src" variant="outlined" label="URL/File" fullWidth value={postData.audioFile} onChange={(e) => setPostData({ ...postData, audioFile: e.target.value })} />
-                        {/* <FileBase type="file" multiple={false} onDone={({ base64 }) => setPostData({ ...postData, audioFile: base64 })} /> */}
                     </div>
                 </div>
                 <div>

@@ -81,7 +81,6 @@ const EditProfessionalDetails = (props) => {
                     window.alert(err.response.data.errors)
                 }
             })
-            //window.location.href = `/professional/profile/${ID}`
         } 
         else {
             event.stopPropagation();

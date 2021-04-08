@@ -114,7 +114,6 @@ export default function NavbarProfessional({updatedPosts, setUpdatedPosts, curre
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  //const [currentId, setCurrentId] = useState(null);
 
   const handleProfileMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);

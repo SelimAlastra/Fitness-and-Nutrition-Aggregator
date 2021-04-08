@@ -53,8 +53,7 @@ const Answer = (props) => {
                     return true;
                 }
                 return false;
-            }/*else if(){
-            }*/
+            }
 
         } else {
             if(questionId === 6){
@@ -62,8 +61,7 @@ const Answer = (props) => {
                     return true;
                 }
                 return false;
-            }/*else if(){
-            }*/
+            }
         }
     }
 

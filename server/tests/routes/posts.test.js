@@ -37,7 +37,6 @@ describe('Posts routes', function() {
                 userFrom: professional._id,
                 title: 'TEST POST',
                 message: 'THIS IS A TEST POST',
-                //name: professional.name,
             })
             .end((err, res) => {
                 post = res.body;
@@ -50,8 +49,6 @@ describe('Posts routes', function() {
                 expect(post.title).to.equal('TEST POST');
                 expect(post).to.have.property('message');
                 expect(post.message).to.equal('THIS IS A TEST POST');
-                //expect(post).to.have.property('name');
-                //expect(post.name).to.equal(professional.name);
                 done();
             });
         });
@@ -63,7 +60,6 @@ describe('Posts routes', function() {
                 userFrom: professional._id,
                 title: 'TEST POST',
                 message: 'THIS IS A TEST POST',
-                //name: professional.name,
             })
             .end((err, res) => {
                 expect(res.status).to.equal(400);
@@ -153,8 +149,6 @@ describe('Posts routes', function() {
                 expect(post.title).to.equal('NOT A TEST POST');
                 expect(post).to.have.property('message');
                 expect(post.message).to.equal('THIS IS A TEST POST');
-                //expect(post).to.have.property('name');
-                //expect(post.name).to.equal(professional.name);
                 done();
             });
         });
