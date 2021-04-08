@@ -102,7 +102,7 @@ const Form = ({ currentId, setCurrentId }) => {
                     <input type="radio" name="choice-post" value="photo" onChange={(e) => setValue(e.target.value)} required />
                     <label>Photo Post</label>
                     <div className="reveal-if-active" >
-                        <label>Upload Photo (only PNG)</label>
+                        <label>Upload Photo (MAX: 50mb)</label>
                         <FileBase type="file" multiple={false} onDone={({ base64 }) => setPostData({ ...postData, selectedFile: base64 })} />
                     </div>
                 </div>
