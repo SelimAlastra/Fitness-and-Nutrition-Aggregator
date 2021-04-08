@@ -2,7 +2,7 @@
 
 Project name: Fitness and nutrition aggregator
 
-Software name: ....
+Software name: CB-Fit
 
 Contrtibuters: 
   Selim Alastra
