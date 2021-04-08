@@ -68,7 +68,7 @@ function LandingPage() {
                     <div className="aboutUs">
                         <h2 className="websiteName"> About us ... </h2>
                         <hr />
-                        <p className="aboutUsText"> Join an amazing community through our fitness and nutrition platform. By registering on our website, you will have access to a wide variety of services offered by professionals and a lot more !  Rediscover a new way of exercising sport and never miss again any of your fitness or nutrition goals.    </p>
+                        <p className="aboutUsText"> Join an amazing community through our fitness and nutrition platform. By registering on our website, you will have access to a wide variety of services offered by professionals and a lot more!  Rediscover a new way of exercising sport and never miss again any of your fitness or nutrition goals.    </p>
                     </div>
                     <Grid container justify="center">
                         <Grid item xs= {0}>

@@ -36,7 +36,7 @@ const Buckets = () => {
                 </div>
                 <div style = {{margin: "20px"}}><BucketModal/></div>
                 <div>You have no buckets.</div>
-                <div>Create buckets and save your preferred posts for later.</div>
+                <div>Create buckets and save your favourite posts for later.</div>
             </div>
         );
     }

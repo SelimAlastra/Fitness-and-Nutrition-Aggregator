@@ -43,7 +43,7 @@ const Buckets = (post) => {
                 You have no buckets.
             </div>
             <div>
-                Create buckets and save your preferred posts for later.
+                Create buckets and save your favourite posts for later.
             </div>
         </>
         )
