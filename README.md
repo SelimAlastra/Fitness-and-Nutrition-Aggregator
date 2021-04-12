@@ -37,15 +37,13 @@ Relevant user roles:
 
     Admin user: 
 
-      To login go to page ..../admin.
-
       username: admin123
 
       password: admin123
 
 
 
-    Professional User:
+    Basic User:
 
       username: zoeyclark@gmail.com
 
@@ -53,9 +51,16 @@ Relevant user roles:
 
 
 
-    Basic Users:
+    Professional User:
 
       username: markkane@yahoo.com
 
       password: kane1234
+      
+      
     
+    When using locally use this Facebook account to sign up/log in with Facebook, otherwise use any other account:
+    
+      username: fitnessandnutritionaggregator@gmail.com
+      
+      password: fitness1234!
